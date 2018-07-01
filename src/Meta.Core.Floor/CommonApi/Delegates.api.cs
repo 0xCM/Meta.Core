@@ -21,20 +21,22 @@ partial class metacore
     public static Func<Y, X, Z> flip<X, Y, Z>(Func<X, Y, Z> f)
         => (Y y, X x) => f(x, y);
 
-    public static Func<X2> curry<X1, X2>(Func<X1, X2> f, X1 x1)
+    public static Func<B> curry<A, B>(Func<A, B> f, A x1)
         => () => f(x1);
 
-    public static Func<X2, X3> curry<X1, X2, X3>(Func<X1, X2, X3> f, X1 x1)
-        => x2 => f(x1, x2);
+    //curry :: ((a, b) -> c) -> a -> (b -> c)
+    public static Func<B, C> curry<A, B, C>(Func<A, B, C> f, A a)
+        => y => f(a, y);
 
-    public static Func<X2, X3, X4> curry<X1, X2, X3, X4>(Func<X1, X2, X3, X4> f, X1 x1)
-        => (x2, x3) => f(x1, x2, x3);
 
-    public static Func<X3, X4> curry<X1, X2, X3, X4>(Func<X1, X2, X3, X4> f, X1 x1, X2 x2)
-        => x3 => f(x1, x2, x3);
+    //public static Func<X2, X3, X4> curry<X1, X2, X3, X4>(Func<X1, X2, X3, X4> f, X1 x1)
+    //    => (x2, x3) => f(x1, x2, x3);
 
-    public static Func<X3, X4> curry<X1, X2, X3, X4>(Func<X1, X2, X3, X4> f, (X1 x1, X2 x2) x)
-        => x3 => f(x.x1, x.x2, x3);
+    //public static Func<X3, X4> curry<X1, X2, X3, X4>(Func<X1, X2, X3, X4> f, X1 x1, X2 x2)
+    //    => x3 => f(x1, x2, x3);
+
+    //public static Func<X3, X4> curry<X1, X2, X3, X4>(Func<X1, X2, X3, X4> f, (X1 x1, X2 x2) x)
+    //    => x3 => f(x.x1, x.x2, x3);
 
     /// <summary>
     /// Composes two delegates

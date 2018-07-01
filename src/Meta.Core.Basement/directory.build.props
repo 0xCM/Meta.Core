@@ -1,5 +1,9 @@
 <Project>
 
   <Import Project="../common.props"/>
+
+  <PropertyGroup>
+    <ProductName>metacore/basement</ProductName>
+  </PropertyGroup>
   
 </Project>

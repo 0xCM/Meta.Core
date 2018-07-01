@@ -2,4 +2,8 @@
 
   <Import Project="../common.props"/>
 
+  <PropertyGroup>
+    <ProductName>metacore/substructure</ProductName>
+  </PropertyGroup>
+
 </Project>

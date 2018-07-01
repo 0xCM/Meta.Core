@@ -1,5 +1,10 @@
 <Project>
 
   <Import Project="../common.props"/>
+  
+  <PropertyGroup>
+    <ProductName>metacore/processes</ProductName>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+  </PropertyGroup>
 
 </Project>

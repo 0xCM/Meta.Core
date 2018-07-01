@@ -4,15 +4,8 @@ using System.Collections.Generic;
 using System.Reflection;
 using CID = ComponentIdentifier;
 
-[assembly: AssemblyVersion(MetaCoreOperations.AssemblyVersion)]
-[assembly: AssemblyProduct(MetaCoreOperations.ProductName)]
-[assembly: AssemblyTitle(MetaCoreOperations.Title)]
-
-
 public class MetaCoreOperations : CoreModule<MetaCoreOperations>
 {
-    public const string ProductName = "metacore/operations";
-    public const string Title = nameof(MetaCoreOperations);
 
     public static readonly MetaCoreComponents SystemComponents
         = new MetaCoreComponents();

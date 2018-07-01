@@ -5,7 +5,7 @@
 //-------------------------------------------------------------------------------------------
 using System;
 
-using static metacore;
+using static minicore;
 
 public class RepresentationAttributeValue 
 {
@@ -57,7 +57,7 @@ public class RepresentationAttributeValue
     public override bool Equals(object other)
     {
         var _other = other as RepresentationAttributeValue;
-        if (isNull(_other))
+        if (_other is null)
             return false;
 
         return this.Name == _other.Name 

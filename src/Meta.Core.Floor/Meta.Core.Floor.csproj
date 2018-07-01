@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,8 +11,12 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\Meta.Core.Basement\Meta.Core.Basement.csproj" />
     <ProjectReference Include="..\Meta.Core.Collections\Meta.Core.Collections.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
 
 </Project>

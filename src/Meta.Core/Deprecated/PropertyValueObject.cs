@@ -11,7 +11,7 @@ using System.Reflection;
 using System.Runtime.Serialization;
 using System.Diagnostics;
 
-    using static metacore;
+using static metacore;
 
 /// <summary>
 /// Base class for objects that are identified only by the properties they encapsulate
@@ -60,7 +60,7 @@ public abstract class PropertyValueObject<T> : Representation<T>, IValueObject<T
 
     static PropertyValueObject()
     {
-        properties = rolist(typeof(T).GetProperties().Where(x => x.CanRead && x.CanWrite));
+        properties = typeof(T).GetProperties().Where(x => x.CanRead && x.CanWrite).ToReadOnlyList();
     }
 
     const int P1 = 17;

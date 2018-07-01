@@ -34,7 +34,10 @@
     <ProjectReference Include="..\Meta.Core.Synthetics\Meta.Core.Synthetics.csproj" />
     <ProjectReference Include="..\Meta.Core.Workflow\Meta.Core.Workflow.csproj" />
     <ProjectReference Include="..\Meta.Core.Xml\Meta.Core.Xml.csproj" />
-    <ProjectReference Include="..\Meta.Core\Meta.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Configuration\" />
   </ItemGroup>
 
 

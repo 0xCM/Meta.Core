@@ -2,4 +2,10 @@
 
   <Import Project="../common.props"/>
 
+  <PropertyGroup>
+    <ProductName>metacore/json</ProductName>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+
 </Project>

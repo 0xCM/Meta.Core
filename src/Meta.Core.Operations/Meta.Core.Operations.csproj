@@ -27,5 +27,9 @@
     <ProjectReference Include="..\Meta.Core\Meta.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
 
 </Project>

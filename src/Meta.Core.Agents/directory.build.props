@@ -1,5 +1,9 @@
 <Project>
 
   <Import Project="../common.props"/>
-  
+
+  <PropertyGroup>
+    <ProductName>metacore/agents</ProductName>
+  </PropertyGroup>
+
 </Project>

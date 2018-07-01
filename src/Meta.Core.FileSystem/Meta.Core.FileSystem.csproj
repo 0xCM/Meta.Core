@@ -14,8 +14,6 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\Meta.Core.Basement\Meta.Core.Basement.csproj" />
-    <ProjectReference Include="..\Meta.Core.Collections\Meta.Core.Collections.csproj" />
     <ProjectReference Include="..\Meta.Core.Floor\Meta.Core.Floor.csproj" />
   </ItemGroup>
 

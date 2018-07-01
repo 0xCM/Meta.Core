@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-using static metacore;
+using static minicore;
 
 /// <summary>
 /// Base type for representations where a "representation" is intended to align, more or less, 

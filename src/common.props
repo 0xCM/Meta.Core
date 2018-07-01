@@ -2,7 +2,9 @@
   
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Authors>0xCM@gmail.com</Authors>
+    <Version>1.1.0</Version>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
   </PropertyGroup>
 
   <PropertyGroup>

@@ -24,4 +24,8 @@
     <ProjectReference Include="..\Meta.Core.Workflow\Meta.Core.Workflow.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
 </Project>
