@@ -1,0 +1,105 @@
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <MsBuildSdkDir>$(DevDist)\msbuild\dll\</MsBuildSdkDir>
+    <MSBuildToolsDir>$(DevTools)\MsBuild\15.0\Bin\</MSBuildToolsDir>	
+  </PropertyGroup>
+
+  <PropertyGroup Label="dist/area">
+    <lib-folder>dll\</lib-folder>
+    <exe-folder>exe\</exe-folder>
+    <dacpac-folder>dacpac\</dacpac-folder>
+    <dist-root>$(DevDist)\</dist-root>    
+    <area-dist-folder>$(area-distid)\</area-dist-folder>
+    <area-distdir>$(dist-root)$(area-dist-folder)\</area-distdir>
+    <area-dist-libdir>$(area-distdir)$(lib-folder)\</area-dist-libdir>
+    <area-dist-exedir>$(area-distdir)$(exe-folder)\</area-dist-exedir>
+    <area-dist-exelibdir>$(area-distdir)$(exe-folder)$(lib-folder)\</area-dist-exelibdir>
+    <area-dist-dacpacdir>$(area-distdir)$(dacpac-folder)\</area-dist-dacpacdir>
+  </PropertyGroup>
+  
+  <PropertyGroup Label="dist/public">
+    <common-distid>common</common-distid>
+    <common-lib-distid>common</common-lib-distid>
+    <common-distdir>$(dist-root)$(common-distid)\</common-distdir>
+    <common-lib-distdir>$(common-distdir)dll\</common-lib-distdir>
+
+    <signalr-distid>signalr</signalr-distid>
+    <signalr-distdir>$(dist-root)$(signalr-distid)</signalr-distdir>
+    <signalr-lib-distdir>$(signalr-distdir)dll\</signalr-lib-distdir>
+
+    <owin-distid>owin</owin-distid>
+    <owin-distdir>$(dist-root)$(owin-distid)</owin-distdir>
+    <owin-lib-distdir>$(signalr-distdir)dll\</owin-lib-distdir>
+
+    <sys-distid>sys</sys-distid>
+    <sys-distdir>$(dist-root)$(sys-distid)\</sys-distdir>    
+    <sys-lib-distdir>$(dist-root)$(sys-distid)\dll\</sys-lib-distdir>    
+
+    <ns-distid>ns-2.0</ns-distid>
+    <ns-distdir>$(dist-root)$(ns-distid)\</ns-distdir>    
+    <ns-lib-distdir>$(dist-root)$(ns-distid)\</ns-lib-distdir>    
+
+    <msx-distid>ms-x</msx-distid> 
+    <msx-distdir>$(dist-root)$(msx-distid)\</msx-distdir>
+    <msx-lib-distdir>$(dist-root)$(msx-distid)\dll\</msx-lib-distdir>    
+
+    <msbuild-distid>msbuild</msbuild-distid>
+    <msbuild-distdir>$(dist-root)$(msbuild-distid)\</msbuild-distdir>
+    <msbuild-lib-distdir>$(msbuild-distdir)dll\</msbuild-lib-distdir>
+
+    <msca-distid>msca</msca-distid>    	  
+    <msca-distdir>$(dist-root)$(msca-distid)\</msca-distdir>
+    <msca-lib-distdir>$(dist-root)$(msca-distid)\dll\</msca-lib-distdir>
+
+    <msdac-distid>msdac</msdac-distid>       
+    <msdac-distdir>$(dist-root)$(msdac-distid)\</msdac-distdir>
+    <msdac-lib-distdir>$(dist-root)$(msdac-distid)\dll\</msdac-lib-distdir>
+    <msdac-exe-distdir>$(dist-root)$(msdac-distid)\exe\</msdac-exe-distdir>
+    <msdac-dac-distdir>$(dist-root)$(msdac-distid)\dacpac\</msdac-dac-distdir>
+
+    <mssql-distid>ms-sql</mssql-distid>
+    <mssql-lib-distdir>$(dist-root)$(msdac-distid)\dll\</mssql-lib-distdir>
+
+    <sqlsdk-distid>ms-sqlsdk</sqlsdk-distid>
+    <mssqlsdk-distid>ms-sqlsdk</mssqlsdk-distid>
+    <mssqlsdk-distdir>$(dist-root)$(mssqlsdk-distid)\</mssqlsdk-distdir>    
+    <mssqlsdk-lib-distdir>$(dist-root)$(mssqlsdk-distid)\dll\</mssqlsdk-lib-distdir>    
+
+    <msas-distid>ms-as</msas-distid>
+    <msas-lib-distdir>$(dist-root)$(msas-distid)\dll\</msas-lib-distdir>    
+
+    <metacore-distid>metacore</metacore-distid>
+    <metacore-distdir>$(dist-root)$(metacore-distid)\</metacore-distdir>
+
+    <metacore-lib-distid>metacore-lib</metacore-lib-distid>
+    <metacore-exe-distid>metacore-exe</metacore-exe-distid>
+    <metacore-lib-distdir>$(dist-root)$(metacore-distid)\dll\</metacore-lib-distdir>
+    <metacore-exe-distdir>$(dist-root)$(metacore-distid)\exe\</metacore-exe-distdir>
+
+    <metaflow-distid>metaflow</metaflow-distid>
+    <metaflow-lib-distdir>$(dist-root)$(metaflow-distid)\dll\</metaflow-lib-distdir>
+    <metaflow-exe-distdir>$(dist-root)$(metaflow-distid)\exe\</metaflow-exe-distdir>        
+    <metaflow-sql-distdir>$(dist-root)$(metaflow-distid)\dacpac\</metaflow-sql-distdir>
+    
+    <sqlt-distid>sqlt</sqlt-distid>
+    <sqlt-distdir>$(dist-root)$(sqlt-distid)\</sqlt-distdir>
+    <sqlt-lib-distid>sqlt-lib</sqlt-lib-distid>
+    <sqlt-exe-distid>sqlt-exe</sqlt-exe-distid>
+    <sqlt-lib-distdir>$(dist-root)$(sqlt-distid)\dll\</sqlt-lib-distdir>
+    <sqlt-sql-distdir>$(dist-root)$(sqlt-distid)\dacpac\</sqlt-sql-distdir>
+    <sqlt-exe-distdir>$(dist-root)$(sqlt-distid)\exe\</sqlt-exe-distdir>
+    
+    <pdms-distid>pdms</pdms-distid>    
+    <pdms-sql-distid>pdms-sql</pdms-sql-distid>    
+    <pdms-proxies-distid>pdms-proxies</pdms-proxies-distid>
+    <pdms-proxy-distid>pdms-proxies</pdms-proxy-distid>
+    <pdms-lib-distid>pdms-lib</pdms-lib-distid>
+    <pdms-exe-distid>pdms-exe</pdms-exe-distid>
+         
+    <xunit-distid>xunit</xunit-distid>
+    <xunit-distdir>$(dist-root)$(xunit-distid)\</xunit-distdir>
+    
+  </PropertyGroup>
+
+</Project>

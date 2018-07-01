@@ -1,0 +1,161 @@
+SqlPackage: Command-line tool for creating and deploying SQL Server databases and DACPAC packages.
+Copyright (c) 2016 Microsoft Corporation.  All rights reserved.
+
+Help for dynamic property usage.
+/@<file>:<string>
+     Read response file for more options.
+
+/help:[True|False]
+     (short form /?)
+
+
+Help for command actions.
+/Action:{Extract|DeployReport|DriftReport|Publish|Script|Export|Import}
+     Specifies the action to be performed. (short form /a)
+
+/AzureCloudConfig:<string>
+     Specifies the custom endpoints for connecting to Azure Active Directory in
+     the format:
+     AzureActiveDirectoryAuthority={value};DatabaseServicePrincipalName={value}"
+     . (short form /acc)
+
+/AzureKeyVaultAuthMethod:{Interactive|ClientIdSecret}
+     Specifies what authentication method will be used for accessing Azure Key
+     Aault (short form /akv)
+
+/ClientId:<string>
+     Specifies the Client ID to be used in authenticating against Azure Key
+     Vault, when necessary (short form /cid)
+
+/DeployReportPath:<string>
+     (short form /drp)
+
+/DeployScriptPath:<string>
+     (short form /dsp)
+
+/ModelFilePath:<string>
+     Specifies the file path to override the model.xml in the source file.  Use
+     of this setting may result in deployment failure and/or unintended data
+     loss.  This setting is intended only for use when troubleshooting issues
+     with publish, import or script generation. (short form /mfp)
+
+/OutputPath:<string>
+     Specifies the file path where the output files are generated. (short form
+     /op)
+
+/OverwriteFiles:[True|False]
+     Specifies if sqlpackage.exe should overwrite existing files. Specifying
+     false causes sqlpackage.exe to abort action if an existing file is
+     encountered. Default value is True. (short form /of)
+
+/Profile:<string>
+     Specifies the file path to a DAC Publish Profile. The profile defines a
+     collection of properties and variables to use when generating outputs.
+     (short form /pr)
+
+/Properties:{PropertyName}={Value}
+     Specifies a name value pair for an action specific property;
+     {PropertyName}={Value}. Refer to the help for a specific action to see
+     that action's property names.  Example: sqlpackage.exe /Action:Publish /?.
+     (short form /p)
+
+/Quiet:[True|False]
+     Specifies whether detailed feedback is suppressed. Defaults to False.
+     (short form /q)
+
+/Secret:<string>
+     Specifies the Client Secret to be used in authenticating against Azure Key
+     Vault, when necessary (short form /secr)
+
+/SourceConnectionString:<string>
+     Specifies a valid SQL Server/Azure connection string to the source
+     database. If this parameter is specified it shall be used exclusively of
+     all other source parameters. (short form /scs)
+
+/SourceDatabaseName:<string>
+     Defines the name of the source database. (short form /sdn)
+
+/SourceEncryptConnection:[True|False]
+     Specifies if SQL encryption should be used for the source database
+     connection. (short form /sec)
+
+/SourceFile:<string>
+     Specifies a source file to be used as the source of action instead of a
+     database. For the Publish and Script actions, SourceFile may be a dacpac
+     file or a schema compare scmp file.  If this parameter is used, no other
+     source parameter shall be valid. (short form /sf)
+
+/SourcePassword:<string>
+     For SQL Server auth scenarios, defines the password to use to access the
+     source database. (short form /sp)
+
+/SourceServerName:<string>
+     Defines the name of the server hosting the source database. (short form
+     /ssn)
+
+/SourceTimeout:<int>
+     Specifies the timeout for establishing a connection to the source database
+     in seconds. (short form /st)
+
+/SourceTrustServerCertificate:[True|False]
+     Specifies whether to use SSL to encrypt the source database connection and
+     bypass walking the certificate chain to validate trust. (short form /stsc)
+
+/SourceUser:<string>
+     For SQL Server auth scenarios, defines the SQL Server user to use to
+     access the source database. (short form /su)
+
+/TargetConnectionString:<string>
+     Specifies a valid SQL Server/Azure connection string to the target
+     database. If this parameter is specified it shall be used exclusively of
+     all other target parameters. (short form /tcs)
+
+/TargetDatabaseName:<string>
+     Specifies an override for the name of the database that is the target of
+     sqlpackage.exe Action. (short form /tdn)
+
+/TargetEncryptConnection:[True|False]
+     Specifies if SQL encryption should be used for the target database
+     connection. (short form /tec)
+
+/TargetFile:<string>
+     Specifies a target file (i.e., a .dacpac files) to be used as the target
+     of action instead of a database. If this parameter is used, no other
+     target parameter shall be valid. This parameter shall be invalid for
+     actions that only support database targets. (short form /tf)
+
+/TargetPassword:<string>
+     For SQL Server auth scenarios, defines the password to use to access the
+     target database. (short form /tp)
+
+/TargetServerName:<string>
+     Defines the name of the server hosting the target database. (short form
+     /tsn)
+
+/TargetTimeout:<int>
+     Specifies the timeout for establishing a connection to the target database
+     in seconds. (short form /tt)
+
+/TargetTrustServerCertificate:[True|False]
+     Specifies whether to use SSL to encrypt the target database connection and
+     bypass walking the certificate chain to validate trust. (short form /ttsc)
+
+/TargetUser:<string>
+     For SQL Server auth scenarios, defines the SQL Server user to use to
+     access the target database. (short form /tu)
+
+/TenantId:<string>
+     Specifies the tenantId or AD domain name for the Azure Active Directory
+     user. (short form /tid)
+
+/UniversalAuthentication:[True|False]
+     Specifies whether user wants to connect to the database via Universal
+     Authentication. (short form /ua)
+
+/Variables:{PropertyName}={Value}
+     Specifies a name value pair for an action specific variable;
+     {VariableName}={Value}. The DACPAC file contains the list of valid SQLCMD
+     variables.  An error will result if a value is not provided for every
+     variable. (short form /v)
+
+

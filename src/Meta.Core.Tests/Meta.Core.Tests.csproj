@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="1.2.1" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Meta.Core.Basement\Meta.Core.Basement.csproj" />
+    <ProjectReference Include="..\Meta.Core.ClrSpec\Meta.Core.ClrSpec.csproj" />
+    <ProjectReference Include="..\Meta.Core.Collections\Meta.Core.Collections.csproj" />
+    <ProjectReference Include="..\Meta.Core.Etude\Meta.Core.Etude.csproj" />
+    <ProjectReference Include="..\Meta.Core.FileSystem\Meta.Core.FileSystem.csproj" />
+    <ProjectReference Include="..\Meta.Core.Floor\Meta.Core.Floor.csproj" />
+    <ProjectReference Include="..\Meta.Core.Lang\Meta.Core.Lang.csproj" />
+    <ProjectReference Include="..\Meta.Core.Synthetics\Meta.Core.Synthetics.csproj" />
+    <ProjectReference Include="..\Meta.Core.Workflow\Meta.Core.Workflow.csproj" />
+  </ItemGroup>
+
+</Project>

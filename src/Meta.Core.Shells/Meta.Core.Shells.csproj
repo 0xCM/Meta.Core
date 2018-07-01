@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Meta.Core.Basement\Meta.Core.Basement.csproj" />
+    <ProjectReference Include="..\Meta.Core.ClrSpec\Meta.Core.ClrSpec.csproj" />
+    <ProjectReference Include="..\Meta.Core.Collections\Meta.Core.Collections.csproj" />
+    <ProjectReference Include="..\Meta.Core.Commands\Meta.Core.Commands.csproj" />
+    <ProjectReference Include="..\Meta.Core.Command\Meta.Core.Command.csproj" />
+    <ProjectReference Include="..\Meta.Core.FileSystem\Meta.Core.FileSystem.csproj" />
+    <ProjectReference Include="..\Meta.Core.Floor\Meta.Core.Floor.csproj" />
+    <ProjectReference Include="..\Meta.Core.Services\Meta.Core.Services.csproj" />
+    <ProjectReference Include="..\Meta.Core\Meta.Core.csproj" />
+  </ItemGroup>
+
+
+</Project>

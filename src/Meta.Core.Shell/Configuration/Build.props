@@ -1,0 +1,24 @@
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <DevArea>metacore</DevArea>
+    <AssemblyName>ms</AssemblyName>
+    <TargetName>$(AssemblyName)</TargetName>
+    <AutoGenerateBindingRedirects>True</AutoGenerateBindingRedirects>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DevToolDir>$(DevTools)\</DevToolDir>
+    <TopDir>$(DevAreaRoot)\$(DevArea)\</TopDir>
+    <TopDevDir>$(TopDir)</TopDevDir>
+    <TopConfigDir>$(TopDir).config\</TopConfigDir>
+  </PropertyGroup>
+  
+  <Import Project="$(TopConfigDir)Build.Exe.props" />
+  <Import Project="$(DevDist)\$(msbuild-distid)\msbuild.refs.props"/>
+  <Import Project="$(DevDist)\$(common-distid)\json.refs.props"/>
+  <Import Project="$(DevDist)\$(common-distid)\rabbitmq.refs.props"/>
+  
+  
+
+
+</Project>
+
+

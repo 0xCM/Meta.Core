@@ -1,0 +1,1 @@
+Git --help > Git.syntax.txt

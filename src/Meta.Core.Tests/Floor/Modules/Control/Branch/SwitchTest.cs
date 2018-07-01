@@ -1,0 +1,121 @@
+﻿//-------------------------------------------------------------------------------------------
+// MetaCore
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
+//-------------------------------------------------------------------------------------------
+namespace Meta.Core.Tests
+{
+    using System;
+    using System.Linq;
+
+    using Modules;
+
+    using static metacore;
+    using static operators;
+
+    using UT = Microsoft.VisualStudio.TestTools.UnitTesting;
+
+
+    [UT.TestClass, UT.TestCategory(nameof(metacore) + "/api")]
+    public class ApiTest
+    {
+        [UT.TestMethod]
+        public void Test01()
+        {
+            var input = List.intersperse("+", List.cons("One", "Two", "Three"));
+            var output = combine(input.Contained());
+            claim.equal("One+Two+Three", output);
+
+            
+        }
+
+        [UT.TestMethod]
+        public void Test05()
+        {
+            var input = List.cons(uint8(5), uint8(10), uint8(15));
+            var output = combine<byte>(input);
+            claim.equal(uint8(30), output);
+
+
+        }
+
+        [UT.TestMethod]
+        public void Test10()
+        {
+            var input = List.cons(int32(5), int32(10), int32(15));
+            var expect = List.cons(int32(-5), int32(-10), int32(-15));
+            var output = List.map(neg, input);
+            claim.equal(expect, output);
+        }
+
+
+        [UT.TestMethod]
+        public void Test15()
+        {
+            var f = function((int x) => 3 * x);
+            var g = function((int x) => 2 * x);
+            var list1 = List.cons(2, 5);
+            var list2 = List.cons(4, 6, 8);
+
+            var h = from z in List.map(f.Eval,list1).Stream()
+                    from y in List.map(g.Eval,list2).Stream()
+                    select z + y;
+
+             
+            //var output = List.apply(List.cons(f,f))(input);
+            //var expect = List.cons(6, 15, 6, 15);
+            //claim.sequal(expect, output);                           
+        }
+
+
+        public enum Choice
+        {
+            ChoiceA,
+            ChoiceB,
+            ChoiceC,
+            ChoiceD
+        }
+
+
+        Func<Choice, string> Switch1
+            => from s in Switch.build<Choice, string>()
+               from case1 in s.Case(x => x == Choice.ChoiceA, x => "Choice-A")
+               from case2 in s.Case(x => x == Choice.ChoiceB, x => "Choice-B")
+               from case3 in s.Case(x => x == Choice.ChoiceC, x => "Choice-C")               
+               select s.Evaluator(_ => "Not Supported");
+
+        Func<Choice, string> Switch2
+            => from s in Switch.build<Choice, string>()
+               let f0 = Function.make<Choice, string>(x => "")
+               let f1 = f0.Redefine(x => $"f1-{x}")
+               from case1 in s.Case(x => x == Choice.ChoiceA, f1)
+               let f2 = f0.Redefine(x => $"f2-{x}")
+               from case2 in s.Case(x => x == Choice.ChoiceB, f2) 
+               let f3 = f0.Redefine(x => $"f3-{x}")
+               from case3 in s.Case(x => x == Choice.ChoiceC, f3)
+               select s.Evaluator(_ => "Not Supported");
+
+
+
+        //[UT.TestMethod]
+        public void SwitchTest01()
+        {            
+            claim.equal("Choice-A", Switch1(Choice.ChoiceA));
+            claim.equal("Not Supported", Switch1(Choice.ChoiceD));
+
+        }
+
+        [UT.TestMethod]
+        public void SwitchTest02()
+        {
+            claim.equal("f1-ChoiceA", Switch2(Choice.ChoiceA));
+            claim.equal("f2-ChoiceB", Switch2(Choice.ChoiceB));
+            claim.equal("Not Supported", Switch2(Choice.ChoiceD));
+        }
+
+
+
+
+    }
+
+}

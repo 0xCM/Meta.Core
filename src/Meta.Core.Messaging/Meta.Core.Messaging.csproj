@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Fare" Version="2.1.1" />
+    <PackageReference Include="MathNet.Numerics" Version="4.5.1" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\Meta.Core.Agents\Meta.Core.Agents.csproj" />
+    <ProjectReference Include="..\Meta.Core.Basement\Meta.Core.Basement.csproj" />
+    <ProjectReference Include="..\Meta.Core.Collections\Meta.Core.Collections.csproj" />
+    <ProjectReference Include="..\Meta.Core.Floor\Meta.Core.Floor.csproj" />
+    <ProjectReference Include="..\Meta.Core.Json\Meta.Core.Json.csproj" />
+  </ItemGroup>
+
+</Project>

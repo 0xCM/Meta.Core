@@ -1,0 +1,1 @@
+findstr /i /s /C:"somestring" *.ext

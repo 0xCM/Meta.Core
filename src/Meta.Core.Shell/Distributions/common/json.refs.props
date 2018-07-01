@@ -1,0 +1,12 @@
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  
+  <ItemGroup Label="refs/json">
+
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>$(DevDist)\common\dll\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+
+  </ItemGroup>
+</Project>

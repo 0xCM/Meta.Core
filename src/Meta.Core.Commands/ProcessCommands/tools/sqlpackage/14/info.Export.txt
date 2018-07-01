@@ -1,0 +1,104 @@
+sqlpackage.14 /? /Action:Export 
+-------------------------------------------------------------------------------- 
+SqlPackage: Command-line tool for creating and deploying SQL Server databases and DACPAC packages.
+Copyright (c) 2016 Microsoft Corporation.  All rights reserved.
+
+The Export action creates a logical copy of a database (both the database schema as well as the data stored in the tables) from SQL Server or Microsoft Azure SQL Database to a BACPAC package (.bacpac file). When exporting from SQL Server, the database contents are verified to ensure that they are compatible with Microsoft Azure SQL Database.
+
+Help for command actions.
+/Action:{Extract|DeployReport|DriftReport|Publish|Script|Export|Import}
+     Specifies the action to be performed. (short form /a)
+
+/AzureCloudConfig:<string>
+     Specifies the custom endpoints for connecting to Azure Active Directory in
+     the format:
+     AzureActiveDirectoryAuthority={value};DatabaseServicePrincipalName={value}"
+     . (short form /acc)
+
+/OverwriteFiles:[True|False]
+     Specifies if sqlpackage.exe should overwrite existing files. Specifying
+     false causes sqlpackage.exe to abort action if an existing file is
+     encountered. Default value is True. (short form /of)
+
+/Properties:{PropertyName}={Value}
+     Specifies a name value pair for an action specific property;
+     {PropertyName}={Value}. Refer to the help for a specific action to see
+     that action's property names.  Example: sqlpackage.exe /Action:Publish /?.
+     (short form /p)
+
+/Quiet:[True|False]
+     Specifies whether detailed feedback is suppressed. Defaults to False.
+     (short form /q)
+
+/SourceConnectionString:<string>
+     Specifies a valid SQL Server/Azure connection string to the source
+     database. If this parameter is specified it shall be used exclusively of
+     all other source parameters. (short form /scs)
+
+/SourceDatabaseName:<string>
+     Defines the name of the source database. (short form /sdn)
+
+/SourceEncryptConnection:[True|False]
+     Specifies if SQL encryption should be used for the source database
+     connection. (short form /sec)
+
+/SourcePassword:<string>
+     For SQL Server auth scenarios, defines the password to use to access the
+     source database. (short form /sp)
+
+/SourceServerName:<string>
+     Defines the name of the server hosting the source database. (short form
+     /ssn)
+
+/SourceTimeout:<int>
+     Specifies the timeout for establishing a connection to the source database
+     in seconds. (short form /st)
+
+/SourceTrustServerCertificate:[True|False]
+     Specifies whether to use SSL to encrypt the source database connection and
+     bypass walking the certificate chain to validate trust. (short form /stsc)
+
+/SourceUser:<string>
+     For SQL Server auth scenarios, defines the SQL Server user to use to
+     access the source database. (short form /su)
+
+/TargetFile:<string>
+     Specifies a target file (i.e., a .dacpac files) to be used as the target
+     of action instead of a database. If this parameter is used, no other
+     target parameter shall be valid. This parameter shall be invalid for
+     actions that only support database targets. (short form /tf)
+
+/TenantId:<string>
+     Specifies the tenantId or AD domain name for the Azure Active Directory
+     user. (short form /tid)
+
+/UniversalAuthentication:[True|False]
+     Specifies whether user wants to connect to the database via Universal
+     Authentication. (short form /ua)
+
+
+Properties specific to the Export action:
+/p:CommandTimeout=(INT32 '60')
+     Specifies the command timeout in seconds when executing queries against
+     SQL Server.
+
+/p:Storage=({File|Memory} 'File')
+     Specifies the type of backing storage for the schema model used during
+     extraction.
+
+/p:TableData=(STRING[])
+     Indicates the table from which data will be extracted. Specify the table
+     name with or without the brackets surrounding the name parts in the
+     following format: schema_name.table_identifier.
+
+/p:TargetEngineVersion=({Default|Latest|V11|V12} 'Latest')
+     Specifies what the target engine version is expected to be. This affects
+     whether to allow objects supported by Microsoft Azure SQL Database servers
+     with V12 capabilities, such as memory-optimized tables, in the generated
+     bacpac.
+
+/p:VerifyFullTextDocumentTypesSupported=(BOOLEAN)
+     Specifies whether the supported full-text document types for Microsoft
+     Azure SQL Database v12 should be verified.
+
+

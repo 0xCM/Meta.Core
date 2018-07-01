@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include=".messages\Messages.cs" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\Meta.Core.Basement\Meta.Core.Basement.csproj" />
+    <ProjectReference Include="..\Meta.Core.Collections\Meta.Core.Collections.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,15 @@
+﻿<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+   
+  <PropertyGroup>
+    <DevArea>MetaCore</DevArea>
+    <AssemblyName>Meta.Core.Command</AssemblyName>
+    <TargetName>$(AssemblyName)</TargetName>
+    <TopDir>$(DevAreaRoot)\$(DevArea)\</TopDir>
+    <TopDevDir>$(TopDir)</TopDevDir>
+    <TopConfigDir>$(TopDir).config\</TopConfigDir>
+  </PropertyGroup>
+
+  <Import Project="$(TopConfigDir)Build.Lib.props"/>
+
+
+</Project>

@@ -1,0 +1,17 @@
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <area-lib-files Include="$(area-lib-distid)*.dll; $(area-lib-distid)*.xml"/>
+
+    <common-lib-files Include="$(common-lib-distdir)*.dll; $(common-lib-distdir)*.xml"/>
+    <metacore-lib-files Include="$(metacore-lib-distdir)*.dll; $(metacore-lib-distdir)*.xml"/>
+    <msca-lib-files Include="$(msca-lib-distdir)*.dll; $(msca-lib-distdir)*.xml" />
+    <sys-lib-files Include="$(sys-lib-distdir)*.dll; $(sys-lib-distdir)*.xml"/>
+    <msbuild-lib-files Include="$(msbuild-lib-distdir)*.dll; $(msbuild-lib-distdir)*.xml;"/>
+    <owin-lib-files Include="$(owin-lib-distdir)*.dll; $(owin-lib-distdir)*.xml"/>
+    <msdac-lib-files Include="$(msdac-lib-distdir)*.dll; $(msdac-lib-distdir)*.xml"/>
+    <sqlsdk-lib-files Include="$(mssqlsdk-lib-distdir)*.dll; $(mssqlsdk-lib-distdir)*.xml"/>
+    <signalr-lib-files Include="$(signalr-lib-distdir)*.dll; $(signalr-lib-distdir)*.xml" />
+    <sqlt-lib-files Include="$(sqlt-lib-distdir)*.dll; $(sqlt-lib-distdir)*.xml"/>
+    <metaflow-lib-files Include="$(metaflow-lib-distdir)*.dll; $(metaflow-lib-distdir)*.xml" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,111 @@
+sqlpackage.14 /? /Action:Import 
+-------------------------------------------------------------------------------- 
+SqlPackage: Command-line tool for creating and deploying SQL Server databases and DACPAC packages.
+Copyright (c) 2016 Microsoft Corporation.  All rights reserved.
+
+The Import action deploys the schema and table data from a BACPAC file into a new user database in an instance of SQL Server or Microsoft Azure SQL Database.
+
+Help for command actions.
+/Action:{Extract|DeployReport|DriftReport|Publish|Script|Export|Import}
+     Specifies the action to be performed. (short form /a)
+
+/AzureCloudConfig:<string>
+     Specifies the custom endpoints for connecting to Azure Active Directory in
+     the format:
+     AzureActiveDirectoryAuthority={value};DatabaseServicePrincipalName={value}"
+     . (short form /acc)
+
+/ModelFilePath:<string>
+     Specifies the file path to override the model.xml in the source file.  Use
+     of this setting may result in deployment failure and/or unintended data
+     loss.  This setting is intended only for use when troubleshooting issues
+     with publish, import or script generation. (short form /mfp)
+
+/Properties:{PropertyName}={Value}
+     Specifies a name value pair for an action specific property;
+     {PropertyName}={Value}. Refer to the help for a specific action to see
+     that action's property names.  Example: sqlpackage.exe /Action:Publish /?.
+     (short form /p)
+
+/Quiet:[True|False]
+     Specifies whether detailed feedback is suppressed. Defaults to False.
+     (short form /q)
+
+/SourceFile:<string>
+     Specifies a source file to be used as the source of action instead of a
+     database. For the Publish and Script actions, SourceFile may be a dacpac
+     file or a schema compare scmp file.  If this parameter is used, no other
+     source parameter shall be valid. (short form /sf)
+
+/TargetConnectionString:<string>
+     Specifies a valid SQL Server/Azure connection string to the target
+     database. If this parameter is specified it shall be used exclusively of
+     all other target parameters. (short form /tcs)
+
+/TargetDatabaseName:<string>
+     Specifies an override for the name of the database that is the target of
+     sqlpackage.exe Action. (short form /tdn)
+
+/TargetEncryptConnection:[True|False]
+     Specifies if SQL encryption should be used for the target database
+     connection. (short form /tec)
+
+/TargetPassword:<string>
+     For SQL Server auth scenarios, defines the password to use to access the
+     target database. (short form /tp)
+
+/TargetServerName:<string>
+     Defines the name of the server hosting the target database. (short form
+     /tsn)
+
+/TargetTimeout:<int>
+     Specifies the timeout for establishing a connection to the target database
+     in seconds. (short form /tt)
+
+/TargetTrustServerCertificate:[True|False]
+     Specifies whether to use SSL to encrypt the target database connection and
+     bypass walking the certificate chain to validate trust. (short form /ttsc)
+
+/TargetUser:<string>
+     For SQL Server auth scenarios, defines the SQL Server user to use to
+     access the target database. (short form /tu)
+
+/TenantId:<string>
+     Specifies the tenantId or AD domain name for the Azure Active Directory
+     user. (short form /tid)
+
+/UniversalAuthentication:[True|False]
+     Specifies whether user wants to connect to the database via Universal
+     Authentication. (short form /ua)
+
+
+Properties specific to the Import action:
+/p:CommandTimeout=(INT32 '60')
+     Specifies the command timeout in seconds when executing queries against
+     SQL Server.
+
+/p:DatabaseEdition=({Web|Business|Basic|Standard|Premium|Default} 'Default')
+     Defines the edition of a Microsoft Azure SQL Database.
+
+/p:DatabaseMaximumSize=(INT32)
+     Defines the maximum size in GB of a Microsoft Azure SQL Database.
+
+/p:DatabaseServiceObjective=(STRING)
+     Defines the performance level of a Microsoft Azure SQL Database such as
+     "P0" or "S1".
+
+/p:ImportContributorArguments=(STRING)
+     Specifies deployment contributor arguments for the deployment
+     contributors. This should be a semi-colon delimited list of values.
+
+/p:ImportContributors=(STRING)
+     Specifies the deployment contributors which should run when the bacpac is
+     imported. This should be a semi-colon delimited list of fully qualified
+     build contributor names or IDs.
+
+/p:Storage=({File|Memory})
+     Specifies how elements are stored when building the database model. For
+     performance reasons the default is InMemory. For very large databases,
+     File backed storage is required.
+
+

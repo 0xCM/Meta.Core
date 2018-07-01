@@ -1,0 +1,74 @@
+sqlpackage.14 /? /Action:DriftReport 
+-------------------------------------------------------------------------------- 
+SqlPackage: Command-line tool for creating and deploying SQL Server databases and DACPAC packages.
+Copyright (c) 2016 Microsoft Corporation.  All rights reserved.
+
+The DriftReport action creates an XML report of the changes that have been made to a registered database since it was last registered. Note: The login used to perform the Drift Report action must be a member of the sysadmin role on the target server.
+
+Help for command actions.
+/Action:{Extract|DeployReport|DriftReport|Publish|Script|Export|Import}
+     Specifies the action to be performed. (short form /a)
+
+/AzureCloudConfig:<string>
+     Specifies the custom endpoints for connecting to Azure Active Directory in
+     the format:
+     AzureActiveDirectoryAuthority={value};DatabaseServicePrincipalName={value}"
+     . (short form /acc)
+
+/OutputPath:<string>
+     Specifies the file path where the output files are generated. (short form
+     /op)
+
+/OverwriteFiles:[True|False]
+     Specifies if sqlpackage.exe should overwrite existing files. Specifying
+     false causes sqlpackage.exe to abort action if an existing file is
+     encountered. Default value is True. (short form /of)
+
+/Quiet:[True|False]
+     Specifies whether detailed feedback is suppressed. Defaults to False.
+     (short form /q)
+
+/TargetConnectionString:<string>
+     Specifies a valid SQL Server/Azure connection string to the target
+     database. If this parameter is specified it shall be used exclusively of
+     all other target parameters. (short form /tcs)
+
+/TargetDatabaseName:<string>
+     Specifies an override for the name of the database that is the target of
+     sqlpackage.exe Action. (short form /tdn)
+
+/TargetEncryptConnection:[True|False]
+     Specifies if SQL encryption should be used for the target database
+     connection. (short form /tec)
+
+/TargetPassword:<string>
+     For SQL Server auth scenarios, defines the password to use to access the
+     target database. (short form /tp)
+
+/TargetServerName:<string>
+     Defines the name of the server hosting the target database. (short form
+     /tsn)
+
+/TargetTimeout:<int>
+     Specifies the timeout for establishing a connection to the target database
+     in seconds. (short form /tt)
+
+/TargetTrustServerCertificate:[True|False]
+     Specifies whether to use SSL to encrypt the target database connection and
+     bypass walking the certificate chain to validate trust. (short form /ttsc)
+
+/TargetUser:<string>
+     For SQL Server auth scenarios, defines the SQL Server user to use to
+     access the target database. (short form /tu)
+
+/TenantId:<string>
+     Specifies the tenantId or AD domain name for the Azure Active Directory
+     user. (short form /tid)
+
+/UniversalAuthentication:[True|False]
+     Specifies whether user wants to connect to the database via Universal
+     Authentication. (short form /ua)
+
+
+Properties specific to the DriftReport action:
+

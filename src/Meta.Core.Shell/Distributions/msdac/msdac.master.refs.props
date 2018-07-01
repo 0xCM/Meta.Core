@@ -1,0 +1,12 @@
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <ItemGroup Label="sqlrefs/master">
+
+      <ArtifactReference Include="$(msdac-dac-distdir)$(SqlVersionNumber)\master.dacpac">
+        <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+        <DatabaseVariableLiteralValue>master</DatabaseVariableLiteralValue>
+      </ArtifactReference>
+
+  </ItemGroup>
+
+</Project>

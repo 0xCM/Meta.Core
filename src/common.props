@@ -1,0 +1,24 @@
+<Project>
+  
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <DevArea>metacored</DevArea>
+    <area-distid>$(DevArea)</area-distid>
+    <TopDir>$(DevAreaRoot)\$(DevArea)\</TopDir>
+    <BuildRootDir>$(TopDir)bin\</BuildRootDir>
+    <LibBuildDir>$(BuildRootDir)lib\</LibBuildDir>
+    <OutputDir>$(LibBuildDir)</OutputDir>
+    <OutputPath>$(LibBuildDir)</OutputPath>
+    <IntermediateBuildDir>$(BuildRootDir)obj\$(MSBuildProjectName)\</IntermediateBuildDir>
+    <BaseIntermediateOutputPath>$(IntermediateBuildDir)</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(IntermediateBuildDir)</IntermediateOutputPath>
+    <NoWarn>1701;1702;1591</NoWarn>
+    <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)common.ruleset</CodeAnalysisRuleSet>
+
+  </PropertyGroup>
+
+</Project>

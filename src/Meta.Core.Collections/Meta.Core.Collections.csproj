@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Meta.Core.Basement\Meta.Core.Basement.csproj" />
+    <ProjectReference Include="..\Meta.Core.Substructure\Meta.Core.Substructure.csproj" />
+  </ItemGroup>
+
+</Project>

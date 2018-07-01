@@ -1,0 +1,17 @@
+﻿<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+   
+  <PropertyGroup>
+    <DevArea>MetaCore</DevArea>
+    <AssemblyName>Meta.Core.Processes</AssemblyName>
+    <TargetName>$(AssemblyName)</TargetName>
+    <TopDir>$(DevAreaRoot)\MetaCore\</TopDir>
+    <TopDevDir>$(TopDir)</TopDevDir>
+    <TopConfigDir>$(TopDir).config\</TopConfigDir>
+  </PropertyGroup>
+
+  <Import Project="$(TopConfigDir)Build.Lib.props"/>
+  <Import Project="$(DevDist)\$(sys-distid)\sys.refs.compression.props"/>
+  <Import Project="$(DevDist)\$(common-distid)\json.refs.props"/>
+
+
+</Project>

@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include=".unported\Derived\IconExtractor.cs" />
+    <None Include=".unported\Derived\IconUtil.cs" />
+    <None Include=".unported\Derived\NativeMethods.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include=".unported\ParserExtensions.cs" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\Meta.Core.Agents\Meta.Core.Agents.csproj" />
+    <ProjectReference Include="..\Meta.Core.Basement\Meta.Core.Basement.csproj" />
+    <ProjectReference Include="..\Meta.Core.Collections\Meta.Core.Collections.csproj" />
+    <ProjectReference Include="..\Meta.Core.Command\Meta.Core.Command.csproj" />
+    <ProjectReference Include="..\Meta.Core.Floor\Meta.Core.Floor.csproj" />
+    <ProjectReference Include="..\Meta.Core.Json\Meta.Core.Json.csproj" />
+    <ProjectReference Include="..\Meta.Core.Messaging\Meta.Core.Messaging.csproj" />
+    <ProjectReference Include="..\Meta.Core.Processes\Meta.Core.Processes.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="FileParsers\" />
+  </ItemGroup>
+
+</Project>

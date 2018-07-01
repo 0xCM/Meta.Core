@@ -1,0 +1,17 @@
+<Project  ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <ItemGroup>
+
+    <Reference Include="System.IO.Compression">
+      <HintPath>$(DevDist)\$(sys-distid)\dll\System.IO.Compression.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <Reference Include="System.IO.Compression.ZipFile">
+      <HintPath>$(DevDist)\$(sys-distid)\dll\System.IO.Compression.ZipFile.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+  </ItemGroup>
+
+</Project>

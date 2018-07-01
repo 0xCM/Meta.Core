@@ -1,0 +1,12 @@
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <ItemGroup Label="sqlrefs/msdb">
+
+      <ArtifactReference Include="$(msdac-dac-distdir)$(SqlVersionNumber)\msdb.dacpac">
+        <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+        <DatabaseVariableLiteralValue>msdb</DatabaseVariableLiteralValue>
+      </ArtifactReference>
+
+  </ItemGroup>
+
+</Project>

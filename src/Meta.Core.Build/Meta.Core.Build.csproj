@@ -1,0 +1,172 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="Configuration\Build.Props" />
+  <PropertyGroup>
+    <RootNamespace>Meta.Core</RootNamespace>
+    <AppDesignerFolder>Configuration</AppDesignerFolder>
+    <ProjectGuid>{0E93372F-C6C5-4354-9169-AF9BEBA93F14}</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="Configuration\Build.props">
+      <SubType>Designer</SubType>
+    </None>
+    <EmbeddedResource Include="Model\Syntax\PropertyElement.template" />
+    <EmbeddedResource Include="Project\Resources\Solution.template" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Meta.Core.Agents\Meta.Core.Agents.csproj">
+      <Project>{599bf129-a41b-4d1e-8599-52479da8060e}</Project>
+      <Name>Meta.Core.Agents</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Meta.Core.Basement\Meta.Core.Basement.csproj">
+      <Project>{c5b0bad8-ed2a-4647-a2e2-b1bd7736eb52}</Project>
+      <Name>Meta.Core.Basement</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Meta.Core.ClrSpec\Meta.Core.ClrSpec.csproj">
+      <Project>{c823dabb-7a16-4313-8ae3-6542d80bec15}</Project>
+      <Name>Meta.Core.ClrSpec</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Meta.Core.Command\Meta.Core.Command.csproj">
+      <Project>{1f532636-1c4d-447a-8cbd-b6a815f0490d}</Project>
+      <Name>Meta.Core.Command</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Meta.Core.FileSystem\Meta.Core.FileSystem.csproj">
+      <Project>{76eb56ae-2c88-445d-8299-0b8f04d3f9ca}</Project>
+      <Name>Meta.Core.FileSystem</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Meta.Core.Floor\Meta.Core.Floor.csproj">
+      <Project>{8499993e-0714-4075-9f9b-70d45a310873}</Project>
+      <Name>Meta.Core.Floor</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Meta.Core.Services\Meta.Core.Services.csproj">
+      <Project>{2b2fd061-9c83-491a-b070-b6ef9df8172d}</Project>
+      <Name>Meta.Core.Services</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Meta.Core.Syntax\Meta.Core.Syntax.csproj">
+      <Project>{cf5da27f-1398-49b1-8599-a204631b8a9b}</Project>
+      <Name>Meta.Core.Syntax</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Meta.Core.Xml\Meta.Core.Xml.csproj">
+      <Project>{9b4fa390-92fc-4012-a435-cf12874023be}</Project>
+      <Name>Meta.Core.Xml</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Meta.Core\Meta.Core.csproj">
+      <Project>{b6091044-9b19-4989-acf7-a00a1fde2e39}</Project>
+      <Name>Meta.Core</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Distribution\Contracts\IDistributionLibrary.cs" />
+    <Compile Include="Distribution\Vocabulary\AssemblyArtifact.cs" />
+    <Compile Include="Distribution\Vocabulary\AssemblySegment.cs" />
+    <Compile Include="Distribution\Contracts\IDistributionArtifact.cs" />
+    <Compile Include="Distribution\Contracts\IDistributionSegment.cs" />
+    <Compile Include="Distribution\Vocabulary\DistributionArtifact.cs" />
+    <Compile Include="Distribution\Contracts\IDistribution.cs" />
+    <Compile Include="Distribution\Services\DistributionLibrary.cs" />
+    <Compile Include="Distribution\Services\DistributionNavigator.cs" />
+    <Compile Include="Distribution\Vocabulary\DistributionSegment.cs" />
+    <Compile Include="Distribution\Vocabulary\DistributionSpecifier.cs" />
+    <Compile Include="Model\Standard\DefaultProjectModel.cs" />
+    <Compile Include="Model\Syntax\Abstractions\EvaluatedProperties.cs" />
+    <Compile Include="Model\Syntax\Abstractions\SyntaxElement.cs" />
+    <Compile Include="Model\Standard\StandardSqlProperties.cs" />
+    <Compile Include="Model\Syntax\ElementDescriptor.cs" />
+    <Compile Include="Model\Syntax\Elements\SymbolicPropertyGroup.cs" />
+    <Compile Include="Project\Abstractions\ComponentDependencySet.cs" />
+    <Compile Include="Project\Abstractions\DevProject.cs" />
+    <Compile Include="Project\Abstractions\ProjectFile.cs" />
+    <Compile Include="Project\Abstractions\ProjectVariable.cs" />
+    <Compile Include="Project\Abstractions\SolutionIdentifiers.cs" />
+    <Compile Include="Project\Abstractions\ToolIdentifiers.cs" />
+    <Compile Include="Project\Contracts\IDevProject.cs" />
+    <Compile Include="Project\Contracts\IProjectFile.cs" />
+    <Compile Include="Project\Contracts\IProjectVariable.cs" />
+    <Compile Include="Project\ProjectX.cs" />
+    <Compile Include="Project\Vocabulary\AssetNavigator.cs" />
+    <Compile Include="Project\Vocabulary\CSharpImplementationArea.cs" />
+    <Compile Include="Project\Vocabulary\CSharpProject.cs" />
+    <Compile Include="Project\Contracts\ICSharpProject.cs" />
+    <Compile Include="Project\Contracts\IWorkspace.cs" />
+    <Compile Include="Project\Contracts\IWorkspaceArea.cs" />
+    <Compile Include="Project\Abstractions\WorkspaceArea.cs" />
+    <Compile Include="Project\Vocabulary\DevArea.cs" />
+    <Compile Include="Project\Vocabulary\DevProject.cs" />
+    <Compile Include="Project\Vocabulary\DevProjectDescription.cs" />
+    <Compile Include="Project\Vocabulary\DevProjectName.cs" />
+    <Compile Include="Project\Vocabulary\DevSegment.cs" />
+    <Compile Include="Project\Vocabulary\DevSolutionState.cs" />
+    <Compile Include="Project\Vocabulary\DevWorkspaceIdentifier.cs" />
+    <Compile Include="Project\Vocabulary\DistributedArtifact.cs" />
+    <Compile Include="Project\Vocabulary\ImplementationArea.cs" />
+    <Compile Include="Project\Vocabulary\LibraryArea.cs" />
+    <Compile Include="Project\Vocabulary\ModuleDependency.cs" />
+    <Compile Include="Project\Vocabulary\ProjectContentFile.cs" />
+    <Compile Include="Project\Vocabulary\ProjectEmissionOptions.cs" />
+    <Compile Include="Project\Vocabulary\ProjectFileLink.cs" />
+    <Compile Include="Project\Vocabulary\ProjectVariable.cs" />
+    <Compile Include="Project\Vocabulary\ProjectWorkspace.cs" />
+    <Compile Include="Project\Vocabulary\SolutionIdentifier.cs" />
+    <Compile Include="Project\Vocabulary\SolutionIdentifiers.cs" />
+    <Compile Include="Project\Vocabulary\SolutionModule.cs" />
+    <Compile Include="Project\Vocabulary\SolutionName.cs" />
+    <Compile Include="Project\Vocabulary\SqlProject.cs" />
+    <Compile Include="Project\Vocabulary\StandardDevSegments.cs" />
+    <Compile Include="Project\Vocabulary\TargetDesignator.cs" />
+    <Compile Include="Project\Vocabulary\ToolIdentifier.cs" />
+    <Compile Include="Project\Vocabulary\WorkspaceArea.cs" />
+    <Compile Include="Services\Commands\BuildProject.cs" />
+    <Compile Include="Services\Commands\CreateResAsm.cs" />
+    <Compile Include="Configuration\Designator.cs" />
+    <Compile Include="Services\Commands\BuildProjectX.cs" />
+    <Compile Include="Services\Commands\CreateResAsmX.cs" />
+    <Compile Include="Contracts\IMetaBuild.cs" />
+    <Compile Include="Services\Commands\ResX.cs" />
+    <Compile Include="Services\Realizations\BuildNavigator.cs" />
+    <Compile Include="Services\Realizations\MetaBuild.cs" />
+    <Compile Include="Model\Syntax\ProjectDefinition.cs" />
+    <Compile Include="Model\Standard\StandardEvaluations.cs" />
+    <Compile Include="Model\Syntax\BuildSyntax.cs" />
+    <Compile Include="Model\Syntax\Elements\ItemGroup.cs" />
+    <Compile Include="Model\Syntax\ItemGroupMember.cs" />
+    <Compile Include="Services\ResourceAssembly.cs" />
+    <Compile Include="Services\Vocabulary\ProjectDataset.cs" />
+    <Compile Include="Services\Vocabulary\BuildSummary.cs" />
+    <Compile Include="Model\Syntax\Abstractions\Group.cs" />
+    <Compile Include="Model\Syntax\Abstractions\GroupMember.cs" />
+    <Compile Include="Model\Syntax\Abstractions\ItemGroupMember.cs" />
+    <Compile Include="Model\Syntax\Abstractions\ProjectElement.cs" />
+    <Compile Include="Model\Syntax\ProjectItemType.cs" />
+    <Compile Include="Model\Standard\StandardItemTypes.cs" />
+    <Compile Include="Model\Syntax\Abstractions\PropertyGroupMember.cs" />
+    <Compile Include="Services\Vocabulary\ProperyEvaluation.cs" />
+    <Compile Include="Services\Vocabulary\SolutionBuildResult.cs" />
+    <Compile Include="Model\Standard\StandardProperties.cs" />
+    <Compile Include="Model\Standard\StandardSqlItemTypes.cs" />
+    <Compile Include="Model\Standard\StandardSqlEvaluations.cs" />
+    <Compile Include="Services\Vocabulary\ProjectDescription.cs" />
+    <Compile Include="Model\Syntax\Elements\ProjectImport.cs" />
+    <Compile Include="Services\Vocabulary\SolutionDescription.cs" />
+    <Compile Include="Model\Syntax\Specialized\AssemblyReference.cs" />
+    <Compile Include="Model\Syntax\Specialized\CopyTask.cs" />
+    <Compile Include="Model\Syntax\Specialized\EmbeddedResource.cs" />
+    <Compile Include="Model\Syntax\Abstractions\Literal.cs" />
+    <Compile Include="Model\Syntax\LiteralInteger.cs" />
+    <Compile Include="Model\Syntax\LiteralString.cs" />
+    <Compile Include="Model\Syntax\PropertyGroupMember.cs" />
+    <Compile Include="Model\Syntax\Specialized\ProjectReference.cs" />
+    <Compile Include="Model\Syntax\Abstractions\BuildTask.cs" />
+    <Compile Include="Model\Syntax\Elements\PropertyGroup.cs" />
+    <Compile Include="ServiceFactory.cs" />
+  </ItemGroup>
+  <ItemGroup />
+</Project>
