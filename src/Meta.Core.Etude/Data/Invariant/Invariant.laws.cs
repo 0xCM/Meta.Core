@@ -8,16 +8,21 @@ namespace Meta.Core
     using System;
     using System.Linq;
 
+
+    public delegate Func<CX, CY> InvariantMap<X, CX, Y, CY>(Func<X, Y> f, Func<Y,X> g)
+        where CX : IContainer<X>
+        where CY : IContainer<Y>;
+
     public interface IInvariant : ITypeclass
     {
 
     }
 
-    public interface IInvariant<X, CX, Y, CY> : ITypeclass<X, CX, Y, CY>
+    public interface IInvariant<X, CX, Y, CY> : IInvariant, ITypeclass<X, CX, Y, CY>
         where CX : IContainer<X>
         where CY : IContainer<Y>
     {
-        CY imap(Func<X, Y> f, Func<Y, X> g, CX Fx);
+        Func<CX, CY> imap(Func<X, Y> f, Func<Y, X> g);
     }
 
 

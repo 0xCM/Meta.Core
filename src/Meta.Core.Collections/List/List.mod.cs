@@ -17,9 +17,9 @@ namespace Meta.Core.Modules
 
 
     /// <summary>
-    /// Implelements a Haskell-style list operations
+    /// Implelements Haskell-style list operations
     /// </summary>
-    public sealed class List 
+    public class List 
     {
         public static ListFactory<X> ctor<X>()
             => List<X>.Factory;
@@ -84,7 +84,6 @@ namespace Meta.Core.Modules
             => from f in lf
                from x in lx
                select f(x);
-
 
         /// <summary>
         /// Constructs a new list by appending head to tail
@@ -192,6 +191,17 @@ namespace Meta.Core.Modules
                   from t in tail(list)
                   select (h, t);
 
+
+        static G.IEnumerable<List<X>> _tails<X>(List<X> list)
+        {
+            var lastIdx = list.Count - 1;
+            for (var i = 0; i <= lastIdx; i++)
+                yield return list[i, lastIdx];            
+        }
+
+        public static List<List<X>> tails<X>(List<X> list)
+            => make(_tails(list));
+
         /// <summary>
         /// Produces a new list from an existing list via a traversal operator
         /// </summary>
@@ -205,7 +215,7 @@ namespace Meta.Core.Modules
                     from y in f(x).Stream()
                     select y);
 
-        public List<Y> imap<X, Y>(Func<X, Y> f, Func<Y, X> g, List<X> Fx)
+        public static List<Y> imap<X, Y>(Func<X, Y> f, Func<Y, X> g, List<X> Fx)
         {
             var query = from x in Fx
                         select g(f(x));
@@ -429,6 +439,7 @@ namespace Meta.Core.Modules
         /// <returns></returns>
         public static bool neq<X>(List<X> x1, List<X> x2)
             => not(eq(x1, x2));
+
 
         /// <summary>
         /// Computes the list hash code

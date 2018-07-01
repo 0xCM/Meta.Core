@@ -21,7 +21,7 @@ namespace Meta.Core
         public static IConversionSuite Projectors()
             => VPS.Value;
 
-        static Lazy<IConversionSuite> VPS = lazy(()
+        static Lazy<IConversionSuite> VPS = defer(()
             => ConversionSuite.FromType<PrimitiveParsers>());
 
 

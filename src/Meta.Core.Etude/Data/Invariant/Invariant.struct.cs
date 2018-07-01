@@ -8,18 +8,17 @@ namespace Meta.Core
     using System;
     using System.Linq;
 
-
     public readonly struct Invariant<X, CX, Y, CY> : IInvariant<X, CX, Y, CY>
        where CX : IContainer<X>
        where CY : IContainer<Y>
     {
-        public Invariant(Func<Func<X, Y>, Func<Y, X>, CX, CY> imap)
+        public Invariant(InvariantMap<X, CX, Y, CY> imap)
             => this._imap = imap;
 
-        Func<Func<X, Y>, Func<Y, X>, CX, CY> _imap { get; }
+        InvariantMap<X, CX, Y, CY> _imap { get; }
 
-        public CY imap(Func<X, Y> f, Func<Y, X> g, CX Fx)
-            => _imap(f, g, Fx);
+        public Func<CX, CY> imap(Func<X, Y> f, Func<Y, X> g)
+            => _imap(f, g);
     }
 
 

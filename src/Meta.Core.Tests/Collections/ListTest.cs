@@ -9,12 +9,14 @@ namespace Meta.Core.Modules.Tests
     using System.Linq;
     using Meta.Core.Modules;
 
+
+    
     using static List;    
     using static operators;
 
     using UT = Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    [UT.TestClass, UT.TestCategory(nameof(metacore) + "/algebra")]
+    [UT.TestClass, UT.TestCategory("collections/list")]
     public class ListTest
     {
 
@@ -121,8 +123,20 @@ namespace Meta.Core.Modules.Tests
         }
 
         [UT.TestMethod]
-        public void ListFunctor()
+        public void ListTails()
         {
+            var input = cons(1, 2, 3, 4, 5);
+            var output = tails(input);
+            claim.equal(5, output.Count);
+            claim.equal(input, output[0]);
+            claim.equal(empty<int>(), output[4]);
+
+        }
+
+        public void ListInit()
+        {
+            var input = cons(1, 2, 3, 4, 5);
+            var duplicated = init(tails(input));
         }
 
 

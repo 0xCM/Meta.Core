@@ -18,7 +18,7 @@ namespace Meta.Core
     public abstract class MetaApp<A> :  ICompositionRoot, IMetaApp
         where A : MetaApp<A>, new()
     {
-        static Lazy<IAssemblyDesignator> _Designator = lazy(GetAssemblyDesignator);
+        static Lazy<IAssemblyDesignator> _Designator = defer(GetAssemblyDesignator);
 
         public static A Instance { get; private set; }
 

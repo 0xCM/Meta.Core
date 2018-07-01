@@ -7,7 +7,7 @@ namespace Meta.Core
 {
     using System;
     using System.Linq;
-    using System.Collections.Generic;
+    
 
     /// <summary>
     /// Specifies the canonical fmap signature
@@ -29,7 +29,7 @@ namespace Meta.Core
     }
 
 
-    public interface IFunctor<X, CX, Y, CY> : IFunctor, ITypeclass<X, CX, Y, CY>
+    public interface IFunctor<X, CX, Y, CY> : IFunctor
         where CX : IContainer<X>
         where CY : IContainer<Y>
     {

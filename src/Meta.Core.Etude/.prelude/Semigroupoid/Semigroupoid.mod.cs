@@ -18,7 +18,7 @@ namespace Meta.Core.Modules
         /// <typeparam name="X">The element type</typeparam>
         /// <returns></returns>
         public static ISemigroupoid<X> make<X>()
-            => Semigroupoid<X>.Default;
+            => Semigroupoid<X>.instance;
 
         /// <summary>
         /// Defines a function (x, y) => f(x, g(x, y)) via forward composition

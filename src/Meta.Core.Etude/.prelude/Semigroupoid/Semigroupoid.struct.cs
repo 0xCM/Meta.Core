@@ -16,7 +16,7 @@ namespace Meta.Core
     /// </remarks>
     public readonly struct Semigroupoid<X> : ISemigroupoid<X>
     {
-        public static readonly Semigroupoid<X> Default 
+        public static readonly Semigroupoid<X> instance 
             = new Semigroupoid<X>();
 
         public Func<X, A, C> compose<A,B,C>(Func<X, B, C> f, Func<X, A, B> g)

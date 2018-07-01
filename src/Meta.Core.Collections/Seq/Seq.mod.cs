@@ -17,7 +17,7 @@ namespace Meta.Core.Modules
     /// Implementation module for <see cref="Seq{X}"/>
     /// </summary>
 
-    public sealed class Seq 
+    public class Seq 
     {         
         /// <summary>
         /// Constructs a sequence over an enumerable

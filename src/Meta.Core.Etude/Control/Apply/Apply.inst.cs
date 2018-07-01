@@ -12,7 +12,12 @@ namespace Meta.Core
 
     using static metacore;
 
-    readonly struct ListApply<X, Y> : IApply<X, List<X>, List<Func<X, Y>>, Y, List<Y>>
+    public interface IListApply<X,Y> : IApply<X, List<X>, List<Func<X, Y>>, Y, List<Y>>
+    {
+
+    }
+
+    readonly struct ListApply<X, Y> : IListApply<X,Y>
     {
         public static readonly ListApply<X, Y> instance = default;
 
@@ -23,7 +28,12 @@ namespace Meta.Core
             => List.fmap(f);
     }
 
-    public readonly struct SeqApply<X, Y> : IApply<X, Seq<X>, Seq<Func<X, Y>>, Y, Seq<Y>>
+    public interface ISeqApply<X, Y> : IApply<X, Seq<X>, Seq<Func<X, Y>>, Y, Seq<Y>>
+    {
+
+    }
+
+    readonly struct SeqApply<X, Y> : ISeqApply<X,Y>    
     {
         public static readonly SeqApply<X, Y> instance = default;
 

@@ -10,7 +10,12 @@ namespace Meta.Core
 
     using Modules;
 
-    public readonly struct SeqMonad<X, Y> : IMonad<X, Seq<X>, Seq<Func<X, Y>>, Y, Seq<Y>>
+    public interface ISeqMonad<X,Y> : IMonad<X, Seq<X>, Seq<Func<X, Y>>, Y, Seq<Y>>
+    {
+
+    }
+
+    readonly struct SeqMonad<X, Y> : ISeqMonad<X,Y>
     {
         public static readonly SeqMonad<X, Y> instance = default;
 
@@ -27,8 +32,12 @@ namespace Meta.Core
             => Seq.bind(f, g);
     }
 
+    public interface IListMonad<X, Y> : IMonad<X, List<X>, List<Func<X, Y>>, Y, List<Y>>
+    {
 
-    public readonly struct ListMonad<X, Y> : IMonad<X, List<X>, List<Func<X, Y>>, Y, List<Y>>
+    }
+
+    readonly struct ListMonad<X, Y> : IListMonad<X,Y>
     {
         public static readonly ListMonad<X, Y> instance = default;
 

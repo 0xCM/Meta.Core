@@ -27,7 +27,6 @@ namespace Meta.Core
 
     }
 
-
     /// <summary>
     /// Characterizes productions of the <see cref="IAlt"/> typeclass and thus defines
     /// the contract for membership in same
@@ -40,14 +39,6 @@ namespace Meta.Core
         CX alt(CX f, CX g);
     }
 
-    public static class AltX
-    {
-        public static AltMap<CX> alt<X, CX>(this IAlt<X, CX> alt)
-            where CX : IContainer<X>
-                => alt.alt;
-
-    }
-
 
     partial class classops
     {
@@ -57,33 +48,6 @@ namespace Meta.Core
             public const string S = "<|>";
         }
 
-        //public readonly struct alt<X,CX>
-        //    where CX : IContainer<X>
-        //{
-        //    public static readonly alt<X, CX> instance = default;
-
-        //    public AltMap<CX> this[IAlt<X,CX> instance]
-        //        => instance.alt;
-        //}
-
-
-        
     }
 
-    public class AltLaws
-    {
-        public static object Associativity()
-        {
-
-            var x = list(3, 4, 5);
-            var y = list(8, 9, 10);
-            var z = list(2, 3, 7);
-
-            var alt = ListAlt<int>.instance.alt();
-            var same = alt(alt(x, y), z) == alt(x, alt(y, z));
-          
-
-            return null;
-        }
-    }
 }

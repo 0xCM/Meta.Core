@@ -16,7 +16,7 @@ namespace Meta.Core
         /// <typeparam name="X">The element type</typeparam>
         /// <typeparam name="Y">The transformed element type</typeparam>
         /// <returns></returns>
-        public static IMonad<X, List<X>, List<Func<X, Y>>, Y, List<Y>> listM<X, Y>()
+        public static IListMonad<X,Y> listM<X, Y>()
             => ListMonad<X, Y>.instance;
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace Meta.Core
         /// <typeparam name="X">The source type</typeparam>
         /// <typeparam name="Y">The target type</typeparam>
         /// <returns></returns>
-        public static IMonad<X, Seq<X>, Seq<Func<X, Y>>, Y, Seq<Y>> seqM<X, Y>()
+        public static ISeqMonad<X,Y> seqM<X, Y>()
             => SeqMonad<X, Y>.instance;
 
     }

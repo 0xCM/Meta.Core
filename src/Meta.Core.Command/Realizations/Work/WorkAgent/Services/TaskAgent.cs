@@ -20,7 +20,7 @@ class TaskAgent<A,R> : ITaskAgent<R>
         this.MessageObserver = MessageObserver ?? (message => SystemConsole.Get().Write(message));
         this.PayloadObserver = PayloadObserver ?? (payload => { });
 
-        this._Task = lazy(() => task(() =>
+        this._Task = defer(() => task(() =>
         {
 
             iter(Compute(), result => { });

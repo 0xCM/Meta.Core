@@ -8,7 +8,7 @@ namespace Meta.Core.Test
     using System;
     using System.Linq;
 
-    using Modules;
+    
 
     using static metacore;
     using static etude;
@@ -22,7 +22,7 @@ namespace Meta.Core.Test
         [UT.TestMethod]
         public void Test01A()
         {
-            var F = O.fmap.list<int, decimal>();
+            var F = List.Functor<int, decimal>();
             var f = function<int, decimal>(x => x * 15.0m);
             var source = Synthetic.Create(150);
             var data = source.Next<int>(500).AsList();

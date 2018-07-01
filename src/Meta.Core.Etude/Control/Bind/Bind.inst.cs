@@ -12,8 +12,10 @@ namespace Meta.Core
 
     using static metacore;
 
+    public interface ISeqBind<X,Y> : IBind<X, Seq<X>, Seq<Func<X, Y>>, Y, Seq<Y>>
+    { }
 
-    public readonly struct SeqBind<X, Y> : IBind<X, Seq<X>, Seq<Func<X, Y>>, Y, Seq<Y>>
+    readonly struct SeqBind<X, Y> : ISeqBind<X,Y>
     {
         public static readonly SeqBind<X, Y> instance = default;
 
@@ -27,7 +29,12 @@ namespace Meta.Core
             => Seq.fmap(f);
     }
 
-    readonly struct ListBind<X, Y> : IBind<X, List<X>, List<Func<X, Y>>, Y, List<Y>>
+    public interface IListBind<X, Y> : IBind<X, List<X>, List<Func<X, Y>>, Y, List<Y>>
+    {
+
+    }
+
+    struct ListBind<X, Y> : IListBind<X,Y>
     {
         public static readonly ListBind<X, Y> instance = default;
 
@@ -44,5 +51,26 @@ namespace Meta.Core
             => List.fmap(f);
     }
 
+    public interface IIndexBind<X,Y> : IBind<X, Index<X>, Index<Func<X, Y>>, Y, Index<Y>>
+    {
+
+    }
+
+    readonly struct IndexBind<X, Y> : IIndexBind<X,Y>
+    {
+        public static readonly IndexBind<X, Y> instance = default;
+
+        /// <summary>
+        /// Applies a Index of function to a Index of values
+        /// </summary>
+        public Index<Y> apply(Index<Func<X, Y>> lf, Index<X> lx)
+            => Index.apply(lf, lx);
+
+        public Index<Y> bind(Index<X> index, Func<X, Index<Y>> f)
+            => Index.bind(index, f);
+
+        public Func<Index<X>, Index<Y>> fmap(Func<X, Y> f)
+            => Index.fmap(f);
+    }
 
 }

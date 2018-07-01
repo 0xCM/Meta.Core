@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include=".prelude\Category\Category.laws.cs" />
+    <Compile Include=".prelude\Category\Category.struct.cs" />
+    <Compile Include=".prelude\Collections\Index.cs" />
+    <Compile Include=".prelude\Collections\List.cs" />
+    <Compile Include=".prelude\Collections\Map.cs" />
+    <Compile Include=".prelude\Collections\Set.cs" />
+    <Compile Include=".prelude\Collections\Seq.cs" />
     <Compile Include=".prelude\Eq\Eq.api.cs" />
     <Compile Include=".prelude\Eq\Eq.inst.cs" />
     <Compile Include=".prelude\Eq\Eq.mod.cs" />

@@ -8,8 +8,6 @@ namespace Meta.Core
     using System;
     using System.Reflection;
 
-    using Modules;
-
     using static metacore;
 
     /// <summary>

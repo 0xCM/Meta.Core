@@ -10,7 +10,12 @@ namespace Meta.Core
 
     using Modules;
 
-    readonly struct SeqFoldable<X> : IFoldable<X, Seq<X>>
+    public interface ISeqFoldable<X> : IFoldable<X, Seq<X>>
+    {
+
+    }
+
+    readonly struct SeqFoldable<X> : ISeqFoldable<X>
     {
         public static readonly SeqFoldable<X> instance = default;        
 
@@ -24,7 +29,11 @@ namespace Meta.Core
             => Seq.foldr(f, y0, s);
     }
 
-    readonly struct ListFoldable<X> : IFoldable<X, List<X>>
+    public interface IListFoldable<X> : IFoldable<X,List<X>>
+    {
+
+    }
+    readonly struct ListFoldable<X> : IListFoldable<X>
     {
         public static readonly ListFoldable<X> instance = default;        
 

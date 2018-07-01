@@ -7,6 +7,7 @@ namespace Meta.Core.Modules
 {
     using System;
     using System.Linq;
+    using System.Collections.Generic;
     using System.Collections.Immutable;
 
 
@@ -19,7 +20,16 @@ namespace Meta.Core.Modules
         /// <param name="items">The input sequence</param>
         /// <returns></returns>
         public static Index<X> make<X>(Seq<X> items)
-            => Index<X>.Factory(items);               
+            => Index<X>.Factory(items);
+
+        /// <summary>
+        /// Constructs an index from a sequence
+        /// </summary>
+        /// <typeparam name="X">The item type</typeparam>
+        /// <param name="items">The input sequence</param>
+        /// <returns></returns>
+        public static Index<X> make<X>(IEnumerable<X> items)
+            => Index<X>.Factory(Seq.make(items));
 
         /// <summary>
         /// Constructs a sequence from an index
@@ -120,6 +130,38 @@ namespace Meta.Core.Modules
         /// <returns></returns>
         public static Index<Y> mapi<X, Y>(Func<(int,X), Y> f, Index<X> index)
             => Seq.make(index.TupleStream().Select(pair => f(pair)));
+
+        /// <summary>
+        /// Concatenates a sequence of sequences into a single sequence
+        /// </summary>
+        /// <typeparam name="X">The item type</typeparam>
+        /// <param name="sequences">The lists to concatenate</param>
+        /// <returns></returns>
+        public static Index<X> flatten<X>(Index<Index<X>> sequences)
+             => make(sequences.Stream().SelectMany(x => x.Stream()));
+
+        /// <summary>
+        /// The canonical bind operation for lists
+        /// </summary>
+        /// <typeparam name="X">The input list element type and function domain</typeparam>
+        /// <typeparam name="Y">The output list elemetn type and function codomain</typeparam>
+        /// <param name="list"></param>
+        /// <param name="f"></param>
+        /// <returns></returns>
+        public static Index<Y> bind<X, Y>(Index<X> list, Func<X, Index<Y>> f)
+            => flatten(map(f, list));
+
+        /// <summary>
+        /// Applies an index  of functions to an index of values
+        /// </summary>
+        /// <typeparam name="X">The input element type</typeparam>
+        /// <typeparam name="Y">The output element type</typeparam>
+        /// <returns></returns>
+        public static Index<Y> apply<X, Y>(Index<Func<X, Y>> lf, Index<X> lx)
+            => from f in lf
+               from x in lx
+               select f(x);
+
 
     }
 }

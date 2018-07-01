@@ -8,11 +8,16 @@ namespace Meta.Core
     using System;
     using System.Linq;
 
+    public interface IIndex
+    {
+
+    }
+
     /// <summary>
     /// Characterizes an immutable associative array keyed with ingeger values
     /// </summary>
     /// <typeparam name="X">The contained item type</typeparam>
-    public interface IIndex<X> : IContainer<X>
+    public interface IIndex<X> : IIndex, IContainer<X>
     {
         /// <summary>
         /// Retrieves the value stored at a specified index position

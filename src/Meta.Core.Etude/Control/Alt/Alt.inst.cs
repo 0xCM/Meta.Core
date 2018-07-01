@@ -7,10 +7,13 @@ namespace Meta.Core
 {
     using System;
     using System.Linq;
+    
 
-    using Modules;
+    public interface IListAlt<X> : IAlt<X, List<X>>
+    {
 
-    readonly struct ListAlt<X> : IAlt<X, List<X>>
+    }
+    readonly struct ListAlt<X> : IListAlt<X>
     {
         public static readonly ListAlt<X> instance = default;
 
@@ -21,7 +24,11 @@ namespace Meta.Core
             => List.fmap(f);
     }
 
-    readonly struct SeqAlt<X> : IAlt<X, Seq<X>>
+    public interface ISeqAlt<X> : IAlt<X, Seq<X>>
+    {
+
+    }
+    readonly struct SeqAlt<X> : ISeqAlt<X>
     {
         public static readonly SeqAlt<X> instance = default;
 
@@ -32,7 +39,12 @@ namespace Meta.Core
             => Seq.fmap(f);
     }
 
-    readonly struct IndexAlt<X> : IAlt<X, Index<X>>
+    public interface IIndexAlt<X> : IAlt<X, Index<X>>
+    {
+
+    }
+
+    readonly struct IndexAlt<X> : IIndexAlt<X>
     {
         public static readonly IndexAlt<X> instance = default;
 
@@ -42,7 +54,5 @@ namespace Meta.Core
         public Func<Index<X>, Index<X>> fmap(Func<X, X> f)
             => Index.fmap(f);
     }
-
-
  
 }

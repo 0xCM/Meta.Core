@@ -16,7 +16,7 @@ namespace Meta.Core.Modules
     /// <remarks>
     /// The exposed API is somewhat consistent with http://hackage.haskell.org/package/containers-0.5.11.0/docs/Data-Map-Strict.html
     /// </remarks>
-    public sealed class Map 
+    public class Map 
     {
         /// <summary>
         /// Constructs a map from a sequence of key-value pairs

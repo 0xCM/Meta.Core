@@ -10,7 +10,12 @@ namespace Meta.Core
 
     using Modules;
 
-    readonly struct ListApplicative<X, Y> : IApplicative<X, List<X>, List<Func<X, Y>>, Y, List<Y>>
+    public interface IListApplicative<X,Y> : IApplicative<X, List<X>, List<Func<X, Y>>, Y, List<Y>>
+    {
+
+    }
+    
+    readonly struct ListApplicative<X, Y> : IListApplicative<X,Y>
     {
         public static readonly ListApplicative<X, Y> instance = default;
         
@@ -25,7 +30,12 @@ namespace Meta.Core
             => List.singleton(x);
     }
 
-    public readonly struct SeqApplicative<X, Y> : IApplicative<X, Seq<X>, Seq<Func<X, Y>>, Y, Seq<Y>>
+    public interface ISeqApplicative<X,Y> : IApplicative<X, Seq<X>, Seq<Func<X, Y>>, Y, Seq<Y>>
+    {
+
+    }
+
+    readonly struct SeqApplicative<X, Y> : ISeqApplicative<X,Y>
     {
         public static readonly SeqApplicative<X, Y> instance = default;
 

@@ -22,18 +22,6 @@ namespace Meta.Core
 
 
 
-    public static class O
-    {
-        public static readonly ops.fmap fmap = ops.fmap.op;
-        public static readonly ops.fcompose fcompose = ops.fcompose.op;
-        public static readonly ops.rcompose rcompose = ops.rcompose.op;
-        public static readonly ops.plus plus = ops.plus.op;
-        public static readonly ops.alt alt = ops.alt.op;
-        public static readonly ops.bind bind = ops.bind.op;
-        public static readonly ops.apply apply = ops.apply.op;
-
-    }
-
 
     public static partial class classops
     {

@@ -30,6 +30,7 @@ namespace Meta.Core
         public static implicit operator List<X>(Seq<X> s)
             => Factory(s.Stream());
 
+        
         public static implicit operator Streamable<X>(List<X> list)
             => list.AsStreamable();
 
@@ -59,6 +60,16 @@ namespace Meta.Core
 
         public X this[int index]
             => Data[index];
+
+        /// <summary>
+        /// Retrieves an inclusive slice
+        /// </summary>
+        /// <param name="minIdx"></param>
+        /// <param name="maxIdx"></param>
+        /// <returns></returns>
+        public List<X> this[int minIdx, int maxIdx]            
+            => minIdx >= maxIdx 
+            ? Empty : new List<X>(Data.GetRange(minIdx, maxIdx - minIdx + 1));
 
         public int Count
             => Data.Count;

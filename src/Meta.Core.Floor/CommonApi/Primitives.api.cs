@@ -50,16 +50,22 @@ partial class metacore
         return null;
     }
 
-
-
     /// <summary>
-    /// Creates a <see cref="lazy{T}(Func{T})"/>.
+    /// Creates a deferred (lazy) value
     /// </summary>
     /// <param name="factory">A function that creates an instance of the lazy object</param>
     /// <returns></returns>
-    public static Lazy<T> lazy<T>(Func<T> factory)
+    public static Lazy<T> defer<T>(Func<T> factory)
         => new Lazy<T>(factory);
 
+    /// <summary>
+    /// Evaluates a deferred computation
+    /// </summary>
+    /// <typeparam name="T">The result type</typeparam>
+    /// <param name="deferred">The deferred computation</param>
+    /// <returns></returns>
+    public static T force<T>(Lazy<T> deferred)
+        => deferred.Value;
 
     /// <summary>
     /// Consumes any value and returns the unit value
@@ -70,7 +76,6 @@ partial class metacore
     public static Unit unit<T>(T value)
         => Unit.Value;
 
-
     /// <summary>
     /// Returns the name of the caller
     /// </summary>
@@ -78,6 +83,5 @@ partial class metacore
     /// <returns></returns>
     public static string caller([CallerMemberName] string name = null)
         => name;
-
 
 }

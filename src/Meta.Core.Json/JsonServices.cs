@@ -15,7 +15,7 @@ using static metacore;
 public static class JsonServices
 {
     static Lazy<IJsonSerializer> _JsonSerializer
-        = lazy(() => (IJsonSerializer)new JsonSerializer());
+        = defer(() => (IJsonSerializer)new JsonSerializer());
 
     public static IJsonSerializer Serializer
         => _JsonSerializer.Value;

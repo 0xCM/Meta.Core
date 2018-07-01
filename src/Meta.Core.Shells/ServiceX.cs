@@ -4,7 +4,7 @@ using static metacore;
 public static class ServiceX
 {
     public static Lazy<S> LazyService<S>(this IApplicationContext C)
-        => lazy(() => C.Service<S>());
+        => defer(() => C.Service<S>());
 
     /// <summary>
     /// Obtains a reference to the assembly registration service

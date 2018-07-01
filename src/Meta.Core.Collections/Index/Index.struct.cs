@@ -141,9 +141,6 @@ namespace Meta.Core
                 yield return (k, Data[k]);
         }
 
-        //IEnumerator IEnumerable.GetEnumerator()
-        //    => Data.AsEnumerable().GetEnumerator();
-
         ContainerFactory<Y> IContainer<X>.Factory<Y>()
             => y => Index.make(Seq.make(y));
     }

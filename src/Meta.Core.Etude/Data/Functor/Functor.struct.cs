@@ -7,8 +7,6 @@ namespace Meta.Core
 {
     using System;
     using System.Linq;
-
-
         
     /// <summary>
     /// Specifies a <see cref="IFunctor"/> typeclass predicated on a

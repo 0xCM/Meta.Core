@@ -9,7 +9,13 @@ namespace Meta.Core
     using System.Linq;
     using Meta.Core.Modules;
 
-    readonly struct ListTraversable<X, Y> : ITraversable<X, List<X>, Y, List<Y>>
+
+    public interface IListTraversable<X,Y> : ITraversable<X, List<X>, Y, List<Y>>
+    {
+
+    }
+
+    readonly struct ListTraversable<X, Y> : IListTraversable<X,Y>
     {
         public static readonly ListTraversable<X, Y> instance = default;
 
@@ -20,8 +26,12 @@ namespace Meta.Core
             => List.traverse(f, cx);
     }
 
+    public interface ISeqTraversable<X, Y> : ITraversable<X, Seq<X>, Y, Seq<Y>>
+    {
 
-    readonly struct SeqTraversable<X, Y> : ITraversable<X, Seq<X>, Y, Seq<Y>>
+    }
+
+    readonly struct SeqTraversable<X, Y> : ISeqTraversable<X,Y>
     {
         public static readonly SeqTraversable<X, Y> instance = default;
 

@@ -9,11 +9,15 @@ namespace Meta.Core
     using System.Linq;
 
 
+    public interface ISeqPlus<X> : IPlus<X,Seq<X>>
+    {
+
+    }
     /// <summary>
     /// Defines the default sequence <see cref="IPlus"/> instance
     /// </summary>
     /// <typeparam name="X">The item type</typeparam>
-    readonly struct SeqPlus<X> : IPlus<X, Seq<X>>
+    readonly struct SeqPlus<X> : ISeqPlus<X>
     {
         public static readonly SeqPlus<X> instance = default;
 
@@ -28,11 +32,15 @@ namespace Meta.Core
 
     }
 
+    public interface IListPlus<X> : IPlus<X, List<X>>
+    {
+
+    }
     /// <summary>
     /// Defines the default list <see cref="IPlus"/> instance
     /// </summary>
     /// <typeparam name="X">The item type</typeparam>
-    readonly struct ListPlus<X> : IPlus<X, List<X>>
+    readonly struct ListPlus<X> : IListPlus<X>
     {
         public static readonly ListPlus<X> instance = default;
 
