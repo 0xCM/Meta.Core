@@ -15,13 +15,19 @@ namespace Meta.Core.Modules
     /// Constructs and manipulates <see cref="IOrdered{X}"/> types and values
     /// </summary>
     public sealed class Ordered : ClassModule<Ordered, IOrdered>
-    {
+    {        
+        
+        public static Option<IOrdered<X>> make<X>()
+            => Try(() => Instances.TryFind(typeof(X)).MapValueOrDefault(o
+                    => cast<IOrdered<X>>(o), OrderedIntrinsic<X>.Default));
+
         /// <summary>
         /// Constructs a <see cref="IMonoid"/> over <typeparamref name="X"/> if possible
         /// </summary>
         /// <typeparam name="X">The monoid element type</typeparam>
-        public static Option<IOrdered<X>> make<X>()
-            => Try(() => Instances.TryFind(typeof(X)).MapValueOrDefault(o => cast<IOrdered<X>>(o), OrderedI<X>.Default));
+        public static Option<IOrderOperators<X>> orderops<X>()
+            => Try(() => Instances.TryFind(typeof(X)).MapValueOrDefault(o 
+                    => cast<IOrderOperators<X>>(o), OrderedIntrinsic<X>.Default));
 
         /// <summary>
         /// Canonical evolver that lifts a function delegate to a <see cref="Orderer{X}"/>
@@ -55,5 +61,32 @@ namespace Meta.Core.Modules
 
         static ConcurrentDictionary<Type, object> Instances { get; }
             = new ConcurrentDictionary<Type, object>();
+
+
+        //public static bool lt<X>(X x1, X x2)
+        //    where X : IOrdered<X>
+        //        => x1.compare(x2) == Ordering.LT;
+
+        //public bool gt(X x1, X x2)
+        //    => Orderer(x1, x2) == Ordering.GT;
+
+        //public bool gteq(X x1, X x2)
+        //    => gt(x1, x1) || eq(x1, x2);
+
+        //public bool lteq(X x1, X x2)
+        //    => lt(x1, x2) || eq(x1, x2);
+
+        //public bool between(X x, X x1, X x2)
+        //    => gteq(x, x1) && lteq(x, x2);
+
+        //public X max(X x1, X x2)
+        //    => gteq(x1, x2) ? x1 : x2;
+
+        //public X min(X x1, X x2)
+        //    => lteq(x1, x2) ? x1 : x2;
+
+        //public bool neq(X x1, X x2)
+        //    => not(eq(x1, x2));
+
     }
 }

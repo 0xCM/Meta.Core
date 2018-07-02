@@ -8,10 +8,10 @@ namespace Meta.Core
     using System;
     using System.Linq;
 
-    public interface IIdentity : ITypeclass
+    public interface IIdentity : ITypeClass
     { }
 
-    public interface IIdentity<X> : ITypeclass<X>
+    public interface IIdentity<X> : ITypeClass<X>
     {
 
     }

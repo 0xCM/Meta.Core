@@ -11,7 +11,7 @@ namespace Meta.Core
     /// <summary>
     /// Characterizes the Bounded typeclass
     /// </summary>
-    public interface IBounded : ITypeclass
+    public interface IBounded : ITypeClass
     {
 
     }
@@ -20,7 +20,7 @@ namespace Meta.Core
     /// Requires instances to have a specified lower and upper bound
     /// </summary>
     /// <typeparam name="X">The bounded type</typeparam>
-    public interface IBounded<X> : IBounded, ITypeclass<X>
+    public interface IBounded<X> : IBounded, ITypeClass<X>
     {
         /// <summary>
         /// The type's minimum value

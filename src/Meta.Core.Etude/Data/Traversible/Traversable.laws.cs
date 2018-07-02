@@ -9,7 +9,7 @@ namespace Meta.Core
     using System.Linq;
     using System.Collections.Generic;
 
-    public interface ITraversable : ITypeclass
+    public interface ITraversable : ITypeClass
     {
 
     }

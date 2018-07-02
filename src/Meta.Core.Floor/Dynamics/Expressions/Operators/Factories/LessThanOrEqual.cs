@@ -22,6 +22,9 @@ namespace Meta.Core.Operators
                     return cast<Func<T, T, bool>>(ByteOps.LTEQ.Compile());
                 case TypeCode.SByte:
                     return cast<Func<T, T, bool>>(SByteOps.LTEQ.Compile());
+                case TypeCode.UInt16:
+                    return cast<Func<T, T, bool>>(UInt16Ops.LTEQ.Compile());
+
                 default:
                     return lambda<T, T, bool>(Expression.LessThanOrEqual).Compile();
             }

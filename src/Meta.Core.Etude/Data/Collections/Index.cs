@@ -33,6 +33,15 @@ namespace Meta.Core
         /// <returns></returns>
         public static IIndexBind<X,Y> Bind<X, Y>()
             => IndexBind<X, Y>.instance;
+
+        /// <summary>
+        /// Constructs a monoid over an index
+        /// </summary>
+        /// <typeparam name="X">The item type</typeparam>
+        /// <returns></returns>
+        public static IIndexMonoid<X> Monoid<X>()
+            => IndexMonoid<X>.instance;
+
     }
 
 

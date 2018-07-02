@@ -12,6 +12,7 @@ namespace Meta.Core.Tests
 
     using static metacore;
     using static operators;
+    using static etude;
 
     using UT = Microsoft.VisualStudio.TestTools.UnitTesting;
 

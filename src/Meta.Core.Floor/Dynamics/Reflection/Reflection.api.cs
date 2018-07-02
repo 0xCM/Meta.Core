@@ -177,7 +177,7 @@ partial class metacore
     /// <param name="o">The object on which the property is defined</param>
     /// <param name="propname"></param>
     /// <returns></returns>
-    static PropertyInfo GetProperty(this object o, string propname)
+    static PropertyInfo GetProperty(object o, string propname)
         => o.GetType().GetProperty(propname, BF_Instance);
 
     /// <summary>
@@ -227,7 +227,7 @@ partial class metacore
     /// <returns></returns>
     [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static object propval(object o, string propname)
-        => o.GetProperty(propname)?.GetValue(o);
+        => GetProperty(o,propname)?.GetValue(o);
 
     /// <summary>
     /// Gets the value of the identified property
@@ -248,7 +248,7 @@ partial class metacore
     /// <param name="value">The value of the property</param>
     [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void propval(object o, string propname, object value)
-        => o.GetProperty(propname)?.SetValue(o, value);
+        => GetProperty(o,propname)?.SetValue(o, value);
 
     /// <summary>
     /// Gets the CLR runtime type of the identified property

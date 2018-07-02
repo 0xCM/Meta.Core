@@ -116,4 +116,43 @@ partial class metacore
     /// <returns></returns>
     public static S[] arrayi<T, S>(IEnumerable<T> seq, Func<int, T, S> f)
         => mapi(seq, f).ToArray();
+
+
+    /// <summary>
+    /// Returns true if array is empty, false otherwise
+    /// </summary>
+    /// <typeparam name="X">The element type</typeparam>
+    /// <param name="a">The array to examine</param>
+    /// <returns></returns>
+    public static bool empty<X>(X[] a)
+        => a.Length == 0;
+
+    /// <summary>
+    /// Retrieves the last element if it exists; oterwise, None
+    /// </summary>
+    /// <typeparam name="X">The element type</typeparam>
+    /// <param name="a">The array to examine</param>
+    /// <returns></returns>
+    public static Option<X> last<X>(X[] a)
+        => a.LastOrDefault();
+
+    /// <summary>
+    /// Retrieves the first element; oterwise, None
+    /// </summary>
+    /// <typeparam name="X">The element type</typeparam>
+    /// <param name="a">The array to examine</param>
+    /// <returns></returns>
+    public static Option<X> first<X>(X[] a)
+        => a.FirstOrDefault();
+
+    /// <summary>
+    /// Retrieves the length of the array
+    /// </summary>
+    /// <typeparam name="X">The element type</typeparam>
+    /// <param name="a">The array to examine</param>
+    /// <returns></returns>
+    public static int len<X>(X[] a)
+        => a.Length;
+
+
 }

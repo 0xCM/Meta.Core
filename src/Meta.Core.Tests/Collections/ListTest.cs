@@ -98,8 +98,8 @@ namespace Meta.Core.Modules.Tests
         [UT.TestMethod]
         public void SumTest()
         {
-            var sum = from x in Sum.make(1)
-                      from y in x + Sum.make(7)
+            var sum = from x in SemigroupOp.make(1)
+                      from y in x + SemigroupOp.make(7)
                       select y;
             claim.equal(8, sum.Value);
         }
@@ -139,6 +139,14 @@ namespace Meta.Core.Modules.Tests
             var duplicated = init(tails(input));
         }
 
+        [UT.TestMethod]
+        public void MonoidalList()
+        {
+            var input = cons(1, 2, 3, 4, 5);
+            
+
+
+        }
 
 
     }

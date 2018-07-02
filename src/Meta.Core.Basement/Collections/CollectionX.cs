@@ -907,4 +907,28 @@ public static class CollectionExtensions
                 ? Option.Some(value)
                 : Option.None<TValue>());
 
+    /// <summary>
+    /// Determines whether two lists have identitical content
+    /// </summary>
+    /// <typeparam name="X">The list item type</typeparam>
+    /// <param name="l1">The first list</param>
+    /// <param name="l2">The second list</param>
+    /// <returns></returns>
+    public static bool ContentEqualTo<X>(this G.IReadOnlyList<X> l1, IReadOnlyList<X> l2)
+    {
+        if (l1.Count != l2.Count)
+            return false;
+
+        for (var i = 0; i < l2.Count; i++)
+        {
+            var left = l1[i];
+            var right = l2[i];
+            var same = Equals(left, right);
+            if (!same)
+                return false;
+        }
+        return true;
+
+    }
+
 }

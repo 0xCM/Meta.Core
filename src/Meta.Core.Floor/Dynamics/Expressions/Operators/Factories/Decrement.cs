@@ -6,8 +6,6 @@
 namespace Meta.Core.Operators
 {
     using System;
-    using System.Reflection;
-    using System.Linq;
     using System.Linq.Expressions;
 
     using static metacore;
@@ -15,10 +13,28 @@ namespace Meta.Core.Operators
     public static class Decrement<T>
     {
         static readonly Func<T, T> _OP
-            = lambda<T, T>(Expression.Decrement).Compile();
+            = Construct();
+
+
+        static Func<T, T> Construct()
+        {
+
+            switch (typecode<T>())
+            {
+                case TypeCode.Byte:
+                    return cast<Func<T, T>>(ByteOps.Dec.Compile());
+                case TypeCode.SByte:
+                    return cast<Func<T, T>>(SByteOps.Dec.Compile());
+                case TypeCode.UInt16:
+                    return cast<Func<T, T>>(UInt16Ops.Dec.Compile());
+
+                default:
+                    return lambda<T, T>(Expression.Decrement).Compile();
+            }
+        }
+
 
         public static T Apply(T x)
             => _OP(x);
     }
-
 }

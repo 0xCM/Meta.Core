@@ -8,7 +8,11 @@ namespace Meta.Core
     using System;
     using System.Linq;
 
-    public interface IAlternative<X, CX, CFX, Y, CY> : IApplicative<X, CX, CFX, Y, CY>
+    public interface IAlternative : IApplicative
+    {
+
+    }
+    public interface IAlternative<X, CX, CFX, Y, CY> : IAlternative, IApplicative<X, CX, CFX, Y, CY>
         where CX : IContainer<X>
         where CFX : IContainer<Func<X, Y>>
         where CY : IContainer<Y>

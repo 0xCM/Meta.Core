@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Meta.Core.Collections\Meta.Core.Collections.csproj" />
+    <ProjectReference Include="..\Meta.Core.Substructure\Meta.Core.Substructure.csproj" />
   </ItemGroup>
 
 

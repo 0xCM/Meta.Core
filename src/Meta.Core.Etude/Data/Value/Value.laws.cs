@@ -10,12 +10,15 @@ namespace Meta.Core
     using System.Collections.Generic;
 
 
-    public interface IValue : ITypeclass
+    public interface IValue : ITypeClass
     {
 
     }
 
-    public interface IValue<X> : IContainer<X>, IEquatable<Value<X>>
+
+
+
+    public interface IValue<X> : IContainer<X,Value<X>>, IEquatable<Value<X>>
     {
         X Data { get; }
     }

@@ -20,6 +20,10 @@ namespace Meta.Core
     /// <typeparam name="X">The type of the lifted value</typeparam>
     public readonly struct Value<X> : IValue<X>
     {
+
+
+        public static readonly Value<X> Empty = default;
+
         /// <summary>
         /// Extracts encapsualted content
         /// </summary>
@@ -80,6 +84,9 @@ namespace Meta.Core
         public Cardinality Cardinality
             => Cardinality.Finite;
 
+        public ContainerFactory<X, Value<X>> Factory
+            => stream => new Value<X>(stream.Single());
+
         public Seq<X> Contained()
             => Seq.cons(Data);
 
@@ -95,11 +102,8 @@ namespace Meta.Core
         public override bool Equals(object obj)
             => (obj is Value<X>) ? Equals((Value<X>)obj) : false;
 
-        //IEnumerator IEnumerable.GetEnumerator()
-        //    => stream(Data).GetEnumerator();
+        
 
-        public ContainerFactory<Y> Factory<Y>()
-            => y => new Value<Y>(y.Single());
     }
 
  

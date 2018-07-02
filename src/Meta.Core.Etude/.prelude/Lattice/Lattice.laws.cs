@@ -17,7 +17,7 @@ namespace Meta.Core
 
     }
 
-    public interface ILattice : ITypeclass
+    public interface ILattice : ITypeClass
     {
 
     }

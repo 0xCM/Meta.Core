@@ -45,13 +45,22 @@ namespace Meta.Core
             => l;
 
         /// <summary>
-        /// Creates an index from a list
+        /// Creates an index from a sequence
         /// </summary>
         /// <typeparam name="X">The item type</typeparam>
-        /// <param name="l">The input list</param>
+        /// <param name="s">The input list</param>
         /// <returns></returns>
-        public static Index<X> AsIndex<X>(this Seq<X> l)
-            => l;
+        public static Index<X> AsIndex<X>(this Seq<X> s)
+            => s;
+
+        /// <summary>
+        /// Creates a native array from a sequence
+        /// </summary>
+        /// <typeparam name="X">The item type</typeparam>
+        /// <param name="l">The input sequence</param>
+        /// <returns></returns>
+        public static X[] AsArray<X>(this Seq<X> s)
+            => s;
 
         /// <summary>
         /// Creates an index from a list
@@ -60,7 +69,7 @@ namespace Meta.Core
         /// <param name="l">The input list</param>
         /// <returns></returns>
         public static Index<X> AsIndex<X>(this List<X> l)
-            => l; //Index.make(l.Contained());
+            => l;
 
         /// <summary>
         /// Presents the list as a streamable
@@ -124,6 +133,7 @@ namespace Meta.Core
             where Y : class
             where X : Y
                 => Seq.weaken<X, Y>(s);
+
 
     }
 

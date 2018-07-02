@@ -13,6 +13,8 @@ namespace Meta.Core.Operators
 
     public static class GreaterThanOrEqual<T>
     {
+        static readonly Func<T, T, bool> _OP
+            = Construct();
 
         static Func<T, T, bool> Construct()
         {
@@ -23,13 +25,14 @@ namespace Meta.Core.Operators
                     return cast<Func<T, T, bool>>(ByteOps.GTEQ.Compile());
                 case TypeCode.SByte:
                     return cast<Func<T, T, bool>>(SByteOps.GTEQ.Compile());
+                case TypeCode.UInt16:
+                    return cast<Func<T, T, bool>>(UInt16Ops.GTEQ.Compile());
+
                 default:
                     return lambda<T, T, bool>(Expression.GreaterThanOrEqual).Compile();
             }
         }
 
-        static readonly Func<T, T, bool> _OP
-            = Construct();
 
         public static bool Apply(T x, T y)
             => _OP(x, y);

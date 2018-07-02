@@ -5,8 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include=".prelude\Category\Category.laws.cs" />
-    <Compile Include=".prelude\Category\Category.struct.cs" />
     <Compile Include=".prelude\Collections\Index.cs" />
     <Compile Include=".prelude\Collections\List.cs" />
     <Compile Include=".prelude\Collections\Map.cs" />
@@ -16,8 +14,6 @@
     <Compile Include=".prelude\Eq\Eq.inst.cs" />
     <Compile Include=".prelude\Eq\Eq.mod.cs" />
     <Compile Include=".prelude\Eq\Eq.struct.cs" />
-    <Compile Include=".prelude\Eq\Eq.laws.cs" />
-    <Compile Include=".prelude\Group\Group.laws.cs" />
     <Compile Include=".prelude\Group\Group.mod.cs" />
     <Compile Include=".prelude\Group\Group.struct.cs" />
     <Compile Include=".prelude\Lattice\Lattice.laws.cs" />
@@ -25,24 +21,20 @@
     <Compile Include=".prelude\Lattice\Lattice.mod.cs" />
     <Compile Include=".prelude\Lattice\Lattice.struct.cs" />
     <Compile Include=".prelude\Lattice\Poset.struct.cs" />
-    <Compile Include=".prelude\Monoid\Monoid.laws.cs" />
-    <Compile Include=".prelude\Monoid\Monoid.intrinsic.cs" />
+    <Compile Include=".prelude\Monoid\Monoid.inst.cs" />
     <Compile Include=".prelude\Monoid\Monoid.mod.cs" />
     <Compile Include=".prelude\Monoid\Monoid.struct.cs" />
-    <Compile Include=".prelude\Monoid\Sum\Sum.api.cs" />
-    <Compile Include=".prelude\Monoid\Sum\Sum.mod.cs" />
-    <Compile Include=".prelude\Monoid\Sum\Sum.struct.cs" />
-    <Compile Include=".prelude\Semigroupoid\Semigroupoid.laws.cs" />
     <Compile Include=".prelude\Semigroupoid\Semigroupoid.mod.cs" />
     <Compile Include=".prelude\Semigroupoid\Semigroupoid.struct.cs" />
     <Compile Include=".prelude\Semigroup\Semigroup.api.cs" />
-    <Compile Include=".prelude\Semigroup\Semigroup.laws.cs" />
     <Compile Include=".prelude\Semigroup\Semigroup.mod.cs" />
     <Compile Include=".prelude\Semigroup\Semigroup.struct.cs" />
+    <Compile Include=".prelude\Semigroup\Sum\SemigroupOp.api.cs" />
+    <Compile Include=".prelude\Semigroup\Sum\SemigroupOp.mod.cs" />
+    <Compile Include=".prelude\Semigroup\Sum\SemigroupOp.struct.cs" />
     <Compile Include=".prelude\Semiring\Semiring.laws.cs" />
     <Compile Include=".prelude\Semiring\Semiring.cs" />
     <Compile Include=".prelude\Semiring\Semiring.struct.cs" />
-    <Compile Include=".prelude\Setoid\Setoid.laws.cs" />
     <Compile Include=".prelude\Setoid\Setoid.mod.cs" />
     <Compile Include=".prelude\Setoid\Setoid.struct.cs" />
     <Compile Include=".prelude\ClassOps.cs" />
@@ -50,10 +42,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Meta.Core.Floor\Meta.Core.Floor.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Text\" />
   </ItemGroup>
 
 </Project>

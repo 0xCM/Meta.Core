@@ -58,8 +58,8 @@ namespace Meta.Core
         /// <summary>
         /// Defines the canonical empty sequence
         /// </summary>
-        public static Index<X> Empty = 
-            new Index<X>(ImmutableArray<X>.Empty);
+        public static Index<X> Empty 
+            =  new Index<X>(ImmutableArray<X>.Empty);
 
         /// <summary>
         /// Returns the canonical index factory
@@ -81,7 +81,14 @@ namespace Meta.Core
         /// <param name="s2">The second index</param>
         /// <returns></returns>
         public static Index<X> operator +(Index<X> s1, Index<X> s2)
-            => Index.chain(s1, s2);
+            => Index.concat(s1, s2);
+
+
+        public static bool operator ==(Index<X> l1, Index<X> l2)
+            => l1.Equals(l2);
+
+        public static bool operator !=(Index<X> l1, Index<X> l2)
+            => !l1.Equals(l2);
 
         Index(ImmutableArray<X> Data)
             => this.Data = Data;            
@@ -141,7 +148,26 @@ namespace Meta.Core
                 yield return (k, Data[k]);
         }
 
-        ContainerFactory<Y> IContainer<X>.Factory<Y>()
-            => y => Index.make(Seq.make(y));
+        /// <summary>
+        /// Exposes the contained data as a <see cref="IReadOnlyList{T}"/>
+        /// </summary>
+        /// <returns></returns>
+        public IReadOnlyList<X> AsReadOnlyList()
+            => Data;
+
+        ContainerFactory<X, Index<X>> IContainer<X, Index<X>>.Factory
+            => stream => new Index<X>(stream.ToImmutableArray());
+
+        public bool Equals(Index<X> other)
+            => IndexEquator<X>.instance(this, other);
+
+        public override bool Equals(object obj)
+            => obj is Index<X> ? Equals((Index<X>)obj) : false;
+
+        public override int GetHashCode()
+            => Data.GetHashCodeAggregate();
+
+
+ 
     }
 }

@@ -9,7 +9,7 @@ using System.Reflection;
 
 [assembly: AssemblyClassifier(ComponentClassification.Library)]
 
-public sealed class CoreCollections : CoreModule<CoreCollections>
+public sealed class CoreCollections //: CoreModule<CoreCollections>
 {
 
 }

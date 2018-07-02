@@ -23,7 +23,7 @@ namespace Meta.Core
         where CY : IContainer<Y>;
 
 
-    public interface IFunctor : ITypeclass
+    public interface IFunctor : ITypeClass
     {
                 
     }

@@ -20,7 +20,7 @@ namespace Meta.Core.Modules
         /// <typeparam name="X">The type of element over which the instance is constructed</typeparam>
         /// <returns></returns>
         public static IEq<X> make<X>()
-            => Instances.TryFind(typeof(X)).MapValueOrDefault(instance => (IEq<X>)instance, Eq<X>.Default);
+            => Instances.TryFind(typeof(X)).MapValueOrDefault(instance => (IEq<X>)instance, Eq<X>.instance);
 
         /// <summary>
         /// Constructs a <see cref="IEq{X}"/> from a supplied <see cref="Equator{X}"/>

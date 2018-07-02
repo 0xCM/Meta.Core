@@ -22,20 +22,47 @@ namespace Meta.Core
         /// <summary>
         /// Defines the canonical empty sequence
         /// </summary>
-        public static Set<X> Empty = new Set<X>(ImmutableHashSet<X>.Empty);
+        public static Set<X> Empty 
+            = new Set<X>(ImmutableHashSet<X>.Empty);
 
         public static Func<Seq<X>, Set<X>> Factory
             => items => new Set<X>(ImmutableHashSet.CreateRange(items.Stream()));
 
+        /// <summary>
+        /// Evaluates sequence equality
+        /// </summary>
+        /// <param name="s1">The first sequence</param>
+        /// <param name="s2">The second sequence</param>
+        /// <returns></returns>
+        public static bool operator ==(Set<X> s1, Set<X> s2)
+            => s1.Equals(s2);
+
+        /// <summary>
+        /// Evaluates sequence inequality
+        /// </summary>
+        /// <param name="s1">The first sequence</param>
+        /// <param name="s2">The second sequence</param>
+        /// <returns></returns>
+        public static bool operator !=(Set<X> s1, Set<X> s2)
+            => !s1.Equals(s2);
+
+        /// <summary>
+        /// Combines the operands
+        /// </summary>
+        /// <param name="s1">The first sequence</param>
+        /// <param name="s2">The second sequence</param>
+        /// <returns></returns>
+        public static Set<X> operator +(Set<X> s1, Set<X> s2)
+            => new Set<X>(s1.Stream().Concat(s2.Stream()).Distinct().ToImmutableHashSet());
+
         Set(ImmutableHashSet<X> Data)
-        {
-            this.Data = Data;
-        }
+            => this.Data = Data;
 
         ImmutableHashSet<X> Data { get; }
 
         public Cardinality Cardinality
-            => Data.IsEmpty ? Cardinality.Zero : Cardinality.Finite;
+            => Data.IsEmpty ? Cardinality.Zero 
+            : Cardinality.Finite;
 
         public IEnumerable<X> Stream()
             => Data;
@@ -67,10 +94,22 @@ namespace Meta.Core
         public bool Contains(X item)
             => Data.Contains(item);
 
-        ContainerFactory<Y> IContainer<X>.Factory<Y>()
-            => y => Set.make(y);
-
         IEnumerator IEnumerable.GetEnumerator()
             => Data.GetEnumerator();
+
+        public override int GetHashCode()
+            => Data.GetHashCodeAggregate();
+
+        public override bool Equals(object obj)
+            => obj is Set<X> ? Equals((Set<X>)obj) : false;
+
+        ContainerFactory<X, Set<X>> IContainer<X, Set<X>>.Factory
+            => x => new Set<X>(x.ToImmutableHashSet());
+
+        public bool Equals(Set<X> other)
+            => Data.IsSubsetOf(other.Data) 
+            && other.Data.IsSubsetOf(Data);
+
+
     }
 }

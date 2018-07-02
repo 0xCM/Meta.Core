@@ -7,10 +7,6 @@ namespace Meta.Core
 {
     using System;
     using System.Linq;
-    using System.Collections;
-    using System.Collections.Immutable;
-
-    using G = System.Collections.Generic;
 
     using static minicore;
 
@@ -18,27 +14,18 @@ namespace Meta.Core
     /// Defines delegate that adjudicates list equality
     /// </summary>
     /// <typeparam name="X">The list item type</typeparam>
-    public readonly struct ListEquator<X>
+    readonly struct ListEquator<X>
     {
         public static readonly Equator<List<X>> instance
-            = Equals;
+            = (l1, l2) => l1.AsReadOnlyList().ContentEqualTo(l2.AsReadOnlyList());
+    }
 
-        static bool Equals(List<X> l1, List<X> l2)
-        {
-            if (l1.Count != l2.Count)
-                return false;
+    readonly struct ListFormatter<X> : IValueFormatter<List<X>>
+    {
+        public static readonly ListFormatter<X> instance = default;
 
-            for (var i = 0; i < l2.Count; i++)
-            {
-                var left = l1[i];
-                var right = l2[i];
-                var same = Equals(left, right);
-                if (not(same))
-                    return false;
-            }
-            return true;
-
-        }
+        public string Format(List<X> list)
+            => "[" + string.Join(",", list.Stream()) + "]";
     }
 
 

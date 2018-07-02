@@ -14,11 +14,18 @@ namespace Meta.Core
     using static metacore;
     using static Product;
 
+
+    public interface IProduct<X> : IEquatable<Product<X>>, IContainer<X>
+    {
+
+
+    }
+
     /// <summary>
     /// Represents an alegraic product of two types
     /// </summary>
     /// <typeparam name="X">The underlying type</typeparam>
-    public readonly struct Product<X> : IEquatable<Product<X>>, IContainer<X>
+    public readonly struct Product<X> : IProduct<X>
     {
         public static implicit operator Product<X>(X x)
             => new Product<X>(x);
@@ -49,6 +56,10 @@ namespace Meta.Core
         public Cardinality Cardinality
             => Cardinality.Finite;
 
+        public ContainerFactory<X> Factory
+            => stream => new Product<X>(stream.Single());
+
+
         public override bool Equals(object obj)
             => obj is Product<X>
                 ? Equals((Product<X>)obj) : false;
@@ -62,20 +73,16 @@ namespace Meta.Core
         public override int GetHashCode()
             => x.GetHashCode();
 
-        //IEnumerator IEnumerable.GetEnumerator()
-        //    => components.GetEnumerator();
-
         public Seq<X> Contained()
             => Seq.singleton(x);
 
         public IContainer<Y> Recontain<Y>(Func<X, Y> map)
             => Seq.singleton(map(x));
 
-        public ContainerFactory<Y> Factory<Y>()
-            => x => new Product<Y>(x.Single());
 
         public IEnumerable<X> Stream()
             => Contained().Stream();
+
     }
 
 }

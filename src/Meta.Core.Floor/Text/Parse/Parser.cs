@@ -24,7 +24,7 @@ namespace Meta.Core
         static Parser()
         {
             var closedMethods = new ConcurrentBag<MethodInfo>();
-            var traverser = Typeclass.traverser(t =>
+            var traverser = TypeClass.traverser(t =>
             {
                 var parsers = from m in t.GetDeclaredMethods(MemberInstanceType.Static)
                               where m.HasAttribute<ParserAttribute>()

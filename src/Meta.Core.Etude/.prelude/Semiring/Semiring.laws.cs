@@ -13,7 +13,7 @@ namespace Meta.Core
     /// <summary>
     /// Identifies the Semiring typeclass
     /// </summary>
-    public interface ISemiring : ITypeclass
+    public interface ISemiring : ITypeClass
     {
 
     }
@@ -23,7 +23,7 @@ namespace Meta.Core
     /// Defines Semiring membership criteria
     /// </summary>
     /// <typeparam name="X">The element type</typeparam>
-    public interface ISemiring<X> :  ITypeclass<X>
+    public interface ISemiring<X> :  ITypeClass<X>
     {
         /// <summary>
         /// Specifies the semiring's additive identity

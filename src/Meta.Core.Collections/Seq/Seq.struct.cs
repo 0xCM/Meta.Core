@@ -18,8 +18,13 @@ namespace Meta.Core
     /// Represents a possibly infinite sequence of items
     /// </summary>
     /// <typeparam name="X">The item type</typeparam>
-    public readonly struct Seq<X> : ISeq<X>, IEquatable<Seq<X>>, IEnumerable
+    public readonly struct Seq<X> : ISeq<X>, IEnumerable
     {
+        /// <summary>
+        /// The canonical 0
+        /// </summary>
+        public static Seq<X> Empty
+            = new Seq<X>(stream<X>(), Cardinality.Zero);
 
         /// <summary>
         /// The canonical factory
@@ -27,18 +32,13 @@ namespace Meta.Core
         public static SeqFactory<X> Factory
             => items => new Seq<X>(items);
 
-        /// <summary>
-        /// The canonical 0
-        /// </summary>
-        public static Seq<X> Empty 
-            = new Seq<X>(stream<X>(), Cardinality.Zero);
 
         /// <summary>
         /// Implicitly constructs a sequence from an array
         /// </summary>
         /// <param name="Items"></param>
         public static implicit operator Seq<X>(X[] Items)
-            => Seq.make(Items);
+            => new Seq<X>(Items);
 
         /// <summary>
         /// Implicitly constructs an untyped sequence from a typed sequence
@@ -47,8 +47,12 @@ namespace Meta.Core
         public static implicit operator Seq<object>(Seq<X> index)
             => Seq.make(index.Stream().Cast<object>());
 
-        //public static List<X> operator !(Seq<X> input)
-        //    => input;
+        /// <summary>
+        /// Implicitly constructs a an array from a sequence
+        /// </summary>
+        /// <param name="Items"></param>
+        public static implicit operator X[](Seq<X> s)
+            => s.Stream().ToArray();
 
         /// <summary>
         /// Concatenates the operands
@@ -57,7 +61,7 @@ namespace Meta.Core
         /// <param name="s2">The second sequence</param>
         /// <returns></returns>
         public static Seq<X> operator +(Seq<X> s1, Seq<X> s2)
-            => Seq.concat(s1, s2);
+            => new Seq<X>(s1.Stream().Concat(s2.Stream()));
 
         /// <summary>
         /// Evaluates sequence equality
@@ -66,7 +70,7 @@ namespace Meta.Core
         /// <param name="s2">The second sequence</param>
         /// <returns></returns>
         public static bool operator ==(Seq<X> s1, Seq<X> s2)
-            => Seq.eq(s1, s2);
+            => s1.Equals(s2);
 
         /// <summary>
         /// Evaluates sequence inequality
@@ -75,7 +79,7 @@ namespace Meta.Core
         /// <param name="s2">The second sequence</param>
         /// <returns></returns>
         public static bool operator !=(Seq<X> s1, Seq<X> s2)
-            => Seq.neq(s1, s2);
+            => not(s1.Equals(s2));
 
         /// <summary>
         /// Defines the sequence implied by the stream
@@ -126,24 +130,31 @@ namespace Meta.Core
             => obj is Seq<X> ? Seq.eq(this, (Seq<X>)obj) : false;
 
         public bool Equals(Seq<X> other)
-            => Seq.eq(this, other);
+            => SeqEquator<X>.instance(this, other);
 
         public override int GetHashCode()
-            => Seq.hash(this);
+        {
+            if (IsEmpty)
+                return 0;
+
+            if (not(IsBounded))
+                return -1;
+
+            return Container.hash(this);
+        }
 
         public override string ToString()
-            => Seq.format(this);
+            => SeqFormatter<X>.instance.Format(this);
 
         public Seq<X> Contained()
             => this;
 
-        ContainerFactory<Y> IContainer<X>.Factory<Y>()
-            => y => Seq.make(y);
+        ContainerFactory<X, Seq<X>> IContainer<X, Seq<X>>.Factory
+             => source => new Seq<X>(source);
 
         IEnumerator IEnumerable.GetEnumerator()
-            => this.Data.GetEnumerator();
+            => Data.GetEnumerator();
+ 
     }
 
-
- 
 }

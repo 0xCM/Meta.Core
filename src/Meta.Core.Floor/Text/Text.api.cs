@@ -914,7 +914,7 @@ static partial class metacore
     /// <param name="o">The object on which the field is defined</param>
     /// <param name="fieldName">The name of the field</param>
     /// <returns></returns>
-    static T GetDeclaredFieldValue<T>(this object o, string fieldName)
+    static T GetDeclaredFieldValue<T>(object o, string fieldName)
     {
         var f = o.GetType().GetField(fieldName, BF_DeclaredInstance);
         return (T)(f != null ? f.GetValue(o) : null);
@@ -930,7 +930,7 @@ static partial class metacore
     public static Option<string> validate(string value, Regex regex)
     {
         if (not(regex.Match(value).Success))
-            return none<string>(error($"The value '{value}' did not satisfy the expression {regex.GetDeclaredFieldValue<string>("pattern")}"));
+            return none<string>(error($"The value '{value}' did not satisfy the expression {GetDeclaredFieldValue<string>(regex,"pattern")}"));
         else
             return value;
     }

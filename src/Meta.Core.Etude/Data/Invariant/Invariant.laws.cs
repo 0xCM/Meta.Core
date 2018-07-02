@@ -13,12 +13,12 @@ namespace Meta.Core
         where CX : IContainer<X>
         where CY : IContainer<Y>;
 
-    public interface IInvariant : ITypeclass
+    public interface IInvariant : ITypeClass
     {
 
     }
 
-    public interface IInvariant<X, CX, Y, CY> : IInvariant, ITypeclass<X, CX, Y, CY>
+    public interface IInvariant<X, CX, Y, CY> : IInvariant, ITypeClass<X, CX, Y, CY>
         where CX : IContainer<X>
         where CY : IContainer<Y>
     {

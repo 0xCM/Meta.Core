@@ -58,4 +58,41 @@ partial class metacore
     public static Option<List<X>> flip<X>(List<Option<X>> list)
         => list.Any(item => item.IsNone()) 
         ? default  : list.Select(x => x.ValueOrDefault());
+
+    /// <summary>
+    /// Returns true if list is empty, false otherwise
+    /// </summary>
+    /// <typeparam name="X">The element type</typeparam>
+    /// <param name="list">The list to examine</param>
+    /// <returns></returns>
+    public static bool empty<X>(List<X> list)
+        => list.IsEmpty;
+
+    /// <summary>
+    /// Retrieves the last element if it exists; oterwise, None
+    /// </summary>
+    /// <typeparam name="X">The element type</typeparam>
+    /// <param name="list">The list to examine</param>
+    /// <returns></returns>
+    public static Option<X> last<X>(List<X> list)
+        => list.Stream().LastOrDefault();
+
+    /// <summary>
+    /// Retrieves the first element; oterwise, None
+    /// </summary>
+    /// <typeparam name="X">The element type</typeparam>
+    /// <param name="list">The list to examine</param>
+    /// <returns></returns>
+    public static Option<X> first<X>(List<X> list)
+        => list.Stream().FirstOrDefault();
+
+    /// <summary>
+    /// Retrieves the length of the array
+    /// </summary>
+    /// <typeparam name="X">The element type</typeparam>
+    /// <param name="a">The array to examine</param>
+    /// <returns></returns>
+    public static int len<X>(List<X> list)
+        => list.Count;
+
 }

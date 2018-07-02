@@ -47,16 +47,8 @@ partial class metacore
         return Unit.Value;
     }
 
-    /// <summary>
-    /// Applies a function to each contained item returns a list of results
-    /// </summary>
-    /// <typeparam name="X">The input item type</typeparam>
-    /// <typeparam name="Y">The output item type</typeparam>
-    /// <param name="container"></param>
-    /// <param name="f"></param>
-    /// <returns></returns>
-    public static Container<Y> map<X, Y>(Container<X> container, Func<X, Y> f)        
-        => Container.make(Container.map(f, container));
+    //public static Container<Y> map<X, Y>(Container<X> container, Func<X, Y> f)        
+    //    => Container.make(Container.map(f, container));
 
     /// <summary>
     /// Constructs an array from a container

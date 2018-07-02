@@ -44,4 +44,17 @@ namespace Meta.Core
             => $"Semigroup<{typeof(X).Name}>";
     }
 
+    partial class classops
+    {
+
+        /// <summary>
+        /// Associative binary operation over a <see cref="ISemigroup"/> 
+        /// </summary>
+        public readonly struct plus : IClassOp<plus>
+        {
+            public static readonly plus op = default;
+            public const string S = "<>";
+        }
+    }
+
 }

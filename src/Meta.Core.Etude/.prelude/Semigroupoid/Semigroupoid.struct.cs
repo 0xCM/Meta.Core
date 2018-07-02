@@ -25,7 +25,29 @@ namespace Meta.Core
 
         public Func<X, A, C> rcompose<A, B, C>(Func<X, A, B> f, Func<X, B, C> g)
             => (x, y) => g(x, f(x, y));
-
         
     }
+
+    partial class classops
+    {
+        /// <summary>
+        /// Represents the <see cref="ISemigroupoid"/> compose operation
+        /// </summary>
+        public readonly struct fcompose : IClassOp<fcompose>
+        {
+            public static readonly fcompose op = default;
+            public const string S = "<<<";
+        }
+
+        /// <summary>
+        /// Represents this <see cref="ISemigroupoid"/> fcompose operation
+        /// </summary>
+        public readonly struct rcompose : IClassOp<rcompose>
+        {
+            public static readonly rcompose op = default;
+            public const string S = ">>>";
+        }
+
+    }
+
 }

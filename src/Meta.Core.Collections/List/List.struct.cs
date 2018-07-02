@@ -16,7 +16,7 @@ namespace Meta.Core
 
     using Modules;
 
-    public readonly struct List<X> : IList<X>, IEquatable<List<X>>
+    public readonly struct List<X> : IList<X>
     {        
         /// <summary>
         /// The canonical 0
@@ -29,7 +29,6 @@ namespace Meta.Core
 
         public static implicit operator List<X>(Seq<X> s)
             => Factory(s.Stream());
-
         
         public static implicit operator Streamable<X>(List<X> list)
             => list.AsStreamable();
@@ -44,10 +43,10 @@ namespace Meta.Core
             => Factory(l1.Stream().Concat(l2.Stream()));
 
         public static bool operator ==(List<X> l1, List<X> l2)
-            => List.eq(l1, l2);
+            => l1.Equals(l2);
 
         public static bool operator !=(List<X> l1, List<X> l2)
-            => List.neq(l1, l2);
+            => not(l1.Equals(l2));
 
         public static ListFactory<X> Factory
             => items => new List<X>(items.ToImmutableList());
@@ -56,7 +55,6 @@ namespace Meta.Core
             => this.Data = Value;
 
         ImmutableList<X> Data { get; }
-
 
         public X this[int index]
             => Data[index];
@@ -87,8 +85,11 @@ namespace Meta.Core
         public Seq<X> Contained()
             => Seq.make(Data);
 
+        public G.IReadOnlyList<X> AsReadOnlyList()
+            => Data;
+
         public override int GetHashCode()
-            => List.hash(this);
+            => Container.hash(this);
 
         public override bool Equals(object obj)
         {
@@ -105,19 +106,17 @@ namespace Meta.Core
             => ListEquator<X>.instance(this, other);
 
         public override string ToString()
-            => List.format(this);
-
-        ContainerFactory<Y> IContainer<X>.Factory<Y>()
-            => source => List.make(source);
+            => ListFormatter<X>.instance.Format(this);
 
         public Cardinality Cardinality
             => IsEmpty ? Cardinality.Zero : Cardinality.Finite;
 
-        Seq<X> IContainer<X>.Contained()
-            => Seq.make(Data);
-
         G.IEnumerable<X> IStreamable<X>.Stream()
             => Data;
 
+        ContainerFactory<X, List<X>> IContainer<X, List<X>>.Factory
+            => stream => new List<X>(stream.ToImmutableList());
+        
+            
     }
 }

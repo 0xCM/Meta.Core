@@ -71,7 +71,7 @@ namespace Meta.Core.Modules
         /// <param name="s2">The second sequence</param>
         /// <returns></returns>
         public static Seq<X> concat<X>(Seq<X> s1, Seq<X> s2)
-            => chain(s1, s2);
+            => s1 + s2;
 
         /// <summary>
         /// Constructs a new sequence by appending head to tail
@@ -410,22 +410,6 @@ namespace Meta.Core.Modules
                            from y in f(x).Stream()
                            select y);
 
-        /// <summary>
-        /// Computes the (non-cryptographic) hash code of a sequence
-        /// </summary>
-        /// <typeparam name="X">The item type</typeparam>
-        /// <param name="s">The sequence</param>
-        /// <returns></returns>
-        public static int hash<X>(Seq<X> s)
-        {
-            if (s.IsEmpty)
-                return 0;
-
-            if (not(s.IsBounded))
-                return -1;
-
-            return s.Stream().GetHashCodeAggregate();
-        }
 
         /// <summary>
         /// Renders the canonical display format for a sequence
@@ -434,37 +418,7 @@ namespace Meta.Core.Modules
         /// <param name="s">The sequence</param>
         /// <returns></returns>
         public static string format<X>(Seq<X> s)
-        {
-            var name = typeof(X).Name;
-            switch (s.Cardinality)
-            {
-                case Cardinality.Finite:
-                    return embrace($"{name} | (1..n)");
-                case Cardinality.Zero:
-                    return embrace($"{name} | ()");
-                case Cardinality.Infinite:
-                    return embrace($"{name} | (1..*)");
-                default:
-                    return embrace($"{name} | (?)");
-            }
-        }
-
-
-        static bool eq<X>(IReadOnlyList<X> x1, IReadOnlyList<X> x2)
-        {
-            if (x1.Count != x2.Count)
-                return false;
-
-            for (var i = 0; i < x2.Count; i++)
-            {
-                var left = x1[i];
-                var right = x2[i];
-                var same = Equals(left, right);
-                if (not(same))
-                    return false;
-            }
-            return true;
-        }
+            => SeqFormatter<X>.instance.Format(s);
 
 
         /// <summary>
@@ -475,18 +429,7 @@ namespace Meta.Core.Modules
         /// <param name="s2">The second sequence</param>
         /// <returns></returns>
         public static bool eq<X>(Seq<X> s1, Seq<X> s2)
-        {
-            if (s1.IsEmpty && s2.IsEmpty)
-                return true;
-
-            if (not(s1.IsBounded) || not(s2.IsBounded))
-                return false;
-
-            var l1 = s1.Stream().ToReadOnlyList();
-            var l2 = s2.Stream().ToReadOnlyList();
-            return eq(l1, l2);
-            
-        }
+            => SeqEquator<X>.instance(s1, s2);
 
         /// <summary>
         /// Evaulates the logical negation of <see cref="eq"/>
@@ -529,11 +472,6 @@ namespace Meta.Core.Modules
         /// <param name="s">The input sequence</param>
         /// <returns></returns>
         public static Streamable<X> Streamable<X>(Seq<X> s)
-            => Modules.Streamable.make(() => s.Stream(), s.Cardinality);
-        
-
-
+            => Modules.Streamable.make(() => s.Stream(), s.Cardinality);       
     }
-
-
 }

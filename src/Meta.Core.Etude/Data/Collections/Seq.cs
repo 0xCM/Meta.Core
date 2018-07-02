@@ -90,6 +90,14 @@ namespace Meta.Core
         public static ISeqAlternative<X,Y> Alternative<X, Y>()
             => SeqAlternative<X, Y>.instance;
 
+        /// <summary>
+        /// Constructs a monoid over a sequence
+        /// </summary>
+        /// <typeparam name="X">The item type</typeparam>
+        /// <returns></returns>
+        public static ISeqMonoid<X> Monoid<X>()
+            => SeqMonoid<X>.instance;
+       
     }
 
 

@@ -21,38 +21,12 @@ namespace Meta.Core
 
         Orderer<X> Orderer { get; }
 
-        public Type subject
-            => typeof(X);
-
         public Ordering compare(X x1, X x2)
             => Orderer(x1, x2);
 
-        public bool lt(X x1, X x2)
-            => Orderer(x1, x2) == Ordering.LT;
-
-        public bool gt(X x1, X x2)
-            => Orderer(x1, x2) == Ordering.GT;
-
         public bool eq(X x1, X x2)
-            => Orderer(x1, x2) == Ordering.EQ;
+             => Orderer(x1, x2) == Ordering.EQ;
 
-        public bool gteq(X x1, X x2)
-            => gt(x1, x1) || eq(x1, x2);
-
-        public bool lteq(X x1, X x2)
-            => lt(x1, x2) || eq(x1, x2);
-
-        public bool between(X x, X x1, X x2)
-            => gteq(x, x1) && lteq(x, x2);
-
-        public X max(X x1, X x2)
-            => gteq(x1, x2) ? x1 : x2;
-
-        public X min(X x1, X x2)
-            => lteq(x1, x2) ? x1 : x2;
-
-        public bool neq(X x1, X x2)
-            => not(eq(x1, x2));
     }
 
 }

@@ -440,7 +440,6 @@ namespace Meta.Core.Modules
         public static bool neq<X>(List<X> x1, List<X> x2)
             => not(eq(x1, x2));
 
-
         /// <summary>
         /// Computes the list hash code
         /// </summary>
@@ -457,8 +456,7 @@ namespace Meta.Core.Modules
         /// <param name="list">The list to format</param>
         /// <returns></returns>
         public static string format<X>(List<X> list)
-            => "[" + string.Join(",", list.Stream()) + "]";
-
+            => list.ToString();
 
         /// <summary>
         /// Constructs a <see cref="IStreamable"/> over <paramref name="list"/>
@@ -468,8 +466,5 @@ namespace Meta.Core.Modules
         /// <returns></returns>
         public static Streamable<X> Streamable<X>(List<X> list)
             => Seq.Streamable(list.AsSeq());
-
-
-
     }
 }

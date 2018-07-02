@@ -97,6 +97,14 @@ namespace Meta.Core
         public static IListAlternative<X,Y> Alternative<X, Y>()
             => ListAlternative<X, Y>.instance;
 
+        /// <summary>
+        /// Constructs a monoid over a list
+        /// </summary>
+        /// <typeparam name="X">The item type</typeparam>
+        /// <returns></returns>
+        public static IListMonoid<X> Monoid<X>()
+            => ListMonoid<X>.instance;
+
     }
 
 

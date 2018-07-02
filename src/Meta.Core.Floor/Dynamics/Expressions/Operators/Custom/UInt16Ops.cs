@@ -21,5 +21,24 @@ namespace Meta.Core.Operators
 
         public static Expression<Func<ushort, ushort, ushort>> Sub
             => make<ushort>((x, y) => (ushort)(x - y));
+
+        public static Expression<Func<ushort, ushort>> Inc
+            => make((ushort x) => x++);
+
+        public static Expression<Func<ushort, ushort>> Dec
+            => make((ushort x) => x--);
+
+        public static Expression<Func<ushort, ushort, bool>> LT
+            => make((ushort x, ushort y) => x < y);
+
+        public static Expression<Func<ushort, ushort, bool>> LTEQ
+            => make((ushort x, ushort y) => x <= y);
+
+        public static Expression<Func<ushort, ushort, bool>> GT
+            => make((ushort x, ushort y) => x > y);
+
+        public static Expression<Func<ushort, ushort, bool>> GTEQ
+            => make((ushort x, ushort y) => x >= y);
+
     }
 }

@@ -62,7 +62,7 @@ namespace Meta.Core.Modules
         /// <param name="key">The key value</param>
         /// <param name="map">The map to search</param>
         /// <returns></returns>
-        public static Option<V> find<K, V>(K key, Map<K, V> map)
+        public static Option<V> lookup<K, V>(K key, Map<K, V> map)
             => map[key];
 
         /// <summary>
@@ -130,7 +130,6 @@ namespace Meta.Core.Modules
         /// <returns></returns>
         public static bool hasValue<K, V>(V value, Map<K, V> map)
            => map.HasValue(value);
-
        
         /// <summary>
         /// Applies a function to a map

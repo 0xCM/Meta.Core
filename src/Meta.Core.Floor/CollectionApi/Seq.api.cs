@@ -89,4 +89,40 @@ partial class metacore
         }
     }
 
+    /// <summary>
+    /// Returns true if array is empty, false otherwise
+    /// </summary>
+    /// <typeparam name="X">The element type</typeparam>
+    /// <param name="a">The array to examine</param>
+    /// <returns></returns>
+    public static bool empty<X>(Seq<X> a)
+        => a.Any();
+
+    /// <summary>
+    /// Retrieves the last element if it exists; oterwise, None
+    /// </summary>
+    /// <typeparam name="X">The element type</typeparam>
+    /// <param name="a">The array to examine</param>
+    /// <returns></returns>
+    public static Option<X> last<X>(Seq<X> a)
+        => a.Last();
+
+    /// <summary>
+    /// Retrieves the first element; oterwise, None
+    /// </summary>
+    /// <typeparam name="X">The element type</typeparam>
+    /// <param name="a">The array to examine</param>
+    /// <returns></returns>
+    public static Option<X> first<X>(Seq<X> a)
+        => a.First();
+
+    /// <summary>
+    /// Retrieves the length of the array
+    /// </summary>
+    /// <typeparam name="X">The element type</typeparam>
+    /// <param name="a">The array to examine</param>
+    /// <returns></returns>
+    public static int len<X>(Seq<X> a)
+        => a.Stream().Count();
+
 }

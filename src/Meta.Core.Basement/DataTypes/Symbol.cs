@@ -122,6 +122,10 @@ public readonly struct Symbol
     public static readonly Symbol arrowR = (nameof(arrowR), '→');
     public static readonly Symbol arrowL = (nameof(arrowL), '←');
 
+    public static readonly Symbol notIn = (nameof(notIn), '∉');
+
+    public static readonly Symbol empty = (nameof(empty), '∅');
+
     /// <summary>
     /// Standard file system path separator
     /// </summary>

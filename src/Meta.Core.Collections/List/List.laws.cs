@@ -12,7 +12,8 @@ namespace Meta.Core
 
     public delegate List<X> ListFactory<X>(G.IEnumerable<X> source);
 
-    public interface IList<X> :  IContext<X, List<X>>,  IContainer<X>
+
+    public interface IList<X> :   IContainer<X, List<X>>
     {
 
     }

@@ -13,12 +13,7 @@ namespace Meta.Core
     public delegate Seq<X> SeqFactory<X>(IEnumerable<X> source);
     
 
-    public interface ISeq
-    {
-
-    }
-
-    public interface ISeq<X> : ISeq, IContext<X, Seq<X>>, IContainer<X>
+    public interface ISeq<X> : IContainer<X, Seq<X>>
     {
 
     }

@@ -6,12 +6,27 @@
 namespace Meta.Core
 {
     using System;
-    using System.Linq;    
+    using System.Linq;
 
-    public interface ISeqFunctor<X,Y> : IFunctor<X, Seq<X>, Y, Seq<Y>>
+
+    public interface IIdentityFunctor<X,CX> 
+        : IFunctor<X, CX, X, CX> 
+            where CX : IContainer<X, CX>, new()
     {
 
     }
+
+    public readonly struct IdentityFunctor<X, CX> : IIdentityFunctor<X,CX>
+        where CX : IContainer<X, CX>, new()
+    {
+        public static readonly IdentityFunctor<X, CX> instance = default;
+
+        public Func<CX, CX> fmap(Func<X, X> f)
+            => cx => cx;
+    }
+
+    public interface ISeqFunctor<X,Y> 
+        : IFunctor<X, Seq<X>, Y, Seq<Y>> { }
 
     /// <summary>
     /// Defines an <see cref="IFunctor"/> instance for <see cref="ISeq{X}"/>
@@ -27,11 +42,8 @@ namespace Meta.Core
     }
 
 
-    public interface IListFunctor<X,Y> : IFunctor<X, List<X>, Y, List<Y>>
-    {
-
-
-    }
+    public interface IListFunctor<X,Y> 
+        : IFunctor<X, List<X>, Y, List<Y>> { }
 
     /// <summary>
     /// Defines an <see cref="IFunctor"/> instance for <see cref="IList{X}"/>
@@ -46,11 +58,8 @@ namespace Meta.Core
             => List.fmap(f);
     }
 
-
-    public interface IIndexFunctor<X,Y> : IFunctor<X, Index<X>, Y, Index<Y>>
-    {
-
-    }
+    public interface IIndexFunctor<X,Y> 
+        : IFunctor<X, Index<X>, Y, Index<Y>> { }
 
     /// <summary>
     /// Defines an <see cref="IFunctor"/> instance for <see cref="IIndex"/>

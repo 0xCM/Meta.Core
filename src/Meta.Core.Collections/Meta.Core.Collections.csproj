@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Meta.Core.Substructure\Meta.Core.Substructure.csproj" />
+    <ProjectReference Include="..\Meta.Core.Basement\Meta.Core.Basement.csproj" />
   </ItemGroup>
 
 </Project>

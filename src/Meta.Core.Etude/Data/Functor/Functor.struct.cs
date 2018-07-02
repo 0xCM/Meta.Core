@@ -17,8 +17,8 @@ namespace Meta.Core
     /// <typeparam name="CY">A construction target container type</typeparam>
     /// <typeparam name="Y">The type of the target</typeparam>
     public readonly struct Functor<X, CX, Y, CY> : IFunctor<X, CX, Y, CY>
-        where CX : IContainer<X>
-        where CY : IContainer<Y>
+        where CX : IContainer<X,CX>, new()
+        where CY : IContainer<Y,CY>, new()
     {
 
         public Functor(FunctorMap<X, CX, Y, CY> fmap)
@@ -30,5 +30,10 @@ namespace Meta.Core
             => _fmap(f);
 
     }
+
+
+
+
+
 
 }

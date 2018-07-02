@@ -9,7 +9,7 @@ namespace Meta.Core
     using System.Linq;
 
 
-    public readonly struct Alternative<X, CX,CFX,Y,CY> : IAlternative<X, CX, CFX, Y, CY>
+    readonly struct Alternative<X, CX,CFX,Y,CY> : IAlternative<X, CX, CFX, Y, CY>
         where CX : IContainer<X>
         where CFX : IContainer<Func<X, Y>>
         where CY : IContainer<Y>

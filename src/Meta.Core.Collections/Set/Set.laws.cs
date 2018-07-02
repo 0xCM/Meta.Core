@@ -8,7 +8,7 @@ namespace Meta.Core
     using System;
     using System.Linq;
 
-    public interface ISet<X> :  IContainer<X>
+    public interface ISet<X> :  IContainer<X,Set<X>>
     {
         bool IsProperSubsetOf(ISet<X> other);
 

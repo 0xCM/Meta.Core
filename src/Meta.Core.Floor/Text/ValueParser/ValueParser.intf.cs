@@ -10,7 +10,7 @@ namespace Meta.Core
     /// <summary>
     /// Characterizes the ValueParser typeclass
     /// </summary>
-    public interface IValueParser : ITypeclass
+    public interface IValueParser : ITypeClass
     {
 
     }
@@ -19,7 +19,7 @@ namespace Meta.Core
     /// Characterizes a production of the <see cref="IValueParser"/> typeclass
     /// </summary>
     /// <typeparam name="X"></typeparam>
-    public interface IValueParser<X> : ITypeclass<X>
+    public interface IValueParser<X> : ITypeClass<X>
     {
         /// <summary>
         /// Attempts to create a <typeparamref name="X"/> value from text

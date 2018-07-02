@@ -13,7 +13,26 @@ namespace Meta.Core.Operators
     public static class Increment<T>
     {
         static readonly Func<T, T> _OP
-            = lambda<T, T>(Expression.Increment).Compile();
+            = Construct();
+
+
+        static Func<T, T> Construct()
+        {
+
+            switch (typecode<T>())
+            {
+                case TypeCode.Byte:
+                    return cast<Func<T, T>>(ByteOps.Inc.Compile());
+                case TypeCode.SByte:
+                    return cast<Func<T, T>>(SByteOps.Inc.Compile());
+                case TypeCode.UInt16:
+                    return cast<Func<T, T>>(UInt16Ops.Inc.Compile());
+
+                default:
+                    return lambda<T, T>(Expression.Increment).Compile();
+            }
+        }
+
 
         public static T Apply(T x)
             => _OP(x);

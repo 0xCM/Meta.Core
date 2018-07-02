@@ -14,6 +14,9 @@ namespace Meta.Core.Operators
     
     public static class Add<T>
     {
+        static readonly Func<T, T, T> _OP
+            = Construct();
+
         static Func<T, T, T> Construct()
         {
 
@@ -34,8 +37,6 @@ namespace Meta.Core.Operators
             }
         }
 
-        static readonly Func<T, T, T> _OP
-            = Construct();
 
         public static T Apply(T x, T y)
             => _OP(x, y);

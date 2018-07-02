@@ -134,9 +134,6 @@ namespace Meta.Core
         public IFactoredContainer<Y1, Y2> Recontain<Y1, Y2>(Func<(K, V), (Y1, Y2)> f)
             => Map.map(f, this);
 
-        //IEnumerator IEnumerable.GetEnumerator()
-        //    => Stream().GetEnumerator();
-
     }
 
 }

@@ -8,7 +8,7 @@ namespace Meta.Core
     using System;
     using System.Linq;
 
-    public interface IFunction : ITypeclass
+    public interface IFunction : ITypeClass
     {
 
     }

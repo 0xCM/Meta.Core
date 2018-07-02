@@ -12,7 +12,7 @@ namespace Meta.Core
     /// <summary>
     /// Identifies and characterizes the IMonad typeclass
     /// </summary>
-    public interface IMonad : ITypeclass
+    public interface IMonad : ITypeClass
     {
 
     }

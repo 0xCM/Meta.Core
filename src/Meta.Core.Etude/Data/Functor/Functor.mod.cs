@@ -21,8 +21,8 @@ namespace Meta.Core.Modules
         /// <param name="fmap"></param>
         /// <returns></returns>
         public static IFunctor<X, CX, Y, CY> make<X, CX, Y, CY>(FunctorMap<X,CX,Y,CY> fmap)
-            where CX : IContainer<X>
-            where CY : IContainer<Y>
+            where CX : IContainer<X, CX>, new()
+            where CY : IContainer<Y, CY>, new()
                 => new Functor<X, CX, Y, CY>(fmap);
 
 
