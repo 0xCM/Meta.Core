@@ -13,11 +13,11 @@ namespace Meta.Core
 
     }
 
-    public interface ICategory<X> : ICategory, ITypeClass<X>
+    public interface ICategory<A> : ICategory, ITypeClass<A>
     {
-        X id(X x);
+        A id(A x);
 
-        Func<X, A, C> compose<A, B, C>(Func<X, B, C> f, Func<X, A, B> g);
+        Func<A, X, Z> compose<X, Y, Z>(Func<A, Y, Z> f, Func<A, X, Y> g);
     }
 
     public interface ICategory<X,A,B,C> : ICategory

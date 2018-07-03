@@ -13,7 +13,9 @@ namespace Meta.Core.Modules
     using Meta.Core.Test;
     using Meta.Core.Workflow;
 
-    using static metacore;    
+    using static metacore;
+    using static express;
+
 
     [WorkflowNode]                            
     public class FunctionBuilderTests : TestWorkflow<FunctionBuilderTests.TestResult>
@@ -87,8 +89,8 @@ namespace Meta.Core.Modules
             var m1 = ClrClass.Get<FunctionBuilderTests>().DeclaredInstanceMethods.Single(m => m.Name == nameof(Method1));
             var result = m1.Func<int, int>(this)(10);
 
-            var f = express(() => 5);
-            var g = express(() => 20);
+            var f = funcx(() => 5);
+            var g = funcx(() => 20);
             var eq = f.Equal(g).Compile()();
             
             

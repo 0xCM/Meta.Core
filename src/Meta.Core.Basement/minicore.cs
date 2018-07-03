@@ -11,6 +11,9 @@ using System.Diagnostics;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Linq.Expressions;
+using Meta.Core;
+
+using static CommonBindingFlags;
 
 public static class minicore
 {
@@ -255,5 +258,109 @@ public static class minicore
             return none<T>(ApplicationMessage.Error(e));
         }
     }
+
+    /// <summary>
+    /// Creates a <see cref="HashSet{T}"/> from the supplied sequence
+    /// </summary>
+    /// <typeparam name="T">The sequence element type</typeparam>
+    /// <param name="items">The sequence</param>
+    /// <returns></returns>
+    [DebuggerStepperBoundary]
+    public static ReadOnlySet<T> roset<T>(IEnumerable<T> items)
+        => new ReadOnlySet<T>(items);
+
+    /// <summary>
+    /// Creates a <see cref="HashSet{T}"/> from an array
+    /// </summary>
+    /// <typeparam name="T">The sequence element type</typeparam>
+    /// <param name="items">The array</param>
+    /// <returns></returns>
+    [DebuggerStepperBoundary]
+    public static ReadOnlySet<T> roset<T>(params T[] items)
+        => new ReadOnlySet<T>(items);
+
+    /// <summary>
+    /// Searches a type for an instance constructor that matches a specified signature
+    /// </summary>
+    /// <param name="declaringType">The type to search</param>
+    /// <param name="argTypes">The method parameter types in ordinal position</param>
+    /// <returns></returns>
+    [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Option<ConstructorInfo> constructor(Type declaringType, params Type[] argTypes)
+        => declaringType.GetConstructor(BF_Instance, null, argTypes, array<ParameterModifier>());
+
+    /// <summary>
+    /// Searches a type for an instance constructor that matches a specified signature
+    /// </summary>
+    /// <param name="argTypes">The method parameter types in ordinal position</param>
+    /// <typeparam name="T">The type to search</typeparam>
+    /// <returns></returns>
+    [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Option<ConstructorInfo> constructor<T>(params Type[] argTypes)
+        => constructor(typeof(T), argTypes);
+
+    /// <summary>
+    /// Evaluates a function over a value if the value is not null; otherwise,
+    /// returns the default result value
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="TResult"></typeparam>
+    /// <param name="x"></param>
+    /// <param name="f1"></param>
+    /// <returns></returns>
+    [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static TResult ifNotNull<T, TResult>(T x, Func<T, TResult> f1, TResult @default = default)
+        => x != null ? f1(x) : @default;
+    /// <summary>
+    /// Gets the type's classification code
+    /// </summary>
+    /// <returns></returns>
+    [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static TypeCode typecode<T>()
+        => Type.GetTypeCode(typeof(T));
+
+    /// <summary>
+    /// Searches a type for any method that matches the supplied signature
+    /// </summary>
+    /// <typeparam name="T">The type to search</typeparam>
+    /// <typeparam name="A1">The first argument type</typeparam>
+    /// <typeparam name="A2">The second argument type</typeparam>
+    /// <param name="name">The name of the method</param>    
+    /// <returns></returns>
+    [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Option<MethodInfo> method<T, A1, A2>(string name)
+        => typeof(T).MatchMethod(name, typeof(A1), typeof(A1));
+
+    /// <summary>
+    /// Applies the supplied function to each element in the input sequence to produce a list
+    /// </summary>
+    /// <typeparam name="T">The input sequence item type</typeparam>
+    /// <typeparam name="S">The output sequence item type</typeparam>
+    /// <param name="seq">The sequence to transform</param>
+    /// <param name="f">The transformation function</param>
+    /// <returns></returns>
+    public static ReadOnlyList<S> mapi<T, S>(IEnumerable<T> seq, Func<int, T, S> f)
+    {
+        var src = seq.ToArray();
+        var dst = new S[src.Length];
+        for (var i = 0; i < src.Length; i++)
+            dst[i] = f(i, src[i]);
+        return ReadOnlyList.Create(dst);
+    }
+
+    /// <summary>
+    /// Raises an exception populated with what happened and where it happened
+    /// </summary>
+    /// <param name="reason"></param>
+    /// <param name="member"></param>
+    /// <param name="path"></param>
+    /// <param name="line"></param>
+    [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static V shameIfNull<V>(V value, [CallerMemberName] string member = null,
+        [CallerFilePath] string path = null, [CallerLineNumber] int line = 0)
+            => value != null
+                ? value
+                : throw new Exception<int>("You referenced a NULL value!", member, path, line);
+                    
 
 }

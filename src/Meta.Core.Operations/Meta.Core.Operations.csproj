@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,6 +12,7 @@
     <ProjectReference Include="..\Meta.Core.Collections\Meta.Core.Collections.csproj" />
     <ProjectReference Include="..\Meta.Core.Commands\Meta.Core.Commands.csproj" />
     <ProjectReference Include="..\Meta.Core.Command\Meta.Core.Command.csproj" />
+    <ProjectReference Include="..\Meta.Core.Etude\Meta.Core.Etude.csproj" />
     <ProjectReference Include="..\Meta.Core.Executors\Meta.Core.Executors.csproj" />
     <ProjectReference Include="..\Meta.Core.FileSystem\Meta.Core.FileSystem.csproj" />
     <ProjectReference Include="..\Meta.Core.Floor\Meta.Core.Floor.csproj" />

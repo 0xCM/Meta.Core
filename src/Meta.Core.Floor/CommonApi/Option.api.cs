@@ -45,7 +45,7 @@ public static partial class metacore
     /// <param name="potentials">The optional values</param>
     /// <returns></returns>
     public static X first<X>(params Option<X>[] potentials)
-        => potentials.First(p => p.IsSome()).ValueOrDefault();
+        => potentials.First(p => p.IsSome()).ValueOrDefault();    
 
     /// <summary>
     /// Unwraps the option and may consequently return NULL

@@ -9,6 +9,8 @@ namespace Meta.Core
     using System.Linq;
 
     using static metacore;
+    using static express;
+
 
     /// <summary>
     /// Realizes <see cref="IValueParser{X}"/> predicated on conventional intrinsics

@@ -3,7 +3,7 @@
 // This license grants rights to merge, copy, distribute, sell or otherwise do with it 
 // as you like. But please, for the love of Zeus, don't clutter it with regions.
 //-------------------------------------------------------------------------------------------
-namespace Meta.Core.Modules.Tests
+namespace Meta.Core.Tests
 {
     using System;
     using System.Linq;
@@ -11,12 +11,10 @@ namespace Meta.Core.Modules.Tests
     using static metacore;
     
 
-    using static Seq;
-
-
     using UT = Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    [UT.TestClass]
+    [UT.TestClass, UT.TestCategory("metacore/collections")]
+
     public class SeqTest
     {
 
@@ -34,7 +32,7 @@ namespace Meta.Core.Modules.Tests
         public void Test02()
         {
             var s = seq(seq(1, 3, 5), seq(6, 9));
-            claim.equal(seq(1, 3, 5) + seq(6, 9), Seq.flatten(s));
+            claim.equal(seq(1, 3, 5) + seq(6, 9), flatten(s));
 
         }
 

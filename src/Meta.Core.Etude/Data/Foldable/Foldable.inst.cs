@@ -8,8 +8,6 @@ namespace Meta.Core
     using System;
     using System.Linq;
 
-    using Modules;
-
     public interface ISeqFoldable<X> 
         : IFoldable<X, Seq<X>> { }
 
@@ -43,5 +41,6 @@ namespace Meta.Core
         public Y foldr<Y>(Func<X, Y, Y> f, Y y0, List<X> container)
             => List.foldr(f, y0, container);
      }
+
 
 }

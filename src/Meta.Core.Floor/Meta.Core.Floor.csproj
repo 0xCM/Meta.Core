@@ -6,12 +6,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Dynamics\**" />
+    <EmbeddedResource Remove="Dynamics\**" />
+    <None Remove="Dynamics\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Include=".messages\Messages.cs" />
   </ItemGroup>
 
 
   <ItemGroup>
     <ProjectReference Include="..\Meta.Core.Collections\Meta.Core.Collections.csproj" />
+    <ProjectReference Include="..\Meta.Core.Dynamics\Meta.Core.Dynamics.csproj" />
     <ProjectReference Include="..\Meta.Core.Substructure\Meta.Core.Substructure.csproj" />
   </ItemGroup>
 

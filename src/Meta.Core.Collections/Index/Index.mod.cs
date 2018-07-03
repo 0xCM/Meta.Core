@@ -32,20 +32,21 @@ namespace Meta.Core.Modules
             => Index<X>.Factory(Seq.make(items));
 
         /// <summary>
-        /// Constructs a sequence from an index
+        /// Creates an index containing <paramref name="n"/> copies of <paramref name="value"/> 
         /// </summary>
-        /// <typeparam name="X">The item type</typeparam>
-        /// <param name="index">The index to devolve</param>
+        /// <typeparam name="X">The value type</typeparam>
+        /// <param name="n">The number of elements in the resulting index</param>
+        /// <param name="value">The value to replicate</param>
         /// <returns></returns>
-        public static Seq<X> devolve<X>(Index<X> index)
-            => index.Contained();
+        public static Index<X> replicate<X>(int n, X value)
+            => Seq.replicate(n, value);
 
         /// <summary>
         /// Returns the canonical 0 value for <see cref="Index{X}"/>
         /// </summary>
         /// <typeparam name="X">The index element type</typeparam>
         /// <returns></returns>
-        public static Index<X> zero<X>()
+        public static Index<X> empty<X>()
             => Index<X>.Empty;
 
         /// <summary>
@@ -86,7 +87,6 @@ namespace Meta.Core.Modules
         public static Index<X> concat<X>(Index<X> ix1, Index<X> ix2)
             => chain(ix1, ix2);
 
-
         /// <summary>
         /// Effects the cananical mapping over an index by a function
         /// </summary>
@@ -108,17 +108,6 @@ namespace Meta.Core.Modules
         /// <returns></returns>
         public static Func<Index<X>, Index<Y>> fmap<X, Y>(Func<X, Y> f)
             => lx => map(f, lx);
-
-
-        /// <summary>
-        /// Creates an immutable array builder
-        /// </summary>
-        /// <typeparam name="X">The item type</typeparam>
-        /// <param name="capacity">Optional initial capacity</param>
-        /// <returns></returns>
-        static ImmutableArray<X>.Builder builder<X>(int? capacity = null)
-            => capacity.Map(c => ImmutableArray.CreateBuilder<X>(c), 
-                    () => ImmutableArray.CreateBuilder<X>());
 
         /// <summary>
         /// Effects a mapping over indexed values
@@ -161,7 +150,5 @@ namespace Meta.Core.Modules
             => from f in lf
                from x in lx
                select f(x);
-
-
     }
 }

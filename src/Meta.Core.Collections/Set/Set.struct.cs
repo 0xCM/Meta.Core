@@ -58,6 +58,9 @@ namespace Meta.Core
         Set(ImmutableHashSet<X> Data)
             => this.Data = Data;
 
+        /// <summary>
+        /// The encapsulated data
+        /// </summary>
         ImmutableHashSet<X> Data { get; }
 
         public Cardinality Cardinality
@@ -67,11 +70,6 @@ namespace Meta.Core
         public IEnumerable<X> Stream()
             => Data;
 
-        public Seq<X> AsSequence()
-            => Seq.make(Data);
-
-        public Seq<X> Contained()
-            => Seq.make(Data);
 
         public bool IsProperSubsetOf(ISet<X> other)
             => Data.IsProperSubsetOf(other.Stream());

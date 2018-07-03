@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <DevArea>metacored</DevArea>
+    <DevArea>metacore</DevArea>
     <area-distid>$(DevArea)</area-distid>
     <TopDir>$(DevAreaRoot)\$(DevArea)\</TopDir>
     <BuildRootDir>$(TopDir)bin\</BuildRootDir>

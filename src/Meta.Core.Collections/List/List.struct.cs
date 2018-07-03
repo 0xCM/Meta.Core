@@ -24,29 +24,75 @@ namespace Meta.Core
         public static readonly List<X> Empty
             = new List<X>(ImmutableList<X>.Empty);
 
+        /// <summary>
+        /// Converts a list to a sequence
+        /// </summary>
+        /// <param name="list">The list to convert</param>
         public static implicit operator Seq<X>(List<X> list)
             => list.Contained();
 
+        /// <summary>
+        /// Converts a sequence to a list
+        /// </summary>
+        /// <param name="s">The sequence to convert</param>
         public static implicit operator List<X>(Seq<X> s)
             => Factory(s.Stream());
-        
-        public static implicit operator Streamable<X>(List<X> list)
-            => list.AsStreamable();
 
+        /// <summary>
+        /// Converts an array to a list
+        /// </summary>
+        /// <param name="items">The array to convert</param>
         public static implicit operator List<X>(X[] items)
             => Factory(items);
 
+        /// <summary>
+        /// Converts a list to an array
+        /// </summary>
+        /// <param name="list">The list to convert</param>
         public static implicit operator X[](List<X> list)
             => list.Data.ToArray();
 
+        /// <summary>
+        /// Concatenates two lists
+        /// </summary>
+        /// <param name="l1">The first list</param>
+        /// <param name="l2">The second list</param>
+        /// <returns></returns>
         public static List<X> operator +(List<X> l1, List<X> l2)
             => Factory(l1.Stream().Concat(l2.Stream()));
 
+        /// <summary>
+        /// Determines whether two lists are structurally equal
+        /// </summary>
+        /// <param name="l1">The first list</param>
+        /// <param name="l2">The second list</param>
+        /// <returns></returns>
         public static bool operator ==(List<X> l1, List<X> l2)
             => l1.Equals(l2);
 
         public static bool operator !=(List<X> l1, List<X> l2)
             => not(l1.Equals(l2));
+
+
+        /// <summary>
+        /// Left-Multiplies each element in a list by a specified factor
+        /// to produce a new list
+        /// </summary>
+        /// <param name="value">The factor</param>
+        /// <param name="list">The list</param>
+        /// <returns></returns>
+        public static List<X> operator *(X value, List<X> list)
+            => List.map(item => operators.mul(value, item), list);
+
+        /// <summary>
+        /// Right-Multiplies each element in a list by a specified factor
+        /// to produce a new list
+        /// </summary>
+        /// <param name="value">The factor</param>
+        /// <param name="list">The list</param>
+        /// <returns></returns>
+        public static List<X> operator *(List<X> list, X value)
+            => List.map(item => operators.mul(item, value), list);
 
         public static ListFactory<X> Factory
             => items => new List<X>(items.ToImmutableList());
@@ -115,8 +161,7 @@ namespace Meta.Core
             => Data;
 
         ContainerFactory<X, List<X>> IContainer<X, List<X>>.Factory
-            => stream => new List<X>(stream.ToImmutableList());
-        
+            => stream => new List<X>(stream.ToImmutableList());        
             
     }
 }

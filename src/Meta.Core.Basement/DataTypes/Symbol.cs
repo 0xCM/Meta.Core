@@ -104,11 +104,28 @@ public readonly struct Symbol
     public static readonly Symbol pi = (nameof(pi), 'π');
     public static readonly Symbol π = pi;
 
+    public static readonly Symbol Pi = (nameof(Pi), 'Π');
+    public static readonly Symbol Π = Pi;
+
     public static readonly Symbol rho = (nameof(rho), 'ρ');
     public static readonly Symbol ρ = rho;
 
     public static readonly Symbol Sigma = (nameof(Sigma), 'Σ');
     public static readonly Symbol Σ = Sigma;
+
+    public static readonly Symbol tau = (nameof(tau), 'τ');
+    public static readonly Symbol τ = tau;
+
+    public static readonly Symbol Tau = (nameof(Tau), 'Τ');
+    public static readonly Symbol Τ = Tau;
+
+    public static readonly Symbol Omega = (nameof(Omega), 'Ω');
+    public static readonly Symbol Ω = Omega;
+
+    public static readonly Symbol lambda = (nameof(lambda), 'λ');
+    public static readonly Symbol λ = lambda;
+
+    public static readonly Symbol З = (nameof(З), 'З');
 
     public static readonly Symbol isect = (nameof(isect), '∩');
     public static readonly Symbol entails = (nameof(entails), "=>");

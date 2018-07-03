@@ -11,11 +11,14 @@ namespace Meta.Core
     using System.Reflection;
     using System.Runtime.CompilerServices;
     using System.Collections;
+    using System.Linq.Expressions;
 
     using Meta.Core;
     using Meta.Core.Modules;
 
     using static metacore;
+    using static express;
+
     using static ConversionMessages;
    
     /// <summary>
@@ -81,6 +84,35 @@ namespace Meta.Core
                 select m;
             return FromMethods(methods.ToArray());
         }
+
+        /// <summary>
+        /// Creates a weakly-typed converter
+        /// </summary>
+        /// <param name="m">The method for which a converter will be created</param>
+        /// <returns></returns>
+        static Converter converter(MethodInfo m)
+        {
+            var src = Expression.Parameter(typeof(object), "src");
+            var convert = Expression.Convert(src, m.GetParameters()[0].ParameterType);
+            var callResult = Expression.Call(null, m, convert);
+            var result = Expression.Convert(callResult, typeof(object));
+            return Expression.Lambda<Converter>(result, src).Compile();
+        }
+
+        /// <summary>
+        /// Creates a strongly-typed converter
+        /// </summary>
+        /// <typeparam name="TDst"></typeparam>
+        /// <param name="m"></param>
+        /// <returns></returns>
+        static Converter<TDst> converter<TDst>(MethodInfo m)
+        {
+            var src = Expression.Parameter(typeof(object), "src");
+            var convert = Expression.Convert(src, m.GetParameters()[0].ParameterType);
+            var callResult = Expression.Call(null, m, convert);
+            return Expression.Lambda<Converter<TDst>>(callResult, src).Compile();
+        }
+
 
         /// <summary>
         /// Creates a <see cref="IConversionSuite"/> from a type that, by convention,

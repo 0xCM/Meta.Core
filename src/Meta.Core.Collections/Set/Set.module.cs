@@ -37,7 +37,7 @@ namespace Meta.Core.Modules
         /// <param name="set">The set to devolve</param>
         /// <returns></returns>
         public static Seq<X> unwrap<X>(Set<X> set)
-            => set.AsSequence();
+            => set.AsSeq();
 
         /// <summary>
         /// Returns the canonical 0 value for the set over elements of type <typeparamref name="X"/>
@@ -57,7 +57,7 @@ namespace Meta.Core.Modules
         /// <param name="s">The input sequence</param>
         /// <returns></returns>
         public static Set<Y> map<X, Y>(Func<X, Y> f, Set<X> s)
-            => make(Seq.map(f, s.AsSequence()));
+            => make(Seq.map(f, s.AsSeq()));
 
         /// <summary>
         /// Transformas a map f:X->Y to a map F:Set[X]->Set[Y]

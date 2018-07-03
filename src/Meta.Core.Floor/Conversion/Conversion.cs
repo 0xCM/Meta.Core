@@ -11,8 +11,6 @@ namespace Meta.Core
     using System.Reflection;
     using System.Linq.Expressions;
 
-    using static metacore;
-
     /// <summary>
     /// Defines utility methods that facilitate efficient dynamic method invocation without
     /// the overhead of reflection

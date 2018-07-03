@@ -8,34 +8,29 @@ namespace Meta.Core
     using System;
 
     //base/Control/Category.hs
-    public readonly struct Category<X> : ICategory<X>
+    public readonly struct Category<K> : ICategory<K>
     {
-        public static readonly Category<X> instance
-            = new Category<X>();
+        public static readonly Category<K> instance
+            = new Category<K>();
 
         //right-to-left composition (<<<)
-        public Func<X, A, C> compose<A, B, C>(Func<X, B, C> f, Func<X, A, B> g)
+        public Func<K, A, C> compose<A, B, C>(Func<K, B, C> f, Func<K, A, B> g)
             => (x, a) => f(x, g(x, a));
 
-        public X id(X x)
+        public K id(K x)
             => x;
-
 
     }
 
-    public readonly struct Category<X,A,B,C> : ICategory<X,A,B,C>
+    public readonly struct Category<K, A, B, C> : ICategory<K, A, B, C>
     {
-        public static readonly Category<X,A,B,C> instance
-            = new Category<X, A, B, C>();
+        public static readonly Category<K, A, B, C> instance
+            = new Category<K, A, B, C>();
 
-        //right-to-left composition (<<<)
-        public Func<X, A, C> compose(Func<X, B, C> f, Func<X, A, B> g)
-            => (x, a) => f(x, g(x, a));
+        public Func<K, A, C> compose(Func<K, B, C> f, Func<K, A, B> g)
+            => (k, a) => f(k, g(k, a));
 
-        public X id(X x)
-            => x;
-
-
+        public K id(K k)
+            => k;
     }
-
 }

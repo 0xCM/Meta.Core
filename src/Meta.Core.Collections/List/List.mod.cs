@@ -21,8 +21,22 @@ namespace Meta.Core.Modules
     /// </summary>
     public class List 
     {
+
+        /// <summary>
+        /// Gets the primary list constructor
+        /// </summary>
+        /// <typeparam name="X">The list item type</typeparam>
+        /// <returns></returns>
         public static ListFactory<X> ctor<X>()
             => List<X>.Factory;
+
+        /// <summary>
+        /// Produces the empty list
+        /// </summary>
+        /// <typeparam name="X">The list item type</typeparam>
+        /// <returns></returns>
+        public static List<X> empty<X>()
+            => List<X>.Empty;
 
         /// <summary>
         /// Constructs a list from an enumerable
@@ -34,13 +48,67 @@ namespace Meta.Core.Modules
             => ctor<X>()(items);
 
         /// <summary>
+        /// Constructs a new list by successive concatenation of existing lists
+        /// </summary>
+        /// <typeparam name="X">The list element type</typeparam>
+        /// <param name="lists"></param>
+        /// <returns></returns>
+        public static List<X> chain<X>(params List<X>[] lists)
+            => make(from list in lists
+                    from item in list.Stream()
+                    select item);
+
+        /// <summary>
+        /// Constructs a new list by appending head to tail
+        /// </summary>
+        /// <typeparam name="X">The list element4 type</typeparam>
+        /// <param name="head">The first element in the list</param>
+        /// <param name="tail">The elements that follow the first element</param>
+        /// <returns></returns>
+        public static List<X> fuse<X>(X head, params X[] tail)
+            => make(stream(head).Concat(tail));
+
+        /// <summary>
+        /// Constructs a new list by appending head to tail
+        /// </summary>
+        /// <typeparam name="X"></typeparam>
+        /// <param name="head"></param>
+        /// <param name="tail"></param>
+        /// <returns></returns>
+        public static List<X> fuse<X>(X head, List<X> tail)
+            => chain(singleton(head), tail);
+
+
+        /// <summary>
+        /// Appends one list to another
+        /// </summary>
+        /// <typeparam name="X">The item type</typeparam>
+        /// <param name="l1">The firt list</param>
+        /// <param name="l2">The second list</param>
+        /// <returns></returns>
+        public static List<X> concat<X>(List<X> l1, List<X> l2)
+            => chain(l1, l2);
+
+
+        /// <summary>
         /// Constructs a list from a single element
         /// </summary>
         /// <typeparam name="X">The list item type</typeparam>
         /// <param name="x">The singleton value</param>
         /// <returns></returns>
         public static List<X> singleton<X>(X x)
-            => cons(x);
+            => fuse(x);
+
+        /// <summary>
+        /// Concatenates a sequence of sequences into a single sequence
+        /// </summary>
+        /// <typeparam name="X">The item type</typeparam>
+        /// <param name="sequences">The lists to concatenate</param>
+        /// <returns></returns>
+        public static List<X> flatten<X>(List<List<X>> lists)
+             => from list in lists
+                from item in list
+                select item;
 
         /// <summary>
         /// Creates a new list [f(x1), ..., f(xn)] from an input list [x1,...,xn]
@@ -61,6 +129,7 @@ namespace Meta.Core.Modules
         /// <param name="list"></param>
         /// <param name="f"></param>
         /// <returns></returns>
+        /// <remarks>This function often appears as 'concatMap'</remarks>
         public static List<Y> bind<X, Y>(List<X> list, Func<X, List<Y>> f)
             => flatten(map(f, list));
 
@@ -85,36 +154,6 @@ namespace Meta.Core.Modules
                from x in lx
                select f(x);
 
-        /// <summary>
-        /// Constructs a new list by appending head to tail
-        /// </summary>
-        /// <typeparam name="X">The list element4 type</typeparam>
-        /// <param name="head">The first element in the list</param>
-        /// <param name="tail">The elements that follow the first element</param>
-        /// <returns></returns>
-        public static List<X> cons<X>(X head, params X[] tail)
-            => make(stream(head).Concat(tail));
-
-        /// <summary>
-        /// Constructs a new list by successive concatenation
-        /// </summary>
-        /// <typeparam name="X">The list element type</typeparam>
-        /// <param name="lists"></param>
-        /// <returns></returns>
-        public static List<X> chain<X>(params List<X>[] lists)
-            => make(from list in lists
-                    from item in list.Stream()
-                    select item);
-
-        /// <summary>
-        /// Constructs a new list by appending head to tail
-        /// </summary>
-        /// <typeparam name="X"></typeparam>
-        /// <param name="head"></param>
-        /// <param name="tail"></param>
-        /// <returns></returns>
-        public static List<X> cons<X>(X head, List<X> tail)
-            => make(stream(head).Concat(tail.Stream()));
 
         /// <summary>
         /// Retrieves the first element of the list if it exists; otherwise, raises an exception
@@ -143,23 +182,6 @@ namespace Meta.Core.Modules
         /// <returns></returns>
         public static Option<X> last<X>(List<X> l)
             => l.Stream().LastOrDefault();
-
-        /// <summary>
-        /// Produces the empty list
-        /// </summary>
-        /// <typeparam name="X">The list item type</typeparam>
-        /// <returns></returns>
-        public static List<X> empty<X>()
-            => List<X>.Empty;
-
-        /// <summary>
-        /// Returns the length of the list
-        /// </summary>
-        /// <typeparam name="X">The item type</typeparam>
-        /// <param name="list">The input list</param>
-        /// <returns></returns>
-        public static int length<X>(List<X> list)
-            => list.Count;
 
         /// <summary>
         /// Creates a new list [x2, ..., xn] from an input list [x1, ..., xn]
@@ -262,26 +284,7 @@ namespace Meta.Core.Modules
             => Seq.intersperse(x, list.Contained());
 
         /// <summary>
-        /// Concatenates a sequence of lists
-        /// </summary>
-        /// <typeparam name="X">The item type</typeparam>
-        /// <param name="lists">The lists to concatenate</param>
-        /// <returns></returns>
-        public static List<X> concat<X>(G.IEnumerable<List<X>> lists)
-            => make(lists.Select(l => l.Stream()).SelectMany(x => x));
-
-        /// <summary>
-        /// Appends one list to another
-        /// </summary>
-        /// <typeparam name="X">The item type</typeparam>
-        /// <param name="l1">The firt list</param>
-        /// <param name="l2">The second list</param>
-        /// <returns></returns>
-        public static List<X> concat<X>(List<X> l1, List<X> l2)
-            => make(l1.Stream().Concat(l2.Stream()));
-
-        /// <summary>
-        /// Creates a list containing <paramref name="n"/> copies of the value <paramref name="x"/> 
+        /// Creates a list by containing <paramref name="n"/> copies of the value <paramref name="x"/> 
         /// </summary>
         /// <typeparam name="X">The value type</typeparam>
         /// <param name="n">The length of the resulting list</param>
@@ -333,7 +336,6 @@ namespace Meta.Core.Modules
         /// <returns></returns>
         public static X combine<X>(Combiner<X> combiner, List<X> list)
             => list.Stream().Aggregate((x, y) => combiner(x, y));
-
 
         /// <summary>
         /// Returns true if a predicate is satisfied for all elements in a list; false otherwise
@@ -395,19 +397,7 @@ namespace Meta.Core.Modules
         /// <param name="items">The sequence to transform</param>
         /// <returns></returns>
         public static (List<X> x, List<Y> y) unzip<X, Y>(List<(X x, Y y)> items)
-        {
-            var u = Seq.unzip(items.Contained());
-            return (u.x, u.y);
-        }         
-
-        /// <summary>
-        /// Concatenates a sequence of sequences into a single sequence
-        /// </summary>
-        /// <typeparam name="X">The item type</typeparam>
-        /// <param name="sequences">The lists to concatenate</param>
-        /// <returns></returns>
-        public static List<X> flatten<X>(List<List<X>> sequences)
-             => make(sequences.Stream().SelectMany(x => x.Stream()));
+            => Seq.unzip(items.Contained());
 
         /// <summary>
         /// flatten + map = flatmap
@@ -418,7 +408,7 @@ namespace Meta.Core.Modules
         /// <param name="lists"></param>
         /// <returns></returns>
         public static List<Y> flatmap<X, Y>(Func<X, Y> f, List<List<X>> lists)
-             => make(from s in lists.Stream() from item in s.Stream() select f(item));
+             => from list in lists from item in list select f(item);
 
         /// <summary>
         /// Returns true if two lists are equal, false otherwise
@@ -459,12 +449,13 @@ namespace Meta.Core.Modules
             => list.ToString();
 
         /// <summary>
-        /// Constructs a <see cref="IStreamable"/> over <paramref name="list"/>
+        /// Returns the length of the list
         /// </summary>
-        /// <typeparam name="X">The sequence item type</typeparam>
-        /// <param name="list">The input sequence</param>
+        /// <typeparam name="X">The item type</typeparam>
+        /// <param name="list">The input list</param>
         /// <returns></returns>
-        public static Streamable<X> Streamable<X>(List<X> list)
-            => Seq.Streamable(list.AsSeq());
+        public static int length<X>(List<X> list)
+            => list.Count;
+
     }
 }

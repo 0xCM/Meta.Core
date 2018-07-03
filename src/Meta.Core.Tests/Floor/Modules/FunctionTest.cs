@@ -23,10 +23,10 @@ namespace Meta.Core.Modules.Tests
         [UT.TestMethod]
         public void Test01()
         {
-            var input = cons(1, 2, 3, 4, 5);
+            var input = fuse(1, 2, 3, 4, 5);
             var square = Function.make((int x) => x*x);
             var output = square * input;
-            var expect = cons(1, 4, 9, 16, 25);
+            var expect = fuse(1, 4, 9, 16, 25);
             claim.equal(expect, output);
             
 

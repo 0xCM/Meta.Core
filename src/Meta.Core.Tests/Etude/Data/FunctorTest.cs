@@ -15,7 +15,7 @@ namespace Meta.Core.Test
 
     using UT = Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    [UT.TestClass]
+    [UT.TestClass, UT.TestCategory("metacore/etude/data")]
     public class FunctorTest
     {
 
@@ -23,7 +23,7 @@ namespace Meta.Core.Test
         public void Test01A()
         {
             var F = List.Functor<int, decimal>();
-            var f = function<int, decimal>(x => x * 15.0m);
+            var f = func<int, decimal>(x => x * 15.0m);
             var source = Synthetic.Create(150);
             var data = source.Next<int>(500).AsList();
             var result = F.fmap(f)(data);

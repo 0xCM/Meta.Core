@@ -12,7 +12,7 @@ namespace Meta.Core.Modules
 
     using static metacore;
 
-    public sealed class Eq : ClassModule<Eq, IEq>, IEq
+    public class Eq : ClassModule<Eq, IEq>, IEq
     {
         /// <summary>
         /// Constructs a <see cref="IEq{X}"/> instance

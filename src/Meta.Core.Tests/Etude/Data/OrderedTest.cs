@@ -13,7 +13,7 @@ namespace Meta.Core.Tests
 
     using UT = Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    [UT.TestClass]
+    [UT.TestClass, UT.TestCategory("metacore/etude/data")]
     public class OrderedTest
     {
 

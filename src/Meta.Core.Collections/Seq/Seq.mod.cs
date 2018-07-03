@@ -410,6 +410,14 @@ namespace Meta.Core.Modules
                            from y in f(x).Stream()
                            select y);
 
+        /// <summary>
+        /// Produces a new sequence by eliminating any duplicates in an existing sequence
+        /// </summary>
+        /// <typeparam name="X">The item type</typeparam>
+        /// <param name="s">The source sequence</param>
+        /// <returns></returns>
+        public static Seq<X> distinct<X>(Seq<X> s)
+            => make(s.Stream().Distinct());
 
         /// <summary>
         /// Renders the canonical display format for a sequence

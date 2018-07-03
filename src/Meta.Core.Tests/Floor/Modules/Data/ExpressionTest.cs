@@ -10,28 +10,13 @@ namespace Meta.Core.Tests
     using System.Linq;
 
     using static metacore;
+    using static express;
 
     using UT = Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [UT.TestClass, UT.TestCategory(nameof(metacore) + "/linqx")]
     public class ExpressionTest
     {
-        //[UT.TestMethod]
-        //public void Test01()
-        //{
-        //    var parse = parser<int>().Require();
-        //    var result = parse("32");
-        //    claim.equal(result, 32);
-        //}
-
-        //[UT.TestMethod]
-        //public void Test02()
-        //{
-        //    var parse = parser<long>().Require();
-        //    var result = parse("32");
-        //    claim.equal(result, 32L);
-        //}
-
 
         static int Func0()
             => 32;
@@ -44,7 +29,7 @@ namespace Meta.Core.Tests
         {
             var func0 = ClrType.Get(GetType()).DeclaredMethods.Single(m => m.Name == nameof(Func0));
             var f = func<int>(func0);
-            claim.equal(32, f());
+            claim.satisfies(f, g => g() == 32);
 
         }
 
@@ -98,7 +83,7 @@ namespace Meta.Core.Tests
         {
             var construction = from c in factory<List<int>>()
                           let L = c()
-                          let tail = metacore.list(5,6,7)
+                          let tail = list(5,6,7)
                           let x = stream(L, stream(5,6,7))
                           select x.ToReadOnlyList();
             claim.satisfies(construction, value => value.Count == 3);   

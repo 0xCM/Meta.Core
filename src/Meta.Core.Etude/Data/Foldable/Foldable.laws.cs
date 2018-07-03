@@ -42,6 +42,7 @@ namespace Meta.Core
 
     }
 
+
     public interface IFoldable<X,CX> : IFoldable, ITypeClass<X,CX>
         where CX : IContext<X>
     {

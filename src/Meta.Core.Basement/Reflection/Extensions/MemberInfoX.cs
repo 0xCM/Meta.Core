@@ -12,6 +12,8 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
+using static CommonBindingFlags;
+
 partial class Reflections
 {
 
@@ -93,5 +95,22 @@ partial class Reflections
 
     public static IReadOnlyList<Type> GetParameterTypes(this MethodInfo method)
         => method.GetParameters().Select(p => p.ParameterType).ToReadOnlyList();
+
+    /// <summary>
+    /// Searches a type for any method that matches the supplied signature
+    /// </summary>
+    /// <param name="declaringType">The type to search</param>
+    /// <param name="name">The name of the method</param>
+    /// <param name="argTypes">The method parameter types in ordinal position</param>
+    /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Option<MethodInfo> MatchMethod(this Type declaringType, string name, params Type[] argTypes)
+        => argTypes.Length != 0
+            ? declaringType.GetMethod(name, bindingAttr: AnyVisibilityOrInstanceType,
+                        binder: null, types: argTypes, modifiers: null)
+            : declaringType.GetMethod(name, AnyVisibilityOrInstanceType);
+        
+    
+
 
 }

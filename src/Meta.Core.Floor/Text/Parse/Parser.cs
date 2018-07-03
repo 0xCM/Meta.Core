@@ -41,7 +41,7 @@ namespace Meta.Core
             if (Projector.CanConvert(typeof(string), typeof(X)))
                 return Try((string s) => Projector.Convert<X>(s));
             else if (Projector.CanConvert(typeof(string), typeof(Option<X>)))
-                return Function.value(function((string s) => Projector.Convert<Option<X>>(s)));
+                return Function.value(func((string s) => Projector.Convert<Option<X>>(s)));
                 return default;                                                               
         }
     }

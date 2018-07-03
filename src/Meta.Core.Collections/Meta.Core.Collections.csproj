@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Meta.Core.Basement\Meta.Core.Basement.csproj" />
+    <ProjectReference Include="..\Meta.Core.Dynamics\Meta.Core.Dynamics.csproj" />
   </ItemGroup>
 
 </Project>

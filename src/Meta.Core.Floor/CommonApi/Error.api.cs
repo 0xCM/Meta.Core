@@ -19,6 +19,18 @@ partial class metacore
     /// <param name="path"></param>
     /// <param name="line"></param>
     [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static T shame<T>([CallerMemberName] string member = null,
+        [CallerFilePath] string path = null, [CallerLineNumber] int line = 0)
+            => throw new Exception<int>("You referenced a NULL value!", member, path, line);
+
+    /// <summary>
+    /// Raises an exception populated with what happened and where it happened
+    /// </summary>
+    /// <param name="reason"></param>
+    /// <param name="member"></param>
+    /// <param name="path"></param>
+    /// <param name="line"></param>
+    [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Unit fail(string reason, [CallerMemberName] string member = null,
         [CallerFilePath] string path = null, [CallerLineNumber] int line = 0)
             => throw new Exception<int>(reason, member, path, line);

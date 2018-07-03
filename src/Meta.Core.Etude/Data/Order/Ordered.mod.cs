@@ -14,7 +14,7 @@ namespace Meta.Core.Modules
     /// <summary>
     /// Constructs and manipulates <see cref="IOrdered{X}"/> types and values
     /// </summary>
-    public sealed class Ordered : ClassModule<Ordered, IOrdered>
+    public class Ordered : ClassModule<Ordered, IOrdered>
     {        
         
         public static Option<IOrdered<X>> make<X>()

@@ -7,6 +7,7 @@ namespace Meta.Core
 {
     using System;
     using System.Linq;
+    using System.Collections.Generic;
 
     using static metacore;
     using static etude;
@@ -28,6 +29,17 @@ namespace Meta.Core
             => from x in tp.parse(input).Last()
                where isBlank(x.Remaining)
                select x.output;
+
+
+        
+        //public static IEnumerable<(char c, string s)> item(TextParser<char> tp, string input)
+        //{
+        //    foreach(var c in input)
+        //}
+
+        //public static List<(char c, string cs)> item(TextParser<char> tp, string input)
+        //    => from x in tp.parse(input)
+        //       where 
     }
 
 }

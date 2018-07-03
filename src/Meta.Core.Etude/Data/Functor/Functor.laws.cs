@@ -29,6 +29,7 @@ namespace Meta.Core
     }
 
 
+
     public interface IFunctor<X, CX, Y, CY> : IFunctor
         where CX : IContainer<X>
         where CY : IContainer<Y>

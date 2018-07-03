@@ -13,6 +13,7 @@ namespace Meta.Core
     {
 
     }
+
     readonly struct ListAlt<X> : IListAlt<X>
     {
         public static readonly ListAlt<X> instance = default;

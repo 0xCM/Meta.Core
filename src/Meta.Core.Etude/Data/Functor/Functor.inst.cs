@@ -58,6 +58,8 @@ namespace Meta.Core
             => List.fmap(f);
     }
 
+    
+
     public interface IIndexFunctor<X,Y> 
         : IFunctor<X, Index<X>, Y, Index<Y>> { }
 

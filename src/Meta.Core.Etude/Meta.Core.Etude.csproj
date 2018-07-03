@@ -38,10 +38,15 @@
     <Compile Include=".prelude\Setoid\Setoid.mod.cs" />
     <Compile Include=".prelude\Setoid\Setoid.struct.cs" />
     <Compile Include=".prelude\ClassOps.cs" />
+    <Compile Include=".prelude\Scoping.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Meta.Core.Floor\Meta.Core.Floor.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include=".prelude\Value\" />
   </ItemGroup>
 
 </Project>

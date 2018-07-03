@@ -12,6 +12,7 @@ namespace Meta.Core.Tests
     
     using static etude;
     using static operators;
+    using static adt;
 
     using UT = Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -87,7 +88,7 @@ namespace Meta.Core.Tests
             var z = du<int, decimal, byte>((byte)15);
 
 
-            Union<int,decimal,byte> Multiply(Union<int, decimal, byte> u)
+            U<int,decimal,byte> Multiply(U<int, decimal, byte> u)
                 => u.Match(times1, times2, times3);
 
             var x1 = Multiply(du<int, decimal, byte>(3.0m));

@@ -11,8 +11,6 @@ namespace Meta.Core
     using System.Reflection;
     using System.Runtime.CompilerServices;
 
-    using static metacore;
-
     /// <summary>
     /// Confers identity on a conversion X->Y such that two converters
     /// A:X1->Y1 and B:X1->Y2 are identical if and only if

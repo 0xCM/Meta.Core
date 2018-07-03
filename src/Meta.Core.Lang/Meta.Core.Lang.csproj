@@ -9,9 +9,4 @@
     <ProjectReference Include="..\Meta.Core.Floor\Meta.Core.Floor.csproj" />
   </ItemGroup>
 
-
-  <ItemGroup>
-    <Folder Include="Configuration\" />
-  </ItemGroup>
-
 </Project>
