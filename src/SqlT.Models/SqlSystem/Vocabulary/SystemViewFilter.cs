@@ -27,7 +27,7 @@ namespace SqlT.SqlSystem
         public IReadOnlyList<string> ExcludedSchemas { get; set; }
 
         public bool IsActive 
-            => union(ExcludedSchemas, IncludedSchemas).Count() != 0;
+            => unionize(ExcludedSchemas, IncludedSchemas).Count() != 0;
 
         /// <summary>
         /// Specifies whether system objects, i.e., database elements that are not user-defined, from the result

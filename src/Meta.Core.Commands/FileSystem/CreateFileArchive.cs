@@ -18,7 +18,7 @@ namespace Meta.Core.Commands
         public static CreateFileArchive DefineZipFileCommand(FilePath srcPath, FilePath dstPath)
             => new CreateFileArchive
                {
-                   SourceFiles = rolist(srcPath),
+                   SourceFiles = roitems(srcPath),
                    ArchivePath = dstPath,
                    Overwrite = true
                };
@@ -27,7 +27,7 @@ namespace Meta.Core.Commands
             => from srcFile in srcPath.Files()
                select new CreateFileArchive
                {
-                   SourceFiles = rolist(FilePath.Parse(srcFile)),
+                   SourceFiles = roitems(FilePath.Parse(srcFile)),
                    ArchivePath = dstPath + srcFile.FileName.AddExtension(".zip"),
                    Overwrite = true
                };
@@ -35,7 +35,7 @@ namespace Meta.Core.Commands
         public static CreateFileArchive DefineZipDirCommand(FolderPath srcPath, FilePath dstPath)
             => new CreateFileArchive
             {
-                SourceFolders = rolist(srcPath),
+                SourceFolders = roitems(srcPath),
                 ArchivePath = dstPath,
                 Overwrite = true
             };       
@@ -62,7 +62,7 @@ namespace Meta.Core.Commands
         public CreateFileArchive(FolderPath srcFolder, FilePath archivePath, bool overwrite = true)
             : this(overwrite)
         {
-            this.SourceFolders = rolist(srcFolder);
+            this.SourceFolders = roitems(srcFolder);
             this.ArchivePath = archivePath;
         }
 

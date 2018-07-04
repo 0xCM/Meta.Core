@@ -13,21 +13,11 @@ using static metacore;
 public class SqlTShell : SqlTModule<SqlTShell>
 {
     public static IEnumerable<Assembly> RequiredComponents
-        => union(
-                stream(SqlTSqlDocs.Assembly,
-                    SqlTCore.Assembly,
-                    SqlTModels.Assembly,
-                    SqlTServices.Assembly,
-                    SqlTLanguage.Assembly,
-                    SqlTSqlDocs.Assembly,
-                    SqlTSharp.Assembly,
-                    SqlTWorkflow.Assembly,
-                    SqlTSyntax.Assembly,
-                    MetaCoreServices.Assembly,
-                    MetaCoreWorkflow.Assembly,
-                    MetaCoreBuild.Assembly
-                    ));
-
+        => stream(SqlTSqlDocs.Assembly, SqlTCore.Assembly, SqlTModels.Assembly,
+            SqlTServices.Assembly, SqlTLanguage.Assembly, SqlTSqlDocs.Assembly,
+            SqlTSharp.Assembly, SqlTWorkflow.Assembly, SqlTSyntax.Assembly,
+            MetaCoreServices.Assembly, MetaCoreWorkflow.Assembly, 
+            MetaCoreBuild.Assembly);
 
     public SqlTShell()
     {

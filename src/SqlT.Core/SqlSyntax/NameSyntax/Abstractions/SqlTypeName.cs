@@ -57,9 +57,9 @@ namespace SqlT.Core
             var right = (other as ICompositeSqlName).AsTypeName();
             if (left.SchemaName.IsSystemSchema || right.SchemaName.IsSystemSchema)
                 return string.Compare(left.UnqualifiedName, right.UnqualifiedName, true) == 0;
-            else if 
+            else if
                 (SqlDataTypeNames.Contains(left.UnqualifiedName) || SqlDataTypeNames.Contains(right.UnqualifiedName))
-                    return string.Compare(left.UnqualifiedName, right.UnqualifiedName, true) == 0;
+                return string.Compare(left.UnqualifiedName, right.UnqualifiedName, true) == 0;
 
             return false;
         }

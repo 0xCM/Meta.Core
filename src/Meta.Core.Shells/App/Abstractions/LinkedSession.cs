@@ -81,7 +81,7 @@ namespace Meta.Core
             => Host;
 
         protected virtual IReadOnlyList<N> AvailableNodes
-            => metacore.rolist(N.Local);
+            => metacore.roitems(N.Local);
 
         protected N ExecutingNode 
             => node(NodeId);

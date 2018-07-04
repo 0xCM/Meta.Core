@@ -27,7 +27,7 @@ namespace SqlT.CSharp
             => SqlConnectionString.Parse(gp.ConnectionString).GetClientBroker();
 
         static IReadOnlyList<SqlColumnName> EnumSourceColumns
-            = rolist<SqlColumnName>("TypeCode", "Identifier", "Label", "Description");
+            = roitems<SqlColumnName>("TypeCode", "Identifier", "Label", "Description");
 
         static IEnumerable<EnumLiteralSpec> SpecifyEnumLiterals(ClrEnumName EnumName, SqlDataFrame DataSource, SqlProxyGenerationProfile gp)
             => from row in DataSource.Rows

@@ -54,7 +54,7 @@ namespace Meta.Core.Build
         public IReadOnlyList<PropertyEvaluation> Properties { get; set; }
 
         public IEnumerable<PropertyEvaluation> Evaluations
-            => union(new StandardSqlEvaluations(Properties), 
+            => unionize(new StandardSqlEvaluations(Properties), 
                 new StandardEvaluations(Properties));
 
         protected Option<string> Evaluation([CallerMemberName] string PropertyName = null)

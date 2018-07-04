@@ -110,7 +110,7 @@ namespace SqlT.Dom
                 yield return correlate<TSql.SelectStatement>("select");
                 yield return correlate<TSql.TruncateTableStatement>("truncate");
 
-                var statements = union(
+                var statements = unionize(
                     CreateStatements(), 
                     DropStatements(), 
                     DeleteStatements(), 

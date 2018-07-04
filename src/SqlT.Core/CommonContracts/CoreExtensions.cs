@@ -40,8 +40,8 @@ namespace SqlT.Core
         public static Type GetNonNullableType(this Type t)
             => _nnTypeCache.GetOrAdd(t, x => x._GetNonNullableType());
 
-        public static IReadOnlyList<T> ToReadOnlyList<T>(this IEnumerable<T> items)
-            => items.ToList();
+        //public static IReadOnlyList<T> ToReadOnlyList<T>(this IEnumerable<T> items)
+        //    => items.ToList();
 
 
     }

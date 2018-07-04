@@ -126,7 +126,7 @@ public abstract class TypedTemplate<T,S> : TypedTemplate
                          where role == ElementRole.SyntaxName
                          select a.Key).ToList();
 
-        var parameters = MutableList.FromItems(union(templateType.Name, map(nameTypes, t => t.Name)));
+        var parameters = MutableList.FromItems(unionize(stream(templateType.Name), map(nameTypes, t => t.Name)));
         parameters.Add("Header");
         parameters.Add("Namespace");
         parameters.Add("Usings");

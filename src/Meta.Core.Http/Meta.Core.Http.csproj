@@ -1,9 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>netcoreapp2.1</TargetFrameworks>
-  </PropertyGroup>
-
   <ItemGroup>
     <Compile Remove="Services\HttpModelBinder.cs" />
   </ItemGroup>
@@ -11,7 +7,6 @@
   <ItemGroup>
     <None Include="Services\HttpModelBinder.cs" />
   </ItemGroup>
-
 
 
   <ItemGroup>

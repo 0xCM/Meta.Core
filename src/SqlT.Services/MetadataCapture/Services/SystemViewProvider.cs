@@ -45,13 +45,13 @@ namespace SqlT.SqlSystem
 
         IReadOnlyList<T> sysview<T>(string name = "")
                 where T : ISystemElement
-            => sysviews.GetNativeView<T>(name);
+            => sysviews.GetNativeView<T>(name).AsReadOnlyList();
 
         IReadOnlyList<T> virtview<T>() where T : vSystemElement
         {
             var query = (IEnumerable<T>)virtviews[typeof(T)]();
             return
-                (IReadOnlyList<T>)virtcache.GetOrAdd(typeof(T), t => list(query));
+                (IReadOnlyList<T>)virtcache.GetOrAdd(typeof(T), t => rolist(query));
         }
 
         IReadOnlyList<ISystemObject> sys_objects()
@@ -440,7 +440,7 @@ namespace SqlT.SqlSystem
             this.primitives = rolist(system_primitives.Union(user_primitives.Cast<vType>()));
             this.table_types = get_table_types();
             this.assembly_types = get_assembly_types();
-            this.all_types = rolist(union(primitives, table_types, assembly_types));
+            this.all_types = rolist(unionize(primitives, table_types, assembly_types));
 
 
         }

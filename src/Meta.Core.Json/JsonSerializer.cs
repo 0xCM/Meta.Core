@@ -119,11 +119,16 @@ class JsonSerializer  : ApplicationService<JsonSerializer, IJsonSerializer>, IJs
         return result;
     }
 
+    static IEnumerable<JsonConverter> CreateDefaultConverters()
+    {
+        foreach(var t in typeof(JsonConverters).GetNestedTypes())
+            yield return (JsonConverter)Activator.CreateInstance(t);
 
-    static readonly JsonConverter[] DefaultConverters =
-        union(map(typeof(JsonConverters).GetNestedTypes(),
-                t => (JsonConverter)Activator.CreateInstance(t)), 
-                    new StringEnumConverter()).ToArray();
+        yield return new StringEnumConverter();
+
+    }
+
+    static readonly JsonConverter[] DefaultConverters = CreateDefaultConverters().ToArray();        
            
     static JsonSerializerSettings DefineSettings(IEnumerable<JsonConverter> converters)
         => new JsonSerializerSettings
@@ -144,7 +149,7 @@ class JsonSerializer  : ApplicationService<JsonSerializer, IJsonSerializer>, IJs
             = (converter is JsonConverter) 
             ? (converter as JsonConverter) 
             : DelegatingConverter.DelegateTo(converter);
-        settings = DefineSettings(union(settings.Converters, newConverter));
+        settings = DefineSettings(settings.Converters.Union(stream(newConverter)));
     }
     
     public JsonSerializer(IApplicationContext context)

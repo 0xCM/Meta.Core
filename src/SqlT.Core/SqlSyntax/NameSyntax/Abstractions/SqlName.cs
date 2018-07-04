@@ -109,13 +109,13 @@ namespace SqlT.Core
 
         public SqlName(SqlIdentifier LocalName)
         {
-            this.NameComponents = rolist(LocalName.IdentifierText);
+            this.NameComponents = roitems(LocalName.IdentifierText);
             this.Quoted = LocalName.Quoted;
             this.hash = calcHash(NameComponents);
         }
         public SqlName(SqlIdentifier SchemaName, SqlIdentifier LocalName)
         {
-            this.NameComponents = rolist(SchemaName.IdentifierText, LocalName.IdentifierText);
+            this.NameComponents = roitems(SchemaName.IdentifierText, LocalName.IdentifierText);
             this.Quoted = LocalName.Quoted;
             this.hash = calcHash(NameComponents);
         }

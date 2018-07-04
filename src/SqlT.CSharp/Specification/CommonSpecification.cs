@@ -51,7 +51,7 @@ namespace SqlT.CSharp
             => PreambleText.SpecifyCodeFilePreamble();
 
         public static IEnumerable<UsingSpec> SpecifyUsings(this CodeGenerationProfile gp)
-            => from n in union(gp.DefaultUsings, DefaultUsings)
+            => from n in unionize(gp.DefaultUsings, DefaultUsings)
                select n.SpecifyUsing();
 
         public static ClrNamespaceName SpecifyNamespaceName(this CodeGenerationProfile gp, params string[] subcomponents)

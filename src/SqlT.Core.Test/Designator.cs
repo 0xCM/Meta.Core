@@ -10,7 +10,7 @@ using static metacore;
 public class SqlTShell : SqlTModule<SqlTShell>
 {
     public static IEnumerable<Assembly> RequiredComponents
-        => union(SqlTCore.Assembly, MetaCoreOperations.SystemComponents.Load());
+        => unionize(stream(SqlTCore.Assembly), MetaCoreOperations.SystemComponents.Load());
         //=> union(SqlTOperations.SystemComponents.Load(),
         //        MetaCoreOperations.SystemComponents.Load(),
         //        stream(SqlTSqlDocs.Assembly));

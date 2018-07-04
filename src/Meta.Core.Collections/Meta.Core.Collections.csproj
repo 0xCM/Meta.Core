@@ -1,9 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>netcoreapp2.1;net472</TargetFrameworks>
-  </PropertyGroup>
-
+  
   <ItemGroup>
     <ProjectReference Include="..\Meta.Core.Basement\Meta.Core.Basement.csproj" />
     <ProjectReference Include="..\Meta.Core.Dynamics\Meta.Core.Dynamics.csproj" />

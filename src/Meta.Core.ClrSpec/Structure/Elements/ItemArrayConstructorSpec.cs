@@ -19,7 +19,7 @@ public static partial class ClrStructureSpec
             (
                   DeclaringTypeName,
                   AccessLevel,
-                  MethodParameters: rolist(new MethodParameterSpec("items", 
+                  MethodParameters: roitems(new MethodParameterSpec("items", 
                       ClrCollectionClosure.Array(new ClrClassName("object"))))
             )
         {

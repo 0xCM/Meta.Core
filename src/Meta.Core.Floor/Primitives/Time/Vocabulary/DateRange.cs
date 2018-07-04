@@ -151,7 +151,7 @@ public readonly struct DateRange : IInterval<Date>
     /// <returns></returns>
     public IReadOnlyList<Date> CreatePartitionPoints(int width)
     {
-        var points = MutableList.Create(Min);
+        var points = MutableList.FromItems(stream(Min));
         var last = Min;
         var finished = false;
         while (!finished)

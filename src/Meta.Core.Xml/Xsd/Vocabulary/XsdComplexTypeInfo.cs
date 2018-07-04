@@ -40,7 +40,7 @@ namespace Meta.Core
                     select item
                     );
 
-            this.Attributes = union(DeclaredAttributes, ReferencedAttributes).ToReadOnlyList();
+            this.Attributes = unionize(DeclaredAttributes, ReferencedAttributes).ToReadOnlyList();
 
         }
 

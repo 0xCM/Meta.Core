@@ -72,7 +72,7 @@ namespace SqlT.Language
         public bool IsStatement
             => Is<TSql.TSqlStatement>();
 
-        public ReadOnlyList<TSql.TSqlStatement> ExtractStatements()
+        public IReadOnlyList<TSql.TSqlStatement> ExtractStatements()
         {
             var statements = MutableList.Create<TSql.TSqlStatement>();
             if (IsBatch)

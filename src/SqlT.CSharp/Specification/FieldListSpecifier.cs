@@ -158,7 +158,7 @@ namespace SqlT.CSharp
                     Name: gp.SpecifyListName(description),
                     Documentation: null,
                     AccessLevel: ClrAccessKind.Public,
-                    BaseTypes: rolist(gp.SpecifyListBase(description)),
+                    BaseTypes: roitems(gp.SpecifyListBase(description)),
                     Members: rolist(gp.SpecifyListFields(description, fieldColumns))
                 );
             return spec;

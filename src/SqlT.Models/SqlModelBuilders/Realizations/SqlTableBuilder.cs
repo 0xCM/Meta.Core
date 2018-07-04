@@ -22,6 +22,7 @@ namespace SqlT.Models
     using kwt = SqlT.Syntax.SqlKeywordTypes;
     using B = SqlTableBuilder;
     using Column = SqlT.Models.SqlTableColumn;
+    using G = System.Collections.Generic;
 
     /// <summary>
     /// Constructs <see cref="SqlTable"/> definitions
@@ -39,8 +40,8 @@ namespace SqlT.Models
         MutableList<SqlColumnStoreIndex> ColumnStoreIndexes { get; }
             = MutableList.Create<SqlColumnStoreIndex>();
 
-        MutableList<SqlColumnName> PkColumnNames
-            = MutableList.Create<SqlColumnName>();
+        G.List<SqlColumnName> PkColumnNames
+            = new G.List<SqlColumnName>();
 
         SqlPrimaryKeyName PkName;
 

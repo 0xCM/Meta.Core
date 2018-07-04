@@ -9,6 +9,7 @@ namespace SqlT.Services
     using SqlT.Core;
     using SqlT.Syntax;
     using SqlT.Models;
+    using System.Collections.Generic;
 
     using sxc = SqlT.Syntax.contracts;
     using sx = SqlT.Syntax.SqlSyntax;
@@ -20,7 +21,7 @@ namespace SqlT.Services
         SqlSyntaxGraph ParseSyntaxGraph(ISqlScript script);
 
        
-        ReadOnlyList<IModel> ParseSpecs(ISqlScript script);
+        IReadOnlyList<IModel> ParseSpecs(ISqlScript script);
 
         Option<SqlBatchScript> ParseBatches(ISqlScript script, bool parseSyntaxGraph = false);
 

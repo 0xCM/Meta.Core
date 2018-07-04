@@ -77,7 +77,7 @@ namespace SqlT.Language
         internal static ISqlAdaptiveParser AdaptiveParser(this TSql.TSqlParser NativeParser)
             => new SqlAdaptiveParser(NativeParser);
 
-        public static ReadOnlyList<IModel> ParseSpecs(this ISqlGenerationContext GC, TSql.TSqlParser parser, SqlScript sql)
+        public static IReadOnlyList<IModel> ParseSpecs(this ISqlGenerationContext GC, TSql.TSqlParser parser, SqlScript sql)
         {
             var specs = MutableList.Create<IModel>();
             var fails = MutableList.Create<TSql.TSqlFragment>();

@@ -30,7 +30,7 @@ namespace SqlT.Dom
         public static readonly ClrNamespaceName TopNamespace = "SqlT.SqlTDom";
 
         public static readonly IReadOnlyList<UsingSpec> Usings
-            = rolist(
+            = roitems(
                 new UsingSpec(nameof(System)),
                 new UsingSpec("System.Collections.Generic")
                 );

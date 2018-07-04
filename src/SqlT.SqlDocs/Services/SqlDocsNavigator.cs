@@ -34,7 +34,7 @@ namespace SqlT.SqlDocs
             var config = C.SqlDocsConfig();
             this.FileRepository = new FileRepository(C,
                    RootLocation: new NodeFolderPath(Host, config.RepositoryLocation) + FolderName.Parse("docs"),
-                   SupportedExtensions: rolist(FX.Markdown, FX.Sql),
+                   SupportedExtensions: roitems(FX.Markdown, FX.Sql),
                    TopFolderNames: split(config.SelectedSections, ';').Select(FolderName.Parse)
                    );
 

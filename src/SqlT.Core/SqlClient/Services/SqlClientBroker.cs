@@ -507,7 +507,7 @@ namespace SqlT.Core
             => GetSequenceGenerator<T>(sequence).NextValue();
 
         public Option<IReadOnlyList<T>> NextSequenceValues<T>(SqlSequenceName sequence, int count)
-            => some(GetSequenceGenerator<T>(sequence).NextRange(count).ToReadOnlyList());
+            => some(GetSequenceGenerator<T>(sequence).NextRange(count).ToReadOnlyList() as IReadOnlyList<T>);
 
         public void Observe(Action<SqlNotification> observer)
             => SecondaryObservers.Add(observer);

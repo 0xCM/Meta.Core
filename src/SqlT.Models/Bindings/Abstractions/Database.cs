@@ -68,7 +68,7 @@ namespace SqlT.Bindings
             => "1.0.0";
        
         public IEnumerable<ISqlObject> Objects
-            => union<ISqlObject>(Tables, TableTypes, Queues);
+            => unionize<ISqlObject>(Tables, TableTypes, Queues);
 
         public dboptions DatabaseOptions
             => new dboptions(containment_type: containment_type.value,

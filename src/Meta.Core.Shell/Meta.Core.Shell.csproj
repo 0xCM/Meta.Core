@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp2.1;net472</TargetFrameworks>
     <OutputType>EXE</OutputType>
   </PropertyGroup>
 
@@ -33,10 +32,6 @@
     <ProjectReference Include="..\Meta.Core.Synthetics\Meta.Core.Synthetics.csproj" />
     <ProjectReference Include="..\Meta.Core.Workflow\Meta.Core.Workflow.csproj" />
     <ProjectReference Include="..\Meta.Core.Xml\Meta.Core.Xml.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Configuration\" />
   </ItemGroup>
 
 

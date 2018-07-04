@@ -1,9 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
-  </PropertyGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Meta.Core.Commands\Meta.Core.Commands.csproj" />
     <ProjectReference Include="..\Meta.Core.FileSystem\Meta.Core.FileSystem.csproj" />
@@ -11,8 +7,5 @@
     <ProjectReference Include="..\Meta.Core.Services\Meta.Core.Services.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Configuration\" />
-  </ItemGroup>
-
+  
 </Project>

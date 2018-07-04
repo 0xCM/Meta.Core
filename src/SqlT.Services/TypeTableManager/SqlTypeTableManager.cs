@@ -75,7 +75,7 @@ namespace SqlT.Services
                                select adapter.Specify(literal));
 
             var exclusions = map(
-                union(SqlColumnRole.AuditRoleTypes, SqlColumnRoleKind.SystemVersion),
+                SqlColumnRole.AuditRoleTypes.Union(stream(SqlColumnRoleKind.SystemVersion)),
                 r => SqlColumnRole.DefaultRoleColumnNames[r].UnqualifiedName);
 
             return (from t in Broker.Table(TypeTableName).TruncateIfExists()

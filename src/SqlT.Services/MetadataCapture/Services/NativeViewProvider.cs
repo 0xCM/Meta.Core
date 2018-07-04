@@ -16,6 +16,8 @@ namespace SqlT.SqlSystem
     using SqlT.Services;
     using SqlT.Models.Proxies;
 
+    using MC = Meta.Core;
+
     using static metacore;
 
     class NativeViewProvider : INativeViewProvider
@@ -88,13 +90,13 @@ namespace SqlT.SqlSystem
                 : CompatibilityVerion);
         }
 
-        public IReadOnlyList<T> GetNativeView<T>(string viewName) 
+        public MC.List<T> GetNativeView<T>(string viewName) 
             where T : ISystemElement
-                => (IReadOnlyList<T>)cache.GetOrAdd(viewType<T>(viewName), 
+                => (MC.List<T>)cache.GetOrAdd(viewType<T>(viewName), 
                         t => list(Broker.Get<T>(t, MetadataSource.DatabaseName).Payload.Cast<T>()));
 
         public IReadOnlyList<T> GetNativeView<T>() 
             where T : ISystemElement
-                => GetNativeView<T>(viewName<T>());
+                => GetNativeView<T>(viewName<T>()).AsReadOnlyList();
     }
 }

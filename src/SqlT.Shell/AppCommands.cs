@@ -295,6 +295,12 @@ namespace SqlT.Tool
                from syntaxOut in syntaxFile.Write(syntax.XmlSyntax).ToFileOption()
                select syntaxOut;
 
+
+        public void proxygen()
+        {
+            var profile = CommonFolders.DevAreaRoot.GetCombinedFolderPath("metacore\\src\\SqlT.Proxies.Z0") + FileName.Parse("Z0.sqlt");
+            C.GenerateCode(profile).OnNone(Notify);
+        }
         public void syntax()
         {
 

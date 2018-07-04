@@ -56,7 +56,7 @@ namespace Meta.Core
         public virtual IEnumerable<NodeFolderPath> Folders
             => SegmentPaths.Any() 
             ? from s in SegmentPaths
-              from f in union(s, s.Folders(recursive: Recursive))
+              from f in unionize(stream(s), s.Folders(recursive: Recursive))
               select f
             : NavRoot.Folders(recursive: Recursive);
 

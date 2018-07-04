@@ -46,7 +46,7 @@ public static partial class ClrStructureSpec
         public CodeFileSpec(FilePath FilePath, params IClrElementSpec[] ElementDefinitions)
         {
             this.FileName = FilePath;
-            this.Usings = rovalues<UsingSpec>();
+            this.Usings = rovalues<UsingSpec>(stream<UsingSpec>());
             this.ElementDefinitions = rovalues(ElementDefinitions);
         }
 

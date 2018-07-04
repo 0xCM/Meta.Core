@@ -18,23 +18,12 @@ namespace Meta.Core
     /// <typeparam name="X">The list item type</typeparam>
     public class MutableList<X> : IMutableList<X>
     {
-        /// <summary>
-        /// Implicitly converts  a <see cref="MutableList{X}"/> to a <see cref="ReadOnlyList{T}"/>
-        /// </summary>
-        /// <param name="x"></param>
-        public static implicit operator ReadOnlyList<X>(MutableList<X> x)
-            => new ReadOnlyList<X>(x);
-
-        /// <summary>
-        /// The canonical empty list
-        /// </summary>
-        public static readonly MutableList<X> Empty = new MutableList<X>();
 
         G.List<X> Data { get; }
             = new G.List<X>();
 
-        public static implicit operator MutableList<X>(G.List<X> list)
-            => new MutableList<X>();
+        //public static implicit operator MutableList<X>(G.List<X> list)
+        //    => list;
 
         MutableList()
         {

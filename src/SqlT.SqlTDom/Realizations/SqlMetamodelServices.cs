@@ -77,7 +77,7 @@ namespace SqlT.Dom
 
         static SqlMetamodelServices()
         {
-            SqlTModelIndex = union(SqlTModelEnumTypes, SqlTModelElementTypes).ToDictionary(x => x.Name);
+            SqlTModelIndex = unionize(SqlTModelEnumTypes, SqlTModelElementTypes).ToDictionary(x => x.Name);
             TypeDescriptors = CreateTypeDescriptors();
             Correlations = CorrelateModel();
 

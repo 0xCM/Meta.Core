@@ -54,7 +54,7 @@ namespace SqlT.Language
         public Option<SqlParameterizedScript> ParseRoutineBody(ISqlScript script)
             => SqlScript.FromContract(script).ParseRoutineBody(ParserVersion.TSqlDomVersion());
 
-        public ReadOnlyList<IModel> ParseSpecs(ISqlScript script)
+        public IReadOnlyList<IModel> ParseSpecs(ISqlScript script)
             => GC.ParseSpecs(NativeParser, script.ScriptText);
 
         public SqlSyntaxGraph ParseSyntaxGraph(ISqlScript sql)

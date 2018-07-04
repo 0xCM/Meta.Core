@@ -17,10 +17,10 @@ using Meta.Core;
 /// <typeparam name="T">The type of value contained by the list</typeparam>
 public class ImmutableValueList<T> :  ICollection<T>, IReadOnlyList<T>
 {
-    readonly MutableList<T> items;
+    readonly G.List<T> items;
 
-    public static implicit operator ImmutableValueList<T>(G.List<T> items)
-        => new ImmutableValueList<T>(items);
+    //public static implicit operator ImmutableValueList<T>(G.List<T> items)
+    //    => new ImmutableValueList<T>(items);
 
     T IReadOnlyList<T>.this[int index] 
         => items[index];
@@ -36,7 +36,7 @@ public class ImmutableValueList<T> :  ICollection<T>, IReadOnlyList<T>
 
     public ImmutableValueList(IEnumerable<T> items)
     {
-        this.items = MutableList.FromItems(items);
+        this.items = items.ToList();
     }
 
     public override bool Equals(object obj)

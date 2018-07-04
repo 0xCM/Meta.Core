@@ -37,7 +37,7 @@ public sealed class CommandQueue<TSpec> : ApplicationService<CommandQueue<TSpec>
         => ExecStore.Submit(commands, target, ct);
 
     public Option<CommandSubmission> Enqueue(TSpec command, SystemNode target, CorrelationToken? ct)
-        => from result in ExecStore.Submit(rolist(command), target, ct)
+        => from result in ExecStore.Submit(roitems(command), target, ct)
            from item in result.TryGetFirst()
            select new CommandSubmission(command, item.SubmissionId, item.CommandJson, ct, item.EnqueuedTime);
 

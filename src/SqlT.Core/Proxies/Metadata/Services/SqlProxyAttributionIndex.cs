@@ -13,7 +13,7 @@ namespace SqlT.Core
 
     class SqlProxyAttributionIndex
     {
-        IDictionary<SqlProxyKind, IReadOnlyList<SqlProxyAttribution>> Lookup { get; }
+        IDictionary<SqlProxyKind, ReadOnlyList<SqlProxyAttribution>> Lookup { get; }
 
         internal SqlProxyAttributionIndex(Assembly a)
         {
@@ -23,7 +23,7 @@ namespace SqlT.Core
                            let attribution = new SqlProxyAttribution(x, attrib)
                            group attribution by attribution.Attribute.ProxyKind into g
                            select g
-              ).ToDictionary(x => x.Key, x => x.Select(y => y).ToReadOnlyList()); ;
+              ).ToDictionary(x => x.Key, x => x.Select(y => y).ToReadOnlyList()); 
         }
 
 

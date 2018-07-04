@@ -53,8 +53,12 @@ public readonly struct ValueMember
     FieldInfo BackingField { get; }
 
     public object GetValue(object o)
-        => IsField ? (Member as FieldInfo).GetValue(o) 
+    {
+        var objType = o.GetType();
+        var declarer = Member.DeclaringType;
+        return IsField ? (Member as FieldInfo).GetValue(o)
             : (Member as PropertyInfo).GetValue(o);
+    }
 
     public T GetValue<T>(object o)
         => (T)( IsField ? (Member as FieldInfo).GetValue(o) 

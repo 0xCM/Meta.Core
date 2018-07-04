@@ -62,25 +62,17 @@ partial class metacore
     public static ReadOnlyList<T> rolist<T>(IEnumerable<T> items)
         => ReadOnlyList.Create(items ?? new T[] { });
 
-    /// <summary>
-    /// Yields a <see cref="IReadOnlyList{T}"/> realization instance from provided input sequences
-    /// </summary>
-    /// <typeparam name="T">The input item type</typeparam>
-    /// <param name="items">The input items</param>
-    /// <returns></returns>
     [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static ReadOnlyList<T> rolist<T>(IEnumerable<T> items, params T[] more)
-        => ReadOnlyList.Create(((items ?? new T[] { }).Union(more)));
+    public static ReadOnlyList<T> roitems<T>(params T[] parms)
+        => ReadOnlyList.Create(parms);
 
     /// <summary>
-    /// Yields a <see cref="IReadOnlyList{T}"/> instance from an input sequence
+    /// Creates an empty readonly list
     /// </summary>
-    /// <typeparam name="T">The input item type</typeparam>
-    /// <param name="parms">The input items</param>
+    /// <typeparam name="T">The list item type</typeparam>
     /// <returns></returns>
-    [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static ReadOnlyList<T> rolist<T>(params T[] parms)
-        => ReadOnlyList.Create(parms);
+    public static ReadOnlyList<T> rolist<T>()
+        => ReadOnlyList<T>.Empty;
 
     /// <summary>
     /// Evaluates the sequence
@@ -98,9 +90,9 @@ partial class metacore
     /// <typeparam name="T">The input item type</typeparam>
     /// <param name="items">The input items</param>
     /// <returns></returns>
-    [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static IReadOnlyList<T> rovalues<T>(params T[] items)
-        where T : IValueObject => new ImmutableValueObjectList<T>(items);
+    //[DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+    //public static IReadOnlyList<T> rovalues<T>(params T[] items)
+    //    where T : IValueObject => new ImmutableValueObjectList<T>(items);
 
     /// <summary>
     /// Applies the supplied function to each element in the input sequence for which a specified predicate is satisfied
@@ -209,65 +201,8 @@ partial class metacore
     /// <typeparam name="T">The sequence element type</typeparam>
     /// <param name="sequences">The first sequence</param>
     [DebuggerStepperBoundary]
-    public static IEnumerable<T> union<T>(params IEnumerable<T>[] sequences)
+    public static IEnumerable<T> unionize<T>(params IEnumerable<T>[] sequences)
         => new MutableSet<T>(sequences.Reduce());
-
-    /// <summary>
-    /// Forms a union from a specified item and supplied sequences
-    /// </summary>
-    /// <typeparam name="T">The sequence element type</typeparam>
-    /// <param name="sequences">The first sequence</param>
-    [DebuggerStepperBoundary]
-    public static IEnumerable<T> union<T>(T item, params IEnumerable<T>[] sequences)
-        => new MutableSet<T>(array(item).Union(sequences.Reduce()));
-
-    /// <summary>
-    /// Forms a union from the supplied sequences
-    /// </summary>
-    /// <typeparam name="T">The sequence element type</typeparam>
-    /// <param name="a">The first sequence</param>
-    /// <param name="b">The second sequence</param>
-    /// <param name="c">The third sequence</param>
-    /// <returns></returns>
-    [DebuggerStepperBoundary]
-    public static IEnumerable<T> union<T>(IEnumerable<T> a, IEnumerable<T> b, IEnumerable<T> c)
-        => a.Union(b).Union(c);
-
-    /// <summary>
-    /// Forms a union from the supplied sequences
-    /// </summary>
-    /// <typeparam name="T">The sequence element type</typeparam>
-    /// <param name="a">The first sequence</param>
-    /// <param name="b">The second sequence</param>
-    /// <param name="c">The third sequence</param>
-    /// <param name="d">The fourth sequence</param>
-    /// <returns></returns>
-    [DebuggerStepperBoundary]
-    public static IEnumerable<T> union<T>(IEnumerable<T> a, IEnumerable<T> b, IEnumerable<T> c, IEnumerable<T> d)
-        => a.Union(b).Union(c).Union(d);
-
-    /// <summary>
-    /// Forms a union from the supplied elements
-    /// </summary>
-    /// <typeparam name="T">The element type</typeparam>
-    /// <param name="x">An input sequence</param>
-    /// <param name="y">An arbitrary number of elements</param>
-    /// <returns></returns>
-    [DebuggerStepperBoundary]
-    public static IEnumerable<T> union<T>(IEnumerable<T> x, params T[] y)
-        => x.Union(y);
-
-    /// <summary>
-    /// Forms a union from the supplied elements
-    /// </summary>
-    /// <typeparam name="T">The sequence element type</typeparam>
-    /// <param name="x">The first sequence</param>
-    /// <param name="y">The second sequence</param>
-    /// <param name="z">An arbitrary number of elements</param>
-    /// <returns></returns>
-    [DebuggerStepperBoundary]
-    public static IEnumerable<T> union<T>(IEnumerable<T> x, IEnumerable<T> y, params T[] z)
-        => union(x.Union(y), z);
 
     /// <summary>
     /// Collapses an homogenous sequence of element sequences into a homogenous sequence of elements

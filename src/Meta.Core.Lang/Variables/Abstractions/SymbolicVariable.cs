@@ -52,7 +52,7 @@ public abstract class SymbolicVariable<S,V> : IEquatable<S>, ISymbolicVariable<V
         this.VariableName = ifBlank(Name, "anonymous");
         this.Label = ifBlank(Label, Name);
         this.Description = ifBlank(Description, string.Empty);
-        this.Components = metacore.rolist((S)this);
+        this.Components = roitems((S)this);
         this.Delimiter = Delimiter ?? Symbol.pipe;
         this.IsRoot = true;
     }

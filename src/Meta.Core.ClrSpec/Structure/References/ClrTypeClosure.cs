@@ -37,7 +37,7 @@ public static partial class ClrStructureSpec
         protected ClrTypeClosure(IClrTypeName ArrayItemTypeName)
             : base(ClrType.Get<Array>().TypeName)
         {
-            TypeArguments = metacore.rolist(new TypeArgument(new TypeParameter(String.Empty, 0), ArrayItemTypeName));
+            TypeArguments = metacore.roitems(new TypeArgument(new TypeParameter(String.Empty, 0), ArrayItemTypeName));
             IsArray = true;
         }
 

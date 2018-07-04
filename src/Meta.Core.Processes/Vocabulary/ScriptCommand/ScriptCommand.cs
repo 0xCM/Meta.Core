@@ -90,7 +90,7 @@ public class ScriptCommand
             for(int i=0; i< elementCount; i++)
                 array.SetValue(elementValues[i], i);
 
-            return new ScriptCommandInvocation(command, metacore.rolist(array));
+            return new ScriptCommandInvocation(command, metacore.roitems(array));
 
         }
         else

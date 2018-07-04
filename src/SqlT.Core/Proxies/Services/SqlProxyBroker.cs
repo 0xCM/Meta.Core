@@ -433,10 +433,10 @@ namespace SqlT.Core
             => StreamColumn(sql, c).ToList();
 
         Option<IReadOnlyList<TResult>> ISqlProxyBroker.Get<F, TResult>(SqlTableFunctionProxy<F, TResult> func, SqlDatabaseName db)
-            => Try(() => Stream<SqlTableFunctionProxy<F, TResult>, TResult>(func, db).ToReadOnlyList());
+            => Try(() => Stream<SqlTableFunctionProxy<F, TResult>, TResult>(func, db).ToReadOnlyList() as IReadOnlyList<TResult>);
 
         Option<IReadOnlyList<TResult>> ISqlProxyBroker.Select<F, TResult>(SqlTableFunctionProxy<F, TResult> func)
-            => Try(() => Stream<SqlTableFunctionProxy<F, TResult>, TResult>(func, null).ToReadOnlyList());
+            => Try(() => Stream<SqlTableFunctionProxy<F, TResult>, TResult>(func, null).ToReadOnlyList() as IReadOnlyList<TResult>);
 
         SqlOutcome<IReadOnlyList<T>> ISqlProxyBroker.Get<T>(string sql)
             => Stream<T>(ifBlank(sql, BuildSelect<T>())).ToList();
@@ -475,7 +475,7 @@ namespace SqlT.Core
             {                
                 return SqlOutcome.Failure<IReadOnlyList<TResult>>(e);
             }
-            return SqlOutcome.Success(records.ToReadOnlyList());
+            return SqlOutcome.Success(records.ToReadOnlyList() as IReadOnlyList<TResult>);
         }
 
         SqlOutcome<int> ISqlProxyBroker.Call<P>(SqlProcedureProxy<P> proc, SqlDatabaseName db)

@@ -30,7 +30,7 @@ namespace SqlT.Services
         static ReadOnlyList<MethodInfo> GetCandidateGenerators()
             => new ReadOnlyList<MethodInfo>
             (
-                from t in union(SqlTServices.Assembly.GetStaticTypes(),SqlTLanguage.Assembly.GetStaticTypes())
+                from t in unionize(SqlTServices.Assembly.GetStaticTypes(),SqlTLanguage.Assembly.GetStaticTypes())
                 from m in t.GetStaticMethods()
                 where Attribute.IsDefined(m, typeof(SqlGAttribute))
                 let parameters = m.GetParameters()

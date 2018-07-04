@@ -16,6 +16,7 @@ namespace SqlT.Core
     using static metacore;
 
     using sxc = SqlT.Syntax.contracts;
+    using G = System.Collections.Generic;
 
     /// <summary>
     /// Defines metadata index for all proxies loaded in an application domain
@@ -41,8 +42,8 @@ namespace SqlT.Core
         Dictionary<Type, SqlObjectProxyInfo> ObjectsByType { get; }
             = new Dictionary<Type, SqlObjectProxyInfo>();
 
-        Dictionary<sxc.ISqlObjectName, MutableList<SqlObjectProxyInfo>> ObjectsByName { get; }
-            = new Dictionary<sxc.ISqlObjectName, MutableList<SqlObjectProxyInfo>>();
+        Dictionary<sxc.ISqlObjectName, G.List<SqlObjectProxyInfo>> ObjectsByName { get; }
+            = new Dictionary<sxc.ISqlObjectName, G.List<SqlObjectProxyInfo>>();
 
         Dictionary<Type, SqlProxyInfo> ElementsByType { get; }
             = new Dictionary<Type, SqlProxyInfo>();
@@ -61,7 +62,7 @@ namespace SqlT.Core
             foreach(var x in Source.ObjectsByName)
             {
                 if (!ObjectsByName.ContainsKey(x.Key))
-                    ObjectsByName[x.Key] = MutableList.Create<SqlObjectProxyInfo>();
+                    ObjectsByName[x.Key] =new G.List<SqlObjectProxyInfo>();
                 ObjectsByName[x.Key].AddRange(x.Value);
             }
 
@@ -83,14 +84,16 @@ namespace SqlT.Core
 
         void CacheObjectsByName(IReadOnlyList<SqlObjectProxyInfo> objects)
         {
-            foreach (var o in objects.GroupBy(x => x.ObjectName)
-                                        .Select(g => (g.Key, g.Select(y => y).ToList()))
-                                        .ToDictionary(z => z.Item1, z => z.Item2))
+            var idx = dict(objects.GroupBy(x => x.ObjectName)
+                                  .Select(g => (g.Key, g.Select(y => y).ToReadOnlyList())));                                        
+
+            foreach (var o in idx)
             {
                 if (!ObjectsByName.ContainsKey(o.Key))
-                    ObjectsByName[o.Key] = MutableList.Create<SqlObjectProxyInfo>();
+                    ObjectsByName[o.Key] = new G.List<SqlObjectProxyInfo>();
 
-                ObjectsByName[o.Key].AddRange(o.Value);
+                var dst = ObjectsByName[o.Key];
+                dst.AddRange(o.Value);
             }
         }
 
@@ -109,7 +112,7 @@ namespace SqlT.Core
             IReadOnlyDictionary<Type, Type> OperationProviders)
         {
             CacheOperationProviders(OperationProviders);
-            CacheObjects(MetadataDictionary.Values.SelectMany(x => x).OfType<SqlObjectProxyInfo>().ToList());
+            CacheObjects(MetadataDictionary.Values.SelectMany(x => x).OfType<SqlObjectProxyInfo>().ToReadOnlyList());
             Assemblies.Add(ProxyAssembly);
         }
 

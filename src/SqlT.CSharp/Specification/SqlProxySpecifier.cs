@@ -22,7 +22,8 @@ namespace SqlT.CSharp
     {        
         public static ClrType SpecifyProxyType(this vSystemPrimitive subject, CodeGenerationProfile gp)
         {
-            var primitive = SqlNativeTypes.TryFind(p => p.Name == (subject.TypeName as SqlTypeName));
+            //var primitive = SqlNativeTypes.TryFind(p => p.Name == (subject.TypeName as SqlTypeName));
+            var primitive = SqlNativeTypes.TryFind(p => string.Equals(p.Name.UnquotedLocalName, subject.TypeName.UnqualifiedName, StringComparison.InvariantCultureIgnoreCase));
             if (!primitive)
                 throw new Exception($"The primitive type {subject.TypeName} could not be found among the known intrinsic primitives");
             return primitive.Map(p => p.MapToClrType()).Require();
@@ -54,6 +55,23 @@ namespace SqlT.CSharp
             ? ClrAccessKind.Internal 
             : ClrAccessKind.Public;
 
+
+        static IEnumerable<IClrMemberSpec> SpecifyInvocationMembers(this vProcedure subject, SqlProxyGenerationProfile gp)
+        {
+            foreach (var p in subject.Parameters.SpecifyProperties(subject.SpecifyClassName(), gp))
+                yield return p;
+
+            if (subject.Parameters.Count != 0)
+            {
+                foreach (var m in subject.SpecifyCustomMethods(gp))
+                    yield return m;
+            }
+
+            foreach (var c in subject.SpecifyConstructors(gp))
+                yield return c;
+
+        }
+
         /// <summary>
         /// Specifies proxies for a stored procedure
         /// </summary>
@@ -66,16 +84,47 @@ namespace SqlT.CSharp
                 Name: subject.SpecifyClassName(),
                 AccessLevel: gp.Internalize ? ClrAccessKind.Internal : ClrAccessKind.Public,
                 Documentation: new ElementDescription(subject.Documentation),
-                Members: union(
-                    subject.Parameters.SpecifyProperties(subject.SpecifyClassName(), gp),
-                    subject.Parameters.Count != 0 ? subject.SpecifyCustomMethods(gp) : array<IClrMemberSpec>(),
-                    subject.SpecifyConstructors(gp)
-                    ),
+                Members: subject.SpecifyInvocationMembers(gp),
+                //Members: union(
+                //    subject.Parameters.SpecifyProperties(subject.SpecifyClassName(), gp),
+                //    subject.Parameters.Count != 0 ? subject.SpecifyCustomMethods(gp) : array<IClrMemberSpec>(),
+                //    subject.SpecifyConstructors(gp)
+                //    ),
                 Attributions: subject.SpecifyAttributions(),
                 BaseTypes: subject.SpecifyBaseTypes(gp),
                 ImplicitRealizations: subject.SpecifyDataContractConformance(gp),
                 IsPartial: true
             ));
+
+
+        static IEnumerable<IClrMemberSpec> SpecifyInvocationMembers(this vTableFunction subject, SqlProxyGenerationProfile gp)
+        {
+            foreach (var p in map(subject.Parameters, p => p.SpecifyProperty(subject.SpecifyClassName(), gp)))
+                yield return p;
+
+            if (subject.Parameters.Count != 0)
+            {
+                foreach (var m in subject.SpecifyCustomMethods(gp))
+                    yield return m;
+            }
+
+            foreach (var c in subject.SpecifyConstructors(gp))
+                yield return c;
+
+        }
+
+        static IEnumerable<IClrMemberSpec> SpecifyResultMembers(this vTableFunction subject, SqlProxyGenerationProfile gp)
+        {
+            foreach (var p in mapi(subject.Columns, (i, c) => c.SpecifyProperty(subject.GetResultTypeName(gp), i, gp)))
+                yield return p;
+
+            foreach (var m in subject.SpecifyCustomMethods(gp))
+                yield return m;
+
+            foreach (var c in subject.SpecifyConstructors(gp))
+                yield return c;
+
+        }
 
 
         /// <summary>
@@ -92,11 +141,12 @@ namespace SqlT.CSharp
                 Name: typeName,
                 AccessLevel: gp.Internalize ? ClrAccessKind.Internal : ClrAccessKind.Public,
                 Documentation: new ElementDescription(subject.Documentation),
-                Members: union(
-                    map(subject.Parameters, p => p.SpecifyProperty(typeName, gp)),
-                    subject.Parameters.Count != 0 ? subject.SpecifyCustomMethods(gp) : array<IClrMemberSpec>(),
-                    subject.SpecifyConstructors(gp)
-                    ),
+                Members: subject.SpecifyInvocationMembers(gp),
+                //Members: union(
+                //    map(subject.Parameters, p => p.SpecifyProperty(typeName, gp)),
+                //    subject.Parameters.Count != 0 ? subject.SpecifyCustomMethods(gp) : array<IClrMemberSpec>(),
+                //    subject.SpecifyConstructors(gp)
+                //    ),
                 Attributions: subject.SpecifyAttributions(),
                 BaseTypes: subject.SpecifyBaseTypes(gp),
                 ImplicitRealizations: subject.SpecifyDataContractConformance(gp),
@@ -110,11 +160,12 @@ namespace SqlT.CSharp
                 (
                     Name: resultTypeName,
                     AccessLevel: gp.Internalize ? ClrAccessKind.Internal : ClrAccessKind.Public,
-                    Members: union(
-                        mapi(subject.Columns, (i,c) => c.SpecifyProperty(resultTypeName, i, gp)), 
-                        subject.SpecifyCustomMethods(gp),
-                        subject.SpecifyResultConstructors(gp)
-                        ),
+                    Members: subject.SpecifyResultMembers(gp),
+                    //Members: union(
+                    //    mapi(subject.Columns, (i,c) => c.SpecifyProperty(resultTypeName, i, gp)), 
+                    //    subject.SpecifyCustomMethods(gp),
+                    //    subject.SpecifyResultConstructors(gp)
+                    //    ),
                     Attributions: subject.SpecifyResultAttributions(gp),
                     BaseTypes: subject.SpecifyResultBaseTypes(gp),
                     IsPartial: true
@@ -132,7 +183,6 @@ namespace SqlT.CSharp
         {
             var name = subject.SpecifyClassName();
             var docs = new ElementDescription(subject.Documentation);
-
             var attributions = rolist(subject.SpecifyAttributions());
             var baseTypes = rolist(subject.SpecifyBaseTypes(gp));
             var spec = new ClassSpec
@@ -173,6 +223,20 @@ namespace SqlT.CSharp
             return array(spec);
         }
 
+        static IEnumerable<IClrMemberSpec> SpecifyMembers(this vView subject, SqlProxyGenerationProfile gp)
+        {
+            foreach (var p in subject.Columns.SpecifyProperties(subject.SpecifyClassName(), gp))
+                yield return p;
+
+            foreach (var m in subject.SpecifyCustomMethods(gp))
+                yield return m;
+
+            foreach (var c in subject.SpecifyConstructors(gp))
+                yield return c;
+
+        }
+
+
         /// <summary>
         /// Specifies a view proxy
         /// </summary>
@@ -185,16 +249,26 @@ namespace SqlT.CSharp
                 Name: subject.SpecifyClassName(),
                 AccessLevel: gp.Internalize ? ClrAccessKind.Internal : ClrAccessKind.Public,
                 Documentation: new ElementDescription(subject.Documentation),
-                Members: union(
-                    subject.Columns.SpecifyProperties(subject.SpecifyClassName(), gp), 
-                    subject.SpecifyCustomMethods(gp),
-                    subject.SpecifyConstructors(gp)
-                    ),
+                Members: subject.SpecifyMembers(gp),
                 Attributions: subject.SpecifyAttributions(),
                 BaseTypes: subject.SpecifyBaseTypes(gp),
                 ImplicitRealizations: subject.SpecifyDataContractConformance(gp),
                 IsPartial: true
             ));
+
+        static IEnumerable<IClrMemberSpec> SpecifyMembers(this vTableType subject, SqlProxyGenerationProfile gp)
+        {
+            foreach (var p in subject.Columns.SpecifyProperties(subject.SpecifyClassName(), gp))
+                yield return p;
+
+            foreach (var m in subject.SpecifyCustomMethods(gp))
+                yield return m;
+
+            foreach (var c in subject.SpecifyConstructors(gp))
+                yield return c;
+
+        }
+
 
         /// <summary>
         /// Specifies a table type proxy
@@ -208,16 +282,25 @@ namespace SqlT.CSharp
                 Name: subject.SpecifyClassName(),
                 AccessLevel: gp.Internalize ? ClrAccessKind.Internal : ClrAccessKind.Public,
                 Documentation: new ElementDescription(subject.Documentation),
-                Members: union(
-                    subject.Columns.SpecifyProperties(subject.SpecifyClassName(), gp),
-                    subject.SpecifyCustomMethods(gp),
-                    subject.SpecifyConstructors(gp)
-                    ),
+                Members: subject.SpecifyMembers(gp),
                 Attributions: subject.SpecifyAttributions(),
                 BaseTypes: subject.SpecifyBaseTypes(gp),
                 ImplicitRealizations: subject.SpecifyDataContractConformance(gp),
                 IsPartial: true
             ));
+
+        static IEnumerable<IClrMemberSpec> SpecifyMembers(this vTable subject, SqlProxyGenerationProfile gp)
+        {
+            foreach (var p in subject.Columns.SpecifyProperties(subject.SpecifyClassName(), gp))
+                yield return p;
+
+            foreach (var m in subject.SpecifyCustomMethods(gp))
+                yield return m;
+
+            foreach (var c in subject.SpecifyConstructors(gp))
+                yield return c;
+
+        }
 
         /// <summary>
         /// Specifies a table proxy
@@ -231,11 +314,7 @@ namespace SqlT.CSharp
                 Name: subject.SpecifyClassName(),
                 AccessLevel: gp.Internalize ? ClrAccessKind.Internal : ClrAccessKind.Public,
                 Documentation: new ElementDescription(subject.Documentation),
-                Members: union(
-                    subject.Columns.SpecifyProperties(subject.SpecifyClassName(), gp), 
-                    subject.SpecifyCustomMethods(gp), 
-                    subject.SpecifyConstructors(gp)
-                    ),
+                Members: subject.SpecifyMembers(gp),
                 Attributions: subject.SpecifyAttributions(),
                 BaseTypes: subject.SpecifyBaseTypes(gp),
                 ImplicitRealizations : subject.SpecifyDataContractConformance(gp),
@@ -249,8 +328,6 @@ namespace SqlT.CSharp
         }
 
         public static ClrAccessKind SpecifyEffectiveAccessLevel(this SqlProxyGenerationProfile gp)
-            => gp.Internalize 
-            ? ClrAccessKind.Internal 
-            : ClrAccessKind.Public;
+            => gp.Internalize  ? ClrAccessKind.Internal  : ClrAccessKind.Public;
     }
 }

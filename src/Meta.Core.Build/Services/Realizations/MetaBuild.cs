@@ -64,7 +64,7 @@ namespace Meta.Core.Build
             (
                 new MSEX.BuildParameters
                 {
-                    Loggers = metacore.rolist<ILogger>(new MSL.ConsoleLogger())
+                    Loggers = metacore.roitems<ILogger>(new MSL.ConsoleLogger())
 
                 }, 
                 buildRequest

@@ -6,9 +6,6 @@
 namespace SqlT.Core
 {
     using System.ComponentModel;
-    using static metacore;
-
-
 
     /// <summary>
     /// Characterizes a structural field list
@@ -24,9 +21,7 @@ namespace SqlT.Core
             this.TableType = string.Empty;
             this.TypedIdentifierType = string.Empty;
             this.IdentifierValueColumn = string.Empty;
-            this.RowSourceType = GenerationRowSourceKind.Table;
-          
-          
+            this.RowSourceType = GenerationRowSourceKind.Table;                   
         }
 
         /// <summary>
@@ -75,5 +70,4 @@ namespace SqlT.Core
         public override string ToString()
             => $"{RowSource} => {ListName}";
     }
-
 }

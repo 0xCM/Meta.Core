@@ -117,7 +117,7 @@ namespace Meta.Core
 
         public static Option<FilePath> TryFindPath(this FileName filename, params FolderPath[] SearchFolders)
         {
-            var folders = union(new FolderPath(Environment.CurrentDirectory), SearchFolders,
+            var folders = unionize(stream(new FolderPath(Environment.CurrentDirectory)), SearchFolders,
                 Environment.GetEnvironmentVariable("path").Split(';').Select(d => new FolderPath(d)));
             foreach (var folder in folders)
             {
