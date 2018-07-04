@@ -1,0 +1,21 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql
+
+<column_definition> ::=  {
+	column_name <data_type>  
+		[ FILESTREAM ]  
+		[ <column_collation_spec> ]   
+		[ SPARSE ]  
+		[ <column_mask_spec> ]  
+		[ <column_default_spec> ]   
+		[ <column_identity_spec>  
+		[ NOT FOR REPLICATION ]   
+		[ <column_generation_spec> ]   
+		[ <null_or_not_null> ]  
+		[ ROWGUIDCOL ]  
+		[ <column_encryption_type> ]  
+		[ <column_constraints> ]   
+		[ <column_index> ]  
+}
+
+
+

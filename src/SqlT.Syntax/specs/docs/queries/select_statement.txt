@@ -1,0 +1,11 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/queries/select-transact-sql
+
+<SELECT statement> ::=    
+    [ WITH { [ XMLNAMESPACES ,] [ <common_table_expression> [,...n] ] } ]  
+    <query_expression>   
+    [ ORDER BY { order_by_expression | column_position [ ASC | DESC ] }   
+  [ ,...n ] ]   
+    [ <FOR Clause>]   
+    [ OPTION ( <query_hint> [ ,...n ] ) ]   
+
+

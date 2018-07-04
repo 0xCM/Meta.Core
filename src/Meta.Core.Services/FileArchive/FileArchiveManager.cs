@@ -10,6 +10,7 @@ namespace Meta.Core
     using System.Linq;
     using System.IO;
     using System.IO.Compression;
+    
 
     using static metacore;
     using static ArchiveManagerMessages;
@@ -24,6 +25,7 @@ namespace Meta.Core
         public FileArchiveManager(IApplicationContext C)
             : base(C) { }
 
+       
 
         ZipArchiveEntry CreateEntry(FolderPath SrcDir, FilePath SrcFile, ZipArchive archive)
         {

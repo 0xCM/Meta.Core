@@ -1,0 +1,6 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/functions/next-value-for-transact-sql
+
+<next_value_for> ::= {
+     NEXT VALUE FOR <sequence_object_name> 
+   [ OVER (<over_order_by_clause>) ]
+}  

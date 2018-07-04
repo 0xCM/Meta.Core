@@ -1,0 +1,26 @@
+﻿<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  
+  <PropertyGroup>
+    <DevArea>sqlt</DevArea>
+    <AssemblyName>SqlT.Models</AssemblyName>
+    <OutputType>Library</OutputType>
+    <TopDir>$(DevAreaRoot)\$(DevArea)\</TopDir>
+    <TopDevDir>$(TopDir)</TopDevDir>
+    <TopConfigDir>$(TopDevDir)src\SqlT.Build\</TopConfigDir>
+  </PropertyGroup>
+  
+  <Import Project="$(TopConfigDir)Build.Common.props"/>
+  <Import Project="$(TopConfigDir)Build.Refs.Minimal.props"/>
+
+  <ItemGroup>
+    <Reference Include="Meta.Core.Command">
+      <HintPath>$(metacore-lib-distdir)Meta.Core.Command.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+
+  </ItemGroup>
+  
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(TopConfigDir)Build.Lib.Post.props"/>
+
+</Project>

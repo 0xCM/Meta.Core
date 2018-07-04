@@ -1,0 +1,5 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/language-elements/declare-local-variable-transact-sql
+
+
+<variable_table_type_definition> ::=   
+     TABLE ( { <variable_column_definition> | <variable_table_constraint> } [ ,... ] )   

@@ -184,7 +184,17 @@ namespace Meta.Core
 
         void Traversed(MethodCallExpression X)
         {
-            StandardMethods.TryFind(X.Method.Name).OnSome(m => HandleMethodCall((dynamic)m, X));
+            var method = StandardMethods.TryFind(X.Method.Name).ValueOrDefault();
+            if (method != null)
+            {
+                switch (method)
+                {
+                    case SelectMethod m: HandleMethodCall(m, X); break;
+                    case WhereMethod m: HandleMethodCall(m, X); break;
+                    case OrderSpecificationMethod m: HandleMethodCall(m, X); break;
+                }
+            }
+            //StandardMethods.TryFind(X.Method.Name).OnSome(m => HandleMethodCall((dynamic)m, X));
 
         }
 

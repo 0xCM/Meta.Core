@@ -1,0 +1,14 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql
+
+<table_index_option> ::=  {   
+    PAD_INDEX = <toggle>   
+  | FILLFACTOR = fillfactor   
+  | IGNORE_DUP_KEY = <toggle>   
+  | STATISTICS_NORECOMPUTE = <toggle>   
+  | ALLOW_ROW_LOCKS = <toggle>   
+  | ALLOW_PAGE_LOCKS = <toggle>   
+  | COMPRESSION_DELAY= {0 | delay [Minutes]}  
+  | DATA_COMPRESSION = <index_compression_type>
+       [ ON PARTITIONS ( { <partition_number_expression> | <range> }   
+       [ , ...n ] ) ]  
+}  

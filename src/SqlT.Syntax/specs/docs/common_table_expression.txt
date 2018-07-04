@@ -1,0 +1,6 @@
+﻿[ WITH <common_table_expression> [ ,...n ] ]  
+
+<common_table_expression>::=  
+    expression_name [ ( column_name [ ,...n ] ) ]  
+    AS  
+    ( CTE_query_definition )  

@@ -1,0 +1,42 @@
+﻿{
+  "Name": "SqlT.Store",
+  "ProjectName": "",
+  "OutputDirectory": "",  
+  "ConnectionString": "Data Source=localhost;Integrated Security=true; Initial Catalog=SqlT",
+  "Schemas": [
+    {
+      "SchemaName": "SqlT",
+      "SpecializeNamespace": false,
+      "OperationContractName": "ISqlT"
+
+    }
+
+  ],
+
+  "RootNamespace": "SqlT.Store",
+  "ExcludedColumns": [
+    "DbCreateTime",
+    "DbExpiryTime",
+    "UpdateTS",
+    "CreateTS"
+  ],
+  "DefaultUsings": [
+    "System",
+    "SqlT.Types"
+  ],
+  "EmitTables": false,
+  "EmitViews": true,
+  "EmitGenerationSpec": false,
+  "EmitPrimaryKeys": false,
+  "EmitDependencies": false,
+  "EmitDateType": false,
+  "EmitSingleFile": true,
+  "EmitStoredProcedures": true,
+  "EmitTableFunctions": true,
+  "EmitTableTypes": false,
+  "EmitSequences": false,
+  "EmitBrokerFactory": false,
+  "EmitTypeContracts": false,
+  "EmitOperationContracts":  false
+  
+}

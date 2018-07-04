@@ -1,0 +1,11 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/queries/from-transact-sql
+
+<for_system_time> ::=  {  
+	   system_time_as_of   
+    |  system_time_from_to  
+    |  system_time_between
+    |  system_time_contained_in
+    |  system_time_all
+}  
+
+

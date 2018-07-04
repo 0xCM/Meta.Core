@@ -1,0 +1,6 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql
+
+
+<table_compression_spec> ::= {
+	DATA_COMPRESSION = <table_compression_type> [ ON PARTITIONS ( { <partition_number_expression> | <partition_number_range> }   [ , ...n ] ) ]
+}

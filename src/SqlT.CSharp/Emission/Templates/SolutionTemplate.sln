@@ -1,0 +1,21 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.7
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{$(ProjectTypeId)}") = "$(ProjectName)", "$(ProjectName).csproj", "{$(ProjectId)}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{$(ProjectId)}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{$(ProjectId)}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{$(ProjectId)}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{$(ProjectId)}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

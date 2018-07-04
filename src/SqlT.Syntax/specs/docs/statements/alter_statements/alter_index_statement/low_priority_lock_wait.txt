@@ -1,0 +1,7 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/statements/alter-index-transact-sql
+
+<low_priority_lock_wait>::=  
+{  
+    WAIT_AT_LOW_PRIORITY ( MAX_DURATION = <time> [ MINUTES ] ,   
+                          ABORT_AFTER_WAIT = { NONE | SELF | BLOCKERS } )  
+}  

@@ -1,8 +1,7 @@
 ﻿//-------------------------------------------------------------------------------------------
-// PDMS Component Source
-// Initial Contributor: Chris Moore, Chris.Moore@RealPage.com
-// Subsequent Contributors: <NoneYet/>
-// QOTD: Measure thrice before you slice to save your head from the dreaded vice
+// MetaCore
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 public struct ShellIdentity
 {

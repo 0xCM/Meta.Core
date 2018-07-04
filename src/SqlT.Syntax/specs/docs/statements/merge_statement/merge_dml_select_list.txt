@@ -1,0 +1,2 @@
+﻿<merge_dml_select_list>::=  
+    { <column_name> | scalar_expression } [ [AS] column_alias_identifier ] [ ,...n ]  

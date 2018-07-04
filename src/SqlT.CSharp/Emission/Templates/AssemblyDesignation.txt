@@ -1,0 +1,18 @@
+﻿using System;
+using System.Reflection;
+using SqlT.Core;
+
+
+using $(RootNamespace);
+
+[assembly: SqlProxyAssembly]
+[assembly: AssemblyVersion($(Designator).AssemblyVersion)]
+[assembly: AssemblyTitle($(Designator).AssemblyTitle)]
+
+public class $(Designator) : SqlProxyAssembly<$(Designator)>
+{
+    public const string AssemblyTitle= "$(AssemblyTitle)";
+    public const string AssemblyVersion = "$(AssemblyVersion)";
+
+}
+

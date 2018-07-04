@@ -1,0 +1,53 @@
+﻿{
+  "Name": "SqlT.Types",
+  "ProjectName": "",
+  "OutputDirectory": "",
+  "ConnectionString": "Data Source=localhost;Integrated Security=true; Initial Catalog=SqlT",
+  "Schemas": [
+    {
+      "SchemaName": "SqlT",
+      "SpecializeNamespace": false
+    },
+
+    {
+      "SchemaName": "SqlDom",
+      "SpecializeNamespace": true
+    },
+    {
+      "SchemaName": "MC",
+      "SpecializeNamespace": true
+    },
+    {
+      "SchemaName": "SqlStore",
+      "SpecializeNamespace": true
+    }
+
+
+  ],
+
+  "RootNamespace": "SqlT.Types",
+  "ExcludedColumns": [
+    "DbCreateTime",
+    "DbExpiryTime"
+  ],
+  "DefaultUsings": [
+    "System",
+    "System.Collections.Generic"
+  ],
+  "EmitTables": false,
+  "EmitViews": true,
+  "EmitGenerationSpec": false,
+  "EmitPrimaryKeys": false,
+  "EmitDependencies": false,
+  "EmitDateType": false,
+  "EmitSingleFile": true,
+  "EmitStoredProcedures": false,
+  "EmitTableFunctions": false,
+  "EmitTableTypes": true,
+  "EmitSequences": false,
+  "EmitBrokerFactory": false,
+  "EmitTypeContracts": false,
+  "EmitEnums": true
+
+
+}

@@ -1,0 +1,19 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/statements/merge-transact-sql
+
+<predicate> ::= { 
+	  <comparison_predicate>
+    | <like_predicate>
+    | <between_predicate>
+    | <nullity_predicate>
+    | <contains_predicate>
+    | <freetext_predicate>
+    | <in_predicate>
+    | <membership_predicate>
+    | exists_expression
+	}   
+
+
+
+
+
+

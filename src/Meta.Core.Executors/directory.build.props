@@ -3,8 +3,7 @@
   <Import Project="../common.props"/>
 
   <PropertyGroup>
-    <ProductName>metacore/executors</ProductName>
-    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+        <TargetFrameworks>netcoreapp2.1;net472</TargetFrameworks>    
   </PropertyGroup>
 
 </Project>

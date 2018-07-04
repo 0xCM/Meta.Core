@@ -1,0 +1,27 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/queries/hints-transact-sql-query
+
+<query_hint > ::= { 
+  { HASH | ORDER } GROUP   
+  | { CONCAT | HASH | MERGE } UNION   
+  | { LOOP | MERGE | HASH } JOIN   
+  | EXPAND VIEWS   
+  | FAST number_rows   
+  | FORCE ORDER   
+  | { FORCE | DISABLE } EXTERNALPUSHDOWN  
+  | IGNORE_NONCLUSTERED_COLUMNSTORE_INDEX  
+  | KEEP PLAN   
+  | KEEPFIXED PLAN  
+  | MAX_GRANT_PERCENT = percent  
+  | MIN_GRANT_PERCENT = percent  
+  | MAXDOP number_of_processors   
+  | MAXRECURSION number   
+  | NO_PERFORMANCE_SPOOL   
+  | OPTIMIZE FOR ( @variable_name { UNKNOWN | = literal_constant } [ , ...n ] )  
+  | OPTIMIZE FOR UNKNOWN  
+  | PARAMETERIZATION { SIMPLE | FORCED }  
+  | RECOMPILE  
+  | ROBUST PLAN   
+  | USE HINT ( '<hint_name>' [ , ...n ] )
+  | USE PLAN N'xml_plan'  
+  | TABLE HINT ( exposed_object_name [ , <table_hint> [ [, ]...n ] ] )  
+}  

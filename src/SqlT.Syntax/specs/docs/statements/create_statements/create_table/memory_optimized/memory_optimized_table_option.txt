@@ -1,0 +1,11 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql
+
+<memory_optimized_table_option> ::=  
+{  
+    MEMORY_OPTIMIZED = ON   
+  | DURABILITY = {SCHEMA_ONLY | SCHEMA_AND_DATA}  
+  | SYSTEM_VERSIONING = ON [ ( HISTORY_TABLE = schema_name . history_table_name  
+        [, DATA_CONSISTENCY_CHECK = { ON | OFF } ] ) ]   
+
+}  
+

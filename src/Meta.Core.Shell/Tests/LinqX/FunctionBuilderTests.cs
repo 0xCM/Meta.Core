@@ -27,7 +27,7 @@ namespace Meta.Core.Modules
         
         public WorkFlowed<TestResult> Iconify()
         {
-            var data = http.get(uri("http://json.schemastore.org/tsconfig"));
+            //var data = http.get(uri("http://json.schemastore.org/tsconfig"));
 
             var content = files.folder(@"C:\Dev\Areas\Labs\NodeExec");
             var icon = FilePath.Parse(@"C:\Dev\Assets\icons\Selected\Annotate_Disabled.ico");

@@ -1,0 +1,6 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql
+
+
+<table_sytem_time_period> :: = {
+	PERIOD FOR SYSTEM_TIME ( system_start_time_column_name, system_end_time_column_name )
+	}

@@ -5,11 +5,6 @@
 //-------------------------------------------------------------------------------------------
 namespace Meta.Core.Messaging
 {
-    using System;
-    using System.Linq;
-    using System.Collections.Generic;
-    using System.ServiceModel;    
-    using System.Collections.Concurrent;
 
     using static metacore;
 
@@ -23,6 +18,12 @@ namespace Meta.Core.Messaging
     }
 
 #if WCF
+    using System;
+    using System.Linq;
+    using System.Collections.Generic;
+    using System.ServiceModel;    
+    using System.Collections.Concurrent;
+
     public abstract class MessageHub<H, C, M> : MessageHub<M>
             where H : MessageHub<H, C, M>, IMessageHub<M>, new()
             where C : IMessageHub<M>

@@ -1,0 +1,18 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/statements/create-procedure-transact-sql
+
+<create_native_procedure> ::=
+	CREATE [ OR ALTER ] { PROC | PROCEDURE } [schema_name.] procedure_name  
+    [ { @parameter data_type } [ NULL | NOT NULL ] [ = default ] 
+        [ OUT | OUTPUT ] [READONLY] 
+    ] [ ,... n ]  
+  WITH NATIVE_COMPILATION, SCHEMABINDING [ , EXECUTE AS clause ]  
+AS  
+{  
+  BEGIN ATOMIC WITH (native_procedure_set_option [ ,... n ] )  
+sql_statement [;] [ ... n ]  
+ [ END ]  
+}  
+ [;]  
+
+
+

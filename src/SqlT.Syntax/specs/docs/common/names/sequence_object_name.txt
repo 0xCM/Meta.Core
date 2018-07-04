@@ -1,0 +1,3 @@
+﻿<sequence_object_name> ::= {
+	[ database_name . ] [ schema_name . ]  sequence_name  
+}

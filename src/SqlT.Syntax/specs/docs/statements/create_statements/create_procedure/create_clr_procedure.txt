@@ -1,0 +1,9 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/statements/create-procedure-transact-sql
+
+<create_clr_procedure> ::=  CREATE [ OR ALTER ] { PROC | PROCEDURE } [schema_name.] procedure_name [ ; number ]   
+    [ { @parameter [ type_schema_name. ] data_type }   
+        [ = default ] [ OUT | OUTPUT ] [READONLY]  
+    ] [ ,...n ]   
+[ WITH EXECUTE AS Clause ]  
+AS { EXTERNAL NAME assembly_name.class_name.method_name }  
+[;]

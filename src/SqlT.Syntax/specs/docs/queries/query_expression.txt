@@ -1,0 +1,7 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/queries/select-transact-sql
+
+<query_expression> ::=   
+    { <query_specification> | (<query_expression>) }   
+    [  <query_set_operation> <query_specification> 
+	| (<query_expression>) [...n ] ]   
+

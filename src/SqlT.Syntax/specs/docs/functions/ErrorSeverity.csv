@@ -1,0 +1,26 @@
+Severity Level,Description
+0,Informational messages that return status information or report errors that are not severe. The Database Engine does not raise system errors with severities of 0 through 9.
+1,Informational messages that return status information or report errors that are not severe. The Database Engine does not raise system errors with severities of 0 through 9.
+2,Informational messages that return status information or report errors that are not severe. The Database Engine does not raise system errors with severities of 0 through 9.
+3,Informational messages that return status information or report errors that are not severe. The Database Engine does not raise system errors with severities of 0 through 9.
+4,Informational messages that return status information or report errors that are not severe. The Database Engine does not raise system errors with severities of 0 through 9.
+5,Informational messages that return status information or report errors that are not severe. The Database Engine does not raise system errors with severities of 0 through 9.
+6,Informational messages that return status information or report errors that are not severe. The Database Engine does not raise system errors with severities of 0 through 9.
+7,Informational messages that return status information or report errors that are not severe. The Database Engine does not raise system errors with severities of 0 through 9.
+8,Informational messages that return status information or report errors that are not severe. The Database Engine does not raise system errors with severities of 0 through 9.
+9,Informational messages that return status information or report errors that are not severe. The Database Engine does not raise system errors with severities of 0 through 9.
+10,Informational messages that return status information or report errors that are not severe. For compatibility reasons the Database Engine converts severity 10 to severity 0 before returning the error information to the calling application.
+11,Indicates that the given object or entity does not exist.
+12,"A special severity for queries that do not use locking because of special query hints. In some cases, read operations performed by these statements could result in inconsistent data, since locks are not taken to guarantee consistency."
+13,Indicates transaction deadlock errors.
+14,"Indicates security-related errors, such as permission denied."
+15,Indicates syntax errors in the Transact-SQL command.
+16,Indicates general errors that can be corrected by the user.
+17,"Indicates that the statement caused SQL Server to run out of resources (such as memory, locks, or disk space for the database) or to exceed some limit set by the system administrator."
+18,"Indicates a problem in the Database Engine software, but the statement completes execution, and the connection to the instance of the Database Engine is maintained. The system administrator should be informed every time a message with a severity level of 18 occurs."
+19,Indicates that a nonconfigurable Database Engine limit has been exceeded and the current batch process has been terminated. Error messages with a severity level of 19 or higher stop the execution of the current batch. Severity level 19 errors are rare and must be corrected by the system administrator or your primary support provider. Contact your system administrator when a message with a severity level 19 is raised. Error messages with a severity level from 19 through 25 are written to the error log.
+20,"Indicates that a statement has encountered a problem. Because the problem has affected only the current task, it is unlikely that the database itself has been damaged."
+21,"Indicates that a problem has been encountered that affects all tasks in the current database, but it is unlikely that the database itself has been damaged."
+22,Indicates that the table or index specified in the message has been damaged by a software or hardware problem.
+23,Indicates that the integrity of the entire database is in question because of a hardware or software problem.
+24,Indicates a media failure. The system administrator may have to restore the database. You may also have to call your hardware vendor.

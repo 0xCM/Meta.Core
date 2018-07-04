@@ -1,0 +1,7 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/queries/select-over-clause-transact-sql
+
+<over_order_by> ::=  
+	ORDER BY order_by_expression  
+		[ COLLATE collation_name ]   
+		[ ASC | DESC ]   
+		[ ,...n ]  

@@ -1,0 +1,5 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/queries/from-transact-sql
+
+<derived_table_source> ::= {
+	derived_table [ [ AS ] table_alias ] [ ( column_alias [ ,...n ] ) ]
+	}

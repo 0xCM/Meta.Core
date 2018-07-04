@@ -1,0 +1,8 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/language-elements/unary-operators-positive
+
+<unary_operator> ::= {
+	+
+	|-
+	|~
+}
+	

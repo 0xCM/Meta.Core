@@ -1,0 +1,3 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql
+
+<index_compression_type> ::= { NONE | ROW | PAGE | COLUMNSTORE | COLUMNSTORE_ARCHIVE}

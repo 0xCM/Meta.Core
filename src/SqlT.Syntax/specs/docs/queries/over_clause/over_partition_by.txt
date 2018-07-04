@@ -1,0 +1,5 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/queries/select-over-clause-transact-sql
+
+
+<over_partition_by> ::=  
+	PARTITION BY value_expression , ... [ n ]  

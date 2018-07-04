@@ -1,0 +1,85 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/statements/create-index-transact-sql
+
+CREATE [ UNIQUE ] [ CLUSTERED | NONCLUSTERED ] INDEX index_name   
+    ON <object> ( column [ ASC | DESC ] [ ,...n ] )   
+    [ INCLUDE ( column_name [ ,...n ] ) ]  
+    [ WHERE <filter_predicate> ]  
+    [ WITH ( <relational_index_option> [ ,...n ] ) ]  
+    [ ON { partition_scheme_name ( column_name )   
+         | filegroup_name   
+         | default   
+         }  
+    ]  
+    [ FILESTREAM_ON { filestream_filegroup_name | partition_scheme_name | "NULL" } ]  
+
+[ ; ]  
+
+<object> ::=  
+{  
+    [ database_name. [ schema_name ] . | schema_name. ]   
+    table_or_view_name  
+}  
+
+<relational_index_option> ::=  
+{  
+    PAD_INDEX = { ON | OFF }  
+  | FILLFACTOR = fillfactor  
+  | SORT_IN_TEMPDB = { ON | OFF }  
+  | IGNORE_DUP_KEY = { ON | OFF }  
+  | STATISTICS_NORECOMPUTE = { ON | OFF }  
+  | STATISTICS_INCREMENTAL = { ON | OFF }  
+  | DROP_EXISTING = { ON | OFF }  
+  | ONLINE = { ON | OFF }  
+  | ALLOW_ROW_LOCKS = { ON | OFF }  
+  | ALLOW_PAGE_LOCKS = { ON | OFF }  
+  | MAXDOP = max_degree_of_parallelism  
+  | DATA_COMPRESSION = { NONE | ROW | PAGE}   
+     [ ON PARTITIONS ( { <partition_number_expression> | <range> }   
+     [ , ...n ] ) ]  
+}  
+
+<filter_predicate> ::=   
+    <conjunct> [ AND <conjunct> ]  
+
+<conjunct> ::=  
+    <disjunct> | <comparison>  
+
+<disjunct> ::=  
+        column_name IN (constant ,...n)  
+
+<comparison> ::=  
+        column_name <comparison_op> constant  
+
+<comparison_op> ::=  
+    { IS | IS NOT | = | <> | != | > | >= | !> | < | <= | !< }  
+
+<range> ::=   
+<partition_number_expression> TO <partition_number_expression>  
+
+Backward Compatible Relational Index  
+Important   The backward compatible relational index syntax structure 
+will be removed in a future version of SQL Server. Avoid using this 
+syntax structure in new development work, and plan to modify 
+applications that currently use the feature. Use the syntax structure 
+specified in <relational_index_option> instead.  
+
+CREATE [ UNIQUE ] [ CLUSTERED | NONCLUSTERED ] INDEX index_name   
+    ON <object> ( column_name [ ASC | DESC ] [ ,...n ] )   
+    [ WITH <backward_compatible_index_option> [ ,...n ] ]  
+    [ ON { filegroup_name | "default" } ]  
+
+<object> ::=  
+{  
+    [ database_name. [ owner_name ] . | owner_name. ]   
+    table_or_view_name  
+}  
+
+<backward_compatible_index_option> ::=  
+{   
+    PAD_INDEX  
+  | FILLFACTOR = fillfactor  
+  | SORT_IN_TEMPDB  
+  | IGNORE_DUP_KEY  
+  | STATISTICS_NORECOMPUTE   
+  | DROP_EXISTING   
+}  

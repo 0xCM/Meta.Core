@@ -1,0 +1,33 @@
+﻿{
+  "Name": "ᐸNameᐳ",
+  "ProjectName": "ᐸProjectNameᐳ",
+  "OutputDirectory": "ᐸOutputDirectoryᐳ",
+  "ConnectionString": "ᐸConnectionStringᐳ",
+  "RootNamespace": "ᐸRootNamespaceᐳ",
+  "ExcludeTables": false,
+  "DefaultUsings": [
+    "System",
+    "System.Collections.Generic"
+  ],
+  "Schemas": [
+    {
+      "SchemaName": "ᐸSchemaNameᐳ",
+      "SpecializeNamespace": false
+    }
+  ],
+  "EmitTables": true,
+  "EmitViews": true,
+  "EmitGenerationSpec": true,
+  "EmitPrimaryKeys": false,
+  "EmitDependencies": false,
+  "EmitDateType": false,
+  "EmitSingleFile": true,
+  "EmitStoredProcedures": true,
+  "EmitTableFunctions": true,
+  "EmitTableTypes": true,
+  "EmitSequences": true,
+  "EmitBrokerFactory": true,
+  "EmitProject": true,
+  "BuildProject": true,
+  "AssemblyDesignatorName": "ᐸAssemblyDesignatorNameᐳ"
+}

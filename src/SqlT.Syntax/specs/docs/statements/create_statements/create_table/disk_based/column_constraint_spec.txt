@@ -1,0 +1,8 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql
+
+<column_constraint_spec> ::= {
+	  <column_pk_constraint>
+	| <column_uq_constraint>
+	| <column_fk_constraint>	
+	| <column_check_constraint>
+}

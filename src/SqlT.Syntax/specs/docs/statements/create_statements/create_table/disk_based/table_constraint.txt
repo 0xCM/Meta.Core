@@ -1,0 +1,23 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql
+
+<table_constraint> ::=  
+	[ CONSTRAINT constraint_name ]   
+	{   
+		{ PRIMARY KEY | UNIQUE }   
+			[ CLUSTERED | NONCLUSTERED ]   
+			(column [ ASC | DESC ] [ ,...n ] )   
+			[   
+				WITH FILLFACTOR = fillfactor   
+			   |WITH ( <index_option> [ , ...n ] )   
+			]  
+			[ ON { partition_scheme_name (partition_column_name)  
+				| filegroup | "default" } ]   
+		| FOREIGN KEY   
+			( column [ ,...n ] )   
+			REFERENCES referenced_table_name [ ( ref_column [ ,...n ] ) ]   
+			[ ON DELETE { NO ACTION | CASCADE | SET NULL | SET DEFAULT } ]   
+			[ ON UPDATE { NO ACTION | CASCADE | SET NULL | SET DEFAULT } ]   
+			[ NOT FOR REPLICATION ]   
+		| CHECK [ NOT FOR REPLICATION ] ( logical_expression )  
+
+

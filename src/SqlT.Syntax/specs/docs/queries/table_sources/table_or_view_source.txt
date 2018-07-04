@@ -1,0 +1,6 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/queries/from-transact-sql
+
+<table_or_view_source> ::= {
+	table_or_view_name [ [ AS ] table_alias ] [ <tablesample_clause> ] [ WITH ( < table_hint > [ [ , ]...n ] ) ]
+	
+	}

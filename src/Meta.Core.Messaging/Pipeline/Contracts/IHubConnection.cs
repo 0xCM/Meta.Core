@@ -7,7 +7,7 @@ namespace Meta.Core.Messaging
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.ServiceModel;
+    
 
     using static metacore;
 

@@ -1,0 +1,19 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/queries/search-condition-transact-sql
+
+<search_condition> ::=   { [ NOT ] <predicate> | (<search_condition>)}   
+    [ 
+		{ AND | OR } 
+		[ NOT ] { <predicate> | ( <search_condition> ) } 
+	]  [ ,...n ]   
+
+<predicate> ::=   { 
+    expression { = | < > | ! = | > | > = | ! > | < | < = | ! < } expression   
+    | string_expression [ NOT ] LIKE string_expression [ ESCAPE 'escape_character' ]   
+    | expression [ NOT ] BETWEEN expression AND expression   
+    | expression IS [ NOT ] NULL   
+    | CONTAINS   ( { column | * } , '<contains_search_condition>' )   
+    | FREETEXT ( { column | * } , 'freetext_string' )   
+    | expression [ NOT ] IN ( subquery | expression [ ,...n ] )   
+    | expression { = | < > | ! = | > | > = | ! > | < | < = | ! < } { ALL | SOME | ANY} ( subquery )   
+    | EXISTS ( subquery )     
+    }   

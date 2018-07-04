@@ -1,0 +1,6 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/statements/alter-index-transact-sql
+
+<reorganize_option>::=  
+{  
+       LOB_COMPACTION = { ON | OFF }  |  COMPRESS_ALL_ROW_GROUPS =  { ON | OFF}  
+}  

@@ -1,0 +1,4 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/statements/merge-transact-sql
+
+
+<in_predicate> ::= {expression [ NOT ] IN ( subquery | expression [ ,...n ] )}

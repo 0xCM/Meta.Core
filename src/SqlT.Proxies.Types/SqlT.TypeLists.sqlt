@@ -1,0 +1,34 @@
+﻿{
+  "Name": "SqlT.TypeLists",
+  "EmitListedTypes": true,
+  "FieldLists": [
+    {
+      "ListName": "RegisteredTools",
+      "RowSource": "[MC].[ToolRegistry]",
+      "IdentifierColumn": "ToolId",
+      "TableType": "[MC].[ToolRegistration]"
+    }
+
+
+  ],
+  "DefaultUsings": [
+    "SqlT.Types.MC",
+    "System.Collections.Generic"
+  ],
+  "ExcludeSystemObjects": true,
+  "ProfileType": "FieldList",
+  "RootNamespace": "SqlT.Types.Lists",
+  "OutputDirectory": "",
+  "Internalize": false,
+  "EmitDependencies": false,
+  "EmitSingleFile": true,
+  "EmitGenerationSpec": false,
+  "ProjectName": "",
+  "DistributionLabel": "",
+  "EmitProject": false,
+  "BuildProject": false,
+  "AssemblyDesignatorName": "",
+  "ConnectionString": "Data Source=localhost;Initial Catalog=SqlT;Integrated Security=True",
+  "AssemblyReferences": [],
+  "EmitTypeContracts": false
+}

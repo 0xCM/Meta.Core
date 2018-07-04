@@ -1,0 +1,26 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/queries/hints-transact-sql-query
+
+<table_hint> ::=  
+	[ NOEXPAND ] {
+
+	INDEX ( index_value [ ,...n ] ) | INDEX = ( index_value )  
+  | FORCESEEK [( index_value ( index_column_name [,... ] ) ) ]  
+  | FORCESCAN  
+  | HOLDLOCK   
+  | NOLOCK   
+  | NOWAIT  
+  | PAGLOCK   
+  | READCOMMITTED   
+  | READCOMMITTEDLOCK   
+  | READPAST   
+  | READUNCOMMITTED   
+  | REPEATABLEREAD   
+  | ROWLOCK   
+  | SERIALIZABLE   
+  | SNAPSHOT  
+  | SPATIAL_WINDOW_MAX_CELLS = integer  
+  | TABLOCK   
+  | TABLOCKX   
+  | UPDLOCK   
+  | XLOCK  
+}  

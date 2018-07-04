@@ -1,0 +1,6 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql
+
+
+<table_system_versioning> = {
+	SYSTEM_VERSIONING = ON [ ( HISTORY_TABLE = schema_name . history_table_name [, DATA_CONSISTENCY_CHECK = { ON | OFF } ] ) ]
+	}

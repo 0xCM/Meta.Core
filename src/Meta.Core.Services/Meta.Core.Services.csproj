@@ -1,8 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+        <TargetFrameworks>netcoreapp2.1;net472</TargetFrameworks>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="FileArchive\FileArchiveManager.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Include=".unported\Derived\IconExtractor.cs" />
@@ -12,6 +16,12 @@
 
   <ItemGroup>
     <None Include=".unported\ParserExtensions.cs" />
+    <None Include="FileArchive\FileArchiveManager.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.IO.Compression" Version="4.3.0" />
+    <PackageReference Include="System.IO.Compression.ZipFile" Version="4.3.0" />
   </ItemGroup>
 
 

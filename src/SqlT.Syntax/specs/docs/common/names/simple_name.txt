@@ -1,0 +1,1 @@
+﻿<simple_name> ::= <simple_identifier>

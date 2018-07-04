@@ -1,0 +1,4 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/queries/from-transact-sql
+
+<rowset_source> ::= {rowset_function [ [ AS ] table_alias ] [ ( bulk_column_alias [ ,...n ] ) ] }
+

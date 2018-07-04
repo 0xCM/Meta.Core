@@ -1,0 +1,8 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql
+
+<column_fk_constraint> ::= {
+		[ FOREIGN KEY ]  REFERENCES [ schema_name . ] referenced_table_name [ ( ref_column ) ]   
+		[ <column_fk_on_delete> ]   
+		[ <column_fk_on_update> ]   
+		[ NOT FOR REPLICATION ]   
+}

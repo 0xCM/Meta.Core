@@ -1,0 +1,3 @@
+﻿<index_options> ::= {
+	<index_option> [ , ...n ] 
+}

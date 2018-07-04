@@ -1,0 +1,13 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/queries/select-transact-sql
+
+<query_specification> ::=   
+	SELECT [<all_or_distinct>]   
+		[<top_clause>]   
+		<select_list>   
+		[ INTO new_table ]   
+		[ FROM { <table_source> } [ ,...n ] ]   
+		[ WHERE <search_condition> ]   
+		[ <GROUP BY> ]   
+		[ HAVING <search_condition> ]
+
+

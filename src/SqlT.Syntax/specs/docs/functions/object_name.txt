@@ -1,0 +1,3 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/functions/object-name-transact-sql
+
+OBJECT_NAME ( object_id [, database_id ] )  

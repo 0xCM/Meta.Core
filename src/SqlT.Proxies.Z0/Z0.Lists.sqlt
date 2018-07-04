@@ -1,0 +1,35 @@
+﻿{
+  "Name": "Z0.Lists",
+  "EmitListedTypes": true,
+  "FieldLists": [
+    {
+      "ListName": "SqlCollations",
+      "RowSource": "[Z0].[SqlCollation]",
+      "RowSourceType":  "View",
+      "IdentifierColumn": "CollationName",
+      "TypedIdentifierType": "SqlCollationName",
+      "IdentifierValueColumn": "CollationName"
+    }
+
+
+  ],
+  "DefaultUsings": [
+    
+  ],
+  "ExcludeSystemObjects": true,
+  "ProfileType": "FieldList",
+  "RootNamespace": "SqlT.Proxies.Z0",
+  "OutputDirectory": "",
+  "Internalize": false,
+  "EmitDependencies": false,
+  "EmitSingleFile": true,
+  "EmitGenerationSpec": false,
+  "ProjectName": "",
+  "DistributionLabel": "",
+  "EmitProject": false,
+  "BuildProject": false,
+  "AssemblyDesignatorName": "",
+  "ConnectionString": "Data Source=localhost;Initial Catalog=SqlT;Integrated Security=True",
+  "AssemblyReferences": [],
+  "EmitTypeContracts": false
+}

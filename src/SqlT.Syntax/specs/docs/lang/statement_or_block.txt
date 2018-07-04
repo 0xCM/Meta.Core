@@ -1,0 +1,3 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/language-elements/if-else-transact-sql
+
+<statement_or_block> ::= {sql_statement | statement_block}

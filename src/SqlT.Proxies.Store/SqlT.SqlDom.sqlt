@@ -1,0 +1,43 @@
+﻿{
+  "Name": "SqlT.SqlDom",
+  "ProjectName": "",
+  "OutputDirectory": "",
+  "ConnectionString": "Data Source=localhost;Integrated Security=true; Initial Catalog=SqlT",
+  "BrokerFactoryName": "SqlStoreBrokerFactory",
+  "Schemas": [
+    {
+      "SchemaName": "SqlDom",
+      "SpecializeNamespace": true
+
+    }
+
+  ],
+
+  "RootNamespace": "SqlT.SqlStore",
+  "ExcludedColumns": [
+    "DbCreateTime",
+    "DbExpiryTime",
+    "UpdateTS",
+    "CreateTS"
+  ],
+  "DefaultUsings": [
+    "SqlT.Types.SqlDom",
+    "SqlT.Types"
+  ],
+  "EmitTables": false,
+  "EmitViews": true,
+  "EmitGenerationSpec": false,
+  "EmitPrimaryKeys": false,
+  "EmitDependencies": false,
+  "EmitDateType": false,
+  "EmitSingleFile": true,
+  "EmitStoredProcedures": true,
+  "EmitTableFunctions": true,
+  "EmitTableTypes": false,
+  "EmitSequences": true,
+  "EmitBrokerFactory": false,
+  "EmitTypeContracts": false,
+  "EmitOperationContracts": false,
+  "AlwaysEmitNames": false
+
+}

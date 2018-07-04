@@ -1,0 +1,12 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql
+
+<column_uq_constraint> ::= {
+	UNIQUE [ CLUSTERED | NONCLUSTERED ]   
+	[   
+		WITH FILLFACTOR = fillfactor    
+		| WITH (<index_options>)   
+	]   
+			
+	[ ON { partition_scheme_name ( partition_column_name )   
+		| filegroup | "default" } ]  
+}

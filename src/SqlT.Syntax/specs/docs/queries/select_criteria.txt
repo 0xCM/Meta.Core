@@ -1,0 +1,11 @@
+﻿<select_criteria> ::=  
+    [ TOP ( top_expression ) ]   
+    [ ALL | DISTINCT ]   
+    { * | column_name | expression } [ ,...n ]   
+    [ FROM { table_source } [ ,...n ] ]  
+    [ WHERE <search_condition> ]   
+    [ GROUP BY <group_by_clause> ]   
+    [ HAVING <search_condition> ]   
+    [ ORDER BY <order_by_expression> ]  
+    [ OPTION ( <query_option> [ ,...n ] ) ]
+

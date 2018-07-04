@@ -1,0 +1,10 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/statements/insert-transact-sql
+
+<insert_target> ::=  
+{   
+    [ server_name . database_name . schema_name .   
+      | database_name .[ schema_name ] .   
+      | schema_name .   
+    ]  
+  table_or_view_name  
+}  

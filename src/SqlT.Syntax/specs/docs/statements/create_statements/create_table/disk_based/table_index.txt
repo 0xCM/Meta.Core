@@ -1,0 +1,19 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql
+
+<table_index> ::=   
+{  
+    {  
+      INDEX index_name [ CLUSTERED | NONCLUSTERED ]   
+         (column_name [ ASC | DESC ] [ ,... n ] )   
+    | INDEX index_name CLUSTERED COLUMNSTORE  
+    | INDEX index_name [ NONCLUSTERED ] COLUMNSTORE (column_name [ ,... n ] )  
+    }  
+    [ WITH ( <disk_table_index_option> [ ,... n ] ) ]   
+    [ ON { partition_scheme_name (column_name )   
+         | filegroup_name  
+         | default   
+         }  
+    ]   
+    [ FILESTREAM_ON { filestream_filegroup_name | partition_scheme_name | "NULL" } ]  
+
+}   

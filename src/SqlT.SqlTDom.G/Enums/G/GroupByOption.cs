@@ -1,0 +1,13 @@
+////This file was generated 6/24/2017 12:42:26 AM
+using System;
+using System.Collections.Generic;
+
+namespace SqlT.SqlTDom
+{
+    public enum GroupByOption : int
+    {
+        None = 0,
+        Cube = 1,
+        Rollup = 2
+    }
+}

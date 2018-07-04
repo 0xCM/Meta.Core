@@ -4,7 +4,6 @@
 
   <PropertyGroup>
     <ProductName>metacore/clrspec</ProductName>
-    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
   </PropertyGroup>
 
 </Project>

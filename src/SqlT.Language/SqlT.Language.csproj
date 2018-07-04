@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp2.1;net472</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Meta.Core.Floor\Meta.Core.Floor.csproj" />
+    <ProjectReference Include="..\SqlT.Models\SqlT.Models.csproj" />
+  </ItemGroup>
+
+
+</Project>

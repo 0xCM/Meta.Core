@@ -1,0 +1,5 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql
+
+<column_mask_spec> ::= {
+	MASKED WITH ( FUNCTION = 'mask_function')
+	}

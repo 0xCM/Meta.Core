@@ -1,0 +1,10 @@
+<Project>
+
+  <Import Project="../common.props"/>
+
+  <PropertyGroup>
+    <ProductName>sqlt/syntax/proxies</ProductName>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+</Project>

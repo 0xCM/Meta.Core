@@ -1,0 +1,24 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql
+
+<computed_column_definition> ::=  
+	column_name AS computed_column_expression   
+	[ PERSISTED [ NOT NULL ] ]  
+	[   
+		[ CONSTRAINT constraint_name ]  
+		{ PRIMARY KEY | UNIQUE }  
+			[ CLUSTERED | NONCLUSTERED ]  
+			[   
+				WITH FILLFACTOR = fillfactor   
+			  | WITH ( <disk_table_index_option> [ , ...n ] )  
+			]  
+			[ ON { partition_scheme_name ( partition_column_name )   
+			| filegroup | "default" } ]  
+
+		| [ FOREIGN KEY ]   
+			REFERENCES referenced_table_name [ ( ref_column ) ]   
+			[ ON DELETE { NO ACTION | CASCADE } ]   
+			[ ON UPDATE { NO ACTION } ]   
+			[ NOT FOR REPLICATION ]   
+
+		| CHECK [ NOT FOR REPLICATION ] ( logical_expression )   
+	]   

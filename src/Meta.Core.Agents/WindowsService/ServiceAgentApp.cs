@@ -3,12 +3,13 @@
 // This license grants rights to merge, copy, distribute, sell or otherwise do with it 
 // as you like. But please, for the love of Zeus, don't clutter it with regions.
 //-------------------------------------------------------------------------------------------
+
+#if NetFramework
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceProcess;
 
-#if NetFramework
 class GoAwayDesigner { }
 
 /// <summary>

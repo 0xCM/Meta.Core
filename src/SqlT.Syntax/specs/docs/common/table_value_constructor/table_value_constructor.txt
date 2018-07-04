@@ -1,0 +1,4 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/queries/table-value-constructor-transact-sql
+
+<table_value_constructor> ::= 
+	VALUES ( <row_value_expression_list> ) [ ,...n ]   

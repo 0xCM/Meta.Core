@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Globalization;
 using System.Reflection.Emit;
 
+#if FULL
 using Meta.Core;
 /// <summary>
 /// Defines operations for manipulating dynamic assemblies
@@ -47,3 +48,4 @@ public static class ResourceAssembly
 
 }
 
+#endif

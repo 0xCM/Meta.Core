@@ -1,0 +1,14 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/language-elements/declare-local-variable-transact-sql
+
+<declare_local_variable> ::= DECLARE   
+{   
+    { @local_variable [AS] data_type  | [ = value ] }  
+  | { @cursor_variable_name CURSOR }  
+} [,...n]   
+| { @table_variable_name [AS] <variable_table_type_definition> }   
+
+
+
+
+<index_option> ::=  
+See CREATE TABLE for index option syntax.  

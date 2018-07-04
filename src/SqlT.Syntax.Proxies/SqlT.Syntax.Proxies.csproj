@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+        <TargetFrameworks>netcoreapp2.1;net472</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="SqlT.Syntax.sqlt" />
+    <None Remove="SyntaxLists.sqlt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="SqlT.Syntax.sqlt" />
+    <EmbeddedResource Include="SyntaxLists.sqlt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.5.1" />
+  </ItemGroup>
+
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\Meta.Core.Floor\Meta.Core.Floor.csproj" />
+    <ProjectReference Include="..\SqlT.Core\SqlT.Core.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -27,11 +27,11 @@ public class LinkIdentifier : SemanticIdentifier<LinkIdentifier, string>
     /// </summary>
     /// <param name="text"></param>
     /// <returns></returns>
-    public static new LinkIdentifier Parse(string text)
-    {
-        var parts = text.Split(Symbol.flowsto.Represenation);
-        return parts.Length == 0 ? Empty : new LinkIdentifier(parts);        
-    }
+    //public static new LinkIdentifier Parse(string text)
+    //{
+    //    var parts = text.Split(Symbol.flowsto.Represenation, StringSplitOptions.None);
+    //    return parts.Length == 0 ? Empty : new LinkIdentifier(parts);        
+    //}
 
     public static implicit operator LinkIdentifier(string x)
         => new LinkIdentifier(x);

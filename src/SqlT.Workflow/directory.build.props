@@ -1,0 +1,11 @@
+<Project>
+
+  <Import Project="../common.props"/>
+  <Import Project="$(DistRootDir)/msdac/msdac.refs.new.props"/>
+
+
+  <PropertyGroup>
+    <ProductName>sqlt/sqldocs</ProductName>
+  </PropertyGroup>
+
+</Project>

@@ -1,0 +1,29 @@
+{
+  "Name": "sys.13",
+  "OutputDirectory": "",
+  "ConnectionString": "Data Source = localhost; Integrated Security = true; Database = model",
+  "Schemas": [
+    {
+      "SchemaName": "sys",
+      "SpecializeNamespace": true
+    }
+  ],
+  "RootNamespace": "SqlT.SqlSystem.SQL13",
+  "ExcludedColumns": [ ],
+  "ExcludeSystemObjects": false,
+  "DefaultUsings": [
+    "System",
+    "System.Collections.Generic"
+  ],
+  "EmitDependencies": false,
+  "EmitDateType": false,
+  "EmitSingleFile": true,
+
+  "EmitTables": false,
+  "EmitPrimaryKeys": false,
+  "EmitGenerationSpec": false,
+  "EmitViews": true,
+  "EmitStoredProcedures": true,
+  "EmitTableFunctions": true,
+  "AlwaysEmitNames" :  false
+}

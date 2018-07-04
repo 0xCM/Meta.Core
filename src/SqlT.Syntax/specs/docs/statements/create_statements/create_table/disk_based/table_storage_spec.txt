@@ -1,0 +1,7 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql
+
+<table_storage_spec> ::= { 
+	  partition_scheme_name ( partition_column_name )   
+	| filegroup   
+	| "default" 
+	}

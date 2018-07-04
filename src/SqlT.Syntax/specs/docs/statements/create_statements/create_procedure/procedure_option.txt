@@ -1,0 +1,6 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/statements/create-procedure-transact-sql
+
+<procedure_option> ::=   
+    [ ENCRYPTION ]  
+    [ RECOMPILE ]  
+    [ EXECUTE AS Clause ]  

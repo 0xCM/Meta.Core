@@ -1,0 +1,19 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/statements/alter-index-transact-sql
+
+<alter_index_statement> ::= ALTER INDEX { index_name | ALL } ON <index_object_name>  
+{  
+      REBUILD {  
+            [ PARTITION = ALL ] [ WITH ( <rebuild_index_option> [ ,...n ] ) ]   
+          | [ PARTITION = partition_number [ WITH ( <single_partition_rebuild_index_option> ) [ ,...n ] ]  
+      }  
+    | DISABLE  
+    | REORGANIZE  [ PARTITION = partition_number ] [ WITH ( <reorganize_option>  ) ]  
+    | SET ( <set_index_option> [ ,...n ] )   
+    | RESUME [WITH (<resumable_index_options>,[…n])]
+    | PAUSE
+    | ABORT
+}  
+[ ; ]  
+
+
+

@@ -8,7 +8,6 @@ namespace Meta.Core.Messaging
     using System;
     using System.Linq;
     using System.Collections.Generic;
-    using System.ServiceModel;
 
     using static metacore;
 

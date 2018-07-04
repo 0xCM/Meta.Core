@@ -1,0 +1,8 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql
+
+<column_generation_spec> ::= {
+	GENERATED ALWAYS AS ROW { START | END } [ HIDDEN ]
+	}
+
+
+

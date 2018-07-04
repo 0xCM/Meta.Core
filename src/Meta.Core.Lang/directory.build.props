@@ -4,7 +4,6 @@
 
   <PropertyGroup>
     <ProductName>metacore/lang</ProductName>
-    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
   </PropertyGroup>
 
 </Project>

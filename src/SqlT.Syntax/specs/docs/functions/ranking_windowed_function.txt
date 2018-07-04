@@ -1,0 +1,8 @@
+// https://docs.microsoft.com/en-us/sql/t-sql/functions/ranking-functions-transact-sql
+
+// <ranking_windowed_function> ::= {
+// 	rank
+// 	| ntile
+// 	| dense_rank
+// 	| row_number
+// }

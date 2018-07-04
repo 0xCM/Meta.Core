@@ -1,0 +1,1 @@
+copy bin\lib\*.nupkg C:\Dev\Assets\dist\metaverse /y

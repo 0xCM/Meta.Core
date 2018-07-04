@@ -1,0 +1,4 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/queries/from-transact-sql
+
+<pivoted_table> ::=  
+    table_source PIVOT <pivot_clause> [ [ AS ] table_alias ]  

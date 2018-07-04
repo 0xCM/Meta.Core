@@ -1,0 +1,6 @@
+﻿source(https://docs.microsoft.com/en-us/sql/t-sql/functions/min-transact-sql)
+
+MIN ( [ ALL | DISTINCT ] expression )  
+   OVER ( [ partition_by_clause ] order_by_clause )
+
+

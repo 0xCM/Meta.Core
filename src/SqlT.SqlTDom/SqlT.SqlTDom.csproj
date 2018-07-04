@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp2.1;net472</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.IO.Packaging" Version="4.5.0" />
+  </ItemGroup>
+  <Import Project="$(DistRootDir)/msdac/msdac.refs.new.props"/>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Meta.Core.Build\Meta.Core.Build.csproj" />
+    <ProjectReference Include="..\Meta.Core.ClrSpec\Meta.Core.ClrSpec.csproj" />
+    <ProjectReference Include="..\Meta.Core.Executors\Meta.Core.Executors.csproj" />
+    <ProjectReference Include="..\Meta.Core.Floor\Meta.Core.Floor.csproj" />
+    <ProjectReference Include="..\Meta.Core.Services\Meta.Core.Services.csproj" />
+    <ProjectReference Include="..\Meta.Core.Shells\Meta.Core.Shells.csproj" />
+    <ProjectReference Include="..\Meta.Core.Workflow\Meta.Core.Workflow.csproj" />
+    <ProjectReference Include="..\Meta.Core.Xml\Meta.Core.Xml.csproj" />
+    <ProjectReference Include="..\SqlT.CSharp\SqlT.CSharp.csproj" />
+    <ProjectReference Include="..\SqlT.Language\SqlT.Language.csproj" />
+    <ProjectReference Include="..\SqlT.Models\SqlT.Models.csproj" />
+    <ProjectReference Include="..\SqlT.Proxies.Store\SqlT.Proxies.Store.csproj" />
+    <ProjectReference Include="..\SqlT.Services\SqlT.Services.csproj" />
+  </ItemGroup>
+
+  <Import Project="..\SqlT.SqlTDom.G\SqlTDom.projitems" Label="Shared" />
+
+
+
+</Project>

@@ -1,0 +1,14 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql
+
+<table_option> ::=  
+	{  
+		[ <table_compression_spec> ]  
+		[ <filetable_directory_spec> ]   
+		[ <filetable_filename_collation> ]  
+		[ <filetable_pk_name> ]  
+		[ <filetable_uqix_stream_name> ]  
+		[ <filetable_uqix_path_name> ]  
+		[ <table_system_versioning> ]  
+		[ <remote_data_archive> ]  
+	}  
+

@@ -1,0 +1,12 @@
+<Project>
+
+  <Import Project="../common.props"/>
+  <Import Project="$(DistRootDir)/msbuild/msbuild.refs.new.props"/>
+
+  <PropertyGroup>
+    <ProductName>metacore/build</ProductName>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+
+</Project>

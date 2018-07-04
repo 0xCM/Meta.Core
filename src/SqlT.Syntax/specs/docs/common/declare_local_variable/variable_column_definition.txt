@@ -1,0 +1,8 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/language-elements/declare-local-variable-transact-sql
+
+<variable_column_definition> ::=   
+     column_name { scalar_data_type | AS computed_column_expression }  
+     [ COLLATE collation_name ]   
+     [ [ DEFAULT constant_expression ] | IDENTITY [ (seed ,increment ) ] ]   
+     [ ROWGUIDCOL ]   
+     [ <variable_column_constraint> ]   

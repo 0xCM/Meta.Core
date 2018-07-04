@@ -1,0 +1,32 @@
+﻿{
+  "Name": "SyntaxLists",
+  "EmitListedTypes": true,
+  "FieldLists": [
+    {
+      "ListName": "SqlObjectTypeCodes",
+      "RowSource": "[Syntax].[ObjectType]",
+      "IdentifierColumn": "TypeCode",
+      "TableType": "[Syntax].[ObjectType]"
+    },
+    {
+      "ListName": "SqlTypeDescriptions",
+      "RowSource": "[Syntax].[DataType]",
+      "IdentifierColumn": "TypeName",
+      "TableType": "[Syntax].[DataType]"
+    }
+
+
+  ],
+  "DefaultUsings": [
+  ],
+  "ExcludeSystemObjects": true,
+  "ProfileType": "FieldList",
+  "RootNamespace": "SqlT.Syntax",
+  "OutputDirectory": "",
+  "Internalize": false,
+  "EmitSingleFile": true,
+  "AssemblyDesignatorName": "",
+  "ConnectionString": "Data Source=localhost;Initial Catalog=SqlT.Syntax;Integrated Security=True",
+  "AssemblyReferences": [],
+  "EmitTypeContracts": false
+}

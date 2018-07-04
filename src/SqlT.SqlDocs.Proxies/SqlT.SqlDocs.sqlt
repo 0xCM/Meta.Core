@@ -1,0 +1,40 @@
+﻿{
+  "Name": "SqlT.SqlDocs",
+  "ProjectName": "",
+  "OutputDirectory": "",
+  "ConnectionString": "Data Source=localhost;Integrated Security=true; Initial Catalog=SqlT.SqlDocs",
+  "BrokerFactoryName": "SqlStoreBrokerFactory",
+  "Schemas": [
+    {
+      "SchemaName": "SqlDocs",
+      "SpecializeNamespace": false
+
+    }
+
+  ],
+
+  "RootNamespace": "SqlT.SqlDocs.Proxies",
+  "ExcludedColumns": [
+    "DbCreateTime",
+    "DbExpiryTime",
+    "UpdateTS",
+    "CreateTS"
+  ],
+  "DefaultUsings": [
+    
+  ],
+  "EmitTables": false,
+  "EmitViews": true,
+  "EmitGenerationSpec": false,
+  "EmitPrimaryKeys": false,
+  "EmitSingleFile": true,
+  "EmitStoredProcedures": true,
+  "EmitTableFunctions": true,
+  "EmitTableTypes": true,
+  "EmitSequences": true,
+  "EmitBrokerFactory": true,
+  "EmitTypeContracts": false,
+  "EmitOperationContracts": false,
+  "AlwaysEmitNames": false
+
+}

@@ -1,0 +1,3 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/statements/merge-transact-sql
+
+<contains_predicate> ::= {CONTAINS ( { column | * } , '<contains_search_condition>' ) }

@@ -1,0 +1,3 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/queries/from-transact-sql
+
+<xml_source> ::= {OPENXML <openxml_clause>}

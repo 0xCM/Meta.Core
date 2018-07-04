@@ -1,0 +1,49 @@
+﻿<Project  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <ItemGroup>
+
+    <Reference Include="System.IO.FileSystem.Primitives">
+      <HintPath>$(SysLibDir)System.IO.FileSystem.Primitives.dll</HintPath>
+    </Reference>
+
+    <Reference Include="System.IO.FileSystem">
+      <HintPath>$(SysLibDir)System.IO.FileSystem.dll</HintPath>
+    </Reference>
+
+    <Reference Include="System.ValueTuple">
+      <HintPath>$(SysLibDir)System.ValueTuple.dll</HintPath>
+    </Reference>
+
+
+    <Reference Include="Microsoft.Data.Tools.Schema.Sql">
+      <HintPath>$(MsSqlLibDir)Microsoft.Data.Tools.Schema.Sql.dll</HintPath>
+    </Reference>
+
+    <Reference Include="Microsoft.Data.Tools.Utilities">
+      <HintPath>$(MsSqlLibDir)Microsoft.Data.Tools.Utilities.dll</HintPath>
+    </Reference>
+
+    <Reference Include="Microsoft.SqlServer.Dac">
+      <HintPath>$(MsSqlLibDir)Microsoft.SqlServer.Dac.dll</HintPath>
+    </Reference>
+
+    <Reference Include="Microsoft.SqlServer.Dac.Extensions">
+      <HintPath>$(MsSqlLibDir)Microsoft.SqlServer.Dac.Extensions.dll</HintPath>
+    </Reference>
+
+    <Reference Include="Microsoft.SqlServer.Dac.Extensions.Prototype">
+      <HintPath>$(MsSqlLibDir)Microsoft.SqlServer.Dac.Extensions.Prototype.dll</HintPath>
+    </Reference>
+
+    <Reference Include="Microsoft.SqlServer.TransactSql.ScriptDom">
+      <HintPath>$(MsSqlLibDir)Microsoft.SqlServer.TransactSql.ScriptDom.dll</HintPath>
+    </Reference>
+
+    <Reference Include="Microsoft.SqlServer.Types">
+      <HintPath>$(MsSqlLibDir)Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+
+
+  </ItemGroup>
+
+</Project>

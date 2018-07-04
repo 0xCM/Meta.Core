@@ -1,0 +1,5 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/queries/top-transact-sql
+
+   
+<top_clause> ::=  TOP (expression) [PERCENT]  [ WITH TIES ]  
+  

@@ -1,0 +1,6 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql
+
+
+<filetable_pk_name> ::= {
+	FILETABLE_PRIMARY_KEY_CONSTRAINT_NAME = <constraint_name> 
+	}

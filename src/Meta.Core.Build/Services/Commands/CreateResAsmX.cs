@@ -15,6 +15,7 @@ namespace Meta.Core.Build
     using System.Reflection.Emit;
     using System.Resources;
 
+#if FULL
     using MSE = Microsoft.Build.Execution;
     using static BuildSyntax;
 
@@ -111,4 +112,5 @@ namespace Meta.Core.Build
         protected override Option<FilePath> TryExecute(CreateResAsm spec)
             => Execute(spec);
     }
+#endif
 }

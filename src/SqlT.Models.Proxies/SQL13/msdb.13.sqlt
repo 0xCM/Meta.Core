@@ -1,0 +1,34 @@
+{
+  "Name": "msdb.13",
+  "OutputDirectory": "",
+  "ConnectionString": "Data Source = localhost; Integrated Security = true; Database = msdb",
+  "Schemas": [
+    {
+      "SchemaName": "sys",
+      "SpecializeNamespace": true
+    },
+    {
+      "SchemaName": "dbo",
+      "SpecializeNamespace": true
+    }
+
+  ],
+  "RootNamespace": "SqlT.SqlSystem.SQL13",
+  "ExcludedColumns": [],
+  "ExcludeSystemObjects": false,
+  "DefaultUsings": [
+    "System",
+    "System.Collections.Generic"
+  ],
+  "EmitDependencies": false,
+  "EmitDateType": false,
+  "EmitSingleFile": true,
+
+  "EmitTables": true,
+  "EmitPrimaryKeys": false,
+  "EmitGenerationSpec": false,
+  "EmitViews": true,
+  "EmitStoredProcedures": true,
+  "EmitTableFunctions": true,
+  "AlwaysEmitNames": false
+}

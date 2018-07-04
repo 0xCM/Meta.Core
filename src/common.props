@@ -5,6 +5,7 @@
     <Authors>0xCM@gmail.com</Authors>
     <Version>1.1.0</Version>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <PropertyGroup>

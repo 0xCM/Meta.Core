@@ -4,7 +4,6 @@
 
   <PropertyGroup>
     <ProductName>metacore/workflow</ProductName>
-    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
   </PropertyGroup>
 
 </Project>

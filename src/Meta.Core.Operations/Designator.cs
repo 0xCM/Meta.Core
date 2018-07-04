@@ -1,4 +1,9 @@
-﻿using static metacore;
+﻿//-------------------------------------------------------------------------------------------
+// MetaCore
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
+//-------------------------------------------------------------------------------------------
+using static metacore;
 
 using System.Collections.Generic;
 using System.Reflection;
@@ -24,7 +29,7 @@ public sealed class MetaCoreComponents : TypedItemList<MetaCoreComponents, CID>
     //public static readonly CID MetaCoreBuild = global::MetaCoreBuild.Identifier;
     public static readonly CID MetaCoreCommands = global::MetaCoreCommands.Identifier;
     public static readonly CID MetaCoreExecutors = global::MetaCoreExecutors.Identifier;
-    public static readonly CID MetaCoreHttp = global::MetaCoreHttp.Identifier;
+    //public static readonly CID MetaCoreHttp = global::MetaCoreHttp.Identifier;
     public static readonly CID MetaCoreSerialization = global::MetaCoreJson.Identifier;
     public static readonly CID MetaCoreMessaging = global::MetaCoreMessaging.Identifier;
     public static readonly CID MetaCoreOperations = global::MetaCoreOperations.Identifier;

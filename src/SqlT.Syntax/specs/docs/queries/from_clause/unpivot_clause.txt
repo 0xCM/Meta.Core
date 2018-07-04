@@ -1,0 +1,4 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/queries/from-transact-sql
+
+<unpivot_clause> ::=  
+    ( value_column FOR pivot_column IN ( <column_list> ) )   

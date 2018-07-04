@@ -1,0 +1,3 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/statements/merge-transact-sql
+
+<between_predicate> ::= expression [ NOT ] BETWEEN expression AND expression   

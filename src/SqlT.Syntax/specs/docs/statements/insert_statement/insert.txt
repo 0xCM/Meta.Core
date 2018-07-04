@@ -1,0 +1,25 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/statements/insert-transact-sql
+
+<insert_statement> ::=
+	[ WITH <common_table_expression> [ ,...n ] ]  
+	INSERT   
+	{  
+			[ TOP ( expression ) [ PERCENT ] ]   
+			[ INTO ]   
+			{ <insert_target> | rowset_function_limited   
+			  [ WITH ( <Table_Hint_Limited> [ ...n ] ) ]  
+			}  
+		{  
+			[ ( column_list ) ]   
+			[ <OUTPUT Clause> ]  
+			{ VALUES ( { DEFAULT | NULL | expression } [ ,...n ] ) [ ,...n     ]   
+			| derived_table   
+			| execute_statement  
+			| <dml_table_source>  
+			| DEFAULT VALUES   
+			}  
+		}  
+	}  
+	[;]  
+
+

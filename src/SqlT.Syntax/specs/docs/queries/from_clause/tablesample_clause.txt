@@ -1,0 +1,5 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/queries/from-transact-sql
+
+<tablesample_clause> ::=  
+    TABLESAMPLE [SYSTEM] ( sample_number [ PERCENT | ROWS ] )   
+        [ REPEATABLE ( repeat_seed ) ]   

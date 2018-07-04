@@ -1,0 +1,10 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/statements/alter-index-transact-sql
+
+<set_index_option>::=  
+{  
+      ALLOW_ROW_LOCKS = { ON | OFF }  
+    | ALLOW_PAGE_LOCKS = { ON | OFF }  
+    | IGNORE_DUP_KEY = { ON | OFF }  
+    | STATISTICS_NORECOMPUTE = { ON | OFF }  
+    | COMPRESSION_DELAY= {0 | delay [Minutes]}  
+}  

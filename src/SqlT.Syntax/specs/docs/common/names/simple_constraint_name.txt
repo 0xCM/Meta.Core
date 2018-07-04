@@ -1,0 +1,1 @@
+﻿<siple_constraint_name> ::= <simple_name>

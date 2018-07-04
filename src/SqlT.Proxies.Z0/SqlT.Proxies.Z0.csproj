@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp2.1;net472</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Z0.Lists.sqlt" />
+    <None Remove="Z0.sqlt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Z0.Lists.sqlt" />
+    <EmbeddedResource Include="Z0.sqlt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.5.1" />
+  </ItemGroup>
+
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\Meta.Core.Floor\Meta.Core.Floor.csproj" />
+    <ProjectReference Include="..\SqlT.Core\SqlT.Core.csproj" />
+  </ItemGroup>
+
+</Project>

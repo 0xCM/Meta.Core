@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>netcoreapp2.1;net472</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Meta.Core.Operations\Meta.Core.Operations.csproj" />
+    <ProjectReference Include="..\SqlT.Core\SqlT.Core.csproj" />
+  </ItemGroup>
+
+</Project>

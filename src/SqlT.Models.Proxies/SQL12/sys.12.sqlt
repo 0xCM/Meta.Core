@@ -1,0 +1,29 @@
+{
+  "Name": "sys.12",
+  "SqlVersionCompatibility": "12.00",
+  "ConnectionString": "Data Source = SQL12; Integrated Security = true; Database = model",
+  "Schemas": [
+    {
+      "SchemaName": "sys",
+      "SpecializeNamespace": true
+    }
+  ],
+  "RootNamespace": "SqlT.SqlSystem.SQL12",
+  "ExcludedColumns": [ ],
+  "ExcludeSystemObjects": false,
+  "DefaultUsings": [
+    "System",
+    "System.Collections.Generic"
+  ],
+  "EmitDependencies": false,
+  "EmitDateType": false,
+  "EmitSingleFile": true,
+
+  "EmitViews": true,
+  "EmitTableFunctions": true,
+
+  "EmitTables": false,
+  "EmitPrimaryKeys": false,
+  "EmitGenerationSpec": false,
+  "EmitStoredProcedures": false
+}

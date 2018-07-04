@@ -1,0 +1,4 @@
+﻿https://docs.microsoft.com/en-us/sql/t-sql/statements/merge-transact-sql
+
+<merge_matched>::=  
+    { UPDATE SET <merge_set_clause> | DELETE }  
