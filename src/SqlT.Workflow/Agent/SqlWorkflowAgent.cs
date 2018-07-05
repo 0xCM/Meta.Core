@@ -61,8 +61,8 @@ namespace SqlT.Workflow
         {
             if(records == null)
             {
-                
-                var all = SourceBroker.Get<TSrc>().ToOption();
+
+                var all = SourceBroker.Get<TSrc>();
                 if (!all)
                     return all;
                 records = new Queue<TSrc>(all.Items());

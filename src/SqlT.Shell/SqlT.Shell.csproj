@@ -6,8 +6,6 @@
   </PropertyGroup>
 
   <Import Project="$(DistRootDir)\msdac\msdac.refs.new.props" />
-  <Import Project="$(DistRootDir)\msca\msca.refs.new.props" />
-  <Import Project="$(DistRootDir)\msbuild\msbuild.refs.new.props" />
   <ItemGroup>
     <None Remove="Tests\SyntaxTests\SelectTests.sql" />
   </ItemGroup>

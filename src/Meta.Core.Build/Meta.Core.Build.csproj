@@ -6,6 +6,13 @@
     <None Remove=".unported\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Build" Version="15.7.179" />
+    <PackageReference Include="Microsoft.Build.Logging.StructuredLogger" Version="1.1.224" />
+    <PackageReference Include="Microsoft.Build.Tasks.Core" Version="15.7.179" />
+    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="15.7.179" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <ProjectReference Include="..\Meta.Core.Agents\Meta.Core.Agents.csproj" />
