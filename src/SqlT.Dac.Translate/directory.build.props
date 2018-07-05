@@ -1,10 +1,9 @@
 <Project>
 
   <Import Project="../common.props"/>
-  
 
   <PropertyGroup>
-    <ProductName>sqlt/sqldocs</ProductName>
+    <ProductName>sqlt/core</ProductName>
   </PropertyGroup>
 
 </Project>

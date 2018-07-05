@@ -2,9 +2,10 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\Meta.Core.Operations\Meta.Core.Operations.csproj"/>
+    <ProjectReference Include="..\Meta.Core.Operations\Meta.Core.Operations.csproj" />
     <ProjectReference Include="..\SqlT.Core\SqlT.Core.csproj" />
     <ProjectReference Include="..\SqlT.CSharp\SqlT.CSharp.csproj" />
+    <ProjectReference Include="..\SqlT.Dac.Translate\SqlT.Dac.Translate.csproj" />
     <ProjectReference Include="..\SqlT.Language\SqlT.Language.csproj" />
     <ProjectReference Include="..\SqlT.Models.Proxies\SqlT.Models.Proxies.csproj" />
     <ProjectReference Include="..\SqlT.Models\SqlT.Models.csproj" />

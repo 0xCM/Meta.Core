@@ -4,7 +4,6 @@
   <ItemGroup>
     <PackageReference Include="System.IO.Packaging" Version="4.5.0" />
   </ItemGroup>
-  <Import Project="$(DistRootDir)/msdac/msdac.refs.new.props"/>
 
   <ItemGroup>
     <ProjectReference Include="..\Meta.Core.Build\Meta.Core.Build.csproj" />

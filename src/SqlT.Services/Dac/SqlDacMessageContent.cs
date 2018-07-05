@@ -8,30 +8,27 @@ namespace SqlT.Dac
 
     using System;
 
-    /// <summary>
-    /// Describes a dac message
-    /// </summary>
-    public class SqlDacMessageContent
-    {
+    //public class SqlDacMessageContent
+    //{
 
-        public SqlDacMessageContent(string Severity, string Prefix, int Number, string Text)
-        {
-            this.Severity = Severity;
-            this.Prefix = Prefix;
-            this.Number = Number;
-            this.Text = Text;
-        }
+    //    public SqlDacMessageContent(string Severity, string Prefix, int Number, string Text)
+    //    {
+    //        this.Severity = Severity;
+    //        this.Prefix = Prefix;
+    //        this.Number = Number;
+    //        this.Text = Text;
+    //    }
 
-        public string Severity { get; }
+    //    public string Severity { get; }
 
-        public string Prefix { get; }
+    //    public string Prefix { get; }
 
-        public int Number { get; }
+    //    public int Number { get; }
 
-        public string Text { get; }
+    //    public string Text { get; }
 
-        public override string ToString()
-            => $"{Prefix}:{Number} {Text}";
-    }
+    //    public override string ToString()
+    //        => $"{Prefix}:{Number} {Text}";
+    //}
 
 }

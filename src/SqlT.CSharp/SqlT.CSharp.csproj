@@ -17,9 +17,6 @@
     <PackageReference Include="System.Data.SqlClient" Version="4.5.1" />
   </ItemGroup>
 
-  <Import Project="$(DistRootDir)/msdac/msdac.refs.new.props" />
-  <!--<Import Project="$(DistRootDir)/msca/msca.refs.new.props" />-->
-  
   <ItemGroup>
     <ProjectReference Include="..\Meta.Core.Build\Meta.Core.Build.csproj" />
     <ProjectReference Include="..\Meta.Core.ClrSpec\Meta.Core.ClrSpec.csproj" />

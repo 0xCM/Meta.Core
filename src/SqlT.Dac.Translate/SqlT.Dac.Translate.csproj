@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net472</TargetFrameworks>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SqlServer.DacFx.x64" Version="140.3881.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Meta.Core\Meta.Core.csproj" />
+    <ProjectReference Include="..\SqlT.Core\SqlT.Core.csproj" />
+    <ProjectReference Include="..\SqlT.Language\SqlT.Language.csproj" />
+    <ProjectReference Include="..\SqlT.Models\SqlT.Models.csproj" />
+  </ItemGroup>
+</Project>
