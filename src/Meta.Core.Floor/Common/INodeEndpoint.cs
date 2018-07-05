@@ -3,36 +3,36 @@
 // This license grants rights to merge, copy, distribute, sell or otherwise do with it 
 // as you like. But please, for the love of Zeus, don't clutter it with regions.
 //-------------------------------------------------------------------------------------------
-namespace SqlT.Models
+namespace Meta.Core
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using SqlT.Core;
-    using SqlT.Types;
 
     /// <summary>
-    /// Binds a column to a property
+    /// Characterizes a system node communication port
     /// </summary>
-    public class SqlColumnProperty
+    public interface INodeEndpoint
     {
-        public SqlColumnProperty(SqlColumnIdentifier Column, ClrProperty Property)
-        {
-            this.Column = Column;
-            this.Property = Property;
-        }
+        /// <summary>
+        /// The hosting node
+        /// </summary>
+        SystemNodeIdentifier Node { get; }
 
         /// <summary>
-        /// The column participating in the binding
+        /// The hosting system
         /// </summary>
-        public SqlColumnIdentifier Column { get; }
+        SystemUri Identifier { get; }
 
         /// <summary>
-        /// The property particpating in the binding
+        /// Covariance/contravariance
         /// </summary>
-        public ClrProperty Property { get; }
+        EndpointRole Role { get; }
+
     }
+
+    public interface INodeEndpoint<X> : INodeEndpoint
+    {
+
+    }
+
+
 }
-
-
-

@@ -6,11 +6,11 @@
 namespace SqlT.Core
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq.Expressions;
 
-
-
+    /// <summary>
+    /// Defines a broker for a specific table
+    /// </summary>
+    /// <typeparam name="T">The table's proxy type</typeparam>
     public class SqlTableBroker<T> : SqlTabularBroker<T>, ISqlTableBroker<T>
        where T : class, ISqlTableProxy, new()
     {
@@ -22,8 +22,14 @@ namespace SqlT.Core
             this.BrokeredTableName = Metadata.Table<T>().ObjectName;
         }
 
+        /// <summary>
+        /// The name of the table
+        /// </summary>
         public SqlTableName BrokeredTableName { get; }
 
+        /// <summary>
+        /// The table description
+        /// </summary>
         public SqlTableProxyInfo TableInfo
             => Metadata.Table<T>();
 

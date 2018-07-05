@@ -19,8 +19,6 @@ namespace SqlT.Models
             : base(ListName, IdentifierColumn)
         {
 
-
         }
     }
-
 }

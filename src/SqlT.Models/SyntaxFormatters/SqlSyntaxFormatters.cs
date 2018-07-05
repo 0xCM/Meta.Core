@@ -374,8 +374,6 @@ namespace SqlT.Syntax
                     m.element_name
                ) + $"({m.message_specs.FormatSyntax()})";
 
-
-
         public static string FormatSyntax(this create_service m)
             => concat(FormatSyntax(space(),
                 m.statement_designator,
@@ -402,9 +400,6 @@ namespace SqlT.Syntax
 
             return m.FormatDynamic();
         }
-
     }
-
-
 }
 

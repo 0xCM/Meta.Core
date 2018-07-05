@@ -10,7 +10,6 @@ namespace SqlT.Services
     using System.Linq.Expressions;
     using System.Data;
     
-
     using SqlT.Core;
 
     public static partial class SqlBrokerExtensions
@@ -31,8 +30,8 @@ namespace SqlT.Services
         /// <summary>
         /// Selects a distinct column of 2-tuples
         /// </summary>
-        /// <typeparam name="C0"></typeparam>
-        /// <typeparam name="C1"></typeparam>
+        /// <typeparam name="C0">The type of the first column</typeparam>
+        /// <typeparam name="C1">Tye type of the second column</typeparam>
         /// <typeparam name="V"></typeparam>
         /// <param name="h"></param>
         /// <returns></returns>
@@ -42,6 +41,14 @@ namespace SqlT.Services
                 where V : class, ISqlViewProxy, new()
                 =>  h.Broker.SelectColumns<C0, C1>($"select distinct {col(ex0)}, {col(ex1)} from {h}");
 
+        /// <summary>
+        /// Selects duplicate records from a view with respect to a specified column
+        /// </summary>
+        /// <typeparam name="V">The view type</typeparam>
+        /// <typeparam name="C">The column type</typeparam>
+        /// <param name="h">Identifies the view</param>
+        /// <param name="ex0">The column selector</param>
+        /// <returns></returns>
         public static IEnumerable<DataFrameRow<C, int>> SelectDuplicates<V, C>(this SqlViewHandle<V> h,
             Expression<Func<V, C>> ex0)
                 where V : class, ISqlViewProxy, new()
@@ -61,20 +68,6 @@ namespace SqlT.Services
             Expression<Func<V, C2>> ex2)
                 where V : class, ISqlViewProxy, new() 
                     => h.Broker.SelectColumns<C0, C1, C2, int>(
-                        $"select {col(ex0)}, {col(ex1)}, {col(ex2)} count(*) as RecordCount from {h} group by {col(ex0)}, {col(ex1)}, {col(ex2)} having count(*) > 1");
-
-        public static void Delete<V>(this SqlViewHandle<V> h, Expression<Predicate<V>> where = null)
-                where V : class, ISqlViewProxy, new()
-        {
-            var sql = $"delete {h.ElementName}";
-            if (where != null)
-            {
-
-            }
-
-        }
-
-
-
+                        $"select {col(ex0)}, {col(ex1)}, {col(ex2)} count(*) as RecordCount from {h} group by {col(ex0)}, {col(ex1)}, {col(ex2)} having count(*) > 1");        
     }
 }

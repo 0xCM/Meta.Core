@@ -6,37 +6,8 @@
 namespace Meta.Core
 {
     using System;
-    using System.Collections.Generic;
-    using System.Text;
 
     using N = SystemNodeIdentifier;
-
-    
-
-    public interface INodeEndpoint
-    {
-        /// <summary>
-        /// The hosting node
-        /// </summary>
-        SystemNodeIdentifier Node { get; }
-
-        /// <summary>
-        /// The hosting system
-        /// </summary>
-        SystemUri Identifier { get; }
-
-        /// <summary>
-        /// Covariance/contravariance
-        /// </summary>
-        EndpointRole Role { get; }
-
-    }
-
-    public interface INodeEndpoint<X> : INodeEndpoint
-    {
-
-    }
-
 
     public class NodeEndpoint : INodeEndpoint
     {
@@ -68,7 +39,5 @@ namespace Meta.Core
             : base(Node, Identifier, typeof(X), Role)
         {
         }
-
-
     }
 }

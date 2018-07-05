@@ -17,7 +17,6 @@ namespace SqlT.Models
     /// <typeparam name="B">The enumeration type</typeparam>
     public abstract class SqlEnumBinding<T, B> : SqlProxyTypeBinding
         where T : class, ISqlTabularProxy, new()
-
     {
         protected SqlEnumBinding(Type UnderlyingType)
             : base(typeof(T), typeof(B))

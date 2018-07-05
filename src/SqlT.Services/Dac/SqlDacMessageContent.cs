@@ -7,8 +7,10 @@ namespace SqlT.Dac
 {
 
     using System;
-    using System.Collections.Generic;
 
+    /// <summary>
+    /// Describes a dac message
+    /// </summary>
     public class SqlDacMessageContent
     {
 

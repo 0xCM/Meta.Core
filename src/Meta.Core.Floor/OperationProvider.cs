@@ -8,8 +8,9 @@ namespace Meta.Core
     using System;
     using System.Linq;
 
-    using static minicore;
+    using static metacore;
     using static ApplicationMessage;
+    using static OperationProviderMessages;
 
     public interface IOperationProvider
     {
@@ -27,7 +28,7 @@ namespace Meta.Core
         }
 
         protected virtual Option<object> ParseArgValue(ClrMethodParameter parameter, string argText)
-            => metacore.try_parse(parameter.ParameterType, argText);
+            => try_parse(parameter.ParameterType, argText);
 
         public Option<object> TryInvoke(string descriptor)
         {
@@ -35,13 +36,13 @@ namespace Meta.Core
             {
                 var opName = ifBlank(descriptor, string.Empty).LeftOf('(');
                 if (isBlank(opName))
-                    return none<object>(Error("Name of operation could not be determined"));
+                    return none<object>(OperationNameMalformed(descriptor));
 
                 var args = from m in descriptor.TryGetFirstIndexOf('(')
                              from n in descriptor.TryGetLastIndexOf(')')
                              select descriptor.Substring(m + 1, n - m - 1).Split(',');
                 if (!args)
-                    return none<object>(Error("Argument list could not be determined"));
+                    return none<object>(ArgumentsMalformed(descriptor));
 
                 var stringArgs = args.Require();
 
@@ -50,10 +51,10 @@ namespace Meta.Core
                                  select m).ToList();
 
                 if (candidates.Count == 0)
-                    return none<object>(Error($"Method {opName} not found"));
+                    return none<object>(MethodNotImplemented(opName));
 
                 if (candidates.Count > 1)
-                    return none<object>(Error($"Method overloads are not supported"));
+                    return none<object>(AmbiguousMatch(opName));
 
                 var method = candidates[0];
                 var methodParms = method.Parameters.ToList();

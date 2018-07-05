@@ -17,18 +17,11 @@ namespace SqlT.SqlSystem
     class NativeViewResolver : ApplicationService<NativeViewResolver, IDependencyResolver>, 
         IDependencyResolver<SqlConnectionString>
     {
-        static HashSet<Type> Resolvables;
+        static HashSet<Type> Resolvables
+            = new HashSet<Type>{typeof(INativeViewProvider)};
 
-        static NativeViewResolver()
-        {
-            Resolvables = new HashSet<Type>
-            {
-                typeof(INativeViewProvider)
-            };
-        }
-
-        public NativeViewResolver(IApplicationContext context)
-            : base(context)
+        public NativeViewResolver(IApplicationContext C)
+            : base(C)
         { }
 
         public IReadOnlyList<Type> GetResolvableConracts(IAssemblyRegistrar registrar)
@@ -42,16 +35,6 @@ namespace SqlT.SqlSystem
         }
 
         public Option<T> ResolveService<T>(string ImplementationName, SqlConnectionString connector)
-        {
-            try
-            {
-                var db = connector.QualifiedDatabaseName;
-                return cast<T>(new NativeViewProvider(connector, db));
-            }
-            catch(Exception e)
-            {
-                return none<T>(e);
-            }
-        }
+            => Try(() => cast<T>(new NativeViewProvider(connector, connector.QualifiedDatabaseName)));
     }
 }

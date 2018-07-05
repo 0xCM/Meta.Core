@@ -6,7 +6,6 @@
 namespace SqlT.Services
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
 
     using SqlT.Core;
@@ -15,16 +14,10 @@ namespace SqlT.Services
     using SqlT.Syntax;
     using SqlT.Language;
 
-
     using static metacore;
-
-    using static SqlT.Syntax.SqlSyntax;
-    using static SqlT.Syntax.SqlTypes;
-    using sxf = SqlT.Syntax.SqlTypes;
 
     public static partial class SqlDatabaseX
     {
-
         public static SqlDatabaseHandle Database(this ISqlHandle h)
             => h.Broker.Database(h.Broker.ConnectionString.QualifiedDatabaseName);
 
@@ -53,7 +46,5 @@ namespace SqlT.Services
 
         public static Option<ISqlDatabaseHandle> Create(this ISqlDatabaseHandle h, SqlDatabase model)
             => h.Broker.ExecuteNonQuery(model.TSqlCreate().GenerateScript()).TryMapValue(_ => h);
-
-
     }
 }

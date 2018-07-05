@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <Compile Include=".messages\Messages.cs" />
+    <Compile Include=".messages\OperationProviderMessages.cs" />
   </ItemGroup>
 
 

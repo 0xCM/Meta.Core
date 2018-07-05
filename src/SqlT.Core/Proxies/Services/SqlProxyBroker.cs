@@ -238,7 +238,7 @@ namespace SqlT.Core
         sxc.ISqlObjectName ScopeNameToDatabase(Type ProxyType, SqlDatabaseName DbName)
         {
             var description = Metadata.Describe<SqlObjectProxyInfo>(ProxyType);
-            return description.ProxyKind.ScopeNameToDatabase(description.ObjectName,
+            return description.ProxyKind.GetDbScopedName(description.ObjectName,
                 ifNull(DbName, () => new SqlDatabaseName(ConnectionString.DatabaseName)));
         }
 

@@ -10,16 +10,14 @@ namespace SqlT.Core
     using System.Linq;
     using System.Linq.Expressions;
     using System.Reflection;
-    using System.Data;
-    using System.Data.SqlClient;
 
     using Meta.Core;
 
     using static metacore;
+    using static SqlStatusMessages;
+
     using sxc = SqlT.Syntax.contracts;
 
-    using static SqlStatusMessages;
-       
     public static class SqlBrokerX
     {
         /// <summary>
@@ -60,7 +58,6 @@ namespace SqlT.Core
                     src => new TimeSpan(src.Hour, src.Minute, src.Second, src.Millisecond));
             return new SqlClientOptionBroker(broker);
         }
-
 
         public static ISqlClientOptionBroker SqlClientBroker(this ISqlContext C, SqlNotificationObserver observer = null)
             => C.SqlConnector.SqlClientBroker(observer);
@@ -141,7 +138,14 @@ namespace SqlT.Core
             }
         }
 
-        public static sxc.ISqlObjectName ScopeNameToDatabase(this SqlProxyKind kind, sxc.ISqlObjectName name, SqlDatabaseName db)
+        /// <summary>
+        /// Creates a 3-part object name
+        /// </summary>
+        /// <param name="kind"></param>
+        /// <param name="name"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public static sxc.ISqlObjectName GetDbScopedName(this SqlProxyKind kind, sxc.ISqlObjectName name, SqlDatabaseName db)
         {
             switch (kind)
             {
@@ -169,7 +173,7 @@ namespace SqlT.Core
             where T : class, ISqlTabularProxy, new()
         {
             var tabular = broker.Metadata.Tabular<T>();
-            return ScopeNameToDatabase(tabular.ProxyKind, tabular.ObjectName, broker.DatabaseName());
+            return GetDbScopedName(tabular.ProxyKind, tabular.ObjectName, broker.DatabaseName());
         }
 
         public static Option<int> Save<T>(this ISqlProxyBroker broker, IReadOnlyList<T> data)
@@ -209,5 +213,38 @@ namespace SqlT.Core
                 return none<int>(e);
             }
        }
+
+        /// <summary>
+        /// Executes a function within th context of a broker session
+        /// </summary>
+        /// <typeparam name="T">The function return type</typeparam>
+        /// <param name="broker">The facilitating broker</param>
+        /// <param name="f">The function to execute</param>
+        /// <returns></returns>
+        public static Option<T> SessionExec<T>(this ISqlProxyBroker broker, Func<T> f)
+        {
+            try
+            {
+                var session = broker.CreateSession();
+                if (session)
+                {
+                    using (var s = session.Payload)
+                    {
+                        var result = f();
+                        s.CompleteSession();
+                        return result;
+                    }
+                }
+                else
+                    return SqlOutcome.Failure<T>(session.Messages);
+            }
+            catch (Exception e)
+            {
+
+                return none<T>(e);
+
+            }
+        }
+
     }
 }

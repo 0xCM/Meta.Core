@@ -34,14 +34,10 @@
                 broker.RegisterConverter<TimeOfDay, TimeSpan>
                     (SqlConversionDirection.ToTransport,
                         src => new TimeSpan(src.Hour, src.Minute, src.Second, src.Millisecond));
-
             }
         }
 
         public static Option<ISqlProxyBroker> CreateSystemsBroker(this SqlConnectionString cs)
-            => some(BrokerFactory.CreateBroker(cs));
-
-               
-
+            => some(BrokerFactory.CreateBroker(cs));             
     }
 }

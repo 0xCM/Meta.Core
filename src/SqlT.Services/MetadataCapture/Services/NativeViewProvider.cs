@@ -64,20 +64,6 @@ namespace SqlT.SqlSystem
                  let attrib = t.GetCustomAttribute<SqlViewAttribute>()
                  select (new SqlViewName(attrib.SchemaName, attrib.ObjectName).FullName, t)).ToReadOnlyDictionary();
 
-        readonly ConcurrentDictionary<Type, object> cache;
-        readonly IReadOnlyDictionary<string, Type> viewtypes;
-        readonly SqlVersion CompatibilityVerion;
-        readonly ISqlProxyBroker Broker;
-        readonly SqlDatabaseHandle MetadataSource;
-
-        string viewName<T>()
-            => DefaultViewTypeMap[typeof(T)];
-
-        Type viewType<T>(string viewName)
-            => isBlank(viewName) 
-            ? viewtypes[DefaultViewTypeMap[typeof(T)]] 
-            : viewtypes[viewName];
-
         public NativeViewProvider(SqlConnectionString Connector,  SqlDatabaseName SourceDatabase)
         {
             this.Broker = Connector.CreateSystemsBroker().Require();
@@ -89,6 +75,24 @@ namespace SqlT.SqlSystem
                 ? SqlVersionNames.Sql2016 
                 : CompatibilityVerion);
         }
+
+        ConcurrentDictionary<Type, object> cache { get; }
+
+        IReadOnlyDictionary<string, Type> viewtypes { get; }
+
+        SqlVersion CompatibilityVerion { get; }
+
+        ISqlProxyBroker Broker { get; }
+
+        SqlDatabaseHandle MetadataSource { get; }
+
+        string viewName<T>()
+            => DefaultViewTypeMap[typeof(T)];
+
+        Type viewType<T>(string viewName)
+            => isBlank(viewName)
+            ? viewtypes[DefaultViewTypeMap[typeof(T)]]
+            : viewtypes[viewName];
 
         public MC.Lst<T> GetNativeView<T>(string viewName) 
             where T : ISystemElement

@@ -17,6 +17,4 @@ namespace SqlT.Services
         Option<MetadataCaptureSummary> CaptureMetadata(SqlConnectorLink<SqlMetadataSelectionOptions> Specification);        
     }
 
-
-
 }

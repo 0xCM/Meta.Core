@@ -11,6 +11,4 @@ namespace SqlT.SqlSystem
         IReadOnlyList<T> GetNativeView<T>() 
             where T : ISystemElement;
     }
-
-
 }

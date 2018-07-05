@@ -8,8 +8,6 @@ namespace SqlT.Models
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using SqlT.Core;
-    using SqlT.Types;
 
     public interface ISqlProxyTypeBinding
     {

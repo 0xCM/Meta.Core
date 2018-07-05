@@ -29,10 +29,6 @@ namespace SqlT.Syntax
             {
 
             }
-
-
         }
     }
-
-
 }

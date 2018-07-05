@@ -138,11 +138,10 @@ namespace SqlT.Services
             where T : ISqlTableProxy, new()
                 => h.Broker.SelectColumn<C0>($"select distinct {col(ex0)} from {h}");
 
-        public static SqlTableQuery Filter<V>(this SqlTableName resolvedTable,
-            (SqlColumnName Name, V Value) filter)
-            => new SqlTableQuery(SourceName: resolvedTable,
+        public static SqlTableQuery Filter<V>(this SqlTableName sourceTable, (SqlColumnName Name, V Value) filter)
+            => new SqlTableQuery(SourceName: sourceTable,
                         Script: new SqlScript(
-                            $"select * from {resolvedTable.TrimServer()} where {filter.Name} = {sql(filter.Value)}"),
+                            $"select * from {sourceTable.TrimServer()} where {filter.Name} = {sql(filter.Value)}"),
                         Filter: (filter.Name.UnqualifiedName, toString(filter.Value)));
 
         public static SqlTableQuery SelectTable<V>(this SqlServerName serverName, SqlDatabaseName srcDbName,

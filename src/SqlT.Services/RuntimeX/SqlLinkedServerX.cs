@@ -7,7 +7,6 @@ namespace SqlT.Services
 {
     using System;
     using System.Linq;
-    using System.Collections.Generic;
     using SqlT.Core;
 
     public static partial class SqlHandleX3
@@ -25,8 +24,6 @@ namespace SqlT.Services
             sqlparam("droplogins", "droplogins"));
 
         public static SqlDatabaseHandle Database(this SqlLinkedServerHandle h, SqlDatabaseName DatabaseName)
-            => new SqlDatabaseHandle(h.Broker, DatabaseName.HostedBy(h.ServerName));
-
-        
+            => new SqlDatabaseHandle(h.Broker, DatabaseName.HostedBy(h.ServerName));        
     }
 }

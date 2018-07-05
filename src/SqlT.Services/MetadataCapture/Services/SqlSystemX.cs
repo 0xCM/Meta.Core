@@ -19,31 +19,6 @@ namespace SqlT.Services
     public static class SqlSystemX
     {
 
-        public static Option<T> WrapInSession<T>(this ISqlProxyBroker broker, Func<T> f)
-        {
-            try
-            {
-                var session = broker.CreateSession();
-                if (session)
-                {
-                    using (var s = session.Payload)
-                    {
-                        var result = f();
-                        s.CompleteSession();
-                        return result;
-                    }
-                }
-                else
-                    return SqlOutcome.Failure<T>(session.Messages);
-            }
-            catch (Exception e)
-            {
-
-                return none<T>(e);
-
-            }
-        }
-
         public static IDependencyResolver NativeViewResolver(this IApplicationContext C)
             => C.Service<IDependencyResolver>(nameof(NativeViewResolver));
 

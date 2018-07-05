@@ -6,7 +6,6 @@
 namespace SqlT.Dac
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
 
     using DacM = Microsoft.SqlServer.Dac.Model;

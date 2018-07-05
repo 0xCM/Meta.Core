@@ -6,12 +6,10 @@
 namespace SqlT.Models
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
 
     using Meta.Core;
     using SqlT.Core;
-    using SqlT.Types;
 
     public class SqlMessageFormatBinding<P> : SqlProxyTypeBinding<P>
         where P : class, ISqlProxy, new()

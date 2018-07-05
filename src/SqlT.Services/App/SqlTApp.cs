@@ -7,16 +7,12 @@ namespace SqlT.Services
 {
     using System;
     using System.Collections.Generic;
-    using System.Data.SqlClient;
     using System.Linq;
-    using System.Reflection;
 
     using Meta.Core;
-    using Meta.Core.Workflow;
 
     using SqlT.Core;
 
-    using static ApplicationMessage;
     using static metacore;
 
     public abstract class SqlTApp<T> : MetaApp<T>

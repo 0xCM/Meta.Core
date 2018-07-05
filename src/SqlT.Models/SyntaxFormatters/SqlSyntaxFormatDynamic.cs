@@ -30,12 +30,10 @@ namespace SqlT.Syntax.Formatting
             if (m == null)
                 return NULL;
             return $"{formatters.Convert(m, o => o.ToString())}";
-
         }
 
         public static string FormatDynamic(this object o)
             => SqlClrValueFormatters.FormatClrValue(o);
-
 
         internal static IEnumerable<IModel> Filter(this IEnumerable<IModel> models)
         {
@@ -54,7 +52,6 @@ namespace SqlT.Syntax.Formatting
         }
         internal static IReadOnlyList<IModel> Normalize(this IEnumerable<IModel> models)
             => Filter(models).ToReadOnlyList();
-
     }
 
 }

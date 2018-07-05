@@ -21,7 +21,6 @@ namespace SqlT.Syntax
     {
         public class function_call : Model<function_call>, sxc.function_call
         {
-
             public function_call(SqlFunctionName function_name, params sxc.routine_argument[] args)
             {
                 this.function_name = function_name;
@@ -48,9 +47,7 @@ namespace SqlT.Syntax
                 this.function_name = function;
                 this.args = stream(arg, args).ToRoutineArgList();
                 this.options = keyword_list.empty;
-
             }
-
 
             public SqlFunctionName function_name { get; }
 
@@ -61,21 +58,16 @@ namespace SqlT.Syntax
             sxc.keyword_list sxc.routine_call.options
                 => options;
 
-
             sxc.routine_argument_list sxc.routine_call.args 
                 => args;
 
-
             public override string ToString()
                 => this.Describe();
-
         }
 
         public class function_call<f, v> : SyntaxExpression<function_call<f, v>>, sxc.function_call<f, v>
             where f : sxc.function
         {
-
-
             public function_call(f function, params sxc.routine_argument[] args)
             {
                 this.function = function;
@@ -105,19 +97,16 @@ namespace SqlT.Syntax
 
             sxc.keyword_list sxc.routine_call.options
                 => options;
+
             sxc.routine_argument_list sxc.routine_call.args
                 => args;
-
 
             public SqlFunctionName function_name
                 => function.Name;
 
             public override string ToString()
                 => this.Describe();
-
         }
-
-
 
         public class function_call<F> : SyntaxExpression<function_call<F>>, sxc.function_call
             where F : sxc.function
@@ -135,16 +124,13 @@ namespace SqlT.Syntax
                 this.function = F;
                 this.args = args.ToRoutineArgList();
                 this.options = keyword_list.empty;
-
             }
-
 
             public function_call(F F, IEnumerable<sxc.routine_argument> args, keyword_list options)
             {
                 this.function = F;
                 this.args = args.ToRoutineArgList();
                 this.options = options;
-
             }
 
             public function_call(F F, sxc.routine_argument arg, params sxc.routine_argument[] args)
@@ -152,7 +138,6 @@ namespace SqlT.Syntax
                 this.function = F;
                 this.args = stream(arg, args).ToRoutineArgList();
                 this.options = keyword_list.empty;
-
             }
 
             public F function { get; }
@@ -170,10 +155,8 @@ namespace SqlT.Syntax
             public SqlFunctionName function_name
                 => function.Name;
 
-
             public override string ToString()
                 => this.Describe();
         }
-
     }
 }

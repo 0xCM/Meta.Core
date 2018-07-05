@@ -6,12 +6,16 @@
 namespace SqlT.Syntax
 {
     using System;
-    using static metacore;
-    using sxc = SqlT.Syntax.contracts;
 
     using SqlT.Models;
     using SqlT.Core;
 
+    using static metacore;
+    using sxc = SqlT.Syntax.contracts;
+
+    /// <summary>
+    /// Identifies a table type
+    /// </summary>
     public sealed class SqlTableTypeRef : SqlModel<SqlTableTypeRef>, sxc.table_type_ref
     {
         public SqlTableTypeRef(SqlTableTypeName type_name)
@@ -28,8 +32,6 @@ namespace SqlT.Syntax
         public bool is_table_type
             => true;
 
-        public SqlTableTypeName type_name { get; }
-            
+        public SqlTableTypeName type_name { get; }            
     }
-
 }

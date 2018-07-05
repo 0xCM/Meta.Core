@@ -9,9 +9,6 @@ namespace SqlT.Core
     using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
-    using System.Reflection;
-    using System.Data;
-    using System.Data.SqlClient;
 
     using Meta.Core;
 
@@ -47,14 +44,14 @@ namespace SqlT.Core
             where T : class, ISqlTabularProxy, new()
         {
             var tabular = broker.TabularInfo;
-            return tabular.ProxyKind.ScopeNameToDatabase(tabular.ObjectName, broker.DatabaseName());
+            return tabular.ProxyKind.GetDbScopedName(tabular.ObjectName, broker.DatabaseName());
         }
 
         public static sxc.ISqlObjectName QualifiedName<T>(this ISqlTabularBroker<T> broker)
             where T : class, ISqlTabularProxy, new()
         {
             var tabular = broker.TabularInfo;
-            return tabular.ProxyKind.ScopeNameToDatabase(tabular.ObjectName, broker.DatabaseName());
+            return tabular.ProxyKind.GetDbScopedName(tabular.ObjectName, broker.DatabaseName());
         }
 
         public static SqlColumnProxyInfo ColumnDescription<T, C>(this ISqlTabularBroker<T> broker, Expression<Func<T, C>> selector)
@@ -81,7 +78,15 @@ namespace SqlT.Core
             }
         }
 
-
+        /// <summary>
+        /// Intantiates a table-specific broker
+        /// </summary>
+        /// <typeparam name="T">The table's proxy type</typeparam>
+        /// <param name="broker">The facilitating broker</param>
+        /// <returns></returns>
+        public static ISqlTableBroker<T> TableBroker<T>(this ISqlProxyBroker broker)
+            where T : class, ISqlTableProxy, new()
+                => new SqlTableBroker<T>(broker);
     }
 
 }

@@ -82,7 +82,6 @@ namespace SqlT.Services
         public Option<SqlDatabaseMetadataSet> DescribeDatabase(SqlConnectionString Connector, SqlDatabaseName Source, 
             SqlMetadataSelectionOptions options = null)
         {
-
             try
             {
                 options = options ?? new SqlMetadataSelectionOptions();

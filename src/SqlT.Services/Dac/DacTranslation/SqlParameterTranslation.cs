@@ -30,9 +30,5 @@ namespace SqlT.Dac
                     ParameterName: p.GetLocalName(),
                     TypeReference: new typeref(SqlDataTypes.Find(p.DataType.Single().Name.SpecifyDataTypeName()), false)
                 ));
-
-
-
-
     }
 }

@@ -9,7 +9,6 @@ namespace SqlT.Syntax
     using System.Collections.Generic;
 
     using SqlT.Core;
-    using SqlT.Syntax;
 
     using sxc = Syntax.contracts;
    

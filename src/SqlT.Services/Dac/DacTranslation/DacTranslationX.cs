@@ -19,9 +19,6 @@ namespace SqlT.Dac
     using DacM = Microsoft.SqlServer.Dac.Model;
     using DacX = Microsoft.SqlServer.Dac.Extensions.Prototype;
 
-    using static SqlT.Syntax.SqlSyntax;
-    using kwt = SqlT.Syntax.SqlKeywordTypes;
-
     static class SqlDacX
     {
 

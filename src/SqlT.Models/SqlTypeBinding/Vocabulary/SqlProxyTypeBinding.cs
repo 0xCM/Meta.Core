@@ -6,8 +6,6 @@
 namespace SqlT.Models
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq.Expressions;
     using System.Linq;
 
     using Meta.Core;
@@ -56,15 +54,12 @@ namespace SqlT.Models
             this.BoundType = BoundType;
         }
 
-
         public Type ProxyType { get; }
 
         public Type BoundType { get; }
 
-
         public override string ToString()
             => $"${ProxyType} <=> {BoundType}";
-
     }
 
     public class SqlProxyTypeBinding<P> : SqlProxyTypeBinding
