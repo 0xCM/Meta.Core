@@ -15,12 +15,11 @@ public class AgentControlTask : ApplicationComponent, IDisposable
 
     public static AgentControlTask Start(IApplicationContext C, IServiceAgent Agent)
     {
-        var systemTask = Task.Factory.StartNew(() =>
+        var systemTask = task(() =>
         {
             try
             {
                 Agent.Start();
-
             }
             catch (Exception e)
             {
@@ -64,9 +63,7 @@ public class AgentControlTask : ApplicationComponent, IDisposable
             
 
     public void Dispose()
-    {
-        ControlledAgent.Dispose();
-    }
+        => ControlledAgent.Dispose();
 }
 
 

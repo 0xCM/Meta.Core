@@ -9,8 +9,8 @@ namespace Meta.Core
     /// Base type for agents that are responsible for a set of operations on a 
     /// specific computational node
     /// </summary>
-    /// <typeparam name="A"></typeparam>
-    /// <typeparam name="S"></typeparam>
+    /// <typeparam name="A">The specialized agent subtype</typeparam>
+    /// <typeparam name="S">The spcialized agent settings type</typeparam>
     public abstract class NodeAgent<A, S> : ServiceAgent<A, S>, INodeAgent
         where A : NodeAgent<A, S>
         where S : NodeAgentSettings<S>

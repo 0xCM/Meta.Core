@@ -7,6 +7,9 @@ namespace SqlT.Models
 {
     using SqlT.Core;
 
+    /// <summary>
+    /// Represents a FileTable object
+    /// </summary>
     public sealed class SqlFileTable : SqlTable<SqlTable>
     {
         public static SqlFileTable Specify(SqlTableName table_name, string directory)
@@ -19,6 +22,9 @@ namespace SqlT.Models
             this.Directory = Directory;
         }
 
+        /// <summary>
+        /// Specifies the file system directory associated with the filetable
+        /// </summary>
         public string Directory { get; }
 
         public override bool IsFileTable

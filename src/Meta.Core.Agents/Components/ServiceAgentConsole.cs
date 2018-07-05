@@ -22,6 +22,7 @@ class ServiceAgentConsole : IDisposable
             agent.Dispose();
          
     }
+
     public void Run()
     {
         try
