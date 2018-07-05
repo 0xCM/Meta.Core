@@ -16,7 +16,7 @@ partial class etude
     /// <param name="g"></param>
     /// <param name="list"></param>
     /// <returns></returns>
-    public static X combine<X>(ISemigroup<X> g, List<X> list)
+    public static X combine<X>(ISemigroup<X> g, Lst<X> list)
         => List.combine(g.combine, list);
 
 

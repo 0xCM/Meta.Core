@@ -45,7 +45,7 @@ namespace Meta.Core.Modules.Tests
         {
             var deferred = defer(seq(1, 2, 3, 4, 5));
             claim.@false(deferred.Evaluated);
-            claim.equal(list(1, 2, 3, 4, 5), List.make(deferred.Evaluate()));
+            claim.equal(list(1, 2, 3, 4, 5), Lst.make(deferred.Evaluate()));
             claim.@true(deferred.Evaluated);
         }
 

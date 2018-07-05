@@ -16,7 +16,6 @@ namespace SqlT.Core
 
     public abstract class SqlNodeService<T, I> : NodeService<T, I>
        where T : SqlNodeService<T, I>
-       where I : ISqlNodeService
     {
 
         protected SqlNodeService(ISqlContext C)

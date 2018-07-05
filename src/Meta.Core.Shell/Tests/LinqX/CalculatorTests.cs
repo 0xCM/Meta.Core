@@ -65,7 +65,7 @@ namespace Meta.Core.Test
     }
 
     [WorkflowNode]
-    public class CalculatorTests : TestWorkflow<List<ICalculatorTestCase>>
+    public class CalculatorTests : TestWorkflow<Lst<ICalculatorTestCase>>
     {
 
         static ICalculatorTestCase test<T>(string op, T x, T y, T expect, T actual)
@@ -77,7 +77,7 @@ namespace Meta.Core.Test
 
         }
 
-        public WorkFlowed<List<ICalculatorTestCase>> Add()
+        public WorkFlowed<Lst<ICalculatorTestCase>> Add()
         {
             var t1 = test("+", 3,4, 3+4, add(3, 4));
             var t2 = test("+", 3.14m, 4.14m, 3.14m + 4.14m, add(3.14m, 4.14m));

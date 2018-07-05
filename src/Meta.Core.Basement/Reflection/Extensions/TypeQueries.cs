@@ -23,15 +23,6 @@ partial class Reflections
        = new ConcurrentDictionary<Type, ReadOnlyList<ValueMember>>();
 
     /// <summary>
-    /// If a reference type, returns the type; if a value type returns 
-    /// the type if not nullable and the underlying type if it is
-    /// </summary>
-    /// <param name="t">The type to examine</param>
-    /// <returns></returns>
-    public static Type GetNonNullableType(this Type t)
-        => t.IsNullableType() ? Nullable.GetUnderlyingType(t) : t;
-
-    /// <summary>
     /// If a reference type, returns the type; if a value type and not an enum, returns 
     /// the type; if an enum returns the unerlying integral type; if a nullable value type
     /// that is not an enum, returns the underlying type; if anullable enum returns the 

@@ -39,7 +39,7 @@ namespace Meta.Core.Modules
         /// Gets the canonical <see cref="IEq"/> instance for a list
         /// </summary>
         /// <returns></returns>
-        public static IEq<List<X>> List<X>()
+        public static IEq<Lst<X>> List<X>()
             => ListEq<X>.instance;
 
         /// <summary>

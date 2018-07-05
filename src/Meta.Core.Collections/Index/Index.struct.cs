@@ -34,10 +34,10 @@ namespace Meta.Core
             => Seq.make(index.Stream());
 
         /// <summary>
-        /// Constructs a <see cref="Index{X}"/> from a <see cref="List{X}"/>
+        /// Constructs a <see cref="Index{X}"/> from a <see cref="Lst{X}"/>
         /// </summary>
         /// <param name="list"></param>
-        public static implicit operator Index<X>(List<X> list)
+        public static implicit operator Index<X>(Lst<X> list)
             => new Index<X>(list.Stream().ToImmutableArray());
 
         /// <summary>

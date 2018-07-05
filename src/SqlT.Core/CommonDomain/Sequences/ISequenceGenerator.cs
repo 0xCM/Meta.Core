@@ -49,4 +49,16 @@ namespace SqlT.Core
         /// <returns></returns>
         new T NextValue();
     }
+
+    /// <summary>
+    /// Defines non-generic contract for obtaining generic sequence values
+    /// </summary>
+    public interface ISequenceProvider
+    {
+        IEnumerable<T> NextRange<T>(int value);
+
+        T NextValue<T>();
+    }
+
 }
+

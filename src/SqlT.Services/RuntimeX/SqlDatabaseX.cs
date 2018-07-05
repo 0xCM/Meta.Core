@@ -52,7 +52,7 @@ namespace SqlT.Services
                 ));
 
         public static Option<ISqlDatabaseHandle> Create(this ISqlDatabaseHandle h, SqlDatabase model)
-            => h.Broker.ExecuteNonQuery(model.TSqlCreate().GenerateScript()).TryMapValue(_ => h).ToOption();
+            => h.Broker.ExecuteNonQuery(model.TSqlCreate().GenerateScript()).TryMapValue(_ => h);
 
 
     }

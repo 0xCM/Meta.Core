@@ -8,15 +8,6 @@ namespace SqlT.Core
     using System;
     
 
-    public abstract class SqlSequenceProxy : SqlObjectProxy, ISqlSequenceProxy
-    {
-    }
-
-    public abstract class SqlSequenceProxy<S> : SqlSequenceProxy, ISqlSequenceProxy<S>
-    {
-
-    }
-
     public abstract class SqlSequenceProxy<T,S> : SqlObjectProxy<T>, ISqlSequenceProxy<T,S>
         where T : SqlSequenceProxy<T,S>, new()
     {

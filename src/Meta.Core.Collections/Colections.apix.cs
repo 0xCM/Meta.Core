@@ -23,8 +23,8 @@ namespace Meta.Core
         /// <typeparam name="X">The item type</typeparam>
         /// <param name="source">The source stream</param>
         /// <returns></returns>
-        public static List<X> AsList<X>(this G.IEnumerable<X> source)
-            => List.make(source);
+        public static Lst<X> AsList<X>(this G.IEnumerable<X> source)
+            => Lst.make(source);
 
         /// <summary>
         /// Creates a list via sequence evaluation
@@ -32,7 +32,7 @@ namespace Meta.Core
         /// <typeparam name="X">The sequence item type</typeparam>
         /// <param name="s">The input sequence</param>
         /// <returns></returns>
-        public static List<X> AsList<X>(this Seq<X> s)
+        public static Lst<X> AsList<X>(this Seq<X> s)
             => s;
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Meta.Core
         /// <typeparam name="X"></typeparam>
         /// <param name="l"></param>
         /// <returns></returns>
-        public static Seq<X> AsSeq<X>(this List<X> l)
+        public static Seq<X> AsSeq<X>(this Lst<X> l)
             => l;
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace Meta.Core
         /// <typeparam name="X">The item type</typeparam>
         /// <param name="l">The input list</param>
         /// <returns></returns>
-        public static Index<X> AsIndex<X>(this List<X> l)
+        public static Index<X> AsIndex<X>(this Lst<X> l)
             => l;
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace Meta.Core
         /// <param name="s"></param>
         /// <param name="keySelector"></param>
         /// <returns></returns>
-        public static Map<K, X> AsMap<X, K>(this List<X> s, Func<X, K> keySelector)
+        public static Map<K, X> AsMap<X, K>(this Lst<X> s, Func<X, K> keySelector)
             => Map.make<K, X>(from item in s select (keySelector(item), item));
 
         /// <summary>

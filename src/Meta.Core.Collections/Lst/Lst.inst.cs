@@ -14,17 +14,17 @@ namespace Meta.Core
     /// Defines delegate that adjudicates list equality
     /// </summary>
     /// <typeparam name="X">The list item type</typeparam>
-    readonly struct ListEquator<X>
+    readonly struct LstEquator<X>
     {
-        public static readonly Equator<List<X>> instance
+        public static readonly Equator<Lst<X>> instance
             = (l1, l2) => l1.AsReadOnlyList().ContentEqualTo(l2.AsReadOnlyList());
     }
 
-    readonly struct ListFormatter<X> : IValueFormatter<List<X>>
+    readonly struct LstFormatter<X> : IValueFormatter<Lst<X>>
     {
-        public static readonly ListFormatter<X> instance = default;
+        public static readonly LstFormatter<X> instance = default;
 
-        public string Format(List<X> list)
+        public string Format(Lst<X> list)
             => "[" + string.Join(",", list.Stream()) + "]";
     }
 

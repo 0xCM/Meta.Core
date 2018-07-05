@@ -32,7 +32,7 @@ namespace Meta.Core
 
     }
 
-    public interface IListPlus<X> : IPlus<X, List<X>>
+    public interface IListPlus<X> : IPlus<X, Lst<X>>
     {
 
     }
@@ -44,14 +44,14 @@ namespace Meta.Core
     {
         public static readonly ListPlus<X> instance = default;
 
-        public List<X> alt(List<X> l1, List<X> l2)
+        public Lst<X> alt(Lst<X> l1, Lst<X> l2)
             => ListAlt<X>.instance.alt(l1, l2);
 
-        public Func<List<X>, List<X>> fmap(Func<X, X> f)
+        public Func<Lst<X>, Lst<X>> fmap(Func<X, X> f)
             => ListAlt<X>.instance.fmap(f);
 
-        public List<X> empty
-            => List<X>.Empty;
+        public Lst<X> empty
+            => Lst<X>.Empty;
 
     }
 

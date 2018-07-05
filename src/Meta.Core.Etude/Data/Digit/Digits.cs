@@ -66,7 +66,7 @@ namespace Meta.Core
         /// Converts a <see cref="Digit"/> container to <see cref="Digit"/> list
         /// </summary>
         /// <param name="d"></param>
-        public static implicit operator List<Digit>(Digits d)
+        public static implicit operator Lst<Digit>(Digits d)
             => d.Data;
 
         /// <summary>
@@ -80,13 +80,13 @@ namespace Meta.Core
         /// Converts a <see cref="Digit"/> list <see cref="Digit"/> container
         /// </summary>
         /// <param name="d"></param>
-        public static implicit operator Digits(List<Digit> data)
+        public static implicit operator Digits(Lst<Digit> data)
             => new Digits(data);
 
         public Digits(params Digit[] data)
             => this.Data = data;
        
-        List<Digit> Data { get; }
+        Lst<Digit> Data { get; }
 
         public Cardinality Cardinality
             => Data.Cardinality;

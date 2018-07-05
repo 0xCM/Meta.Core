@@ -14,7 +14,7 @@ namespace Meta.Syntax
 
     public interface IGrammarExpression
     {
-        List<IToken> Tokens { get; }
+        Lst<IToken> Tokens { get; }
 
         bool IsEmpty { get; }
     }

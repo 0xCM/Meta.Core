@@ -9,7 +9,7 @@ using Meta.Core;
 
 partial class etude
 {
-    public static List<Y> bind<X, Y>(List<X> list, Function<X, List<Y>> f)
+    public static Lst<Y> bind<X, Y>(Lst<X> list, Function<X, Lst<Y>> f)
         => List.bind(list, f.F);
 
 }

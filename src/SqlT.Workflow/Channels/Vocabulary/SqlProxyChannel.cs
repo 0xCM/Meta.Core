@@ -66,7 +66,7 @@ namespace SqlT.Core
 
         protected WorkFlowed<IReadOnlyList<T>> PullAll<T>()
             where T : class, ISqlTabularProxy, new()
-                => Witness(LiftOption(Source.Get<T>().ToOption(),
+                => Witness(LiftOption(Source.Get<T>(),
                         records => Loaded<T>(records.Count)));
 
             

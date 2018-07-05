@@ -12,7 +12,7 @@ namespace Meta.Core
 
     using static metacore;
 
-    public interface IListApply<X,Y> : IApply<X, List<X>, List<Func<X, Y>>, Y, List<Y>>
+    public interface IListApply<X,Y> : IApply<X, Lst<X>, Lst<Func<X, Y>>, Y, Lst<Y>>
     {
 
     }
@@ -21,10 +21,10 @@ namespace Meta.Core
     {
         public static readonly ListApply<X, Y> instance = default;
 
-        public List<Y> apply(List<Func<X, Y>> lf, List<X> lx)
+        public Lst<Y> apply(Lst<Func<X, Y>> lf, Lst<X> lx)
             => List.apply(lf, lx);
 
-        public Func<List<X>, List<Y>> fmap(Func<X, Y> f)
+        public Func<Lst<X>, Lst<Y>> fmap(Func<X, Y> f)
             => List.fmap(f);
     }
 

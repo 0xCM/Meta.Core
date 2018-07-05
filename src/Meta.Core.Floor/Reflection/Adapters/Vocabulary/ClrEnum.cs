@@ -57,16 +57,16 @@ public sealed class ClrEnum : ClrType
     /// </summary>
     /// <typeparam name="E">The enum type</typeparam>
     /// <returns></returns>
-    public List<E> Values<E>()
+    public Lst<E> Values<E>()
         where E : Enum 
-            => List.make(Enum.GetValues(typeof(E)).Cast<E>());
+            => Lst.make(Enum.GetValues(typeof(E)).Cast<E>());
 
     /// <summary>
     /// Specifies the literals defined by the enumeration
     /// </summary>
     /// <returns></returns>
-    public List<ClrEnumLiteral> Literals
-        => List.make(ReflectedElement.GetFields().Where(
+    public Lst<ClrEnumLiteral> Literals
+        => Lst.make(ReflectedElement.GetFields().Where(
             f => not(f.IsSpecialName)).Select(f => new ClrEnumLiteral(f)));
 
 

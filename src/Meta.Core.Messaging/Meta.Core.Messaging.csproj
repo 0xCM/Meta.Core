@@ -12,4 +12,9 @@
     <ProjectReference Include="..\Meta.Core.Json\Meta.Core.Json.csproj" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Reference Include="System.ServiceModel" />
+  </ItemGroup>
+
 </Project>

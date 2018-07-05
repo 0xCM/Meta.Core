@@ -10,7 +10,7 @@ using Meta.Core;
 
 partial class etude
 {
-    public static Y foldl<X, Y>(Func<Y, X, Y> f, Y y0, List<X> container)
+    public static Y foldl<X, Y>(Func<Y, X, Y> f, Y y0, Lst<X> container)
         => ListFoldable<X>.instance.foldl(f, y0, container);
 
     /// <summary>
@@ -24,7 +24,7 @@ partial class etude
     /// <remarks>
     /// See http://hackage.haskell.org/package/base-4.11.1.0/docs/src/GHC.Base.html#fold
     /// </remarks>
-    public static Y foldr<X, Y>(Func<X, Y, Y> f, Y y0, List<X> container)
+    public static Y foldr<X, Y>(Func<X, Y, Y> f, Y y0, Lst<X> container)
         => ListFoldable<X>.instance.foldr(f, y0, container);
 
     public static Y foldl<X, Y>(Func<Y, X, Y> f, Y y0, Seq<X> container)

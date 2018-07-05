@@ -11,7 +11,7 @@ namespace Meta.Core
 
     public static class ReadP
     {
-        public delegate List<(A a, string)> ReadS<A>(string s);
+        public delegate Lst<(A a, string)> ReadS<A>(string s);
 
 
 

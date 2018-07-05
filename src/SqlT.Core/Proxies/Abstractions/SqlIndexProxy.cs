@@ -6,7 +6,7 @@
 namespace SqlT.Core
 {
 
-
+    
     public abstract class SqlIndexProxy : SqlElementProxy, ISqlIndexProxy
     {
 
@@ -14,7 +14,7 @@ namespace SqlT.Core
 
 
 
-    public abstract class SqlIndexProxy<I, T> : SqlElementProxy, ISqlIndexProxy<I, T>
+    public abstract class SqlIndexProxy<I, T> : SqlIndexProxy, ISqlIndexProxy<I, T>
         where I : ISqlIndexProxy<I, T>
         where T : ISqlTableProxy
     {

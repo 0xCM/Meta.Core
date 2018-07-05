@@ -8,13 +8,8 @@ namespace SqlT.SqlSystem
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Collections.Concurrent;
-    using System.Reflection;
 
     using SqlT.Core;
-    using SqlT.Models;
-    using SqlT.Services;
-    using SqlT.Models.Proxies;
 
     using static metacore;
 
@@ -23,7 +18,6 @@ namespace SqlT.SqlSystem
         IDependencyResolver<SqlConnectionString>
     {
         static HashSet<Type> Resolvables;
-
 
         static NativeViewResolver()
         {

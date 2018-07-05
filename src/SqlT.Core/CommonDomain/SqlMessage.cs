@@ -12,7 +12,7 @@ namespace SqlT.Core
     /// <summary>
     /// Encapsulates basic status/error message content
     /// </summary>
-    public class SqlMessage //: ISqlMessage
+    public class SqlMessage 
     {
         public static readonly SqlMessage Empty 
             = new SqlMessage(String.Empty);

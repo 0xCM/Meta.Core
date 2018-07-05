@@ -9,7 +9,7 @@ using System.Linq;
 
 partial class etude
 {
-    public static List<X> alt<X>(List<X> l1, List<X> l2)
+    public static Lst<X> alt<X>(Lst<X> l1, Lst<X> l2)
         => ListAlt<X>.instance.alt(l1, l2);
 
     public static Seq<X> alt<X>(Seq<X> s1, Seq<X> s2)

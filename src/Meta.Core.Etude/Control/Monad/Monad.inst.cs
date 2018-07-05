@@ -32,7 +32,7 @@ namespace Meta.Core
             => Seq.bind(f, g);
     }
 
-    public interface IListMonad<X, Y> : IMonad<X, List<X>, List<Func<X, Y>>, Y, List<Y>>
+    public interface IListMonad<X, Y> : IMonad<X, Lst<X>, Lst<Func<X, Y>>, Y, Lst<Y>>
     {
 
     }
@@ -41,16 +41,16 @@ namespace Meta.Core
     {
         public static readonly ListMonad<X, Y> instance = default;
 
-        public Func<List<X>, List<Y>> fmap(Func<X, Y> f)
+        public Func<Lst<X>, Lst<Y>> fmap(Func<X, Y> f)
             => List.fmap(f);
 
-        public List<Y> apply(List<Func<X, Y>> cf, List<X> cx)
+        public Lst<Y> apply(Lst<Func<X, Y>> cf, Lst<X> cx)
             => List.apply(cf, cx);
 
-        public List<X> pure(X x)
+        public Lst<X> pure(X x)
             => List.singleton(x);
 
-        public List<Y> bind(List<X> f, Func<X, List<Y>> g)
+        public Lst<Y> bind(Lst<X> f, Func<X, Lst<Y>> g)
             => List.bind(f, g);
     }
 

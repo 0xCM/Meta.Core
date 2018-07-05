@@ -9,11 +9,10 @@ namespace SqlT.Core
     using System.Text;
 
 
-    public abstract class SqlTableTypeProxy : SqlTabularProxy, ISqlTableTypeProxy
-    {
-
-    }
-
+    /// <summary>
+    /// Base type for SQL table type proxy representatives
+    /// </summary>
+    /// <typeparam name="T">The derived subtyp</typeparam>
     public abstract class SqlTableTypeProxy<T> : SqlTabularProxy<T>, ISqlTableTypeProxy<T>
         where T : SqlTableTypeProxy<T>, new()
     {

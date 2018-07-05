@@ -13,7 +13,7 @@ partial class etude
     public static Seq<Y> traverse<X, Y>(Func<X, Seq<Y>> f, Seq<X> sx)
         => SeqTraversable<X, Y>.instance.traverse(f, sx);
 
-    public static Seq<Y> traverse<X, Y>(Func<X, List<Y>> f, List<X> sx)
+    public static Seq<Y> traverse<X, Y>(Func<X, Lst<Y>> f, Lst<X> sx)
         => ListTraversable<X, Y>.instance.traverse(f, sx);
 
 }

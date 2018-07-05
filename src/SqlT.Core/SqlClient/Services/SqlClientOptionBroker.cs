@@ -19,11 +19,11 @@ namespace SqlT.Core
         public SqlConnectionString ConnectionString 
             => ClientBroker.ConnectionString;
 
-        public Option<ISqlBrokerSession> CreateSession()        
-            => ClientBroker.CreateSession().ToOption();
-        
-        public Option<int> ExecuteNonQuery(string sql)        
-            => ClientBroker.ExecuteNonQuery(sql).ToOption();
+        public Option<ISqlBrokerSession> CreateSession()
+            => ClientBroker.CreateSession();
+
+        public Option<int> ExecuteNonQuery(string sql)
+            => ClientBroker.ExecuteNonQuery(sql);
         
         public Option<int> ExecuteProcedure(SqlProcedureName procedure, params (string, object)[] arguments)
             => ClientBroker.ExecuteProcedure(procedure, arguments);
@@ -39,9 +39,9 @@ namespace SqlT.Core
 
         public Option<object> ExecuteScalarScript(string sql)        
             => ClientBroker.ExecuteScalarScript(sql);
-        
+
         public Option<T> NextSequenceValue<T>(SqlSequenceName sequence)
-            => ClientBroker.NextSequenceValue<T>(sequence).ToOption();
+            => ClientBroker.NextSequenceValue<T>(sequence);
 
         public Option<IReadOnlyList<T>> NextSequenceValues<T>(SqlSequenceName sequence, int cout)
             => ClientBroker.NextSequenceValues<T>(sequence, cout);

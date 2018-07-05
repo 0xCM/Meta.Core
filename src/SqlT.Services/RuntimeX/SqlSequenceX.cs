@@ -55,13 +55,13 @@ namespace SqlT.Services
                 return exists.ToNone<int>();
 
             if (exists.Value() == SqlBooleanValue.True)
-                return h.Drop().ToOption();
+                return h.Drop();
             else
                 return 0;            
         }
 
         public static Option<int> Restart<T>(this ISqlSequenceHandle h, T newValue)        
-            => h.Broker.ExecuteNonQuery($"alter sequence {h} restart with {newValue}").ToOption();
+            => h.Broker.ExecuteNonQuery($"alter sequence {h} restart with {newValue}");
         
 
     }

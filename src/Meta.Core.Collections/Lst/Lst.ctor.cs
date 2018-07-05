@@ -10,7 +10,7 @@ namespace Meta.Core
     
     using G = System.Collections.Generic;
 
-    public interface IListTypeCtor<X> : ITypeCtor<G.IEnumerable<X>, X, List<X>>
+    public interface ILstTypeCtor<X> : ITypeCtor<G.IEnumerable<X>, X, Lst<X>>
     {
 
     }
@@ -19,11 +19,11 @@ namespace Meta.Core
     /// List constructor
     /// </summary>
     /// <typeparam name="X">The element type</typeparam>
-    public readonly struct ListTypeCtor<X> : IListTypeCtor<X>
+    public readonly struct LstTypeCtor<X> : ILstTypeCtor<X>
     {
-        public static readonly ListTypeCtor<X> instance = default;
+        public static readonly LstTypeCtor<X> instance = default;
 
-        public Func<G.IEnumerable<X>, List<X>> ctor()
-            => stream => List<X>.Factory(stream);
+        public Func<G.IEnumerable<X>, Lst<X>> ctor()
+            => stream => Lst<X>.Factory(stream);
     }
 }

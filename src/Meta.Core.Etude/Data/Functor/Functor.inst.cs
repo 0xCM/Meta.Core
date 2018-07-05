@@ -43,10 +43,10 @@ namespace Meta.Core
 
 
     public interface IListFunctor<X,Y> 
-        : IFunctor<X, List<X>, Y, List<Y>> { }
+        : IFunctor<X, Lst<X>, Y, Lst<Y>> { }
 
     /// <summary>
-    /// Defines an <see cref="IFunctor"/> instance for <see cref="IList{X}"/>
+    /// Defines an <see cref="IFunctor"/> instance for <see cref="ILst{X}"/>
     /// </summary>
     /// <typeparam name="X">The source type</typeparam>
     /// <typeparam name="Y">The target type</typeparam>
@@ -54,7 +54,7 @@ namespace Meta.Core
     {
         public static readonly ListFunctor<X, Y> instance = default;
 
-        public Func<List<X>, List<Y>> fmap(Func<X, Y> f)
+        public Func<Lst<X>, Lst<Y>> fmap(Func<X, Y> f)
             => List.fmap(f);
     }
 

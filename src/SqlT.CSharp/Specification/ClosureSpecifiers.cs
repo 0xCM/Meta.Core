@@ -26,14 +26,14 @@ namespace SqlT.CSharp
         static readonly ClrTypeParameterName TResult = "TResult";
 
         static readonly ClrClassName SqlProcedureProxyBaseTypeName = nameof(SqlProcedureProxy);
-        static readonly ClrClassName SqlTableFunctionProxyBaseTypeName = nameof(SqlTableFunctionProxy);
+        static readonly ClrClassName SqlTableFunctionProxyBaseTypeName = "SqlTableFunctionProxy";
         static readonly ClrClassName SqlTableProxyBaseTypeName = nameof(SqlTableProxy);
-        static readonly ClrClassName SqlTableTypeProxyBaseTypeName = nameof(SqlTableTypeProxy);
+        static readonly ClrClassName SqlTableTypeProxyBaseTypeName = "SqlTableTypeProxy";
         static readonly ClrClassName SqlPrimaryKeyProxyBaseTypeName = nameof(SqlPrimaryKeyProxy);
         static readonly ClrClassName SqlIndexProxyBaseTypeName = nameof(SqlIndexProxy);
         static readonly ClrClassName SqlTabularProxyBaseTypeName = nameof(SqlTabularProxy);
         static readonly ClrClassName SqlViewProxyBaseTypeName = nameof(SqlViewProxy);
-        static readonly ClrClassName SqlSequenceProxyBaseTypeName = nameof(SqlSequenceProxy);
+        static readonly ClrClassName SqlSequenceProxyBaseTypeName = "SqlSequenceProxy";
 
         /// <summary>
         /// Specifies the base type for a procedure proxy

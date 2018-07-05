@@ -33,7 +33,7 @@ namespace Meta.Core
 
     }
 
-    public interface IListMonoid<X> : IMonoid<List<X>>
+    public interface IListMonoid<X> : IMonoid<Lst<X>>
     {
 
     }
@@ -42,13 +42,13 @@ namespace Meta.Core
     {
         public static readonly ListMonoid<X> instance = default;
 
-        public List<X> zero
-            => List<X>.Empty;
+        public Lst<X> zero
+            => Lst<X>.Empty;
 
-        public List<X> combine(List<X> a1, List<X> a2)
+        public Lst<X> combine(Lst<X> a1, Lst<X> a2)
             => a1 + a2;
 
-        public bool eq(List<X> x1, List<X> x2)
+        public bool eq(Lst<X> x1, Lst<X> x2)
             => x1 == x2;
     }
 

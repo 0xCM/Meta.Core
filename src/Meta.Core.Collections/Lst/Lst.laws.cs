@@ -10,10 +10,10 @@ namespace Meta.Core
 
     using G = System.Collections.Generic;
 
-    public delegate List<X> ListFactory<X>(G.IEnumerable<X> source);
+    public delegate Lst<X> LstFactory<X>(G.IEnumerable<X> source);
 
 
-    public interface IList<X> :   IContainer<X, List<X>>
+    public interface ILst<X> :   IContainer<X, Lst<X>>
     {
 
     }

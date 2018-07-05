@@ -9,7 +9,7 @@ namespace Meta.Core
     using System.Linq;
     
 
-    public interface IListAlt<X> : IAlt<X, List<X>>
+    public interface IListAlt<X> : IAlt<X, Lst<X>>
     {
 
     }
@@ -18,10 +18,10 @@ namespace Meta.Core
     {
         public static readonly ListAlt<X> instance = default;
 
-        public List<X> alt(List<X> l1, List<X> l2)
+        public Lst<X> alt(Lst<X> l1, Lst<X> l2)
             => List.concat(l1, l2);
 
-        public Func<List<X>, List<X>> fmap(Func<X, X> f)
+        public Func<Lst<X>, Lst<X>> fmap(Func<X, X> f)
             => List.fmap(f);
     }
 

@@ -44,7 +44,6 @@ namespace SqlT.Core
                             hash &= hash;
                             depth++;
                         }
-
                     }
                 }
                 else
@@ -55,7 +54,6 @@ namespace SqlT.Core
                         hash &= vhash;
                         depth++;
                     }
-
                 }
 
                 if (depth >= maxDepth)

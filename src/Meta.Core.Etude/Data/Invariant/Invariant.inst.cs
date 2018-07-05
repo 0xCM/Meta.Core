@@ -9,7 +9,7 @@ namespace Meta.Core
     using System.Linq;
 
 
-    public interface IListInvariant<X,Y> : IInvariant<X, List<X>, Y, List<Y>>
+    public interface IListInvariant<X,Y> : IInvariant<X, Lst<X>, Y, Lst<Y>>
     {
 
     }
@@ -17,7 +17,7 @@ namespace Meta.Core
     {
         public static readonly ListInvariant<X, Y> instance = default;
 
-        public Func<List<X>, List<Y>> imap(Func<X, Y> f, Func<Y, X> g)
+        public Func<Lst<X>, Lst<Y>> imap(Func<X, Y> f, Func<Y, X> g)
             => lx => List.imap(f, g, lx);
     }
 

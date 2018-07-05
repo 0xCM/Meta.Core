@@ -46,7 +46,7 @@ namespace SqlT.Services
           where X : class, ISqlTableProxy, new()
            where Y : class, ISqlTableProxy, new()
                =>
-                  from srcData in Channel.Source.Get<X>().ToOption()
+                  from srcData in Channel.Source.Get<X>()
                   from dstPurge in Channel.Target.Table<Y>().TruncateIfExists()
                   from save in Channel.Target.Save(map(srcData, x => x.TransferArray(new Y())))
                   select save;
@@ -55,13 +55,13 @@ namespace SqlT.Services
           where X : class, ISqlTableProxy, new()
            where Y : class, ISqlTableProxy, new()
                =>
-                  from srcData in Channel.Source.Get<X>().ToOption()
+                  from srcData in Channel.Source.Get<X>()
                   from save in Channel.Target.Save(map(srcData, x => x.TransferArray(new Y())))
                   select save;
 
         public static Option<int> CopyTable<X>(this ISqlProxyChannel Channel)
           where X : class, ISqlTableProxy, new()
-               => from srcData in Channel.Source.Get<X>().ToOption()
+               => from srcData in Channel.Source.Get<X>()
                   from save in Channel.Target.Save(srcData)
                   select save;
 
@@ -73,7 +73,7 @@ namespace SqlT.Services
 
         static Option<ISqlProxyBrokerFactory> SqlBrokerFactory<T>()
             where T : class, ISqlProxy, new()
-                => SqlProxyBroker.GetBrokerFactory<T>().ToOption();
+                => SqlProxyBroker.GetBrokerFactory<T>();
 
         public static SqlConnectionString SqlIntegratedConnector(this IApplicationContext C, 
             SystemNode Node, SqlDatabaseName Database)
@@ -82,7 +82,7 @@ namespace SqlT.Services
         public static Option<ISqlProxyBroker> SqlIntegratedBroker<T>(this IApplicationContext C, 
             SystemNode Host, SqlDatabaseName Db)
             where T : ISqlProxy, new()
-                => SqlProxyBroker.CreateBroker<T>(C.SqlIntegratedConnector(Host, Db)).ToOption();
+                => SqlProxyBroker.CreateBroker<T>(C.SqlIntegratedConnector(Host, Db));
 
         public static IEnumerable<object> ParameterValues<P>(this P proc)
             where P : class, ISqlProcedureProxy, new()

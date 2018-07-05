@@ -58,7 +58,7 @@ namespace SqlT.Core
 
         public static Option<ISqlProxyBrokerFactory<A>> AssemblyBrokerFactory<A>()
             where A : class, ISqlProxyAssembly, new()
-            => from f in BrokerFactories.GetOrAdd(typeof(A).Assembly, h => CreateBrokerFactory(h)).ToOption()
+            => from f in BrokerFactories.GetOrAdd(typeof(A).Assembly, h => CreateBrokerFactory(h))
                let af = (ISqlProxyBrokerFactory<A>)f
                select af;
               
@@ -444,7 +444,7 @@ namespace SqlT.Core
         SqlOutcome<IReadOnlyList<T>> ISqlProxyBroker.Get<T>(Type proxyType, SqlDatabaseName db)
             => Stream<T>(proxyType, BuildSelect(proxyType,db)).ToList();
 
-        SqlOutcome<IReadOnlyList<T>> ISqlProxyBroker.Get<T>(SqlDatabaseName db)
+        Option<IReadOnlyList<T>> ISqlProxyBroker.Get<T>(SqlDatabaseName db)
             => Stream<T>(BuildSelect<T>(db)).ToList();
 
         SqlOutcome<IReadOnlyList<TResult>> ISqlProxyBroker.Get<P, TResult>(SqlProcedureProxy<P, TResult> proc, SqlDatabaseName db)

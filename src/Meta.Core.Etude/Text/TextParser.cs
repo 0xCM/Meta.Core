@@ -12,7 +12,7 @@ namespace Meta.Core
     using static metacore;
     using static etude;
 
-    public delegate List<(A output, string Remaining)> ParseFunction<A>(string input);
+    public delegate Lst<(A output, string Remaining)> ParseFunction<A>(string input);
 
     public readonly struct TextParser<A>
     {

@@ -10,7 +10,7 @@ namespace Meta.Core
     using Meta.Core.Modules;
 
 
-    public interface IListTraversable<X,Y> : ITraversable<X, List<X>, Y, List<Y>>
+    public interface IListTraversable<X,Y> : ITraversable<X, Lst<X>, Y, Lst<Y>>
     {
 
     }
@@ -19,10 +19,10 @@ namespace Meta.Core
     {
         public static readonly ListTraversable<X, Y> instance = default;
 
-        public Func<List<X>, List<Y>> fmap(Func<X, Y> f)
+        public Func<Lst<X>, Lst<Y>> fmap(Func<X, Y> f)
             => List.fmap(f);
 
-        public List<Y> traverse(Func<X, List<Y>> f, List<X> cx)
+        public Lst<Y> traverse(Func<X, Lst<Y>> f, Lst<X> cx)
             => List.traverse(f, cx);
     }
 

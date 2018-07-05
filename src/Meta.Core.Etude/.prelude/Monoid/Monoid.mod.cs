@@ -11,7 +11,7 @@ namespace Meta.Core.Modules
 
     using static metacore;
 
-    using ListModule = List;
+    using ListModule = Lst;
     using SeqModule = Seq;
 
     /// <summary>
@@ -46,7 +46,7 @@ namespace Meta.Core.Modules
         /// </summary>
         /// <typeparam name="X"></typeparam>
         /// <returns></returns>
-        public static IMonoid<List<X>> List<X>()
+        public static IMonoid<Lst<X>> List<X>()
             => make(ListModule.eq, ListModule.concat, ListModule.empty<X>());
 
         /// <summary>

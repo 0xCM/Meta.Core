@@ -38,10 +38,10 @@ namespace Meta.Core
             }
         }
 
-        public List<EnumChoice<E>> Execute(EnumChoice<E> s0)
-            => List.make(_Execute(s0));
+        public Lst<EnumChoice<E>> Execute(EnumChoice<E> s0)
+            => Lst.make(_Execute(s0));
 
-        public List<EnumChoice<E>> Execute(E s0)
+        public Lst<EnumChoice<E>> Execute(E s0)
             => Execute(new EnumChoice<E>(s0));
 
 

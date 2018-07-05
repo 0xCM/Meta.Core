@@ -26,19 +26,19 @@ namespace Meta.Core
     }
 
     public interface IListFoldable<X> 
-        : IFoldable<X,List<X>> { }
+        : IFoldable<X,Lst<X>> { }
 
     readonly struct ListFoldable<X> : IListFoldable<X>
     {
         public static readonly ListFoldable<X> instance = default;        
 
-        public X fold(IMonoid<X> m, List<X> container)
-            => Foldable<X, List<X>>.instance.fold(m, container);
+        public X fold(IMonoid<X> m, Lst<X> container)
+            => Foldable<X, Lst<X>>.instance.fold(m, container);
 
-        public Y foldl<Y>(Func<Y, X, Y> f, Y y0, List<X> container)
+        public Y foldl<Y>(Func<Y, X, Y> f, Y y0, Lst<X> container)
             => List.foldl(f, y0, container);
 
-        public Y foldr<Y>(Func<X, Y, Y> f, Y y0, List<X> container)
+        public Y foldr<Y>(Func<X, Y, Y> f, Y y0, Lst<X> container)
             => List.foldr(f, y0, container);
      }
 

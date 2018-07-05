@@ -17,23 +17,23 @@ using G = System.Collections.Generic;
 partial class metacore
 {
     /// <summary>
-    /// Constructs a <see cref="List{X}"/> from an array of values
+    /// Constructs a <see cref="Lst{X}"/> from an array of values
     /// </summary>
     /// <typeparam name="X">The list item type</typeparam>
     /// <param name="items">The items to include in the list</param>
     /// <returns></returns>
-    public static List<X> list<X>(params X[] items)
+    public static Lst<X> list<X>(params X[] items)
         => items;
 
     /// <summary>
-    /// Constructs a <see cref="List{X}"/> by concatenating a stream and optional array
+    /// Constructs a <see cref="Lst{X}"/> by concatenating a stream and optional array
     /// </summary>
     /// <typeparam name="X">The list item type</typeparam>
     /// <param name="items">The items to include in the list</param>
     /// <param name="more">Additional items to append</param>
     /// <returns></returns>
-    public static List<X> list<X>(G.IEnumerable<X> items, params X[] more)
-        => List.make(items.Concat(more));
+    public static Lst<X> list<X>(G.IEnumerable<X> items, params X[] more)
+        => Lst.make(items.Concat(more));
 
     /// <summary>
     /// Applies a function to each element of a list and returns a
@@ -44,7 +44,7 @@ partial class metacore
     /// <param name="f">The function to apply</param>
     /// <param name="list">The input list</param>
     /// <returns></returns>
-    public static List<Y> map<X, Y>(Func<X, Y> f, List<X> list)
+    public static Lst<Y> map<X, Y>(Func<X, Y> f, Lst<X> list)
         => list.Select(f);
 
     /// <summary>
@@ -55,7 +55,7 @@ partial class metacore
     /// <typeparam name="X">The item type</typeparam>
     /// <param name="list">The list of options to transform</param>
     /// <returns></returns>
-    public static Option<List<X>> flip<X>(List<Option<X>> list)
+    public static Option<Lst<X>> flip<X>(Lst<Option<X>> list)
         => list.Any(item => item.IsNone()) 
         ? default  : list.Select(x => x.ValueOrDefault());
 
@@ -65,7 +65,7 @@ partial class metacore
     /// <typeparam name="X">The element type</typeparam>
     /// <param name="list">The list to examine</param>
     /// <returns></returns>
-    public static bool empty<X>(List<X> list)
+    public static bool empty<X>(Lst<X> list)
         => list.IsEmpty;
 
     /// <summary>
@@ -74,7 +74,7 @@ partial class metacore
     /// <typeparam name="X">The element type</typeparam>
     /// <param name="list">The list to examine</param>
     /// <returns></returns>
-    public static Option<X> last<X>(List<X> list)
+    public static Option<X> last<X>(Lst<X> list)
         => list.Stream().LastOrDefault();
 
     /// <summary>
@@ -83,7 +83,7 @@ partial class metacore
     /// <typeparam name="X">The element type</typeparam>
     /// <param name="list">The list to examine</param>
     /// <returns></returns>
-    public static Option<X> first<X>(List<X> list)
+    public static Option<X> first<X>(Lst<X> list)
         => list.Stream().FirstOrDefault();
 
     /// <summary>
@@ -92,7 +92,7 @@ partial class metacore
     /// <typeparam name="X">The element type</typeparam>
     /// <param name="a">The array to examine</param>
     /// <returns></returns>
-    public static int len<X>(List<X> list)
+    public static int len<X>(Lst<X> list)
         => list.Count;
 
     /// <summary>
@@ -102,8 +102,8 @@ partial class metacore
     /// <typeparam name="X">The list item type</typeparam>
     /// <param name="list">The list to process</param>
     /// <returns></returns>
-    public static List<List<X>> tails<X>(List<X> list)
-        => List.tails(list);
+    public static Lst<Lst<X>> tails<X>(Lst<X> list)
+        => Lst.tails(list);
 
     /// <summary>
     /// Collapses a lists of item lists into a list of items
@@ -111,7 +111,7 @@ partial class metacore
     /// <typeparam name="X">The item type</typeparam>
     /// <param name="ss">The input sequence</param>
     /// <returns></returns>
-    public static Seq<X> flatten<X>(List<List<X>> ss)
-        => List.flatten(ss);
+    public static Seq<X> flatten<X>(Lst<Lst<X>> ss)
+        => Lst.flatten(ss);
 
 }

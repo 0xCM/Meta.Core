@@ -9,6 +9,9 @@ namespace SqlT.Core
 
     using static metacore;
        
+    /// <summary>
+    /// Defines a structural isomorphism to represent a Sql variant value
+    /// </summary>
     public readonly struct SqlVariant : ISqlVariant
     {
         /// <summary>
@@ -44,7 +47,16 @@ namespace SqlT.Core
             return null;
         }
 
-        public static  SqlVariant? TryParse(SqlVariantKind kind, string s)
+        /// <summary>
+        /// Parses a variant from a string, if possible; otherwise, returns None
+        /// </summary>
+        /// <param name="kind">The target type</param>
+        /// <param name="s">The variant value represented as a string</param>
+        /// <returns></returns>
+        public static Option<SqlVariant> Parse(SqlVariantKind kind, string s)
+            => TryParse(kind, s).ValueOrDefault();
+
+        static SqlVariant? TryParse(SqlVariantKind kind, string s)
         {
             switch(kind)
             {
@@ -164,7 +176,7 @@ namespace SqlT.Core
         public static implicit operator SqlVariant(Decimal x)
             => new SqlVariant(x);
 
-        public static implicit operator Decimal? (SqlVariant x)
+        public static implicit operator decimal? (SqlVariant x)
             => x.value == null ? (Decimal?)null : cast<Decimal>(x.value);
 
         public static implicit operator SqlVariant(TimeSpan x)
@@ -176,8 +188,8 @@ namespace SqlT.Core
         public static implicit operator SqlVariant(Single x)
             => new SqlVariant(x);
 
-        public static implicit operator Single? (SqlVariant x)
-            => x.value == null ? (Single?)null : cast<Single>(x.value);
+        public static implicit operator float? (SqlVariant x)
+            => x.value == null ? (float?)null : (float)x.value;
 
         public static implicit operator SqlVariant(double x)
             => new SqlVariant(x);

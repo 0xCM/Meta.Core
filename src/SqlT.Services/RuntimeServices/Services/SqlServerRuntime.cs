@@ -48,7 +48,7 @@ namespace SqlT.Services
             => SystemViews;
 
         Option<int> exec(string sql)
-            => Broker.ExecuteNonQuery(sql).ToOption();
+            => Broker.ExecuteNonQuery(sql);
 
         Option<int> ISqlServerRuntime.BringDatabaseOnline(SqlDatabaseName DbName)
             => exec(join(eol(), BringDatabaseOnlineSql(DbName)));

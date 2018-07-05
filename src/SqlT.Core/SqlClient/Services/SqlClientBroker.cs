@@ -413,12 +413,12 @@ namespace SqlT.Core
         }
 
         Option<IReadOnlyList<T>> ISqlClientBroker.Select<T>(string sql)
-            => from frame in SqlOutcome.Use(CreateCommand(sql), Select).ToOption()
+            => from frame in Use(CreateCommand(sql), Select)
                from records in HydrateTypes<T>(frame)
                select records;
 
         public Option<int> ExecuteNonQuery(SqlScript Script, SqlNotificationObserver Observer, int? Timeout = null)        
-            => SqlOption.Use(Script, CreateScriptCommand(Script,Observer), command => command.ExecuteNonQuery());
+            => Use(CreateScriptCommand(Script,Observer), command => command.ExecuteNonQuery());
         
         SqlOutcome<int> ISqlClientBroker.ExecuteNonQuery(string sql)
             => SqlOutcome.Use(sql, CreateCommand(sql), command => command.ExecuteNonQuery());

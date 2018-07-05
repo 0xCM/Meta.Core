@@ -11,21 +11,21 @@ namespace Meta.Core
     using Modules;
 
     /// <summary>
-    /// Defines the canonical see <see cref="List{X}"/> monad for LINQ integration
+    /// Defines the canonical see <see cref="Lst{X}"/> monad for LINQ integration
     /// </summary>
-    public static class ListM
+    public static class LstM
     {
 
-        public static List<Y> Select<X, Y>(this List<X> list, Func<X, Y> selector)
-             => List.make(from x in list.Stream() select selector(x));
+        public static Lst<Y> Select<X, Y>(this Lst<X> list, Func<X, Y> selector)
+             => Lst.make(from x in list.Stream() select selector(x));
 
-        public static List<Z> SelectMany<X, Y, Z>(this List<X> list, Func<X, List<Y>> lift, Func<X, Y, Z> project)
-            => List.make(from x in list.Stream()
+        public static Lst<Z> SelectMany<X, Y, Z>(this Lst<X> list, Func<X, Lst<Y>> lift, Func<X, Y, Z> project)
+            => Lst.make(from x in list.Stream()
                          from y in lift(x).Stream()
                          select project(x, y));
 
-        public static List<X> Where<X>(this List<X> list, Func<X, bool> predicate)
-            => List.make(from x in list.Stream() where predicate(x) select x);
+        public static Lst<X> Where<X>(this Lst<X> list, Func<X, bool> predicate)
+            => Lst.make(from x in list.Stream() where predicate(x) select x);
 
     }
 

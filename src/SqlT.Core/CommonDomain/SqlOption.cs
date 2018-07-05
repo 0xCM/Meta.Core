@@ -15,46 +15,12 @@ namespace SqlT.Core
 
     public static class SqlOption
     {
-        public static IApplicationMessage ToAppMessage(this SqlException e, SqlScript Sql)
-            => error($"SQL error {e.Number} occurred. {e.Message} Script: {Sql}");
-
+        
         public static Option<P> ToOption<P>(this SqlOutcome<P> x)
         => x ? some(x.Payload)
              : none<P>(ApplicationMessage.Error(x.Messages.Render()));
 
-        public static Option<TDst> ToOption<TDst>(this ISqlOutcome x)
-            => x.Succeeded
-            ? some((TDst)x.Payload, ApplicationMessage.Inform(x.Message))
-            : none<TDst>(ApplicationMessage.Error(x.Message));
 
-        public static Option<TDst> ToOption<TDst>(this ISqlOutcome x, Func<TDst, IApplicationMessage> onSuccess)
-            => x.Succeeded
-            ? some((TDst)x.Payload, onSuccess((TDst)x.Payload))
-            : none<TDst>(ApplicationMessage.Error(x.Message));
-
-
-        public static Option<P> ToOption<P>(this SqlOutcome<P> x, Func<P, IApplicationMessage> onSuccess)
-            => x ? some(x.Payload, onSuccess(x.Payload))
-                 : none<P>(ApplicationMessage.Error(x.Messages.Render()));
-
-
-        public static Option<TResult> Use<T, TResult>(SqlScript sql, T resource, Func<T, TResult> use) where T : IDisposable
-        {
-            try
-            {
-                using (resource)
-                    return use(resource);
-            }
-            catch (SqlException e)
-            {
-
-                return none<TResult>(e.ToAppMessage(sql));
-            }
-            catch (Exception e)
-            {
-                return new SqlOutcome<TResult>(e, sql);
-            }
-        }
 
     }
 

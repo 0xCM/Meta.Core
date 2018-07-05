@@ -11,7 +11,7 @@ using static metacore;
 
 partial class etude
 {
-    public static List<Y> bind<X, Y>(List<X> list, Func<X, List<Y>> f)
+    public static Lst<Y> bind<X, Y>(Lst<X> list, Func<X, Lst<Y>> f)
         => ListBind<X, Y>.instance.bind(list, f);
 
     public static Seq<Y> bind<X, Y>(Seq<X> list, Func<X, Seq<Y>> f)

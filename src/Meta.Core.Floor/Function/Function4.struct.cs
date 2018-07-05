@@ -46,8 +46,8 @@ namespace Meta.Core
         /// <param name="f">The function to evaluate</param>
         /// <param name="values">The values over which evaluation will occur</param>
         /// <returns></returns>
-        public static List<Y> operator *(Function<X1, X2, X3, X4, Y> f, List<(X1, X2, X3, X4)> values)
-            => List.make(from v in values.Stream()
+        public static Lst<Y> operator *(Function<X1, X2, X3, X4, Y> f, Lst<(X1, X2, X3, X4)> values)
+            => Lst.make(from v in values.Stream()
                           select f.Eval(v));
 
         /// <summary>

@@ -72,15 +72,15 @@ namespace SqlT.Services
                 {
                     TableName = Handle.TableName.FullName,
                     IndexName = Handle.ElementName.ToString(),
-                })).ToOption();
+                }));
 
         Option<int> ISqlIndexRuntime.Rebuild()
-            => Broker.ExecuteNonQuery(SqlScript.FromText(rebuild, 
+            => Broker.ExecuteNonQuery(SqlScript.FromText(rebuild,
                 new
                 {
                     TableName = Handle.TableName.FullName,
                     IndexName = Handle.ElementName.ToString(),
-                })).ToOption();
+                }));
 
         public Option<int> Drop(bool IfExists = true)
             => Broker.ExecuteNonQuery(SqlScript.FromText(
@@ -88,20 +88,20 @@ namespace SqlT.Services
                 {
                     TableName = Handle.TableName.FullName,
                     IndexName = Handle.ElementName.ToString(),
-                })).ToOption();
+                }));
 
 
         public Option<int> Create(IEnumerable<SqlColumnName> columns, bool clustered = false, bool unique = false)
         {
             var sql = create(columns, clustered, unique);
-            return Broker.ExecuteNonQuery(sql).ToOption();
+            return Broker.ExecuteNonQuery(sql);
         }
 
         public Option<int> Create(IEnumerable<SqlColumnName> columns, IEnumerable<SqlColumnName> includes, bool clustered = false, bool unique = false)
         {
             var sql = create(columns, clustered, unique)
                 + " include(" + string.Join(",", columns) + ")";
-            return Broker.ExecuteNonQuery(sql).ToOption();
+            return Broker.ExecuteNonQuery(sql);
         }
 
     }

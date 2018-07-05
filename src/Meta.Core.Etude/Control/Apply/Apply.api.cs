@@ -12,7 +12,7 @@ using static metacore;
 
 partial class etude
 {
-    public static List<Y> apply<X, Y>(List<Func<X, Y>> lf, List<X> lx)
+    public static Lst<Y> apply<X, Y>(Lst<Func<X, Y>> lf, Lst<X> lx)
         => ListApply<X, Y>.instance.apply(lf, lx);
 
     public static Seq<Y> apply<X, Y>(Seq<Func<X, Y>> sf, Seq<X> sx)

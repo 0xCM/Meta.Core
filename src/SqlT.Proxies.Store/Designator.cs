@@ -19,7 +19,7 @@ using SqlT.Core;
     Scope = "module")]
 
 
-public class SqlTStoreProxies : SqlTModule<SqlTStoreProxies>
+public class SqlTStoreProxies : SqlProxyAssembly<SqlTStoreProxies>
 {
     public SqlTStoreProxies()
     {

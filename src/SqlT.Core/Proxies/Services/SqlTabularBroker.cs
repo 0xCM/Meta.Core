@@ -37,13 +37,13 @@ namespace SqlT.Core
             => InnerBroker.Stream<T>(sql);
 
         public Option<int> Stream(string sql, Action<T> receiver)
-            => InnerBroker.Stream(sql, receiver).ToOption();
+            => InnerBroker.Stream(sql, receiver);
 
         public Option<IReadOnlyList<T>> Get(SqlDatabaseName db = null)
-            => InnerBroker.Get<T>(db).ToOption();
+            => InnerBroker.Get<T>(db);
 
         public Option<IReadOnlyList<T>> Get(string sql)
-            => InnerBroker.Get<T>(sql).ToOption();
+            => InnerBroker.Get<T>(sql);
 
         public Option<IReadOnlyList<C>> GetColumn<C>(string sql, Expression<Func<T, C>> selector)
             => InnerBroker.GetColumn(sql, selector);

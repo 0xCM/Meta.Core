@@ -9,7 +9,7 @@ namespace Meta.Core
     using System.Linq;
 
     public interface IListAlternative<X,Y> 
-        : IAlternative<X, List<X>, List<Func<X, Y>>, Y, List<Y>>
+        : IAlternative<X, Lst<X>, Lst<Func<X, Y>>, Y, Lst<Y>>
     {
 
 
@@ -19,16 +19,16 @@ namespace Meta.Core
     {
         public static readonly ListAlternative<X,Y> instance = default;
 
-        public List<X> empty
+        public Lst<X> empty
             => List.empty<X>();
 
-        public List<Y> apply(List<Func<X, Y>> cf, List<X> cx)
+        public Lst<Y> apply(Lst<Func<X, Y>> cf, Lst<X> cx)
             => List.apply(cf, cx);
 
-        public Func<List<X>, List<Y>> fmap(Func<X, Y> f)
+        public Func<Lst<X>, Lst<Y>> fmap(Func<X, Y> f)
             => List.fmap(f);
 
-        public List<X> pure(X x)
+        public Lst<X> pure(X x)
             => List.singleton(x);
     }
 

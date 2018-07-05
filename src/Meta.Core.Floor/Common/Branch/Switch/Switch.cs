@@ -24,11 +24,11 @@ namespace Meta.Core
 
     public readonly struct Switch<X,Y>
     {            
-        List<Case<X,Y>> Cases { get; }
+        Lst<Case<X,Y>> Cases { get; }
 
         public Switch(G.IEnumerable<Case<X, Y>> Cases)
         {
-            this.Cases = List.make(Cases);
+            this.Cases = Lst.make(Cases);
         }
        
         public Option<Y> Eval(X x)
@@ -46,13 +46,13 @@ namespace Meta.Core
 
     public readonly struct SwitchD<X,Y>
     {
-        List<Case<X, Y>> Cases { get; }
+        Lst<Case<X, Y>> Cases { get; }
 
         Func<X, Y> Default { get; }
 
         public SwitchD(G.IEnumerable<Case<X, Y>> Cases, Func<X, Y> @default)
         {
-            this.Cases = List.make(Cases);
+            this.Cases = Lst.make(Cases);
             this.Default = @default;
         }
 

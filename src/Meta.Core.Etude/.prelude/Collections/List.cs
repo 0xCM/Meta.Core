@@ -8,7 +8,7 @@ namespace Meta.Core
     using System;
 
 
-    public partial class List : Modules.List
+    public partial class List : Modules.Lst
     {
 
 

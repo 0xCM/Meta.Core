@@ -27,7 +27,7 @@ namespace Meta.Core
 
         public bool IsEmpty { get; }
 
-        List<IToken> IGrammarExpression.Tokens
+        Lst<IToken> IGrammarExpression.Tokens
             => list<IToken>(Token.Define(string.Empty, Value));
         
         public override string ToString()

@@ -76,5 +76,13 @@ public static class ReflectiveFloor
         }
     }
 
+    /// <summary>
+    /// If non-nullable, returns the supplied type. If nullable, returns the underlying type
+    /// </summary>
+    /// <param name="t">The type to examine</param>
+    /// <returns></returns>
+    public static Type GetNonNullableType(this Type t)
+        => nonNullable(t);
+
 
 }

@@ -90,9 +90,9 @@ namespace SqlT.SqlSystem
                 : CompatibilityVerion);
         }
 
-        public MC.List<T> GetNativeView<T>(string viewName) 
+        public MC.Lst<T> GetNativeView<T>(string viewName) 
             where T : ISystemElement
-                => (MC.List<T>)cache.GetOrAdd(viewType<T>(viewName), 
+                => (MC.Lst<T>)cache.GetOrAdd(viewType<T>(viewName), 
                         t => list(Broker.Get<T>(t, MetadataSource.DatabaseName).Payload.Cast<T>()));
 
         public IReadOnlyList<T> GetNativeView<T>() 

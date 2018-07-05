@@ -7,10 +7,6 @@ namespace SqlT.Core
 {
     using System;
 
-    public abstract class SqlTableFunctionProxy : SqlRoutineProxy, ISqlTableFunctionProxy
-    {
-        
-    }
 
     public abstract class SqlTableFunctionProxy<F,TResult> : SqlRoutineProxy<F,TResult>, ISqlTableFunctionProxy<F,TResult>
         where F : class, ISqlTableFunctionProxy<F, TResult>, new()

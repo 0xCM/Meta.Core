@@ -134,7 +134,7 @@ namespace SqlT.SqlDocs
                               FileContent: d.s.FileContent                              
                             ))
                           select new SyncMarkdownFileContent(segments.Key, contents);
-            var results = map(calls, c => SqlDocsBroker.Call(c).ToOption().OnNone(Notify));
+            var results = map(calls, c => SqlDocsBroker.Call(c));
             return results.FirstOrDefault();
         }
     }

@@ -78,7 +78,7 @@ public abstract class SystemResourceName<X> : SemanticIdentifier<X, (SystemResou
     public bool IsRoot
         => ReferenceEquals(this, Empty) || ParentName.IsNone();
 
-    public Meta.Core.List<X> Lineage
+    public Meta.Core.Lst<X> Lineage
         => list(Ancestors((X)this).Reverse().Concat(stream( (X)this)));
 
     protected abstract X New(SystemResourceScheme scheme, string EverythingButScheme);

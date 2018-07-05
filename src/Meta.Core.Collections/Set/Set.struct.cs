@@ -108,6 +108,12 @@ namespace Meta.Core
             => Data.IsSubsetOf(other.Data) 
             && other.Data.IsSubsetOf(Data);
 
+        /// <summary>
+        /// Presents the data as a <see cref="IImmutableSet{T}"/>
+        /// </summary>
+        /// <returns></returns>
+        public IImmutableSet<X> AsImmutableSet()
+            => Data;
 
     }
 }

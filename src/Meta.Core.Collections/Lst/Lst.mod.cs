@@ -19,7 +19,7 @@ namespace Meta.Core.Modules
     /// <summary>
     /// Implelements Haskell-style list operations
     /// </summary>
-    public class List 
+    public class Lst 
     {
 
         /// <summary>
@@ -27,16 +27,16 @@ namespace Meta.Core.Modules
         /// </summary>
         /// <typeparam name="X">The list item type</typeparam>
         /// <returns></returns>
-        public static ListFactory<X> ctor<X>()
-            => List<X>.Factory;
+        public static LstFactory<X> ctor<X>()
+            => Lst<X>.Factory;
 
         /// <summary>
         /// Produces the empty list
         /// </summary>
         /// <typeparam name="X">The list item type</typeparam>
         /// <returns></returns>
-        public static List<X> empty<X>()
-            => List<X>.Empty;
+        public static Lst<X> empty<X>()
+            => Lst<X>.Empty;
 
         /// <summary>
         /// Constructs a list from an enumerable
@@ -44,7 +44,7 @@ namespace Meta.Core.Modules
         /// <typeparam name="X">The list element type</typeparam>
         /// <param name="items"></param>
         /// <returns></returns>
-        public static List<X> make<X>(G.IEnumerable<X> items)
+        public static Lst<X> make<X>(G.IEnumerable<X> items)
             => ctor<X>()(items);
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace Meta.Core.Modules
         /// <typeparam name="X">The list element type</typeparam>
         /// <param name="lists"></param>
         /// <returns></returns>
-        public static List<X> chain<X>(params List<X>[] lists)
+        public static Lst<X> chain<X>(params Lst<X>[] lists)
             => make(from list in lists
                     from item in list.Stream()
                     select item);
@@ -65,7 +65,7 @@ namespace Meta.Core.Modules
         /// <param name="head">The first element in the list</param>
         /// <param name="tail">The elements that follow the first element</param>
         /// <returns></returns>
-        public static List<X> fuse<X>(X head, params X[] tail)
+        public static Lst<X> fuse<X>(X head, params X[] tail)
             => make(stream(head).Concat(tail));
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace Meta.Core.Modules
         /// <param name="head"></param>
         /// <param name="tail"></param>
         /// <returns></returns>
-        public static List<X> fuse<X>(X head, List<X> tail)
+        public static Lst<X> fuse<X>(X head, Lst<X> tail)
             => chain(singleton(head), tail);
 
 
@@ -86,7 +86,7 @@ namespace Meta.Core.Modules
         /// <param name="l1">The firt list</param>
         /// <param name="l2">The second list</param>
         /// <returns></returns>
-        public static List<X> concat<X>(List<X> l1, List<X> l2)
+        public static Lst<X> concat<X>(Lst<X> l1, Lst<X> l2)
             => chain(l1, l2);
 
 
@@ -96,7 +96,7 @@ namespace Meta.Core.Modules
         /// <typeparam name="X">The list item type</typeparam>
         /// <param name="x">The singleton value</param>
         /// <returns></returns>
-        public static List<X> singleton<X>(X x)
+        public static Lst<X> singleton<X>(X x)
             => fuse(x);
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace Meta.Core.Modules
         /// <typeparam name="X">The item type</typeparam>
         /// <param name="sequences">The lists to concatenate</param>
         /// <returns></returns>
-        public static List<X> flatten<X>(List<List<X>> lists)
+        public static Lst<X> flatten<X>(Lst<Lst<X>> lists)
              => from list in lists
                 from item in list
                 select item;
@@ -118,7 +118,7 @@ namespace Meta.Core.Modules
         /// <param name="f">The function to apply</param>
         /// <param name="list"></param>
         /// <returns></returns>
-        public static List<Y> map<X, Y>(Func<X, Y> f, List<X> list)
+        public static Lst<Y> map<X, Y>(Func<X, Y> f, Lst<X> list)
             => make(list.Stream().Select(f));
 
         /// <summary>
@@ -130,7 +130,7 @@ namespace Meta.Core.Modules
         /// <param name="f"></param>
         /// <returns></returns>
         /// <remarks>This function often appears as 'concatMap'</remarks>
-        public static List<Y> bind<X, Y>(List<X> list, Func<X, List<Y>> f)
+        public static Lst<Y> bind<X, Y>(Lst<X> list, Func<X, Lst<Y>> f)
             => flatten(map(f, list));
 
         /// <summary>
@@ -140,7 +140,7 @@ namespace Meta.Core.Modules
         /// <typeparam name="Y"></typeparam>
         /// <param name="f"></param>
         /// <returns></returns>
-        public static Func<List<X>, List<Y>> fmap<X, Y>(Func<X, Y> f)
+        public static Func<Lst<X>, Lst<Y>> fmap<X, Y>(Func<X, Y> f)
             => lx => map(f, lx);
 
         /// <summary>
@@ -149,7 +149,7 @@ namespace Meta.Core.Modules
         /// <typeparam name="X">The input list element type</typeparam>
         /// <typeparam name="Y">The output list element type</typeparam>
         /// <returns></returns>
-        public static List<Y> apply<X, Y>(List<Func<X, Y>> lf, List<X> lx)
+        public static Lst<Y> apply<X, Y>(Lst<Func<X, Y>> lf, Lst<X> lx)
             => from f in lf
                from x in lx
                select f(x);
@@ -161,7 +161,7 @@ namespace Meta.Core.Modules
         /// <typeparam name="X">The item type</typeparam>
         /// <param name="l">The input list</param>
         /// <returns></returns>
-        public static Option<X> head<X>(List<X> l)
+        public static Option<X> head<X>(Lst<X> l)
             => l.Stream().FirstOrDefault();
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace Meta.Core.Modules
         /// <param name="list"></param>
         /// <param name="default"></param>
         /// <returns></returns>
-        public static X head<X>(List<X> list, X @default)
+        public static X head<X>(Lst<X> list, X @default)
             => list.Stream().FirstOrDefault(@default);
 
         /// <summary>
@@ -180,7 +180,7 @@ namespace Meta.Core.Modules
         /// <typeparam name="X">The item type</typeparam>
         /// <param name="l">The input list</param>
         /// <returns></returns>
-        public static Option<X> last<X>(List<X> l)
+        public static Option<X> last<X>(Lst<X> l)
             => l.Stream().LastOrDefault();
 
         /// <summary>
@@ -189,8 +189,8 @@ namespace Meta.Core.Modules
         /// <typeparam name="X">The item type</typeparam>
         /// <param name="list">The input list</param>
         /// <returns></returns>
-        public static Option<List<X>> tail<X>(List<X> list)
-            => list.Count <= 1 ? none<List<X>>() : make(list.Stream().Skip(1));
+        public static Option<Lst<X>> tail<X>(Lst<X> list)
+            => list.Count <= 1 ? none<Lst<X>>() : make(list.Stream().Skip(1));
 
         /// <summary>
         /// Creates a new list [x1,x2, ..., x(n-1)] from an input list [x1,...,xn]
@@ -198,7 +198,7 @@ namespace Meta.Core.Modules
         /// <typeparam name="X">The item type</typeparam>
         /// <param name="list">The input list</param>
         /// <returns></returns>
-        public static List<X> init<X>(List<X> list)
+        public static Lst<X> init<X>(Lst<X> list)
             => make(list.Stream().Take(list.Count - 1));
 
         /// <summary>
@@ -207,21 +207,21 @@ namespace Meta.Core.Modules
         /// <typeparam name="X"></typeparam>
         /// <param name="list"></param>
         /// <returns></returns>
-        public static Option<(X, List<X>)> uncons<X>(List<X> list)
-            => list.IsEmpty ? none<(X, List<X>)>()
+        public static Option<(X, Lst<X>)> uncons<X>(Lst<X> list)
+            => list.IsEmpty ? none<(X, Lst<X>)>()
                 : from h in head(list)
                   from t in tail(list)
                   select (h, t);
 
 
-        static G.IEnumerable<List<X>> _tails<X>(List<X> list)
+        static G.IEnumerable<Lst<X>> _tails<X>(Lst<X> list)
         {
             var lastIdx = list.Count - 1;
             for (var i = 0; i <= lastIdx; i++)
                 yield return list[i, lastIdx];            
         }
 
-        public static List<List<X>> tails<X>(List<X> list)
+        public static Lst<Lst<X>> tails<X>(Lst<X> list)
             => make(_tails(list));
 
         /// <summary>
@@ -232,12 +232,12 @@ namespace Meta.Core.Modules
         /// <param name="f">The traverser effector</param>
         /// <param name="list"></param>
         /// <returns></returns>
-        public static List<Y> traverse<X, Y>(Func<X, List<Y>> f, List<X> list)
+        public static Lst<Y> traverse<X, Y>(Func<X, Lst<Y>> f, Lst<X> list)
             => make(from x in list.Stream()
                     from y in f(x).Stream()
                     select y);
 
-        public static List<Y> imap<X, Y>(Func<X, Y> f, Func<Y, X> g, List<X> Fx)
+        public static Lst<Y> imap<X, Y>(Func<X, Y> f, Func<Y, X> g, Lst<X> Fx)
         {
             var query = from x in Fx
                         select g(f(x));
@@ -250,7 +250,7 @@ namespace Meta.Core.Modules
         /// <typeparam name="X">The item type</typeparam>
         /// <param name="list">The list to reverse</param>
         /// <returns></returns>
-        public static List<X> reverse<X>(List<X> list)
+        public static Lst<X> reverse<X>(Lst<X> list)
             => make(list.Stream().Reverse());
 
         /// <summary>
@@ -260,7 +260,7 @@ namespace Meta.Core.Modules
         /// <param name="n"></param>
         /// <param name="list"></param>
         /// <returns></returns>
-        public static List<X> take<X>(int n, List<X> list)
+        public static Lst<X> take<X>(int n, Lst<X> list)
             => list.Count >= n ? list : make(list.Stream().Take(n));
 
         /// <summary>
@@ -270,7 +270,7 @@ namespace Meta.Core.Modules
         /// <param name="n">The number of elements to skip</param>
         /// <param name="list">the source list</param>
         /// <returns></returns>
-        public static List<X> skip<X>(int n, List<X> list)
+        public static Lst<X> skip<X>(int n, Lst<X> list)
             => make(list.Stream().Skip(n));
 
         /// <summary>
@@ -280,7 +280,7 @@ namespace Meta.Core.Modules
         /// <param name="x">The value to intersperse between paired elements</param>
         /// <param name="list">The input list</param>
         /// <returns></returns>
-        public static List<X> intersperse<X>(X x, List<X> list)
+        public static Lst<X> intersperse<X>(X x, Lst<X> list)
             => Seq.intersperse(x, list.Contained());
 
         /// <summary>
@@ -290,7 +290,7 @@ namespace Meta.Core.Modules
         /// <param name="n">The length of the resulting list</param>
         /// <param name="x">The value to replicate</param>
         /// <returns></returns>
-        public static List<X> replicate<X>(int n, X x)
+        public static Lst<X> replicate<X>(int n, X x)
             => Seq.replicate(n, x);
 
         /// <summary>
@@ -302,7 +302,7 @@ namespace Meta.Core.Modules
         /// <param name="y0">The initial value</param>
         /// <param name="list">The list to which the fold will be applied</param>
         /// <returns></returns>
-        public static Y foldr<X, Y>(Func<X, Y, Y> f, Y y0, List<X> list)
+        public static Y foldr<X, Y>(Func<X, Y, Y> f, Y y0, Lst<X> list)
             => Seq.foldr(f, y0, list);
 
         /// <summary>
@@ -314,7 +314,7 @@ namespace Meta.Core.Modules
         /// <param name="y0">The initial value</param>
         /// <param name="list">The list to which the fold will be applied</param>
         /// <returns></returns>
-        public static Y foldl<X, Y>(Func<Y, X, Y> f, Y y0, List<X> list)
+        public static Y foldl<X, Y>(Func<Y, X, Y> f, Y y0, Lst<X> list)
             => Seq.foldl(f, y0, list);
 
         /// <summary>
@@ -324,7 +324,7 @@ namespace Meta.Core.Modules
         /// <param name="f">The accumulator</param>
         /// <param name="list">The list to which the fold will be applied</param>
         /// <returns></returns>
-        public static Option<X> foldl<X>(Func<X, X, X> f, List<X> list)
+        public static Option<X> foldl<X>(Func<X, X, X> f, Lst<X> list)
             => Seq.foldl(f, list);
 
         /// <summary>
@@ -334,7 +334,7 @@ namespace Meta.Core.Modules
         /// <param name="combiner">A transformation (x1,x2) -> x3</param>
         /// <param name="list">The list whose elements will be combined</param>
         /// <returns></returns>
-        public static X combine<X>(Combiner<X> combiner, List<X> list)
+        public static X combine<X>(Combiner<X> combiner, Lst<X> list)
             => list.Stream().Aggregate((x, y) => combiner(x, y));
 
         /// <summary>
@@ -344,7 +344,7 @@ namespace Meta.Core.Modules
         /// <param name="p">The predicate to evaluate</param>
         /// <param name="list">The list over which to evaluate the predicate</param>
         /// <returns></returns>
-        public static bool all<X>(Func<X, bool> p, List<X> list)
+        public static bool all<X>(Func<X, bool> p, Lst<X> list)
             => Container.all(p, list);
 
         /// <summary>
@@ -354,7 +354,7 @@ namespace Meta.Core.Modules
         /// <param name="p">The predicate</param>
         /// <param name="list">The list over which to evaluate the predicate</param>
         /// <returns></returns>
-        public static bool any<X>(Func<X, bool> p, List<X> list)
+        public static bool any<X>(Func<X, bool> p, Lst<X> list)
             => list.Stream().Any(p);
 
         /// <summary>
@@ -364,7 +364,7 @@ namespace Meta.Core.Modules
         /// <param name="match">The value to search for</param>
         /// <param name="list">The list to search</param>
         /// <returns></returns>
-        public static bool contains<X>(X match, List<X> list)
+        public static bool contains<X>(X match, Lst<X> list)
             => any(item => Equals(item, match), list);
 
         /// <summary>
@@ -374,7 +374,7 @@ namespace Meta.Core.Modules
         /// <param name="p">The predicate</param>
         /// <param name="list">The list to filter</param>
         /// <returns>The elements of the input sequence that satisfy the predicate</returns>
-        public static List<X> filter<X>(Func<X, bool> p, List<X> list)
+        public static Lst<X> filter<X>(Func<X, bool> p, Lst<X> list)
             => make(list.Stream().Where(p));
 
         /// <summary>
@@ -386,7 +386,7 @@ namespace Meta.Core.Modules
         /// <param name="x">The first input list</param>
         /// <param name="y">The second input list</param>
         /// <returns></returns>
-        public static List<(X x, Y y)> zip<X, Y>(List<X> x, List<Y> y)
+        public static Lst<(X x, Y y)> zip<X, Y>(Lst<X> x, Lst<Y> y)
             => Seq.zip(x.Contained(), y.Contained());
 
         /// <summary>
@@ -396,7 +396,7 @@ namespace Meta.Core.Modules
         /// <typeparam name="Y">The right sequence element type</typeparam>
         /// <param name="items">The sequence to transform</param>
         /// <returns></returns>
-        public static (List<X> x, List<Y> y) unzip<X, Y>(List<(X x, Y y)> items)
+        public static (Lst<X> x, Lst<Y> y) unzip<X, Y>(Lst<(X x, Y y)> items)
             => Seq.unzip(items.Contained());
 
         /// <summary>
@@ -407,7 +407,7 @@ namespace Meta.Core.Modules
         /// <param name="f"></param>
         /// <param name="lists"></param>
         /// <returns></returns>
-        public static List<Y> flatmap<X, Y>(Func<X, Y> f, List<List<X>> lists)
+        public static Lst<Y> flatmap<X, Y>(Func<X, Y> f, Lst<Lst<X>> lists)
              => from list in lists from item in list select f(item);
 
         /// <summary>
@@ -417,8 +417,8 @@ namespace Meta.Core.Modules
         /// <param name="x1">The first list</param>
         /// <param name="x2">The second list</param>
         /// <returns></returns>
-        public static bool eq<X>(List<X> x1, List<X> x2)
-            => ListEquator<X>.instance(x1, x2);
+        public static bool eq<X>(Lst<X> x1, Lst<X> x2)
+            => LstEquator<X>.instance(x1, x2);
 
         /// <summary>
         /// Returns true if two lists are not equal
@@ -427,7 +427,7 @@ namespace Meta.Core.Modules
         /// <param name="x1">The first list</param>
         /// <param name="x2">The second list</param>
         /// <returns></returns>
-        public static bool neq<X>(List<X> x1, List<X> x2)
+        public static bool neq<X>(Lst<X> x1, Lst<X> x2)
             => not(eq(x1, x2));
 
         /// <summary>
@@ -436,7 +436,7 @@ namespace Meta.Core.Modules
         /// <typeparam name="X">The item type</typeparam>
         /// <param name="list"></param>
         /// <returns></returns>
-        public static int hash<X>(List<X> list)
+        public static int hash<X>(Lst<X> list)
             => list.Stream().GetHashCodeAggregate();
 
         /// <summary>
@@ -445,7 +445,7 @@ namespace Meta.Core.Modules
         /// <typeparam name="X">The item type</typeparam>
         /// <param name="list">The list to format</param>
         /// <returns></returns>
-        public static string format<X>(List<X> list)
+        public static string format<X>(Lst<X> list)
             => list.ToString();
 
         /// <summary>
@@ -454,7 +454,7 @@ namespace Meta.Core.Modules
         /// <typeparam name="X">The item type</typeparam>
         /// <param name="list">The input list</param>
         /// <returns></returns>
-        public static int length<X>(List<X> list)
+        public static int length<X>(Lst<X> list)
             => list.Count;
 
     }

@@ -23,7 +23,7 @@ namespace Meta.Core.Tests
         [UT.TestMethod]
         public void Test01()
         {
-            var input = List.intersperse("+", List.fuse("One", "Two", "Three"));
+            var input = Lst.intersperse("+", Lst.fuse("One", "Two", "Three"));
             var output = combine(input.Contained());
             claim.equal("One+Two+Three", output);
 
@@ -33,7 +33,7 @@ namespace Meta.Core.Tests
         [UT.TestMethod]
         public void Test05()
         {
-            var input = List.fuse(uint8(5), uint8(10), uint8(15));
+            var input = Lst.fuse(uint8(5), uint8(10), uint8(15));
             var output = combine<byte>(input);
             claim.equal(uint8(30), output);
 
@@ -43,9 +43,9 @@ namespace Meta.Core.Tests
         [UT.TestMethod]
         public void Test10()
         {
-            var input = List.fuse(int32(5), int32(10), int32(15));
-            var expect = List.fuse(int32(-5), int32(-10), int32(-15));
-            var output = List.map(neg, input);
+            var input = Lst.fuse(int32(5), int32(10), int32(15));
+            var expect = Lst.fuse(int32(-5), int32(-10), int32(-15));
+            var output = Lst.map(neg, input);
             claim.equal(expect, output);
         }
 
@@ -55,11 +55,11 @@ namespace Meta.Core.Tests
         {
             var f = func((int x) => 3 * x);
             var g = func((int x) => 2 * x);
-            var list1 = List.fuse(2, 5);
-            var list2 = List.fuse(4, 6, 8);
+            var list1 = Lst.fuse(2, 5);
+            var list2 = Lst.fuse(4, 6, 8);
 
-            var h = from z in List.map(f.Eval,list1).Stream()
-                    from y in List.map(g.Eval,list2).Stream()
+            var h = from z in Lst.map(f.Eval,list1).Stream()
+                    from y in Lst.map(g.Eval,list2).Stream()
                     select z + y;
 
              

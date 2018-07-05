@@ -11,6 +11,8 @@ namespace SqlT.Core
     using System.Linq;
     using System.Data.SqlClient;
 
+    using static metacore;
+
     /// <summary>
     /// Encapsulates a potential value returned by a databse operation proxy or framework-level method. 
     /// By definition, value is specified if and only if the invoked operation succeeded
@@ -19,13 +21,11 @@ namespace SqlT.Core
     public struct SqlOutcome<P> : ISqlOutcome
     {
 
-        public static implicit operator Option<P>(SqlOutcome<P> outcome)
-            => outcome.ToOption();
-
+        public static implicit operator Option<P>(SqlOutcome<P> x)
+            => x ? some(x.Payload) : none<P>(ApplicationMessage.Error(x.Messages.Render()));
 
         public static SqlOutcome<P> Fail(IApplicationMessage Reason)
             => new SqlOutcome<P>(Reason);
-
         
         /// <summary>
         /// Unwraps the potential value if it exists; otherwise, raises an exception

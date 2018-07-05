@@ -52,7 +52,7 @@ namespace Meta.Core
                 {
                     try
                     {
-                        var selection = List.make(items);
+                        var selection = Lst.make(items);
                         metrics += new SelectionCount(selection.Count);
 
                         Notify(inform("Selected a total of @SelectionCount @SourceTypeName records", metrics));
@@ -90,7 +90,7 @@ namespace Meta.Core
         Option<int> Push<TSrc, TDst>(IFlowSpec<TSrc, TDst> wf, ConcurrentQueue<TSrc> Q, int MaxCount)
            => Try(() =>
               {
-                  var items = List.make(Q.Dequeue(MaxCount));
+                  var items = Lst.make(Q.Dequeue(MaxCount));
                   if (items.Count != 0)
                   {
                       var transformed = wf.Projector(items);

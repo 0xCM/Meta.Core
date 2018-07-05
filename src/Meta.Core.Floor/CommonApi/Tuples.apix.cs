@@ -97,7 +97,7 @@ public static class TupleExtensions
     /// <param name="point">The value to transform</param>
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static List<X> ToList<X>(this (X x1, X x2) point)
+    public static Lst<X> ToList<X>(this (X x1, X x2) point)
         => list(point.x1, point.x2);
 
     /// <summary>
@@ -107,7 +107,7 @@ public static class TupleExtensions
     /// <param name="point">The value to transform</param>
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static List<X> ToList<X>(this (X x1, X x2, X x3) point)
+    public static Lst<X> ToList<X>(this (X x1, X x2, X x3) point)
         => list(point.x1, point.x2, point.x3);
 
     /// <summary>
@@ -117,7 +117,7 @@ public static class TupleExtensions
     /// <param name="point">The value to transform</param>
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static List<X> ToList<X>(this (X x1, X x2, X x3, X x4) point)
+    public static Lst<X> ToList<X>(this (X x1, X x2, X x3, X x4) point)
         => list(point.x1, point.x2, point.x3, point.x4);
 
     /// <summary>
@@ -127,23 +127,23 @@ public static class TupleExtensions
     /// <param name="point">The value to transform</param>
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static List<X> ToList<X>(this (X x1, X x2, X x3, X x4, X x5) point)
+    public static Lst<X> ToList<X>(this (X x1, X x2, X x3, X x4, X x5) point)
         => list(point.x1, point.x2, point.x3, point.x4, point.x5);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static List<X> ToList<X>(this (X x1, X x2, X x3, X x4, X x5, X x6) point)
+    public static Lst<X> ToList<X>(this (X x1, X x2, X x3, X x4, X x5, X x6) point)
         => list(point.x1, point.x2, point.x3, point.x4, point.x5, point.x6);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static List<X> ToList<X>(this (X x1, X x2, X x3, X x4, X x5, X x6, X x7) point)
+    public static Lst<X> ToList<X>(this (X x1, X x2, X x3, X x4, X x5, X x6, X x7) point)
         => list(point.x1, point.x2, point.x3, point.x4, point.x5, point.x6, point.x7);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static List<X> ToList<X>(this (X x1, X x2, X x3, X x4, X x5, X x6, X x7, X x8) point)
+    public static Lst<X> ToList<X>(this (X x1, X x2, X x3, X x4, X x5, X x6, X x7, X x8) point)
         => list(point.x1, point.x2, point.x3, point.x4, point.x5, point.x6, point.x7, point.x8);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static List<X> ToList<X>(this (X x1, X x2, X x3, X x4, X x5, X x6, X x7, X x8, X x9) point)
+    public static Lst<X> ToList<X>(this (X x1, X x2, X x3, X x4, X x5, X x6, X x7, X x8, X x9) point)
         => list(point.x1, point.x2, point.x3, point.x4, point.x5, point.x6, point.x7, point.x8, point.x9);
 
     /// <summary>

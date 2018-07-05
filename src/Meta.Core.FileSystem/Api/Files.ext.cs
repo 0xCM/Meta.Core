@@ -437,6 +437,9 @@ namespace Meta.Core
             return Reconstructor(newPath);
         }
 
+        public static FilePath Rename(this FilePath path, FileName newName)
+            => path.Rename(newName, p => new FilePath(p));
+
         /// <summary>
         /// Replaces the content of a specified line in the file
         /// </summary>
@@ -534,19 +537,29 @@ namespace Meta.Core
                 return construct(dst);
             });
 
+
         /// <summary>
-        /// Reads all lines of text from the file
+        /// Moves the file to a new location
         /// </summary>
+        /// <param name="dst">The target path</param>
+        /// <param name="overwrite">True if any existing file should be ovewritten</param>
         /// <returns></returns>
-        public static List<string> ReadAllLines(this IFilePath path)
-            => path.IsUnspecified() ? list<string>() : List.make(File.ReadAllLines(path.FileSystemPath));
+        public static Option<FilePath> MoveTo(this FilePath src, FilePath dst, bool overwrite = true, bool createFolder = true)
+            => src.MoveTo(dst, p => new FilePath(p), overwrite, createFolder);
 
         /// <summary>
         /// Reads all lines of text from the file
         /// </summary>
         /// <returns></returns>
-        public static List<string> ReadAllLines(this IFilePath path, Encoding encoding)
-            => path.IsUnspecified() ? list<string>() : List.make(File.ReadAllLines(path.FileSystemPath, encoding));
+        public static Lst<string> ReadAllLines(this IFilePath path)
+            => path.IsUnspecified() ? list<string>() : Lst.make(File.ReadAllLines(path.FileSystemPath));
+
+        /// <summary>
+        /// Reads all lines of text from the file
+        /// </summary>
+        /// <returns></returns>
+        public static Lst<string> ReadAllLines(this IFilePath path, Encoding encoding)
+            => path.IsUnspecified() ? list<string>() : Lst.make(File.ReadAllLines(path.FileSystemPath, encoding));
 
         /// <summary>
         /// Reads the file into memory as an array of bytes

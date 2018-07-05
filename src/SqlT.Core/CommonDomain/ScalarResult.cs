@@ -7,15 +7,16 @@ namespace SqlT.Core
 {
     using System;
     using System.Data;
-    using System.Data.SqlClient;
-    using System.Threading.Tasks;
 
     using static metacore;
 
     /// <summary>
     /// Encapsulates the result of executing a scalar expression/function
     /// </summary>
-    /// <typeparam name="V"></typeparam>
+    /// <typeparam name="V">The scalar type</typeparam>
+    /// <remarks>
+    /// Note that Success = True paired with a no-valued scalar is possible
+    /// </remarks>
     public struct ScalarResult<V>
     {
         public ScalarResult(bool Succeeded, Option<V> ScalarValue)
@@ -23,6 +24,7 @@ namespace SqlT.Core
             this.Succeeded = Succeeded;
             this.ScalarValue = ScalarValue;
         }
+
 
         public Option<V> ScalarValue { get; }
 

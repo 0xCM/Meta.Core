@@ -57,7 +57,7 @@ namespace SqlT.Services
             {
                 Source = SrcTable.ElementName,
                 Target = DstTable,
-            })).ToOption();
+            }));
 
         public static Option<SqlDataFrame> Select(this ISqlTabularHandle h, IEnumerable<SqlColumnName> columns)
         {

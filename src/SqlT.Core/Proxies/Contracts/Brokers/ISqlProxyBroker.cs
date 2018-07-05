@@ -133,7 +133,7 @@ namespace SqlT.Core
 
         SqlOutcome<IReadOnlyList<TResult>> Get<TResult>(Type proxyType, SqlDatabaseName db = null);
 
-        SqlOutcome<IReadOnlyList<TResult>> Get<TResult>(SqlDatabaseName db = null)
+        Option<IReadOnlyList<TResult>> Get<TResult>(SqlDatabaseName db = null)
             where TResult : class, ISqlTabularProxy, new();
 
         SqlOutcome<IReadOnlyList<TResult>> Get<TResult>(string sql)

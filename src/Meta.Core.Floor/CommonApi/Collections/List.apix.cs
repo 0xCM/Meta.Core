@@ -21,8 +21,8 @@ public static class _List
     /// <typeparam name="X">The item type</typeparam>
     /// <param name="formatted"></param>
     /// <returns></returns>
-    public static List<X> parse<X>(string formatted)
-        => List.make( from list in formatted.GetBoundedContent('[', ']')
+    public static Lst<X> parse<X>(string formatted)
+        => Lst.make( from list in formatted.GetBoundedContent('[', ']')
            from item in list.Split(",")
            select metacore.parse<X>(item));
 

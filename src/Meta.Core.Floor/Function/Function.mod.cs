@@ -161,8 +161,8 @@ namespace Meta.Core.Modules
         /// <param name="f">The function to evaluate</param>
         /// <param name="values">The values over which evaluation will occur</param>
         /// <returns></returns>
-        public static List<Y> eval<X, Y>(Function<X, Y> f, List<X> values)
-            => List.map(f.F, values);
+        public static Lst<Y> eval<X, Y>(Function<X, Y> f, Lst<X> values)
+            => Lst.map(f.F, values);
 
         /// <summary>
         /// Evaluates f(x1,x2,x3)
@@ -291,9 +291,9 @@ namespace Meta.Core.Modules
         /// <param name="types"></param>
         /// <returns></returns>
         static string format(params ClrType[] types)
-            => List.foldl((x1, x2) => x1 + x2, string.Empty,
-                    List.intersperse(" -> ",
-                        List.make(array(types, t => t.Name))));
+            => Lst.foldl((x1, x2) => x1 + x2, string.Empty,
+                    Lst.intersperse(" -> ",
+                        Lst.make(array(types, t => t.Name))));
 
     }
 }

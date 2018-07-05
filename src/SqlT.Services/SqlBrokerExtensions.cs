@@ -144,7 +144,7 @@ namespace SqlT.Services
 
         public static Option<IReadOnlyList<T>> Select<T>(this ISqlProxyBroker broker)
            where T : class, ISqlTabularProxy, new()
-               => broker.Get<T>(string.Empty).ToOption();
+               => broker.Get<T>(string.Empty);
 
         public static IReadOnlyList<C> SelectPagedColumn<T, C>(this ISqlProxyBroker broker,
             Expression<Func<T, C>> columnSelector, int pageSize, int pageNumber)
@@ -225,7 +225,7 @@ namespace SqlT.Services
                 {
                     Source = broker.BrokeredObjectName,
                     Target = DstTable,
-                })).ToOption();
+                }));
 
         public static Option<int> SelectInto<Src>(this ISqlProxyBroker broker, Src SrcTabular, SqlTableName DstTable)
             where Src : class, ISqlTabularProxy, new()
@@ -234,7 +234,7 @@ namespace SqlT.Services
                 {
                     Source = broker.Metadata.Tabular<Src>().ObjectName,
                     Target = DstTable,
-                })).ToOption();
+                }));
     }
 
 

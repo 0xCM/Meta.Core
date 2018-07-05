@@ -36,10 +36,6 @@ namespace SqlT.Workflow
                );
 
 
-        protected static Option<X> opt<X>(SqlOutcome<X> x)
-            => x.ToOption();
-
-
         protected virtual WorkFlowed<T> Witness<T>(Option<T> Outcome, [CallerMemberName] string caller = null)
         {
             var wf = LiftOption(Outcome, _ => inform($"Operation {caller} on channel {Channel} succeeded"));
@@ -85,7 +81,7 @@ namespace SqlT.Workflow
       
         protected WorkFlowed<IReadOnlyList<T>> PullAll<T>()
             where T : class, ISqlTabularProxy, new()
-                => Witness(LiftOption(Channel.Source.Get<T>().ToOption(), 
+                => Witness(LiftOption(Channel.Source.Get<T>(), 
                         records => Loaded<T>(records.Count)));
 
         protected WorkFlowed<IReadOnlyList<R>> PullAll<F, R>(F f)

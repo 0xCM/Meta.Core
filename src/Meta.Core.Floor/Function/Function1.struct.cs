@@ -42,7 +42,7 @@ namespace Meta.Core
         /// <param name="f">The function to evaluate</param>
         /// <param name="values">The values over which evaluation will occur</param>
         /// <returns></returns>
-        public static List<Y> operator *(Function<X, Y> f, List<X> values)
+        public static Lst<Y> operator *(Function<X, Y> f, Lst<X> values)
             => Function.eval(f, values);
 
         /// <summary>

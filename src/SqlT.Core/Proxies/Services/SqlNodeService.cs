@@ -16,7 +16,6 @@ namespace SqlT.Core
 
     public abstract class SqlNodeService<T, I, A> : SqlNodeService<T, I>
        where T : SqlNodeService<T, I, A>
-       where I : ISqlNodeService
        where A : class, ISqlProxyAssembly, new()
     {
 

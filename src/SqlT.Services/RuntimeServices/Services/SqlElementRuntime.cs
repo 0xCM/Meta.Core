@@ -47,7 +47,7 @@ namespace SqlT.Services
             => Notify(Message.ToApplicationMessage());
 
         protected Option<int> CreateElement(ISqlElement element)
-            => Broker.ExecuteNonQuery(SqlGenerator.GenerateScript(element).ScriptText).ToOption();
+            => Broker.ExecuteNonQuery(SqlGenerator.GenerateScript(element).ScriptText);
 
     }
 

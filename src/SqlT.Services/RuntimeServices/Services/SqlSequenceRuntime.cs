@@ -36,7 +36,7 @@ namespace SqlT.Services
                     .Map(x => cast<V>(x.CurrentValue));
 
         public Option<V> NextValue<V>()
-            => Broker.NextSequenceValue<V>(Handle.ElementName).ToOption();
+            => Broker.NextSequenceValue<V>(Handle.ElementName);
 
         public Option<SqlSequenceName> Create(SqlTypeName TypeName)
         {

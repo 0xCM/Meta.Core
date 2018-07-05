@@ -25,6 +25,19 @@ partial class metacore
     static ConcurrentDictionary<Type, Type> _ulTypeCache
         = new ConcurrentDictionary<Type, Type>();
 
+    static ConcurrentDictionary<Type, Type> _nnTypeCache 
+        = new ConcurrentDictionary<Type, Type>();
+
+
+    /// <summary>
+    /// If non-nullable, returns the supplied type. If nullable, returns the underlying type
+    /// </summary>
+    /// <param name="t">The type to examine</param>
+    /// <returns></returns>
+    [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Type nonNullable(Type t)
+        => _nnTypeCache.GetOrAdd(t, x => x.IsNullableType() ? Nullable.GetUnderlyingType(x) : x);
+
     /// <summary>
     /// Defines <see cref="assembly(AssemblyChoice)"/> invocation options
     /// </summary>

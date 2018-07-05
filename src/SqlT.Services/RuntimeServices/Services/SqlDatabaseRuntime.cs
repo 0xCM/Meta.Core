@@ -90,7 +90,7 @@ namespace SqlT.Services
                 + (enable
                     ? "enable_broker"
                     : "disable_broker");
-            return Broker.ExecuteNonQuery(sql).ToOption();
+            return Broker.ExecuteNonQuery(sql);
         }
 
         Option<int> ISqlDatabaseRuntime.EnableBroker()

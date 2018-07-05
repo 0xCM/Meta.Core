@@ -26,11 +26,11 @@ namespace Meta.Syntax
 
             public Expression(G.IEnumerable<IToken> Tokens)
             {
-                this.Tokens = List.make(Tokens);
+                this.Tokens = Lst.make(Tokens);
                 this.IsEmpty = this.Tokens.Count == 0;
             }
 
-            public List<IToken> Tokens { get; }
+            public Lst<IToken> Tokens { get; }
 
             public bool IsEmpty { get; }
 
@@ -52,7 +52,7 @@ namespace Meta.Syntax
 
             public bool IsEmpty { get; }
 
-            public List<IToken> Tokens { get; }
+            public Lst<IToken> Tokens { get; }
 
             public override string ToString()
                 => string.Join(string.Empty, Tokens.Stream());

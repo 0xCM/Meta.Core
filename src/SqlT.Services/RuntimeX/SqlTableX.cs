@@ -51,7 +51,7 @@ namespace SqlT.Services
             if (exists.Value() == SqlBooleanValue.False)
                 return some(0, inform($"The table {h.ElementName} does not exist"));
             else
-                return h.Broker.ExecuteNonQuery($"truncate table {h}").ToOption();
+                return h.Broker.ExecuteNonQuery($"truncate table {h}");
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace SqlT.Services
         /// <param name="h"></param>
         /// <returns></returns>
         public static Option<int> Delete(this ISqlTableHandle h)
-            => h.Broker.ExecuteNonQuery($"delete {h}").ToOption();
+            => h.Broker.ExecuteNonQuery($"delete {h}");
 
         /// <summary>
         /// Counts the records in the referenced table in the most naive manner possible
@@ -84,7 +84,7 @@ namespace SqlT.Services
             else if (exists.Value() == SqlBooleanValue.False)
                 return some(0, inform($"The table {h.ElementName} does not exist"));
             else
-                return h.Broker.ExecuteNonQuery($"drop table {h}").ToOption();
+                return h.Broker.ExecuteNonQuery($"drop table {h}");
         }
 
         /// <summary>

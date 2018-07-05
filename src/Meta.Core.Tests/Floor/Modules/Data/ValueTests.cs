@@ -10,7 +10,7 @@ namespace Meta.Core.Modules.Test
 
     //using static corefunc;
     using static operators;
-    using static List;
+    using static Lst;
 
     using static metacore;
     using static etude;
