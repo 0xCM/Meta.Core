@@ -1,36 +1,31 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Models
 {
-
     using SqlT.Syntax;
     using Meta.Syntax;
 
-
     using sxc = Syntax.contracts;
 
+    /// <summary>
+    /// Base type for statement models
+    /// </summary>
+    /// <typeparam name="M"></typeparam>
     public abstract class SqlStatement<M> : SqlModel<M>, sxc.statement
         where M : SqlStatement<M>
     {
         protected SqlStatement(IKeyword designator, statement_kind kind)
         {
             this.statement_designator = designator;
+            this.statement_kind = kind;
         }
 
         public IKeyword statement_designator { get; }
 
+        public statement_kind statement_kind { get; }
+
     }
-
-
-
-
-
-    
-
-
-
-
 }

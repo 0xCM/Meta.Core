@@ -46,6 +46,13 @@ namespace Meta.Core
             => Factory(items);
 
         /// <summary>
+        /// Converts a mutuable list to a Lst
+        /// </summary>
+        /// <param name="mlist">The input list</param>
+        public static implicit operator Lst<X>(MutableList<X> mlist)
+            => new Lst<X>(mlist.ToImmutableList());
+
+        /// <summary>
         /// Converts a list to an array
         /// </summary>
         /// <param name="list">The list to convert</param>

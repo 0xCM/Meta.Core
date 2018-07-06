@@ -8,20 +8,19 @@ namespace SqlT.Dac
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Diagnostics;
+
     using SqlT.Core;
     using SqlT.Models;
-    using SqlT.Services;
 
+    using static SqlT.Syntax.SqlSyntax;
     using static metacore;
 
     using SqlDac = Microsoft.SqlServer.Dac;
     using DacM = Microsoft.SqlServer.Dac.Model;
     using DacX = Microsoft.SqlServer.Dac.Extensions.Prototype;
 
-    static class SqlDacX
+    public static class SqlDacX
     {
-
         public static SqlDacMessageContent MessageContent(this SqlDac.DacMessage Src)
             => new SqlDacMessageContent(Src.MessageType.ToString(), Src.Prefix, Src.Number, Src.Message);
 
@@ -44,7 +43,7 @@ namespace SqlT.Dac
             }            
         }
 
-        internal static IApplicationMessage ToAppMessage(this SqlDac.DacMessage message, object o = null)
+        public static IApplicationMessage ToAppMessage(this SqlDac.DacMessage message, object o = null)
         {
             var content = concat(message.MessageContent().ToString(), o?.ToString() ?? string.Empty);
             if (message.MessageType == SqlDac.DacMessageType.Error)
@@ -72,5 +71,29 @@ namespace SqlT.Dac
             return value;
         }
 
+        /// <summary>
+        /// Gets the dac-specific package options
+        /// </summary>
+        /// <param name="package">The package model</param>
+        /// <returns></returns>
+        public static DacM.TSqlModelOptions GetDacOptions(this SqlPackage package)
+            => new DacM.TSqlModelOptions
+            {
+                Containment 
+                    = package.DatabaseOptions.containment_type.map(x => x, 
+                        () => containment_types.NONE).ToDac(),
+
+                RecoveryMode 
+                    = package.DatabaseOptions.recovery_model.map(x => x, 
+                        () => recovery_models.SIMPLE).ToDac(),
+
+                ServiceBrokerOption 
+                    = package.DatabaseOptions.service_broker_option.map(x => x, 
+                        () => service_broker_options.DISABLE_BROKER).ToDac(),
+
+                DbScopedConfigParameterSniffing 
+                    = package.DatabaseOptions.parameter_sniffing.map(x => x.IsOn, 
+                        () => (bool?)null)
+            };
     }
 }

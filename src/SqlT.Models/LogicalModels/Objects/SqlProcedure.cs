@@ -15,7 +15,7 @@ namespace SqlT.Models
 
     using sxc = SqlT.Syntax.contracts;
 
-    public abstract class SqlProcedure<P> : SqlRoutine<P, SqlProcedureName>, ISqlProcedure
+    public abstract class SqlProcedure<P> : SqlRoutine<P, SqlProcedureName>, sxc.procedure
         where P : SqlProcedure<P>
     {
         protected SqlProcedure

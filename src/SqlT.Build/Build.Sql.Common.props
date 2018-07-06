@@ -1,0 +1,98 @@
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <area-distid>sqlt</area-distid>
+    <SqlVersion>14</SqlVersion>
+  </PropertyGroup>
+
+  <Import Project="$(DevDist)\dist.props"/>
+
+  <PropertyGroup>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <LangVersion>latest</LangVersion>
+    <WarningLevel>4</WarningLevel>
+    <ErrorReport>prompt</ErrorReport>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <TargetLanguage>CS</TargetLanguage>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <DbScopedConfigParameterSniffing>Off</DbScopedConfigParameterSniffing>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <OutputType>Database</OutputType>
+    <ModelCollation>1033, CI</ModelCollation>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <Recovery>SIMPLE</Recovery>
+    <SqlVersionNumber>$(SqlVersion)0</SqlVersionNumber>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql$(SqlVersionNumber)DatabaseSchemaProvider</DSP>
+    <TargetFrameworkProfile />
+    <GenerateCreateScript>True</GenerateCreateScript>
+    <CreateScriptFileName>$(TargetDatabaseName).Create.sql</CreateScriptFileName>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <DevAreaRootDir>$(DevAreaRoot)\</DevAreaRootDir>
+    <TopAreaDir>$(DevAreaRootDir)$(DevArea)\</TopAreaDir>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <DevToolDir>$(DevTools)\</DevToolDir>
+    <ProjectConfigDir>$(ProjectDir)Configuration\</ProjectConfigDir>
+    <SSDTDir>$(DevToolDir)msbuild\Microsoft\VisualStudio\v15.0\SSDT\</SSDTDir>
+    <MsBuildExtensionDir>$(DevToolDir)MSBuild\15.0\</MsBuildExtensionDir>
+    <MsBuildExtensionPath>$(MsBuildExtensionDir)</MsBuildExtensionPath>
+    <SystemDacLibDIr>$(msdac-distdir)dacpac\$(SqlVersionNumber)\</SystemDacLibDIr>
+    <SystemDacDir>$(SystemDacLibDir)</SystemDacDir>
+    <MsDacLibDir>$(SystemDacLibDir)</MsDacLibDir>
+    <SSDTExtensionDir>$(SSDTDir)</SSDTExtensionDir>
+    <SharedScriptDir>$(SqlModuleDir)</SharedScriptDir>
+    <TopBuildDir>$(TopAreaDir)bin\dac\</TopBuildDir>
+    <BaseBuildDir>$(TopBuildDir)</BaseBuildDir>
+    <BaseProjectBuildDir>$(BaseBuildDir)$(MSBuildProjectName)\</BaseProjectBuildDir>
+    <BaseTargetBuildDir>$(BaseProjectBuildDir)target\</BaseTargetBuildDir>
+    <OutputPath>$(BaseTargetBuildDir)</OutputPath>
+    <OutDir>$(BaseTargetBuildDir)</OutDir>
+    <BaseIntermediateOutputPath>$(BaseProjectBuildDir)obj\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
+    <PrjConfigDir>$(ProjectConfigDir)</PrjConfigDir>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>    
+    <DacTargetName>$(OutputPath)$(TargetName).dacpac</DacTargetName>    
+    <DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
+    <DacDeployExt>.publish.xml</DacDeployExt>
+  </PropertyGroup>
+
+       
+  
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+
+  <Import Project="$(MsBuildExtensionDir)Microsoft.Common.props" />
+  <Import Project="$(SSDTExtensionDir)Microsoft.Data.Tools.Schema.SqlTasks.targets"/>
+
+
+  <Target Name="AfterBuild">
+    <Copy SourceFiles="$(OutputPath)$(TargetName).dacpac" DestinationFolder="$(area-dist-dacpacdir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(OutputPath)$(TargetName).dll" DestinationFolder="$(area-dist-dacpacdir)" SkipUnchangedFiles="true" />
+  </Target>
+
+</Project>
+
+

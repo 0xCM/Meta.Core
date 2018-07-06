@@ -1,0 +1,41 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="Configuration\Build.props" />
+  <PropertyGroup>
+    <AppDesignerFolder>Configuration</AppDesignerFolder>
+    <RootNamespace>SqlT.SqlDocs</RootNamespace>
+    <ProjectGuid>{008e3c96-7882-4f2e-ae96-e4a79a81eff4}</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Configuration\" />
+    <None Include="Configuration\Build.props" />
+    <None Include="Configuration\Node00.publish.xml" />
+    <RefactorLog Include="Configuration\Refactor.refactorlog" />
+    <Build Include="Configuration\Schemas.sql" />
+    <Folder Include="Tables" />
+    <Folder Include="Procedures" />
+    <Folder Include="Types" />
+    <Folder Include="Functions" />
+    <Folder Include="Scripts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\Keyword.sql" />
+    <Build Include="Procedures\SyncKeywords.sql" />
+    <Build Include="Types\Keyword.sql" />
+    <Build Include="Tables\SyntaxRule.sql" />
+    <Build Include="Functions\Keywords.sql" />
+    <Build Include="Tables\Choice.sql" />
+    <Build Include="Types\Choice.sql" />
+    <Build Include="Procedures\SyncChoices.sql" />
+    <Build Include="Tables\ObjectType.sql" />
+    <Build Include="Types\ObjectType.sql" />
+    <Build Include="Procedures\SyncObjectTypes.sql" />
+    <Build Include="Types\NativeFunction.sql" />
+    <Build Include="Tables\NativeFunction.sql" />
+    <Build Include="Procedures\SyncNativeFunctions.sql" />
+    <Build Include="Functions\NativeFunctions.sql" />
+    <None Include="Scripts\LoadNativeFunctions.sql" />
+    <Build Include="Tables\DataType.sql" />
+    <Build Include="Types\DataType.sql" />
+    <Build Include="Functions\DataTypes.sql" />
+  </ItemGroup>
+</Project>

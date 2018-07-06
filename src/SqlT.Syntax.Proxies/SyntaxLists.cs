@@ -1,10 +1,10 @@
-//This file was generated at 5/27/2018 10:01:44 AM using version 1.2018.3.11161 the SqT data access toolset.
+//This file was generated at 7/5/2018 8:16:30 PM using version 1.1.4.0 the SqT data access toolset.
 namespace SqlT.Syntax
 {
-    using System;
-    using System.Collections.Generic;
     using System.ComponentModel;
+    using System;
     using SqlT.Core;
+    using System.Collections.Generic;
 
     public class SqlObjectTypeCodes : TypedItemList<SqlObjectTypeCodes, ObjectType>
     {
@@ -45,4 +45,4 @@ namespace SqlT.Syntax
         public readonly static DataType NVARCHAR = new DataType("NVARCHAR", null);
     }
 }
-// Emission concluded at 5/27/2018 10:01:44 AM
+// Emission concluded at 7/5/2018 8:16:30 PM

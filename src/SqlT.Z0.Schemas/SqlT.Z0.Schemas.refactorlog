@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="8b8e5e39-607d-4536-bcc2-62cfc6dd8605" ChangeDateTime="07/05/2018 23:37:39">
+    <Property Name="ElementName" Value="[Z0].[CalcRenameIndexRefactorExec]" />
+    <Property Name="ElementType" Value="SqlInlineTableValuedFunction" />
+    <Property Name="ParentElementName" Value="[Z0]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[CalcRenameIndexRefactorStep]" />
+  </Operation>
+</Operations>

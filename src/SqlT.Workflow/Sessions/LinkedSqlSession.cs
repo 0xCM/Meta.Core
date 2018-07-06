@@ -71,7 +71,7 @@ namespace SqlT.Services
         protected SqlConnectionString SessionConnector(SqlDatabaseServer Host, Db DbName)
         {
             if (Host.Alias)
-                return Host.Alias.MapValue(alias => SqlConnectionString.Build(alias, DbName))
+                return Host.Alias.MapRequired(alias => SqlConnectionString.Build(alias, DbName))
                                  .UsingCredentials(SqlCredentials(Host.NodeIdentifier))
                                  .WithMaxPoolSize(250);
             else
@@ -123,7 +123,6 @@ namespace SqlT.Services
             SourceDbConnected(srcDb);
             TargetDbConnected(dstDb);
         }
-
 
         protected void UseSource(Db SourceDbName)
             => SyncContext(SourceDbName, TargetDbName);

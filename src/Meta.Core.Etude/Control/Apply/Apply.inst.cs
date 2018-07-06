@@ -22,10 +22,10 @@ namespace Meta.Core
         public static readonly ListApply<X, Y> instance = default;
 
         public Lst<Y> apply(Lst<Func<X, Y>> lf, Lst<X> lx)
-            => List.apply(lf, lx);
+            => Lst.apply(lf, lx);
 
         public Func<Lst<X>, Lst<Y>> fmap(Func<X, Y> f)
-            => List.fmap(f);
+            => Lst.fmap(f);
     }
 
     public interface ISeqApply<X, Y> : IApply<X, Seq<X>, Seq<Func<X, Y>>, Y, Seq<Y>>

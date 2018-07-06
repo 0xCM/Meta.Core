@@ -1,14 +1,13 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Syntax
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Linq.Expressions;
 
     using Meta.Syntax;
     using SqlT.Core;
@@ -21,20 +20,32 @@ namespace SqlT.Syntax
     public static partial class SqlSyntaxExtensions
     {
 
+        /// <summary>
+        /// Applies the DBCC shrink command to a specified database
+        /// </summary>
+        /// <param name="database">The databse to shrink</param>
+        /// <returns></returns>
         public static shrinkdatabase Shrink(this ISqlDatabaseHandle database)
             => new shrinkdatabase(database.DatabaseName);
 
-        public static SqlSynonym Clone(this SqlSynonym x,
-            SqlSynonymName SynonymName = null,
-            sxc.ISqlObjectName Referent = null,
-            IEnumerable<SqlPropertyAttachment> Properties = null,
+        /// <summary>
+        /// Models a new synonym on the basis of an existing synonym
+        /// </summary>
+        /// <param name="src">The extant synonym</param>
+        /// <param name="SynonymName">The name of the new synonym object</param>
+        /// <param name="Referent">The name of the object to which the synonym will refer, if different</param>
+        /// <param name="Properties">Extended properties applied to the new synonym, if different</param>
+        /// <param name="Documentation">Documentation for the new synonym</param>
+        /// <returns></returns>
+        public static SqlSynonym Clone(this SqlSynonym src, SqlSynonymName SynonymName = null,
+            sxc.ISqlObjectName Referent = null, IEnumerable<SqlPropertyAttachment> Properties = null,
             SqlElementDescription Documentation = null)
                 => new SqlSynonym
                 (
-                    SynonymName ?? x.SynonymName,
-                    Referent ?? x.Referent,
-                    Properties ?? x.Properties,
-                    Documentation ?? x.Documentation.ValueOrDefault()
+                    SynonymName ?? src.SynonymName,
+                    Referent ?? src.Referent,
+                    Properties ?? src.Properties,
+                    Documentation ?? src.Documentation.ValueOrDefault()
                 );
 
         public static SqlSynonym For(this SqlSynonym x, sxc.ISqlObjectName ReferentName)
@@ -49,6 +60,12 @@ namespace SqlT.Syntax
         public static SqlColumnDefinition FindByRole(this IEnumerable<SqlColumnDefinition> columns,
             SqlColumnRoleKind RoleKind) => columns.Single(c => c.ColumnRole?.RoleKind == RoleKind);
 
+        /// <summary>
+        /// Searches a column collection by column role
+        /// </summary>
+        /// <param name="columns">The columns to search</param>
+        /// <param name="RoleKind">The targeted role</param>
+        /// <returns></returns>
         public static Option<SqlColumnDefinition> TryFindByRole(this IEnumerable<SqlColumnDefinition> columns,
             SqlColumnRoleKind RoleKind) => columns.SingleOrDefault(c => c.ColumnRole?.RoleKind == RoleKind);
 
@@ -76,7 +93,7 @@ namespace SqlT.Syntax
         /// </summary>
         /// <param name="newParent">The new parent to which the column will belong</param>
         /// <returns></returns>
-        public static SqlColumnDefinition Reparent(this SqlColumnDefinition src, ISqlObject newParent)
+        public static SqlColumnDefinition Reparent(this SqlColumnDefinition src, sxc.sql_object newParent)
             => new SqlColumnDefinition
             (
                Position: src.Position,
@@ -238,11 +255,8 @@ namespace SqlT.Syntax
 
                 ).Definition;
 
-        public static SqlTableColumn CreateSequencedColumn(
-            this SqlSequence Sequence,
-            SqlTableName TableName,
-            int Position = -1,
-            bool IsPrimaryKey = true,
+        public static SqlTableColumn CreateSequencedColumn(this SqlSequence Sequence,
+            SqlTableName TableName, int Position = -1, bool IsPrimaryKey = true, 
             SqlColumnName ColumnName = null)
                 => CreateSequentialKeyColumn(
                     Sequence.ObjectName,

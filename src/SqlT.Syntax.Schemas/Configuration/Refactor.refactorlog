@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="c888927f-a666-4839-a5c5-7908f522bfd6" ChangeDateTime="05/07/2018 23:53:28">
+    <Property Name="ElementName" Value="[SqlDocs].[SampleScript]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[SqlDocs]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[TextFileDescription]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="52048e74-43e2-4a23-a9dd-025473ab6470" ChangeDateTime="05/22/2018 20:31:13">
+    <Property Name="ElementName" Value="[Syntax].[PK_Keywork]" />
+    <Property Name="ElementType" Value="SqlPrimaryKeyConstraint" />
+    <Property Name="ParentElementName" Value="[Syntax].[Keyword]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PK_Keyword" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="145a4b5e-d38e-4ed8-916b-a3fc73117965" ChangeDateTime="05/23/2018 23:23:04">
+    <Property Name="ElementName" Value="[Syntax].[ObjectType].[TypeName]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[Syntax].[ObjectType]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="TypeCode" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="bd3ebea6-6b00-4320-982f-1899c9de5078" ChangeDateTime="05/27/2018 01:15:52">
+    <Property Name="ElementName" Value="[Syntax].[DataType].[DataTypeName]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[Syntax].[DataType]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="TypeName" />
+  </Operation>
+</Operations>

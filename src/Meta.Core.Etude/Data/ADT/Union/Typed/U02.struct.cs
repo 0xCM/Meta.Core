@@ -85,8 +85,8 @@ partial class adt
                 );
 
         public Y Map<Y>(Func<object, Y> f)
-            => x1 ? x1.MapValue(x => f(x))
-            : x2.MapValue(x => f(x));
+            => x1 ? x1.MapRequired(x => f(x))
+            : x2.MapRequired(x => f(x));
 
         public override bool Equals(object obj)
             => obj is U<X1, X2>

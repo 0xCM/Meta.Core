@@ -162,6 +162,17 @@ partial class Reflections
                 : t.GetProperties(BF_DeclaredPublicStatic)
                 ).Where(p => !p.IsIndexer() && (requireSetters ? p.HasSetter() : true));
 
+
+    /// <summary>
+    /// Retrieves the public instance properties declared by a type
+    /// </summary>
+    /// <param name="t">The type to examine</param>
+    /// <param name="mit">The instance type</param>
+    /// <param name="requireSetters">Whether the existence of setters are requied to satisfy matches</param>
+    /// <returns></returns>
+    public static IEnumerable<PropertyInfo> GetDeclaredPublicInstanceProperties(this Type t, bool requireSetters = false)
+        => t.GetDeclaredPublicProperties(MemberInstanceType.Instance, requireSetters);
+    
     /// <summary>
     /// Retrieves the non-public properties declared by a type
     /// </summary>

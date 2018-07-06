@@ -58,29 +58,5 @@ namespace SqlT.Models
         public static bool IsEnumProvider(this IExtendedPropertyProvider provider)
             => provider.TryFindProperty(PN.EnumProvider).IsSome();
 
-        public static IEnumerable<(vTable Subject, SqlEnumProviderProperty Property)> SqlEnumProviders(this IEnumerable<vTable> tables)
-            => from t in tables
-               let p = t.SqlEnumProvider()
-               where p.IsSome()
-               select (t, p.ValueOrDefault());
-
-        public static Option<SqlReceiverProperty> Receiver(this vTable provider)
-            => provider.TryFindProperty(PN.ReceiverName)
-                       .Map(x => new SqlReceiverProperty(x.value?.ToString()));
-
-        public static Option<SqlColumnRoleKind> Role(this vColumn column)
-            => column.TryFindProperty(PN.ColumnRole)
-                       .Map(x => new SqlColumnRoleProperty(x.value?.ToString()).PropertyValue);
-
-        public static Option<SqlDocumentationProperty> Documentation(this vSystemElement element)
-            => element.TryFindProperty(PN.Documentation)
-                       .Map(x => new SqlDocumentationProperty(x.value?.ToString()));
-
-        public static Option<SqlTableRoleType> Role(this vTable table)
-            => table.TryFindProperty(PN.TableRole)
-               .Map(x => new SqlTableRoleProperty(x.value?.ToString()).PropertyValue);
-
-        public static bool IsTypeTable(this vTable table)
-            => table.Role().Map(r => r == SqlTableRoleType.TypeTable, () => false);
     }
 }

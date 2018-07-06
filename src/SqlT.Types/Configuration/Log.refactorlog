@@ -1,0 +1,404 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Move Schema" Key="594af28a-799e-4876-8a7c-9c462181f97a" ChangeDateTime="06/14/2017 15:29:30">
+    <Property Name="ElementName" Value="[DataContracts].[LargeTypeTable]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="NewSchema" Value="SqlT" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="c4f26b36-4396-41be-80b4-4c2edac8bd2a" ChangeDateTime="06/14/2017 15:29:56">
+    <Property Name="ElementName" Value="[DataContracts].[SmallTypeTable]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="NewSchema" Value="SqlT" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="57669415-2297-4be0-b456-0eb9f702af71" ChangeDateTime="06/14/2017 15:30:04">
+    <Property Name="ElementName" Value="[DataContracts].[TinyTypeTable]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="NewSchema" Value="SqlT" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="870a173c-19ea-4f18-abff-0b9cfc604194" ChangeDateTime="06/14/2017 15:30:13">
+    <Property Name="ElementName" Value="[DataContracts].[TypeTable]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="NewSchema" Value="SqlT" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="c3ef287f-4d9e-497a-80b7-de40aaf4f9cc" ChangeDateTime="08/04/2017 18:09:46">
+    <Property Name="ElementName" Value="[SqlT].[TableStats]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="NewSchema" Value="dbo" />
+    <Property Name="IsNewSchemaExternal" Value="True" />
+  </Operation>
+  <Operation Name="Move Schema" Key="b4c0adc3-f32b-455e-9977-dfb6a77df595" ChangeDateTime="09/25/2017 20:59:35">
+    <Property Name="ElementName" Value="[RN].[ServerCollation]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="NewSchema" Value="SqlT" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="7371fe05-b8d2-42a0-b9ae-ac2681ced536" ChangeDateTime="09/25/2017 21:00:03">
+    <Property Name="ElementName" Value="[PAC].[PackageVariableRecord]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="NewSchema" Value="SqlT" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="48ebb7a3-dac9-407b-b6b6-fa1e497249b6" ChangeDateTime="09/25/2017 21:00:26">
+    <Property Name="ElementName" Value="[PAC].[PackageAssociation]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="NewSchema" Value="SqlT" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="e2b123be-a75a-4f10-a6dc-f35bb6f3fa23" ChangeDateTime="09/25/2017 21:01:21">
+    <Property Name="ElementName" Value="[dbo].[FileTableDescription]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="NewSchema" Value="SqlT" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="d62ff38d-4d3c-4704-a804-753300b7b956" ChangeDateTime="12/05/2017 18:46:59">
+    <Property Name="ElementName" Value="[dbo].[TableStats]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="NewSchema" Value="SqlT" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="aadd2946-a98a-41e2-b695-9fbfeee0a6ed" ChangeDateTime="12/05/2017 19:41:42">
+    <Property Name="ElementName" Value="[DDL].[Database]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[DDL]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[DbRecord]" />
+  </Operation>
+  <Operation Name="Move Schema" Key="d0e39776-9aa1-4279-8e02-087847edadeb" ChangeDateTime="12/05/2017 23:15:50">
+    <Property Name="ElementName" Value="[DML].[ColumnComparison]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="NewSchema" Value="SqlT" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="457ff56b-81ee-4a56-bfda-5ca4d1a05d64" ChangeDateTime="12/05/2017 23:16:03">
+    <Property Name="ElementName" Value="[DML].[TableQueryColumn]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="NewSchema" Value="SqlT" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="32c03b08-47e4-4553-b804-302018c68500" ChangeDateTime="12/05/2017 23:16:14">
+    <Property Name="ElementName" Value="[DML].[TableQuery]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="NewSchema" Value="SqlT" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="298a99ec-3ac5-4636-9d93-c774424961bd" ChangeDateTime="12/05/2017 23:18:35">
+    <Property Name="ElementName" Value="[DDL].[ForeignKeyColumn]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[DDL]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[FkColumnRecord]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7722fc64-4b21-4096-a869-50a685d69536" ChangeDateTime="12/05/2017 23:18:54">
+    <Property Name="ElementName" Value="[DDL].[ForeignKey]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[DDL]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[FkRecord]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4d8e7325-8bab-4098-897b-7bf35c4a2dec" ChangeDateTime="12/05/2017 23:20:48">
+    <Property Name="ElementName" Value="[DDL].[PrimaryKeyColumn]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[DDL]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[PkColumn]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="d05aa33a-1d2d-45b7-a638-d727ac3f29f0" ChangeDateTime="12/05/2017 23:21:07">
+    <Property Name="ElementName" Value="[DDL].[PkColumn]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[DDL]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[PkColumnRecord]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="14f474d9-901b-4571-820d-4581c077d47f" ChangeDateTime="12/05/2017 23:22:22">
+    <Property Name="ElementName" Value="[DDL].[PrimaryKey]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[DDL]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[PkRecord]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="d712dabf-e27d-4117-a3b5-3ab8a607704b" ChangeDateTime="12/05/2017 23:23:20">
+    <Property Name="ElementName" Value="[DDL].[SystemDataType]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[DDL]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[SysDataTypeRecord]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a522d555-b6b0-43c4-873d-c4895ee710db" ChangeDateTime="12/05/2017 23:24:02">
+    <Property Name="ElementName" Value="[DDL].[Table]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[DDL]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[DbTableRecord]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="d6292176-e068-4fc2-9462-74714e236aa1" ChangeDateTime="12/05/2017 23:42:30">
+    <Property Name="ElementName" Value="[DDL].[TableColumn]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[DDL]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[DbTableColumnRecord]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ac9b4aec-05de-4e92-b461-670353043e9b" ChangeDateTime="12/31/2017 07:43:54">
+    <Property Name="ElementName" Value="[SqlT].[BackupDescription]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[SqlT]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[BackupDescriptionRecord]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="e96ef063-3eaf-4fa1-9f46-a0e40ceb559e" ChangeDateTime="12/31/2017 07:45:34">
+    <Property Name="ElementName" Value="[SqlT].[TableQuery]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[SqlT]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[TableQueryRecord]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="e0394478-7c92-4112-8d7d-abf29c1d389d" ChangeDateTime="12/31/2017 07:46:54">
+    <Property Name="ElementName" Value="[SqlT].[TableQueryColumn]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[SqlT]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[TableQueryColumnRecord]" />
+  </Operation>
+  <Operation Name="Move Schema" Key="2788cfc5-499a-48e7-9852-fcdaa7b33ed5" ChangeDateTime="03/07/2018 05:07:16">
+    <Property Name="ElementName" Value="[DDL].[FkColumnRecord]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="NewSchema" Value="SqlT" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b532e9e0-4d4b-4680-9e2b-13e11d25043a" ChangeDateTime="03/07/2018 05:07:30">
+    <Property Name="ElementName" Value="[SqlT].[FkColumnRecord]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[SqlT]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[ForeignKeyColumn]" />
+  </Operation>
+  <Operation Name="Move Schema" Key="7136083a-b310-4958-b55b-982375a75564" ChangeDateTime="03/07/2018 05:07:57">
+    <Property Name="ElementName" Value="[DDL].[DbTableColumnRecord]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="NewSchema" Value="SqlT" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="359990d5-a7ed-4ffb-a1a3-4d1f9e9b0e61" ChangeDateTime="03/07/2018 05:08:10">
+    <Property Name="ElementName" Value="[SqlT].[DbTableColumnRecord]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[SqlT]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[TableColumn]" />
+  </Operation>
+  <Operation Name="Move Schema" Key="8c03f45d-8e40-4add-be7c-8455cd13e255" ChangeDateTime="03/07/2018 05:08:25">
+    <Property Name="ElementName" Value="[DDL].[UserDataType]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="NewSchema" Value="SqlT" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="77dae9fc-df9f-453a-aa28-930a90248262" ChangeDateTime="03/07/2018 05:08:49">
+    <Property Name="ElementName" Value="[DDL].[SysDataTypeRecord]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[DDL]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[SystemDataType]" />
+  </Operation>
+  <Operation Name="Move Schema" Key="31f09cf0-3abe-46a7-b8ed-0eafcd8fcdb7" ChangeDateTime="03/07/2018 05:08:56">
+    <Property Name="ElementName" Value="[DDL].[SystemDataType]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="NewSchema" Value="SqlT" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="c67f2581-f104-47f2-b74a-8ac0dcf67e7b" ChangeDateTime="03/07/2018 05:09:12">
+    <Property Name="ElementName" Value="[DDL].[PkRecord]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="NewSchema" Value="SqlT" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="d37f61e8-4df0-4140-ac6e-cffd7f37e48f" ChangeDateTime="03/07/2018 05:09:24">
+    <Property Name="ElementName" Value="[SqlT].[PkRecord]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[SqlT]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[PrimaryKey]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="306350fd-2152-4cac-938a-3315449f74f1" ChangeDateTime="03/07/2018 05:09:45">
+    <Property Name="ElementName" Value="[DDL].[FkRecord]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[DDL]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[ForeignKey]" />
+  </Operation>
+  <Operation Name="Move Schema" Key="24ef7d3e-f9cf-40a8-bed6-baefda531555" ChangeDateTime="03/07/2018 05:09:50">
+    <Property Name="ElementName" Value="[DDL].[ForeignKey]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="NewSchema" Value="SqlT" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6742a569-2e2b-4589-a5a5-1a4766554235" ChangeDateTime="03/07/2018 05:10:30">
+    <Property Name="ElementName" Value="[DDL].[PkColumnRecord]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[DDL]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[PrimaryKeyColumn]" />
+  </Operation>
+  <Operation Name="Move Schema" Key="042febe9-2bf0-4c40-83ac-b0feb458f27f" ChangeDateTime="03/07/2018 05:10:35">
+    <Property Name="ElementName" Value="[DDL].[PrimaryKeyColumn]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="NewSchema" Value="SqlT" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c9e0810e-a3e4-44a9-a521-8640aa51762c" ChangeDateTime="03/07/2018 05:10:55">
+    <Property Name="ElementName" Value="[DDL].[DbTableRecord]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[DDL]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[TableDescription]" />
+  </Operation>
+  <Operation Name="Move Schema" Key="bb7e3693-0d73-4658-960e-9836d2aebb0c" ChangeDateTime="03/07/2018 05:11:03">
+    <Property Name="ElementName" Value="[DDL].[TableDescription]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="NewSchema" Value="SqlT" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="203c9b19-6382-4ed2-97ff-dc0127038763" ChangeDateTime="03/07/2018 05:11:30">
+    <Property Name="ElementName" Value="[DDL].[DbRecord]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[DDL]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[DatabaseDescription]" />
+  </Operation>
+  <Operation Name="Move Schema" Key="499ca095-fe10-469e-805d-ac998827014f" ChangeDateTime="03/26/2018 16:02:01">
+    <Property Name="ElementName" Value="[DDL].[DatabaseDescription]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="NewSchema" Value="SqlT" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7461e38b-8c06-4bab-9a9d-566b670c9220" ChangeDateTime="03/26/2018 16:19:15">
+    <Property Name="ElementName" Value="[SqlT].[BackupDescriptionRecord]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[SqlT]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[BackupDescription]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="44773c57-5c72-4e8f-9290-ac79401a2693" ChangeDateTime="04/13/2018 17:14:47">
+    <Property Name="ElementName" Value="[SqlT].[TableQueryColumnRecord]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[SqlT]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[TableQueryColumn]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="905cf69e-dbca-4f0e-bd3a-fea0243ef605" ChangeDateTime="04/13/2018 17:16:01">
+    <Property Name="ElementName" Value="[SqlT].[TableQueryRecord]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[SqlT]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[TableQuery]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9c1ae4f5-562e-46b8-843d-12117f5c9ea6" ChangeDateTime="04/13/2018 17:18:30">
+    <Property Name="ElementName" Value="[SqlT].[PackageVariableRecord]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[SqlT]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[PackageVariable]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c2655552-0c4d-4d07-9c1b-2e57e9663d49" ChangeDateTime="04/14/2018 03:12:12">
+    <Property Name="ElementName" Value="[SqlT].[SqlProxyDefinition]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[SqlT]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[ProxyProfileDefinition]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4c2d9b78-9f1b-4b3d-ba0a-d3f9023aacfb" ChangeDateTime="04/16/2018 15:47:46">
+    <Property Name="ElementName" Value="[Factory].[SqlMessage]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[Factory]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[AddSqlMessage]" />
+  </Operation>
+  <Operation Name="Move Schema" Key="36bf1f40-8068-47e0-977e-4ef09776ddae" ChangeDateTime="04/24/2018 18:25:23">
+    <Property Name="ElementName" Value="[MetaCore].[CoreDataType]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="NewSchema" Value="MC" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="c96bf078-1be3-43fd-8664-f2bc30de9df6" ChangeDateTime="04/24/2018 18:25:46">
+    <Property Name="ElementName" Value="[MetaCore].[Facet]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="NewSchema" Value="MC" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="5fcf8d0f-63c8-4a9f-93d9-0fa75fbc8769" ChangeDateTime="04/24/2018 20:45:14">
+    <Property Name="ElementName" Value="[MC].[CoreDataType]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[MC]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[CoreDataTypeInfo]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b878aa4e-9d47-489e-ad6b-146afd70ec40" ChangeDateTime="04/24/2018 22:26:07">
+    <Property Name="ElementName" Value="[Factory].[MergeMatchColumn]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[Factory]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[MergeColumn]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="5b747d61-55f0-4ebe-8720-34e22c91f65d" ChangeDateTime="04/26/2018 09:32:22">
+    <Property Name="ElementName" Value="[SqlDom].[EnumerationLiteral]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[SqlDom]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[EnumLiteral]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="17a0bc94-26e9-4baf-99ca-cb578339a659" ChangeDateTime="04/26/2018 16:35:20">
+    <Property Name="ElementName" Value="[SqlDom].[DomElement]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[SqlDom]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[Element]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="cad5702c-44c1-4b70-836c-418f8af38225" ChangeDateTime="04/26/2018 17:00:31">
+    <Property Name="ElementName" Value="[SqlDom].[Attribute]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[SqlDom]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[ElementAttribute]" />
+  </Operation>
+  <Operation Name="Move Schema" Key="226b2adb-ac6c-4c04-b6a6-4cede2ac038d" ChangeDateTime="04/27/2018 20:11:50">
+    <Property Name="ElementName" Value="[SqlT].[PackageAssociation]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="NewSchema" Value="SqlDac" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="51672a74-df38-4a2b-931a-761a582280a6" ChangeDateTime="04/27/2018 20:12:11">
+    <Property Name="ElementName" Value="[SqlT].[PackageVariable]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="NewSchema" Value="SqlDac" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="be988caf-a338-44e6-85e2-de63b48b3a58" ChangeDateTime="04/30/2018 06:08:14">
+    <Property Name="ElementName" Value="[SqlDocs].[SqlMarkdownFile]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[SqlDocs]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[SqlMarkdownFileInfo]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="dc2e9622-a626-44ca-922a-688fe7a5a130" ChangeDateTime="04/30/2018 06:08:33">
+    <Property Name="ElementName" Value="[SqlDocs].[SqlMarkdownFileInfo]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[SqlDocs]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[MarkdownFileInfo]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="31bcad9d-0949-42ea-b599-aba357bea0ca" ChangeDateTime="05/01/2018 04:52:54">
+    <Property Name="ElementName" Value="[SqlDocs].[MarkdownTable]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[SqlDocs]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[MarkdownTableInfo]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="680e47c7-4bbd-4263-824e-299aab9adf48" ChangeDateTime="05/01/2018 23:03:25">
+    <Property Name="ElementName" Value="[MC].[Distribution]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[MC]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[DistributionMoniker]" />
+  </Operation>
+</Operations>

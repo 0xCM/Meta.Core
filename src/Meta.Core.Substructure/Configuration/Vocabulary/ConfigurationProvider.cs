@@ -14,30 +14,45 @@ using Meta.Core;
 /// </summary>
 public class ConfigurationProvider : IConfigurationProvider    
 {
+
+    public static IConfigurationProvider FromFunction(Func<string, object> f)
+        => new ConfigurationProvider(f);
+
+    public static IConfigurationProvider FromFunction(Func<IDictionary<string,object>> f)
+        => new ConfigurationProvider(f);
+
+    public static IConfigurationProvider FromDictionary(IDictionary<string,object> settings)
+        => new ConfigurationProvider(() => settings);
+
+    public static IConfigurationProvider FromValue(object value)
+        => new ConfigurationProvider(value);
+
+    public static IConfigurationProvider Default()
+        => FromDictionary(new Dictionary<string, object>());
+
     /// <summary>
     /// Defines a configuration set based on values obtained from a function dictionary delegate
     /// </summary>
     /// <param name="ComponentName"></param>
     /// <param name="SettingDictionaryProvider"></param>
-    public ConfigurationProvider(string ComponentName, Func<IDictionary<string, object>> SettingDictionaryProvider)
+    public ConfigurationProvider(Func<IDictionary<string, object>> SettingDictionaryProvider)
     {
-        this.ComponentName = ComponentName;
+        this.ComponentName = string.Empty;
         this.SettingDictionaryProvider = SettingDictionaryProvider;
         this.SettingProvider = name => SettingDictionaryProvider().TryFind(name).ValueOrDefault();
     }
 
-    public ConfigurationProvider(string ComponentName, Func<string,object> SettingProvider)
+    public ConfigurationProvider(Func<string,object> SettingProvider)
     {
-        this.ComponentName = ComponentName;
+        this.ComponentName = string.Empty;
         this.SettingProvider = SettingProvider;
         this.SettingDictionaryProvider 
             = () => new Dictionary<string, object>();
     }
 
-    public ConfigurationProvider(string ComponentName, object ObjectSettingProvider = null)
+    public ConfigurationProvider(object ObjectSettingProvider)
     {
-        this.ComponentName = ComponentName;
-
+        this.ComponentName = string.Empty;
         var osp = ObjectSettingProvider ?? this;
         var propidx = (osp.GetType().GetPublicProperties(true).Select(p => (p.Name, p)))
                                     .ToReadOnlyDictionary();
@@ -60,7 +75,6 @@ public class ConfigurationProvider : IConfigurationProvider
 
     IReadOnlyDictionary<string, object> IConfigurationProvider.GetSettings()
         => SettingDictionaryProvider().ToReadOnlyDictionary();
-
 
     bool IConfigurationProvider.HasSetting(string settingName)
         => !(SettingProvider(settingName) is null);

@@ -2,6 +2,16 @@
 
 
   <ItemGroup>
+    <None Remove="Templates\PartitionRowsByCount.sql" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <EmbeddedResource Include="Templates\PartitionRowsByCount.sql" />
+  </ItemGroup>
+
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.SqlServer.DacFx.x64" Version="140.3881.1" />
   </ItemGroup>
 

@@ -1,4 +1,9 @@
-﻿namespace SqlT.Models
+﻿//-------------------------------------------------------------------------------------------
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
+//-------------------------------------------------------------------------------------------
+namespace SqlT.Models
 {
     public sealed class SqlMessageIdentifier : SemanticIdentifier<SqlMessageIdentifier, string>
     {
@@ -17,7 +22,4 @@
 
         }
     }
-
-
-
 }

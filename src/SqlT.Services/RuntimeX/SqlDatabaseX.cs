@@ -44,6 +44,16 @@ namespace SqlT.Services
                     Source: h.DatabaseName
                 ));
 
+        public static ScalarResult<T> ExecuteScalarScript<T>(this ISqlDatabaseHandle h,
+            string sql, params (string, object)[] args)
+                => h.Broker.ExecuteScalarScript<T>(sql, args);
+
+        public static Option<SqlVersion> GetCompatibilityVersion(this ISqlDatabaseHandle h)
+        {
+            var sql = h.DatabaseName.SQL_COMPATIBILITY_LEVEL();
+            return h.ExecuteScalarScript<byte>(sql).TryMapValue(x => ((SqlVersionIndicator)x).GetVersion());
+        }
+
         public static Option<ISqlDatabaseHandle> Create(this ISqlDatabaseHandle h, SqlDatabase model)
             => h.Broker.ExecuteNonQuery(model.TSqlCreate().GenerateScript()).TryMapValue(_ => h);
     }

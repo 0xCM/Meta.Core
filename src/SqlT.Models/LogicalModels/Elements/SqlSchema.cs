@@ -11,7 +11,7 @@ namespace SqlT.Models
     using SqlT.Syntax;
 
 
-    public abstract class SqlSchema<M> : SqlElement<M, SqlSchemaName>, ISqlSchema
+    public abstract class SqlSchema<M> : SqlElement<M, SqlSchemaName>
         where M : SqlSchema<M>
     {
 

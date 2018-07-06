@@ -20,16 +20,16 @@ namespace Meta.Core
         public static readonly ListAlternative<X,Y> instance = default;
 
         public Lst<X> empty
-            => List.empty<X>();
+            => Lst.empty<X>();
 
         public Lst<Y> apply(Lst<Func<X, Y>> cf, Lst<X> cx)
-            => List.apply(cf, cx);
+            => Lst.apply(cf, cx);
 
         public Func<Lst<X>, Lst<Y>> fmap(Func<X, Y> f)
-            => List.fmap(f);
+            => Lst.fmap(f);
 
         public Lst<X> pure(X x)
-            => List.singleton(x);
+            => Lst.singleton(x);
     }
 
     public interface ISeqAlternative<X,Y>

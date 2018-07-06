@@ -1,7 +1,7 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Services
 {
@@ -155,24 +155,6 @@ namespace SqlT.Services
                     src.TSqlCreate().GenerateScript());
 
         [SqlG]
-        public static ISqlModelScript Generate(this GC context, SqlObjectExists model)
-        {
-            var parameters = context.ParameterAttributions<SqlObjectExists>();
-            var script = context.ScriptProvider.FindScript(model.ActionName);
-            var argidx = model.GetTemplateArgIdx(parameters);
-            var invocation = SqlActionInvocation.CreateInvocation(model, argidx);
-            return (new SqlModelScript(new SqlName(model.ActionName), model.ModelType, script.Render(invocation.Arguments)));
-        }
-
-        [SqlG]
-        public static ISqlModelScript Generate(this GC context, SqlCmdShell model)
-        {
-            var parameters = context.ParameterAttributions<SqlCmdShell>();
-            return new SqlCommandScript(model, model.CreateInvocation(
-                model.GetTemplateArgIdx(parameters)).TSqlExecuteStatement().GenerateScript());
-        }
-
-        [SqlG]
         public static ISqlModelScript Generate(this GC context, SqlView src)
         {
             var script = new SqlScript($"create view {src.ObjectName} as {src.DefiningQuery.ScriptText}");
@@ -189,8 +171,7 @@ namespace SqlT.Services
             script.AppendLine("GO");
             script.AppendLine(model.TSqlAlterDatabseSet().GenerateScript());
             
-            return new SqlModelScript(model.ElementName, model.ModelType, script.ToString());
-                        
+            return new SqlModelScript(model.ElementName, model.ModelType, script.ToString());                        
             
         }
     }

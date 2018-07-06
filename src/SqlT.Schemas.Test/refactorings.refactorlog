@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="7d1960dd-5ff9-4463-a060-73004d8b178b" ChangeDateTime="03/03/2016 13:14:03">
+    <Property Name="ElementName" Value="[SqlTest].[Table02Sequence]" />
+    <Property Name="ElementType" Value="SqlSequence" />
+    <Property Name="ParentElementName" Value="[SqlTest]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="Seq02" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="5d936f53-9277-4f77-85f6-0c0998d58703" ChangeDateTime="03/03/2016 13:14:26">
+    <Property Name="ElementName" Value="[SqlTest].[Table04Sequence]" />
+    <Property Name="ElementType" Value="SqlSequence" />
+    <Property Name="ParentElementName" Value="[SqlTest]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="Seq03" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="cbd46d55-96bb-4869-8c70-ed5e24371abb" ChangeDateTime="07/06/2016 23:10:51">
+    <Property Name="ElementName" Value="[SqlTest].[PhoneNumber]" />
+    <Property Name="ElementType" Value="SqlUserDefinedDataType" />
+    <Property Name="ParentElementName" Value="[SqlTest]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="CustomPrimitive01" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="63b6ed14-b563-427d-a8a3-01f79b95569a" ChangeDateTime="07/06/2016 23:11:11">
+    <Property Name="ElementName" Value="[SqlTest].[CustomPrimitive01]" />
+    <Property Name="ElementType" Value="SqlUserDefinedDataType" />
+    <Property Name="ParentElementName" Value="[SqlTest]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="Primitive01" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9a71585e-eaae-4c7f-8a86-564f6bf6d1d9" ChangeDateTime="09/26/2016 11:21:46">
+    <Property Name="ElementName" Value="[SqlTest].[Table13].[IX_Table_13_B]" />
+    <Property Name="ElementType" Value="SqlIndex" />
+    <Property Name="ParentElementName" Value="[SqlTest].[Table13]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IX_Table13_B" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="f1d22a15-cbe4-4cf2-9a39-ff45f12e058c" ChangeDateTime="09/26/2016 11:21:54">
+    <Property Name="ElementName" Value="[SqlTest].[Table13].[IX_Table_13_A]" />
+    <Property Name="ElementType" Value="SqlIndex" />
+    <Property Name="ParentElementName" Value="[SqlTest].[Table13]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IX_Table13_A" />
+  </Operation>
+</Operations>

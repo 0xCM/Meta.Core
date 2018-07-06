@@ -273,13 +273,11 @@ namespace SqlT.Services
                 dstItem.systems_server_name = host;
             });
 
-
         public Option<SqlServerInstanceDescription> DescribeServer(SqlConnectionString Connector, SqlServerName ServerName)
         {
             Notify(SelectingInstanceInformation(ServerName));
             return DescribeServer(Connector.GetClientBroker(), ServerName);
         }
-
 
         public static Option<SqlServerInstanceDescription> DescribeServer(ISqlClientBroker Broker, SqlServerName ServerName)
         {            

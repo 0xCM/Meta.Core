@@ -5,7 +5,7 @@
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Syntax
 {
-    using System.Collections.Generic;
+    using System;
     using System.Linq;
 
     using Meta.Models;
@@ -13,11 +13,11 @@ namespace SqlT.Syntax
 
     using static metacore;
 
-    using sxc = contracts;
-    using kwt = SqlKeywordTypes;
-
     partial class SqlSyntax
     {
+        /// <summary>
+        /// Defines a (limited) database opption syntax model
+        /// </summary>
         public sealed class dboptions
         {
             public dboptions(containment_type containment_type = null, 
@@ -32,19 +32,29 @@ namespace SqlT.Syntax
                 this.parameter_sniffing = parameter_sniffing;
             }
 
+            /// <summary>
+            /// If specified, indicates the database containment level
+            /// </summary>
             public ModelOption<containment_type> containment_type { get; }
 
+            /// <summary>
+            /// If specified, indicates the desired service broker disposition
+            /// </summary>
             public ModelOption<service_broker_option> service_broker_option { get; }
 
+            /// <summary>
+            /// If specified, indicates the reconvery model
+            /// </summary>
             public ModelOption<recovery_model> recovery_model { get; }
 
+            /// <summary>
+            /// If specified, indicates whether parameter sniffing should be enabled
+            /// </summary>
             public ModelOption<parameter_sniffing> parameter_sniffing { get; }
 
             public override string ToString()
-                => join(",", from p in GetType().GetDeclaredPublicProperties(MemberInstanceType.Instance)
-                             select $"{p.Name} = {p.GetValue(this)}");
+                => join(",", from p in GetType().GetDeclaredPublicInstanceProperties()
+                        select $"{p.Name} = {p.GetValue(this)}");
         }
-
     }
-
 }

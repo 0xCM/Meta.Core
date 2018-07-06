@@ -18,7 +18,7 @@ namespace Meta.Core
         }
 
         public Func<Lst<X>, Lst<Y>> fmap(Func<X, Y> f)
-            => List.Functor<X,Y>().fmap(f);
+            => Lst.Functor<X,Y>().fmap(f);
     }
 
 

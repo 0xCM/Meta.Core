@@ -9,6 +9,7 @@ namespace SqlT.Syntax
     using System;
     using System.Collections.Generic;
 
+
     using Meta.Models;
     using Meta.Syntax;
     using SqlT.Models;
@@ -118,7 +119,7 @@ namespace SqlT.Syntax
         public static alter_database SetMultiUser(this SqlDatabaseName db)
             => sql.alter(DATABASE, new simple_database_name(db.UnquotedLocalName, db.quoted), SET, MULTI_USER);
 
-        public static statement_block ToStatementList(this IEnumerable<sxc.statement> statements)
+        public static statement_block ToStatementList(this Meta.Core.Seq<sxc.statement> statements)
             => new statement_block(statements);
 
         public static bool IsMatch(this IKeyword kw, string candidiate)

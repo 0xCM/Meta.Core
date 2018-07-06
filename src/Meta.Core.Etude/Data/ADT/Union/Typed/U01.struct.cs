@@ -43,7 +43,7 @@ partial class adt
             => x1.Map(x => f1(x));
 
         public Y map<Y>(Func<object, Y> f)
-            => x1.MapValue(x => f(x));
+            => x1.MapRequired(x => f(x));
 
         public bool Equals(U<X1> other)
             => x1.Equals(other.x1);

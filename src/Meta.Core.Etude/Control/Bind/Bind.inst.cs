@@ -42,13 +42,13 @@ namespace Meta.Core
         /// Applies a list of function to a list of values
         /// </summary>
         public Lst<Y> apply(Lst<Func<X, Y>> lf, Lst<X> lx)
-            => List.apply(lf, lx);
+            => Lst.apply(lf, lx);
 
         public Lst<Y> bind(Lst<X> list, Func<X, Lst<Y>> f)
-            => List.bind(list, f);
+            => Lst.bind(list, f);
 
         public Func<Lst<X>, Lst<Y>> fmap(Func<X, Y> f)
-            => List.fmap(f);
+            => Lst.fmap(f);
     }
 
     public interface IIndexBind<X,Y> : IBind<X, Index<X>, Index<Func<X, Y>>, Y, Index<Y>>

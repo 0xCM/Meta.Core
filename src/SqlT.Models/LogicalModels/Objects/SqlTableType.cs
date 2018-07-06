@@ -19,7 +19,7 @@ namespace SqlT.Models
 
 
     [SqlElementType(SqlElementTypeNames.TableType)]
-    public sealed class SqlTableType : SqlType<SqlTableType,SqlTableTypeName>, ISqlTableType
+    public sealed class SqlTableType : SqlType<SqlTableType,SqlTableTypeName>, sxc.ISqlType, ISqlTabularObject
     {
 
         public  IReadOnlyList<SqlTableTypeColumn> Columns { get; }

@@ -1,0 +1,14 @@
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <AssemblyName>SqlT.Z0.Schemas</AssemblyName>
+    <TargetDatabaseSet>False</TargetDatabaseSet>
+    <DevArea>metaverse</DevArea>
+    <TopDir>$(DevAreaRoot)\$(DevArea)\</TopDir>
+    <TopConfigDir>$(TopDir)src\SqlT.Build\</TopConfigDir>
+  </PropertyGroup>
+
+  <Import Project="$(TopConfigDir)Build.Sql.Common.props" />
+  <Import Project="$(msdac-distdir)msdac.master.refs.props"/>
+
+</Project>

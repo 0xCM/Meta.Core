@@ -1,0 +1,53 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="Configuration\Build.props" />
+  <PropertyGroup>
+    <AppDesignerFolder>Configuration</AppDesignerFolder>
+    <RootNamespace>SqlT.SqlDocs</RootNamespace>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <ProjectGuid>{84ff4dc3-003e-4d73-8b52-25e1491bf0b9}</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="Configuration\Build.props" />
+    <None Include="Configuration\Node00.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Configuration\" />
+    <Folder Include="Typtes" />
+    <Folder Include="Function" />
+    <Folder Include="Procedures" />
+    <Folder Include="Tables" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Typtes\Configuration.sql" />
+    <Build Include="Typtes\MarkdownFileContent.sql" />
+    <Build Include="Typtes\MarkdownFileInfo.sql" />
+    <Build Include="Typtes\MarkdownHelpKeyword.sql" />
+    <Build Include="Typtes\MarkdownTableInfo.sql" />
+    <Build Include="Typtes\MarkdownTableRow.sql" />
+    <Build Include="Typtes\TextFileDescription.sql" />
+    <Build Include="Typtes\SqlSyntaxBlock.sql" />
+    <Build Include="Function\Configurations.sql" />
+    <Build Include="Function\DocumentKeywords.sql" />
+    <Build Include="Function\DocumentTableIdentity.sql" />
+    <Build Include="Function\MarkdownTableRows.sql" />
+    <Build Include="Procedures\SyncMarkdownFileContent.sql" />
+    <Build Include="Procedures\SyncMarkdownFiles.sql" />
+    <Build Include="Procedures\SyncMarkdownHelpKeywords.sql" />
+    <Build Include="Procedures\SyncMarkdownTables.sql" />
+    <Build Include="Procedures\SyncSampleScripts.sql" />
+    <Build Include="Procedures\SyncSyntaxBlocks.sql" />
+    <Build Include="Tables\Configuration.sql" />
+    <Build Include="Tables\MarkdownFile.sql" />
+    <Build Include="Tables\MarkdownFileContent.sql" />
+    <Build Include="Tables\MarkdownHelpKeyword.sql" />
+    <Build Include="Tables\MarkdownTable.sql" />
+    <Build Include="Tables\MarkdownTableRow.sql" />
+    <Build Include="Tables\SampleScript.sql" />
+    <Build Include="Tables\SqlSyntaxBlock.sql" />
+    <Build Include="Configuration\Schemas.sql" />
+    <Build Include="Function\DocumentTableRows.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="SqlT.SqlDocs.Schemas.refactorlog" />
+  </ItemGroup>
+</Project>

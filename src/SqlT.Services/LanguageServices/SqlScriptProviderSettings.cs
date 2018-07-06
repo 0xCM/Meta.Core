@@ -7,6 +7,8 @@ namespace SqlT.Services
 {
     using System;
 
+    using Meta.Core;
+
     public abstract class SqlScriptProviderSettings<T> : ProvidedConfiguration<T>
         where T : SqlScriptProviderSettings<T>
     {
@@ -17,13 +19,14 @@ namespace SqlT.Services
 
     public class SqlScriptProviderSettings : SqlScriptProviderSettings<SqlScriptProviderSettings>
     {
-        public SqlScriptProviderSettings(IConfigurationProvider configuration)
+        public SqlScriptProviderSettings(IConfigurationProvider configuration, NodeFolderPath DacLib)
             : base(configuration)
         {
-
+            this.DacLib = DacLib;   
         }
 
-        public string DacLib
-            => GetThisSetting(Environment.GetEnvironmentVariable("DMDacLibDir"), true);
+        
+        public NodeFolderPath DacLib { get; }
+        
     }
 }

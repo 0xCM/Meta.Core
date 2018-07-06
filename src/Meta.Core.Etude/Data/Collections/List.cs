@@ -7,7 +7,7 @@ namespace Meta.Core
 {
     using System;
 
-    partial class List
+    partial class Lst
     {
         /// <summary>
         /// Constructs the <see cref="IFunctor"/> list instance over <typeparamref name="X"/>

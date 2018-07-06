@@ -73,6 +73,17 @@ partial class metacore
         => Seq.map(f, s);
 
     /// <summary>
+    /// Applies a function to a sequence and returns the result
+    /// </summary>
+    /// <typeparam name="X">The source item type</typeparam>
+    /// <typeparam name="Y">The target item type</typeparam>
+    /// <param name="f">The function to apply</param>
+    /// <param name="s">The input sequence</param>
+    /// <returns></returns>
+    public static Seq<Y> map<X, Y>(Seq<X> s, Func<X, Y> f)
+        => Seq.map(f, s);
+
+    /// <summary>
     /// Produces a sequence of relatively contiguous values within a specified range
     /// </summary>
     /// <typeparam name="T">The value type</typeparam>

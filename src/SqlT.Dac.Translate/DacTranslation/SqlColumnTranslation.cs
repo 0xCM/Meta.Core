@@ -21,7 +21,7 @@ namespace SqlT.Dac
     /// <summary>
     /// Defines operations that manipulate and project column specification information between alternate representations
     /// </summary>
-    static class SqlColumnTranslation
+    public static class SqlColumnTranslation
     {
         [SqlTBuilder]
         public static SqlDataFacets SpecifyDataFacets(this DacX.TSqlTableTypeColumn dsql)

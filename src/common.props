@@ -12,7 +12,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <DevArea>metacore</DevArea>
+    <DevArea>metaverse</DevArea>
     <area-distid>$(DevArea)</area-distid>
     <TopDir>$(DevAreaRoot)\$(DevArea)\</TopDir>
     <BuildRootDir>$(TopDir)bin\</BuildRootDir>

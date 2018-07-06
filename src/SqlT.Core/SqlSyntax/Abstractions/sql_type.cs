@@ -5,8 +5,6 @@
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Syntax
 {
-    using System.Collections.Generic;
-
     using Meta.Models;
     using SqlT.Core;
     using SqlT.Models;

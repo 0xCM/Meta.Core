@@ -1,12 +1,11 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Dac
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
 
     using SqlT.Core;
@@ -17,7 +16,7 @@ namespace SqlT.Dac
     using DacX = Microsoft.SqlServer.Dac.Extensions.Prototype;
     using sx = SqlT.Syntax.SqlSyntax;
 
-    static class SqlStatementTranslation
+    public static class SqlStatementTranslation
     {
         public static Option<sx.statement_list> ModelStatements(this DacX.TSqlModelElement dsql)
         {

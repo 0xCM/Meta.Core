@@ -116,7 +116,7 @@ public class ApplicationContext : IMutableContext
 
             var qInstance = FindInstantiation(descriptor, typeof(T), ImplementationName);
             if (qInstance.IsSome())
-                return qInstance.MapValue(i => new ServiceInstantiation<T>(i.Descriptor, (T)i.Instance));
+                return qInstance.MapRequired(i => new ServiceInstantiation<T>(i.Descriptor, (T)i.Instance));
 
             T instance = default(T);
             if (descriptor == null)

@@ -18,7 +18,7 @@ namespace Meta.Core
         public static readonly ListInvariant<X, Y> instance = default;
 
         public Func<Lst<X>, Lst<Y>> imap(Func<X, Y> f, Func<Y, X> g)
-            => lx => List.imap(f, g, lx);
+            => lx => Lst.imap(f, g, lx);
     }
 
 }

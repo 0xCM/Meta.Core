@@ -1,0 +1,13 @@
+﻿<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <LibFiles Include="$(OutDir)$(AssemblyName).dll; $(OutDir)$(AssemblyName).xml" />
+  </ItemGroup>
+
+  <Target Name="AfterBuild">
+    <Copy SourceFiles="@(LibFiles)" DestinationFolder="$(area-lib-distdir)" SkipUnchangedFiles="true" />
+  </Target>
+
+</Project>
+
+
+

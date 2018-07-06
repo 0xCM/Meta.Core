@@ -19,10 +19,10 @@ namespace Meta.Core
         public static readonly ListAlt<X> instance = default;
 
         public Lst<X> alt(Lst<X> l1, Lst<X> l2)
-            => List.concat(l1, l2);
+            => Lst.concat(l1, l2);
 
         public Func<Lst<X>, Lst<X>> fmap(Func<X, X> f)
-            => List.fmap(f);
+            => Lst.fmap(f);
     }
 
     public interface ISeqAlt<X> : IAlt<X, Seq<X>>

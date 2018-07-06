@@ -64,7 +64,10 @@ namespace SqlT.Services
                 switch (source.SourceType)
                 {
                     case SqlScriptSourceType.Package:
-                        NodeFilePath path = new NodeFilePath(SystemNode.Local, Path.Combine(Settings.DacLib, $"{source.SourceIdentifier}.dacpac"));
+                        if (source.FileSystemLocation.IsNone())
+                            throw new ArgumentNullException("No location specified for dac repository");
+
+                        var path = source.FileSystemLocation.ValueOrDefault() + FileName.Parse($"{source.SourceIdentifier}.dacpac");
                         if(!path.Exists())
                             throw new FileNotFoundException($"The file {path} could not be found", path.AbsolutePath);                        
                         ScriptIndex[source] = C.SqlPackageManager().LoadScripts(path).GetIndex();

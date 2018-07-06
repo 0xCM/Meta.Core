@@ -13,21 +13,20 @@ namespace SqlT.CSharp
     using SqlT.Models;
     using SqlT.Syntax;
     using SqlT.SqlSystem;
+    
 
     using static metacore;
     using static ClrStructureSpec;
     using ClrModel;
    
     public static partial class SqlProxySpecifier
-    {        
+    {
         public static ClrType SpecifyProxyType(this vSystemPrimitive subject, CodeGenerationProfile gp)
-        {
-            //var primitive = SqlNativeTypes.TryFind(p => p.Name == (subject.TypeName as SqlTypeName));
-            var primitive = SqlNativeTypes.TryFind(p => string.Equals(p.Name.UnquotedLocalName, subject.TypeName.UnqualifiedName, StringComparison.InvariantCultureIgnoreCase));
-            if (!primitive)
-                throw new Exception($"The primitive type {subject.TypeName} could not be found among the known intrinsic primitives");
-            return primitive.Map(p => p.MapToClrType()).Require();
-        }         
+            => (from primitive in SqlNativeTypes.TryFind(p => string.Equals(p.Name.UnquotedLocalName,
+                subject.TypeName.UnqualifiedName, StringComparison.InvariantCultureIgnoreCase))
+                from clrType in primitive.MapToClrType()
+                select clrType).Require($"The primitive type {subject.TypeName} could not be found among the known intrinsic primitives");
+
 
         public static ClrClassName GetResultTypeName(this vTableFunction subject, CodeGenerationProfile gp)
             => subject.ResultContractName.Map(c => c.SpecifyClassName(),
@@ -121,7 +120,7 @@ namespace SqlT.CSharp
             foreach (var m in subject.SpecifyCustomMethods(gp))
                 yield return m;
 
-            foreach (var c in subject.SpecifyConstructors(gp))
+            foreach (var c in subject.SpecifyResultConstructors(gp))
                 yield return c;
 
         }

@@ -1,7 +1,7 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Dac
 {
@@ -19,9 +19,8 @@ namespace SqlT.Dac
     using DacM = Microsoft.SqlServer.Dac.Model;
     using sxc = SqlT.Syntax.contracts;
 
-    static class SqlTableTranslation
+    public static class SqlTableTranslation
     {
-
         public static IEnumerable<ISqlElementSpecScript> SpecifyTableScripts(this DacM.TSqlModel src, ISqlGenerationContext GC)
         {
             foreach (var o in src.GetObjects(DacM.DacQueryScopes.UserDefined, DacM.Table.TypeClass))
@@ -85,8 +84,6 @@ namespace SqlT.Dac
                         Properties: xpidx.ModelExtendedProperties(table)
                     );
             }
-
         }
-
     }
 }

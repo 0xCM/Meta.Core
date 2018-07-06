@@ -23,7 +23,7 @@ namespace SqlT.Models
         /// <summary>
         /// The owning tabular, if any
         /// </summary>
-        Option<ISqlObject> Parent { get; }
+        Option<sxc.sql_object> Parent { get; }
 
         /// <summary>
         /// Default constraint applied to the column, if any
@@ -62,7 +62,7 @@ namespace SqlT.Models
         /// </summary>
         /// <param name="newParent">The new parent to which the column will belong</param>
         /// <returns></returns>
-        ISqlColumn Reparent(ISqlObject newParent);
+        ISqlColumn Reparent(sxc.sql_object newParent);
 
         /// <summary>
         /// Clones the column while assigning it a new position

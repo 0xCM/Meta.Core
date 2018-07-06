@@ -39,7 +39,7 @@ namespace SqlT.Models
             SqlColumnName LocalName,
             int Position,
             sxc.data_type_ref DataType,
-            ISqlObject Parent = null,
+            sxc.sql_object Parent = null,
             SqlElementDescription Documentation = null,
             IEnumerable<SqlPropertyAttachment> Properties = null,
             SqlDefaultConstraint DefaultConstraint = null,
@@ -71,7 +71,7 @@ namespace SqlT.Models
         public override T Reposition(int newPosition)
             => new T(Definition.Reposition(newPosition));
 
-        public override T Reparent(ISqlObject newParent)
+        public override T Reparent(sxc.sql_object newParent)
             => new T(Definition.Reparent(newParent));
 
         public override T Retype(SqlTypeDescriptor newType)

@@ -19,7 +19,7 @@ namespace SqlT.Dac
 
     using static metacore;
 
-    static class DatabaseOptions
+    public static class DatabaseOptions
     {
         public static DacM.Containment ToDac(this containment_type model)
             => ((model as IDiscriminatedUnion).selected_value) == NONE

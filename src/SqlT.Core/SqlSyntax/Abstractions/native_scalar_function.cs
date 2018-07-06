@@ -6,7 +6,6 @@
 namespace SqlT.Syntax
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
 
     using SqlT.Core;
@@ -15,7 +14,6 @@ namespace SqlT.Syntax
     using static metacore;
 
     using sxc = contracts;
-
 
     /// <summary>
     /// Abstract base type for native scalar functions
@@ -76,7 +74,6 @@ namespace SqlT.Syntax
         protected native_scalar_function()
             : base(typeof(f).Name)
         {
-
 
         }
     }

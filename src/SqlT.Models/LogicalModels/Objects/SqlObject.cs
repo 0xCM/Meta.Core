@@ -16,7 +16,7 @@ namespace SqlT.Models
     using static metacore;
 
 
-    public abstract class SqlObject<M> : SqlElement<M>, ISqlObject
+    public abstract class SqlObject<M> : SqlElement<M>, sxc.sql_object
         where M : SqlObject<M>
     {
         protected static readonly M instance;

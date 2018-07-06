@@ -13,8 +13,6 @@ namespace SqlT.Language
     using TSql = Microsoft.SqlServer.TransactSql.ScriptDom;
     using SqlT.Models;
     using SqlT.Core;    
-    using SqlT.Services;
-
 
     using static metacore;
 

@@ -1,7 +1,7 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Syntax
 {
@@ -13,9 +13,10 @@ namespace SqlT.Syntax
     using static metacore;
     using static SqlSyntax;
 
-    using sxc = contracts;
-    using kwt = SqlKeywordTypes;
-
+    /// <summary>
+    /// Represents a logical SQL Server file and specifies the associated
+    /// physical file system object
+    /// </summary>
     public sealed class database_file : Model<database_file>
     {
         public database_file(SimpleSqlName logical_file_name, string_literal filename,
@@ -44,5 +45,4 @@ namespace SqlT.Syntax
                 max_size.map(x => $",{MAXSIZE} = {x}", () => string.Empty),
                 file_growth.map(x => $", {FILEGROWTH} = {x}", () => string.Empty));
     }
-
 }

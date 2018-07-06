@@ -28,7 +28,7 @@ namespace SqlT.Models
             SqlColumnName ColumnName,
             int Position,
             sxc.data_type_ref DataTypeReference,
-            ISqlObject Parent
+            sxc.sql_object Parent
             ) : this
                 (
                     ColumnName,
@@ -49,7 +49,7 @@ namespace SqlT.Models
             SqlColumnName ColumnName,
             int Position,
             sxc.data_type_ref DataTypeReference,
-            ISqlObject Parent,
+            sxc.sql_object Parent,
             SqlElementDescription Documentation,
             IEnumerable<SqlPropertyAttachment> Properties,
             SqlDefaultConstraint DefaultConstraint,
@@ -62,7 +62,7 @@ namespace SqlT.Models
         {
             this.Position = Position;
             this.DataTypeReference = DataTypeReference;
-            this.Parent = Parent != null ? some(Parent) : new Option<ISqlObject>();
+            this.Parent = Parent != null ? some(Parent as sxc.sql_object) : new Option<sxc.sql_object>();
             this.DefaultConstraint = DefaultConstraint;
             this.ComputationExpression = ComputationExpression;
             this.ComputationPersisted = ComputationPersisted;
@@ -72,7 +72,7 @@ namespace SqlT.Models
         protected SqlColumn(SqlColumnDefinition def)
             : base(def.Name, def.Documentation.ValueOrDefault(), def.Properties)
         {
-            Parent = def.Parent;
+            Parent = def.Parent.Map(p => p as sxc.sql_object);
             DefaultConstraint = def.Default;
             DataTypeReference = def.DataType;
             ColumnRole = def.ColumnRole;
@@ -82,7 +82,7 @@ namespace SqlT.Models
             
         }
 
-        public Option<ISqlObject> Parent { get; }
+        public Option<sxc.sql_object> Parent { get; }
 
         public Option<SqlDefaultConstraint> DefaultConstraint { get; }
 
@@ -134,13 +134,13 @@ namespace SqlT.Models
 
         public abstract C Retype(SqlTypeDescriptor newType);
 
-        public abstract C Reparent(ISqlObject newParent);
+        public abstract C Reparent(sxc.sql_object newParent);
 
         public abstract C Reposition(int newPosition);
 
         public abstract C Rename(SqlColumnName newName);
 
-        ISqlColumn ISqlColumn.Reparent(ISqlObject newParent)
+        ISqlColumn ISqlColumn.Reparent(sxc.sql_object newParent)
             => Reparent(newParent);
 
         ISqlColumn ISqlColumn.Retype(SqlTypeDescriptor newType)
@@ -155,7 +155,7 @@ namespace SqlT.Models
 
     public sealed class SqlColumn : SqlColumn<SqlColumn>
     {
-        public SqlColumn(SqlColumnName Name, int Position, sxc.data_type_ref TypeReference, ISqlObject Parent = null)
+        public SqlColumn(SqlColumnName Name, int Position, sxc.data_type_ref TypeReference, sxc.sql_object Parent = null)
             : base(Name, Position, TypeReference, Parent)
         { }
 
@@ -165,7 +165,7 @@ namespace SqlT.Models
         public override SqlColumn Rename(SqlColumnName newName)
             => new SqlColumn(newName, Position, DataTypeReference, Parent.ValueOrDefault());
 
-        public override SqlColumn Reparent(ISqlObject newParent)
+        public override SqlColumn Reparent(sxc.sql_object newParent)
             => new SqlColumn(Name, Position, DataTypeReference, newParent);
 
         public override SqlColumn Reposition(int newPosition)

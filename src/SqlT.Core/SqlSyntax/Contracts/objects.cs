@@ -21,7 +21,10 @@ namespace SqlT.Syntax
         public interface element<n> : element, IModel<n>
             where n : IName, new() { }
 
-        public interface sql_object : element { }
+        public interface sql_object : element
+        {
+            ISqlObjectName ObjectName { get; }
+        }
 
         public interface sql_object<n> : sql_object, element<n>
             where n : ISqlObjectName, new() { }

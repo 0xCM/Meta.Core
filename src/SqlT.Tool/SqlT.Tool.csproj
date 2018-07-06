@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net472</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <ApplicationIcon>SqlT.ico</ApplicationIcon>
+    <StartupObject />
+    <AssemblyName>SqlT</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Profiles\SqlT.Syntax.sqlt" />
+    <None Remove="Profiles\SyntaxLists.sqlt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Profiles\SqlT.Syntax.sqlt" />
+    <EmbeddedResource Include="Profiles\SyntaxLists.sqlt" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Fare" Version="2.1.1" />
+    <PackageReference Include="Markdig" Version="0.15.0" />
+    <PackageReference Include="MathNet.Numerics" Version="4.5.1" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="System.Collections.Immutable" Version="1.5.0" />
+    <PackageReference Include="System.Composition.TypedParts">
+      <Version>1.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Data.SqlClient" Version="4.5.1" />
+    <PackageReference Include="System.IO.Compression" Version="4.3.0" />
+    <PackageReference Include="System.IO.Compression.ZipFile" Version="4.3.0" />
+    <PackageReference Include="System.IO.Packaging">
+      <Version>4.5.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Reflection.Metadata">
+      <Version>1.6.0</Version>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Meta.Core.Operations\Meta.Core.Operations.csproj" />
+    <ProjectReference Include="..\Meta.Core\Meta.Core.csproj" />
+    <ProjectReference Include="..\SqlT.Operations\SqlT.Operations.csproj" />
+    <ProjectReference Include="..\SqlT.Services\SqlT.Services.csproj" />
+    <ProjectReference Include="..\SqlT.Workflow\SqlT.Workflow.csproj" />
+  </ItemGroup>
+
+</Project>

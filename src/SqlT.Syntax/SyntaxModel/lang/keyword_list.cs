@@ -7,11 +7,11 @@ namespace SqlT.Syntax
 {
     using System.Collections.Generic;
     using Meta.Syntax;
+
     using sxc = contracts;    
 
     partial class SqlSyntax
     {
-
         public sealed class keyword_list : SyntaxList<IKeyword>, sxc.keyword_list
         {
             public static new readonly keyword_list empty 

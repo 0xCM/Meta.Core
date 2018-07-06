@@ -3,7 +3,6 @@
 // This license grants rights to merge, copy, distribute, sell or otherwise do with it 
 // as you like. But please, for the love of Zeus, don't clutter it with regions.
 //-------------------------------------------------------------------------------------------
-#if Rabbit
 namespace Meta.Core.Queues
 {
 
@@ -20,7 +19,6 @@ namespace Meta.Core.Queues
     using RabbitMQ.Client.Events;
 
     using static metacore;
-
 
     sealed class QueueReceiver<M> : NodeComponent, IQueueReceiver<M>
         where M : new()
@@ -122,7 +120,3 @@ namespace Meta.Core.Queues
         }
     }
 }
-
-
-
-#endif

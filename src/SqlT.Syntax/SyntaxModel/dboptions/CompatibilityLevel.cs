@@ -7,6 +7,9 @@ namespace SqlT.Syntax
 {
     using System.ComponentModel;
 
+    /// <summary>
+    /// Specifies the SQL Server compatibility levels supported by the SqlT tooling
+    /// </summary>
     public enum CompatibilityLevel : byte
     {
        

@@ -9,8 +9,6 @@ namespace Meta.Core.Queues
     using System.Collections.Generic;
     using System.Linq;
 
-#if Rabbit
-
     using RabbitMQ.Client;
     using RabbitMQ.Client.Events;
 
@@ -51,8 +49,5 @@ namespace Meta.Core.Queues
             Connection?.Dispose();
             Channel?.Dispose();
         }
-
     }
-
-#endif
 }

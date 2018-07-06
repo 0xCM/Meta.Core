@@ -5,7 +5,6 @@
 //-------------------------------------------------------------------------------------------
 namespace Meta.Core.Queues
 {
-#if Rabbit
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -76,5 +75,5 @@ namespace Meta.Core.Queues
         void IQueueBroadcaster.Publish(object message, Guid messageId)
             => Publish((M)message, messageId);
     }
-#endif
+
 }

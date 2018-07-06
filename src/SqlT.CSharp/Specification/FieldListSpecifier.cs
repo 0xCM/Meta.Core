@@ -149,9 +149,7 @@ namespace SqlT.CSharp
 
 
         static ClassSpec SpecifyTypeTableFieldList(this  SqlFieldListGenerationProfile gp, 
-            SqlFieldListDescription description,
-            IReadOnlyList<SqlColumnName> fieldColumns
-            )
+            SqlFieldListDescription description, IReadOnlyList<SqlColumnName> fieldColumns)
         {
             var spec = new ClassSpec
                 (

@@ -7,7 +7,7 @@ namespace SqlT.Models
 {
     using sxc = Syntax.contracts;
 
-    public interface ISqlTabularObject : ISqlObject, ISqlColumnProvider
+    public interface ISqlTabularObject : sxc.sql_object, ISqlColumnProvider
     {
     }
 

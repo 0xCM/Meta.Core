@@ -1,0 +1,1 @@
+﻿drop index if exists [IX_Table13_A] on [SqlTest].[Table13]

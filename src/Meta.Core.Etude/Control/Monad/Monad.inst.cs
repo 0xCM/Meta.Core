@@ -42,16 +42,16 @@ namespace Meta.Core
         public static readonly ListMonad<X, Y> instance = default;
 
         public Func<Lst<X>, Lst<Y>> fmap(Func<X, Y> f)
-            => List.fmap(f);
+            => Lst.fmap(f);
 
         public Lst<Y> apply(Lst<Func<X, Y>> cf, Lst<X> cx)
-            => List.apply(cf, cx);
+            => Lst.apply(cf, cx);
 
         public Lst<X> pure(X x)
-            => List.singleton(x);
+            => Lst.singleton(x);
 
         public Lst<Y> bind(Lst<X> f, Func<X, Lst<Y>> g)
-            => List.bind(f, g);
+            => Lst.bind(f, g);
     }
 
 

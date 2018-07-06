@@ -79,9 +79,9 @@ partial class adt
                 );
 
         public Y Map<Y>(Func<object, Y> f)
-            => x1 ? x1.MapValue(x => f(x))
-            : x2 ? x2.MapValue(x => f(x))
-            : x3 ? x3.MapValue(x => f(x))
+            => x1 ? x1.MapRequired(x => f(x))
+            : x2 ? x2.MapRequired(x => f(x))
+            : x3 ? x3.MapRequired(x => f(x))
             : default;
 
         public U<X1, X2, X3> Revalue(X1 x1)

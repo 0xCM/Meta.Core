@@ -12,6 +12,12 @@ namespace SqlT.Models
 
     using static metacore;
 
+    using sxc = Syntax.contracts;
+
+    public interface ISqlDataTable : ISqlColumnProvider, sxc.rowset_provider
+    {
+
+    }
 
     public abstract class SqlDataTable<R> : SqlModel<SqlDataTable<R>>, ISqlDataTable
         where R : SqlDataTable<R>

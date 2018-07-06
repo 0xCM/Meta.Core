@@ -23,7 +23,8 @@
 
 
     public class SqlDataNodeProjector<P, T> : SqlDataNodeProjector, ISqlWorkflowProc<P, T>
-        where P : ISqlProcedure
+        where P : sxc.procedure
+
         where T : class, IDataTarget, new()
     {
 
@@ -36,7 +37,7 @@
     }
 
     public class SqlDataNodeProjector<P, S, T> : SqlDataNodeProjector, ISqlWorkflowProc<P, S, T>
-        where P : ISqlProcedure
+        where P : sxc.procedure
         where S : class, IDataSource, new()    
         where T : class, IDataTarget, new()
     {

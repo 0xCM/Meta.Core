@@ -57,7 +57,7 @@ namespace SqlT.Models
             int Position,
             SqlColumnName Name,
             sxc.data_type_ref DataType,
-            ISqlObject Parent = null,
+            sxc.sql_object Parent = null,
             IEnumerable<SqlPropertyAttachment> Properties = null,
             SqlElementDescription Documentation = null,
             SqlDefaultConstraint Default = null,
@@ -70,7 +70,7 @@ namespace SqlT.Models
             this.Position = Position;
             this.Name = Name;
             this.DataType = DataType;
-            this.Parent = Parent == null ? none<ISqlObject>() : some(Parent);
+            this.Parent = Parent != null ? some(Parent) : none<sxc.sql_object>();
             this.Default = Default;
             this.ComputationExpression = isBlank(ComputationExpression) 
               ? none<string>() 
@@ -83,7 +83,7 @@ namespace SqlT.Models
         
         public sxc.data_type_ref DataType { get; set; }
         
-        public Option<ISqlObject> Parent { get; set; }
+        public Option<sxc.sql_object> Parent { get; set; }
 
         public Option<SqlDefaultConstraint> Default { get; set; }
 

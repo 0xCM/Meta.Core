@@ -27,7 +27,7 @@ namespace SqlT.Language
         }
 
         [TSqlBuilder]
-        public static TSql.SchemaObjectName TSqlSchemaObjectName(this ISqlObject src, bool quoted = true)
+        public static TSql.SchemaObjectName TSqlSchemaObjectName(this sxc.sql_object src, bool quoted = true)
             => src.ObjectName.TSqlSchemaObjectName(quoted);
 
         [TSqlBuilder]

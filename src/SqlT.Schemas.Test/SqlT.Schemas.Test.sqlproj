@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <BaseBuildDir>..\..\bin\dac\</BaseBuildDir>
+    <BaseSrcDir>.</BaseSrcDir>
+    <PackageDir>..\..\bin\packages\</PackageDir>
+    <PublishDir>..\..\dist\</PublishDir>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>SqlT.Schemas.Test</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{43c6ebf6-b693-47e5-99f2-a446a96bb4f3}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql140DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>SqlT.Schemas.Test</RootNamespace>
+    <AssemblyName>SqlT.Schemas.Test</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <IsChangeTrackingOn>True</IsChangeTrackingOn>
+    <AllowSnapshotIsolation>True</AllowSnapshotIsolation>
+    <TargetDatabase>SqlT.Schemas.Test</TargetDatabase>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <DefaultSchema>SqlTest</DefaultSchema>
+    <NonTransactedFileStreamAccess>FULL</NonTransactedFileStreamAccess>
+    <FileStreamDirectoryName>SqlT.Test</FileStreamDirectoryName>
+    <DefaultFileStreamFilegroup>Files</DefaultFileStreamFilegroup>
+    <Recovery>SIMPLE</Recovery>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+    <ServiceBrokerOption>EnableBroker</ServiceBrokerOption>
+    <TargetFrameworkProfile />
+    <OutputPath>$(BaseBuildDir)$(MSBuildProjectName)\</OutputPath>
+    <BaseIntermediateOutputPath>$(BaseBuildDir)$(MSBuildProjectName)\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseBuildDir)$(MSBuildProjectName)\</IntermediateOutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <!-- VS10 without SP1 will not have VisualStudioVersion set, so do that here -->
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <!-- Default to the v10.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="SqlTest" />
+    <Folder Include="SqlTest\Tables" />
+    <Folder Include="SqlTest\Primitives" />
+    <Folder Include="SqlTest\Procedures" />
+    <Folder Include="SqlTest\Sequences" />
+    <Folder Include="SqlTest\Functions" />
+    <Folder Include="SqlTest\FileGroups" />
+    <Folder Include="SqlTestResult" />
+    <Folder Include="SqlTestResult\Tables" />
+    <Folder Include="SqlTestResult\Sequences" />
+    <Folder Include="SqlTestResult\Views" />
+    <Folder Include="SqlTestResult\Procedures" />
+    <Folder Include="SqlTestResult\Types" />
+    <Folder Include="SqlTest\Views" />
+    <Folder Include="SqlTest\Records" />
+    <Folder Include="SqlTest\Indexes" />
+    <Folder Include="SqlTest\ServiceBroker" />
+    <Folder Include="Patterns" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="dev.publish.xml" />
+    <None Include="loc.publish.xml" />
+    <None Include="Patterns\Transformer01.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="SqlTest\SqlTest.sql" />
+    <Build Include="SqlTest\Tables\Table01.sql" />
+    <Build Include="SqlTest\Primitives\Primitive01.sql" />
+    <Build Include="SqlTest\Tables\Table02.sql" />
+    <Build Include="SqlTest\Sequences\Seq02.sql" />
+    <Build Include="SqlTest\Procedures\pTable02Insert.sql" />
+    <Build Include="SqlTest\Tables\Table03.sql" />
+    <Build Include="SqlTest\Procedures\pTable03Insert.sql" />
+    <Build Include="SqlTest\Tables\Table04.sql" />
+    <Build Include="SqlTest\Sequences\Seq03.sql" />
+    <Build Include="SqlTest\Procedures\pTable04Insert.sql" />
+    <Build Include="SqlTest\Functions\fTable04Before.sql" />
+    <Build Include="SqlTest\Procedures\pTable04Truncate.sql" />
+    <Build Include="SqlTest\Functions\fTable04Between.sql" />
+    <Build Include="SqlTest\Tables\Table05.sql" />
+    <Build Include="SqlTest\Tables\Table06.sql" />
+    <Build Include="SqlTest\Tables\Table07.sql" />
+    <Build Include="SqlTest\Sequences\Seq01.sql" />
+    <Build Include="SqlTest\Tables\Table08.sql" />
+    <Build Include="SqlTest\Tables\Table09.sql" />
+    <Build Include="SqlTest\Tables\Table0A.sql" />
+    <Build Include="SqlTest\Tables\Table0B.sql" />
+    <Build Include="SqlTest\Procedures\pTable0CSelect.sql" />
+    <Build Include="SqlTest\Tables\Table0C.sql" />
+    <Build Include="SqlTest\Tables\FIleTable01.sql" />
+    <Build Include="SqlTest\Tables\Table0D.sql" />
+    <Build Include="SqlTest\Procedures\pTable0DInsert.sql" />
+    <Build Include="Version.sql" />
+    <Build Include="SqlTest\FileGroups\Files.sql" />
+    <Build Include="SqlTest\FileGroups\FileGroupA.sql" />
+    <Build Include="SqlTest\FileGroups\FileGroupB.sql" />
+    <Build Include="SqlTest\Sequences\Seq04.sql" />
+    <Build Include="SqlTest\Tables\Table0E.sql" />
+    <Build Include="SqlTestResult\SqlTestResult.sql" />
+    <Build Include="SqlTestResult\Tables\SchemaTable.sql" />
+    <Build Include="SqlTestResult\Sequences\SchemaTableSeq.sql" />
+    <Build Include="SqlTestResult\Views\vSchemaTable.sql" />
+    <Build Include="SqlTestResult\Tables\SqlVisitedNode.sql" />
+    <Build Include="SqlTestResult\Procedures\pSqlVisitedNodeMerge.sql" />
+    <Build Include="SqlTestResult\Types\SqlVisitedNodeRecord.sql" />
+    <Build Include="SqlTest\Tables\Table0F.sql" />
+    <Build Include="SqlTest\Views\Table08View.sql" />
+    <Build Include="SqlTest\Sequences\Seq10.sql" />
+    <Build Include="SqlTest\Tables\Table10.sql" />
+    <Build Include="SqlTest\Procedures\Table10Merge.sql" />
+    <Build Include="SqlTest\Functions\Table10Select.sql" />
+    <Build Include="SqlTest\Records\SqlDataPointRecord.sql" />
+    <Build Include="SqlTest\Records\Table04Record.sql" />
+    <Build Include="SqlTest\Records\Table08Record.sql" />
+    <Build Include="SqlTest\Records\Table0CRecord.sql" />
+    <Build Include="SqlTest\Records\Table0DRecord.sql" />
+    <Build Include="SqlTest\Records\Table10Record.sql" />
+    <Build Include="SqlTest\Records\TableType01.sql" />
+    <Build Include="SqlTest\Records\TableType02.sql" />
+    <Build Include="SqlTest\Views\Table10View.sql" />
+    <Build Include="SqlTest\Tables\Table11.sql" />
+    <Build Include="SqlTest\Tables\Table12.sql" />
+    <Build Include="SqlTest\Records\Table12Record.sql" />
+    <Build Include="SqlTest\Procedures\Table12Merge.sql" />
+    <Build Include="SqlTest\Procedures\Proc01.sql" />
+    <Build Include="SqlTest\Procedures\Proc02.sql" />
+    <Build Include="SqlTest\Tables\Table13.sql" />
+    <Build Include="SqlTest\Indexes\IX_Table13_A.sql" />
+    <Build Include="SqlTest\Indexes\IX_Table13_B.sql" />
+    <None Include="SqlTest\Indexes\IX_Table13_A_Drop.sql" />
+    <Build Include="SqlTest\ServiceBroker\segment_message_01.sql" />
+    <None Include="Patterns\Transformer01.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="refactorings.refactorlog" />
+  </ItemGroup>
+  <Target Name="AfterBuild">
+    <Copy SourceFiles="$(ProjectDir)$(OutputPath)$(TargetName).dacpac" DestinationFolder="$(DistRootDir)\sqlt\dacpac\" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(ProjectDir)dev.publish.xml" DestinationFiles="$(DistRootDir)\sqlt\dacpac\$(TargetName).Node00.publish.xml" SkipUnchangedFiles="true">
+    </Copy>
+  </Target>
+</Project>

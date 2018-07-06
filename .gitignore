@@ -248,3 +248,4 @@ ModelManifest.xml
 /src/Meta.Core.SignalR.Backup
 /src/Microsoft.Extensions.CommandLineUtils
 /src/System.CommandLine
+*.jfm

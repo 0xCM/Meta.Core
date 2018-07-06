@@ -1,19 +1,16 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Syntax
 {
     using Meta.Models;
 
-    using sxc = contracts;
     using kwt = SqlKeywordTypes;
-    using sx = SqlSyntax;
 
     partial class SqlSyntax
     {
-
         public static class toggled_option
         {
             /// <summary>
@@ -28,6 +25,7 @@ namespace SqlT.Syntax
                 : ModelOption.none<toggled_option<m>>();
 
         }
+
         public sealed class toggled_option<m> : du<kwt.ON, kwt.OFF>
         {
 

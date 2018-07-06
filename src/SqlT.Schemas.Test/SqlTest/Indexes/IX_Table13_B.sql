@@ -1,0 +1,1 @@
+﻿create index IX_Table13_B on [SqlTest].[Table13](Col02, Col05) include(Col06, Col01)

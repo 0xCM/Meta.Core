@@ -13,12 +13,11 @@ namespace SqlT.Models
     using SqlT.Syntax;
 
     using static metacore;
-
-
     using static SqlT.Syntax.SqlSyntax;
+    using sxc = SqlT.Syntax.contracts;
 
     [SqlElementType(SqlElementTypeNames.Database)]
-    public sealed class SqlDatabase : SqlElement<SqlDatabase, SqlDatabaseName>, ISqlDatabase
+    public sealed class SqlDatabase : SqlElement<SqlDatabase, SqlDatabaseName>
     {
         
         public SqlDatabase(SqlDatabaseName DatabaseName,
@@ -26,7 +25,7 @@ namespace SqlT.Models
                 IEnumerable<SqlFileGroup> DataFileGroups = null,
                 IEnumerable<SqlFileGroup> LogFileGroups = null,
                 IEnumerable<SqlSchema> Schemas = null,
-                IEnumerable<ISqlObject> Objects = null,
+                IEnumerable<sxc.sql_object> Objects = null,
                 IEnumerable<SqlPropertyAttachment> Properties = null,
                 SqlElementDescription Documentation = null,
                 SqlCollationName Collation = null
@@ -48,7 +47,7 @@ namespace SqlT.Models
 
         public IReadOnlyList<SqlFileGroup> LogFileGroups { get; }
 
-        public IReadOnlyList<ISqlObject> Objects { get; }
+        public IReadOnlyList<sxc.sql_object> Objects { get; }
 
         public IReadOnlyList<SqlSchema> Schemas { get; }
 

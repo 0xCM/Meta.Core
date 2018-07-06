@@ -10,6 +10,7 @@ namespace SqlT.Syntax
     using System.Collections.Generic;
     using System.Linq;
 
+    using Meta.Core;
     using Meta.Syntax;
     using Meta.Models;
 
@@ -39,10 +40,9 @@ namespace SqlT.Syntax
         protected statement_block(statement_list statements)
             => this.statements = statements;
 
-        protected statement_block(IEnumerable<sxc.statement> statements)
-            : this(statements.to_statement_list())
+        protected statement_block(Seq<sxc.statement> statements)
         {
-            this.statements = array(statements);
+            this.statements = statements.to_statement_list();
             this.delimiter = eol();
         }
 

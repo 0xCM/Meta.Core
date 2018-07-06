@@ -1,0 +1,51 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="Configuration\Build.props" />
+  <PropertyGroup>
+    <ProjectGuid>{b10fa6a8-f6c6-4675-9b98-eb82edc17f80}</ProjectGuid>
+    <Name>SqlT.SqlClr</Name>
+    <RootNamespace>SqlT.SqlClr</RootNamespace>
+    <AssemblyName>SqlT.SqlClr</AssemblyName>
+    <AppDesignerFolder>Configuration</AppDesignerFolder>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <PermissionSet>UNSAFE</PermissionSet>
+    <Trustworthy>True</Trustworthy>
+    <ServiceBrokerOption>EnableBroker</ServiceBrokerOption>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultSchema>dbo</DefaultSchema>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Configuration" />
+    <Folder Include="SqlT" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Configuration\schemas.sql" />
+    <Build Include="SqlT\Http.sql" />
+    <Build Include="SqlT\FileSystem.sql" />
+    <Build Include="SqlT\SystemNode.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SqlT\FileSystem.cs" />
+    <Compile Include="SqlT\Http.cs" />
+    <Compile Include="SqlT\SystemNode.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Configuration\Node00.publish.xml" />
+    <None Include="Configuration\Build.props" />
+    <None Include="Configuration\Build.Post.props" />
+    <None Include="Configuration\Node00.Recreate.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SqlT.Types\SqlT.Types.sqlproj">
+      <Name>SqlT.Types</Name>
+      <Project>{e9382294-8dc4-40c0-bfca-29c4a9c8e729}</Project>
+      <Private>True</Private>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

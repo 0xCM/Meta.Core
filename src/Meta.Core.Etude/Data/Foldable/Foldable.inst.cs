@@ -36,10 +36,10 @@ namespace Meta.Core
             => Foldable<X, Lst<X>>.instance.fold(m, container);
 
         public Y foldl<Y>(Func<Y, X, Y> f, Y y0, Lst<X> container)
-            => List.foldl(f, y0, container);
+            => Lst.foldl(f, y0, container);
 
         public Y foldr<Y>(Func<X, Y, Y> f, Y y0, Lst<X> container)
-            => List.foldr(f, y0, container);
+            => Lst.foldr(f, y0, container);
      }
 
 

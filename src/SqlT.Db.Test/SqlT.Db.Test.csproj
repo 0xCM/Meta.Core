@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="Configuration\Build.props" />
+  <PropertyGroup>
+    <RootNamespace>SqlT.Db</RootNamespace>
+    <AppDesignerFolder>Configuration</AppDesignerFolder>
+    <ProjectGuid>{BC413331-10D5-4C96-89B2-0D6E17F97C36}</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="AppSession.cs" />
+    <Compile Include="Configuration\Designator.cs" />
+    <Compile Include="Db01\Db01.cs" />
+    <Compile Include="Examples\UnpackFile\TaskQueueTable.cs" />
+    <Compile Include="Examples\UnpackFile\TaskResultType.cs" />
+    <Compile Include="Examples\UnpackFile\TaskType.cs" />
+    <Compile Include="Examples\UnpackFile\UnpackFileCommand.cs" />
+    <Compile Include="Examples\UnpackFile\UnpackFileResult.cs" />
+    <Compile Include="Examples\UnpackFile\UnpackFileTask.cs" />
+    <Compile Include="Examples\UnpackFile\UnpackFileTaskQueue.cs" />
+    <None Include="..\SqlT.Build\App.config">
+      <Link>Configuration\App.config</Link>
+    </None>
+    <None Include="Configuration\Build.props">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SqlT.Commands\SqlT.Commands.csproj">
+      <Project>{a4650d44-a98a-432e-8a0b-0a616b3f9329}</Project>
+      <Name>SqlT.Commands</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SqlT.Core\SqlT.Core.csproj">
+      <Project>{781896f3-eaff-42b4-9d85-cecfc12f0719}</Project>
+      <Name>SqlT.Core</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SqlT.CSharp\SqlT.CSharp.csproj">
+      <Project>{0754af18-3de1-4941-90f0-a99211e8ce62}</Project>
+      <Name>SqlT.CSharp</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SqlT.Executors\SqlT.Executors.csproj">
+      <Project>{939f4c7a-50ac-4cee-9f54-9ba3ef8c2780}</Project>
+      <Name>SqlT.Executors</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SqlT.Language\SqlT.Language.csproj">
+      <Project>{65b31b85-2586-40a4-a9cc-3be6747d86ea}</Project>
+      <Name>SqlT.Language</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SqlT.Models.Proxies\SqlT.Models.Proxies.csproj">
+      <Project>{7909ef7f-ca64-4c7c-9ae8-421afd61fe9a}</Project>
+      <Name>SqlT.Models.Proxies</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SqlT.Models\SqlT.Models.csproj">
+      <Project>{93fdc276-12a3-421f-9f81-2f4c4f0a74a4}</Project>
+      <Name>SqlT.Models</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SqlT.Operations\SqlT.Operations.csproj">
+      <Project>{96628e69-12d7-4289-81c7-9500d98e87f5}</Project>
+      <Name>SqlT.Operations</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SqlT.Proxies.Store\SqlT.Proxies.Store.csproj">
+      <Project>{35114c5f-567f-4805-a9df-6c5252931adb}</Project>
+      <Name>SqlT.Proxies.Store</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SqlT.Proxies.Types\SqlT.Proxies.Types.csproj">
+      <Project>{4c2f2245-64c5-4fdb-9126-b4234365100f}</Project>
+      <Name>SqlT.Proxies.Types</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SqlT.Services\SqlT.Services.csproj">
+      <Project>{d84abea6-84e0-414c-8311-98f6a87f387d}</Project>
+      <Name>SqlT.Services</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SqlT.SqlDocs.Proxies\SqlT.SqlDocs.Proxies.csproj">
+      <Project>{7f2127a5-70f7-4fcf-8ba5-ec8464877476}</Project>
+      <Name>SqlT.SqlDocs.Proxies</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SqlT.SqlDocs\SqlT.SqlDocs.csproj">
+      <Project>{ba6253ab-46fd-40a5-bfdd-a9ec3d1582e7}</Project>
+      <Name>SqlT.SqlDocs</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SqlT.SqlTDom\SqlT.SqlTDom.csproj">
+      <Project>{ee8f6613-e98d-4747-a824-6d341ef37702}</Project>
+      <Name>SqlT.SqlTDom</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SqlT.Syntax.Proxies\SqlT.Syntax.Proxies.csproj">
+      <Project>{be978cfc-e6c5-48c3-ae01-1fb933ac4e31}</Project>
+      <Name>SqlT.Syntax.Proxies</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SqlT.Syntax\SqlT.Syntax.csproj">
+      <Project>{bad42561-cf4a-4cd5-a2f8-8a2529b383dd}</Project>
+      <Name>SqlT.Syntax</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SqlT.Workflow\SqlT.Workflow.csproj">
+      <Project>{7531aa3b-4dfd-45a6-a6c3-ae3bc6256399}</Project>
+      <Name>SqlT.Workflow</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

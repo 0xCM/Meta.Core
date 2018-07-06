@@ -41,18 +41,12 @@ namespace SqlT.Models
             : base(Node, Identifier, Role)
         {
            
-           
-           
-
-                
+                                    
             
         }
 
         public abstract R ResourceName { get; }
       
     }
-
-
-
 
 }

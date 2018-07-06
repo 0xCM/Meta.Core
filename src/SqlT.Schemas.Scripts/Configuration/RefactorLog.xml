@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="2be1b0ac-63c8-4bb8-b043-5bb12627be95" ChangeDateTime="06/14/2017 15:13:44">
+    <Property Name="ElementName" Value="[SqlT].[DefaultFilePathRecord]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[SqlT]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[DefaultFilePath]" />
+  </Operation>
+  <Operation Name="Move Schema" Key="a1208cd9-bbd9-4690-8d3c-1bee92db3771" ChangeDateTime="07/19/2017 15:44:29">
+    <Property Name="ElementName" Value="[dbo].[GetTableStats]" />
+    <Property Name="ElementType" Value="SqlInlineTableValuedFunction" />
+    <Property Name="NewSchema" Value="SqlT" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="7f63b826-5cbd-47ce-a43c-73efd63804a4" ChangeDateTime="07/26/2017 19:25:20">
+    <Property Name="ElementName" Value="[RN].[GetServerCollations]" />
+    <Property Name="ElementType" Value="SqlInlineTableValuedFunction" />
+    <Property Name="NewSchema" Value="dbo" />
+    <Property Name="IsNewSchemaExternal" Value="True" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="498b44fe-5009-4cd7-b707-bc59ca3e387d" ChangeDateTime="07/26/2017 19:25:54">
+    <Property Name="ElementName" Value="[SqlT].[GetFileDescriptions]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="ParentElementName" Value="[SqlT]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[GetFileDescriptions]" />
+  </Operation>
+  <Operation Name="Move Schema" Key="d105bf3a-2ad5-4cf3-a0bd-2d2cc0526a65" ChangeDateTime="07/26/2017 19:27:04">
+    <Property Name="ElementName" Value="[SqlT].[GetServerPathDefaults]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="NewSchema" Value="dbo" />
+    <Property Name="IsNewSchemaExternal" Value="True" />
+  </Operation>
+  <Operation Name="Move Schema" Key="15eddb4e-1f4a-4a5c-b2ea-d184c9e1f17a" ChangeDateTime="07/26/2017 19:29:20">
+    <Property Name="ElementName" Value="[SqlT].[DescribeForeignKeys]" />
+    <Property Name="ElementType" Value="SqlInlineTableValuedFunction" />
+    <Property Name="NewSchema" Value="dbo" />
+    <Property Name="IsNewSchemaExternal" Value="True" />
+  </Operation>
+  <Operation Name="Move Schema" Key="44dfb6c1-ae83-400a-a975-e39e9cfda59e" ChangeDateTime="07/26/2017 19:29:50">
+    <Property Name="ElementName" Value="[SqlT].[DescribeSchemaIndexes]" />
+    <Property Name="ElementType" Value="SqlInlineTableValuedFunction" />
+    <Property Name="NewSchema" Value="dbo" />
+    <Property Name="IsNewSchemaExternal" Value="True" />
+  </Operation>
+  <Operation Name="Move Schema" Key="fce64236-b003-4f1d-b857-647082d74c1c" ChangeDateTime="07/26/2017 20:49:00">
+    <Property Name="ElementName" Value="[SqlT].[GetIndexCreationProgress]" />
+    <Property Name="ElementType" Value="SqlInlineTableValuedFunction" />
+    <Property Name="NewSchema" Value="dbo" />
+    <Property Name="IsNewSchemaExternal" Value="True" />
+  </Operation>
+  <Operation Name="Move Schema" Key="9cf1fd5c-7918-4321-bdc2-5483ed1a2600" ChangeDateTime="07/26/2017 20:49:32">
+    <Property Name="ElementName" Value="[SqlT].[GetTableIndexFragmentation]" />
+    <Property Name="ElementType" Value="SqlInlineTableValuedFunction" />
+    <Property Name="NewSchema" Value="dbo" />
+    <Property Name="IsNewSchemaExternal" Value="True" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a0c6cb5c-3137-402e-afd1-3cb1a41e598d" ChangeDateTime="08/21/2017 15:13:20">
+    <Property Name="ElementName" Value="[dbo].[GetTableColumnDescriptions]" />
+    <Property Name="ElementType" Value="SqlInlineTableValuedFunction" />
+    <Property Name="ParentElementName" Value="[dbo]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[DescribeTableColumns]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="dd211754-22d5-4450-a854-eaedf3a5d7d6" ChangeDateTime="12/31/2017 07:41:18">
+    <Property Name="ElementName" Value="[SqlT].[TableStats]" />
+    <Property Name="ElementType" Value="SqlView" />
+    <Property Name="ParentElementName" Value="[SqlT]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[TableStatsView]" />
+  </Operation>
+</Operations>

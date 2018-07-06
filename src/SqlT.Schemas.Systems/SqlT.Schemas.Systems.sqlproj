@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="15.0">
+  <Import Project="Configuration\Build.props" />
+  <PropertyGroup>
+    <ProjectGuid>{23467d65-b94d-4aa0-bbf7-ea954c6d8ee4}</ProjectGuid>
+    <RootNamespace>SqlT.Schemas.Systems</RootNamespace>
+    <AppDesignerFolder>Configuration</AppDesignerFolder>
+    <Trustworthy>True</Trustworthy>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Configuration" />
+    <Folder Include="systems" />
+    <Folder Include="systems\Procedures" />
+    <Folder Include="systems\Tables" />
+    <Folder Include="systems\Views" />
+    <Folder Include="SqlStore" />
+    <Folder Include="SqlStore\Stores" />
+    <Folder Include="SqlStore\Stores\TableQuery" />
+    <Folder Include="SqlStore\Stores\ForeignKeys" />
+    <Folder Include="SqlStore\Stores\ColumnRoles" />
+    <Folder Include="SqlStore\Stores\ProxyGeneration" />
+    <Folder Include="SqlStore\Stores\ProxyGeneration\Tables" />
+    <Folder Include="SqlStore\Stores\TableQuery\Tables" />
+    <Folder Include="SqlStore\Stores\Tables" />
+    <Folder Include="SqlStore\Stores\DataTypes" />
+    <Folder Include="SqlStore\Stores\ColumnGroups" />
+    <Folder Include="SqlStore\Stores\DataTypes\Tables" />
+    <Folder Include="SqlStore\Stores\TableTypes" />
+    <Folder Include="SqlDom" />
+    <Folder Include="SqlDom\Tables" />
+    <Folder Include="SqlDom\Procedures" />
+    <Folder Include="MC" />
+    <Folder Include="SqlStore\Stores\Database" />
+    <Folder Include="Factory" />
+    <Folder Include="Factory\Specifiers" />
+    <Folder Include="Factory\Definitions" />
+    <Folder Include="SqlStore\Stores\BackupDescription" />
+    <Folder Include="MC\Stores" />
+    <Folder Include="MC\Stores\Project" />
+    <Folder Include="MC\Stores\CoreDataType" />
+    <Folder Include="MC\TypeTables" />
+    <Folder Include="Setup" />
+    <Folder Include="MC\Setup" />
+    <Folder Include="SqlDom\Views" />
+    <Folder Include="SqlDac" />
+    <Folder Include="SqlDac\Tables" />
+    <Folder Include="SqlDac\Procedures" />
+    <Folder Include="SqlStore\Stores\ColumnGroups\Tables" />
+    <Folder Include="SqlStore\Stores\ColumnRoles\Tables" />
+    <Folder Include="SqlStore\Stores\Database\Tables" />
+    <Folder Include="SqlStore\Stores\ForeignKeys\Tables" />
+    <Folder Include="MC\Stores\Project\Procedures" />
+    <Folder Include="MC\Stores\Project\Tables" />
+    <Folder Include="MC\Stores\ToolRegistry" />
+    <Folder Include="MC\Stores\DistributionRegistry" />
+    <Folder Include="MC\Stores\ProjectVariable" />
+    <Folder Include="MC\Stores\XsdDocuments" />
+    <Folder Include="MC\Stores\LanguageModel" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="systems\Procedures\p_databases_delete.sql" />
+    <Build Include="systems\Procedures\p_databases_merge.sql" />
+    <Build Include="systems\Procedures\p_host_server_delete.sql" />
+    <Build Include="systems\Procedures\p_host_server_merge.sql" />
+    <Build Include="systems\Procedures\p_host_server_save.sql" />
+    <Build Include="systems\Procedures\p_servers_merge.sql" />
+    <Build Include="systems\Tables\databases.sql" />
+    <Build Include="systems\Tables\host_servers.sql" />
+    <Build Include="systems\Tables\schemas.sql" />
+    <Build Include="systems\Tables\servers.sql" />
+    <Build Include="systems\Tables\table_columns.sql" />
+    <Build Include="systems\Tables\table_index_columns.sql" />
+    <Build Include="systems\Tables\table_indexes.sql" />
+    <Build Include="systems\Tables\tables.sql" />
+    <Build Include="systems\Tables\types.sql" />
+    <Build Include="systems\Tables\views.sql" />
+    <Build Include="systems\Views\v_databases.sql" />
+    <Build Include="systems\Views\v_host_servers.sql" />
+    <Build Include="systems\Views\v_schemas.sql" />
+    <Build Include="systems\Views\v_servers.sql" />
+    <Build Include="systems\Views\v_table_columns.sql" />
+    <Build Include="systems\Views\v_table_index_columns.sql" />
+    <Build Include="systems\Views\v_table_indexes.sql" />
+    <Build Include="systems\Views\v_tables.sql" />
+    <Build Include="systems\Views\v_types.sql" />
+    <Build Include="systems\Views\v_views.sql" />
+    <Build Include="Configuration\Schemas.sql" />
+    <Build Include="systems\Tables\extended_properties.sql" />
+    <Build Include="systems\Views\v_extended_properties.sql" />
+    <Build Include="SqlStore\Stores\TableQuery\StoreTableQueries.sql" />
+    <Build Include="SqlStore\Stores\ForeignKeys\SyncForeignKeys.sql" />
+    <Build Include="SqlStore\Stores\ColumnRoles\SynColumnRoleAssignments.sql" />
+    <Build Include="SqlStore\Stores\ColumnRoles\SyncColumnRoleTypes.sql" />
+    <Build Include="SqlStore\Stores\FileTableDescription.sql" />
+    <Build Include="SqlStore\Stores\ProxyGeneration\FindSqlProxyDefinition.sql" />
+    <Build Include="SqlStore\Stores\ProxyGeneration\SqlProxyDefinitions.sql" />
+    <Build Include="SqlStore\Stores\ProxyGeneration\SqlProxyDefinitionsByDatabase.sql" />
+    <Build Include="SqlStore\Stores\ProxyGeneration\SyncSqlProxyDefinitions.sql" />
+    <Build Include="SqlStore\Stores\ProxyGeneration\Tables\FieldListDefinition.sql" />
+    <Build Include="SqlStore\Stores\ProxyGeneration\Tables\SqlProxyDefinitionStore.sql" />
+    <Build Include="SqlStore\Stores\ProxyGeneration\Tables\GeneratedArtifactType.sql" />
+    <Build Include="SqlStore\Stores\TableQuery\Tables\ColumnComparison.sql" />
+    <Build Include="SqlStore\Stores\TableQuery\Tables\TableQuery.sql" />
+    <Build Include="SqlStore\Stores\TableQuery\Tables\TableQueryColumn.sql" />
+    <Build Include="SqlStore\Stores\ProxyGeneration\Tables\GenerationProfile.sql" />
+    <Build Include="SqlStore\Stores\ProxyGeneration\Tables\GenerationProfileType.sql" />
+    <Build Include="SqlStore\Stores\Tables\Table.sql" />
+    <Build Include="SqlStore\Stores\Tables\TableColumn.sql" />
+    <Build Include="SqlStore\Stores\ComparisionOperator.sql" />
+    <Build Include="SqlStore\Stores\Schema.sql" />
+    <Build Include="SqlStore\Stores\TableQuery\TableQueryColumnInfo.sql" />
+    <Build Include="SqlStore\Stores\TableQuery\ColumnComparisonInfo.sql" />
+    <Build Include="SqlStore\Stores\ColumnGroups\SyncColumnGroupmemberships.sql" />
+    <Build Include="SqlStore\Stores\DataTypes\StoreNativeTypes.sql" />
+    <Build Include="SqlStore\Stores\DataTypes\Tables\DataType.sql" />
+    <Build Include="SqlStore\Stores\DataTypes\Tables\NativeDataType.sql" />
+    <Build Include="SqlStore\Stores\DataTypes\StoreDataTypes.sql" />
+    <Build Include="SqlStore\Stores\TableTypes\TableType.sql" />
+    <Build Include="SqlDom\Tables\Element.sql" />
+    <Build Include="SqlDom\Tables\EnumLiteral.sql" />
+    <Build Include="SqlDom\Procedures\SyncEnumLiterals.sql" />
+    <Build Include="SqlDom\Procedures\SyncElements.sql" />
+    <Build Include="SqlStore\Stores\Tables\TableFacet.sql" />
+    <Build Include="SqlStore\Stores\Tables\TableColumnFacet.sql" />
+    <Build Include="SqlStore\Stores\Tables\SyncTables.sql" />
+    <Build Include="SqlStore\Stores\Database\SyncDatabases.sql" />
+    <Build Include="Factory\Specifiers\SpecifySqlMessages.sql" />
+    <Build Include="Factory\Specifiers\SpecifySqlMessageDrops.sql" />
+    <Build Include="Factory\Definitions\AddSqlMessage.sql" />
+    <Build Include="Factory\Definitions\DropSqlMessage.sql" />
+    <Build Include="SqlStore\Stores\BackupDescription\StoreBackupDescriptions.sql" />
+    <Build Include="SqlStore\Stores\BackupDescription\BackupDescription.sql" />
+    <Build Include="Factory\Definitions\RestoreDatabase.sql" />
+    <Build Include="Factory\Definitions\RestoreMovement.sql" />
+    <Build Include="Factory\Specifiers\SpecifyRestoreDatabase.sql" />
+    <Build Include="Factory\Definitions\TableColumn.sql" />
+    <Build Include="Factory\Definitions\TypeColumn.sql" />
+    <Build Include="Factory\Definitions\TableType.sql" />
+    <Build Include="Factory\Definitions\Table.sql" />
+    <Build Include="MC\Stores\CoreDataType\CoreDataType.sql" />
+    <Build Include="MC\Stores\CoreDataType\SyncCoreDataTypes.sql" />
+    <Build Include="MC\TypeTables\ProjectType.sql" />
+    <Build Include="Setup\ConfigureDatabase.sql" />
+    <Build Include="MC\Setup\DefineIntrinsicProjectTypes.sql" />
+    <Build Include="Factory\Definitions\MergeProc.sql" />
+    <Build Include="Factory\Definitions\MergeColumn.sql" />
+    <Build Include="Factory\Specifiers\SpecifyMergeProc.sql" />
+    <Build Include="Factory\Specifiers\SpecifyTableType.sql" />
+    <Build Include="SqlDom\Tables\ElementAttribute.sql" />
+    <Build Include="SqlDom\Tables\Association.sql" />
+    <Build Include="SqlDom\Tables\Collection.sql" />
+    <Build Include="SqlDom\Procedures\SyncAttributes.sql" />
+    <Build Include="SqlDom\Procedures\SyncAssociations.sql" />
+    <Build Include="SqlDom\Procedures\SyncCollections.sql" />
+    <Build Include="SqlDom\Tables\ElementType.sql" />
+    <Build Include="SqlDom\Views\EnumElement.sql" />
+    <Build Include="SqlDom\Views\ElementLineage.sql" />
+    <Build Include="SqlDom\Views\ElementMember.sql" />
+    <Build Include="SqlDom\Tables\DataType.sql" />
+    <Build Include="SqlDom\Procedures\SyncDataTypes.sql" />
+    <Build Include="SqlDom\Tables\ScriptDocument.sql" />
+    <Build Include="SqlDom\Procedures\LoadScripts.sql" />
+    <Build Include="SqlDac\Tables\DacProfile.sql" />
+    <Build Include="SqlDac\Tables\PackageDependency.sql" />
+    <Build Include="SqlDac\Tables\PackageDependencyType.sql" />
+    <Build Include="SqlDac\Tables\PackageDescriptor.sql" />
+    <Build Include="SqlDac\Tables\PackageVariable.sql" />
+    <Build Include="SqlDac\Procedures\StorePackageInfo.sql" />
+    <Build Include="SqlDac\Procedures\SyncDacProfiles.sql" />
+    <Build Include="SqlStore\Stores\ColumnGroups\Tables\ColumnGroupType.sql" />
+    <Build Include="SqlStore\Stores\ColumnGroups\Tables\ColumnGroupMembership.sql" />
+    <Build Include="SqlStore\Stores\ColumnRoles\Tables\ColumnRoleType.sql" />
+    <Build Include="SqlStore\Stores\ColumnRoles\Tables\ColumnRoleAssignment.sql" />
+    <Build Include="SqlStore\Stores\Database\Tables\Database.sql" />
+    <Build Include="SqlStore\Stores\ForeignKeys\Tables\ForeignKeyDescription.sql" />
+    <Build Include="MC\TypeTables\DistributionType.sql" />
+    <Build Include="MC\Stores\Project\Tables\DevSystem.sql" />
+    <Build Include="MC\Stores\Project\Tables\DevArea.sql" />
+    <Build Include="MC\Stores\Project\Tables\ProjectDefinition.sql" />
+    <Build Include="MC\Stores\Project\Tables\ProjectReference.sql" />
+    <Build Include="MC\Stores\ToolRegistry\ToolRegistry.sql" />
+    <Build Include="MC\Stores\ToolRegistry\SyncToolRegistry.sql" />
+    <Build Include="MC\Stores\DistributionRegistry\SyncDistributionRegistry.sql" />
+    <Build Include="MC\Stores\DistributionRegistry\DistributionRegistry.sql" />
+    <Build Include="MC\Stores\ProjectVariable\ProjectVariableDefinition.sql" />
+    <Build Include="MC\Stores\ProjectVariable\ProjectVariables.sql" />
+    <Build Include="MC\Stores\ProjectVariable\SyncProjectVariables.sql" />
+    <Build Include="MC\Stores\Project\Tables\BuildCopyTask.sql" />
+    <Build Include="MC\Stores\XsdDocuments\XsdDocumentStore.sql" />
+    <Build Include="MC\Stores\XsdDocuments\StoreXsdDocuments.sql" />
+    <Build Include="MC\Stores\LanguageModel\Word.sql" />
+    <Build Include="MC\Stores\LanguageModel\Phrase.sql" />
+    <Build Include="SqlDom\Tables\ScriptXml.sql" />
+    <Build Include="SqlDom\Procedures\LoadScriptXml.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="refactorings.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Configuration\Node00.publish.xml" />
+    <None Include="Configuration\systems.sqlt" />
+    <None Include="Configuration\Build.props" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SqlT.Schemas.Scripts\SqlT.Schemas.Scripts.sqlproj">
+      <Name>SqlT.Schemas.Scripts</Name>
+      <Project>{3c4ddba7-c551-4d58-b768-d9b8fabaa9f2}</Project>
+      <Private>True</Private>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+    </ProjectReference>
+    <ProjectReference Include="..\SqlT.Types\SqlT.Types.sqlproj">
+      <Name>SqlT.Types</Name>
+      <Project>{e9382294-8dc4-40c0-bfca-29c4a9c8e729}</Project>
+      <Private>True</Private>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+    </ProjectReference>
+    <ProjectReference Include="..\SqlT.SqlClr\SqlT.SqlClr.sqlproj">
+      <Name>SqlT.SqlClr</Name>
+      <Project>{b10fa6a8-f6c6-4675-9b98-eb82edc17f80}</Project>
+      <Private>True</Private>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+    </ProjectReference>
+    <ProjectReference Include="..\SqlT.Schemas.Commands\SqlT.Schemas.Commands.sqlproj">
+      <Name>SqlT.Schemas.Commands</Name>
+      <Project>{6d28bae2-cde7-40ba-b39b-7446b84bec27}</Project>
+      <Private>True</Private>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+    </ProjectReference>
+    <ProjectReference Include="..\SqlT.Z0.Schemas\SqlT.Z0.Schemas.sqlproj">
+      <Name>SqlT.Z0.Schemas</Name>
+      <Project>{3a8cb6f7-b9a5-4ebe-9d7b-8e042c8f8ef4}</Project>
+      <Private>True</Private>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Setup\PostDeploy.sql" />
+  </ItemGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties Configuration_4Proxies_1json__JSONSchema="" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

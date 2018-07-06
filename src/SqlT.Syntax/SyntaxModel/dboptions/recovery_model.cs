@@ -14,6 +14,9 @@ namespace SqlT.Syntax
 
     partial class SqlSyntax
     {
+        /// <summary>
+        /// Identifies a SQL Server recovery model
+        /// </summary>
         public sealed class recovery_model : cdu<IKeyword, kwt.SIMPLE, kwt.FULL, kwt.BULK_LOGGED>, sxc.dboption
         {
             public static implicit operator recovery_model(kwt.SIMPLE SIMPLE)

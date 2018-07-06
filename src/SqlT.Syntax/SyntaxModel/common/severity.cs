@@ -7,6 +7,9 @@ namespace SqlT.Syntax
 {
     partial class SqlSyntax
     {
+        /// <summary>
+        /// Designates a log messages severity level
+        /// </summary>
         public enum severity : short
         {
             Level00 = 0,

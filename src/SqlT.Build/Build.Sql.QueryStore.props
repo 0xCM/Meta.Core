@@ -1,0 +1,13 @@
+﻿<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup Label="sql/queryStore">
+
+    <QueryStoreDesiredState>ReadWrite</QueryStoreDesiredState>
+    <QueryStoreFlushInterval>250</QueryStoreFlushInterval>
+    <QueryStoreMaxStorageSize>250</QueryStoreMaxStorageSize>
+    <QueryStoreStatsInterval>10</QueryStoreStatsInterval>
+    <QueryStoreMaxPlansPerQuery>100</QueryStoreMaxPlansPerQuery>
+
+  </PropertyGroup>
+
+</Project>

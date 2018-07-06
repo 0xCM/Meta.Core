@@ -35,7 +35,6 @@ namespace SqlT.Syntax
                 => $"$({Name})";
         }
 
-
         public sealed class sql_cmd_variables : SyntaxList<sql_cmd_variable>
         {
             public static readonly sql_cmd_variables Empty = new sql_cmd_variables();

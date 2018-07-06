@@ -33,7 +33,7 @@ namespace SqlT.Tool
     {
 
         ReadOnlyList<Option<SqlScript>> GetPatternScripts()
-            => ClrAssembly.ExecutingAssembly.DefiningAreaLocation.MapValue(area =>
+            => ClrAssembly.ExecutingAssembly.DefiningAreaLocation.MapRequired(area =>
             {
                 var scriptFolder = area.GetCombinedFolderPath("src\\SqlT.Schemas.Test\\Patterns");
                 var wf = from scriptFile in scriptFolder.Files(CommonFileExtensions.Sql, true)
@@ -291,7 +291,7 @@ namespace SqlT.Tool
 
         Option<FilePath> EmitSqlXmlSyntax(SqlScript script)
             => from syntax in XmlSyntaxFormatter.FormatXmlSyntax(script)
-               let syntaxFile = syntax.SourceScript.SourceFile.MapValue(f => f.ChangeExtension(CommonFileExtensions.Xml))
+               let syntaxFile = syntax.SourceScript.SourceFile.MapRequired(f => f.ChangeExtension(CommonFileExtensions.Xml))
                from syntaxOut in syntaxFile.Write(syntax.XmlSyntax).ToFileOption()
                select syntaxOut;
 

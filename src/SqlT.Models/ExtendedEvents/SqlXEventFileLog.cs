@@ -11,7 +11,6 @@ namespace SqlT.Models
     public abstract class SqlXEventFileLog<L> : SqlXEventLog<L, SqlXEventFileTarget>, IFilePath
         where L : SqlXEventFileLog<L>
     {
-
         public SqlXEventFileLog(FilePath Path)
             : base(new SqlXEventFileTarget(Path))
         {

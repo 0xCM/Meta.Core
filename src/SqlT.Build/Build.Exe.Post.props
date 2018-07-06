@@ -1,0 +1,42 @@
+﻿<Project  ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <ItemGroup>
+    <lib-area-files Include ="$(area-dist-libdir)*.dll; $(area-lib-distdir)*.dll"/>
+    <exe-area-files Include="$(OutDir)$(TargetName).exe" />
+  </ItemGroup>
+
+  <Target Name="AfterBuild">
+    <Copy SourceFiles="@(common-lib-files)" DestinationFolder="$(ExeLibDir)$(common-distid)\" SkipUnchangedFiles="true"/>
+    <Copy SourceFiles="@(common-lib-files)" DestinationFolder="$(area-dist-exelibdir)$(common-distid)\" SkipUnchangedFiles="true"/>
+
+    <Copy SourceFiles="@(sys-lib-files)" DestinationFolder="$(ExeLibDir)\$(sys-distid)\" SkipUnchangedFiles="true"/>
+    <Copy SourceFiles="@(sys-lib-files)" DestinationFolder="$(area-dist-exelibdir)\$(sys-distid)\" SkipUnchangedFiles="true"/>
+
+    <Copy SourceFiles="@(msca-lib-files)" DestinationFolder="$(ExeLibDir)\$(msca-distid)\" SkipUnchangedFiles="true"/>
+    <Copy SourceFiles="@(msca-lib-files)" DestinationFolder="$(area-dist-exelibdir)\$(msca-distid)\" SkipUnchangedFiles="true"/>
+
+    <Copy SourceFiles="@(msdac-lib-files)" DestinationFolder="$(ExeLibDir)\$(msdac-distid)\" SkipUnchangedFiles="true"/>
+    <Copy SourceFiles="@(msdac-lib-files)" DestinationFolder="$(area-dist-exelibdir)\$(msdac-distid)\" SkipUnchangedFiles="true"/>
+
+    <Copy SourceFiles="@(metacore-lib-files)" DestinationFolder="$(ExeLibDir)\$(metacore-distid)\" SkipUnchangedFiles="true"/>
+    <Copy SourceFiles="@(metacore-lib-files)" DestinationFolder="$(area-dist-exelibdir)\$(metacore-distid)\" SkipUnchangedFiles="true"/>
+
+    <Copy SourceFiles="@(msbuild-lib-files)" DestinationFolder="$(ExeLibDir)\$(msbuild-distid)\" SkipUnchangedFiles="true"/>
+    <Copy SourceFiles="@(msbuild-lib-files)" DestinationFolder="$(area-dist-exelibdir)\$(msbuild-distid)\" SkipUnchangedFiles="true"/>
+
+    <Copy SourceFiles="@(lib-area-files)"
+          DestinationFolder="$(OutDir)lib\$(area-distid)\" SkipUnchangedFiles="true"/>
+    <Copy SourceFiles="@(lib-area-files)"
+          DestinationFolder="$(area-dist-exelibdir)$(area-distid)" SkipUnchangedFiles="true"/>
+
+    <Copy SourceFiles="@(exe-area-files)"
+      DestinationFolder="$(area-dist-exedir)" SkipUnchangedFiles="true"/>
+    <Copy SourceFiles="$(TopConfigDir)App.config"
+          DestinationFiles="$(area-dist-exedir)$(TargetFileName).config" SkipUnchangedFiles="true" />
+
+  </Target>
+
+</Project>
+
+
+

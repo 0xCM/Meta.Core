@@ -31,7 +31,7 @@ namespace Meta.Core
         /// Specifies the full/absolute path to the file
         /// </summary>
         public FilePath AbsolutePath
-            => Repository.Resolve(this).MapValue(x => x.AbsolutePath);
+            => Repository.Resolve(this).MapRequired(x => x.AbsolutePath);
 
         /// <summary>
         /// Specifies the repository that owns the file

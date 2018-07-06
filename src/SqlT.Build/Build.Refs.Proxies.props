@@ -1,0 +1,15 @@
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+
+  <Import Project="Build.Refs.Minimal.props"/>
+  
+  <!--<ItemGroup Label="refs/proxies">
+
+    <Reference Include="Meta.Core">
+      <HintPath>$(metacore-lib-distdir)Meta.Core.dll</HintPath>
+      <Private>False</Private>  
+    </Reference>
+
+  </ItemGroup>-->
+
+</Project>

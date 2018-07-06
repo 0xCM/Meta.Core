@@ -46,7 +46,8 @@ namespace SqlT.CSharp
             where N : IClrElementName
         {
             var modifiers = MutableList.Create<SyntaxKind>();
-            modifiers.AddRange(spec.AccessLevel.ToSyntaxKinds());
+            if(spec.AccessLevel != ClrAccessKind.Default)
+                modifiers.AddRange(spec.AccessLevel.ToSyntaxKinds());
             if (spec.IsStatic)
                 modifiers.Add(SyntaxKind.StaticKeyword);
             if (spec.IsAbstract)

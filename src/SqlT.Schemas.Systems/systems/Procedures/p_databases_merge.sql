@@ -1,0 +1,116 @@
+﻿CREATE PROCEDURE [systems].[p_databases_merge](@Records [systems].[databases_record] readonly) as
+	select 0;
+	merge into [systems].[databases] as Dst using @Records as Src
+on
+	Dst.systems_server_name = Src.systems_server_name and Dst.name = Src.name
+when not matched then 
+	 insert
+	 (
+		[systems_server_name], [name], [database_id], [source_database_id], [owner_sid], [create_date], 
+		[compatibility_level], [collation_name], [user_access], [user_access_desc], [is_read_only], 
+		[is_auto_close_on], [is_auto_shrink_on], [state], [state_desc], [is_in_standby], [is_cleanly_shutdown], 
+		[is_supplemental_logging_enabled], [snapshot_isolation_state], [snapshot_isolation_state_desc], 
+		[is_read_committed_snapshot_on], [recovery_model], [recovery_model_desc], [page_verify_option], 
+		[page_verify_option_desc], [is_auto_create_stats_on], [is_auto_update_stats_on], [is_auto_update_stats_async_on], 
+		[is_ansi_null_default_on], [is_ansi_nulls_on], [is_ansi_padding_on], [is_ansi_warnings_on], [is_arithabort_on], 
+		[is_concat_null_yields_null_on], [is_numeric_roundabort_on], [is_quoted_identifier_on], [is_recursive_triggers_on],
+		[is_cursor_close_on_commit_on], [is_local_cursor_default], [is_fulltext_enabled], [is_trustworthy_on], 
+		[is_db_chaining_on], [is_parameterization_forced], [is_master_key_encrypted_by_server], [is_published], 
+		[is_subscribed], [is_merge_published], [is_distributor], [is_sync_with_backup], [service_broker_guid], 
+		[is_broker_enabled], [log_reuse_wait], [log_reuse_wait_desc], [is_date_correlation_on], [is_cdc_enabled], 
+		[is_encrypted], [is_honor_broker_priority_on], [replica_id], [group_database_id], [default_language_lcid], 
+		[default_language_name], [default_fulltext_language_lcid], [default_fulltext_language_name], [is_nested_triggers_on], 
+		[is_transform_noise_words_on], [two_digit_year_cutoff], [containment], [containment_desc], [target_recovery_time_in_seconds]
+	)
+	values
+	(
+		Src.[systems_server_name], Src.[name], Src.[database_id], Src.[source_database_id], Src.[owner_sid], Src.[create_date],
+		Src.[compatibility_level], Src.[collation_name], Src.[user_access], Src.[user_access_desc], Src.[is_read_only], 
+		Src.[is_auto_close_on], Src.[is_auto_shrink_on], Src.[state], Src.[state_desc], Src.[is_in_standby], Src.[is_cleanly_shutdown], 
+		Src.[is_supplemental_logging_enabled], Src.[snapshot_isolation_state], Src.[snapshot_isolation_state_desc], 
+		Src.[is_read_committed_snapshot_on], Src.[recovery_model], Src.[recovery_model_desc], Src.[page_verify_option], 
+		Src.[page_verify_option_desc], Src.[is_auto_create_stats_on], Src.[is_auto_update_stats_on], Src.[is_auto_update_stats_async_on], 
+		Src.[is_ansi_null_default_on], Src.[is_ansi_nulls_on], Src.[is_ansi_padding_on], Src.[is_ansi_warnings_on], Src.[is_arithabort_on], 
+		Src.[is_concat_null_yields_null_on], Src.[is_numeric_roundabort_on], Src.[is_quoted_identifier_on], Src.[is_recursive_triggers_on], 
+		Src.[is_cursor_close_on_commit_on], Src.[is_local_cursor_default], Src.[is_fulltext_enabled], Src.[is_trustworthy_on], 
+		Src.[is_db_chaining_on], Src.[is_parameterization_forced], Src.[is_master_key_encrypted_by_server], Src.[is_published], 
+		Src.[is_subscribed], Src.[is_merge_published], Src.[is_distributor], Src.[is_sync_with_backup], Src.[service_broker_guid], 
+		Src.[is_broker_enabled], Src.[log_reuse_wait], Src.[log_reuse_wait_desc], Src.[is_date_correlation_on], Src.[is_cdc_enabled], 
+		Src.[is_encrypted], Src.[is_honor_broker_priority_on], Src.[replica_id], Src.[group_database_id], Src.[default_language_lcid], 
+		Src.[default_language_name], Src.[default_fulltext_language_lcid], Src.[default_fulltext_language_name], Src.[is_nested_triggers_on], 
+		Src.[is_transform_noise_words_on], Src.[two_digit_year_cutoff], Src.[containment], Src.[containment_desc], Src.[target_recovery_time_in_seconds]
+	)
+when matched and not exists
+(
+	select Src.[database_id], Src.[source_database_id], Src.[owner_sid], Src.[create_date], Src.[compatibility_level], Src.[collation_name], Src.[user_access], Src.[user_access_desc], Src.[is_read_only], Src.[is_auto_close_on], Src.[is_auto_shrink_on], Src.[state], Src.[state_desc], Src.[is_in_standby], Src.[is_cleanly_shutdown], Src.[is_supplemental_logging_enabled], Src.[snapshot_isolation_state], Src.[snapshot_isolation_state_desc], Src.[is_read_committed_snapshot_on], Src.[recovery_model], Src.[recovery_model_desc], Src.[page_verify_option], Src.[page_verify_option_desc], Src.[is_auto_create_stats_on], Src.[is_auto_update_stats_on], Src.[is_auto_update_stats_async_on], Src.[is_ansi_null_default_on], Src.[is_ansi_nulls_on], Src.[is_ansi_padding_on], Src.[is_ansi_warnings_on], Src.[is_arithabort_on], Src.[is_concat_null_yields_null_on], Src.[is_numeric_roundabort_on], Src.[is_quoted_identifier_on], Src.[is_recursive_triggers_on], Src.[is_cursor_close_on_commit_on], Src.[is_local_cursor_default], Src.[is_fulltext_enabled], Src.[is_trustworthy_on], Src.[is_db_chaining_on], Src.[is_parameterization_forced], Src.[is_master_key_encrypted_by_server], Src.[is_published], Src.[is_subscribed], Src.[is_merge_published], Src.[is_distributor], Src.[is_sync_with_backup], Src.[service_broker_guid], Src.[is_broker_enabled], Src.[log_reuse_wait], Src.[log_reuse_wait_desc], Src.[is_date_correlation_on], Src.[is_cdc_enabled], Src.[is_encrypted], Src.[is_honor_broker_priority_on], Src.[replica_id], Src.[group_database_id], Src.[default_language_lcid], Src.[default_language_name], Src.[default_fulltext_language_lcid], Src.[default_fulltext_language_name], Src.[is_nested_triggers_on], Src.[is_transform_noise_words_on], Src.[two_digit_year_cutoff], Src.[containment], Src.[containment_desc], Src.[target_recovery_time_in_seconds]
+	intersect
+	select Dst.[database_id], Dst.[source_database_id], Dst.[owner_sid], Dst.[create_date], Dst.[compatibility_level], Dst.[collation_name], Dst.[user_access], Dst.[user_access_desc], Dst.[is_read_only], Dst.[is_auto_close_on], Dst.[is_auto_shrink_on], Dst.[state], Dst.[state_desc], Dst.[is_in_standby], Dst.[is_cleanly_shutdown], Dst.[is_supplemental_logging_enabled], Dst.[snapshot_isolation_state], Dst.[snapshot_isolation_state_desc], Dst.[is_read_committed_snapshot_on], Dst.[recovery_model], Dst.[recovery_model_desc], Dst.[page_verify_option], Dst.[page_verify_option_desc], Dst.[is_auto_create_stats_on], Dst.[is_auto_update_stats_on], Dst.[is_auto_update_stats_async_on], Dst.[is_ansi_null_default_on], Dst.[is_ansi_nulls_on], Dst.[is_ansi_padding_on], Dst.[is_ansi_warnings_on], Dst.[is_arithabort_on], Dst.[is_concat_null_yields_null_on], Dst.[is_numeric_roundabort_on], Dst.[is_quoted_identifier_on], Dst.[is_recursive_triggers_on], Dst.[is_cursor_close_on_commit_on], Dst.[is_local_cursor_default], Dst.[is_fulltext_enabled], Dst.[is_trustworthy_on], Dst.[is_db_chaining_on], Dst.[is_parameterization_forced], Dst.[is_master_key_encrypted_by_server], Dst.[is_published], Dst.[is_subscribed], Dst.[is_merge_published], Dst.[is_distributor], Dst.[is_sync_with_backup], Dst.[service_broker_guid], Dst.[is_broker_enabled], Dst.[log_reuse_wait], Dst.[log_reuse_wait_desc], Dst.[is_date_correlation_on], Dst.[is_cdc_enabled], Dst.[is_encrypted], Dst.[is_honor_broker_priority_on], Dst.[replica_id], Dst.[group_database_id], Dst.[default_language_lcid], Dst.[default_language_name], Dst.[default_fulltext_language_lcid], Dst.[default_fulltext_language_name], Dst.[is_nested_triggers_on], Dst.[is_transform_noise_words_on], Dst.[two_digit_year_cutoff], Dst.[containment], Dst.[containment_desc], Dst.[target_recovery_time_in_seconds]
+)
+then update set
+	Dst.[database_id] = Src.[database_id], 
+	Dst.[source_database_id] = Src.[source_database_id], 
+	Dst.[owner_sid]= Src.[owner_sid], 
+	Dst.[create_date]= Src.[create_date], 
+	Dst.[compatibility_level]= Src.[compatibility_level], 
+	Dst.[collation_name]= Src.[collation_name], 
+	Dst.[user_access]= Src.[user_access], 
+	Dst.[user_access_desc]= Src.[user_access_desc], 
+	Dst.[is_read_only]= Src.[is_read_only], 
+	Dst.[is_auto_close_on]= Src.[is_auto_close_on], 
+	Dst.[is_auto_shrink_on]= Src.[is_auto_shrink_on], 
+	Dst.[state]= Src.[state], 
+	Dst.[state_desc]= Src.[state_desc], 
+	Dst.[is_in_standby]= Src.[is_in_standby], 
+	Dst.[is_cleanly_shutdown]= Src.[is_cleanly_shutdown], 
+	Dst.[is_supplemental_logging_enabled] = Src.[is_supplemental_logging_enabled], 
+	Dst.[snapshot_isolation_state]= Src.[snapshot_isolation_state], 
+	Dst.[snapshot_isolation_state_desc]= Src.[snapshot_isolation_state_desc], 
+	Dst.[is_read_committed_snapshot_on]= Src.[is_read_committed_snapshot_on], 
+	Dst.[recovery_model]= Src.[recovery_model], 
+	Dst.[recovery_model_desc]= Src.[recovery_model_desc], 
+	Dst.[page_verify_option]= Src.[page_verify_option], 
+	Dst.[page_verify_option_desc]= Src.[page_verify_option_desc],
+	Dst.[is_auto_create_stats_on]= Src.[is_auto_create_stats_on], 
+	Dst.[is_auto_update_stats_on]= Src.[is_auto_update_stats_on], 
+	Dst.[is_auto_update_stats_async_on]= Src.[is_auto_update_stats_async_on], 
+	Dst.[is_ansi_null_default_on]= Src.[is_ansi_null_default_on], 
+	Dst.[is_ansi_nulls_on]= Src.[is_ansi_nulls_on], 
+	Dst.[is_ansi_padding_on]= Src.[is_ansi_padding_on], 
+	Dst.[is_ansi_warnings_on]= Src.[is_ansi_warnings_on], 
+	Dst.[is_arithabort_on]= Src.[is_arithabort_on], 
+	Dst.[is_concat_null_yields_null_on]= Src.[is_concat_null_yields_null_on], 
+	Dst.[is_numeric_roundabort_on]= Src.[is_numeric_roundabort_on],
+	Dst.[is_quoted_identifier_on]= Src.[is_quoted_identifier_on], 
+	Dst.[is_recursive_triggers_on]= Src.[is_recursive_triggers_on], 
+	Dst.[is_cursor_close_on_commit_on]= Src.[is_cursor_close_on_commit_on], 
+	Dst.[is_local_cursor_default]= Src.[is_local_cursor_default], 
+	Dst.[is_fulltext_enabled]= Src.[is_fulltext_enabled], 
+	Dst.[is_trustworthy_on]= Src.[is_trustworthy_on], 
+	Dst.[is_db_chaining_on]= Src.[is_db_chaining_on], 
+	Dst.[is_parameterization_forced]= Src.[is_parameterization_forced], 
+	Dst.[is_master_key_encrypted_by_server] = Src.[is_master_key_encrypted_by_server], 
+	Dst.[is_published]= Src.[is_published], 
+	Dst.[is_subscribed]= Src.[is_subscribed], 
+	Dst.[is_merge_published]= Src.[is_merge_published], 
+	Dst.[is_distributor]= Src.[is_distributor], 
+	Dst.[is_sync_with_backup]= Src.[is_sync_with_backup], 
+	Dst.[service_broker_guid]= Src.[service_broker_guid], 
+	Dst.[is_broker_enabled]= Src.[is_broker_enabled], 
+	Dst.[log_reuse_wait]= Src.[log_reuse_wait], 
+	Dst.[log_reuse_wait_desc]= Src.[log_reuse_wait_desc], 
+	Dst.[is_date_correlation_on]= Src.[is_date_correlation_on], 
+	Dst.[is_cdc_enabled]= Src.[is_cdc_enabled], 
+	Dst.[is_encrypted]= Src.[is_encrypted], 
+	Dst.[is_honor_broker_priority_on]= Src.[is_honor_broker_priority_on], 
+	Dst.[replica_id]= Src.[replica_id], 
+	Dst.[group_database_id]= Src.[group_database_id], 
+	Dst.[default_language_lcid]= Src.[default_language_lcid], 
+	Dst.[default_language_name]= Src.[default_language_name], 
+	Dst.[default_fulltext_language_lcid] = Src.[default_fulltext_language_lcid], 
+	Dst.[default_fulltext_language_name]= Src.[default_fulltext_language_name], 
+	Dst.[is_nested_triggers_on]= Src.[is_nested_triggers_on], 
+	Dst.[is_transform_noise_words_on]= Src.[is_transform_noise_words_on], 
+	Dst.[two_digit_year_cutoff]= Src.[two_digit_year_cutoff], 
+	Dst.[containment]= Src.[containment], 
+	Dst.[containment_desc]= Src.[containment_desc], 
+	Dst.[target_recovery_time_in_seconds] = Src.[target_recovery_time_in_seconds];

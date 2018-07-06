@@ -34,9 +34,9 @@ public static class ComponentizationX
     /// <returns></returns>
     public static ComponentClassification Classification(this Assembly a)
     {
-        var @class = (from c in a.TryGetAttribute<AssemblyClassifierAttribute>().Map(x => x.Classifications)
-                      where c != ComponentClassification.None
-                      select c).Items().FirstOrDefault();
+        var @class = (from c in a.TryGetAttribute<AssemblyClassifierAttribute>()
+                      where c.Classifications.Any(x => x != ComponentClassification.None)
+                      select c.Classifications.First()).ValueOrDefault();
         return @class == ComponentClassification.None ? a.ClassificationFromProduct() : @class;
     }
 

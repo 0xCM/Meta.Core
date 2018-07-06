@@ -17,9 +17,9 @@ namespace SqlT.Dac
     using DacM = Microsoft.SqlServer.Dac.Model;
     using DacX = Microsoft.SqlServer.Dac.Extensions.Prototype;
 
-    
 
-    static class SqlScriptTranslation
+
+    public static class SqlScriptTranslation
     {
 
         static ISqlElementTypeLookup ElementTypeLookup { get; }

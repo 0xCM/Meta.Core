@@ -2,7 +2,7 @@
 
   <ItemGroup>
     <Compile Include=".prelude\Collections\Index.cs" />
-    <Compile Include=".prelude\Collections\List.cs" />
+    <Compile Include=".prelude\Collections\Lst.cs" />
     <Compile Include=".prelude\Collections\Map.cs" />
     <Compile Include=".prelude\Collections\Set.cs" />
     <Compile Include=".prelude\Collections\Seq.cs" />

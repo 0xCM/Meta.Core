@@ -47,6 +47,9 @@ partial class metacore
     public static Lst<Y> map<X, Y>(Func<X, Y> f, Lst<X> list)
         => list.Select(f);
 
+    public static Lst<Y> map<X, Y>(Lst<X> list, Func<X, Y> f)
+        => list.Select(f);
+
     /// <summary>
     /// Defines a monadic transformation List[Option[X]] -> Option[List[X]]
     /// that returns the value of the list if all items are valued; otherwise,
@@ -113,5 +116,11 @@ partial class metacore
     /// <returns></returns>
     public static Seq<X> flatten<X>(Lst<Lst<X>> ss)
         => Lst.flatten(ss);
+
+    public static Lst<X> flatten<X>(Lst<X> ss)
+        where X : G.IReadOnlyList<X>
+         => Lst.make(from a in ss.Stream()
+                     from b in a
+                     select b);
 
 }

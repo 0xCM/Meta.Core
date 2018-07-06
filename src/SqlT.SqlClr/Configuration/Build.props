@@ -1,0 +1,77 @@
+﻿<Project  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  
+  <PropertyGroup>
+    <SqlVersionNumber>140</SqlVersionNumber>
+  </PropertyGroup>
+  
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" />
+  <Import Project="$(DevDist)\dist.props"/>
+  <Import Project="$(msdac-distdir)msdac.master.refs.props"/>
+  <Import Project="$(msdac-distdir)msdac.msdb.refs.props"/>
+
+
+  <PropertyGroup>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql140DatabaseSchemaProvider</DSP>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>    
+    <ModelCollation>1033, CI</ModelCollation>    
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <OutputType>Database</OutputType>
+    <DeployToDatabase>True</DeployToDatabase>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>  
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+
+  <PropertyGroup Label="CommonPaths">
+    <DevArea>metaverse</DevArea>
+    <TopDir>$(DevAreaRoot)\$(DevArea)\</TopDir>
+    <TopDevDir>$(TopDir)</TopDevDir>
+    <TopConfigDir>$(TopDevDir)src\SqlT.Build\</TopConfigDir>
+    <BuildRootDirName>bin</BuildRootDirName>
+    <BuildRootDir>$(TopDir)$(BuildRootDirName)\</BuildRootDir>
+    <ProjectName>$(MsBuildProjectName)</ProjectName>
+    <SqlTargetName>$(ProjectName)</SqlTargetName>
+    <OutDirName>$(SqlTargetName)</OutDirName>
+    <DacDirName>dac</DacDirName>
+    <OutDir>$(BuildRootDir)$(DacDirName)\$(OutDirName)\</OutDir>
+    <OutputPath>$(OutDir)</OutputPath>
+    <BuildScriptName>$(SqlTargetName).sql</BuildScriptName>
+    <RootTargetPath>$(OutDir)$(SqlTargetName)</RootTargetPath>    
+    <DacTargetPath>$(RootTargetPath).dacpac</DacTargetPath>
+    <ClrTargetPath>$(RootTargetPath).dll</ClrTargetPath>
+    <IntermediateDirName>obj</IntermediateDirName>
+    <BaseIntermediateOutputPath>$(BuildRootDir)$(IntermediateDirName)\$(OutDirName)\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BuildRootDir)$(IntermediateDirName)\$(OutDirName)\</IntermediateOutputPath>    
+  </PropertyGroup>
+
+  
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+
+  <PropertyGroup>  
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+   </PropertyGroup>
+
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Project="Build.Post.props" />
+
+</Project>

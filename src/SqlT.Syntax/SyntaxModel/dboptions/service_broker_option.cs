@@ -49,7 +49,6 @@ namespace SqlT.Syntax
             public service_broker_option(kwt.ERROR_BROKER_CONVERSATIONS x)
                 : base(x)
             { }
-
         }
 
         public sealed class service_broker_options : SyntaxList<service_broker_options, service_broker_option>

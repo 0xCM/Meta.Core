@@ -1,7 +1,7 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Models
 {
@@ -16,6 +16,9 @@ namespace SqlT.Models
     using sx = SqlT.Syntax.SqlSyntax;
     using sxc = SqlT.Syntax.contracts;
 
+    /// <summary>
+    /// Characterizes a (simple) insert statement
+    /// </summary>
     public class SqlInsertStatement : SqlStatement<SqlInsertStatement>
     {
         public SqlInsertStatement(SqlSelectStatement Src, sxc.tabular_name Dst, bool TabLock = false,

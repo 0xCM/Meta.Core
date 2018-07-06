@@ -6,13 +6,9 @@
 namespace SqlT.Services
 {
     using System;
-    using System.Collections.Generic;
-    using System.Collections.Concurrent;
-    using System.Reflection;
     using System.Linq;
 
     using SqlT.Core;
-    using SqlT.Models;
 
     static partial class SqlStatusMessages
     {
@@ -49,7 +45,5 @@ namespace SqlT.Services
                     error.Message,
                     Detail = error.ToString()
                 });
-
     }
-
 }

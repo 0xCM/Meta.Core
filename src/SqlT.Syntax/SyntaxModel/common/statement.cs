@@ -7,11 +7,6 @@ namespace SqlT.Syntax
 {
     using sxc = contracts;
 
-    using SqlT.Core;
-    using System;
-
-    using kwt = SqlKeywordTypes;
-
     partial class SqlSyntax
     {
         public sealed class statement : statement<statement>

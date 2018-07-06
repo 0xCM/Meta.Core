@@ -52,7 +52,7 @@ namespace Meta.Core.Tests
         {
             var input = list(10, -6, 16, 12, -8, 20, 14, -10, 24, 12, -4, 32, 14, -6, 40, 16, -8, 48, 14, -2, 48, 16, -4, 60, 18, -6, 72);
             var format = input.ToString();
-            var output = _List.parse<int>(format);
+            var output = Lst.parse<int>(format);
             claim.equal(input, output);
         }
 
@@ -82,7 +82,7 @@ namespace Meta.Core.Tests
                          from x in numbers
                          select f(x);
 
-            var result = List.Apply<int, int>().apply(functions, numbers);
+            var result = Lst.Apply<int, int>().apply(functions, numbers);
             claim.equal(expect, result);
         }
 
@@ -120,7 +120,7 @@ namespace Meta.Core.Tests
             var output = tails(input);
             claim.equal(5, output.Count);
             claim.equal(input, output[0]);
-            claim.equal(List.empty<int>(), output[4]);
+            claim.equal(Lst.empty<int>(), output[4]);
 
         }
 

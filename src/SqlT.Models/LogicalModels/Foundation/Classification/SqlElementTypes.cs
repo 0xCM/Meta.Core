@@ -61,7 +61,7 @@ namespace SqlT.Models
                 elements = dict(from t in GetType().Assembly.ClrAssembly().Types
                                 let a = t.TryGetCustomAttribute<SqlElementTypeAttribute>()
                                 where a.IsSome()
-                                let identifier = a.MapValue(x => x.ModelTypeId)
+                                let identifier = a.MapRequired(x => x.ModelTypeId)
                                 let et = new SqlElementType(t, new I(identifier, false))
                                 select (t.ReflectedElement, et));
 

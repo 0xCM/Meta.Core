@@ -1,0 +1,21 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="Configuration\Build.props" />
+  <PropertyGroup>
+    <AppDesignerFolder>Configuration</AppDesignerFolder>
+    <RootNamespace>SqlT.Z0.Schemas</RootNamespace>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <ProjectGuid>{3a8cb6f7-b9a5-4ebe-9d7b-8e042c8f8ef4}</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="Configuration\Build.props" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Configuration\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Z0.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="SqlT.Z0.Schemas.refactorlog" />
+  </ItemGroup>
+</Project>

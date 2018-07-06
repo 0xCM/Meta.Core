@@ -5,20 +5,20 @@
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Dac
 {
-    using SqlT.Models;
-    using SqlT.Core;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.IO;
-    using System.IO.Packaging;
-    using System.Xml;
 
     using Meta.Core;
+    using SqlT.Core;
+
+    using SqlT.Models;
+
+    using SqlT.Services;
 
     using static metacore;
     using static SqlT.Syntax.SqlSyntax;
-    using SqlT.Services;
 
     using O = SqlT.Services.DacMessageReceiver;
     using CS = SqlT.Core.SqlConnectionString;
@@ -27,8 +27,7 @@ namespace SqlT.Dac
     using Dac = Microsoft.SqlServer.Dac;
     using DacM = Microsoft.SqlServer.Dac.Model;
     using DacX = Microsoft.SqlServer.Dac.Extensions.Prototype;
-
-    using CDATA = SqlT.Models.SqlPackageCustomData;
+    
 
     class SqlPackageManagerService : ApplicationService<SqlPackageManagerService, ISqlPackageManager>, ISqlPackageManager
     {       
@@ -50,7 +49,7 @@ namespace SqlT.Dac
             var ProfilePath = NodeFilePath.Empty();
             try
             {
-                ProfilePath = NodeFilePath.CreateTempFile(DacPath.Node, Profile.ToProfileXml());
+                ProfilePath = NodeFilePath.CreateTempFile(DacPath.Node, Profile.ToProfileXml());                
                 using (var package = LoadPackage(DacPath))
                 {
                     var services = new Dac.DacServices(DstDb.Broker.ConnectionString.TrimCatalog());
@@ -134,7 +133,6 @@ namespace SqlT.Dac
                 {
                     var services = new Dac.DacServices(TargetServer);
                     services.Message += (o, x) => Observer(x.Message.ToAppMessage());
-
                     services.Deploy
                         (
                             package: package,
@@ -191,7 +189,7 @@ namespace SqlT.Dac
                     Projectors: model.ModelProjectors(xpidx),
                     Tables: model.SpecifyTable(xpidx),
                     TableTypes: model.SpecifyTableTypes(xpidx),
-                    Procedures: model.SpecifyProcedures(xpidx),
+                    Procedures: model.ModelProcedures(xpidx),
                     TableFunctions: model.ModelTableFunctions(xpidx)
                 );
             }
@@ -255,7 +253,7 @@ namespace SqlT.Dac
 
         Option<NodeFilePath> ISqlPackageManager.Publish(SqlPackagePublication Spec, O Observer)
             => Spec.SqlProfilePath.IsSome()
-            ? Spec.SqlProfilePath.MapValue(profilepath => (this as ISqlPackageManager).Publish(Spec.PackagePath, profilepath, Observer))
+            ? Spec.SqlProfilePath.MapRequired(profilepath => (this as ISqlPackageManager).Publish(Spec.PackagePath, profilepath, Observer))
             : Spec.Profile.MapValueOrDefault(profile => Publish(Spec.PackagePath, profile, Observer));
 
         Option<NodeFilePath> ISqlPackageManager.EmitDeployScript(NodeFilePath SrcDacPath, PR Profile, 
@@ -296,9 +294,7 @@ namespace SqlT.Dac
                 services.Message += (o, x) => Observer(x.Message.ToAppMessage());
 
                 using (var package = Dac.BacPackage.Load(SrcPath.AbsolutePath, Dac.DacSchemaModelStorageType.File))
-                {
                     services.ImportBacpac(package, DstDatabase.UnqualifiedName);
-                }
                 return SrcPath;
             }
             catch (Dac.DacServicesException e)
@@ -315,63 +311,15 @@ namespace SqlT.Dac
         static SqlPackageDescription DescribePackage(SqlPackageDesignator h)
         {
             var assemblyPath = h.PackagePath.ChangeExtension(SqlArtifactExtensions.SqlDacAssemblyExtension);
-            var customData = ReadCustomDataSet(h);
+            var customData = DacCustomDataReader.ReadCustomDataSet(h);
             return new SqlPackageDescription(
                 h.PackageName,
-                customData.GetReferences(),
-                customData.GetSqlCmdVariables(),
+                customData.References,
+                customData.SqlCmdVariables,
                 PackageLocation: h.PackagePath,
                 AssemblyLocation: assemblyPath.Exists() ? assemblyPath : null,
                 ProfileLocations: stream<NodeFilePath>()
                 );
-        }
-
-        static SqlPackageCustomDataSet ReadCustomDataSet(SqlPackageDesignator h)
-            => new SqlPackageCustomDataSet(h.PackagePath.FileName.RemoveExtension().ToString(), GetCustomData(h));
-
-
-        static string GetXmlFile(Package package, string fileName)
-        {
-            var part = package.GetPart(new Uri(string.Format("/{0}", fileName), UriKind.Relative));
-            var stream = part.GetStream();
-            return new StreamReader(stream).ReadToEnd();
-        }
-
-        /// <summary>
-        /// Algorith taken from: https://github.com/GoEddie/Dacpac-References/blob/master/src/GOEddie.Dacpac.References/HeaderParser.cs
-        /// </summary>
-        static IReadOnlyList<CDATA> GetCustomData(SqlPackageDesignator h)
-        {
-            using (var package = Package.Open(h.PackagePath.AbsolutePath, FileMode.Open, FileAccess.Read))
-            {
-                var xml = GetXmlFile(package, "Model.xml");
-                var reader = XmlReader.Create(new StringReader(xml));
-                reader.MoveToContent();
-
-                var data = MutableList.Create<CDATA>();
-                CDATA currentCustomData = null;
-                while (reader.Read())
-                {
-                    if (reader.Name == "CustomData" && reader.NodeType == XmlNodeType.Element)
-                    {
-                        var cat = reader.GetAttribute("Category");
-                        var type = reader.GetAttribute("Type");
-                        currentCustomData = new CDATA(cat, type);
-                        data.Add(currentCustomData);
-                    }
-                    if (reader.Name == "Metadata" && reader.NodeType == XmlNodeType.Element)
-                    {
-                        var name = reader.GetAttribute("Name");
-                        var value = reader.GetAttribute("Value");
-                        currentCustomData.AddProperty(name, value);
-                    }
-                    if (reader.Name == "Header" && reader.NodeType == XmlNodeType.EndElement)
-                    {
-                        break; //gone too far
-                    }
-                }
-                return data;
-            }
         }
 
         static Option<string> TryAddObjects(DacM.TSqlModel model, string script)
@@ -387,25 +335,13 @@ namespace SqlT.Dac
             return script;
         }
 
+
         public Option<NodeFilePath> Save(SqlPackage package, NodeFilePath path, O Observer)
         {
-            var sqlVersion = package.SqlVersion.ToDac();
-            var recoveryModel = package.DatabaseOptions.recovery_model.map(x => x, () => recovery_models.SIMPLE);
-            var containment = package.DatabaseOptions.containment_type.map(x => x, () => containment_types.NONE);
-            var broker = package.DatabaseOptions.service_broker_option.map(x => x, () => service_broker_options.DISABLE_BROKER);
-            var sniffing = package.DatabaseOptions.parameter_sniffing.map(x => x.IsOn, () => (bool?)null);
-
-            var modelOptions = new DacM.TSqlModelOptions
-            {
-                Containment = containment.ToDac(),
-                RecoveryMode = recoveryModel.ToDac(),
-                ServiceBrokerOption = broker.ToDac(),
-                DbScopedConfigParameterSniffing = sniffing
-            };
-
+            var modelOptions = package.GetDacOptions();
             try
             {
-                using (var model = new DacM.TSqlModel(sqlVersion, modelOptions))
+                using (var model = new DacM.TSqlModel(package.SqlVersion.ToDac(), modelOptions))
                 {
                     foreach (var script in package.Scripts)
                     {

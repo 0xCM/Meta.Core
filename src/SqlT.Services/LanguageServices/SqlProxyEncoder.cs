@@ -3,7 +3,7 @@
 // This license grants rights to merge, copy, distribute, sell or otherwise do with it 
 // as you like. But please, for the love of Zeus, don't clutter it with regions.
 //-------------------------------------------------------------------------------------------
-namespace SqlT.Core
+namespace SqlT.Services
 {
     using System;
     using System.Collections.Generic;
@@ -11,11 +11,11 @@ namespace SqlT.Core
     using System.Linq;
     using System.IO;
 
-    //using Microsoft.VisualBasic.FileIO;
-
-
+    using Microsoft.VisualBasic.FileIO;
 
     using Meta.Core;
+
+    using SqlT.Core;
 
     using static ApplicationMessage;
     using static metacore;    
@@ -87,8 +87,6 @@ namespace SqlT.Core
             foreach (var proxy in proxies)
                 yield return new TextLine(++count, FormatProxy(proxy, options));
         }
-
-#if CSV
         static TextFieldParser CreateParser(FilePath InputFile, SqlProxyEncodingOptions Options)
             => new TextFieldParser(InputFile)
             {
@@ -102,7 +100,7 @@ namespace SqlT.Core
                 TextFieldType = FieldType.Delimited,
                 Delimiters = array(Options.Delimiter)
             };
-#endif
+
         public Option<int> EncodeDelimitedText(Type ProxyType, IEnumerable<ISqlTabularProxy> Input, FilePath Output, SqlProxyEncodingOptions Options)
         {
             var options = new SqlProxyEncodingOptions();
@@ -134,9 +132,6 @@ namespace SqlT.Core
             return current.RowNumber;
         }
 
-        /// <summary>
-        /// Ad-hoc, and not very pretty, functional Try construct
-        /// </summary>
         static (Option<Exception>, Option<T>) Try<T>(Func<T> F)
         {
             try
@@ -148,7 +143,7 @@ namespace SqlT.Core
                 return (some(e), none<T>());
             }
         }
-#if CSV
+
         IEnumerable<T> DecodeDelimitedText<T>(TextFieldParser reader, Action<IApplicationMessage> ErrorHandler, SqlProxyEncodingOptions Options)
             where T : class, ISqlTabularProxy, new()
         {
@@ -191,12 +186,10 @@ namespace SqlT.Core
                     yield return proxy;
                 }
                 else
-                {
                     ErrorHandler(Error(_fields.Item1.ValueOrDefault().Message));
-                }
             }
         }
-#endif
+
         /// <summary>
         /// Hydrates proxies, where possible, from the supplied text; failures are pushed to the error handler
         /// </summary>
@@ -204,16 +197,12 @@ namespace SqlT.Core
             where T : class, ISqlTabularProxy, new()
         {
             var options = Options ?? new SqlProxyEncodingOptions();
-            return stream<T>();
-
-#if CSV
             using (var reader = new StringReader(InputData))
             using (var parser = CreateParser(reader,options))
                 foreach (var item in DecodeDelimitedText<T>(parser, ErrorHandler,options))
                 {
                     yield return item;
                 }
-#endif
         }
 
         /// <summary>
@@ -222,13 +211,10 @@ namespace SqlT.Core
         public IEnumerable<T> DecodeDelimitedText<T>(FilePath InputFile, Action<IApplicationMessage> ErrorHandler, SqlProxyEncodingOptions Options)
             where T : class, ISqlTabularProxy, new()
         {
-            return stream<T>();
-#if CSV
             var options = Options ?? new SqlProxyEncodingOptions();
             using (var parser = CreateParser(InputFile, options))
                 foreach (var item in DecodeDelimitedText<T>(parser, ErrorHandler, options))
                     yield return item;
-#endif
         }
     }
 }

@@ -5,6 +5,9 @@
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Models
 {
+
+    using Meta.Core;
+
     /// <summary>
     /// Specifies the supported source types from which scripts may be obtained
     /// </summary>
@@ -29,10 +32,11 @@ namespace SqlT.Models
     public class SqlScriptSource : ValueObject<SqlScriptSource>
     {
 
-        public SqlScriptSource(SqlScriptSourceType SourceType, string SourceIdentifier)
+        public SqlScriptSource(SqlScriptSourceType SourceType, string SourceIdentifier, NodeFolderPath FileSystemLocation = null)
         {
             this.SourceType = SourceType;
             this.SourceIdentifier = SourceIdentifier;
+            this.FileSystemLocation = FileSystemLocation;
         }
 
         /// <summary>
@@ -44,6 +48,11 @@ namespace SqlT.Models
         /// Specifies the script location in the semantics of the <see cref="SourceType"/>
         /// </summary>
         public string SourceIdentifier { get; }
+
+        /// <summary>
+        /// The location of the script in the file system, if applicable
+        /// </summary>
+        public Option<NodeFolderPath> FileSystemLocation { get; }
 
     }
 }

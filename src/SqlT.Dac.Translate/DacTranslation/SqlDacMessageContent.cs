@@ -5,7 +5,6 @@
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Dac
 {
-
     using System;
 
     /// <summary>
@@ -33,5 +32,4 @@ namespace SqlT.Dac
         public override string ToString()
             => $"{Prefix}:{Number} {Text}";
     }
-
 }

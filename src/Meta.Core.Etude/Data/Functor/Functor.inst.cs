@@ -55,7 +55,7 @@ namespace Meta.Core
         public static readonly ListFunctor<X, Y> instance = default;
 
         public Func<Lst<X>, Lst<Y>> fmap(Func<X, Y> f)
-            => List.fmap(f);
+            => Lst.fmap(f);
     }
 
     

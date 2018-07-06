@@ -20,10 +20,10 @@ namespace Meta.Core
         public static readonly ListTraversable<X, Y> instance = default;
 
         public Func<Lst<X>, Lst<Y>> fmap(Func<X, Y> f)
-            => List.fmap(f);
+            => Lst.fmap(f);
 
         public Lst<Y> traverse(Func<X, Lst<Y>> f, Lst<X> cx)
-            => List.traverse(f, cx);
+            => Lst.traverse(f, cx);
     }
 
     public interface ISeqTraversable<X, Y> : ITraversable<X, Seq<X>, Y, Seq<Y>>

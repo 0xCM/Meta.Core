@@ -1,7 +1,7 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Services
 {
@@ -107,11 +107,11 @@ namespace SqlT.Services
             return broker.ExecuteScalarScript<C>(sql);
         }
 
-        static Builder<SqlSelectBuilder<T>> Where<T>(this ISqlTabularBroker<T> broker)
+        static Builder<SqlProxySelectBuilder<T>> Where<T>(this ISqlTabularBroker<T> broker)
              where T : class, ISqlTabularProxy, new()
-                => new SqlSelectBuilder<T>();
+                => new SqlProxySelectBuilder<T>();
 
-        public static Builder<SqlSelectBuilder<T>> Query<T>(this ISqlProxyBroker broker)
+        public static Builder<SqlProxySelectBuilder<T>> Query<T>(this ISqlProxyBroker broker)
              where T : class, ISqlTabularProxy, new()
                 => new SqlTabularBroker<T>(broker).Where();
 
@@ -236,6 +236,4 @@ namespace SqlT.Services
                     Target = DstTable,
                 }));
     }
-
-
 }

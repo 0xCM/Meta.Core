@@ -1,0 +1,61 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="Configuration\Build.props" />
+  <PropertyGroup>
+    <RootNamespace>SqlT.Schemas.Command</RootNamespace>
+    <AppDesignerFolder>Configuration</AppDesignerFolder>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <ProjectGuid>{6d28bae2-cde7-40ba-b39b-7446b84bec27}</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="CommandExec" />
+    <Folder Include="CommandExec\Functions" />
+    <Folder Include="CommandExec\Procedures" />
+    <Folder Include="CommandExec\Tables" />
+    <Folder Include="CommandExec\Views" />
+    <Folder Include="CommandSpec" />
+    <Folder Include="CommandSpec\Operations" />
+    <Folder Include="CommandSpec\Tables" />
+    <Folder Include="CommandExec\Types" />
+    <Folder Include="CommandSpec\Types" />
+    <Folder Include="Configuration\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Configuration\loc.publish.xml" />
+    <None Include="Configuration\Build.props" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="CommandExec\Functions\SelectCommandFailures.sql" />
+    <Build Include="CommandExec\Procedures\ClearDispatchQueue.sql" />
+    <Build Include="CommandExec\Procedures\ClearHistoryQueue.sql" />
+    <Build Include="CommandExec\Procedures\ClearQueues.sql" />
+    <Build Include="CommandExec\Procedures\ClearSubmissionQueue.sql" />
+    <Build Include="CommandExec\Procedures\CompleteCommands.sql" />
+    <Build Include="CommandExec\Procedures\DispatchCommands.sql" />
+    <Build Include="CommandExec\Procedures\GetCommandArguments.sql" />
+    <Build Include="CommandExec\Procedures\GetQueueStatistics.sql" />
+    <Build Include="CommandExec\Procedures\ParseCommandArguments.sql" />
+    <Build Include="CommandExec\Procedures\SubmitCommands.sql" />
+    <Build Include="CommandExec\Tables\CommandDispatch.sql" />
+    <Build Include="CommandExec\Tables\CommandHistory.sql" />
+    <Build Include="CommandExec\Tables\CommandSubmission.sql" />
+    <Build Include="CommandExec\Views\vCommandFailure.sql" />
+    <Build Include="CommandExec\Views\vCommandOutcome.sql" />
+    <Build Include="CommandExec\Views\vCommandSuccess.sql" />
+    <Build Include="CommandSpec\Operations\GetDefinitions.sql" />
+    <Build Include="CommandSpec\Operations\GetSpecs.sql" />
+    <Build Include="CommandSpec\Operations\PurgeDefinitions.sql" />
+    <Build Include="CommandSpec\Operations\PurgeSpecs.sql" />
+    <Build Include="CommandSpec\Operations\SaveDefintions.sql" />
+    <Build Include="CommandSpec\Operations\SaveSpecs.sql" />
+    <Build Include="CommandSpec\Tables\CommandDefinition.sql" />
+    <Build Include="CommandSpec\Tables\CommandLibrary.sql" />
+    <Build Include="CommandExec\Types\CommandOutcome.sql" />
+    <Build Include="CommandExec\Types\CommandResult.sql" />
+    <Build Include="CommandExec\Types\CommandSubmissionRecord.sql" />
+    <Build Include="CommandExec\Types\CommandSummary.sql" />
+    <Build Include="CommandExec\Types\QueueStatisticsRecord.sql" />
+    <Build Include="CommandSpec\Types\ComandDefinitionRecord.sql" />
+    <Build Include="CommandSpec\Types\CommandLibraryEntry.sql" />
+    <Build Include="Configuration\Schemas.sql" />
+  </ItemGroup>
+</Project>

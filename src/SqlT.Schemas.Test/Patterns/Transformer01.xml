@@ -1,0 +1,209 @@
+<TSql>
+	<TSqlScript>
+		<TSqlBatch>
+			<CreateFunctionStatement>
+				<SchemaObjectName Count = "2">
+					<Identifier>[Patterns]</Identifier>
+					<Identifier>[Transformer01]</Identifier>
+				</SchemaObjectName>
+				<SelectFunctionReturnType>
+					<SelectStatement>
+						<QuerySpecification UniqueRowFilter = "NotSpecified">
+							<SelectScalarExpression>
+								<ColumnReferenceExpression ColumnType = "Regular">
+									<MultiPartIdentifier>CompanyId</MultiPartIdentifier>
+								</ColumnReferenceExpression>
+							</SelectScalarExpression>
+							<SelectScalarExpression>
+								<ColumnReferenceExpression ColumnType = "Regular">
+									<MultiPartIdentifier>CompanyTypeCode</MultiPartIdentifier>
+								</ColumnReferenceExpression>
+								<IdentifierOrValueExpression Value = "CompanyType">
+									<Identifier>CompanyType</Identifier>
+								</IdentifierOrValueExpression>
+							</SelectScalarExpression>
+							<SelectScalarExpression>
+								<ColumnReferenceExpression ColumnType = "Regular">
+									<MultiPartIdentifier>CompanyName</MultiPartIdentifier>
+								</ColumnReferenceExpression>
+							</SelectScalarExpression>
+							<SelectScalarExpression>
+								<CastCall>
+									<SqlDataTypeReference SqlDataTypeOption = "Bit">
+										<SchemaObjectName Count = "1">
+											<Identifier>bit</Identifier>
+										</SchemaObjectName>
+									</SqlDataTypeReference>
+									<SimpleCaseExpression>
+										<ColumnReferenceExpression ColumnType = "Regular">
+											<MultiPartIdentifier>StatusCode</MultiPartIdentifier>
+										</ColumnReferenceExpression>
+										<SimpleWhenClause>
+											<StringLiteral>'Bankrupt'</StringLiteral>
+											<IntegerLiteral>1</IntegerLiteral>
+										</SimpleWhenClause>
+										<IntegerLiteral>0</IntegerLiteral>
+									</SimpleCaseExpression>
+								</CastCall>
+								<IdentifierOrValueExpression Value = "IsBankrupt">
+									<Identifier>IsBankrupt</Identifier>
+								</IdentifierOrValueExpression>
+							</SelectScalarExpression>
+							<SelectScalarExpression>
+								<SimpleCaseExpression>
+									<FunctionCall FunctionName = "rtrim">
+										<Parameters>
+											<FunctionCall FunctionName = "ltrim">
+												<Parameters>
+													<ColumnReferenceExpression ColumnType = "Regular">
+														<MultiPartIdentifier>Line1</MultiPartIdentifier>
+													</ColumnReferenceExpression>
+												</Parameters>
+											</FunctionCall>
+										</Parameters>
+									</FunctionCall>
+									<SimpleWhenClause>
+										<StringLiteral>''</StringLiteral>
+										<NullLiteral LiteralType = "Null" Value = "null">
+										</NullLiteral>
+									</SimpleWhenClause>
+									<ColumnReferenceExpression ColumnType = "Regular">
+										<MultiPartIdentifier>Line1</MultiPartIdentifier>
+									</ColumnReferenceExpression>
+								</SimpleCaseExpression>
+								<IdentifierOrValueExpression Value = "Address1">
+									<Identifier>Address1</Identifier>
+								</IdentifierOrValueExpression>
+							</SelectScalarExpression>
+							<SelectScalarExpression>
+								<SimpleCaseExpression>
+									<FunctionCall FunctionName = "rtrim">
+										<Parameters>
+											<FunctionCall FunctionName = "ltrim">
+												<Parameters>
+													<ColumnReferenceExpression ColumnType = "Regular">
+														<MultiPartIdentifier>Line2</MultiPartIdentifier>
+													</ColumnReferenceExpression>
+												</Parameters>
+											</FunctionCall>
+										</Parameters>
+									</FunctionCall>
+									<SimpleWhenClause>
+										<StringLiteral>''</StringLiteral>
+										<NullLiteral LiteralType = "Null" Value = "null">
+										</NullLiteral>
+									</SimpleWhenClause>
+									<ColumnReferenceExpression ColumnType = "Regular">
+										<MultiPartIdentifier>Line1</MultiPartIdentifier>
+									</ColumnReferenceExpression>
+								</SimpleCaseExpression>
+								<IdentifierOrValueExpression Value = "Address2">
+									<Identifier>Address2</Identifier>
+								</IdentifierOrValueExpression>
+							</SelectScalarExpression>
+							<SelectScalarExpression>
+								<SimpleCaseExpression>
+									<FunctionCall FunctionName = "rtrim">
+										<Parameters>
+											<FunctionCall FunctionName = "ltrim">
+												<Parameters>
+													<ColumnReferenceExpression ColumnType = "Regular">
+														<MultiPartIdentifier>entCityName</MultiPartIdentifier>
+													</ColumnReferenceExpression>
+												</Parameters>
+											</FunctionCall>
+										</Parameters>
+									</FunctionCall>
+									<SimpleWhenClause>
+										<StringLiteral>''</StringLiteral>
+										<NullLiteral LiteralType = "Null" Value = "null">
+										</NullLiteral>
+									</SimpleWhenClause>
+									<ColumnReferenceExpression ColumnType = "Regular">
+										<MultiPartIdentifier>City</MultiPartIdentifier>
+									</ColumnReferenceExpression>
+								</SimpleCaseExpression>
+								<IdentifierOrValueExpression Value = "City">
+									<Identifier>City</Identifier>
+								</IdentifierOrValueExpression>
+							</SelectScalarExpression>
+							<SelectScalarExpression>
+								<ColumnReferenceExpression ColumnType = "Regular">
+									<MultiPartIdentifier>entState</MultiPartIdentifier>
+								</ColumnReferenceExpression>
+								<IdentifierOrValueExpression Value = "State">
+									<Identifier>[State]</Identifier>
+								</IdentifierOrValueExpression>
+							</SelectScalarExpression>
+							<SelectScalarExpression>
+								<ColumnReferenceExpression ColumnType = "Regular">
+									<MultiPartIdentifier>entZip</MultiPartIdentifier>
+								</ColumnReferenceExpression>
+								<IdentifierOrValueExpression Value = "Zip">
+									<Identifier>Zip</Identifier>
+								</IdentifierOrValueExpression>
+							</SelectScalarExpression>
+							<SelectScalarExpression>
+								<SimpleCaseExpression>
+									<FunctionCall FunctionName = "rtrim">
+										<Parameters>
+											<FunctionCall FunctionName = "ltrim">
+												<Parameters>
+													<ColumnReferenceExpression ColumnType = "Regular">
+														<MultiPartIdentifier>Phone</MultiPartIdentifier>
+													</ColumnReferenceExpression>
+												</Parameters>
+											</FunctionCall>
+										</Parameters>
+									</FunctionCall>
+									<SimpleWhenClause>
+										<StringLiteral>''</StringLiteral>
+										<NullLiteral LiteralType = "Null" Value = "null">
+										</NullLiteral>
+									</SimpleWhenClause>
+									<ColumnReferenceExpression ColumnType = "Regular">
+										<MultiPartIdentifier>Phone</MultiPartIdentifier>
+									</ColumnReferenceExpression>
+								</SimpleCaseExpression>
+								<IdentifierOrValueExpression Value = "PhoneNumber">
+									<Identifier>PhoneNumber</Identifier>
+								</IdentifierOrValueExpression>
+							</SelectScalarExpression>
+							<SelectScalarExpression>
+								<CastCall>
+									<SqlDataTypeReference SqlDataTypeOption = "Bit">
+										<SchemaObjectName Count = "1">
+											<Identifier>bit</Identifier>
+										</SchemaObjectName>
+									</SqlDataTypeReference>
+									<ColumnReferenceExpression ColumnType = "Regular">
+										<MultiPartIdentifier>IsCorp</MultiPartIdentifier>
+									</ColumnReferenceExpression>
+								</CastCall>
+								<IdentifierOrValueExpression Value = "IsCorp">
+									<Identifier>IsCorp</Identifier>
+								</IdentifierOrValueExpression>
+							</SelectScalarExpression>
+							<SelectScalarExpression>
+								<ColumnReferenceExpression ColumnType = "Regular">
+									<MultiPartIdentifier>CreateDate</MultiPartIdentifier>
+								</ColumnReferenceExpression>
+								<IdentifierOrValueExpression Value = "CreateTS">
+									<Identifier>CreateTS</Identifier>
+								</IdentifierOrValueExpression>
+							</SelectScalarExpression>
+							<FromClause>
+								<NamedTableReference>
+									<SchemaObjectName Count = "2">
+										<Identifier>[Patterns]</Identifier>
+										<Identifier>[CompanyAddress]</Identifier>
+									</SchemaObjectName>
+								</NamedTableReference>
+							</FromClause>
+						</QuerySpecification>
+					</SelectStatement>
+				</SelectFunctionReturnType>
+			</CreateFunctionStatement>
+		</TSqlBatch>
+	</TSqlScript>
+</TSql>

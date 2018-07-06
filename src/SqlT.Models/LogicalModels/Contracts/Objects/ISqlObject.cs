@@ -8,24 +8,11 @@ namespace SqlT.Models
     using SqlT.Core;
     using sxc = SqlT.Syntax.contracts;
 
-    public interface ISqlObject : sxc.sql_object, ISqlElement
-    {
-        sxc.ISqlObjectName ObjectName { get; }
-    }
 
-
-
-    public interface ISqlObject<N> : ISqlObject, sxc.sql_object<N>
+    public interface ISqlObject<N> : sxc.sql_object, sxc.sql_object<N>, ISqlElement
         where N : sxc.ISqlObjectName, new()
     {
 
     }
-
-
-
-    
-
-
-
 
 }

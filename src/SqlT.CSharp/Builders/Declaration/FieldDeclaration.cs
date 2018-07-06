@@ -35,8 +35,7 @@ namespace SqlT.CSharp
 
         public static SyntaxKind[] GetModifiers(this FieldSpec spec)
         {
-            var modifiers = new List<SyntaxKind>();
-            modifiers.AddRange(spec.AccessLevel.ToSyntaxKinds());
+            var modifiers = new List<SyntaxKind>();            
             if (spec.AccessLevel != ClrAccessKind.Default)
                 modifiers.AddRange(spec.AccessLevel.ToSyntaxKinds());
             if (spec.IsConst)
@@ -64,8 +63,7 @@ namespace SqlT.CSharp
                 .WithVariables(
                     SingletonSeparatedList(VariableDeclarator(Identifier(field.Name.SimpleName))
                         .WithInitializer(EqualsValueClause(literalValue.BuildLiteralExpression())))))
-                .WithModifiers(
-                    ToTokens(SyntaxKind.PublicKeyword, SyntaxKind.ConstKeyword));
+                .WithModifiers(ToTokens(SyntaxKind.PublicKeyword, SyntaxKind.ConstKeyword));
         }
 
         public static FieldDeclarationSyntax WithModifiers(this FieldDeclarationSyntax x, FieldSpec spec)

@@ -17,7 +17,7 @@ namespace SqlT.Dac
     using DacX = Microsoft.SqlServer.Dac.Extensions.Prototype;
     using sxc = SqlT.Syntax.contracts;
 
-    static  class SqlNameTranslation
+    public static class SqlNameTranslation
     {
 
         [SqlTBuilder]

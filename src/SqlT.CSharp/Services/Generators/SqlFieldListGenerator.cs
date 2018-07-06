@@ -12,6 +12,8 @@ namespace SqlT.CSharp
 
     using SqlT.Core;
     using SqlT.SqlSystem;
+    using SqlT.Services;
+
     using static metacore;
 
     using static ClrStructureSpec;

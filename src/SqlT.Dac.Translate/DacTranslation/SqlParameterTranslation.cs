@@ -20,7 +20,7 @@ namespace SqlT.Dac
     /// <summary>
     /// Defines operations that manipulate and project parameter specification information between alternate representations
     /// </summary>
-    static class SqlParameterTranslation
+    public static class SqlParameterTranslation
     {
         [SqlTBuilder]
         public static IReadOnlyList<SqlRoutineParameter> SpecifyParameters(this IEnumerable<DacX.TSqlParameter> parameters) 

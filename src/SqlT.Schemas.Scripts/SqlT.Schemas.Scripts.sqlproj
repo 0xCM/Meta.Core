@@ -1,0 +1,81 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="Configuration\Build.props" />
+  <PropertyGroup>
+    <ProjectGuid>{3c4ddba7-c551-4d58-b768-d9b8fabaa9f2}</ProjectGuid>
+    <AppDesignerFolder>Configuration</AppDesignerFolder>
+    <RootNamespace>SqlT.Schemas.Scripts</RootNamespace>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="SqlT" />
+    <Folder Include="SqlT\Functions" />
+    <Folder Include="SqlT\Procedures" />
+    <Folder Include="SqlT\Views" />
+    <Folder Include="SqlT\Templates" />
+    <Folder Include="Configuration" />
+    <Folder Include="SqlT\Functions\ScalarFunctions" />
+    <Folder Include="Shared" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="SqlT\Functions\GetIndexStatsUpdate.sql" />
+    <Build Include="SqlT\Functions\GetIndexStorageCost.sql" />
+    <Build Include="SqlT\Functions\GetObjectDefinitions.sql" />
+    <None Include="SqlT\Functions\GetOpenConnections.sql" />
+    <Build Include="SqlT\Functions\GetRowCount.sql" />
+    <Build Include="SqlT\Functions\GetRunningQueries.sql" />
+    <Build Include="SqlT\Functions\GetSystemSummary.sql" />
+    <Build Include="SqlT\Functions\DescribeFileTables.sql" />
+    <Build Include="SqlT\Functions\GetIndexCreationProgress.sql" />
+    <Build Include="SqlT\Functions\DescribeForeignKeys.sql" />
+    <Build Include="SqlT\Functions\DescribeSchemaIndexes.sql" />
+    <Build Include="SqlT\Functions\DescribeTableColumns.sql" />
+    <Build Include="SqlT\Functions\GetQueryCpuUsage.sql" />
+    <Build Include="SqlT\Functions\GetIndexFragmentation.sql" />
+    <Build Include="SqlT\Procedures\ConfigureServer.sql" />
+    <Build Include="SqlT\Procedures\CreateLinkedServer.sql" />
+    <Build Include="SqlT\Procedures\DropDatabase.sql" />
+    <Build Include="SqlT\Procedures\EnableContainedDatabases.sql" />
+    <Build Include="SqlT\Procedures\EnableServerOption.sql" />
+    <Build Include="SqlT\Procedures\EnableStatisticsProfiling.sql" />
+    <Build Include="SqlT\Procedures\EnableXpCmdShell.sql" />
+    <Build Include="SqlT\Procedures\ExportQueryData.sql" />
+    <Build Include="SqlT\Procedures\GenerateColumnDropSql.sql" />
+    <Build Include="SqlT\Procedures\GetFileDescriptions.sql" />
+    <Build Include="SqlT\Procedures\GetServerCollations.sql" />
+    <Build Include="SqlT\Procedures\GetServerPathDefaults.sql" />
+    <Build Include="SqlT\Functions\ObjectExists.sql" />
+    <Build Include="SqlT\Procedures\GoOffline.sql" />
+    <Build Include="SqlT\Procedures\GoOnline.sql" />
+    <Build Include="SqlT\Views\TimeZoneDescriptor.sql" />
+    <Build Include="SqlT\Views\TableStats.sql" />
+    <None Include="SqlT\Templates\PartitionRowsByModulus.sql" />
+    <None Include="SqlT\Templates\RenameDatabase.sql" />
+    <Build Include="SqlT\Procedures\EnableSqlClr.sql" />
+    <Build Include="SqlT\Procedures\DescribeBackup.sql" />
+    <Build Include="SqlT\Procedures\RestoreBackup.sql" />
+    <Build Include="SqlT\Functions\ScalarFunctions\IntToBinary.sql" />
+    <Build Include="SqlT\Functions\ScalarFunctions\BinaryToInt.sql" />
+    <Build Include="SqlT\Functions\ScalarFunctions\DecimalToHex.sql" />
+    <Build Include="SqlT\Functions\ScalarFunctions\HexToDecimal.sql" />
+    <None Include="Shared\ScalarFunctions.sql" />
+    <Build Include="SqlT\Functions\TextToVariant.sql" />
+    <Build Include="SqlT\Functions\DescribeDataTypes.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="SqlT\Procedures\ExportTableData.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Configuration\Node00.publish.xml" />
+    <None Include="Configuration\Node02.publish.xml" />
+    <RefactorLog Include="Configuration\RefactorLog.xml" />
+    <None Include="Configuration\Build.props" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SqlT.Types\SqlT.Types.sqlproj">
+      <Name>SqlT.Types</Name>
+      <Project>{e9382294-8dc4-40c0-bfca-29c4a9c8e729}</Project>
+      <Private>True</Private>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

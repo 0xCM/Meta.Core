@@ -12,7 +12,6 @@ namespace SqlT.Syntax
 
     partial class SqlSyntax
     {
-
         public sealed class contract_message_sender : du<kwt.INITIATOR, kwt.TARGET, kwt.DEFAULT>
         {
             public static implicit operator contract_message_sender(kwt.INITIATOR x)

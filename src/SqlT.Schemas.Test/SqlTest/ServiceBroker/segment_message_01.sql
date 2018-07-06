@@ -1,0 +1,2 @@
+﻿CREATE MESSAGE TYPE [segment/message/01]
+	VALIDATION = NONE

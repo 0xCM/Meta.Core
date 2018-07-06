@@ -24,7 +24,6 @@ namespace SqlT.Syntax
             public static implicit operator containment_type(kwt.PARTIAL PARTIAL)
                 => new containment_type(PARTIAL);
 
-
             public containment_type(kwt.NONE NONE)
                 : base(NONE)
             { }
@@ -38,7 +37,6 @@ namespace SqlT.Syntax
         {
             public static readonly containment_type NONE = sx.NONE;
             public static readonly containment_type PARTIAL = sx.PARTIAL;
-
         }
     }
 }

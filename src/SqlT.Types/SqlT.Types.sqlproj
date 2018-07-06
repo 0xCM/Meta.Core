@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="Configuration\Build.props" />
+  <PropertyGroup>
+    <ProjectGuid>{e9382294-8dc4-40c0-bfca-29c4a9c8e729}</ProjectGuid>
+    <RootNamespace>SqlT.Types</RootNamespace>
+    <AppDesignerFolder>Configuration</AppDesignerFolder>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Configuration" />
+    <None Include="Configuration\Node00.publish.xml" />
+    <Build Include="Configuration\Schemas.sql" />
+    <Folder Include="SqlT" />
+    <Folder Include="systems" />
+    <Folder Include="SqlDom" />
+    <Folder Include="MC" />
+    <Folder Include="Factory" />
+    <Folder Include="SqlDac" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="Configuration\Log.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="systems\databases_record.sql" />
+    <Build Include="systems\host_servers_record.sql" />
+    <Build Include="systems\servers_record.sql" />
+    <Build Include="SqlT\ColumnComparison.sql" />
+    <Build Include="SqlT\DefaultFilePath.sql" />
+    <Build Include="SqlT\FileSystemEntry.sql" />
+    <Build Include="SqlT\FileTableDescription.sql" />
+    <Build Include="SqlT\LargeTypeTable.sql" />
+    <Build Include="SqlT\ProxyGenerationSpec.sql" />
+    <Build Include="SqlT\ServerCollation.sql" />
+    <Build Include="SqlT\SmallTypeTable.sql" />
+    <Build Include="SqlT\TableQueryColumn.sql" />
+    <Build Include="SqlT\TableQuery.sql" />
+    <Build Include="SqlT\TableRowCount.sql" />
+    <Build Include="SqlT\TableStats.sql" />
+    <Build Include="SqlT\TinyTypeTable.sql" />
+    <Build Include="SqlT\TypeTable.sql" />
+    <Build Include="SqlT\BackupDescription.sql" />
+    <Build Include="SqlT\ForeignKeyColumn.sql" />
+    <Build Include="SqlT\TableColumn.sql" />
+    <Build Include="SqlT\UserDataType.sql" />
+    <Build Include="SqlT\SystemDataType.sql" />
+    <Build Include="SqlT\PrimaryKey.sql" />
+    <Build Include="SqlT\ForeignKey.sql" />
+    <Build Include="SqlT\PrimaryKeyColumn.sql" />
+    <Build Include="SqlT\TableDescription.sql" />
+    <Build Include="SqlT\DatabaseDescription.sql" />
+    <Build Include="SqlT\ForeignKeyInfo.sql" />
+    <Build Include="SqlT\ColumnRoleAssignment.sql" />
+    <Build Include="SqlT\ProxyFieldList.sql" />
+    <Build Include="SqlT\ProxyProfileDefinition.sql" />
+    <Build Include="SqlT\ColumnGroupMember.sql" />
+    <Build Include="SqlT\DataTypeDescription.sql" />
+    <Build Include="SqlT\ColumnDefinition.sql" />
+    <Build Include="SqlDom\EnumLiteral.sql" />
+    <Build Include="SqlDom\Element.sql" />
+    <Build Include="MC\CoreDataType.sql" />
+    <Build Include="MC\Facet.sql" />
+    <Build Include="SqlT\ObjectFacet.sql" />
+    <Build Include="SqlT\ColumnFacet.sql" />
+    <Build Include="SqlT\Database.sql" />
+    <Build Include="Factory\AddSqlMessage.sql" />
+    <Build Include="Factory\DropSqlMessage.sql" />
+    <Build Include="Factory\RestoreDatabase.sql" />
+    <Build Include="Factory\RestoreMovement.sql" />
+    <Build Include="Factory\MergeProc.sql" />
+    <Build Include="Factory\MergeColumn.sql" />
+    <Build Include="SqlT\TableType.sql" />
+    <Build Include="Factory\TableType.sql" />
+    <Build Include="SqlDom\Association.sql" />
+    <Build Include="SqlDom\ElementAttribute.sql" />
+    <Build Include="SqlDom\Collection.sql" />
+    <Build Include="SqlDom\AttributeValue.sql" />
+    <Build Include="SqlDom\ScriptDocument.sql" />
+    <Build Include="SqlDac\PackageAssociation.sql" />
+    <Build Include="SqlDac\PackageVariable.sql" />
+    <Build Include="SqlDac\DacProfileDefinition.sql" />
+    <Build Include="MC\DistributionMoniker.sql" />
+    <Build Include="MC\AreaDistribution.sql" />
+    <Build Include="MC\ToolRegistration.sql" />
+    <Build Include="MC\ProjectDefinition.sql" />
+    <Build Include="MC\ProjectVariable.sql" />
+    <Build Include="MC\SolutionDefinition.sql" />
+    <Build Include="MC\XsdDocument.sql" />
+    <Build Include="SqlDom\ScriptXml.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Configuration\Build.props" />
+  </ItemGroup>
+</Project>

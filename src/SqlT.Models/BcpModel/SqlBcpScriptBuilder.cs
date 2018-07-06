@@ -136,7 +136,6 @@ namespace SqlT.Models
                 Credentials: SourceCredentials.ValueOrDefault()
                 );
 
-
         SqlBcpCommand SourceFormatCommand
             => SourceExportCommand.WithNewAction(BcpToolAction.Format);
 

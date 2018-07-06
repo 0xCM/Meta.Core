@@ -1,36 +1,15 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// MetaCore
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace Meta.Core.Queues
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using System.Collections.Concurrent;
 
     using Meta.Core.Messaging;
-
-
-
-
-    public static class QueueBroadcaster
-    {
-
-        public static IQueueBroadcaster Define<M>(INodeContext C, QueueConnector Connector)
-            where M : new() => new QueueBroadcaster<M>(C, Connector);
-
-        public static IQueueBroadcaster Define(INodeContext C, Type MessageType, QueueConnector Connector)
-        {
-            var typedef = typeof(QueueBroadcaster<>).GetGenericTypeDefinition();
-            var type = typedef.MakeGenericType(MessageType);
-            var broadcaster = Activator.CreateInstance(type, new object[] { C, Connector });
-            return broadcaster as IQueueBroadcaster;
-        }
-    }
-
 
     [ServiceAgent(nameof(QueueBroker)), ApplicationService(nameof(QueueBroker))]
     class QueueBroker : NodeAgent<QueueBroker>, IQueueBroker
@@ -48,8 +27,7 @@ namespace Meta.Core.Queues
         CorrelationToken RecordSubscription(CorrelationToken SubscriptionId, IQueueReceiver Receiver)
         {
             Subscriptions.TryAdd(SubscriptionId, Receiver);
-            return SubscriptionId;
-                
+            return SubscriptionId;                
         }
 
         IQueueBroadcaster Broadcaster(Type MessageType)            
@@ -73,7 +51,6 @@ namespace Meta.Core.Queues
             => Receivers.GetOrAdd(
                 QueueConnector.Define(C.Host, MessageType),
                     connector => QueueReceiver.Define(C, MessageType, connector));
-
 
         public QueueBroker(INodeContext C)
             : base(C)
@@ -122,9 +99,7 @@ namespace Meta.Core.Queues
 
         public IMessageEmitter<M> ConnectEmitter<M>()
             where M : new()
-            => new QueueEmitter<M>(Receiver<M>());
-            
-
+            => new QueueEmitter<M>(Receiver<M>());           
 
         CorrelationToken IQueueBroker.Subscribe(Type MessageType, Action<object> OnMessage)
             => Subscribe(MessageType, QueueSubscriber.Define(OnMessage, MessageType));
@@ -132,8 +107,5 @@ namespace Meta.Core.Queues
         public CorrelationToken Subscribe<M>(Action<M> OnMessage)
             where M : new()
                 => Subscribe(QueueSubscriber.Define(OnMessage));
-
-
     }
-
 }

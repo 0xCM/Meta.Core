@@ -6,17 +6,13 @@
 namespace SqlT.Syntax
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
 
-    using Meta.Syntax;
     using Meta.Models;
-    using SqlT.Core;    
 
     using static metacore;
 
     using sxc = contracts;
-
 
     /// <summary>
     /// Abstract base class for syntax representations of schema-bound database objects
@@ -36,6 +32,9 @@ namespace SqlT.Syntax
         public n Name { get; }
 
         public IName ElementName
+            => Name;
+
+        sxc.ISqlObjectName sxc.sql_object.ObjectName
             => Name;
 
         public override string ToString()

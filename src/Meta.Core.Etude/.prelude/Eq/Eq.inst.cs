@@ -27,7 +27,7 @@ namespace Meta.Core
         public static readonly ListEq<X> instance = default;
 
         public bool eq(Lst<X> l1, Lst<X> l2)
-            => List.eq(l1, l2);
+            => Lst.eq(l1, l2);
 
         public bool neq(Lst<X> l1, Lst<X> l2)
             => not(eq(l1, l2));
