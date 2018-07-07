@@ -5,7 +5,6 @@ using SqlT.Core;
 [assembly: SqlProxyAssembly]
 [assembly: AssemblyVersion(SqlTZ0.AssemblyVersion)]
 [assembly: AssemblyProduct(SqlTZ0.ProductName)]
-[assembly: AssemblyClassifier(ComponentClassification.DataProxy)]
 [assembly: AssemblyTitle(nameof(SqlTZ0))]
 
 public class SqlTZ0 : SqlProxyAssembly<SqlTZ0>

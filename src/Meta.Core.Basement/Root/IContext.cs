@@ -6,8 +6,7 @@
 namespace Meta.Core
 {
     using System;
-    using System.Collections.Generic;
-    using System.Collections.Concurrent;
+    using System.Collections.Generic;    
     using System.Linq;
 
     public interface IContextFactory<X, CX>
@@ -16,7 +15,6 @@ namespace Meta.Core
 
         CX CreateContext(IEnumerable<X> Data);
     }
-
 
     public interface IContext
     {
@@ -40,8 +38,5 @@ namespace Meta.Core
     {
        
     }
-
-
-
 
 }

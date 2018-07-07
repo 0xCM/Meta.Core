@@ -7,7 +7,6 @@ namespace Meta.Core.Modules
 {
     using System;
     using System.Linq;
-
     
     using static metacore;
 

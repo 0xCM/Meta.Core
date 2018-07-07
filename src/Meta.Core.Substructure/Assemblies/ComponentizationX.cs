@@ -1,7 +1,7 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// MetaCore
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 using System;
 using System.Linq;
@@ -33,14 +33,7 @@ public static class ComponentizationX
     /// <param name="a"></param>
     /// <returns></returns>
     public static ComponentClassification Classification(this Assembly a)
-    {
-        var @class = (from c in a.TryGetAttribute<AssemblyClassifierAttribute>()
-                      where c.Classifications.Any(x => x != ComponentClassification.None)
-                      select c.Classifications.First()).ValueOrDefault();
-        return @class == ComponentClassification.None ? a.ClassificationFromProduct() : @class;
-    }
-
-
+        => ComponentClassification.None;
 
     /// <summary>
     /// Retrieves a resource provider for an assembly

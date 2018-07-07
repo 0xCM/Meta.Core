@@ -20,13 +20,9 @@ namespace Meta.Core.Tests
         [UT.TestMethod]
         public void Test01()
         {
-
             var x0 = value(3);
             var y0 = map(x0, x => x * 3);
-
             claim.equal(value(9), y0);
-
-
         }
     }
 

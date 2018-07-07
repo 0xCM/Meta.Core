@@ -84,5 +84,29 @@ public static class ReflectiveFloor
     public static Type GetNonNullableType(this Type t)
         => nonNullable(t);
 
+    /// <summary>
+    /// Creates a <see cref="global::ClrAssembly"/> adapter from a reflected assembly
+    /// </summary>
+    /// <param name="a">The assembly to adapt</param>
+    /// <returns></returns>
+    public static ClrAssembly ClrAssembly(this Assembly a)
+        => global::ClrAssembly.Get(a);
+
+    /// <summary>
+    /// Creates a <see cref="global::ClrType"/> adapter from a system type
+    /// </summary>
+    /// <param name="t">The type to adapt</param>
+    /// <returns></returns>
+    public static Option<ClrType> ClrType(this Type t)
+        => global::ClrType.Get(t);
+
+    /// <summary>
+    /// Derives a method's <see cref="global::ClrMethodSignature"/>
+    /// </summary>
+    /// <param name="m"></param>
+    /// <returns></returns>
+    public static ClrMethodSignature ClrMethodSignature(this MethodInfo m)
+        => ClrMethod.Get(m);
+
 
 }

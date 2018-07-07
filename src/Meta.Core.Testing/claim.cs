@@ -8,9 +8,7 @@ namespace Meta.Core
     using System;
     using System.Linq;
     using System.Collections.Generic;
-
-    using static metacore;
-    
+       
 
     using UT = Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -27,7 +25,7 @@ namespace Meta.Core
             => equal(expect, actual.Count());
 
         public static void sequal<T>(IEnumerable<T> expect, IEnumerable<T> actual)
-            => UT.Assert.AreEqual(rolist(expect), rolist(actual));
+            => UT.Assert.AreEqual(expect.ToReadOnlyList(), actual.ToReadOnlyList());
 
         public static void @true(bool value)
             => UT.Assert.IsTrue(value);
@@ -51,10 +49,7 @@ namespace Meta.Core
             => UT.Assert.IsTrue(maybe.IsSome());
 
         public static void satisfies<T>(Option<T> maybe, Func<T, bool> predicate)
-            => UT.Assert.IsTrue(maybe.Map(t => predicate(t)).ValueOrDefault());
-            
-
+            => UT.Assert.IsTrue(maybe.Map(t => predicate(t)).ValueOrDefault());            
     }
-
 
 }

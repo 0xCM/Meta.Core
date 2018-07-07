@@ -3,7 +3,6 @@
 // Author: Chris Moore, 0xCM@gmail.com
 // License: MIT
 //-------------------------------------------------------------------------------------------
-using System;
 
 /// <summary>
 /// Classifies a module

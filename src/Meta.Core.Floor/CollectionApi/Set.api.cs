@@ -13,7 +13,6 @@ using System.Runtime.CompilerServices;
 using Meta.Core;
 using Meta.Core.Modules;
 
-
 partial class metacore
 {
     /// <summary>
