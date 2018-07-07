@@ -1,7 +1,7 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Models
 {
@@ -16,7 +16,6 @@ namespace SqlT.Models
         
     public sealed class SqlColumnDefinition  : SqlElementDefinition<SqlColumnDefinition, SqlColumnName>
     {
-
         public static SqlColumnDefinition Specify<t>(int position, SqlColumnName name, t type, string description = null)
             where t : sxc.data_type_ref
                 => new SqlColumnDefinition(position, name, type, Documentation: description);
@@ -45,7 +44,6 @@ namespace SqlT.Models
                          DataType: type.Reference(isNullable, length, precision, scale),
                          Documentation: description
                         );
-
 
         public static implicit operator SqlColumnName(SqlColumnDefinition c)
             => c.Name;

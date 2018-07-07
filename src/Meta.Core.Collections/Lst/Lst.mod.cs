@@ -35,7 +35,7 @@ namespace Meta.Core.Modules
         /// </summary>
         /// <typeparam name="X">The list item type</typeparam>
         /// <returns></returns>
-        public static Lst<X> empty<X>()
+        public static Lst<X> zero<X>()
             => Lst<X>.Empty;
 
         /// <summary>
@@ -45,6 +45,15 @@ namespace Meta.Core.Modules
         /// <param name="items"></param>
         /// <returns></returns>
         public static Lst<X> make<X>(G.IEnumerable<X> items)
+            => ctor<X>()(items);
+
+        /// <summary>
+        /// Constructs a sequence from an item array
+        /// </summary>
+        /// <typeparam name="X">The item type</typeparam>
+        /// <param name="items">Zero or more items</param>
+        /// <returns></returns>
+        public static Lst<X> items<X>(params X[] items)
             => ctor<X>()(items);
 
         /// <summary>

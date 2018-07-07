@@ -18,7 +18,6 @@ namespace SqlT.Services
 
     public interface ISqlDtoServices
     {
-        ISqlDataFrame ToFrame<T>(IEnumerable<T> items, bool PLL = false);
 
         ISqlDataFrame ToFrame(Type DtoType, IEnumerable<object> items, bool PLL = false);
 

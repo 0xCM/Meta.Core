@@ -1,7 +1,7 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Language
 {
@@ -10,24 +10,22 @@ namespace SqlT.Language
     using System.Linq;
     using System.IO;
 
-    using SqlT.Core;
-    using SqlT.Models;
-    using SqlT.Language;
     using SqlT.Services;
 
     using TSql = Microsoft.SqlServer.TransactSql.ScriptDom;
 
     using static metacore;
 
-    class SqlAdaptiveParser : ISqlAdaptiveParser
+    /// <summary>
+    /// Wraps a <see cref="TSql.TSqlParser"/> instance to surface a more strealined API
+    /// </summary>
+    class SqlAdaptiveParser : ITSqlParserAdapter
     {
-
         static TextReader CreateSqlReader(string sql)
             => new StringReader(sql);
 
         static TSqlParseResult<T> Parse<T>(TSqlParseMethod<T> method, string sql)
             where T : TSql.TSqlFragment => method(sql);
-
 
         readonly TSql.TSqlParser NativeParser;
 
@@ -40,32 +38,29 @@ namespace SqlT.Language
         {
             using (var reader = CreateSqlReader(input))
             {
-                var errors = default(IList<TSql.ParseError>);
-                var content = NativeParser.Parse(reader, out errors);
+                var content = NativeParser.Parse(reader, out IList<TSql.ParseError> errors);
                 var error = errors.Count != 0 ? SqlParseError.FromParserResult(input, errors) : null;
                 return TSqlParseResult.Create(content, error);
             }
         }
-
 
         public TSqlParseResult<TSql.StatementList> ParseStatementList(string input)
         {
             using (var reader = CreateSqlReader(input))
             {
-                var errors = default(IList<TSql.ParseError>);
-                var content = NativeParser.ParseStatementList(reader, out errors);                
+                var content = NativeParser.ParseStatementList(reader, 
+                    out IList<TSql.ParseError> errors);
                 var error = errors.Count != 0 ? SqlParseError.FromParserResult(input, errors) : null;
                 return TSqlParseResult.Create(content, error);
             }
         }
 
-
         public TSqlParseResult<TSql.TSqlStatement> ParseStatement(string input)
         {
             using (var reader = CreateSqlReader(input))
             {
-                var errors = default(IList<TSql.ParseError>);
-                var content = NativeParser.ParseStatementList(reader, out errors);
+                var content = NativeParser.ParseStatementList(reader, 
+                    out IList<TSql.ParseError> errors);
                 var error = errors.Count != 0 ? SqlParseError.FromParserResult(input, errors) : null;
                 return TSqlParseResult.Create(content.Statements.FirstOrDefault(), error);
             }
@@ -75,8 +70,8 @@ namespace SqlT.Language
         {
             using (var reader = CreateSqlReader(input))
             {
-                var errors = default(IList<TSql.ParseError>);
-                var content = NativeParser.ParseBooleanExpression(reader, out errors);
+                var content = NativeParser.ParseBooleanExpression(reader, 
+                    out IList<TSql.ParseError> errors);
                 var error = errors.Count != 0 ? SqlParseError.FromParserResult(input, errors) : null;
                 return TSqlParseResult.Create(content, error);
             }
@@ -86,8 +81,8 @@ namespace SqlT.Language
         {
             using (var reader = CreateSqlReader(input))
             {
-                var errors = default(IList<TSql.ParseError>);
-                var content = NativeParser.ParseExpression(reader, out errors);
+                var content = NativeParser.ParseExpression(reader, 
+                    out IList<TSql.ParseError> errors);
                 var error = errors.Count != 0 ? SqlParseError.FromParserResult(input, errors) : null;
                 return TSqlParseResult.Create(content, error);
             }
@@ -97,8 +92,8 @@ namespace SqlT.Language
         {
             using (var reader = CreateSqlReader(input))
             {
-                var errors = default(IList<TSql.ParseError>);
-                var content = NativeParser.ParseScalarDataType(reader, out errors);
+                var content = NativeParser.ParseScalarDataType(reader, 
+                    out IList<TSql.ParseError> errors);
                 var error = errors.Count != 0 ? SqlParseError.FromParserResult(input, errors) : null;
                 return TSqlParseResult.Create(content, error);
             }
@@ -108,20 +103,19 @@ namespace SqlT.Language
         {
             using (var reader = CreateSqlReader(input))
             {
-                var errors = default(IList<TSql.ParseError>);
-                var content = (TSql.TSqlScript)NativeParser.Parse(reader, out errors);
+                var content = (TSql.TSqlScript)NativeParser.Parse(reader, 
+                    out IList<TSql.ParseError> errors);
                 var error = errors.Count != 0 ? SqlParseError.FromParserResult(input, errors) : null;
                 return TSqlParseResult.Create(content, error);
             }
         }
 
-
         public TSqlParseResult<TSql.SchemaObjectName> ParseSchemaObjectName(string input)
         {
             using (var reader = CreateSqlReader(input))
             {
-                var errors = default(IList<TSql.ParseError>);
-                var content = NativeParser.ParseSchemaObjectName(reader, out errors);
+                var content = NativeParser.ParseSchemaObjectName(reader, 
+                    out IList<TSql.ParseError> errors);
                 var error = errors.Count != 0 ? SqlParseError.FromParserResult(input, errors) : null;
                 return TSqlParseResult.Create(content, error);
             }
@@ -157,9 +151,7 @@ namespace SqlT.Language
                     Parse(ParseFragment, sql);                   
         }
 
-        TSqlParseResult<T> ISqlAdaptiveParser.ParseSql<T>(string sql)
+        TSqlParseResult<T> ITSqlParserAdapter.ParseSql<T>(string sql)
             => cast<TSqlParseResult<T>>(Parse<T>(sql));
-
     }
-
 }

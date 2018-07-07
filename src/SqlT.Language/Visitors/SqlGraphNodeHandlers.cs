@@ -29,10 +29,6 @@ namespace SqlT.Services
             => from token in node.ScriptTokenStream
                where token.TokenType != TSql.TSqlTokenType.WhiteSpace
                select token;
-            //=> from token in node.ScriptTokenStream.MapRange
-            //        (node.FirstTokenIndex, node.LastTokenIndex, t => t)
-            //   where token.TokenType != TSql.TSqlTokenType.WhiteSpace
-            //   select token;
 
         static SqlSyntaxGraphNode CreateDefaultHandler(SqlSyntaxGraphContext Context, TSql.TSqlFragment node)
             => new SqlSyntaxGraphNode(
@@ -63,7 +59,6 @@ namespace SqlT.Services
             => Lookup.TryFind(node.GetType())
                       .Map(h => h(node),                                                      
                            () => DefaultHandler(node));
-
 
         static SqlSyntaxGraphNode CreateGraphNode(SqlSyntaxGraphContext context, TSql.ScalarExpressionRestoreOption tSql)
         {

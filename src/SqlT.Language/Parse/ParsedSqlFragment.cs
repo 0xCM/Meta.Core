@@ -5,15 +5,11 @@
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Language
 {
-
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using SqlT.Core;
 
     using TSql = Microsoft.SqlServer.TransactSql.ScriptDom;
-
 
     public class ParsedSqlFragment
     {
@@ -33,7 +29,4 @@ namespace SqlT.Language
         public override string ToString()
             => SqlScript.ScriptText;
     }
-
-
-
 }

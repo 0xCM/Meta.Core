@@ -167,7 +167,8 @@ namespace Meta.Core
         public override int GetHashCode()
             => Data.GetHashCodeAggregate();
 
-
+        public X[] AsArray()
+            => Data.ToArray();
  
     }
 }

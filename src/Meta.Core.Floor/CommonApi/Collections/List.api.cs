@@ -51,6 +51,22 @@ partial class metacore
         => list.Select(f);
 
     /// <summary>
+    /// Applies the supplied item-index function to each element in the input list to produce a new list
+    /// </summary>
+    /// <typeparam name="T">The input sequence item type</typeparam>
+    /// <typeparam name="S">The output sequence item type</typeparam>
+    /// <param name="list">The list to transform</param>
+    /// <param name="f">The transformation function</param>
+    /// <returns></returns>
+    public static Lst<S> mapi<T, S>(Lst<T> list, Func<int, T, S> f)
+    {
+        var dst = new S[list.Count];
+        for (var i = 0; i < list.Count; i++)
+            dst[i] = f(i, list[i]);
+        return Seq.make(dst);
+    }
+
+    /// <summary>
     /// Defines a monadic transformation List[Option[X]] -> Option[List[X]]
     /// that returns the value of the list if all items are valued; otherwise,
     /// returns None

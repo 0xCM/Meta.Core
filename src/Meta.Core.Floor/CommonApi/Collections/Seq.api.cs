@@ -72,6 +72,7 @@ partial class metacore
     public static Seq<Y> map<X, Y>(Func<X, Y> f, Seq<X> s)
         => Seq.map(f, s);
 
+
     /// <summary>
     /// Applies a function to a sequence and returns the result
     /// </summary>
@@ -82,6 +83,24 @@ partial class metacore
     /// <returns></returns>
     public static Seq<Y> map<X, Y>(Seq<X> s, Func<X, Y> f)
         => Seq.map(f, s);
+
+    /// <summary>
+    /// Applies the supplied item-index function to each element in the input sequence to produce a new sequence
+    /// </summary>
+    /// <typeparam name="T">The input sequence item type</typeparam>
+    /// <typeparam name="S">The output sequence item type</typeparam>
+    /// <param name="list">The list to transform</param>
+    /// <param name="f">The transformation function</param>
+    /// <returns></returns>
+    public static Seq<S> mapi<T, S>(Seq<T> s, Func<int, T, S> f)
+    {
+        var idx = 0;
+        return Seq.make(
+            from item in s.Stream()
+            select f(idx++, item)
+            );
+    }
+
 
     /// <summary>
     /// Produces a sequence of relatively contiguous values within a specified range

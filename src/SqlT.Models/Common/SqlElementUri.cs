@@ -9,7 +9,6 @@ namespace SqlT.Models
     using System.Linq;
 
     using Meta.Models;
-    using Meta.Syntax;
 
     using SqlT.Core;
     using SqlT.Syntax;

@@ -11,6 +11,7 @@ namespace SqlT.Models
     using System.Linq;
 
     using SqlT.Core;
+    using Meta.Core;
 
     /// <summary>
     /// Specifies metadata aspects to be included during a metadata collection exercise
@@ -26,11 +27,11 @@ namespace SqlT.Models
             this.CollectTableIndexes = true;
             this.CollectViews = true;
             this.CollectExtendedProperties = true;
-            this.IncludedSchemas = new HashSet<string>();
+            this.IncludedSchemas = Set<string>.Empty;
         }
 
         [Description("The schemas to include in the collection or, if unspecified, means that metadata will include all schemas")]
-        public ISet<string> IncludedSchemas { get; set; }
+        public Set<string> IncludedSchemas { get; set; }
 
         [Description("Specfies whether user-defined type metadata should be collected")]
         public bool CollectTypes { get; set; }

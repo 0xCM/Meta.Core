@@ -40,6 +40,15 @@ namespace SqlT.SqlSystem
         public static bool IsTypeTable(this vTable table)
             => table.Role().Map(r => r == SqlTableRoleType.TypeTable, () => false);
 
+        static ScalarResult<T> ExecuteScalarScript<T>(this ISqlDatabaseHandle h,
+            string sql, params (string, object)[] args)
+                => h.Broker.ExecuteScalarScript<T>(sql, args);
+
+        public static Option<SqlVersion> GetCompatibilityVersion(this ISqlDatabaseHandle h)
+        {
+            var sql = h.DatabaseName.SQL_COMPATIBILITY_LEVEL();
+            return h.ExecuteScalarScript<byte>(sql).TryMapValue(x => ((SqlVersionIndicator)x).GetVersion());
+        }
     }
 
 }

@@ -120,7 +120,7 @@ namespace Meta.Core.Tests
             var output = tails(input);
             claim.equal(5, output.Count);
             claim.equal(input, output[0]);
-            claim.equal(Lst.empty<int>(), output[4]);
+            claim.equal(Lst.zero<int>(), output[4]);
 
         }
 

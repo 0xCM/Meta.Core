@@ -64,7 +64,7 @@ public static class NullableExtensions
             return @else;
     }
 
-    public static T ValueOrDefault<T>(this T? x, T @default = default(T))
+    public static T ValueOrDefault<T>(this T? x, T @default = default)
         where T : struct
     {
         if (x != null)
@@ -73,13 +73,19 @@ public static class NullableExtensions
             return @default;
     }
 
-    public static T? ValueOrNone<T>(this T? x)
+    /// <summary>
+    /// Transforms a nulluble value into an optional value
+    /// </summary>
+    /// <typeparam name="T">The underlying value type</typeparam>
+    /// <param name="x">The potential value</param>
+    /// <returns></returns>
+    public static Option<T> ValueOrNone<T>(this T? x)
         where T : struct
     {
         if (x != null)
-            return x;
+            return x.Value;
         else
-            return null;
+            return Option.None<T>();
     }
 
 

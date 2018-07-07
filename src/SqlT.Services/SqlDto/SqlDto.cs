@@ -68,8 +68,6 @@ namespace SqlT.Services
             return new SqlDataFrame(rolist(columns.Select(x => x.Column)), rows);
         }
 
-        public ISqlDataFrame ToFrame<T>(IEnumerable<T> items, bool PLL = false)
-            => ToFrame(typeof(T), items.Cast<object>(), PLL);
 
         public IEnumerable<object> FromFrame(Type DtoType, ISqlDataFrame frame, bool PLL)
         {

@@ -1,24 +1,29 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// MetaFlow
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Language
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using SqlT.Core;
     using SqlT.Models;
-    using SqlT.Language;
-    using static metacore;
-    using TSql = Microsoft.SqlServer.TransactSql.ScriptDom;
-    using sx = Syntax.SqlSyntax;
-    using sxc = Syntax.contracts;
 
+    using static metacore;
+
+    using TSql = Microsoft.SqlServer.TransactSql.ScriptDom;
 
     public static partial class SqlTFactory
     {
+        static string GetOptionValue(this TSql.CreateSequenceStatement src, TSql.SequenceOptionKind optionKind)
+        {
+            var option = src.SequenceOptions.OfType<TSql.ScalarExpressionSequenceOption>().FirstOrDefault(x => x.OptionKind == optionKind);
+            if (option != null)
+                return (option.OptionValue as TSql.Literal).Value;
+            else
+                return null;
+        }
 
         [SqlTBuilder]
         public static SqlSequence Model(this TSql.CreateSequenceStatement src)

@@ -20,7 +20,7 @@ namespace Meta.Core
         public static readonly ListAlternative<X,Y> instance = default;
 
         public Lst<X> empty
-            => Lst.empty<X>();
+            => Lst.zero<X>();
 
         public Lst<Y> apply(Lst<Func<X, Y>> cf, Lst<X> cx)
             => Lst.apply(cf, cx);

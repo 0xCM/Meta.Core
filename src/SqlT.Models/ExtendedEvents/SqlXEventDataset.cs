@@ -1,25 +1,26 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Models
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Meta.Core;
 
     using static metacore;
 
     public class SqlXEventDataset
     {
-        public SqlXEventDataset(string EventName, Guid EventUid, DateTimeOffset EventOS, IEnumerable<NamedValue> FieldValues, IEnumerable<NamedValue> ActionValues)
+        public SqlXEventDataset(string EventName, Guid EventUid, DateTimeOffset EventOS, Seq<NamedValue> FieldValues, Seq<NamedValue> ActionValues)
         {
             this.EventName = EventName;
             this.EventUid = EventUid;
             this.EventTS = EventOS.LocalDateTime;
-            this.FieldValues = FieldValues.ToArray();
-            this.ActionValues = ActionValues.ToArray();
+            this.FieldValues = FieldValues.AsArray();
+            this.ActionValues = ActionValues.AsArray();
         }
 
         public string EventName { get; }

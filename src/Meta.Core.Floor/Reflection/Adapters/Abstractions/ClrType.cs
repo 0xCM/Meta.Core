@@ -558,6 +558,10 @@ public abstract class ClrType : ClrElement<Type, ClrType>
     /// <returns></returns>
     public abstract ClrTypeReference GetReference();
 
+    public Option<CoreDataType> CoreType
+        => ReflectedElement.ToCoreType();
+
+
     public bool IsDeclaredIn(ClrNamespaceName ns)
         => Namespace.MapValueOrDefault(x => x.ToString(),string.Empty) == ns.ToString();
 

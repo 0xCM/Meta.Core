@@ -1,7 +1,7 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Models
 {
@@ -10,9 +10,7 @@ namespace SqlT.Models
     using System.Linq;
 
     using Meta.Models;
-
     using SqlT.Core;
-    using SqlT.Syntax;
 
     using static metacore;
     using sxc = SqlT.Syntax.contracts;
@@ -24,23 +22,10 @@ namespace SqlT.Models
         public static implicit operator SqlColumnDefinition(SqlColumn<C> c)
             => c.Definition;
 
-        protected SqlColumn(
-            SqlColumnName ColumnName,
-            int Position,
-            sxc.data_type_ref DataTypeReference,
-            sxc.sql_object Parent
-            ) : this
-                (
-                    ColumnName,
-                    Position,
-                    DataTypeReference,
-                    Parent,
-                    null,
-                    null,
-                    null,
-                    null,
-                    false,
-                    null
+        protected SqlColumn(SqlColumnName ColumnName, int Position,
+            sxc.data_type_ref DataTypeReference, sxc.sql_object Parent) 
+                : this(ColumnName, Position, DataTypeReference,
+                    Parent, Documentation: null, Properties: null, null, null, false, null
                 )
         { }
 
@@ -62,7 +47,9 @@ namespace SqlT.Models
         {
             this.Position = Position;
             this.DataTypeReference = DataTypeReference;
-            this.Parent = Parent != null ? some(Parent as sxc.sql_object) : new Option<sxc.sql_object>();
+            this.Parent = Parent != null 
+                ? some(Parent as sxc.sql_object) 
+                : new Option<sxc.sql_object>();
             this.DefaultConstraint = DefaultConstraint;
             this.ComputationExpression = ComputationExpression;
             this.ComputationPersisted = ComputationPersisted;

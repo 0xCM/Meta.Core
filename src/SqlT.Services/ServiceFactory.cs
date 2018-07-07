@@ -1,19 +1,17 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Services
 {
     using System;
-    using System.Linq;
-    using System.Linq.Expressions;
+    using System.Linq;    
     using System.Collections.Generic;
     using System.IO;
     using SqlT.Models;
     using SqlT.Core;
     using System.Reflection;
-    using SqlT.Syntax;
 
     using static metacore;
 
@@ -74,8 +72,6 @@ namespace SqlT.Services
         public static ISqlMetadataStore SqlMetadataStore(this IApplicationContext C)
             => C.Service<ISqlMetadataStore>();
 
-        public static ISqlMetadataCapture SqlMetadataCapture(this IApplicationContext C)
-            => C.Service<ISqlMetadataCapture>();
 
         public static Option<int> ExecuteBatchScripts(this ISqlContext C, IEnumerable<ISqlScript> scripts, SqlNotificationObserver Observer = null)
         {

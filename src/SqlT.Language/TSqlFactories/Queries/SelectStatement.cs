@@ -11,7 +11,7 @@ namespace SqlT.Language
     using SqlT.Core;
     using SqlT.Models;
     using SqlT.Language;
-    using SqlT.Templates;
+    using SqlT.Syntax;
     using static metacore;
     using TSql = Microsoft.SqlServer.TransactSql.ScriptDom;
 
@@ -37,11 +37,11 @@ namespace SqlT.Language
             return new TSql.SelectStatement{QueryExpression = spec};            
         }
 
-        public static TSql.SelectStatement TSqlSelectStatement(this SqlColumnProxyList src)
+        public static TSql.SelectStatement TSqlSelectStatement(this IReadOnlyList<SqlColumnProxySelection> src)
         {
             var spec = new TSql.QuerySpecification();
 
-            foreach (var column in src.Columns)
+            foreach (var column in src)
             {
                 spec.SelectElements.Add(new TSql.SelectScalarExpression
                 {

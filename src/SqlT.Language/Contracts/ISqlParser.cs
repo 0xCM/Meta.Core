@@ -5,6 +5,7 @@
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Services
 {
+    using Meta.Core;
     using Meta.Models;
     using SqlT.Core;
     using SqlT.Syntax;
@@ -34,7 +35,7 @@ namespace SqlT.Services
         /// </summary>
         /// <param name="script">The input script</param>
         /// <returns></returns>
-        IReadOnlyList<IModel> ParseSpecs(ISqlScript script);
+        Lst<IModel> ParseSpecs(ISqlScript script);
 
         /// <summary>
         /// Segments batches from a <see cref="ISqlScript"/> into a <see cref="SqlBatchScript"/>
@@ -65,7 +66,7 @@ namespace SqlT.Services
         /// </summary>
         /// <param name="script">The input script</param>
         /// <returns></returns>
-        Option<ReadOnlyList<SqlStatementScript>> ParseStatements(ISqlScript script);
+        Option<Lst<SqlStatementScript>> ParseStatements(ISqlScript script);
 
         /// <summary>
         /// Free-for-all random parsing

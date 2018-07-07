@@ -6,12 +6,10 @@
 namespace SqlT.Language
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
 
     using SqlT.Core;
     using SqlT.Models;
-    using SqlT.Language;
 
     using static metacore;
 
@@ -21,7 +19,31 @@ namespace SqlT.Language
 
     public static partial class SqlTFactory
     {
+        /// <summary>
+        /// Determines whether a statement has the "drop existing" clause
+        /// </summary>
+        /// <param name="src">The statement to evaluate</param>
+        /// <returns></returns>
+        static bool DropExisting(this TSql.CreateIndexStatement src)
+            => src.IndexOptions.OfType<TSql.IndexStateOption>().Any(
+                        x => x.OptionKind == TSql.IndexOptionKind.DropExisting && x.OptionState == TSql.OptionState.On);
 
+        /// <summary>
+        /// Determines whether a statement has the "drop existing" clause
+        /// </summary>
+        /// <param name="src">The statement to evaluate</param>
+        /// <returns></returns>
+        static bool DropExisting(this TSql.CreateColumnStoreIndexStatement src)
+            => src.IndexOptions.OfType<TSql.IndexStateOption>().Any(
+                        x => x.OptionKind == TSql.IndexOptionKind.DropExisting
+                        && x.OptionState == TSql.OptionState.On);
+
+
+        /// <summary>
+        /// Constructs a <see cref="SqlIndex"/> representation from a <see cref="TSql.CreateIndexStatement"/>
+        /// </summary>
+        /// <param name="src">The source statement</param>
+        /// <returns></returns>
         [SqlTBuilder]
         public static Option<SqlIndex> Model(this TSql.CreateIndexStatement src)
             => new SqlIndex
@@ -35,5 +57,20 @@ namespace SqlT.Language
                     DropExisting: src.DropExisting()
                 );
 
+        /// <summary>
+        /// Constructs a <see cref="SqlIndex"/> representation from a <see cref="TSql.CreateColumnStoreIndexStatement"/>
+        /// </summary>
+        /// <param name="src">The source statement</param>
+        /// <returns></returns>        
+        [SqlTBuilder]
+        public static Option<SqlIndex> Model(this TSql.CreateColumnStoreIndexStatement src)
+            => new SqlIndex
+                (
+                    IndexName: src.Name.Value,
+                    TableName: src.OnName.ToTableName(),
+                    PrimaryColumns: map(src.Columns, c => new SqlIndexColumn(c.FormatName())).ToArray(),
+                    Clustered: src.Clustered.HasValue ? src.Clustered.Value : false,
+                    DropExisting: src.DropExisting()
+                );
     }
 }

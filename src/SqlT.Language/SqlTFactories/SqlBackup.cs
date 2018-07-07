@@ -1,7 +1,7 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Language
 {
@@ -10,8 +10,6 @@ namespace SqlT.Language
     using System.Linq;
     using SqlT.Core;
     using SqlT.Models;
-    using SqlT.Language;
-    using SqlT.Syntax;
     using SqlT.Services;
     using SqlT.Templates;
 
@@ -23,9 +21,11 @@ namespace SqlT.Language
 
     public static partial class SqlTFactory
     {
+        static string LiteralValue(this TSql.ValueExpression tsql)
+            => tsql is TSql.StringLiteral s ? s.Value : string.Empty;
+
         static Move Specify(TSql.MoveRestoreOption src)
             => new Move(src.LogicalFileName.LiteralValue(), src.OSFileName.LiteralValue());
-
 
         [SqlTBuilder]
         public static Option<SqlRestoreDatabase> Model(this TSql.RestoreStatement src)
@@ -44,7 +44,6 @@ namespace SqlT.Language
             }
             return none<SqlRestoreDatabase>();
         }
-
 
         public static Option<T> Model<T>(this IEnumerable<TSql.BackupOption> options, TSql.BackupOptionKind kind)
         {

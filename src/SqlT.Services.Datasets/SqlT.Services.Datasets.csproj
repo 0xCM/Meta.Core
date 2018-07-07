@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+
+  <PropertyGroup>
+    <TargetFrameworks>net472</TargetFrameworks>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\SqlT.Core\SqlT.Core.csproj" />
+    <ProjectReference Include="..\SqlT.Language\SqlT.Language.csproj" />
+    <ProjectReference Include="..\SqlT.Services\SqlT.Services.csproj" />
+  </ItemGroup>
+
+
+</Project>

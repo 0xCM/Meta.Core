@@ -1,20 +1,15 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// MetaCore
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
-    using System;
-    using System.Linq;
+using System;
+using System.Linq;
 
-    using static minicore;
+using static minicore;
 
-    using System.Collections;
-    using G = System.Collections.Generic;
-
-    using Meta.Core;
-    using Meta.Core.Modules;
-
-
+using Meta.Core;
+using Meta.Core.Modules;
 
 public static class LstX
 {
@@ -68,4 +63,12 @@ public static class LstX
            where item.Exists
            select item.ValueOrDefault();
 
+    /// <summary>
+    /// Extracts the encapsulated list if it exists; otherwise, returns the empty list
+    /// </summary>
+    /// <typeparam name="T">The potential item type</typeparam>
+    /// <param name="options">The options to evaluate</param>
+    /// <returns></returns>
+    public static Lst<T> Items<T>(this Option<Lst<T>> olist)
+        => olist.ValueOrDefault(Lst<T>.Empty);           
 }

@@ -1,7 +1,7 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Language
 {
@@ -10,9 +10,9 @@ namespace SqlT.Language
     using System.Linq;
 
     using Meta.Models;
+    using Meta.Core;
 
     using SqlT.Core;
-    using SqlT.Syntax;
     using SqlT.Models;
     using SqlT.Services;
 
@@ -21,12 +21,15 @@ namespace SqlT.Language
     using sx = SqlT.Syntax.SqlSyntax;
     using sxc = SqlT.Syntax.contracts;
 
-    public class SqlParserService : ApplicationService<SqlParserService, ISqlParser>, ISqlParser
+    /// <summary>
+    /// Defines primary implementation of the <see cref="ISqlParser"/> contract
+    /// </summary>
+    class SqlParserService : ApplicationService<SqlParserService, ISqlParser>, ISqlParser
     {
         readonly ISqlGenerationContext GC;
 
-        public SqlParserService(IApplicationContext context)
-            : base(context)
+        public SqlParserService(IApplicationContext C)
+            : base(C)
         {
             this.Version = SqlVersions.Default;
             this.NativeParser = TSqlParser.NativeParser(Version.TSqlDomVersion());
@@ -36,10 +39,11 @@ namespace SqlT.Language
         public SqlParserService(SqlVersion? Version = null)
         {
             this.Version = (Version ?? SqlVersions.Default);
-            this.NativeParser = TSqlParser.NativeParser(this.Version.TSqlDomVersion());
+            this.NativeParser = TSqlParser.NativeParser(this.Version.TSqlDomVersion());            
         }
 
         TSql.TSqlParser NativeParser { get; }
+
         SqlVersion Version { get; }
 
         static SqlStatementScript ModelStatement(TSql.TSqlStatement src, SqlSyntaxGraph SyntaxGraph = null)
@@ -54,7 +58,7 @@ namespace SqlT.Language
         public Option<SqlParameterizedScript> ParseRoutineBody(ISqlScript script)
             => SqlScript.FromContract(script).ParseRoutineBody(ParserVersion.TSqlDomVersion());
 
-        public IReadOnlyList<IModel> ParseSpecs(ISqlScript script)
+        public Lst<IModel> ParseSpecs(ISqlScript script)
             => GC.ParseSpecs(NativeParser, script.ScriptText);
 
         public SqlSyntaxGraph ParseSyntaxGraph(ISqlScript sql)
@@ -81,13 +85,13 @@ namespace SqlT.Language
             return new SqlBatchScript(script.ScriptName, segments);                           
         }
 
-        public Option<ReadOnlyList<SqlStatementScript>> ParseStatements(ISqlScript script)
+        public Option<Lst<SqlStatementScript>> ParseStatements(ISqlScript script)
         {
             var statements = new List<sxc.statement>();
             var parser = TSqlParser.AdaptiveParser(ParserVersion.TSqlDomVersion());
             var result = parser.ParseSql<TSql.TSqlFragment>(script.ScriptText);
             if (result.Failed)
-                return none<ReadOnlyList<SqlStatementScript>>(result.GetApplicationError());
+                return none<Lst<SqlStatementScript>>(result.GetApplicationError());
 
             return mapi(result.ExtractStatements(),
                         (i,s) => ModelStatement(s,

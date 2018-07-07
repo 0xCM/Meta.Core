@@ -31,8 +31,26 @@ namespace Meta.Core
 
     }
 
+    public abstract class TypeClass<T>
+        where T : TypeClass<T>
+    {
 
+    }
 
+    public class Functor<F> : TypeClass<Functor<F>>        
+    {
+        public static Func<Functor<A>, Functor<B>> fmap<A, B>(Func<A, B> f)
+            => fa => new Functor<F,A,B>(f);
+
+    }
+
+    public class Functor<F,A,B> :  Functor<B>
+    {
+        public Functor(Func<A, B> f)
+            => this.map = f;
+
+        public Func<A, B> map { get; }
+    }
 
 
 

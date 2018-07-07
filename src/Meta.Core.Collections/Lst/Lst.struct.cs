@@ -77,6 +77,12 @@ namespace Meta.Core
         public static bool operator ==(Lst<X> l1, Lst<X> l2)
             => l1.Equals(l2);
 
+        /// <summary>
+        /// Determines whether two lists fail structural equqlity
+        /// </summary>
+        /// <param name="l1">The first list</param>
+        /// <param name="l2">The second list</param>
+        /// <returns></returns>
         public static bool operator !=(Lst<X> l1, Lst<X> l2)
             => not(l1.Equals(l2));
 
@@ -140,6 +146,9 @@ namespace Meta.Core
 
         public G.IReadOnlyList<X> AsReadOnlyList()
             => Data;
+
+        public X[] AsArray()
+            => Data.ToArray();
 
         public override int GetHashCode()
             => Container.hash(this);

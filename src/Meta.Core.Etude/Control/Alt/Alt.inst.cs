@@ -29,6 +29,7 @@ namespace Meta.Core
     {
 
     }
+
     readonly struct SeqAlt<X> : ISeqAlt<X>
     {
         public static readonly SeqAlt<X> instance = default;

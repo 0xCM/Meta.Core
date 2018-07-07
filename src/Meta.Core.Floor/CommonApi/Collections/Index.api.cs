@@ -42,7 +42,7 @@ partial class metacore
     /// <returns></returns>
     [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Index<T> index<T>(params T[] items)
-        => Index.cons(items);
+        => Index.items(items);
 
 
 

@@ -5,8 +5,7 @@
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Bindings
 {
-    using System;
-    using System.Collections.Generic;
+    using System;    
 
     using SqlT.Core;
     using SqlT.Models;
@@ -36,7 +35,5 @@ namespace SqlT.Bindings
             public override string ToString()
                 => $"{Position.ToString().PadLeft(2, '0')} {Name} {DataType}";
         }
-
-
     }
 }

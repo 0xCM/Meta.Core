@@ -1,7 +1,7 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Models
 {
@@ -9,7 +9,6 @@ namespace SqlT.Models
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using System.Threading.Tasks;
 
     using SqlT.Core;
 
@@ -21,31 +20,18 @@ namespace SqlT.Models
         where T : SqlConstraint<T,N>
         where N : SqlConstraintName<N>, new()
     {
-
-        protected SqlConstraint(
-            N ConstraintName,
-            SqlElementDescription Documentation = null,
-            IEnumerable<SqlPropertyAttachment> Properties = null
-            ) : 
-            base
-            (
-                ConstraintName,
-                Documentation: Documentation,
-                Properties: Properties
-            )
+        protected SqlConstraint(N ConstraintName, SqlElementDescription Documentation = null,
+            IEnumerable<SqlPropertyAttachment> Properties = null) : 
+                base(ConstraintName, Documentation: Documentation, Properties: Properties)
         {
 
-
-
         }
-
 
         protected abstract IReadOnlyList<ISqlConstraintColumn> GetConstrainedColumns();
 
         public IReadOnlyList<ISqlConstraintColumn> ConstrainedColumns
             => GetConstrainedColumns();
         
-
         public override string ToString()
         {
             var count = ConstrainedColumns.Count;
@@ -61,7 +47,5 @@ namespace SqlT.Models
 
         public virtual bool IsIdentifying
             => false;
-
-
     }
 }

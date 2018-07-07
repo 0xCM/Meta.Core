@@ -55,7 +55,7 @@ namespace Meta.Core.Modules
         /// <typeparam name="X">The item type</typeparam>
         /// <param name="items">The input array</param>
         /// <returns></returns>
-        public static Index<X> cons<X>(params X[] items)
+        public static Index<X> items<X>(params X[] items)
             => Index<X>.FromArray(items);
 
         /// <summary>

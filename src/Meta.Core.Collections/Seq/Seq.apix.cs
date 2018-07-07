@@ -1,20 +1,15 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// MetaCore
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 using System;
 using System.Linq;
 
 using static minicore;
 
-using System.Collections;
-using G = System.Collections.Generic;
-
 using Meta.Core;
 using Meta.Core.Modules;
-
-
 
 public static class SeqX
 {
@@ -69,5 +64,14 @@ public static class SeqX
         => from item in options
            where item.Exists
            select item.ValueOrDefault();
+
+    /// <summary>
+    /// Extracts the encapsulated Seq if it exists; otherwise, returns the empty Seq
+    /// </summary>
+    /// <typeparam name="T">The potential item type</typeparam>
+    /// <param name="options">The options to evaluate</param>
+    /// <returns></returns>
+    public static Seq<T> Items<T>(this Option<Seq<T>> oseq)
+        => oseq.ValueOrDefault(Seq<T>.Empty);
 
 }

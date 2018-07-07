@@ -64,7 +64,6 @@ namespace SqlT.Models
                                 let identifier = a.MapRequired(x => x.ModelTypeId)
                                 let et = new SqlElementType(t, new I(identifier, false))
                                 select (t.ReflectedElement, et));
-
             }
             catch (Exception e)
             {

@@ -1,7 +1,7 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Models
 {
@@ -45,11 +45,8 @@ namespace SqlT.Models
 
         public bool IgnoreDuplicateKeys { get; }
 
-
         public override bool IsIdentifying
            => true;
-
-
     }
 
     public abstract class SqlPrimaryKey<T, K, C1> : SqlConstraint<K, SqlPrimaryKeyName>, sxc.primary_key
@@ -64,7 +61,6 @@ namespace SqlT.Models
         }
 
         public C1 Column1 { get; }
-
     }
 
     public abstract class SqlPrimaryKey<T, K, C1, C2> : SqlPrimaryKey<T, K, C1>
@@ -83,7 +79,6 @@ namespace SqlT.Models
         }
 
         public C2 Column2 { get; }
-
     }
 
     public abstract class SqlPrimaryKey<T, K, C1, C2, C3> : SqlPrimaryKey<T, K, C1, C2>
@@ -103,8 +98,5 @@ namespace SqlT.Models
         }
 
         public C3 Column3 { get; }
-
     }
-
-
 }

@@ -91,32 +91,32 @@ static partial class metacore
     /// </summary>
     /// <returns></returns>
     [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static char lparen()
-        => '(';
+    public static string lparen()
+        => "(";
 
     /// <summary>
     /// Produces a '[' character
     /// </summary>
     /// <returns></returns>
     [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static char lbracket()
-        => '[';
+    public static string lbracket()
+        => "[";
 
     /// <summary>
     /// Produces a ']' character
     /// </summary>
     /// <returns></returns>
     [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static char rbracket()
-        => ']';
+    public static string rbracket()
+        => "]";
 
     /// <summary>
     /// Produces a right parenthesis character
     /// </summary>
     /// <returns></returns>
     [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static char rparen()
-        => ')';
+    public static string rparen()
+        => ")";
 
     /// <summary>
     /// Produces a tab character

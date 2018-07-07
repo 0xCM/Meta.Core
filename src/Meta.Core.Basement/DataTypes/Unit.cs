@@ -13,9 +13,10 @@ using System.Runtime.CompilerServices;
 /// In this way, void functions can be considered
 /// to yield a value and participate in functional/monadic expressions
 /// </summary>
-public struct Unit
+public readonly struct Unit
 {
     public static readonly Unit Value = new Unit();
+    public static readonly Type Type = typeof(Unit);
     
     /// <summary>
     /// Executes the action and returns the unit value

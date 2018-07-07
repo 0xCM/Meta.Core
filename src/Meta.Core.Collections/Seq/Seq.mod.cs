@@ -18,7 +18,23 @@ namespace Meta.Core.Modules
     /// </summary>
 
     public class Seq 
-    {         
+    {
+        /// <summary>
+        /// Gets the primary Seq constructor
+        /// </summary>
+        /// <typeparam name="X">The list item type</typeparam>
+        /// <returns></returns>
+        public static SeqFactory<X> ctor<X>()
+            => Seq<X>.Factory;
+
+        /// <summary>
+        /// Returns the canonical 0 value for a sequence of elements of type <typeparamref name="X"/>
+        /// </summary>
+        /// <typeparam name="X">The index element type</typeparam>
+        /// <returns></returns>
+        public static Seq<X> zero<X>()
+            => Seq<X>.Empty;
+
         /// <summary>
         /// Constructs a sequence over an enumerable
         /// </summary>
@@ -29,6 +45,15 @@ namespace Meta.Core.Modules
             => new Seq<X>(items);
 
         /// <summary>
+        /// Constructs a sequence from an item array
+        /// </summary>
+        /// <typeparam name="X">The item type</typeparam>
+        /// <param name="items">Zero or more items</param>
+        /// <returns></returns>
+        public static Seq<X> items<X>(params X[] items)
+            => new Seq<X>(items);
+
+        /// <summary>
         /// Returns an enumerable from a sequence
         /// </summary>
         /// <typeparam name="X">The item type</typeparam>
@@ -36,13 +61,6 @@ namespace Meta.Core.Modules
         public static IEnumerable<X> unwrap<X>(Seq<X> s)
             => s.Stream();
 
-        /// <summary>
-        /// Returns the canonical 0 value for a sequence of elements of type <typeparamref name="X"/>
-        /// </summary>
-        /// <typeparam name="X">The index element type</typeparam>
-        /// <returns></returns>
-        public static Seq<X> zero<X>()
-            => Seq<X>.Empty;
 
         /// <summary>
         /// Constructs a new stream by successive concatenation

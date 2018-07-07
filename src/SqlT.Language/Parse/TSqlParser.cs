@@ -27,15 +27,12 @@ namespace SqlT.Language
     public static class TSqlParser
     {
         public static TSql.TSqlParser NativeParser(TSql.SqlVersion? version = null)
-            => NativeParsers.GetOrAdd(version ?? TSql.SqlVersion.Sql130, v => VersionedParser(v));
-
-        public static ISqlAdaptiveParser AdaptiveParser(TSql.SqlVersion? version = null)
-            => new SqlAdaptiveParser(NativeParser(version));
+            => NativeParsers.GetOrAdd(version ?? TSql.SqlVersion.Sql130, v => CreateVersionedParser(v));
 
         static readonly ConcurrentDictionary<TSql.SqlVersion, TSql.TSqlParser> NativeParsers
             = new ConcurrentDictionary<TSql.SqlVersion, TSql.TSqlParser>();
 
-        static TSql.TSqlParser VersionedParser(TSql.SqlVersion v)
+        static TSql.TSqlParser CreateVersionedParser(TSql.SqlVersion v)
         {
             switch (v)
             {
@@ -56,7 +53,10 @@ namespace SqlT.Language
                 default:
                     throw new NotSupportedException();
             }
-        }        
+        }
+
+        public static ITSqlParserAdapter AdaptiveParser(TSql.SqlVersion? version = null)
+            => new SqlAdaptiveParser(NativeParser(version));
 
         public static SqlParseError Summarize(this IEnumerable<TSql.ParseError> errors, string Input)
             =>
@@ -74,10 +74,10 @@ namespace SqlT.Language
         static TextReader CreateSqlReader(string sql)
             => new StringReader(sql);
 
-        internal static ISqlAdaptiveParser AdaptiveParser(this TSql.TSqlParser NativeParser)
+        internal static ITSqlParserAdapter AdaptiveParser(this TSql.TSqlParser NativeParser)
             => new SqlAdaptiveParser(NativeParser);
 
-        public static IReadOnlyList<IModel> ParseSpecs(this ISqlGenerationContext GC, TSql.TSqlParser parser, SqlScript sql)
+        public static Lst<IModel> ParseSpecs(this ISqlGenerationContext GC, TSql.TSqlParser parser, SqlScript sql)
         {
             var specs = MutableList.Create<IModel>();
             var fails = MutableList.Create<TSql.TSqlFragment>();
@@ -87,14 +87,13 @@ namespace SqlT.Language
         }
 
         public static Option<TSpec> ParseSpec<TSpec>(this ISqlGenerationContext GC, TSql.TSqlParser parser, SqlScript sql)
-            => ParseSpecs(GC,parser, sql).OfType<TSpec>().FirstOrDefault();
+            => ParseSpecs(GC,parser, sql).Stream().OfType<TSpec>().FirstOrDefault();
 
         public static Option<TSql.TSqlScript> TryParseAny(this TSql.TSqlParser parser, string sql)
         {
             using (var reader = CreateSqlReader(sql))
             {
-                var parseErrors = default(G.IList<TSql.ParseError>);
-                var result = parser.Parse(reader, out parseErrors);
+                var result = parser.Parse(reader, out IList<TSql.ParseError> parseErrors);
                 if (parseErrors.Count != 0)
                     return none<TSql.TSqlScript>(SqlParseError.FromParserResult(sql, parseErrors).GetApplicationError());
                 else

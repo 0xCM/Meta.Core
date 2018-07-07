@@ -1,7 +1,7 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Models
 {
@@ -15,7 +15,6 @@ namespace SqlT.Models
     using static metacore;
     using sxc = Syntax.contracts;
 
-
     public enum SqlForeignKeyAction
     {
         None = 0,
@@ -23,7 +22,6 @@ namespace SqlT.Models
         SetNull = 2,
         SetDefault = 3
     }
-
 
     public abstract class SqlForeignKey<M, TClient, TSupplier> : SqlConstraint<M, SqlForeignKeyName>, sxc.foreign_key
         where M : SqlForeignKey<M,TClient,TSupplier>

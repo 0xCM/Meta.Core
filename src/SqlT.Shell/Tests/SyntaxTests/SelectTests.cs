@@ -6,27 +6,14 @@
 namespace SqlT.Syntax.Tests
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using System.IO;
-    using System.Runtime.CompilerServices;
-
-    using static metacore;
-    using static ClrStructureSpec;
 
     using SqlT.Models;
     using SqlT.Core;
-    using SqlT.CSharp;
-    using SqlT.Syntax;
     using SqlT.Services;
-    using SqlT.SqlTDom;
-    using SqlT.Dom;
 
     using Meta.Core;
     using Meta.Core.Workflow;
-
-
     
     [WorkflowNode]
     public class SelectTests : SyntaxTestHost<SyntaxTestResult>
@@ -37,19 +24,18 @@ namespace SqlT.Syntax.Tests
             : base(C)
         {
 
-            TestCases = GetTestCases().ToList();
+            TestCases = GetTestCases();
             
         }
 
         int Counter = 0;
             
 
-        public IReadOnlyList<SqlStatementScript> TestCases { get; }
+        public Lst<SqlStatementScript> TestCases { get; }
 
 
-        IEnumerable<SqlStatementScript> GetTestCases()
+        Seq<SqlStatementScript> GetTestCases()
             => SqlParser.ParseStatements(Script()).OnNone(Notify).Items();
-
 
         WorkFlowed<SyntaxTestResult> DefineTest(string sql)
         {
@@ -60,7 +46,6 @@ namespace SqlT.Syntax.Tests
                        select saved;
             return flow;
         }
-
 
         public WorkFlowed<SyntaxTestResult> OverTest()
             => DefineTest("SELECT  SalesYTD = ROW_NUMBER() OVER(PARTITION BY TerritoryName ORDER BY SalesYTD DESC) FROM Sales.vSalesPerson");
@@ -77,7 +62,7 @@ namespace SqlT.Syntax.Tests
                select saved;
 
 
-        public IEnumerable<WorkFlowed<SyntaxTestResult>> DefineTests()
+        public Lst<WorkFlowed<SyntaxTestResult>> DefineTests()
            => from script in TestCases
               select DefineTest(script);
     }

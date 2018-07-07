@@ -5,7 +5,6 @@
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Dom
 {
-
     using static metacore;
     using System.Linq;
     using System.Text;
@@ -22,6 +21,19 @@ namespace SqlT.Dom
         public static string SyntaxFileHeader()
             => $"--Syntax representation conjured on {today()} at {now().ToString("T")}{eol()}";
 
+
+        public static string TSqlQuote(this string value, TSql.QuoteType type)
+        {
+            switch (type)
+            {
+                case TSql.QuoteType.SquareBracket:
+                    return $"[{value}]";
+                case TSql.QuoteType.DoubleQuote:
+                    return enquote(value);
+                default:
+                    return value;
+            }
+        }
 
         public static string Format(this FragmentToken token)
             => toString(token.TokenizedValue);

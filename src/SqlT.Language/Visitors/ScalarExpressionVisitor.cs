@@ -17,9 +17,6 @@ namespace SqlT.Language
 
     class ScalarExpressionVisitor : TSqlVisitor<ScalarExpressionVisitor, TSql.ScalarExpression>
     {
-
-
-
         public ScalarExpressionVisitor()
         {
 

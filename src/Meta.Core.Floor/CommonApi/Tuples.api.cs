@@ -11,11 +11,27 @@ using System.Runtime.CompilerServices;
 
 using Meta.Core;
 
+public enum TupleFormatStyle
+{
+    /// <summary>
+    /// Indicates a tuple text representation of the form "(x1,...xn)"
+    /// </summary>
+    Coordinate,
+
+    /// <summary>
+    /// Indicates a tuple text representation of the form "[x1,...xn]"
+    /// </summary>
+    List,
+
+    /// <summary>
+    /// Indicates a tuple text representation of the form "{x1,...xn}"
+    /// </summary>
+    Record
+}
+
 public static partial class metacore
 {
-    static bool isTuple(string text)
-        => text.EnclosedBy(lparen(), rparen());
-
+                   
     /// <summary>
     /// Gets the first element of a 2-tuple
     /// </summary>
@@ -72,18 +88,32 @@ public static partial class metacore
 
     public static class tuple
     {
+        static Option<TupleFormatStyle> isTuple(string text)
+            => text.EnclosedBy(lparen(), rparen()) ? some(TupleFormatStyle.Coordinate)
+            : text.EnclosedBy(lbracket(), rbracket()) ? some(TupleFormatStyle.List)
+            : text.EnclosedBy(lbrace(), rbrace()) ? some(TupleFormatStyle.Record)
+            : none<TupleFormatStyle>();
 
-        /// <summary>
-        /// Creates a canonical string representation of a 2-tuple
-        /// </summary>
-        /// <typeparam name="x1">The type of the first coordinate</typeparam>
-        /// <typeparam name="x2">The type of the second coordinate</typeparam>
-        /// <param name="tuple">The tuple value</param>
-        /// <returns></returns>
-        [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining), Formatter]
-       
-        public static string format<x1, x2>((x1, x2) tuple)
-            => paren(string.Join(", ", tuple.Item1, tuple.Item2));
+        static char leftBoundary(TupleFormatStyle style)
+            => (style == TupleFormatStyle.Coordinate ? lparen()
+            : style == TupleFormatStyle.List ? lbracket()
+            : style == TupleFormatStyle.Record ? lbrace()
+            : lparen())[0];
+
+        static char rightBoundary(TupleFormatStyle style)
+            => (style == TupleFormatStyle.Coordinate ? rparen()
+            : style == TupleFormatStyle.List ? rbracket()
+            : style == TupleFormatStyle.Record ? rbrace()
+            : rparen())[0];
+
+        static char[] bounds(TupleFormatStyle style)
+            => array(leftBoundary(style), rightBoundary(style));
+
+        internal static Func<string, string> boundaryFn(TupleFormatStyle style)
+            => style == TupleFormatStyle.List ? new Func<string, string>(bracket)
+            : style == TupleFormatStyle.Record ? new Func<string, string>(embrace)
+            : new Func<string, string>(paren);
+
 
         /// <summary>
         /// Parses a tuple of the form (x1,x2)
@@ -94,11 +124,14 @@ public static partial class metacore
         /// <returns></returns>
         public static Option<(X1, X2)> parse<X1, X2>(string text)
         {
-            if (!isTuple(text))
+            var style = isTuple(text);
+
+            if (!style)
                 return none<(X1, X2)>(MalformedTuple());
+            var trimChars = style.MapRequired(bounds);
 
             var expectedCount = 2;
-            var components = text.Split(',');
+            var components = text.Trim(trimChars).Split(',');
             var actualCount = components.Length;
             if (expectedCount != actualCount)
                 return none<(X1, X2)>(CoordinateMismatch(expectedCount, actualCount));
@@ -111,17 +144,6 @@ public static partial class metacore
 
         }
 
-        /// <summary>
-        /// Creates a canonical string representation of a 3-tuple
-        /// </summary>
-        /// <typeparam name="x1">The type of the first coordinate</typeparam>
-        /// <typeparam name="x2">The type of the second coordinate</typeparam>
-        /// <typeparam name="x3">The type of the third coordinate</typeparam>
-        /// <param name="tuple">The tuple value</param>
-        /// <returns></returns>
-        [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining), Formatter]
-        public static string format<x1, x2, x3>((x1, x2, x3) tuple)
-            => paren(string.Join(", ", tuple.Item1, tuple.Item2, tuple.Item3));
 
         /// <summary>
         /// Parses a tuple in when represented in canonical form (x1,x2,x3)
@@ -133,11 +155,13 @@ public static partial class metacore
         /// <returns></returns>
         public static Option<(X1, X2, X3)> parse<X1, X2, X3>(string text)
         {
-            if (!isTuple(text))
+            var style = isTuple(text);
+            if (!style)
                 return none<(X1, X2, X3)>(MalformedTuple());
 
             var expectedCount = 3;
-            var components = text.Split(',');
+            var trimChars = style.MapRequired(bounds);
+            var components = text.Trim(trimChars).Split(',');
             var actualCount = components.Length;
             if (expectedCount != actualCount)
                 return none<(X1, X2, X3)>(CoordinateMismatch(expectedCount, actualCount));
@@ -150,18 +174,6 @@ public static partial class metacore
                 select (x1, x2, x3);
         }
 
-        /// <summary>
-        /// Creates a canonical string representation of a 4-tuple
-        /// </summary>
-        /// <typeparam name="x1">The type of the first coordinate</typeparam>
-        /// <typeparam name="x2">The type of the second coordinate</typeparam>
-        /// <typeparam name="x3">The type of the third coordinate</typeparam>
-        /// <typeparam name="x4">The type of the fourth coordinate</typeparam>
-        /// <param name="tuple">The tuple value</param>
-        /// <returns></returns>
-        [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining),Formatter]
-        public static string format<x1, x2, x3, x4>((x1, x2, x3, x4) tuple)
-            => paren(string.Join(", ", tuple.Item1, tuple.Item2, tuple.Item3, tuple.Item4));
 
         /// <summary>
         /// Parses a tuple of the form (x1,x2,x3,x4)
@@ -174,11 +186,14 @@ public static partial class metacore
         /// <returns></returns>
         public static Option<(X1, X2, X3, X4)> parse<X1, X2, X3, X4>(string text)
         {
-            if (!isTuple(text))
+            var style = isTuple(text);
+
+            if (!style)
                 return none<(X1, X2, X3, X4)>(MalformedTuple());
 
             var expectedCount = 4;
-            var components = text.Split(',');
+            var trimChars = style.MapRequired(bounds);
+            var components = text.Trim(trimChars).Split(',');
             if (components.Length != expectedCount)
                 return none<(X1, X2, X3, X4)>(CoordinateMismatch(expectedCount, components.Length));
 
@@ -191,19 +206,6 @@ public static partial class metacore
                 select (x1, x2, x3, x4);
         }
 
-        /// <summary>
-        /// Creates a canonical string representation of a 5-tuple
-        /// </summary>
-        /// <typeparam name="x1">The type of the first coordinate</typeparam>
-        /// <typeparam name="x2">The type of the second coordinate</typeparam>
-        /// <typeparam name="x3">The type of the third coordinate</typeparam>
-        /// <typeparam name="x4">The type of the fourth coordinate</typeparam>
-        /// <typeparam name="x5">The type of the fifth coordinate</typeparam>
-        /// <param name="tuple">The tuple value</param>
-        /// <returns></returns>
-        [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining),Formatter]
-        public static string format<x1, x2, x3, x4, x5>((x1, x2, x3, x4, x5) tuple)
-            => paren(string.Join(", ", tuple.Item1, tuple.Item2, tuple.Item3, tuple.Item4, tuple.Item5));
 
         /// <summary>
         /// Parses a tuple in when represented in canonical form
@@ -218,11 +220,14 @@ public static partial class metacore
 
         public static Option<(X1, X2, X3, X4, X5)> parse<X1, X2, X3, X4, X5>(string text)
         {
-            if (!isTuple(text))
+            var style = isTuple(text);
+
+            if (!style)
                 return none<(X1, X2, X3, X4, X5)>(MalformedTuple());
 
             var expectedCount = 5;
-            var components = text.Split(',');
+            var trimChars = style.MapRequired(bounds);
+            var components = text.Trim(trimChars).Split(',');
             var actualCount = components.Length;
             if (actualCount != expectedCount)
                 return none<(X1, X2, X3, X4, X5)>(CoordinateMismatch(expectedCount, actualCount));
@@ -236,8 +241,8 @@ public static partial class metacore
                 from x5 in try_parse<X5>(components[idx++])
                 select (x1, x2, x3, x4, x5);
         }
-
     }
+
 
     /// <summary>
     /// Applies a function to a 2-tuple
@@ -250,6 +255,46 @@ public static partial class metacore
     /// <returns></returns>
     public static X map<X1, X2, X>((X1 x1, X2 x2) x, Func<X1, X2, X> f)
         => f(x.x1, x.x2);
+
+    /// <summary>
+    /// Applies two functions over respective coordinate values
+    /// </summary>
+    /// <typeparam name="X1"></typeparam>
+    /// <typeparam name="X2"></typeparam>
+    /// <typeparam name="Y1"></typeparam>
+    /// <typeparam name="Y2"></typeparam>
+    /// <param name="x"></param>
+    /// <param name="f1"></param>
+    /// <param name="f2"></param>
+    /// <returns></returns>
+    public static (Y1 y1, Y2 y2) map<X1, X2, Y1, Y2>((X1 x1, X2 x2) x, Func<X1, Y1> f1, Func<X2, Y2> f2)
+        => x.Map(f1, f2);
+
+    /// <summary>
+    /// Applies a function to a 3-tuple
+    /// </summary>
+    /// <typeparam name="X1">The type of the first coordinate</typeparam>
+    /// <typeparam name="X2">The type of the second coordinate</typeparam>
+    /// <typeparam name="X">The projected type</typeparam>
+    /// <param name="x">The input value</param>
+    /// <param name="f">The function to apply</param>
+    /// <returns></returns>
+    public static X map<X1, X2, X3, X>((X1 x1, X2 x2, X3 x3) x, Func<X1, X2,X3, X> f)
+        => f(x.x1, x.x2, x.x3);
+
+    /// <summary>
+    /// Applies three functions over respective coordinate tuples
+    /// </summary>
+    /// <typeparam name="X1"></typeparam>
+    /// <typeparam name="X2"></typeparam>
+    /// <typeparam name="Y1"></typeparam>
+    /// <typeparam name="Y2"></typeparam>
+    /// <param name="x"></param>
+    /// <param name="f1"></param>
+    /// <param name="f2"></param>
+    /// <returns></returns>
+    public static (Y1 y1, Y2 y2, Y3 y3) map<X1, X2, X3, Y1, Y2, Y3>((X1 x1, X2 x2, X3 x3) x, Func<X1, Y1> f1, Func<X2, Y2> f2, Func<X3, Y3> f3)
+        => x.Map(f1, f2, f3);
 
     /// <summary>
     /// Constructs an homogenous 2-tuple from the first two items in a stream
@@ -292,5 +337,4 @@ public static partial class metacore
                 cast<X2>(source.Second()),  
                 cast<X3>(source.Second())
             );
-
 }

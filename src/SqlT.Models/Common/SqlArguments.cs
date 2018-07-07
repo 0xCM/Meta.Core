@@ -1,29 +1,27 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Models
 {
     using System;
-    using System.Collections;
-    using System.Collections.Generic;
     using System.Linq;
 
+    using Meta.Core;
     using SqlT.Core;
     using SqlT.Syntax;
     using static metacore;
 
     public interface ISqlArguments
     {
-        IEnumerable<SqlParameterValue> Values { get; }
+        Seq<SqlParameterValue> Values { get; }
     }
 
     public interface ISqlArguments<T> : ISqlArguments
     {
 
     }
-
 
     /// <summary>
     /// Defines a sequence of <see cref="SqlParameterValue"/> instances that
@@ -40,10 +38,11 @@ namespace SqlT.Models
 
         public SqlArguments(CommandArguments Arguments)
         {
-            this.Values = Arguments.Select(x => new SqlParameterValue(x.Name, CoreDataValue.Require(x.Value)));
+            this.Values =  Seq.make(Arguments.Select
+                (x => new SqlParameterValue(x.Name, CoreDataValue.Require(x.Value))));
         }
 
-        public virtual IEnumerable<SqlParameterValue> Values { get; }
+        public virtual Seq<SqlParameterValue> Values { get; }
     }
 
 
@@ -61,7 +60,7 @@ namespace SqlT.Models
 
         }
 
-        protected SqlArguments(IEnumerable<SqlParameterValue> Values)
+        protected SqlArguments(Seq<SqlParameterValue> Values)
         {
             iter(from v in Values
                  where Members.Any(m => m.Name == v.ParameterName)
@@ -70,12 +69,12 @@ namespace SqlT.Models
                     mv => mv.m.SetValue(this, mv.v.AssignedValue.ToClrValue()));
           }     
 
-        public override IEnumerable<SqlParameterValue> Values
-            => from m in Members
+        public override Seq<SqlParameterValue> Values
+            => from m in Seq.make(Members)
                let mval = m.GetValue(this)
                where mval != null
                let cval = CoreDataValue.FromObject(mval)
                where cval.IsSome()
-               select new SqlParameterValue(m.Name, ~cval);
+               select cval.MapRequired(_cval => new SqlParameterValue(m.Name, _cval));
     }
 }

@@ -70,7 +70,6 @@ namespace Meta.Core
         public IEnumerable<X> Stream()
             => Data;
 
-
         public bool IsProperSubsetOf(ISet<X> other)
             => Data.IsProperSubsetOf(other.Stream());
 
@@ -107,6 +106,12 @@ namespace Meta.Core
         public bool Equals(Set<X> other)
             => Data.IsSubsetOf(other.Data) 
             && other.Data.IsSubsetOf(Data);
+
+        /// <summary>
+        /// Specifies whether the set is empty
+        /// </summary>
+        public bool IsEmpty
+            => Data.IsEmpty;
 
         /// <summary>
         /// Presents the data as a <see cref="IImmutableSet{T}"/>

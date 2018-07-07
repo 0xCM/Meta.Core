@@ -1,9 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <ItemGroup>
-    <Compile Include=".messages\Messages.cs" />
-    <Compile Include=".messages\OperationProviderMessages.cs" />
-  </ItemGroup>
+  <PropertyGroup>
+    <TargetFrameworks>net472</TargetFrameworks>
+  </PropertyGroup>
 
 
   <ItemGroup>

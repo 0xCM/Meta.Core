@@ -361,6 +361,13 @@ public static class minicore
             => value != null
                 ? value
                 : throw new Exception<int>("You referenced a NULL value!", member, path, line);
-                    
+
+    /// <summary>
+    /// Produces a space character as a string
+    /// </summary>
+    /// <returns></returns>
+    [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static string space()
+        => " ";
 
 }

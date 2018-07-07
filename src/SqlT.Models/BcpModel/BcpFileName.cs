@@ -10,8 +10,7 @@ namespace SqlT.Models
     using System.Collections.Generic;
     using SqlT.Core;
     using Meta.Core;
-    using Meta.Core.Modules;
-
+    
     using static metacore;
 
     using N = SqlBcpFileName;
@@ -30,7 +29,6 @@ namespace SqlT.Models
             this.Type = xy.Type;
             this.Extension = xy.Extension;
         }
-
 
         public IdentifiedBcpExtension(BcpFileType Type, FileExtension Extension)
         {
@@ -68,12 +66,10 @@ namespace SqlT.Models
 
             public Option<FileExtension> Lookup(BcpFileType FileType)
                 => LookupMap.Value(FileType);
-
         }
 
         sealed class BcpActionExtensionLookup   
         {
-
             static readonly Map<BcpFileType, FileExtension> LookupMap = Map.cons
                 ((BcpFileType.BcpExportScript, FileExtension.Parse("export")),
                 (BcpFileType.BcpFormatScript, FileExtension.Parse("format")),
@@ -82,7 +78,6 @@ namespace SqlT.Models
 
             public Option<FileExtension> Lookup(BcpFileType FileType)
                 => LookupMap.Value(FileType);
-
         }
 
         protected override Func<string, N> Reconstructor
@@ -130,9 +125,7 @@ namespace SqlT.Models
             : base(Value)
         { }
 
-
         public override string ToString()
             => this.Value;
     }
-
 }
