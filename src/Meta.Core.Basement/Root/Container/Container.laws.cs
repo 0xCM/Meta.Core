@@ -43,23 +43,29 @@ namespace Meta.Core
     /// <typeparam name="X">The contained element type</typeparam>
     public interface IContainer<X> : IContainer, IStreamable<X>, IContext<X>
     {
+        ContainerFactory<X> GetFactory();
 
-        //ContainerFactory<X> Factory { get; }
-        
+        /// <summary>
+        /// Retrieves the empty container of the same clase for an element type <typeparamref name="Y"/>
+        /// </summary>
+        IContainer<Y> GetEmpty<Y>();
     }
 
     public interface IContainer<X,CX> : IContext<X, CX>, IEquatable<CX>,  IContainer<X>
         where CX : IContainer<X,CX>, new()
     {
         /// <summary>
-        /// Obtains the factory used to produce the container, but specialized
-        /// for another type
+        /// Obtains the factory used to produce the container
         /// </summary>
         /// <typeparam name="Y"></typeparam>
         /// <returns></returns>
         ContainerFactory<X, CX> Factory { get; }
 
-
+        /// <summary>
+        /// Specifies the empty container for <typeparamref name="X"/>
+        /// </summary>
+        CX Empty { get; }
+           
     }
 
     /// <summary>

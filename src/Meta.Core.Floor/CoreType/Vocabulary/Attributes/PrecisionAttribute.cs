@@ -12,7 +12,7 @@ public sealed class PrecisionAttribute : DataFacetAttribute
     public const string FacetName = "Precision";
 
     public PrecisionAttribute(byte Value)
-        : base(new Facet(FacetName, Value))
+        : base(new FacetInfo(FacetName, Value))
     {
 
     }

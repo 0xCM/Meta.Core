@@ -15,12 +15,12 @@ namespace Meta.Core.Workflow
 
     public interface IWorkflowFacetAttribute
     {
-        Facet Facet { get; }
+        FacetInfo Facet { get; }
     }
 
     public abstract class WorkflowFacetAtribute : Attribute, IWorkflowFacetAttribute
     {
-        public static IEnumerable<Facet> AppliedFacets(MemberInfo member)
+        public static IEnumerable<FacetInfo> AppliedFacets(MemberInfo member)
             => from attribute in member.GetCustomAttributes<WorkflowFacetAtribute>(true).Cast<IWorkflowFacetAttribute>()
                select attribute.Facet;
                
@@ -33,8 +33,8 @@ namespace Meta.Core.Workflow
 
         protected abstract object FacetValue { get; }
 
-        Facet IWorkflowFacetAttribute.Facet
-            => new Facet(FacetName, FacetValue);
+        FacetInfo IWorkflowFacetAttribute.Facet
+            => new FacetInfo(FacetName, FacetValue);
 
         public override string ToString()
             => (this as IWorkflowFacetAttribute).Facet.ToString();

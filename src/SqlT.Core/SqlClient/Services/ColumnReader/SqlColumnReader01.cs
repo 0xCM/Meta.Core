@@ -27,13 +27,13 @@ namespace SqlT.Core
         protected override object ReadColumns(SqlDataReader reader)
             => reader.IsDBNull(colpos) ? default : reader.GetFieldValue<X1>(colpos);
 
-        IEnumerator<DataFrameRow<X1>> GetEnumerator()
+        IEnumerator<Record<X1>> GetEnumerator()
         {
             foreach (X1 col in GetColumnData())
-                yield return new DataFrameRow<X1>(col);
+                yield return new Record<X1>(col);
         }
 
-        IEnumerator<DataFrameRow<X1>> IEnumerable<DataFrameRow<X1>>.GetEnumerator()
+        IEnumerator<Record<X1>> IEnumerable<Record<X1>>.GetEnumerator()
             => GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator()

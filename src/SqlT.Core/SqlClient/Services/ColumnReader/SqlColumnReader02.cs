@@ -34,13 +34,13 @@ namespace SqlT.Core
                 reader.GetFieldValue<X2>(positions[i++]));
         }
 
-        IEnumerator<DataFrameRow<X1, X2>> GetEnumerator()
+        IEnumerator<Record<X1, X2>> GetEnumerator()
         {
-            foreach (DataFrameRow<X1, X2> col in GetColumnData())
+            foreach (Record<X1, X2> col in GetColumnData())
                 yield return col;
         }
 
-        IEnumerator<DataFrameRow<X1, X2>> IEnumerable<DataFrameRow<X1, X2>>.GetEnumerator()
+        IEnumerator<Record<X1, X2>> IEnumerable<Record<X1, X2>>.GetEnumerator()
             => GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator()

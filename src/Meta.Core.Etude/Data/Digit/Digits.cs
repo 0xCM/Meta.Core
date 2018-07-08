@@ -12,11 +12,11 @@ namespace Meta.Core
 
     using static metacore;
 
-    public interface IDigits 
-        : IContainer<Digit, Digits>, IEquatable<Digits>
+    public interface IDigits  : IContainer<Digit>, IEquatable<Digits>
     {
 
     }
+
 
     public readonly struct Digits : IDigits
     {
@@ -91,11 +91,12 @@ namespace Meta.Core
         public Cardinality Cardinality
             => Data.Cardinality;
 
+        ContainerFactory<Digit> IContainer<Digit>.GetFactory()
+            => stream => new Digits(stream.ToArray());
+
         public IEnumerable<Digit> Stream()
             => Data.Stream();
 
-        public ContainerFactory<Digit, Digits> Factory()
-           => src => new Digits(array(src));
 
         public bool Equals(Digits other)
             => this.Data.Equals(other.Data);
@@ -109,8 +110,8 @@ namespace Meta.Core
         public override string ToString()
             => Data.ToString();
 
-        ContainerFactory<Digit, Digits> IContainer<Digit, Digits>.Factory
-            => stream => new Digits(stream.ToArray());
+        public IContainer<Y> GetEmpty<Y>()
+            => cast<IContainer<Y>>(Empty);
     }
 
 }

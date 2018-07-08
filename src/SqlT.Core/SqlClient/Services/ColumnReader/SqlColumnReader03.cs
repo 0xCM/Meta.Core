@@ -33,13 +33,13 @@ namespace SqlT.Core
                 );
         }
 
-        IEnumerator<DataFrameRow<X1, X2, X3>> GetEnumerator()
+        IEnumerator<Record<X1, X2, X3>> GetEnumerator()
         {
-            foreach (DataFrameRow<X1, X2, X3> col in GetColumnData())
+            foreach (Record<X1, X2, X3> col in GetColumnData())
                 yield return col;
         }
 
-        IEnumerator<DataFrameRow<X1, X2, X3>> IEnumerable<DataFrameRow<X1, X2, X3>>.GetEnumerator()
+        IEnumerator<Record<X1, X2, X3>> IEnumerable<Record<X1, X2, X3>>.GetEnumerator()
             => GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator()

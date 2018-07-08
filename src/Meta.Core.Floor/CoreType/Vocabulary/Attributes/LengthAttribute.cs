@@ -12,7 +12,7 @@ public sealed class LengthAttribute : DataFacetAttribute
     public const string FacetName = "Length";
 
     public LengthAttribute(int Value)
-        : base(new Facet(FacetName, Value))
+        : base(new FacetInfo(FacetName, Value))
     {
 
     }

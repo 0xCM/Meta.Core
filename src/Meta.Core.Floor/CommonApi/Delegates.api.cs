@@ -27,17 +27,7 @@ partial class metacore
     //curry :: ((a, b) -> c) -> a -> (b -> c)
     public static Func<B, C> curry<A, B, C>(Func<A, B, C> f, A a)
         => y => f(a, y);
-
-
-    //public static Func<X2, X3, X4> curry<X1, X2, X3, X4>(Func<X1, X2, X3, X4> f, X1 x1)
-    //    => (x2, x3) => f(x1, x2, x3);
-
-    //public static Func<X3, X4> curry<X1, X2, X3, X4>(Func<X1, X2, X3, X4> f, X1 x1, X2 x2)
-    //    => x3 => f(x1, x2, x3);
-
-    //public static Func<X3, X4> curry<X1, X2, X3, X4>(Func<X1, X2, X3, X4> f, (X1 x1, X2 x2) x)
-    //    => x3 => f(x.x1, x.x2, x3);
-
+    
     /// <summary>
     /// Composes two delegates
     /// </summary>

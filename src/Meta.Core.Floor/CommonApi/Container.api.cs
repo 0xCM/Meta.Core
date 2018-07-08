@@ -47,16 +47,13 @@ partial class metacore
         return Unit.Value;
     }
 
-    //public static Container<Y> map<X, Y>(Container<X> container, Func<X, Y> f)        
-    //    => Container.make(Container.map(f, container));
-
     /// <summary>
     /// Constructs an array from a container
     /// </summary>
     /// <param name="items">The items from which to construct the array</param>
     /// <returns></returns>
     [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static T[] array<T>(IContainer<T> items)
+    public static X[] array<X>(IContainer<X> items)
         => array(items.Stream());
 
     /// <summary>
@@ -68,4 +65,46 @@ partial class metacore
     /// <returns></returns>
     public static bool all<X>(IContainer<X> container, Func<X, bool> p)
         => Container.all(p, container);
+
+    /// Returns true if a predicate is satisfied for all elements in a container; false otherwise
+    /// </summary>
+    /// <typeparam name="X">The item type</typeparam>
+    /// <param name="p">The predicate to evaluate</param>
+    /// <param name="container">The container over which to evaluate the predicate</param>
+    /// <returns></returns>
+    public static bool any<X>(IContainer<X> container, Func<X, bool> p)
+        => Container.any(p, container);
+
+    /// <summary>
+    /// Folds the container into a single value using the (+) operator defined for the type <typeparamref name="X"/>
+    /// </summary>
+    /// <typeparam name="X">The element type</typeparam>
+    /// <param name="container">The source container</param>
+    /// <returns></returns>
+    public static X sum<X>(IContainer<X> container)
+            => container.Aggregate(operators.add);
+
+    /// <summary>
+    /// Concatenates two container
+    /// </summary>
+    /// <typeparam name="X">The item type</typeparam>
+    /// <typeparam name="CX">The container type</typeparam>
+    /// <param name="cx1">The first container</param>
+    /// <param name="cx2">The second container</param>
+    /// <returns></returns>
+    public static CX concat<X, CX>(CX cx1, CX cx2)
+        where CX : IContainer<X, CX>, new()
+            => Container.concat<X,CX>(cx1, cx2);
+
+    /// <summary>
+    /// Sequentially concatenates an array of containers
+    /// </summary>
+    /// <typeparam name="X">The item type</typeparam>
+    /// <typeparam name="CX">The container type</typeparam>
+    /// <param name="containers">The containers to concatenate</param>
+    /// <returns></returns>
+    public static CX chain<X, CX>(params CX[] containers)
+        where CX : IContainer<X, CX>, new()
+            => Container.chain<X,CX>(containers);
+
 }

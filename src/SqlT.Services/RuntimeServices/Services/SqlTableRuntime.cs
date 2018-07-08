@@ -7,9 +7,11 @@ namespace SqlT.Services
 {
     using System;
     using System.Collections.Generic;
+
+    using Meta.Core;
     using SqlT.Core;
     using SqlT.Models;
-    using SqlT.SqlSystem;
+    
 
     class SqlTableRuntime : SqlObjectRuntime<SqlTableRuntime, ISqlTableHandle>, ISqlTableRuntime
     {
@@ -63,7 +65,7 @@ namespace SqlT.Services
         public IEnumerable<T> Distinct<T>(SqlColumnName name)
             => Handle.Distinct<T>(name);
 
-        public IEnumerable<DataFrameRow<C0, C1>> Distinct<C0, C1>(SqlColumnName c0, SqlColumnName c1)
+        public IEnumerable<Record<C0, C1>> Distinct<C0, C1>(SqlColumnName c0, SqlColumnName c1)
             => Handle.Distinct<C0,C1>(c0, c1);
 
     }

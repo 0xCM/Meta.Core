@@ -102,9 +102,16 @@ namespace Meta.Core
         public override bool Equals(object obj)
             => (obj is Value<X>) ? Equals((Value<X>)obj) : false;
 
-        
+        Value<X> IContainer<X, Value<X>>.Empty
+           => Empty;
+
+        IContainer<Y> IContainer<X>.GetEmpty<Y>()
+                => Value<Y>.Empty;
+
+        ContainerFactory<X> IContainer<X>.GetFactory()
+           => x => new Value<X>(x.Single());
 
     }
 
- 
+
 }

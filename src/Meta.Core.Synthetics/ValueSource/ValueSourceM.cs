@@ -1,7 +1,7 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// MetaCore
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace Meta.Core
 {
@@ -9,7 +9,7 @@ namespace Meta.Core
     using System.Collections.Generic;
     using System.Linq;
 
-    using static metacore;
+    using static minicore;
 
     public delegate V ValueSource<out V>();
 
@@ -20,9 +20,32 @@ namespace Meta.Core
     /// </summary>
     public static class ValueSourceM
     {
-        public static IEnumerable<T> Values<T>(this ValueSource<T> source)
-            => from i in Enumerable.Range(0, int.MaxValue) select source();
-        
+        static IEnumerable<T> forever<T>(ValueSource<T> source)
+        {
+            while (true)
+                yield return source();
+
+        }
+
+        /// <summary>
+        /// Manufactures a pseudoinfinite stream of values
+        /// </summary>
+        /// <typeparam name="T">The value type</typeparam>
+        /// <param name="source">The value source</param>
+        /// <returns></returns>
+        public static Seq<T> Values<T>(this ValueSource<T> source)
+            => Modules.Seq.make(forever(source), Cardinality.Infinite);
+
+        /// <summary>
+        /// Manufactures a specified number of values
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        public static Lst<T> Values<T>(this ValueSource<T> source, int count)
+            => Modules.Lst.make(from i in Enumerable.Range(1, count) select source());
+
         public static ValuesSource<Z> Lift<Z>(Z z) 
             => () => array(z);
 

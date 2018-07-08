@@ -32,6 +32,34 @@ partial class metacore
     public static Seq<X> seq<X>(G.IEnumerable<X> values)
         => Seq.make(values);
 
+    /// <summary>
+    /// Applies the supplied item-index function to each element in the input sequence to produce a new sequence
+    /// </summary>
+    /// <typeparam name="T">The input sequence item type</typeparam>
+    /// <typeparam name="S">The output sequence item type</typeparam>
+    /// <param name="list">The list to transform</param>
+    /// <param name="f">The transformation function</param>
+    /// <returns></returns>
+    public static Seq<S> mapi<T, S>(Seq<T> s, Func<int, T, S> f)
+        => Seq.mapi(s, f);
+
+    /// <summary>
+    /// Consructs a sequence of indexed pairs of <typeparamref name="X"/> values from a stream
+    /// </summary>
+    /// <typeparam name="X">The item type</typeparam>
+    /// <param name="values">The values from which to construct the sequence</param>
+    /// <returns></returns>
+    public static Seq<(int i, X value)> seqi<X>(G.IEnumerable<X> values)
+        => mapi(Seq.make(values), (i, v) => (i, v));
+
+    /// <summary>
+    /// Consructs a sequence of indexed pairs of <typeparamref name="X"/> values from an existing sequence
+    /// </summary>
+    /// <typeparam name="X">The item type</typeparam>
+    /// <param name="values">The values from which to construct the sequence</param>
+    /// <returns></returns>
+    public static Seq<(int i, X value)> seqi<X>(Seq<X> seq)
+        => mapi(seq, (i, item) => (i, item));
 
     /// <summary>
     /// Combines a sequence of values with the canonical <typeparamref name="X"/> semigroup combiner
@@ -84,22 +112,6 @@ partial class metacore
     public static Seq<Y> map<X, Y>(Seq<X> s, Func<X, Y> f)
         => Seq.map(f, s);
 
-    /// <summary>
-    /// Applies the supplied item-index function to each element in the input sequence to produce a new sequence
-    /// </summary>
-    /// <typeparam name="T">The input sequence item type</typeparam>
-    /// <typeparam name="S">The output sequence item type</typeparam>
-    /// <param name="list">The list to transform</param>
-    /// <param name="f">The transformation function</param>
-    /// <returns></returns>
-    public static Seq<S> mapi<T, S>(Seq<T> s, Func<int, T, S> f)
-    {
-        var idx = 0;
-        return Seq.make(
-            from item in s.Stream()
-            select f(idx++, item)
-            );
-    }
 
 
     /// <summary>
@@ -163,4 +175,20 @@ partial class metacore
     /// <returns></returns>
     public static Seq<X> flatten<X>(Seq<Seq<X>> ss)
         => Seq.flatten(ss);
+
+
+    /// <summary>
+    /// Zips the first stream with the second via a supplied mapping function
+    /// </summary>
+    /// <typeparam name="X">The item tyep of the first sequence</typeparam>
+    /// <typeparam name="Y">The item type of the second sequence</typeparam>
+    /// <typeparam name="Z">The mapping function codomain</typeparam>
+    /// <param name="sx">The first sequence</param>
+    /// <param name="sy">The second sequence</param>
+    /// <param name="f">The mapping function</param>
+    /// <returns></returns>
+    public static Seq<Z> zip<X, Y, Z>(Seq<X> sx, Seq<Y> sy, Func<X, Y, Z> f)
+        => seq(sx.Stream().Zip(sy.Stream(), f));
+
+
 }

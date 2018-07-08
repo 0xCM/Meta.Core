@@ -1,7 +1,7 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// MetaCore
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace Meta.Core
 {
@@ -15,7 +15,7 @@ namespace Meta.Core
     using System.Reflection;
     using MathNet.Numerics.Random;
     
-    using static metacore;
+    using static minicore;
 
     /// <summary>
     /// Defines a standard set of value generators
@@ -70,6 +70,23 @@ namespace Meta.Core
             :   randomizer.NextInt32Sequence(min, max + 1);
 
         /// <summary>
+        /// Creates a source for <see cref="byte"/> values that aligns with supplied facet and seed specification
+        /// </summary>
+        /// <param name="facets">The facets to apply</param>
+        /// <param name="seed">The seed, if desired</param>
+        /// <returns></returns>
+        [ValueGenerator]
+        static ValueSource<byte> GF_UInt8(IFacetSet facets, int? seed = null)
+        {
+
+            var randomizer = Randomizer(seed);
+            var min = facets.FindValueOrElse(CommonFacetNames.Min, Byte.MinValue);
+            var max = (byte)facets.FindValueOrElse(CommonFacetNames.Min, Byte.MaxValue - 1);
+            return () => randomizer.NextByte(min, max);
+        }
+
+
+        /// <summary>
         /// Creates a source for <see cref="short"/> values that aligns with supplied facet and seed specification
         /// </summary>
         /// <param name="facets">The facets to apply</param>
@@ -77,8 +94,7 @@ namespace Meta.Core
         /// <returns></returns>
         [ValueGenerator]
         static ValueSource<short> GF_Int16(IFacetSet facets, int? seed = null)
-        {
-            
+        {            
             var randomizer = Randomizer(seed);
             var min = facets.FindValueOrElse(CommonFacetNames.Min, Int16.MinValue);
             var max = facets.FindValueOrElse(CommonFacetNames.Min, Int16.MaxValue - 1);
@@ -102,22 +118,6 @@ namespace Meta.Core
         }
 
         /// <summary>
-        /// Creates a source for <see cref="byte"/> values that aligns with supplied facet and seed specification
-        /// </summary>
-        /// <param name="facets">The facets to apply</param>
-        /// <param name="seed">The seed, if desired</param>
-        /// <returns></returns>
-        [ValueGenerator]
-        static ValueSource<byte> GF_UInt8(IFacetSet facets, int? seed = null)
-        {
-
-            var randomizer = Randomizer(seed);
-            var min = facets.FindValueOrElse(CommonFacetNames.Min, Byte.MinValue);
-            var max = (byte)facets.FindValueOrElse(CommonFacetNames.Min, Byte.MaxValue - 1);
-            return () => randomizer.NextByte(min, max);
-        }
-
-        /// <summary>
         /// Creates a source for <see cref="int"/> values that aligns with supplied facet and seed specification
         /// </summary>
         /// <param name="facets">The facets to apply</param>
@@ -132,7 +132,6 @@ namespace Meta.Core
             var max = facets.FindValueOrElse(CommonFacetNames.Min, 2000000);
             return () => randomizer.Next(min, max + 1);
         }
-
 
         /// <summary>
         /// Creates a source for <see cref="Guid"/> values that aligns with supplied facet and seed specification
@@ -160,7 +159,6 @@ namespace Meta.Core
             var center = Date.Today;
             return () => center.AddDays(randomizer.Next(-365, 365));
         }
-
 
         /// <summary>
         /// Creates a source for strings that aligns with supplied facet and seed specification
@@ -193,12 +191,10 @@ namespace Meta.Core
             var randomizer = Randomizer(seed);
             return () =>
             {
-
                 var whole = randomizer.Next((int)min, (int)max);
                 var fracs = randomizer.Integers(0, 10, scale).Aggregate((x, y) => x + y);
                 return decimal.Parse($"{whole}.{fracs}");
             };
-
         }
 
         /// <summary>
@@ -211,54 +207,13 @@ namespace Meta.Core
         static T NextItem<T>(this Random randomizer, IReadOnlyList<T> items)
             => items[randomizer.Next(0, items.Count)];
 
-
-#if FSMATH
-        /// <summary>
-        /// Implements a non-repeating RNG
-        /// </summary>
-        /// <remarks>
-        /// See:
-        /// http://preshing.com/20121224/how-to-generate-a-sequence-of-unique-random-integers/
-        /// https://gist.github.com/steveash/fe241f54aa6d7fb73da9
-        /// </remarks>
-        static ValueSource<uint> NonRepeatingUInt32(uint min, uint max, uint? seed = null)
-        {
-            var prime = Prime.minPrime(max);
-            var seed1 = seed ?? (uint)now().Ticks;
-            var seed2 = seed1 ^ 0x87761332;
-
-            Func<uint, uint> ModPrime = value => value % prime;
-
-            Func<uint, uint> Residue = value =>
-            {
-                var x = ModPrime(value * value);
-                return value <= (prime / 2) ? x : prime - x;
-            };
-
-            Func<uint, uint> Next = idx =>
-            {
-                // map the values above the prime to themselves
-                if (idx >= prime)
-                    return idx;
-
-                var x = Residue(ModPrime(idx + seed1));
-                return Residue(ModPrime(x + seed2));
-            };
-
-            var _delta = max - min;
-            var seq = from i in new ClosedInterval<uint>(1, _delta).Points() select Next(i) + min;
-            var enumerator = seq.GetEnumerator();
-            return () => enumerator.MoveNext() ? enumerator.Current : max;
-        }
-#endif //FSMATH
-
         /// <summary>
         /// Exposes generic accesses to <see cref="ValueSource{V}"/> production
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="seed"></param>
         /// <returns></returns>
-        public static ValueSource<T> CreateSource<T>(int? seed = null)
+        public static ValueSource<T> source<T>(int? seed = null)
         {
             var m = GeneratorFactories[typeof(T)];            
             return (ValueSource<T>)m.Invoke(null, new object[] {new FacetSet(),  seed });
@@ -271,10 +226,54 @@ namespace Meta.Core
         /// <param name="facets">The facets to apply</param>
         /// <param name="seed">The randomizer seet</param>
         /// <returns></returns>
-        public static ValueSource<T> CreateSource<T>(IFacetSet facets, int? seed = null)
+        public static ValueSource<T> source<T>(IFacetSet facets, int? seed = null)
         {
             var m = GeneratorFactories[typeof(T)];
             return (ValueSource<T>)m.Invoke(null, new object[] {facets, seed });
         }
+
+        #region Excluded
+        #if FSMATH
+                /// <summary>
+                /// Implements a non-repeating RNG
+                /// </summary>
+                /// <remarks>
+                /// See:
+                /// http://preshing.com/20121224/how-to-generate-a-sequence-of-unique-random-integers/
+                /// https://gist.github.com/steveash/fe241f54aa6d7fb73da9
+                /// </remarks>
+                static ValueSource<uint> NonRepeatingUInt32(uint min, uint max, uint? seed = null)
+                {
+                    var prime = Prime.minPrime(max);
+                    var seed1 = seed ?? (uint)now().Ticks;
+                    var seed2 = seed1 ^ 0x87761332;
+
+                    Func<uint, uint> ModPrime = value => value % prime;
+
+                    Func<uint, uint> Residue = value =>
+                    {
+                        var x = ModPrime(value * value);
+                        return value <= (prime / 2) ? x : prime - x;
+                    };
+
+                    Func<uint, uint> Next = idx =>
+                    {
+                        // map the values above the prime to themselves
+                        if (idx >= prime)
+                            return idx;
+
+                        var x = Residue(ModPrime(idx + seed1));
+                        return Residue(ModPrime(x + seed2));
+                    };
+
+                    var _delta = max - min;
+                    var seq = from i in new ClosedInterval<uint>(1, _delta).Points() select Next(i) + min;
+                    var enumerator = seq.GetEnumerator();
+                    return () => enumerator.MoveNext() ? enumerator.Current : max;
+                }
+        #endif //FSMATH
+
+
+        #endregion
     }
 }

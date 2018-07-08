@@ -36,7 +36,10 @@ namespace Meta.Core
         public IEnumerable<X> Stream()
             => Contained.Stream();
 
-        public ContainerFactory<X> Factory
+        public IContainer<Y> GetEmpty<Y>()
+            => Container<Y>.Empty;
+
+        public ContainerFactory<X> GetFactory()
             => input => new Container<X>(Streamable.make(() =>input, Cardinality.Unknown));
 
     }
@@ -62,8 +65,17 @@ namespace Meta.Core
             => Stream().ToReadOnlyList().ContentEqualTo(other.Stream().ToReadOnlyList());
             
         public ContainerFactory<X, CX> Factory { get; }
-        
+
+        ContainerFactory<X> IContainer<X>.GetFactory()
+        {
+            var _factory = Factory;
+            return items => _factory(items);
+        }        
+
         public IEnumerable<X> Stream()
             => Contained.Stream();
+
+        IContainer<Y> IContainer<X>.GetEmpty<Y>()
+             => Container<Y>.Empty;
     }
 }

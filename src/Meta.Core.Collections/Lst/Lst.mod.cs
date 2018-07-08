@@ -10,11 +10,7 @@ namespace Meta.Core.Modules
 
     using static minicore;
     
-    using System.Collections;
-    using G = System.Collections.Generic;
-
-    using Modules;
-
+    using System.Collections.Generic;
 
     /// <summary>
     /// Implelements Haskell-style list operations
@@ -23,7 +19,7 @@ namespace Meta.Core.Modules
     {
 
         /// <summary>
-        /// Gets the primary list constructor
+        /// Gets the primary Lst constructor
         /// </summary>
         /// <typeparam name="X">The list item type</typeparam>
         /// <returns></returns>
@@ -44,7 +40,7 @@ namespace Meta.Core.Modules
         /// <typeparam name="X">The list element type</typeparam>
         /// <param name="items"></param>
         /// <returns></returns>
-        public static Lst<X> make<X>(G.IEnumerable<X> items)
+        public static Lst<X> make<X>(IEnumerable<X> items)
             => ctor<X>()(items);
 
         /// <summary>
@@ -87,7 +83,6 @@ namespace Meta.Core.Modules
         public static Lst<X> fuse<X>(X head, Lst<X> tail)
             => chain(singleton(head), tail);
 
-
         /// <summary>
         /// Appends one list to another
         /// </summary>
@@ -97,7 +92,6 @@ namespace Meta.Core.Modules
         /// <returns></returns>
         public static Lst<X> concat<X>(Lst<X> l1, Lst<X> l2)
             => chain(l1, l2);
-
 
         /// <summary>
         /// Constructs a list from a single element
@@ -223,7 +217,7 @@ namespace Meta.Core.Modules
                   select (h, t);
 
 
-        static G.IEnumerable<Lst<X>> _tails<X>(Lst<X> list)
+        static IEnumerable<Lst<X>> _tails<X>(Lst<X> list)
         {
             var lastIdx = list.Count - 1;
             for (var i = 0; i <= lastIdx; i++)

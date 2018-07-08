@@ -3,17 +3,19 @@
 // Author: Chris Moore, 0xCM@gmail.com
 // License: MIT
 //-------------------------------------------------------------------------------------------
-namespace Meta.Core.Modules
+namespace Meta.Core.Test
 {
     using System;
     using System.Linq;
+
+    using Modules;
     
     using static metacore;
 
 
     using UT = Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    [UT.TestClass, UT.TestCategory("etude/monoids")]
+    [UT.TestClass, UT.TestCategory("meta/etude/monoids")]
     public class MonoidTests
     {
 

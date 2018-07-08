@@ -1,14 +1,12 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// MetaCore
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
-namespace Meta.Core.Tests
+namespace Meta.Core.Test
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-
     
     using static etude;
     using static operators;
@@ -16,7 +14,7 @@ namespace Meta.Core.Tests
 
     using UT = Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    [UT.TestClass, UT.TestCategory(nameof(metacore) + "/adt")]
+    [UT.TestClass, UT.TestCategory("floor/adt")]
     public class AdtTest
     {
         static T times1<T>(T value)

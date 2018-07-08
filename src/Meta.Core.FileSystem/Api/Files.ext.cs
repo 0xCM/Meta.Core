@@ -429,7 +429,7 @@ namespace Meta.Core
         /// </summary>
         /// <param name="newName">The new filename</param>
         /// <returns></returns>
-        public static T Rename<T>(this T path, FileName newName, ObjectConstructor<T> Reconstructor)
+        public static T Rename<T>(this T path, FileName newName, Func<string, T> Reconstructor)
             where T : IFilePath
         {
             var newPath = path.Folder + newName;
@@ -523,7 +523,7 @@ namespace Meta.Core
         /// <param name="dst">The target path</param>
         /// <param name="overwrite">True if any existing file should be ovewritten</param>
         /// <returns></returns>
-        public static Option<T> MoveTo<T>(this T path, FilePath dst, ObjectConstructor<T> construct, bool overwrite = true, bool createFolder = true)
+        public static Option<T> MoveTo<T>(this T path, FilePath dst, Func<string,T> construct, bool overwrite = true, bool createFolder = true)
             where T : IFilePath
             => Try(() =>
             {

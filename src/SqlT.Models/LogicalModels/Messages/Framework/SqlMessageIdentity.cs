@@ -5,8 +5,6 @@
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Models
 {
-    using static metacore;
-
     public sealed class SqlMessageIdentity : SemanticIdentifier
         <
             SqlMessageIdentity, 
@@ -44,7 +42,7 @@ namespace SqlT.Models
 
         protected override SqlMessageIdentity New(string IdentityText)
             => new SqlMessageIdentity(
-                tuple.parse<int, string, SqlMessageIdentifier>(IdentityText)
+                global::tuple.parse<int, string, SqlMessageIdentifier>(IdentityText)
                      .ValueOrDefault((0, "us_english", SqlMessageIdentifier.Empty)));
 
         public bool IsCustomMessage

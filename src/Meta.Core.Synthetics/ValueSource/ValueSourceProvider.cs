@@ -1,7 +1,7 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// MetaCore
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace Meta.Core
 {
@@ -10,7 +10,6 @@ namespace Meta.Core
     using System.Linq;
     using System.Reflection;
 
-    using static metacore;
 
     [Service(typeof(IValueSource))]
     class ValueSourceProvider : Service<IValueSource>, IValueSource

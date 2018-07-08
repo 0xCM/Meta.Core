@@ -12,6 +12,7 @@ namespace Meta.Core
     using System.Collections.Immutable;
 
     using Meta.Core.Modules;
+    using static minicore;
 
     /// <summary>
     /// An immutable array
@@ -39,6 +40,14 @@ namespace Meta.Core
         /// <param name="list"></param>
         public static implicit operator Index<X>(Lst<X> list)
             => new Index<X>(list.Stream().ToImmutableArray());
+
+
+        /// <summary>
+        /// Constructs a <see cref="Index{X}"/> from a <see cref="Lst{X}"/>
+        /// </summary>
+        /// <param name="list"></param>
+        public static implicit operator Index<X>(ReadOnlyList<X> list)
+            => new Index<X>(list.ToImmutableArray());
 
         /// <summary>
         /// Constructs an untyped index from a typed index
@@ -158,6 +167,9 @@ namespace Meta.Core
         ContainerFactory<X, Index<X>> IContainer<X, Index<X>>.Factory
             => stream => new Index<X>(stream.ToImmutableArray());
 
+        ContainerFactory<X> IContainer<X>.GetFactory()
+            => stream => new Index<X>(stream.ToImmutableArray());
+
         public bool Equals(Index<X> other)
             => IndexEquator<X>.instance(this, other);
 
@@ -169,6 +181,11 @@ namespace Meta.Core
 
         public X[] AsArray()
             => Data.ToArray();
- 
+
+        Index<X> IContainer<X, Index<X>>.Empty
+            => Empty;
+
+        IContainer<Y> IContainer<X>.GetEmpty<Y>()
+            => Index<Y>.Empty;
     }
 }

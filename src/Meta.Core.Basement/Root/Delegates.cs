@@ -57,14 +57,6 @@ namespace Meta.Core
     /// <returns></returns>
     public delegate Func<X, Z> Composer<X, Y, Z>(Func<X, Y> f, Func<Y, Z> g);
 
-    /// <summary>
-    /// Contract for function that constructs a <typeparamref name="T"/> value from a 
-    /// textual representation
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="Representation"></param>
-    /// <returns></returns>
-    public delegate T ObjectConstructor<T>(string Representation);
 
     /// <summary>
     /// Contract for function that finds a key-identified value in some source

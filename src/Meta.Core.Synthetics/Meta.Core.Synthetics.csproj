@@ -1,13 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <PropertyGroup>
+    <TargetFrameworks>net472</TargetFrameworks>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Fare" Version="2.1.1" />
     <PackageReference Include="MathNet.Numerics" Version="4.5.1" />
   </ItemGroup>
 
-
   <ItemGroup>
-    <ProjectReference Include="..\Meta.Core.Floor\Meta.Core.Floor.csproj" />
+    <ProjectReference Include="..\Meta.Core.Collections\Meta.Core.Collections.csproj" />
+    <ProjectReference Include="..\Meta.Core.Substructure\Meta.Core.Substructure.csproj" />
   </ItemGroup>
 
 </Project>

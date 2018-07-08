@@ -13,7 +13,7 @@ namespace Meta.Core
 
     using Meta.Core.Modules;
 
-    using static metacore;
+    using static minicore;
     
 
     public class Synthetic

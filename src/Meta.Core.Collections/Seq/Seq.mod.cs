@@ -45,6 +45,16 @@ namespace Meta.Core.Modules
             => new Seq<X>(items);
 
         /// <summary>
+        /// Constructs a sequence over an enumerable whose cardinality is known
+        /// </summary>
+        /// <typeparam name="X">The item type</typeparam>
+        /// <param name="items">The input enumerable</param>
+        /// <param name="cardinality">The stream cardinality</param>
+        /// <returns></returns>
+        public static Seq<X> make<X>(IEnumerable<X> items, Cardinality cardinality)
+            => new Seq<X>(items, cardinality);
+
+        /// <summary>
         /// Constructs a sequence from an item array
         /// </summary>
         /// <typeparam name="X">The item type</typeparam>
@@ -153,7 +163,6 @@ namespace Meta.Core.Modules
                from x in lx
                select f(x);
 
-
         /// <summary>
         /// Creates a new sequence by injecting a specified value between each pair of values in 
         /// an input sequence
@@ -195,7 +204,6 @@ namespace Meta.Core.Modules
         public static Seq<X> empty<X>()
             => Seq<X>.Empty;
 
-
         /// <summary>
         /// Returns the last value of a sequence, if possible
         /// </summary>
@@ -231,7 +239,7 @@ namespace Meta.Core.Modules
         /// <param name="s">The sequence to reverse</param>
         /// <returns></returns>
         public static Seq<X> reverse<X>(Seq<X> s)
-            => s.IsBounded ? make(s.Stream().Reverse()) : s;
+            => not(s.IsUnbounded) ? make(s.Stream().Reverse()) : s;
 
         /// <summary>
         /// Creates a new sequence from the first <paramref name="n"/> elements of the sequence
@@ -273,8 +281,7 @@ namespace Meta.Core.Modules
         /// <param name="default"></param>
         /// <returns></returns>
         public static X combine<X>(Combiner<X> combiner, Seq<X> s, X @default)
-            => s.IsEmpty ? @default : s.Stream().Aggregate((x, y) => combiner(x, y));
-        
+            => s.IsEmpty ? @default : s.Stream().Aggregate((x, y) => combiner(x, y));        
 
         /// <summary>
         /// Creates a sequence containing <paramref name="n"/> copies of the value <paramref name="x"/> 
@@ -367,7 +374,6 @@ namespace Meta.Core.Modules
         /// <returns></returns>
         public static Seq<Y> flatmap<X, Y>(Func<X, Y> f, Seq<Seq<X>> sequences)
             => map(f, flatten(sequences));
-
 
         /// <summary>
         /// Computes the left fold of the sequence
@@ -489,6 +495,12 @@ namespace Meta.Core.Modules
                     yield return item;
                 }
             }
+        }
+
+        public static Seq<S> mapi<T, S>(Seq<T> s, Func<int, T, S> f)
+        {
+            var idx = 0;
+            return from item in s select f(idx++, item);
         }
 
         /// <summary>

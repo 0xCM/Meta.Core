@@ -43,7 +43,17 @@ namespace Meta.Core.Modules
         public static bool all<X>(Func<X, bool> p, IContainer<X> container)
             => container.Stream().All(p);
 
-            
+        /// <summary>
+        /// Returns true if a predicate is satisfied for any elements in a container; false otherwise
+        /// </summary>
+        /// <typeparam name="X">The item type</typeparam>
+        /// <param name="p">The predicate to evaluate</param>
+        /// <param name="container">The container over which to evaluate the predicate</param>
+        /// <returns></returns>
+        [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool any<X>(Func<X, bool> p, IContainer<X> container)
+            => container.Stream().Any(p);
+
         /// <summary>
         /// Iterates over items sequentially in enumeration order and invokes the supplied action for each one
         /// </summary>
@@ -63,7 +73,7 @@ namespace Meta.Core.Modules
             => s.Stream().GetHashCodeAggregate();
 
         /// <summary>
-        /// Appends one stream to another
+        /// Appends one container to another
         /// </summary>
         /// <typeparam name="X">The item type</typeparam>
         /// <param name="l1">The firt list</param>
@@ -72,6 +82,23 @@ namespace Meta.Core.Modules
         public static CX concat<X, CX>(CX cx1, CX cx2)
             where CX : IContainer<X,CX>, new()
                 => cx1.Factory(cx1.Stream().Concat(cx2.Stream()));
-    }
 
+        /// <summary>
+        /// Sequentially concatenates an array of containers
+        /// </summary>
+        /// <typeparam name="X">The item type</typeparam>
+        /// <typeparam name="CX">The container type</typeparam>
+        /// <param name="containers">The containers to concatenate</param>
+        /// <returns></returns>
+        public static CX chain<X, CX>(params CX[] containers)
+            where CX : IContainer<X, CX>, new()
+        {
+            if (containers.Length == 0)
+                return new CX();
+            else if (containers.Length == 1)
+                return containers[0];
+            else                
+                return containers[0].Factory(containers.SelectMany(c => c.Stream()));                                              
+        }           
+    }
 }

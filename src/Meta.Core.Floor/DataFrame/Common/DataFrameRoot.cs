@@ -3,31 +3,50 @@
 // Author: Chris Moore, 0xCM@gmail.com
 // License: MIT
 //-------------------------------------------------------------------------------------------
-using System;
-using System.Linq;
-
-using Meta.Core;
-
-using static metacore;
-
-
-public abstract class DataFrameRoot<F> : IDataFrameRoot
-    where F : DataFrameRoot<F>, new()
+namespace Meta.Core
 {
-    IDataFrame IDataFrameRoot.Construct(Seq<object[]> data, DataFrameSchema? schema)
-        => Construct(data, schema);
+    using System;
+    using System.Linq;
 
-    public abstract F Construct(Seq<object[]> data, DataFrameSchema? schema = null);
+    using static metacore;
 
-    protected DataFrameRoot(DataFrameSchema? schema = null)
+
+    public abstract class DataFrameRoot<F> : IDataFrameRoot, IEquatable<F>
+        where F : DataFrameRoot<F>, new()
     {
-        this.Schema = schema.ValueOrNone();
+        IDataFrame IDataFrameRoot.Construct(Seq<object[]> data, DataFrameSchema? schema)
+            => Construct(data, schema);
+
+
+        public static bool operator ==(DataFrameRoot<F> x, DataFrameRoot<F> y)
+            => x != null ? x.Equals(y) : false;
+
+        public static bool operator !=(DataFrameRoot<F> x, DataFrameRoot<F> y)
+            => not(x == y);
+
+        public abstract F Construct(Seq<object[]> data, DataFrameSchema? schema = null);
+
+        public bool Equals(F other)
+            => other is null ? false
+                : ItemArrays.Equals(other.ItemArrays);
+
+        protected DataFrameRoot(DataFrameSchema? schema = null)
+        {
+            this.Schema = schema.ValueOrNone();
+        }
+
+        public Option<DataFrameSchema> Schema { get; }
+
+        public abstract Seq<Index<object>> ItemArrays { get; }
+
+        public override bool Equals(object obj)
+           => (obj is F frame) ? Equals(frame) : false;
+
+        public override int GetHashCode()
+            => ItemArrays.GetHashCode();
+
+
     }
 
-    public Option<DataFrameSchema> Schema { get; }
-
-    public abstract Seq<Index<object>> ItemArrays { get; }
 
 }
-
-

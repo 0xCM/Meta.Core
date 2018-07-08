@@ -11,6 +11,7 @@ namespace SqlT.Services
     using System.Data;
     
     using SqlT.Core;
+    using Meta.Core;
 
     public static partial class SqlBrokerExtensions
     {
@@ -35,7 +36,7 @@ namespace SqlT.Services
         /// <typeparam name="V"></typeparam>
         /// <param name="h"></param>
         /// <returns></returns>
-        public static IEnumerable<DataFrameRow<C0, C1>> Distinct<V, C0, C1>(this SqlViewHandle<V> h,
+        public static IEnumerable<Record<C0, C1>> Distinct<V, C0, C1>(this SqlViewHandle<V> h,
             Expression<Func<V, C0>> ex0,
             Expression<Func<V, C1>> ex1)
                 where V : class, ISqlViewProxy, new()
@@ -49,20 +50,20 @@ namespace SqlT.Services
         /// <param name="h">Identifies the view</param>
         /// <param name="ex0">The column selector</param>
         /// <returns></returns>
-        public static IEnumerable<DataFrameRow<C, int>> SelectDuplicates<V, C>(this SqlViewHandle<V> h,
+        public static IEnumerable<Record<C, int>> SelectDuplicates<V, C>(this SqlViewHandle<V> h,
             Expression<Func<V, C>> ex0)
                 where V : class, ISqlViewProxy, new()
                     => h.Broker.SelectColumns<C, int>(
                             $"select {col(ex0)}, count(*) as RecordCount from {h} group by {col(ex0)} having count(*) > 1");
 
-        public static IEnumerable<DataFrameRow<C0, C1, int>> SelectDuplicates<V, C0, C1>(this SqlViewHandle<V> h,
+        public static IEnumerable<Record<C0, C1, int>> SelectDuplicates<V, C0, C1>(this SqlViewHandle<V> h,
             Expression<Func<V, C0>> ex0,
             Expression<Func<V, C1>> ex1)
                 where V : class, ISqlViewProxy, new()
                     => h.Broker.SelectColumns<C0, C1, int>(
                         $"select {col(ex0)}, {col(ex1)}, count(*) as RecordCount from {h} group by {col(ex0)}, {col(ex1)} having count(*) > 1");
 
-        public static IEnumerable<DataFrameRow<C0, C1, C2, int>> SelectDuplicates<V, C0, C1, C2>(this SqlViewHandle<V> h,
+        public static IEnumerable<Record<C0, C1, C2, int>> SelectDuplicates<V, C0, C1, C2>(this SqlViewHandle<V> h,
             Expression<Func<V, C0>> ex0,
             Expression<Func<V, C1>> ex1,
             Expression<Func<V, C2>> ex2)

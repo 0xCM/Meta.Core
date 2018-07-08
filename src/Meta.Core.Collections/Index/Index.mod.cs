@@ -46,7 +46,7 @@ namespace Meta.Core.Modules
         /// </summary>
         /// <typeparam name="X">The index element type</typeparam>
         /// <returns></returns>
-        public static Index<X> empty<X>()
+        public static Index<X> zero<X>()
             => Index<X>.Empty;
 
         /// <summary>

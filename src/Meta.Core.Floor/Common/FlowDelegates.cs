@@ -7,7 +7,6 @@ namespace Meta.Core
 {
     using System;
 
-
     public static class FlowTypes
     {
         /// <summary>

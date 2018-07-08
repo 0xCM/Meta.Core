@@ -107,6 +107,4 @@ public static class ReflectiveFloor
     /// <returns></returns>
     public static ClrMethodSignature ClrMethodSignature(this MethodInfo m)
         => ClrMethod.Get(m);
-
-
 }

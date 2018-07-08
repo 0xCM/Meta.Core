@@ -20,24 +20,24 @@ namespace Meta.Core.Workflow
         protected new IWorkflowContext C
             => Context as IWorkflowContext;
 
-        protected WorkflowNode(IWorkflowNode Parent, IEnumerable<Facet> Facets)
+        protected WorkflowNode(IWorkflowNode Parent, IEnumerable<FacetInfo> Facets)
             : base(Parent.WorkflowContext)
         {
            
             this.ParentNode = some(Parent);
-            this.Facets = rolist(Facets ?? stream<Facet>());
+            this.Facets = rolist(Facets ?? stream<FacetInfo>());
         }
 
-        protected WorkflowNode(IWorkflowContext C, IEnumerable<Facet> Facets)
+        protected WorkflowNode(IWorkflowContext C, IEnumerable<FacetInfo> Facets)
             : base(C)
         {
             this.Facets = rolist(Facets);
-            this.Facets = rolist(Facets ?? stream<Facet>());
+            this.Facets = rolist(Facets ?? stream<FacetInfo>());
         }
 
         public Option<IWorkflowNode> ParentNode { get; }
 
-        public IReadOnlyList<Facet> Facets { get; }
+        public IReadOnlyList<FacetInfo> Facets { get; }
 
         public IWorkflowContext WorkflowContext
             => C;
@@ -54,7 +54,7 @@ namespace Meta.Core.Workflow
     public class WorkflowNode<R> : WorkflowNode, IWorkflowNode<R>
     {
         protected WorkflowNode(IWorkflowNode Parent, 
-            IEnumerable<Facet> Facets = null,
+            IEnumerable<FacetInfo> Facets = null,
             WorkflowTransformer<R> AfterSuccess = null,
             WorkflowTransformer<R> AfterError = null
             )
@@ -68,7 +68,7 @@ namespace Meta.Core.Workflow
 
         WorkflowTransformer<R> ErrorTransformer { get; }
 
-        protected WorkflowNode(IWorkflowContext C, IEnumerable<Facet> Facets = null)
+        protected WorkflowNode(IWorkflowContext C, IEnumerable<FacetInfo> Facets = null)
             : base(C,Facets)
         {
 
@@ -102,13 +102,13 @@ namespace Meta.Core.Workflow
 
     public class WorkflowNode<X,R> : WorkflowNode, IWorkflowNode<X,R>
     {
-        protected WorkflowNode(IWorkflowContext C, IEnumerable<Facet> Facets = null)
+        protected WorkflowNode(IWorkflowContext C, IEnumerable<FacetInfo> Facets = null)
             : base(C,Facets)
         {
 
         }
 
-        protected WorkflowNode(IWorkflowNode Parent, IEnumerable<Facet> Facets = null)
+        protected WorkflowNode(IWorkflowNode Parent, IEnumerable<FacetInfo> Facets = null)
             :base(Parent,Facets)
         {
 
@@ -127,13 +127,13 @@ namespace Meta.Core.Workflow
 
     public class WorkflowNode<X1,X2, R> : WorkflowNode, IWorkflowNode<X1,X2, R>
     {
-        protected WorkflowNode(IWorkflowContext C, IEnumerable<Facet> Facets = null)
+        protected WorkflowNode(IWorkflowContext C, IEnumerable<FacetInfo> Facets = null)
             : base(C,Facets)
         {
 
         }
 
-        protected WorkflowNode(IWorkflowNode Parent, IEnumerable<Facet> Facets = null)
+        protected WorkflowNode(IWorkflowNode Parent, IEnumerable<FacetInfo> Facets = null)
             : base(Parent,Facets)
         {
 

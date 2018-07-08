@@ -42,7 +42,7 @@ namespace SqlT.Services
         /// <param name="cs">The connection string that identifies the action target</param>
         /// <param name="action">The action to execute</param>
         /// <returns></returns>
-        IEnumerable<DataFrameRow<C0,C1>> Execute<C0,C1>(SqlConnectionString cs, ISqlAction action);
+        IEnumerable<Record<C0,C1>> Execute<C0,C1>(SqlConnectionString cs, ISqlAction action);
 
         /// <summary>
         /// Executes the provided action
@@ -50,7 +50,7 @@ namespace SqlT.Services
         /// <param name="cs">The connection string that identifies the action target</param>
         /// <param name="action">The action to execute</param>
         /// <returns></returns>
-        IEnumerable<DataFrameRow<C0, C1, C2>> Execute<C0, C1, C2>(SqlConnectionString cs, ISqlAction action);
+        IEnumerable<Record<C0, C1, C2>> Execute<C0, C1, C2>(SqlConnectionString cs, ISqlAction action);
 
         /// <summary>
         /// Executes the provided action
@@ -58,7 +58,7 @@ namespace SqlT.Services
         /// <param name="cs">The connection string that identifies the action target</param>
         /// <param name="action">The action to execute</param>
         /// <returns></returns>
-        IEnumerable<DataFrameRow<C0, C1, C2, C3>> Execute<C0, C1, C2, C3>(SqlConnectionString cs, ISqlAction action);
+        IEnumerable<Record<C0, C1, C2, C3>> Execute<C0, C1, C2, C3>(SqlConnectionString cs, ISqlAction action);
 
         /// <summary>
         /// Creates the element per the provided specification

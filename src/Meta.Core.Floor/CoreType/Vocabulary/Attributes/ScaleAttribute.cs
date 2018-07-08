@@ -12,7 +12,7 @@ public sealed class ScaleAttribute : DataFacetAttribute
     public const string FacetName = "Scale";
 
     public ScaleAttribute(byte Value)
-        : base(new Facet(FacetName, Value))
+        : base(new FacetInfo(FacetName, Value))
     {
 
     }

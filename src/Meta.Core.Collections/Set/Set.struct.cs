@@ -13,6 +13,8 @@ namespace Meta.Core
 
     using Modules;
 
+    using static minicore;
+
     /// <summary>
     /// Defines an immutable set
     /// </summary>
@@ -103,6 +105,9 @@ namespace Meta.Core
         ContainerFactory<X, Set<X>> IContainer<X, Set<X>>.Factory
             => x => new Set<X>(x.ToImmutableHashSet());
 
+        ContainerFactory<X> IContainer<X>.GetFactory()
+            => stream => new Set<X>(stream.ToImmutableHashSet());
+
         public bool Equals(Set<X> other)
             => Data.IsSubsetOf(other.Data) 
             && other.Data.IsSubsetOf(Data);
@@ -120,5 +125,10 @@ namespace Meta.Core
         public IImmutableSet<X> AsImmutableSet()
             => Data;
 
+        Set<X> IContainer<X, Set<X>>.Empty
+           => Empty;
+
+        IContainer<Y> IContainer<X>.GetEmpty<Y>()
+            => Set<Y>.Empty;
     }
 }

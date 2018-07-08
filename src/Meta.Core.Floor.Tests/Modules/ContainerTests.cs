@@ -3,7 +3,7 @@
 // Author: Chris Moore, 0xCM@gmail.com
 // License: MIT
 //-------------------------------------------------------------------------------------------
-namespace Meta.Core.Tests
+namespace Meta.Core.Test
 {
     using System;
     using System.Linq;

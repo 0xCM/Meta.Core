@@ -11,6 +11,8 @@ namespace SqlT.Core
     using System.Data;
     using System.Data.SqlClient;
 
+    using Meta.Core;
+
     /// <summary>
     /// Defines extensions for the <see cref="ISqlClientBroker"/> contract
     /// </summary>
@@ -136,7 +138,7 @@ namespace SqlT.Core
         /// <param name="broker">The facilitating broker</param>
         /// <param name="sql">The script that when executing yields a conforming result set</param>
         /// <returns></returns>
-        public static IEnumerable<DataFrameRow<C0, C1>> SelectColumns<C0, C1>(this ISqlClientBroker broker, string sql)
+        public static IEnumerable<Record<C0, C1>> SelectColumns<C0, C1>(this ISqlClientBroker broker, string sql)
         {
             using (var connection = broker.ConnectionString.OpenConnection())
             using (var command = connection.CreateCommand(sql))
@@ -164,7 +166,7 @@ namespace SqlT.Core
         /// <param name="sql">The script that when executing yields a conforming result set</param>
         /// <param name="positions">The zero-based column indexes</param>
         /// <returns></returns>
-        public static IEnumerable<DataFrameRow<X1, X2>> SelectColumns<X1, X2>(this ISqlClientBroker broker, string sql, params int[] positions)
+        public static IEnumerable<Record<X1, X2>> SelectColumns<X1, X2>(this ISqlClientBroker broker, string sql, params int[] positions)
         {
             using (var reader = SqlColumnReader.Create<X1, X2>(broker.ConnectionString, sql, positions))
             {
@@ -182,7 +184,7 @@ namespace SqlT.Core
         /// <param name="broker">The facilitating broker</param>
         /// <param name="sql">The script that when executing yields a conforming result set</param>
         /// <returns></returns>
-        public static IEnumerable<DataFrameRow<X1, X2, X3>> SelectColumns<X1, X2, X3>(this ISqlClientBroker broker, string sql)
+        public static IEnumerable<Record<X1, X2, X3>> SelectColumns<X1, X2, X3>(this ISqlClientBroker broker, string sql)
         {
             using (var connection = broker.OpenDirectConnection())
             using (var command = connection.CreateCommand(sql))
@@ -213,7 +215,7 @@ namespace SqlT.Core
         /// <param name="sql">The script that when executing yields a conforming result set</param>
         /// <param name="positions">The zero-based column indexes</param>
         /// <returns></returns>
-        public static IEnumerable<DataFrameRow<X1, X2, X3>> SelectColumns<X1, X2, X3>(this ISqlClientBroker broker, string sql, params int[] positions)
+        public static IEnumerable<Record<X1, X2, X3>> SelectColumns<X1, X2, X3>(this ISqlClientBroker broker, string sql, params int[] positions)
         {
             using (var reader = SqlColumnReader.Create<X1, X2, X3>(broker.ConnectionString, sql, positions))
                 foreach (var value in reader)
@@ -230,7 +232,7 @@ namespace SqlT.Core
         /// <param name="broker">The facilitating broker</param>
         /// <param name="sql">The script that when executing yields a conforming result set</param>
         /// <returns></returns>
-        public static IEnumerable<DataFrameRow<X1, X2, X3, X4>> SelectColumns<X1, X2, X3, X4>(this ISqlClientBroker broker, string sql)
+        public static IEnumerable<Record<X1, X2, X3, X4>> SelectColumns<X1, X2, X3, X4>(this ISqlClientBroker broker, string sql)
         {
             using (var connection = broker.OpenDirectConnection())
             using (var command = connection.CreateCommand(sql))
@@ -263,7 +265,7 @@ namespace SqlT.Core
         /// <param name="sql">The script that when executing yields a conforming result set</param>
         /// <param name="positions">The zero-based column indexes</param>
         /// <returns></returns>
-        public static IEnumerable<DataFrameRow<X1, X2, X3, X4>> SelectColumns<X1, X2, X3, X4>(this ISqlClientBroker broker, 
+        public static IEnumerable<Record<X1, X2, X3, X4>> SelectColumns<X1, X2, X3, X4>(this ISqlClientBroker broker, 
             string sql, params int[] positions)
         {
             using (var reader = SqlColumnReader.Create<X1, X2, X3, X4>(broker.ConnectionString, sql, positions))

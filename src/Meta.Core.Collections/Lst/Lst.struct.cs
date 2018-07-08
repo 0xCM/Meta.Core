@@ -7,10 +7,9 @@ namespace Meta.Core
 {
     using System;
     using System.Linq;    
-    using System.Collections;
     using System.Collections.Immutable;
+    using System.Collections.Generic;
 
-    using G = System.Collections.Generic;
 
     using static minicore;
 
@@ -131,7 +130,7 @@ namespace Meta.Core
         public int Count
             => Data.Count;
 
-        public G.IEnumerable<X> Stream()
+        public IEnumerable<X> Stream()
             => Data;
 
         public bool IsEmpty
@@ -144,7 +143,7 @@ namespace Meta.Core
         public Seq<X> Contained()
             => Seq.make(Data);
 
-        public G.IReadOnlyList<X> AsReadOnlyList()
+        public IReadOnlyList<X> AsReadOnlyList()
             => Data;
 
         public X[] AsArray()
@@ -173,11 +172,20 @@ namespace Meta.Core
         public Cardinality Cardinality
             => IsEmpty ? Cardinality.Zero : Cardinality.Finite;
 
-        G.IEnumerable<X> IStreamable<X>.Stream()
+        IEnumerable<X> IStreamable<X>.Stream()
             => Data;
 
         ContainerFactory<X, Lst<X>> IContainer<X, Lst<X>>.Factory
-            => stream => new Lst<X>(stream.ToImmutableList());        
-            
+            => stream => new Lst<X>(stream.ToImmutableList());
+
+        ContainerFactory<X> IContainer<X>.GetFactory()
+             => stream => new Lst<X>(stream.ToImmutableList());
+
+        Lst<X> IContainer<X, Lst<X>>.Empty
+            => Empty;
+
+        IContainer<Y> IContainer<X>.GetEmpty<Y>()
+            => Lst<Y>.Empty;
+
     }
 }

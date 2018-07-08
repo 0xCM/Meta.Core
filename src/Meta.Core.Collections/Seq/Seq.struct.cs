@@ -32,7 +32,6 @@ namespace Meta.Core
         public static SeqFactory<X> Factory
             => items => new Seq<X>(items);
 
-
         /// <summary>
         /// Implicitly constructs a sequence from an array
         /// </summary>
@@ -55,15 +54,6 @@ namespace Meta.Core
             => s.Stream().ToArray();
 
         /// <summary>
-        /// Concatenates the operands
-        /// </summary>
-        /// <param name="s1">The first sequence</param>
-        /// <param name="s2">The second sequence</param>
-        /// <returns></returns>
-        public static Seq<X> operator +(Seq<X> s1, Seq<X> s2)
-            => new Seq<X>(s1.Stream().Concat(s2.Stream()));
-
-        /// <summary>
         /// Evaluates sequence equality
         /// </summary>
         /// <param name="s1">The first sequence</param>
@@ -82,11 +72,20 @@ namespace Meta.Core
             => not(s1.Equals(s2));
 
         /// <summary>
+        /// Concatenates the operands
+        /// </summary>
+        /// <param name="s1">The first sequence</param>
+        /// <param name="s2">The second sequence</param>
+        /// <returns></returns>
+        public static Seq<X> operator +(Seq<X> s1, Seq<X> s2)
+            => new Seq<X>(s1.Stream().Concat(s2.Stream()));
+
+        /// <summary>
         /// Defines the sequence implied by the stream
         /// </summary>
         /// <param name="Stream">The defining stream</param>
         /// <param name="Cardinality">The cardinality of the resulting sequence</param>
-        public Seq(IEnumerable<X> Stream, Cardinality Cardinality = Cardinality.Finite)
+        public Seq(IEnumerable<X> Stream, Cardinality Cardinality = Cardinality.Unknown)
         {
             this.Data = Stream;
             this.Cardinality = Cardinality;
@@ -117,6 +116,12 @@ namespace Meta.Core
             || Cardinality == Cardinality.Zero;
 
         /// <summary>
+        /// True if the sequence is known to be unbounded, false otherwise
+        /// </summary>
+        public bool IsUnbounded
+            => Cardinality == Cardinality.Infinite;
+
+        /// <summary>
         /// True if the sequence is known to be empty, false otherwise
         /// </summary>
         /// <remarks>
@@ -125,6 +130,21 @@ namespace Meta.Core
         /// </remarks>
         public bool IsEmpty
             => Cardinality == Cardinality.Zero;
+
+        ContainerFactory<X, Seq<X>> IContainer<X, Seq<X>>.Factory
+             => source => new Seq<X>(source);
+
+        ContainerFactory<X> IContainer<X>.GetFactory()
+             => stream => new Seq<X>(stream);
+
+        IEnumerator IEnumerable.GetEnumerator()
+            => Data.GetEnumerator();
+
+        Seq<X> IContainer<X, Seq<X>>.Empty
+            => Empty;
+
+        IContainer<Y> IContainer<X>.GetEmpty<Y>()
+            => Seq<Y>.Empty;
 
         public override bool Equals(object obj)
             => obj is Seq<X> ? Seq.eq(this, (Seq<X>)obj) : false;
@@ -137,7 +157,7 @@ namespace Meta.Core
             if (IsEmpty)
                 return 0;
 
-            if (not(IsBounded))
+            if (IsUnbounded)
                 return -1;
 
             return Container.hash(this);
@@ -145,16 +165,6 @@ namespace Meta.Core
 
         public override string ToString()
             => SeqFormatter<X>.instance.Format(this);
-
-        public Seq<X> Contained()
-            => this;
-
-        ContainerFactory<X, Seq<X>> IContainer<X, Seq<X>>.Factory
-             => source => new Seq<X>(source);
-
-        IEnumerator IEnumerable.GetEnumerator()
-            => Data.GetEnumerator();
- 
     }
 
 }

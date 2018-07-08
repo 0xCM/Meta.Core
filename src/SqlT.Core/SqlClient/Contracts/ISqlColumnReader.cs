@@ -9,28 +9,30 @@ namespace SqlT.Core
     using System.Collections;
     using System.Collections.Generic;
 
+    using Meta.Core;
+
     public interface ISqlColumnReader : IEnumerable, IDisposable
     {
 
     }
 
     public interface ISqlColumnReader<TCol>
-        : ISqlColumnReader, IEnumerable<DataFrameRow<TCol>>
+        : ISqlColumnReader, IEnumerable<Record<TCol>>
     {
 
     }
     public interface ISqlColumnReader<TCol1, TCol2> 
-        : ISqlColumnReader,  IEnumerable<DataFrameRow<TCol1, TCol2>>
+        : ISqlColumnReader,  IEnumerable<Record<TCol1, TCol2>>
     {
 
     }
 
     public interface ISqlColumnReader<TCol1, TCol2, TCol3> 
-        : ISqlColumnReader, IEnumerable<DataFrameRow<TCol1, TCol2, TCol3>>
+        : ISqlColumnReader, IEnumerable<Record<TCol1, TCol2, TCol3>>
     { }
 
     public interface ISqlColumnReader<TCol1, TCol2, TCol3, TCol4>
-        : ISqlColumnReader, IEnumerable<DataFrameRow<TCol1, TCol2, TCol3,TCol4>>
+        : ISqlColumnReader, IEnumerable<Record<TCol1, TCol2, TCol3,TCol4>>
     { }
 
 

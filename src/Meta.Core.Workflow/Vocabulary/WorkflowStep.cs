@@ -40,7 +40,7 @@ namespace Meta.Core.Workflow
     public class WorkflowStep<R> : WorkflowNode<R>, IWorkflowStep<R>
     {
         public WorkflowStep(IWorkflowNode Parent, WorkflowStepName Name, Func<WorkFlowed<R>> StepBuilder,
-            IEnumerable<Facet> Facets, Func<IApplicationMessage> BeforeExec = null,
+            IEnumerable<FacetInfo> Facets, Func<IApplicationMessage> BeforeExec = null,
             WorkflowTransformer<R> AfterSuccess = null, WorkflowTransformer<R> AfterError = null
                 ) : base(Parent, Facets, AfterSuccess, AfterError)                
         {
@@ -88,7 +88,7 @@ namespace Meta.Core.Workflow
     public class WorkflowStep<X, R> : WorkflowNode<X, R>
     {
         public WorkflowStep(IWorkflowContext C, WorkflowStepName Name, Func<X, WorkFlowed<R>> StepBuilder,
-            IEnumerable<Facet> Facets,Func<X, IApplicationMessage> BeforeExec = null,
+            IEnumerable<FacetInfo> Facets,Func<X, IApplicationMessage> BeforeExec = null,
             WorkflowTransformer<R> AfterSuccess = null, WorkflowTransformer<R> AfterError = null)
                 : base(C,Facets)
         {
@@ -138,7 +138,7 @@ namespace Meta.Core.Workflow
     public class WorkflowStep<X1,X2, R> : WorkflowNode<X1, X2, R>
     {
         public WorkflowStep(IWorkflowContext C, WorkflowStepName Name, Func<X1,X2, WorkFlowed<R>> StepBuilder,
-            IEnumerable<Facet> Facets, Func<X1,X2, IApplicationMessage> BeforeExec = null,
+            IEnumerable<FacetInfo> Facets, Func<X1,X2, IApplicationMessage> BeforeExec = null,
             WorkflowTransformer<R> AfterSuccess = null, WorkflowTransformer<R> AfterError = null)
                 : base(C,Facets)
         {

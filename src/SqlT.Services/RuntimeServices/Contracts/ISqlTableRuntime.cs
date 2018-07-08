@@ -44,7 +44,7 @@ namespace SqlT.Services
 
         IEnumerable<T> Distinct<T>(SqlColumnName name);
 
-        IEnumerable<DataFrameRow<C0, C1>> Distinct<C0, C1>(SqlColumnName c0, SqlColumnName c1);
+        IEnumerable<Record<C0, C1>> Distinct<C0, C1>(SqlColumnName c0, SqlColumnName c1);
 
         ISqlDatabaseRuntime Database { get; }
 

@@ -45,10 +45,20 @@ partial class metacore
     /// <param name="list">The input list</param>
     /// <returns></returns>
     public static Lst<Y> map<X, Y>(Func<X, Y> f, Lst<X> list)
-        => list.Select(f);
+        => Lst.map(f, list);
 
+
+    /// <summary>
+    /// Applies a function to each element of a list and returns a
+    /// new list containing the results
+    /// </summary>
+    /// <typeparam name="X">The input list item type</typeparam>
+    /// <typeparam name="Y">The output list item type</typeparam>
+    /// <param name="f">The function to apply</param>
+    /// <param name="list">The input list</param>
+    /// <returns></returns>
     public static Lst<Y> map<X, Y>(Lst<X> list, Func<X, Y> f)
-        => list.Select(f);
+        => Lst.map(f, list);
 
     /// <summary>
     /// Applies the supplied item-index function to each element in the input list to produce a new list
@@ -59,12 +69,7 @@ partial class metacore
     /// <param name="f">The transformation function</param>
     /// <returns></returns>
     public static Lst<S> mapi<T, S>(Lst<T> list, Func<int, T, S> f)
-    {
-        var dst = new S[list.Count];
-        for (var i = 0; i < list.Count; i++)
-            dst[i] = f(i, list[i]);
-        return Seq.make(dst);
-    }
+        => Seq.mapi(list, f);
 
     /// <summary>
     /// Defines a monadic transformation List[Option[X]] -> Option[List[X]]

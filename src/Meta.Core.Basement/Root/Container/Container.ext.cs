@@ -61,6 +61,15 @@ namespace Meta.Core
         public static Option<X> First<X>(this IContainer<X> container)
             => container.Stream().FirstOrDefault();
 
+        /// <summary>
+        /// Folds the values encapsulated by the container into a single value
+        /// </summary>
+        /// <typeparam name="X">The element type</typeparam>
+        /// <param name="container">The array to examine</param>
+        /// <returns></returns>
+        public static X Aggregate<X>(this IContainer<X> container, Func<X, X, X> combiner)
+            => container.Stream().Aggregate((x,y) => combiner(x,y));
+
     }
 
 }

@@ -7,8 +7,6 @@ namespace Meta.Core
 {
     using System;
     using System.Linq;
-    using System.Collections;
-    using System.Collections.Immutable;
 
     using G = System.Collections.Generic;
 
@@ -29,7 +27,7 @@ namespace Meta.Core
             if (s1.IsEmpty && s2.IsEmpty)
                 return true;
 
-            if (not(s1.IsBounded) || not(s2.IsBounded))
+            if (s1.IsUnbounded || s1.IsUnbounded)
                 return false;
 
             var _l1 = s1.AsArray();

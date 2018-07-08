@@ -66,7 +66,7 @@ namespace SqlT.Services
             return h.Broker.Select($"select {cols} from {h.ElementName}");
         }
 
-        public static IEnumerable<DataFrameRow<C0, C1>> Distinct<C0, C1>(this ISqlTabularHandle h,
+        public static IEnumerable<Record<C0, C1>> Distinct<C0, C1>(this ISqlTabularHandle h,
             string col0, string col1)
                 => h.Broker.SelectColumns<C0, C1>($"select distinct {col0}, {col1} from {h}");
 

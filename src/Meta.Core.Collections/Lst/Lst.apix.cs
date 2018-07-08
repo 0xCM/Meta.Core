@@ -5,6 +5,7 @@
 //-------------------------------------------------------------------------------------------
 using System;
 using System.Linq;
+using System.Collections.Generic;
 
 using static minicore;
 
@@ -70,5 +71,14 @@ public static class LstX
     /// <param name="options">The options to evaluate</param>
     /// <returns></returns>
     public static Lst<T> Items<T>(this Option<Lst<T>> olist)
-        => olist.ValueOrDefault(Lst<T>.Empty);           
+        => olist.ValueOrDefault(Lst<T>.Empty);
+
+    /// <summary>
+    /// Transforms a list factory into a value construtor
+    /// </summary>
+    /// <typeparam name="X"></typeparam>
+    /// <param name="factory"></param>
+    /// <returns></returns>
+    public static ValueConstructor<IEnumerable<X>, Lst<X>> AsValueConstructor<X>(this LstFactory<X> factory)
+            => source => factory(source);
 }

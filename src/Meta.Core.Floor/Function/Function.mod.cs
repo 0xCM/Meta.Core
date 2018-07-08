@@ -13,7 +13,7 @@ namespace Meta.Core.Modules
 
     using static metacore;
 
-    public sealed class Function : TypeModule<Function>
+    public class Function : TypeModule<Function>
     {
         /// <summary>
         /// Constructs a function from a from a delegate of type X->Y
