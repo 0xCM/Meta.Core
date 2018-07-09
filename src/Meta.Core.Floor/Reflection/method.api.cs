@@ -10,6 +10,8 @@ using System.Reflection;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
+using Meta.Core;
+
 partial class metacore
 {
     /// <summary>
@@ -116,7 +118,7 @@ partial class metacore
     /// <typeparam name="T">The type to search</typeparam>
     /// <param name="name">The name of the method</param>
     /// <returns></returns>
-    public static IEnumerable<ClrMethod> methods<T>(string name)
+    public static Seq<ClrMethod> methods<T>(string name)
         => from m in ClrType.Get<T>().DeclaredMethods
            where m.Name == name
            select m;

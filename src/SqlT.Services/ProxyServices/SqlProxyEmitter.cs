@@ -33,16 +33,16 @@ namespace SqlT.Services
     }
 
 
-    class SqlProxyEmitter<F, TResult> : SqlProxyEmitter, ISqlProxyEmitter<F,TResult>
-        where F : class, ISqlTableFunctionProxy<F, TResult>, new()
-        where TResult : class, ISqlTabularProxy, new()
+    class SqlProxyEmitter<F, Y> : SqlProxyEmitter, ISqlProxyEmitter<F,Y>
+        where F : class, ISqlTableFunctionProxy<F, Y>, new()
+        where Y : class, ISqlTabularProxy, new()
     {
 
         static ISqlProxyBroker broker<T>(SqlConnectionString connector)
             where T : ISqlProxy
                 => typeof(T).Assembly.ProxyBroker(connector);
 
-        public SqlProxyEmitter(IApplicationContext C, SqlEmissionConfig<F, TResult> ExportConfig)
+        public SqlProxyEmitter(IApplicationContext C, SqlEmissionConfig<F, Y> ExportConfig)
             : base(C, ExportConfig)
         {
 
@@ -54,10 +54,7 @@ namespace SqlT.Services
 
         ISqlProxyFormatter Formatter { get; }
 
-        IEnumerable<TResult> ResultStream(F proxy)
-            => Broker.Stream<F, TResult>(proxy);
-
-        Option<FilePath> ISqlProxyEmitter<F,TResult>.EmitFile(F proxy, FilePath DstFile)
+        Option<FilePath> ISqlProxyEmitter<F,Y>.EmitFile(F proxy, FilePath DstFile)
         {
             int lines = 0;
             try
@@ -65,12 +62,12 @@ namespace SqlT.Services
                 DstFile.Folder.CreateIfMissing().Require();
 
                 using (var writer = new StreamWriter(DstFile))
-                    foreach (var line in Formatter.FormatDelimited(ResultStream(proxy)))
+                    iter(Formatter.FormatDelimited(Seq.make(Broker.Stream<F, Y>(proxy))), line =>
                     {
 
                         writer.WriteLine(line.Target.Data);
                         lines++;
-                    }
+                    });
             }
             catch (Exception e)
             {
@@ -78,10 +75,10 @@ namespace SqlT.Services
             }
 
             if (lines != 0)
-                Notify(inform($"Emitted {lines} {typeof(TResult).Name} records to {DstFile}"));
+                Notify(inform($"Emitted {lines} {typeof(Y).Name} records to {DstFile}"));
             else
             {
-                Notify(inform($"There were no {typeof(TResult).Name} records to emit"));
+                Notify(inform($"There were no {typeof(Y).Name} records to emit"));
 
                 DstFile.DeleteIfExists();
             }

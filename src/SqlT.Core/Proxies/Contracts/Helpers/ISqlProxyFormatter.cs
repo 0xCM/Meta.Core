@@ -1,20 +1,20 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Core
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.ComponentModel;
 
+    using Meta.Core;
     using static metacore;
 
     public interface ISqlProxyFormatter
     {
-        IEnumerable<Link<P,TextLine>> FormatDelimited<P>(IEnumerable<P> proxies, DelimitedTextDescription Config = null)
+        Seq<Link<P,TextLine>> FormatDelimited<P>(Seq<P> proxies, DelimitedTextDescription Config = null)
             where P : class, ISqlTabularProxy, new();
     }
 

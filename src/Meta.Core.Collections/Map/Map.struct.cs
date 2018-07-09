@@ -114,12 +114,6 @@ namespace Meta.Core
             return Data.TryGetValue(key, out value);                
         }
 
-        /// <summary>
-        /// Presents the contained data as a sequence
-        /// </summary>
-        /// <returns></returns>
-        public Seq<(K, V)> Contained()
-            => Seq.make(Stream());
 
         /// <summary>
         /// Presents the contained data as a tuplestream (TM)
@@ -134,6 +128,8 @@ namespace Meta.Core
         public IFactoredContainer<Y1, Y2> Recontain<Y1, Y2>(Func<(K, V), (Y1, Y2)> f)
             => Map.map(f, this);
 
+        IEnumerable IStreamable.Stream()
+            => Stream();
     }
 
 }

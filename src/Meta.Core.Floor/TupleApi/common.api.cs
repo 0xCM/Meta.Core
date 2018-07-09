@@ -117,6 +117,26 @@ public static partial class metacore
         => (source[0], source[1], source[2], source[3], source[4], source[5]);
 
     /// <summary>
+    /// Constructs an homogenous 7-tuple from the first 7 items in a list
+    /// </summary>
+    /// <typeparam name="X">The item type</typeparam>
+    /// <param name="source">The value source</param>
+    /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static (X x1, X x2, X x3, X x4, X x5, X x6, X x7) seven<X>(IReadOnlyList<X> source)
+        => (source[0], source[1], source[2], source[3], source[4], source[5], source[6]);
+
+    /// <summary>
+    /// Constructs an homogenous 8-tuple from the first 8 items in a list
+    /// </summary>
+    /// <typeparam name="X">The item type</typeparam>
+    /// <param name="source">The value source</param>
+    /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static (X x1, X x2, X x3, X x4, X x5, X x6, X x7, X x8) eight<X>(IReadOnlyList<X> source)
+        => (source[0], source[1], source[2], source[3], source[4], source[5], source[6], source[7]);
+
+    /// <summary>
     /// Constructs a heterogeneous 2-tuple from the first two items in a stream
     /// </summary>
     /// <typeparam name="X1">The first item type</typeparam>
@@ -159,7 +179,7 @@ public static partial class metacore
     /// <typeparam name="X2">The second item type</typeparam>
     /// <typeparam name="X3">The third item type</typeparam>
     /// <typeparam name="X4">The fourth item type</typeparam>
-    /// <typeparam name="X4">The fifth item type</typeparam>
+    /// <typeparam name="X5">The fifth item type</typeparam>
     /// <param name="source">The source list</param>
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -173,11 +193,44 @@ public static partial class metacore
     /// <typeparam name="X2">The second item type</typeparam>
     /// <typeparam name="X3">The third item type</typeparam>
     /// <typeparam name="X4">The fourth item type</typeparam>
-    /// <typeparam name="X4">The fifth item type</typeparam>
+    /// <typeparam name="X5">The fifth item type</typeparam>
+    /// <typeparam name="X6">The sixth item type</typeparam>
     /// <param name="source">The source list</param>
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static (X1 x1, X2 x2, X3 x3, X4 x4, X5 x5, X6 x6) tupleOf<X1, X2, X3, X4, X5, X6>(IReadOnlyList<object> source)
         => cast<X1, X2, X3, X4, X5, X6>(six(source));
+
+    /// <summary>
+    /// Constructs a heterogenous 7-tuple from the first 7 items in a list
+    /// </summary>
+    /// <typeparam name="X1">The first item type</typeparam>
+    /// <typeparam name="X2">The second item type</typeparam>
+    /// <typeparam name="X3">The third item type</typeparam>
+    /// <typeparam name="X4">The fourth item type</typeparam>
+    /// <typeparam name="X5">The fifth item type</typeparam>
+    /// <typeparam name="X6">The sixth item type</typeparam>
+    /// <typeparam name="X7">The seventh item type</typeparam>
+    /// <param name="source">The source list</param>
+    /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static (X1 x1, X2 x2, X3 x3, X4 x4, X5 x5, X6 x6, X7 x7) tupleOf<X1, X2, X3, X4, X5, X6, X7>(IReadOnlyList<object> source)
+        => cast<X1, X2, X3, X4, X5, X6, X7>(seven(source));
+
+    /// <summary>
+    /// Constructs a heterogenous 8-tuple from the first 8 items in a list
+    /// </summary>
+    /// <typeparam name="X1">The first item type</typeparam>
+    /// <typeparam name="X2">The second item type</typeparam>
+    /// <typeparam name="X3">The third item type</typeparam>
+    /// <typeparam name="X4">The fourth item type</typeparam>
+    /// <typeparam name="X5">The fifth item type</typeparam>
+    /// <typeparam name="X6">The sixth item type</typeparam>
+    /// <typeparam name="X7">The seventh item type</typeparam>
+    /// <param name="source">The source list</param>
+    /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static (X1 x1, X2 x2, X3 x3, X4 x4, X5 x5, X6 x6, X7 x7, X8 x8) tupleOf<X1, X2, X3, X4, X5, X6, X7, X8>(IReadOnlyList<object> source)
+        => cast<X1, X2, X3, X4, X5, X6, X7, X8>(eight(source));
 
 }

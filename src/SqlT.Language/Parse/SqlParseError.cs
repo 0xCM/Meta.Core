@@ -1,15 +1,13 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Language
 {
     using System;
     using System.Linq;
     using System.Collections.Generic;
-
-    using SqlT.Services;
 
     using static metacore;
 
@@ -21,8 +19,7 @@ namespace SqlT.Language
     public class SqlParseError
     {
         internal static SqlParseError FromParserResult(string Input, IEnumerable<TSql.ParseError> errors)
-            =>
-            new SqlParseError(Input,
+            => new SqlParseError(Input,
                 map(errors, error
                     => new SqlParseErrorMessage(
                             error.Number,
@@ -50,9 +47,6 @@ namespace SqlT.Language
             => join(";", Messages.ToArray());
 
         public override string ToString()
-            => Description;
-            
+            => Description;            
     }
-
-
 }

@@ -302,8 +302,8 @@ namespace Meta.Core
         public virtual IConfigurationProvider ConfigurationProvider
             => new ProvidedConfigurationSet(stream<ConfigurationSetting>());
         
-        protected virtual IEnumerable<IShellSession> SupportedSessions
-            => stream<IShellSession>();
+        protected virtual Seq<IShellSession> SupportedSessions
+            => seq<IShellSession>();
 
         public string EnvironmentName
             => RuntimeEnvironments.Local;
@@ -314,12 +314,12 @@ namespace Meta.Core
         public IReadOnlyDictionary<string, string> Arguments 
             => throw new NotImplementedException();
 
-        protected virtual IEnumerable<IConsoleCommand> GetProvidedCommands()
+        protected virtual Seq<IConsoleCommand> GetProvidedCommands()
             => from set in SupportedSessions
                from cmd in ScriptCommand.Discover(set)
                select cmd.Adapt();
 
-        IEnumerable<IConsoleCommand> IShellCommandProvider.GetCommands()
+        Seq<IConsoleCommand> IShellCommandProvider.GetCommands()
             => GetProvidedCommands();
 
         protected virtual IMutableContext OnContextComposing(IMutableContext C)

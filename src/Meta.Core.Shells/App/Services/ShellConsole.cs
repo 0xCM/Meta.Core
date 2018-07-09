@@ -206,7 +206,7 @@ public partial class ShellConsole : IShellConsole
 
     void Host(IShellCommandProvider provider, Func<IConsoleCommand, IOption> handler)
     {
-        var commands = provider.GetCommands().ToList();
+        var commands = provider.GetCommands().AsList();
         try
         {
             var cmd = NextCommand().ValueOrDefault();                                                            

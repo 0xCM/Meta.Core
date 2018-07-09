@@ -10,7 +10,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Meta.Core\Meta.Core.csproj" />
     <ProjectReference Include="..\SqlT.Core\SqlT.Core.csproj" />
-    <ProjectReference Include="..\SqlT.Dac.Models\SqlT.Models.Dac.csproj" />
     <ProjectReference Include="..\SqlT.Language\SqlT.Language.csproj" />
     <ProjectReference Include="..\SqlT.Models\SqlT.Models.csproj" />
   </ItemGroup>

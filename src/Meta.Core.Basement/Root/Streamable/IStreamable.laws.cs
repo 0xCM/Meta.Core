@@ -6,12 +6,13 @@
 namespace Meta.Core
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
 
     public interface IStreamable
     {
-
+        IEnumerable Stream();    
     }
 
     public interface IStreamable<X> : IStreamable
@@ -20,7 +21,7 @@ namespace Meta.Core
         /// Presents the underlying data as a stream
         /// </summary>
         /// <returns></returns>
-        IEnumerable<X> Stream();
+        new IEnumerable<X> Stream();
 
         /// <summary>
         /// Characterizes the cardinality of the stream

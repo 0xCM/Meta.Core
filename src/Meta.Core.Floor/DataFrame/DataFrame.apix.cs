@@ -26,7 +26,7 @@ namespace Meta.Core
         /// <param name="f3">The selector for the third column</param>
         /// <returns></returns>
         public static DataFrame<X1> ToDataFrame<X, X1>(this IEnumerable<X> stream,
-            Func<X, X1> f1) => new DataFrame<X1>(seq(from item in stream select row(f1(item))));
+            Func<X, X1> f1) => new DataFrame<X1>(seq(from item in stream select record(f1(item))));
 
         /// <summary>
         /// Constructs a 2-column data frame from a stream selection

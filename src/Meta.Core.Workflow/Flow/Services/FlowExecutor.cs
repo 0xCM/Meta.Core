@@ -28,7 +28,7 @@ namespace Meta.Core
 
         public Task<Option<FlowSummary>> Execute(IFlowSpec spec, Func<bool> cancel)
         {
-            var methods = ClrType.Get(typeof(FlowExecutor)).DeclaredInstanceGenericMethods.ToList();
+            var methods = ClrType.Get(typeof(FlowExecutor)).DeclaredInstanceGenericMethods.AsArray();
             var factory = methods.SingleOrDefault(x => x.Name == nameof(Factory));
             if (factory != null)
             {

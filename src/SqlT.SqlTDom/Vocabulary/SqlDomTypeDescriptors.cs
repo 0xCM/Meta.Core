@@ -114,7 +114,7 @@ namespace SqlT.Dom
             => stream(new SqlDomTypeDescriptor(ClrType.Get<SqlDomPrimitive>(), ElementKind.Enum));
 
         public static SqlDomTypeDescriptors FromAssembly(ClrAssembly a)
-            => Create(unionize(a.NamedPublicTypes.Select(t => CreateDescriptor(t)), SyntheticDescriptors));
+            => Create(unionize(a.NamedPublicTypes.Stream().Select(t => CreateDescriptor(t)), SyntheticDescriptors));
 
 
         IReadOnlyDictionary<string, SqlDomTypeDescriptor> index;

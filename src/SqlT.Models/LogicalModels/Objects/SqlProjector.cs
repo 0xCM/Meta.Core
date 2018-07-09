@@ -1,7 +1,7 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Models
 {
@@ -11,19 +11,12 @@ namespace SqlT.Models
     using SqlT.Core;
     using SqlT.Syntax;
 
-
     /// <summary>
     /// Characterizes a projector
     /// </summary>
     [SqlElementType(SqlElementTypeNames.Projector)]
     public sealed class SqlProjector : SqlRoutine<SqlProjector>
     {
-
-        public readonly SqlObjectName SourceTableName;
-        public readonly string QueryPattern;
-        public readonly IReadOnlyList<SqlColumnProjection> Columns;
-        public readonly string QueryType;
-        public readonly string QueryPeer;
 
         public SqlProjector
         (
@@ -52,6 +45,16 @@ namespace SqlT.Models
             this.QueryPeer = QueryPeer ?? String.Empty;
         }
 
+        public SqlObjectName SourceTableName { get; }
+
+        public string QueryPattern { get; }
+
+        public IReadOnlyList<SqlColumnProjection> Columns { get; }
+
+        public string QueryType { get; }
+
+        public string QueryPeer { get; }
+
         public string QueryIdentifier 
             => $"[{ObjectName.SchemaNamePart}].[{ObjectName.UnqualifiedName}]";
 
@@ -68,9 +71,6 @@ namespace SqlT.Models
             => QueryType == SqlQueryTypes.SequentialProjector;
 
         public bool HasPeer
-            => !String.IsNullOrWhiteSpace(QueryPeer);
-
-        
+            => !String.IsNullOrWhiteSpace(QueryPeer);        
     }
-
 }

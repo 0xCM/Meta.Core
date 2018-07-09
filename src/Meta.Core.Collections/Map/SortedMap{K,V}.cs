@@ -85,6 +85,8 @@ namespace Meta.Core
         IEnumerator IEnumerable.GetEnumerator()
             => Stream().GetEnumerator();
 
+        IEnumerable IStreamable.Stream()
+            => Stream();
     }
 
 }

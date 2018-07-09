@@ -6,7 +6,7 @@
 namespace Meta.Core
 {
     using System;
-    using System.Linq;    
+    using System.Linq;
     using System.Collections.Immutable;
     using System.Collections.Generic;
 
@@ -14,6 +14,7 @@ namespace Meta.Core
     using static minicore;
 
     using Modules;
+    using System.Collections;
 
     public readonly struct Lst<X> : ILst<X>
     {        
@@ -29,6 +30,13 @@ namespace Meta.Core
         /// <param name="list">The list to convert</param>
         public static implicit operator Seq<X>(Lst<X> list)
             => list.Contained();
+
+        /// <summary>
+        /// Converts a list to a readonly list
+        /// </summary>
+        /// <param name="list">The list to convert</param>
+        public static implicit operator ReadOnlyList<X>(Lst<X> list)
+            => new ReadOnlyList<X>(list.Stream());
 
         /// <summary>
         /// Converts a sequence to a list
@@ -50,6 +58,13 @@ namespace Meta.Core
         /// <param name="mlist">The input list</param>
         public static implicit operator Lst<X>(MutableList<X> mlist)
             => new Lst<X>(mlist.ToImmutableList());
+
+        /// <summary>
+        /// Converts a readonly list to a Lst
+        /// </summary>
+        /// <param name="list">The input list</param>
+        public static implicit operator Lst<X>(ReadOnlyList<X> list)
+            => new Lst<X>(list.ToImmutableList());
 
         /// <summary>
         /// Converts a list to an array
@@ -187,5 +202,7 @@ namespace Meta.Core
         IContainer<Y> IContainer<X>.GetEmpty<Y>()
             => Lst<Y>.Empty;
 
+        IEnumerable IStreamable.Stream()
+            => Stream();
     }
 }

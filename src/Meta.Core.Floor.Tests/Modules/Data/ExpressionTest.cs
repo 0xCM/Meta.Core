@@ -27,7 +27,7 @@ namespace Meta.Core.Test
         [UT.TestMethod]
         public void Test03()
         {
-            var func0 = ClrType.Get(GetType()).DeclaredMethods.Single(m => m.Name == nameof(Func0));
+            var func0 = ClrType.Get(GetType()).DeclaredMethods.Single(m => m.Name == nameof(Func0)).Require();
             var f = func<int>(func0);
             claim.satisfies(f, g => g() == 32);
 
@@ -36,7 +36,7 @@ namespace Meta.Core.Test
         [UT.TestMethod]
         public void Test04()
         {
-            var func = ClrType.Get(GetType()).DeclaredMethods.Single(m => m.Name == nameof(Func1));
+            var func = ClrType.Get(GetType()).DeclaredMethods.Single(m => m.Name == nameof(Func1)).Require();
             var call = func<int, string>(func).Require();
             claim.equal("32", call(32));
         }
@@ -65,7 +65,7 @@ namespace Meta.Core.Test
         [UT.TestMethod]
         public void Test05()
         {
-            var typeParams = ClrType.Get(GetType()).DeclaredMethods.Single(m => m.Name.StartsWith("IAmA")).TypeParameters.ToList();
+            var typeParams = ClrType.Get(GetType()).DeclaredMethods.Single(m => m.Name.StartsWith("IAmA")).Require().TypeParameters.ToList();
             claim.count(2, typeParams);
         }
 

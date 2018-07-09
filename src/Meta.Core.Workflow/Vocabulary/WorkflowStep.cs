@@ -18,7 +18,7 @@ namespace Meta.Core.Workflow
         static IEnumerable<IWorkflowStep<R>> DefineNestedSteps<R>(IWorkflowNode Parent,
             Func<IApplicationMessage> beforeExec, WorkflowTransformer<R> afterSuccess,
             WorkflowTransformer<R> afterError = null)
-                => from m in Parent.GetType().ClrType().Require().DeclaredPublicInstanceMethods
+                => from m in Parent.GetType().ClrType().Require().DeclaredPublicInstanceMethods.Stream()
                    where m.ReturnsType<IEnumerable<WorkFlowed<R>>>()
                    let workers = m.Func<IEnumerable<WorkFlowed<R>>>(Parent)
                    from worker in workers()
@@ -29,7 +29,7 @@ namespace Meta.Core.Workflow
         public static IEnumerable<IWorkflowStep<R>> DefineSteps<R>(IWorkflowNode Parent,           
             Func<IApplicationMessage> beforeExec, WorkflowTransformer<R> afterSuccess,
             WorkflowTransformer<R> afterError = null) 
-                => (from m in Parent.GetType().ClrType().Require().DeclaredPublicInstanceMethods
+                => (from m in Parent.GetType().ClrType().Require().DeclaredPublicInstanceMethods.Stream()
                     where m.ReturnsType<WorkFlowed<R>>()
                     let worker =  m.Func<WorkFlowed<R>>(Parent)                   
                     let facets = WorkflowFacetAtribute.AppliedFacets(m)

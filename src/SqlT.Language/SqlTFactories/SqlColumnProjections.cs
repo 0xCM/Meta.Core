@@ -1,27 +1,27 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Language
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
+
+    using Meta.Core;
     using SqlT.Core;
     using SqlT.Models;
-    using SqlT.Syntax;
-    using SqlT.Language;
+
     using static metacore;
+
     using TSql = Microsoft.SqlServer.TransactSql.ScriptDom;
     using sx = Syntax.SqlSyntax;
-    using sxc = Syntax.contracts;
-
 
     public static partial class SqlTFactory
     {
         public static SqlProjector ModelProjector(this TSql.CreateFunctionStatement tsql, string QueryType,
-            SqlElementDescription Documentation, string QueryPeer, IEnumerable<SqlPropertyAttachment> Properties)
+            SqlElementDescription Documentation, string QueryPeer, Seq<SqlPropertyAttachment> Properties)
         {
             var body = (TSql.FunctionStatementBody)tsql;
             var returnType = (TSql.SelectFunctionReturnType)body.ReturnType;
@@ -41,7 +41,7 @@ namespace SqlT.Language
                     Documentation: Documentation,
                     QueryType: QueryType,
                     QueryPeer: QueryPeer,
-                    Properties: Properties
+                    Properties: Properties.Stream()
                 );
         }
 

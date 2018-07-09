@@ -34,6 +34,6 @@ public sealed class ClrTypeLineage : TypedItemList<ClrTypeLineage, ClrType>
 
     public IEnumerable<ClrProperty> PublicProperties(ClrTypeLineage lineage)
        => from type in lineage
-          from member in type.DeclaredPublicInstanceProperties
+          from member in type.DeclaredPublicInstanceProperties.Stream()
           select member;
 }

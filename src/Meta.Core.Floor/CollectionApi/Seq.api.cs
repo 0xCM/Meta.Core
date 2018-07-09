@@ -10,7 +10,7 @@ using System.Linq;
 using Meta.Core;
 using Meta.Core.Modules;
 
-using G = System.Collections.Generic;
+using System.Collections.Generic;
 
 partial class metacore
 {
@@ -29,7 +29,7 @@ partial class metacore
     /// <typeparam name="X">The item type</typeparam>
     /// <param name="values">The values from which to construct the sequence</param>
     /// <returns></returns>
-    public static Seq<X> seq<X>(G.IEnumerable<X> values)
+    public static Seq<X> seq<X>(IEnumerable<X> values)
         => Seq.make(values);
 
     /// <summary>
@@ -49,7 +49,7 @@ partial class metacore
     /// <typeparam name="X">The item type</typeparam>
     /// <param name="values">The values from which to construct the sequence</param>
     /// <returns></returns>
-    public static Seq<(int i, X value)> seqi<X>(G.IEnumerable<X> values)
+    public static Seq<(int i, X value)> seqi<X>(IEnumerable<X> values)
         => mapi(Seq.make(values), (i, v) => (i, v));
 
     /// <summary>
@@ -121,7 +121,7 @@ partial class metacore
     /// <param name="min">The first value of the sequence</param>
     /// <param name="max">The last value of the sequence</param>
     /// <returns></returns>
-    static G.IEnumerable<T> _range<T>(T min, T max)
+    static IEnumerable<T> _range<T>(T min, T max)
     {
         var currrent = min;
         while (operators.lteq(currrent, max))
@@ -174,8 +174,7 @@ partial class metacore
     /// <param name="ss">The input sequence</param>
     /// <returns></returns>
     public static Seq<X> flatten<X>(Seq<Seq<X>> ss)
-        => Seq.flatten(ss);
-
+        => Seq.flatten(ss);    
 
     /// <summary>
     /// Zips the first stream with the second via a supplied mapping function

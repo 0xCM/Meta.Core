@@ -17,12 +17,12 @@ using static metacore;
 /// </summary>
 public class ScriptCommand
 {
-    public static Option<ScriptCommandInvocation> MatchInvocation(IEnumerable<ScriptCommand> commands, string expression)
+    public static Option<ScriptCommandInvocation> MatchInvocation(Seq<ScriptCommand> commands, string expression)
         => from command in Match(commands, expression)
            from invocation in PrepareInvocation(command)
            select invocation;
 
-    public static Option<(ScriptCommand, string[])> Match(IEnumerable<ScriptCommand> commands, string expression)
+    public static Option<(ScriptCommand, string[])> Match(Seq<ScriptCommand> commands, string expression)
     {
         var regex = new Regex(@"(?<FunctionName>[a-zA-Z]{1}[a-zA-Z0-9_]*)\((?<ArgList>(.)*)\)");
         var m = regex.Match(expression);
@@ -111,8 +111,8 @@ public class ScriptCommand
         return new ScriptCommandInvocation(command, argConversions.ToReadOnlyList());
     }
 
-    public static IEnumerable<ScriptCommand> Discover(params object[] hosts)
-        => from host in hosts
+    public static Seq<ScriptCommand> Discover(params object[] hosts)
+        => from host in seq(hosts)
            from m in ClrClass.Get(host.GetType()).PublicInstanceMethods.Where(m => !m.IsGenericMethodDefinition)
            let mAttrib = m.GetCustomAttribute<ScriptCommandMethodAttribute>()
            select new ScriptCommand
@@ -132,8 +132,8 @@ public class ScriptCommand
                            )
            );
 
-    public static IEnumerable<ScriptCommand> Discover(params Type[] hosts)
-        => from host in hosts
+    public static Seq<ScriptCommand> Discover(params Type[] hosts)
+        => from host in seq(hosts)
            from m in ClrClass.Get(host).PublicInstanceMethods.Where(m => !m.IsGenericMethodDefinition)
            let mAttrib = m.GetCustomAttribute<ScriptCommandMethodAttribute>()
            select new ScriptCommand

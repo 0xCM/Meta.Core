@@ -64,12 +64,12 @@ namespace SqlT.Dom
         {
             var sourceTypes = MetaServices.DescribeDomTypes();
 
-            var allInterfaces = rolist(SqlTAssembly.PublicInterfaces);
-            var allStructs = rolist(SqlTAssembly.PublicStructs);
-            var enums = rolist(SqlTAssembly.PublicEnums);
-            var allClasses = rolist(SqlTAssembly.PublicClasses.Where(t => t.Namespace == SqlTDomNamespace));
-            var literals = DeriveLineage<TSql.Literal>(allClasses);
-            var statements = DeriveLineage<TSql.TSqlStatement>(allClasses);
+            var allInterfaces = SqlTAssembly.PublicInterfaces;
+            var allStructs = SqlTAssembly.PublicStructs;
+            var enums = SqlTAssembly.PublicEnums;
+            var allClasses = SqlTAssembly.PublicClasses.Where(t => t.Namespace == SqlTDomNamespace).AsList();
+            var literals = DeriveLineage<TSql.Literal>(allClasses.Stream());
+            var statements = DeriveLineage<TSql.TSqlStatement>(allClasses.Stream());
             return new SqlTDomInfo(sourceTypes, allClasses, statements, literals, enums);
         }
 

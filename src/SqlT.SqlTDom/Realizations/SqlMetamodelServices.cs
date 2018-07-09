@@ -13,6 +13,7 @@ namespace SqlT.Dom
     using SqlT.Services;
     using SqlT.Types.SqlDom;
 
+    using Meta.Core;
     using static metacore;
     using TSql = Microsoft.SqlServer.TransactSql.ScriptDom;
 
@@ -33,18 +34,18 @@ namespace SqlT.Dom
             => SqlDomTypeDescriptors.FromAssembly(TSqlDomAssembly); 
 
 
-        static IEnumerable<ClrType> SqlTModelElementTypes
+        static Seq<ClrType> SqlTModelElementTypes
             => from t in SqlTDomServices.ClrAssembly.NamedPublicTypes
                where t.ReflectedElement.Realizes<ISqlTDomElement>()
                 && not(t.IsInterfaceType)
                select t;
 
-        static IEnumerable<ClrType> SqlTModelEnumTypes
+        static Seq<ClrType> SqlTModelEnumTypes
             => from t in SqlTDomServices.ClrAssembly.NamedPublicTypes               
                where t.IsEnumType && t.IsDeclaredIn("SqlT.SqlTDom")
                select t;
 
-        static IReadOnlyDictionary<string, ClrType> IndexSqlTModelElements()
+        static Map<string, ClrType> IndexSqlTModelElements()
         {
 
             var assembly = SqlTDomServices.ClrAssembly;
@@ -53,20 +54,20 @@ namespace SqlT.Dom
                                     where t.ReflectedElement.Realizes<ISqlTDomElement>()
                                      && not(t.IsInterfaceType)
                                     select t;
-            return (map(sqltModelElements, e => (e.Name, e))).ToReadOnlyDictionary();
+            return (map(sqltModelElements, e => (e.Name, e))).AsMap();
 
         }
 
-        static IReadOnlyDictionary<string, ClrType> IndexTSqlElements()
+        static Map<string, ClrType> IndexTSqlElements()
         {
             var tsqlTypes = TSqlDomAssembly.NamedPublicTypes;
-            var tsqlElements = (map(tsqlTypes, t => (t.Name, t))).ToReadOnlyDictionary();
-            return tsqlElements;
+            return (map(tsqlTypes, t => (t.Name, t))).AsMap();
+            
         }
 
         static SqlDomTypeCorrelations CorrelateModel()
         {
-            var tsqlElements = IndexTSqlElements();
+            var tsqlElements = IndexTSqlElements().AsReadOnlyDictionary();
             var correlations = from sqlT in SqlTModelIndex.Where(t => not(t.Value.IsEnumType))
                                from tSql in tsqlElements
                                where sqlT.Key == tSql.Key
@@ -77,7 +78,7 @@ namespace SqlT.Dom
 
         static SqlMetamodelServices()
         {
-            SqlTModelIndex = unionize(SqlTModelEnumTypes, SqlTModelElementTypes).ToDictionary(x => x.Name);
+            SqlTModelIndex = Seq.union(SqlTModelEnumTypes, SqlTModelElementTypes).ToDictionary(x => x.Name);
             TypeDescriptors = CreateTypeDescriptors();
             Correlations = CorrelateModel();
 

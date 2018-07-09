@@ -6,7 +6,6 @@
 namespace SqlT.Dac
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
 
     using SqlT.Core;
@@ -14,21 +13,29 @@ namespace SqlT.Dac
     using Meta.Core;
     using SqlT.Models;
 
+    /// <summary>
+    /// Defines a file-based sql package repository
+    /// </summary>
     public class SqlDacRepository : ApplicationComponent, ISqlDacRepository
     {
-        IReadOnlyList<SqlPackageDescription> descriptions { get; }
-
-        public SqlDacRepository(IApplicationContext C, NodeFolderPath Location, IEnumerable<SqlPackageDescription> descriptions)
+        public SqlDacRepository(IApplicationContext C, NodeFolderPath Location, 
+            Seq<SqlPackageDescription> Packages)
             : base(C)
         {
             this.Location = Location;
-            this.descriptions = descriptions.ToList();            
+            this.Packages = Packages;
         }
 
+        /// <summary>
+        /// The repository root folder
+        /// </summary>
         public NodeFolderPath Location { get; }
+        
 
-        public IEnumerable<SqlPackageDescription> Packages
-            => descriptions;
+        /// <summary>
+        /// The packages contained by the respository
+        /// </summary>
+        public Seq<SqlPackageDescription> Packages { get; }
     }
 
 }

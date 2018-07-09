@@ -42,6 +42,8 @@ namespace Meta.Core
         public ContainerFactory<X> GetFactory()
             => input => new Container<X>(Streamable.make(() =>input, Cardinality.Unknown));
 
+        IEnumerable IStreamable.Stream()
+            => Stream();
     }
 
     public readonly struct Container<X, CX> : IContainer<X, CX>
@@ -77,5 +79,8 @@ namespace Meta.Core
 
         IContainer<Y> IContainer<X>.GetEmpty<Y>()
              => Container<Y>.Empty;
+        IEnumerable IStreamable.Stream()
+            => Stream();
+
     }
 }

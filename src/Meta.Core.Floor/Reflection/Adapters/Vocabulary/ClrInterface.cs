@@ -8,6 +8,7 @@ using System.Linq;
 
 using static minicore;
 
+using Meta.Core;
 /// <summary>
 /// Defines a convenience adapter for <see cref="Type"/> values that describe interfaces
 /// </summary>
@@ -42,7 +43,7 @@ public sealed class ClrInterface : ClrType
     /// Gets the methods declared by the interface
     /// </summary>
     public ClrInterfaceOperations DeclaredOperations
-        => DeclaredInstanceMethods.Select(m => new ClrInterfaceOperation(m)).ToReadOnlyList();
+        => DeclaredInstanceMethods.Select(m => new ClrInterfaceOperation(m));
 }
 
 public sealed class ClrInterfaces : TypedItemList<ClrInterfaces, ClrInterface>

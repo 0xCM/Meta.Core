@@ -92,32 +92,32 @@ namespace Meta.Core
             => !IsNonEmpty;
 
         /// <summary>
-        /// The value of the first cell in the row
+        /// The value of the first attribute
         /// </summary>
         public X1 x1 { get; }
 
         /// <summary>
-        /// The value of the second cell in the row
+        /// The value of the second attribute
         /// </summary>
         public X2 x2 { get; }
 
         /// <summary>
-        /// The value of the third cell in the row
+        /// The value of the third attribute
         /// </summary>
         public X3 x3 { get; }
 
         /// <summary>
-        /// The value of the fourth cell in the row
+        /// The value of the fourth attribute
         /// </summary>
         public X4 x4 { get; }
 
         /// <summary>
-        /// The value of the fifth cell in the row
+        /// The value of the fifth attribute
         /// </summary>
         public X5 x5 { get; }
 
         /// <summary>
-        /// The value of the sixth cell in the row
+        /// The value of the sixth attribute
         /// </summary>
         public X6 x6 { get; }
 

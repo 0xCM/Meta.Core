@@ -54,6 +54,13 @@ namespace Meta.Core
             => s.Stream().ToArray();
 
         /// <summary>
+        /// Implicitly constructs a an readonly list from a sequence
+        /// </summary>
+        /// <param name="Items"></param>
+        public static implicit operator ReadOnlyList<X> (Seq<X> s)
+            => new ReadOnlyList<X>(s.Stream());
+
+        /// <summary>
         /// Evaluates sequence equality
         /// </summary>
         /// <param name="s1">The first sequence</param>
@@ -165,6 +172,9 @@ namespace Meta.Core
 
         public override string ToString()
             => SeqFormatter<X>.instance.Format(this);
+
+        IEnumerable IStreamable.Stream()
+            => Stream();
     }
 
 }

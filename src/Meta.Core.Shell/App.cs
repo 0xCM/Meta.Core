@@ -34,7 +34,7 @@ namespace Meta.Core
             Status(packet.Payload);
         }
 
-        protected override IEnumerable<IShellSession> SupportedSessions
-            => stream(new AppCommands(C));
+        protected override Seq<IShellSession> SupportedSessions
+            => seq(new AppCommands(C) as IShellSession);
     }
 }

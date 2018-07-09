@@ -71,9 +71,6 @@ namespace SqlT.Core
             using (var reader = SqlColumnReader.Create<T>(broker.ConnectionString, sql, position))
             {
                 foreach (var value in reader)
-                    if (value == null && eatnull)
-                        continue;
-                    else
                         yield return value.x1;
             }
         }

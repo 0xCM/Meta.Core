@@ -285,6 +285,16 @@ public struct Option<T> : IOption<T>, IEquatable<Option<T>>
         => Exists  ? f(value)  : fallback();
 
     /// <summary>
+    /// Applies supplied function to value if present, otherwise invokes fallback <paramref name="fallback"/>
+    /// </summary>
+    /// <typeparam name="S">The output type</typeparam>
+    /// <param name="f">The function to apply when value exists</param>
+    /// <param name="fallback">The function to invoke when no value exists</param>
+    /// <returns></returns>
+    public S Map<S>(Func<T, S> f, Func<IApplicationMessage,S> fallback)
+        => Exists ? f(value) : fallback(Message);
+
+    /// <summary>
     /// Applies a function to value if present, otherwise returns None
     /// </summary>
     /// <typeparam name="S">The output type</typeparam>

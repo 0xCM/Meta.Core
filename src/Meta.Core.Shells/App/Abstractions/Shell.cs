@@ -24,8 +24,8 @@ namespace Meta.Core
 
         }
 
-        protected override IEnumerable<IShellSession> SupportedSessions
-            => stream(Session);
+        protected override Seq<IShellSession> SupportedSessions
+            => seq(Session as IShellSession);
 
 
     }

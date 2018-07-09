@@ -8,9 +8,9 @@ namespace Meta.Core.Test
     using System;
     using System.Linq;
     
-    using static etude;
+    using static metacore;
     using static operators;
-    using static adt;
+    using static Union;
 
     using UT = Microsoft.VisualStudio.TestTools.UnitTesting;
 

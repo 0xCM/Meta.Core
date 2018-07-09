@@ -102,6 +102,9 @@ public sealed class ClrAssembly : ClrElement<Assembly, ClrAssembly>
     public ComponentIdentifier Identifier
         => Name;
 
+    Seq<ClrType> TypeSeq
+        => seq(ReflectedElement.GetTypes().Select(ClrType.Get));
+
     /// <summary>
     /// Specifies the types defined in the assembly
     /// </summary>
@@ -112,23 +115,23 @@ public sealed class ClrAssembly : ClrElement<Assembly, ClrAssembly>
     /// <summary>
     /// Specifies the classes defined in the assembly
     /// </summary>
-    public IEnumerable<ClrClass> Classes
-        => from t in Types
+    public Seq<ClrClass> Classes
+        => from t in TypeSeq
            where t.IsClassType
            select ClrClass.Get(t);
 
     /// <summary>
     /// Specifies the nested types defined in the assembly
     /// </summary>
-    public IEnumerable<ClrType> InnerTypes
-        => from t in Types
+    public Seq<ClrType> InnerTypes
+        => from t in TypeSeq
            where t.IsNested
            select t;
 
     /// <summary>
     /// Specifies the nested classes defined in the assembly
     /// </summary>
-    public IEnumerable<ClrType> InnerClasses
+    public Seq<ClrClass> InnerClasses
         => from t in InnerTypes
            where t.IsClassType
            select ClrClass.Get(t);
@@ -136,15 +139,15 @@ public sealed class ClrAssembly : ClrElement<Assembly, ClrAssembly>
     /// <summary>
     /// Specifies the non-nested types defined in the assembly
     /// </summary>
-    public IEnumerable<ClrType> OuterTypes
-        => from t in Types
+    public Seq<ClrType> OuterTypes
+        => from t in TypeSeq
            where not(t.IsNested)
            select t;
 
     /// <summary>
     /// Specifies the non-nested classes defined in the assembly
     /// </summary>
-    public IEnumerable<ClrClass> OuterClasses
+    public Seq<ClrClass> OuterClasses
         => from t in OuterTypes
            where t.IsClassType
            select ClrClass.Get(t);
@@ -152,8 +155,8 @@ public sealed class ClrAssembly : ClrElement<Assembly, ClrAssembly>
     /// <summary>
     /// Specifies the generic types defiined in the assembly
     /// </summary>
-    public IEnumerable<ClrType> GenericTypes
-       => from t in Types
+    public Seq<ClrType> GenericTypes
+       => from t in TypeSeq
           where t.IsGenericType
           select t;
 
@@ -168,22 +171,22 @@ public sealed class ClrAssembly : ClrElement<Assembly, ClrAssembly>
     /// <summary>
     /// Specifies the closed generic types defined in the assembly
     /// </summary>
-    public IEnumerable<ClrType> ClosedGenericTypes
-       => from t in Types
+    public Seq<ClrType> ClosedGenericTypes
+       => from t in TypeSeq
           where t.IsClosedGenericType
           select t;
 
     /// <summary>
     /// Specifies the named types defined in the assembly
     /// </summary>
-    public IEnumerable<ClrType> NamedTypes
-        => from t in ReflectedElement.GetNamedTypes()
-           select ClrType.Get(t);
+    public Seq<ClrType> NamedTypes
+        => seq(ReflectedElement.GetNamedTypes().Select(ClrType.Get));
+           
 
     /// <summary>
     /// Specifies the named public types defined in the assembly
     /// </summary>
-    public IEnumerable<ClrType> NamedPublicTypes
+    public Seq<ClrType> NamedPublicTypes
         => from t in NamedTypes
            where t.IsPublic
            select t;
@@ -191,7 +194,7 @@ public sealed class ClrAssembly : ClrElement<Assembly, ClrAssembly>
     /// <summary>
     /// Specifies the named public static types defined in the assembly
     /// </summary>
-    public IEnumerable<ClrType> NamedPublicStaticTypes
+    public Seq<ClrType> NamedPublicStaticTypes
         => from t in NamedTypes
            where t.IsPublic && t.IsStaticType
            select t;
@@ -207,7 +210,7 @@ public sealed class ClrAssembly : ClrElement<Assembly, ClrAssembly>
     /// <summary>
     /// Specifies the public enum types defined in the assembly
     /// </summary>
-    public IEnumerable<ClrEnum> PublicEnums
+    public Seq<ClrEnum> PublicEnums
         => from t in NamedPublicTypes
            where t.IsEnumType
            select ClrEnum.Get(t);
@@ -215,7 +218,7 @@ public sealed class ClrAssembly : ClrElement<Assembly, ClrAssembly>
     /// <summary>
     /// Specifies the public interfaces defined in the assembly
     /// </summary>
-    public IEnumerable<ClrInterface> PublicInterfaces
+    public Seq<ClrInterface> PublicInterfaces
         => from t in NamedPublicTypes
            where t.IsInterfaceType
            select ClrInterface.Get(t);
@@ -223,7 +226,7 @@ public sealed class ClrAssembly : ClrElement<Assembly, ClrAssembly>
     /// <summary>
     /// Specifies the sealed classes defined int in assembly
     /// </summary>
-    public IEnumerable<ClrClass> SealedClasses
+    public Seq<ClrClass> SealedClasses
         => from c in Classes
            where c.IsSealed
            select c;
@@ -231,7 +234,7 @@ public sealed class ClrAssembly : ClrElement<Assembly, ClrAssembly>
     /// <summary>
     /// Specifies the non-nested sealed classed defined in the assembly
     /// </summary>
-    public IEnumerable<ClrClass> SealedOuterClasses
+    public Seq<ClrClass> SealedOuterClasses
         => from c in OuterClasses
            where c.IsSealed
            select c;
@@ -239,7 +242,7 @@ public sealed class ClrAssembly : ClrElement<Assembly, ClrAssembly>
     /// <summary>
     /// Specifies the non-nested static classes defined in the assembly
     /// </summary>
-    public IEnumerable<ClrClass> StaticOuterClasses
+    public Seq<ClrClass> StaticOuterClasses
         => from c in OuterClasses
            where c.IsStaticType
            select c;
@@ -247,7 +250,7 @@ public sealed class ClrAssembly : ClrElement<Assembly, ClrAssembly>
     /// <summary>
     /// Specifies the non-nested public static classes defined in the assembly
     /// </summary>
-    public IEnumerable<ClrClass> PublicStaticOuterClasses
+    public Seq<ClrClass> PublicStaticOuterClasses
         => from c in OuterClasses
            where c.IsStaticType && c.IsPublic
            select c;
@@ -255,7 +258,7 @@ public sealed class ClrAssembly : ClrElement<Assembly, ClrAssembly>
     /// <summary>
     /// Specifies the public, non-nested and sealed classes defined in the assembly
     /// </summary>
-    public IEnumerable<ClrClass> PublicSealedOuterClasses
+    public Seq<ClrClass> PublicSealedOuterClasses
         => from c in OuterClasses
            where c.IsSealed && c.IsPublic
            select c;
@@ -263,7 +266,7 @@ public sealed class ClrAssembly : ClrElement<Assembly, ClrAssembly>
     /// <summary>
     /// Specifies the named public classes defined by the assembly
     /// </summary>
-    public IEnumerable<ClrClass> PublicClasses
+    public Seq<ClrClass> PublicClasses
         => from t in NamedPublicTypes
            where t.IsClassType
            select ClrClass.Get(t);
@@ -271,7 +274,7 @@ public sealed class ClrAssembly : ClrElement<Assembly, ClrAssembly>
     /// <summary>
     /// Specifies the named public structs defined in the assembly
     /// </summary>
-    public IEnumerable<ClrStruct> PublicStructs
+    public Seq<ClrStruct> PublicStructs
         => from t in NamedPublicTypes
            where t.IsStructType
            select ClrStruct.Get(t);
@@ -279,7 +282,7 @@ public sealed class ClrAssembly : ClrElement<Assembly, ClrAssembly>
     /// <summary>
     /// Specifies the public extension methods defined in the assembly
     /// </summary>
-    public IEnumerable<ClrMethod> PublicExtensionMethods
+    public Seq<ClrMethod> PublicExtensionMethods
         => from c in PublicStaticOuterClasses
            where not(c.IsGenericType)
            from m in c.DeclaredPublicStaticMethods

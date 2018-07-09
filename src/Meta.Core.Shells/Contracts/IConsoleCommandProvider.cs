@@ -4,9 +4,10 @@
 // as you like. But please, for the love of Zeus, don't clutter it with regions.
 //-------------------------------------------------------------------------------------------
 using System;
-using System.Collections.Generic;
+
+using Meta.Core;
 
 public interface IShellCommandProvider
 {
-    IEnumerable<IConsoleCommand> GetCommands();
+    Seq<IConsoleCommand> GetCommands();
 }

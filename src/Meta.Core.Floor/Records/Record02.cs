@@ -36,7 +36,6 @@ namespace Meta.Core
         public static implicit operator (X1 x1, X2 x2) (Record<X1, X2> record)
             => record.AsTuple();
 
-
         public Record((X1 x1, X2 x2) x)
         {
             this.IsNonEmpty = true;

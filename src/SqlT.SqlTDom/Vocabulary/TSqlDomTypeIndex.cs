@@ -23,8 +23,7 @@ namespace SqlT.Language
     {
         static IReadOnlyDictionary<string, ReadOnlyList<ClrProperty>> TSqlTypes
             = map(ClrAssembly.Get(typeof(TSql.TSqlParser).Assembly).NamedPublicTypes,
-                    t => (t.Name,
-                    t.PublicInstanceProperties.ToReadOnlyList())).ToReadOnlyDictionary();
+                    t => (t.Name, t.PublicInstanceProperties.ToReadOnlyList())).Stream().ToReadOnlyDictionary();
 
         public static IReadOnlyList<ClrProperty> DomProperties(Type DomType)
             => TSqlTypes.TryFind(DomType.Name).ValueOrDefault(rolist<ClrProperty>());

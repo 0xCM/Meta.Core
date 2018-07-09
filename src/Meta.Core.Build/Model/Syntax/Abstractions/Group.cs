@@ -29,18 +29,18 @@ namespace Meta.Core.Build
     {
 
 
-        protected Group(string ElementName, IEnumerable<M> Members, string Label, string Condition)
+        protected Group(string ElementName, Seq<M> Members, string Label, string Condition)
             : base(ElementName, Label, Condition)
         {
-            this.Members = Members ?? stream<M>();
+            this.Members = Members;
         }
 
-        public virtual IEnumerable<M> Members { get; }
+        public virtual Seq<M> Members { get; }
 
         protected abstract string FormatMember(M member);            
 
         protected override string FormatContent()
-            => string.Join(eol(), Members.Select(FormatMember).ToArray());
+            => string.Join(eol(), Members.Select(FormatMember).AsArray());
 
 
     }

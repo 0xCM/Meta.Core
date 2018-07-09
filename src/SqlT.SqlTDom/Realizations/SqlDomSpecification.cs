@@ -54,7 +54,7 @@ namespace SqlT.Dom
 
         public static IEnumerable<PropertySpec> SpecifyProperties(this ClrClass type, bool declaredOnly)
         {
-            var props = from p in (declaredOnly ? type.DeclaredPublicInstanceProperties : type.PublicInstanceProperties)
+            var props = from p in (declaredOnly ? type.DeclaredPublicInstanceProperties.Stream() : type.PublicInstanceProperties)
                         where not(p.IsOverride)
                         select SpecifyProperty(p);
             return props;

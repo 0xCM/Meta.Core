@@ -76,7 +76,7 @@ namespace Meta.Core
                 => new DataFrame<X1, X2, X3>(rows, schema);
 
         /// <summary>
-        /// Constructs a r-column data frame from a sequence of rows
+        /// Constructs a 4-column data frame from a stream of 4-attribute records
         /// </summary>
         /// <typeparam name="X1">The data type of the first column</typeparam>
         /// <typeparam name="X2">The data type of the second column</typeparam>
@@ -105,7 +105,7 @@ namespace Meta.Core
                     => new DataFrame<X1, X2, X3, X4, X5>(DataRows, Schema);
 
         /// <summary>
-        /// Constructs a data frame from a stream of six-column rows
+        /// Constructs a data frame from a stream of six-attribute records
         /// </summary>
         /// <typeparam name="X1">The data type of the first column</typeparam>
         /// <typeparam name="X2">The data type of the second column</typeparam>
@@ -119,5 +119,22 @@ namespace Meta.Core
         public static DataFrame<X1, X2, X3, X4, X5, X6> make<X1, X2, X3, X4, X5, X6>(Seq<Record<X1, X2, X3, X4, X5, X6>> rows,
                 DataFrameSchema? schema = null)
                     => new DataFrame<X1, X2, X3, X4, X5, X6>(rows, schema);
+        /// <summary>
+        /// Constructs a data frame from a stream of 7-attribute records
+        /// </summary>
+        /// <typeparam name="X1">The data type of the first column</typeparam>
+        /// <typeparam name="X2">The data type of the second column</typeparam>
+        /// <typeparam name="X3">The data type of the third column</typeparam>
+        /// <typeparam name="X4">The data type of the fourth column</typeparam>
+        /// <typeparam name="X5">The data type of the fifth column</typeparam>
+        /// <typeparam name="X6">The data type of the sixth column</typeparam>
+        /// <typeparam name="X7">The data type of the sixth column</typeparam>
+        /// <param name="schema">The associated schema</param>
+        /// <param name="rows">The data stream</param>
+        /// <returns></returns>
+        public static DataFrame<X1, X2, X3, X4, X5, X6, X7> make<X1, X2, X3, X4, X5, X6, X7>(Seq<Record<X1, X2, X3, X4, X5, X6,X7>> rows,
+                DataFrameSchema? schema = null)
+                    => new DataFrame<X1, X2, X3, X4, X5, X6, X7>(rows, schema);
+
     }
 }

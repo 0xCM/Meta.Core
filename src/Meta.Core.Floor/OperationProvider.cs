@@ -48,7 +48,7 @@ namespace Meta.Core
 
                 var candidates = (from m in ClrClass.Get(GetType()).PublicInstanceMethods
                                  where m.Name == opName
-                                 select m).ToList();
+                                 select m).AsList();
 
                 if (candidates.Count == 0)
                     return none<object>(MethodNotImplemented(opName));

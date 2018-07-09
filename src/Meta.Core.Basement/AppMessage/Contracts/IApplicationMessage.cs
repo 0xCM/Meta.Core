@@ -64,7 +64,7 @@ public interface IApplicationMessage : ICorrelated
     /// </summary>
     /// <param name="ts">Whether to prepend the message timestamp to the formatted output</param>
     /// <returns></returns>
-    string Format(bool ts = true);
+    string Format(bool ts = false);
 
     string Format(string prepend, string postpend = null, bool ts = true);
 

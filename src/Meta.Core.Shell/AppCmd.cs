@@ -13,18 +13,14 @@ namespace Meta.Core
     using System.ComponentModel;
     
     using Meta.Core.Commands;
-    using Meta.Core.Shell;
     using Meta.Core.Messaging;
     using Meta.Core.Workflow;
-    using Meta.Core.Build;
 
     using static metacore;
     using static ApplicationMessage;
 
     public sealed class AppCommands : LinkedSession<AppCommands>
     {
-
-
         protected override IReadOnlyList<SystemNode> AvailableNodes
             => metacore.rolist<SystemNode>();
 

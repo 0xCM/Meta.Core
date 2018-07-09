@@ -3,7 +3,7 @@
 // Author: Chris Moore, 0xCM@gmail.com
 // License: MIT
 //-------------------------------------------------------------------------------------------
-namespace Meta.Core
+namespace Meta.Core.Text
 {
     using System;
     using System.Linq;
@@ -56,6 +56,18 @@ namespace Meta.Core
         /// The position column
         /// </summary>
         public int ColumnNumber { get; }
+
+        public TextPosition AdvanceColumn(int distance)
+            => new TextPosition(LineNumber, ColumnNumber + distance);
+
+        public TextPosition NextColumn()
+            => AdvanceColumn(1);
+
+        public TextPosition AdvanceLine(int distance)
+            => new TextPosition(LineNumber + distance, ColumnNumber);
+
+        public TextPosition NextLine()
+            => AdvanceLine(1);
 
         /// <summary>
         /// True if the position has the empty value, false otherwise

@@ -86,7 +86,7 @@ namespace Meta.Core.Modules
 
         public WorkFlowed<TestResult> Test1()
         {
-            var m1 = ClrClass.Get<FunctionBuilderTests>().DeclaredInstanceMethods.Single(m => m.Name == nameof(Method1));
+            var m1 = ClrClass.Get<FunctionBuilderTests>().DeclaredInstanceMethods.Single(m => m.Name == nameof(Method1)).Require();
             var result = m1.Func<int, int>(this)(10);
 
             var f = funcx(() => 5);

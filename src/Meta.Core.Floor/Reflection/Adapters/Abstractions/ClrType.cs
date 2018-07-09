@@ -14,6 +14,9 @@ using static metacore;
 
 
 using static CommonBindingFlags;
+using static MemberInstanceType;
+
+using Meta.Core;
 
 public abstract class ClrType : ClrElement<Type, ClrType>
 {
@@ -241,8 +244,8 @@ public abstract class ClrType : ClrElement<Type, ClrType>
     /// <summary>
     /// Specifies the type's inheritance chain up to, but not including, <see cref="object"/>
     /// </summary>
-    public IEnumerable<ClrType> BaseTypes
-        => from x in ReflectedElement.BaseTypes()
+    public Seq<ClrType> BaseTypes
+        => from x in seq(ReflectedElement.BaseTypes())
            where x != null
            select Get(x);
 
@@ -250,43 +253,40 @@ public abstract class ClrType : ClrElement<Type, ClrType>
         => Get(ReflectedElement.UnderlyingSystemType);
 
     public ClrTypeLineage TypeLineage
-        => array(this, BaseTypes.ToArray());
+        => array(this, BaseTypes.AsArray());
 
     /// <summary>
     /// Specifies the static properties exposed by the adapted type
     /// </summary>
-    public IEnumerable<ClrProperty> StaticProperties
-        => from x in ReflectedElement.GetStaticProperties()
-           select ClrProperty.Get(x);
+    public Seq<ClrProperty> StaticProperties
+        => seq(ReflectedElement.GetStaticProperties()).Select(ClrProperty.Get);
+           
 
     /// <summary>
     /// Specifies the static properties declared by the adapted type
     /// </summary>
-    public IEnumerable<ClrProperty> DeclaredStaticProperties
-        => from x in ReflectedElement.GetProperties(BF_DeclaredStatic)
-           select ClrProperty.Get(x);
+    public Seq<ClrProperty> DeclaredStaticProperties
+        => seq(ReflectedElement.GetProperties(BF_DeclaredStatic)).Select(ClrProperty.Get);
 
     /// <summary>
     /// Specifies the static methods declared by the adapted type
     /// </summary>
-    public IEnumerable<ClrMethod> DeclaredStaticMethods
-        => from x in ReflectedElement.GetMethods(BF_DeclaredStatic)
-           select ClrMethod.Get(x);
-
+    public Seq<ClrMethod> DeclaredStaticMethods
+        => seq(ReflectedElement.GetMethods(BF_DeclaredStatic)).Select(ClrMethod.Get);
+           
     /// <summary>
     /// Specifies the instance methods declared by the adapted type
     /// </summary>
-    public IEnumerable<ClrMethod> DeclaredInstanceMethods
-        => from x in ReflectedElement.GetMethods(BF_DeclaredInstance)
-           select ClrMethod.Get(x);
-
+    public Seq<ClrMethod> DeclaredInstanceMethods
+        => seq(ReflectedElement.GetMethods(BF_DeclaredInstance)).Select(ClrMethod.Get);
+           
     /// <summary>
     /// Specifies all methods declared by the adapted type
     /// </summary>
-    public IEnumerable<ClrMethod> DeclaredMethods
-        => DeclaredStaticMethods.Concat(DeclaredInstanceMethods);
+    public Seq<ClrMethod> DeclaredMethods
+        => DeclaredStaticMethods + DeclaredInstanceMethods;
 
-    public IEnumerable<ClrMethod> DeclaredInstanceGenericMethods
+    public Seq<ClrMethod> DeclaredInstanceGenericMethods
         => from x in DeclaredInstanceMethods
            where x.IsGeneric
            select x;
@@ -294,7 +294,7 @@ public abstract class ClrType : ClrElement<Type, ClrType>
     /// <summary>
     /// Specifies the static generic methods declared by the type
     /// </summary>
-    public IEnumerable<ClrMethod> DeclaredStaticGenericMethods
+    public Seq<ClrMethod> DeclaredStaticGenericMethods
         => from x in DeclaredStaticMethods
            where x.IsGeneric
            select x;
@@ -316,56 +316,51 @@ public abstract class ClrType : ClrElement<Type, ClrType>
     /// <summary>
     /// Specifies the public static instance declared by the type
     /// </summary>
-    public IEnumerable<ClrMethod> DeclaredPublicInstanceMethods
-        => from x in ReflectedElement.GetDeclaredPublicMethods(MemberInstanceType.Instance)
-           select ClrMethod.Get(x);
+    public Seq<ClrMethod> DeclaredPublicInstanceMethods
+        => seq(ReflectedElement.GetDeclaredPublicMethods(Instance).Select(ClrMethod.Get));           
 
     /// <summary>
     /// Specifies the public static methods declared by the type
     /// </summary>
-    public IEnumerable<ClrMethod> DeclaredPublicStaticMethods
-        => from x in ReflectedElement.GetDeclaredPublicMethods(MemberInstanceType.Static)
-           select ClrMethod.Get(x);
+    public Seq<ClrMethod> DeclaredPublicStaticMethods
+        => seq(ReflectedElement.GetDeclaredPublicMethods(Static).Select(ClrMethod.Get));
 
     /// <summary>
     /// Specifies the public static methods declared by the type
     /// </summary>
-    public IEnumerable<ClrMethod> DeclaredNonPublicStaticMethods
-        => from x in ReflectedElement.GetDeclaredNonPublicMethods(MemberInstanceType.Static)
-           select ClrMethod.Get(x);
+    public Seq<ClrMethod> DeclaredNonPublicStaticMethods
+        => seq(ReflectedElement.GetDeclaredNonPublicMethods(Static).Select(ClrMethod.Get));           
 
     /// <summary>
     /// Specifies all static or instance methods declared by the type
     /// </summary>
-    public IEnumerable<ClrMethod> DeclaredPublicMethods
-        => stream(DeclaredPublicInstanceMethods, DeclaredPublicStaticMethods);
+    public Seq<ClrMethod> DeclaredPublicMethods
+        => DeclaredPublicInstanceMethods + DeclaredPublicStaticMethods;
 
     /// <summary>
     /// Specifies the non-public instance properties declared by the type
     /// </summary>
-    public IEnumerable<ClrProperty> DeclaredNonPublicInstanceProperties
-        => from x in ReflectedElement.GetDeclaredNonPublicProperties(MemberInstanceType.Instance)
-           select ClrProperty.Get(x);
-
+    public Seq<ClrProperty> DeclaredNonPublicInstanceProperties
+        => seq(ReflectedElement.GetDeclaredNonPublicProperties(Instance).Select(ClrProperty.Get));
+               
     /// <summary>
     /// Specifies the non-public static properties declared by the type
     /// </summary>
-    public IEnumerable<ClrProperty> DeclaredNonPublicStaticProperties
-        => from x in ReflectedElement.GetDeclaredNonPublicProperties(MemberInstanceType.Static)
-           select ClrProperty.Get(x);
+    public Seq<ClrProperty> DeclaredNonPublicStaticProperties
+        => seq(ReflectedElement.GetDeclaredNonPublicProperties(Static).Select(ClrProperty.Get));
 
     /// <summary>
     /// Specifies the public instance properties declared by the type
     /// </summary>
-    public IEnumerable<ClrProperty> DeclaredPublicInstanceProperties
-        => from x in ReflectedElement.GetDeclaredPublicProperties(MemberInstanceType.Instance)
-           select ClrProperty.Get(x);
+    public Seq<ClrProperty> DeclaredPublicInstanceProperties
+        => seq(ReflectedElement.GetDeclaredPublicProperties(Instance).Select(ClrProperty.Get));
+           
 
     /// <summary>
     /// Specifies the public static properties declared by the type
     /// </summary>
     public IEnumerable<ClrProperty> DeclaredPublicStaticProperties
-        => from x in ReflectedElement.GetDeclaredPublicProperties(MemberInstanceType.Static)
+        => from x in ReflectedElement.GetDeclaredPublicProperties(Static)
            select ClrProperty.Get(x);
 
     /// <summary>
@@ -378,38 +373,35 @@ public abstract class ClrType : ClrElement<Type, ClrType>
     /// <summary>
     /// Specifies all public instance methods exposed by the adapted type
     /// </summary>
-    public IEnumerable<ClrMethod> PublicInstanceMethods
-        => from m in ReflectedElement.GetPublicMethods(MemberInstanceType.Instance)
-           select ClrMethod.Get(m);
+    public Seq<ClrMethod> PublicInstanceMethods
+        => seq(ReflectedElement.GetPublicMethods(Instance).Select(ClrMethod.Get));
            
+
     /// <summary>
     /// Specifies the instance properties exposed by the adapted type
     /// </summary>
-    public IEnumerable<ClrProperty> InstanceProperties
-        => from p in ReflectedElement.GetProperties(BF_Instance)
-           select ClrProperty.Get(p);
-
+    public Seq<ClrProperty> InstanceProperties
+        => seq(ReflectedElement.GetProperties(BF_Instance).Select(ClrProperty.Get));
+           
     /// <summary>
     /// Specifies the public properties that have been inherited by the type
     /// </summary>
-    public IEnumerable<ClrProperty> InheritedPublicProperties
-        => from x in ReflectedElement.GetInheritedPublicProperties()
-           select ClrProperty.Get(x);
+    public Seq<ClrProperty> InheritedPublicProperties
+        => seq(ReflectedElement.GetInheritedPublicProperties().Select(ClrProperty.Get));
 
     /// <summary>
     /// Specifies the public methods that have been inherited by the type
     /// </summary>
-    public IEnumerable<ClrMethod> InheritedPublicMethods
-        => stream(ReflectedElement.GetInheritedPublicMethods(MemberInstanceType.Static),
-                ReflectedElement.GetInheritedPublicMethods(MemberInstanceType.Instance)
-            ).Select(ClrMethod.Get);
-
+    public Seq<ClrMethod> InheritedPublicMethods
+        => from m in  seq(ReflectedElement.GetInheritedPublicMethods(Static)) 
+                    + seq(ReflectedElement.GetInheritedPublicMethods(Instance))
+           select ClrMethod.Get(m);
+            
     /// <summary>
     /// Specifies all static or instance public methods declared or inherited by the type
     /// </summary>
-    public IEnumerable<ClrMethod> PublicMethods
-        => metacore.stream(DeclaredPublicMethods, InheritedPublicMethods);
-
+    public Seq<ClrMethod> PublicMethods
+        => DeclaredPublicMethods + InheritedPublicMethods;
            
     //See https://msdn.microsoft.com/en-us/library/system.type.isgenerictype(v=vs.110).aspx 
 

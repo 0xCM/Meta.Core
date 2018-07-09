@@ -112,6 +112,9 @@ namespace Meta.Core
 
         public IContainer<Y> GetEmpty<Y>()
             => cast<IContainer<Y>>(Empty);
+
+        IEnumerable IStreamable.Stream()
+            => Stream();
     }
 
 }

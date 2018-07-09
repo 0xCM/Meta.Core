@@ -139,6 +139,25 @@ namespace Meta.Core
         public static Seq<X> AsSeq<X>(this Set<X> set)
             => Seq.make(set.Stream());
 
+        /// <summary>
+        /// Converts a map to a readonly dictionary
+        /// </summary>
+        /// <typeparam name="K"></typeparam>
+        /// <typeparam name="V"></typeparam>
+        /// <param name="map"></param>
+        /// <returns></returns>
+        public static IReadOnlyDictionary<K, V> AsReadOnlyDictionary<K, V>(this Map<K, V> map)
+            => dict(map.Stream().Select(x => (x.Item1, x.Item2)));
+
+        /// <summary>
+        /// Converts a map to a readonly dictionary
+        /// </summary>
+        /// <typeparam name="K"></typeparam>
+        /// <typeparam name="V"></typeparam>
+        /// <param name="map"></param>
+        /// <returns></returns>
+        public static IReadOnlyDictionary<K, V> ToReadOnlyDictionary<K, V>(this Seq<(K key, V value)> map)
+            => dict(map.Stream().Select(x => (x.key, x.value)));
 
     }
 

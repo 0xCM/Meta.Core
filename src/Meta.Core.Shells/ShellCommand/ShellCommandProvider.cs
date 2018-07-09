@@ -9,6 +9,8 @@ using System.Linq;
 
 using Meta.Core;
 
+using static metacore;
+
 public class ShellCommandProvider : IShellCommandProvider
 {
     
@@ -39,13 +41,13 @@ public class ShellCommandProvider : IShellCommandProvider
 
     }
 
-    readonly IEnumerable<IConsoleCommand> commands;
+    readonly Seq<IConsoleCommand> commands;
 
     public ShellCommandProvider(IEnumerable<IConsoleCommand> commands)
     {
-        this.commands = commands;
+        this.commands = seq(commands);
     }
 
-    public IEnumerable<IConsoleCommand> GetCommands()
+    public Seq<IConsoleCommand> GetCommands()
         => commands;
 }

@@ -5,10 +5,10 @@
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Services
 {
-    using System;
-    using System.Collections.Generic;
+    using System;    
 
     using Meta.Models;
+    using Meta.Core;
     using SqlT.Models;
 
     /// <summary>
@@ -16,7 +16,7 @@ namespace SqlT.Services
     /// </summary>
     public interface ISqlGenerationContext
     {
-        IReadOnlyList<SqlOptionValue> Options { get; }
+        Lst<SqlOptionValue> Options { get; }
 
         ISqlScriptProvider ScriptProvider { get; }
 

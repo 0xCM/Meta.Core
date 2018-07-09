@@ -30,6 +30,14 @@ namespace Meta.Core
         public static Func<Seq<X>, Set<X>> Factory
             => items => new Set<X>(ImmutableHashSet.CreateRange(items.Stream()));
 
+
+        /// <summary>
+        /// Implicitly transforms a set into a sequence
+        /// </summary>
+        /// <param name="set">The input set</param>
+        public static implicit operator Seq<X>(Set<X> set)
+            => new Seq<X>(set.Stream());
+
         /// <summary>
         /// Evaluates sequence equality
         /// </summary>
@@ -130,5 +138,8 @@ namespace Meta.Core
 
         IContainer<Y> IContainer<X>.GetEmpty<Y>()
             => Set<Y>.Empty;
+
+        IEnumerable IStreamable.Stream()
+            => Stream();
     }
 }

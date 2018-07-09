@@ -6,6 +6,7 @@
 namespace Meta.Core
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -40,6 +41,9 @@ namespace Meta.Core
         /// <returns></returns>
         public IEnumerable<X> Stream()
             => streamer();
+
+        IEnumerable IStreamable.Stream()
+            => Stream();
     }
 
     /// <summary>
@@ -73,6 +77,9 @@ namespace Meta.Core
         /// <returns></returns>
         public IEnumerable<X> Stream()
             => Streamer();
+
+        IEnumerable IStreamable.Stream()
+            => Stream();
 
         /// <summary>
         /// Characterizes the cardinality of the stream, either 

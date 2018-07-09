@@ -335,7 +335,6 @@ namespace SqlT.Dac
             return script;
         }
 
-
         public Option<NodeFilePath> Save(SqlPackage package, NodeFilePath path, O Observer)
         {
             var modelOptions = package.GetDacOptions();
@@ -386,10 +385,9 @@ namespace SqlT.Dac
             return Save(package, DacPath, message => Notify(message));
         }
 
-        IEnumerable<SqlPackageDescription> DescribePackages(NodeFolderPath SrcFolder)
-            => from dacpath in SrcFolder.Files("*.dacpac").AsParallel()
-               select DescribePackage(SqlPackageDesignator.Create(dacpath));
-
+        Seq<SqlPackageDescription> DescribePackages(NodeFolderPath SrcFolder)
+            => Seq.make(from dacpath in SrcFolder.Files("*.dacpac").AsParallel()
+               select DescribePackage(SqlPackageDesignator.Create(dacpath)));
 
         ISqlDacRepository ISqlPackageManager.PackageRepository(NodeFolderPath SrcFolder)
             => new SqlDacRepository(C, SrcFolder,DescribePackages(SrcFolder));

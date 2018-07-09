@@ -8,6 +8,9 @@ namespace SqlT.Dac
     using System;
     using System.Collections.Generic;
     using System.Linq;
+
+    using Meta.Core;
+
     using SqlT.Core;
     using SqlT.Models;
     using SqlT.Language;
@@ -41,7 +44,7 @@ namespace SqlT.Dac
                             queryType,
                             documentation.ValueOrDefault(),
                             peer.ValueOrDefault(),
-                            properties
+                            Seq.make(properties)
                         );
                 }
             }

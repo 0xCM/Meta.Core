@@ -32,16 +32,16 @@ namespace Meta.Core.Modules
             => ClassInstances.Register(instance.GetType(), instance);
 
         static Semigroup()
-            => iter(Factories(), f => RegisterInstance(f()));            
+            => iter(Factories(), f => RegisterInstance(f()));
 
         /// <summary>
         /// Returns known semigroup instance factories
         /// </summary>
         /// <returns></returns>
         static Seq<Func<ISemigroup>> Factories()
-            => Seq.make(from m in type<Semigroup>().DeclaredStaticMethods
-                          where m.ReturnsAssignableType<ISemigroup>()
-                          select m.Func<ISemigroup>());
+            => from m in type<Semigroup>().DeclaredStaticMethods
+               where m.ReturnsAssignableType<ISemigroup>()
+               select m.Func<ISemigroup>();
 
         readonly struct DefaultSemigroup<X> : ISemigroup<X>
         {

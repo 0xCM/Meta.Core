@@ -10,6 +10,8 @@ namespace SqlT.Language
     using System.Linq;
     using System.IO;
 
+    using Meta.Core;
+
     using SqlT.Core;
     using SqlT.Models;
     using SqlT.Services;
@@ -43,7 +45,7 @@ namespace SqlT.Language
             => new SqlParserService();
 
         public static SqlProjector ParseSimpleProjector(this SqlScript sql,  string projectorType,             
-            SqlElementDescription documentation,  string peer,  IEnumerable<SqlPropertyAttachment> properties)
+            SqlElementDescription documentation,  string peer,  Seq<SqlPropertyAttachment> properties)
         {
             var script = sql.ParseAny();
             if (script.Batches.Count != 1)

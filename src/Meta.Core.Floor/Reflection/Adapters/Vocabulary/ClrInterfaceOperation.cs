@@ -7,6 +7,7 @@ using System;
 using System.Reflection;
 
 using static minicore;
+using Meta.Core;
 
 /// <summary>
 /// Models an operation declared by an interface as determined by reflected metadata
@@ -58,5 +59,8 @@ public sealed class ClrInterfaceOperations : TypedItemList<ClrInterfaceOperation
 
     public static implicit operator ClrInterfaceOperations(ReadOnlyList<ClrInterfaceOperation> items)
         => Create(items);
+
+    public static implicit operator ClrInterfaceOperations(Seq<ClrInterfaceOperation> items)
+        => Create(items.Stream());
 
 }

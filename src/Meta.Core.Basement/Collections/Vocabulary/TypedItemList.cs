@@ -33,6 +33,7 @@ public abstract class TypedItemList<B, T> : ITypedItemList<B, T>
     public static B Create(IEnumerable<T> items, string Delimiter = null)
         => new B().Initialize(items, Delimiter);
 
+
     static TypedItemList()
     {
         DeclaredItems 

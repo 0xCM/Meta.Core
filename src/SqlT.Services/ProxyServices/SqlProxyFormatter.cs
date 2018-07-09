@@ -1,15 +1,15 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Services
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.ComponentModel;
 
+    using Meta.Core;
     using SqlT.Core;
 
     using static metacore;
@@ -32,7 +32,8 @@ namespace SqlT.Services
             return value.ToString();
         }
 
-        IEnumerable<Link<P, TextLine>> ISqlProxyFormatter.FormatDelimited<P>(IEnumerable<P> proxies, DelimitedTextDescription Config)
+        IEnumerable<Link<P, TextLine>> FormatDelimited<P>(Seq<P> proxies, DelimitedTextDescription Config)
+            where P : class, ISqlTabularProxy, new()
         {
             var config = Config ?? new DelimitedTextDescription();
             var delimiter = config.Delimiter.ToString();
@@ -43,9 +44,9 @@ namespace SqlT.Services
             int lineCount = 0;
             var headerEmitted = false;
 
-            foreach(var proxy in proxies)
+            foreach (var proxy in proxies.Stream())
             {
-                if(hasHeader && !headerEmitted)
+                if (hasHeader && !headerEmitted)
                 {
                     yield return new Link<P, TextLine>(new P(),
                         new TextLine(++lineCount,
@@ -55,7 +56,7 @@ namespace SqlT.Services
 
                 var formatArray = array<string>(colcount);
                 var itemArray = proxy.GetItemArray();
-                for(var i=0; i< colcount; i++)
+                for (var i = 0; i < colcount; i++)
                     formatArray[i] = FormatColumnValue(columns[i], itemArray[i]);
 
                 yield return new Link<P, TextLine>(proxy,
@@ -63,6 +64,10 @@ namespace SqlT.Services
                             string.Join(delimiter.ToString(), formatArray)));
             }
         }
+
+        Seq<Link<P, TextLine>> ISqlProxyFormatter.FormatDelimited<P>(Seq<P> proxies, DelimitedTextDescription Config)
+            => Seq.make(FormatDelimited(proxies, Config));
+
     }
 
 }

@@ -187,5 +187,8 @@ namespace Meta.Core
 
         IContainer<Y> IContainer<X>.GetEmpty<Y>()
             => Index<Y>.Empty;
+
+        IEnumerable IStreamable.Stream()
+            => Stream();
     }
 }

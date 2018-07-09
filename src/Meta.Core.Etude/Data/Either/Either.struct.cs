@@ -6,12 +6,9 @@
 namespace Meta.Core
 {
     using System;
-    using System.Collections;
-    using System.Collections.Generic;
-
-    using Modules;
+    using System.Linq;
+    
     using static metacore;
-
 
     /// <summary>
     /// A value that realizes exactly one of two alternatives, 
@@ -36,10 +33,10 @@ namespace Meta.Core
         /// <summary>
         /// Constructs a left-valued alternative
         /// </summary>
-        /// <param name="LeftValue">The alternative value</param>
-        public Either(L LeftValue)
+        /// <param name="left">The alternative value</param>
+        public Either(L left)
         {
-            this.Left = LeftValue;
+            this.Left = left;
             this.Selected = Case.Left;
             this.Right = default;
         }
@@ -47,10 +44,10 @@ namespace Meta.Core
         /// <summary>
         /// Constructs a right-valued alternative
         /// </summary>
-        /// <param name="Right">The alternative value</param>
-        public Either(R Right)
+        /// <param name="right">The alternative value</param>
+        public Either(R right)
         {
-            this.Right = Right;
+            this.Right = right;
             this.Selected = Case.Right;
             this.Left = default;
         }
@@ -161,8 +158,5 @@ namespace Meta.Core
 
         Seq<R> RContained()
             => IsRight ? Seq.singleton(Right) : Seq.zero<R>();
-
-
-
     }
 }

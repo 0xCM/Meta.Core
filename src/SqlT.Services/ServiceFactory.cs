@@ -63,47 +63,12 @@ namespace SqlT.Services
         public static ISqlParser SqlParser(this IApplicationContext C)
             => C.Service<ISqlParser>();
 
-        public static ISqlPackageManager SqlPackageManager(this IApplicationContext C)
-            => C.Service<ISqlPackageManager>();
-
         public static ISqlMetadataProvider SqlMetadataProvider(this IApplicationContext C)
             => C.Service<ISqlMetadataProvider>();
 
         public static ISqlMetadataStore SqlMetadataStore(this IApplicationContext C)
             => C.Service<ISqlMetadataStore>();
 
-
-        public static Option<int> ExecuteBatchScripts(this ISqlContext C, IEnumerable<ISqlScript> scripts, SqlNotificationObserver Observer = null)
-        {
-            var broker = C.SqlClientBroker();
-            int count = 0;
-            var errors = new List<Option<int>>();
-            foreach (var script in scripts)
-                C.ExecuteBatchScript(script,Observer)
-                    .OnSome(n => count += n)
-                    .OnNone(e => errors.Add(none<int>(e)));
-            if (errors.Any())
-                return errors.First();
-            else
-                return count;
-        }
-
-        public static Option<int> ExecuteBatchScript(this ISqlContext C, ISqlScript sql, SqlNotificationObserver Observer = null)
-        {
-            var broker = C.SqlClientBroker();
-            var scripts = C.SqlParser().ParseBatches(sql);
-            if (!scripts)
-                return none<int>(scripts.Message);
-
-            var _scripts = ~scripts;
-            foreach (var segment in _scripts.Segments)
-            {
-                var result = broker.ExecuteNonQuery(segment.ScriptText);
-                if (!result)
-                    return result;
-            }
-            return (_scripts.Segments.Count);
-        }
 
         public static IEnumerable<SqlProxyGenerationProfile> GetEmbeddedProfiles(this ISqlProxyAssembly pa)
             => from resource in ClrAssembly.Get(pa.DefininingAssembly).TextResources(".sqlt")

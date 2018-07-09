@@ -71,6 +71,15 @@ namespace Meta.Core.Modules
         public static IEnumerable<X> unwrap<X>(Seq<X> s)
             => s.Stream();
 
+        /// <summary>
+        /// Creates a union from an array of sequences, effectively deduplicating 
+        /// the chain formed by successive concatenation
+        /// </summary>
+        /// <typeparam name="X">The item type</typeparam>
+        /// <param name="sequences">The source sequences</param>
+        /// <returns></returns>
+        public static Seq<X> union<X>(params Seq<X>[] sequences)
+            => Set.make(chain(sequences));
 
         /// <summary>
         /// Constructs a new stream by successive concatenation

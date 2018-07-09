@@ -13,7 +13,7 @@ namespace Meta.Core.Modules
     /// <remarks>
     /// API surface inspired by https://github.com/ekmett/either
     /// </remarks>
-    public sealed class Either : TypeModule<Either>, IEither
+    public class Either : TypeModule<Either>, IEither
     {
         /// <summary>
         /// Constructs a left-valued either

@@ -18,8 +18,8 @@ namespace Meta.Core.Build
             where G : SymbolicPropertyGroup<G>
         {
 
-            static IReadOnlyList<ClrProperty> Properties { get; }
-               = metacore.rolist(ClrClass.Get<G>().DeclaredPublicInstanceProperties.Where(p => p.PropertyType == typeof(SymbolicVariable)));
+            static Lst<ClrProperty> Properties { get; }
+               = ClrClass.Get<G>().DeclaredPublicInstanceProperties.Where(p => p.PropertyType == typeof(SymbolicVariable));
 
 
             Dictionary<string, SymbolicVariable> PropertyValues { get; }
@@ -31,20 +31,20 @@ namespace Meta.Core.Build
             protected void write(SymbolicVariable Value, [CallerMemberName] string PropertyName = null)
                 => PropertyValues[PropertyName] = SymbolicVariable.Define(PropertyName, Value.Components.ToArray()); 
 
-            public SymbolicPropertyGroup(IEnumerable<SymbolicVariable> Properties, string Label = null, string Condition = null)
+            public SymbolicPropertyGroup(Seq<SymbolicVariable> Properties, string Label = null, string Condition = null)
                 : base("PropertyGroup", Properties, Label, Condition)
             {
 
             }
 
             public SymbolicPropertyGroup()
-                : this(stream<SymbolicVariable>(), string.Empty, string.Empty)
+                : this(seq<SymbolicVariable>(), string.Empty, string.Empty)
             {
 
             }
 
             public SymbolicPropertyGroup(string Label, string Condition = null)
-                : this(stream<SymbolicVariable>(), Label, Condition)
+                : this(seq<SymbolicVariable>(), Label, Condition)
             {
 
             }
@@ -55,7 +55,7 @@ namespace Meta.Core.Build
                 set { write(value, Name); }
             }
 
-            public override IEnumerable<SymbolicVariable> Members
+            public override Seq<SymbolicVariable> Members
                 => from p in Properties
                    select (SymbolicVariable)p.GetValue(this);
                 

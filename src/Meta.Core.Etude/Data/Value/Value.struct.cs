@@ -111,6 +111,8 @@ namespace Meta.Core
         ContainerFactory<X> IContainer<X>.GetFactory()
            => x => new Value<X>(x.Single());
 
+        IEnumerable IStreamable.Stream()
+            => stream(Data);
     }
 
 
