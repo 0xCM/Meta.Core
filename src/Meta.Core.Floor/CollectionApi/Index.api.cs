@@ -43,7 +43,19 @@ partial class metacore
     [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Index<T> index<T>(params T[] items)
         => Index.items(items);
+                                                                           
+    /// <summary>
+    /// Maps a function over an index
+    /// </summary>
+    /// <typeparam name="X">The input item type</typeparam>
+    /// <typeparam name="Y">The outpout item type</typeparam>
+    /// <param name="index">The source index</param>
+    /// <param name="f">The function to apply</param>
+    /// <returns></returns>
+    [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Index<Y> map<X, Y>(Index<X> index, Func<X, Y> f)
+        => Index.map(index, f);
 
-
+    
 
 }

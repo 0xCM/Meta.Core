@@ -44,7 +44,7 @@ namespace SqlT.Dac
                             queryType,
                             documentation.ValueOrDefault(),
                             peer.ValueOrDefault(),
-                            Seq.make(properties)
+                            properties
                         );
                 }
             }
@@ -64,7 +64,7 @@ namespace SqlT.Dac
                         Parameters: source.Parameters.SpecifyParameters(),
                         Statements: source.ModelStatements().Require(),
                         Documentation: documentation.ValueOrDefault(),
-                        Properties: xpidx.ModelExtendedProperties(source)
+                        Properties: xpidx.ModelExtendedProperties(source).Stream()
                     );
             }
         }
@@ -79,7 +79,7 @@ namespace SqlT.Dac
                         Statements: source.ModelStatements().Require(),
                         Documentation: xpidx.FindValue<string>(source.GetFullNameText(),
                             SqlPropertyNames.Documentation).ValueOrDefault(),
-                        Properties: xpidx.ModelExtendedProperties(source.Name)
+                        Properties: xpidx.ModelExtendedProperties(source.Name).Stream()
                     ));
 
         public static IEnumerable<SqlTableFunction> ModelTableFunctions(this DacX.TSqlTypedModel dsql, SqlPropertyIndex xpidx)
@@ -103,7 +103,7 @@ namespace SqlT.Dac
                         ResultColumnNames: map(source.FormatNames(), n => new SqlColumnName(n)),
                         Statements: statememnts,
                         Documentation: documentation.ValueOrDefault(),
-                        Properties: xpidx.ModelExtendedProperties(source.Name)
+                        Properties: xpidx.ModelExtendedProperties(source.Name).Stream()
                     );
             }
         }

@@ -1,21 +1,19 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Core
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
 
     using static metacore;
 
-
     /// <summary>
     /// Identifies a column by name and/or position
     /// </summary>
-    public struct SqlColumnIdentifier : IEquatable<SqlColumnIdentifier>
+    public readonly struct SqlColumnIdentifier : IEquatable<SqlColumnIdentifier>
     {
         public static bool operator ==(SqlColumnIdentifier x, SqlColumnIdentifier y)
             => x.Equals(y);

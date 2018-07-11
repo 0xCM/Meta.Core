@@ -21,8 +21,7 @@ namespace Meta.Core.Test
         [UT.TestMethod]
         public void Test01()
         {
-            
-            
+
 
             var b1 = Bounded.make<int>();
             claim.satisfies(b1, b => b.minval == Int32.MinValue && b.maxval == Int32.MaxValue);

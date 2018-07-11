@@ -84,7 +84,8 @@ namespace SqlT.CSharp
                     Name: subject.SpecifyPropertyName(),
                     PropertyType: subject.SpecifyTypeReference(gp),
                     Documentation: subject.Documentation,
-                    Attributions: subject.SpecifyAttributions(position)
+                    Attributions: subject.SpecifyAttributions(position),
+                    AccessLevel: ClrAccessKind.Default
                 );
 
         public static PropertySpec SpecifyProperty(this vParameter subject, IClrTypeName DeclaringTypeName, CodeGenerationProfile gp)

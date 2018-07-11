@@ -39,7 +39,8 @@ namespace SqlT.CSharp
         public static SyntaxKind[] GetModifiers(this PropertySpec spec)
         {
             var modifiers = new List<SyntaxKind>();
-            modifiers.AddRange(spec.AccessLevel.ToSyntaxKinds());
+            if (spec.AccessLevel != ClrAccessKind.Default)
+                modifiers.AddRange(spec.AccessLevel.ToSyntaxKinds());
             if (spec.IsStatic)
                 modifiers.Add(SyntaxKind.StaticKeyword);
             if (spec.IsAbstract)

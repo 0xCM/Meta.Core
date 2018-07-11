@@ -69,7 +69,7 @@ namespace SqlT.Models
                     && candidate.length == srcType.length
                    )
                 {
-                    Columns.Add(column.Retype(new SqlTypeDescriptor(candidate)));
+                    Columns.Add(column.Retype(new SqlTypeReference(candidate)));
                     return;
                 }
             }

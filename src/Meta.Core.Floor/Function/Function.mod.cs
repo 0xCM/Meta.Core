@@ -80,7 +80,7 @@ namespace Meta.Core.Modules
         /// <param name="f">The function encapsulating the delegate</param>
         /// <returns></returns>
         public static Func<X1, X2, Y> value<X1, X2, Y>(Function<X1, X2, Y> f)
-            => (x1, x2) => f.Eval(x1, x2);
+            => (x1, x2) => (x1, x2) > f;
 
         /// <summary>
         /// Extracts the encapsulated delegate
@@ -92,7 +92,7 @@ namespace Meta.Core.Modules
         /// <param name="f">The function</param>
         /// <returns></returns>
         public static Func<X1, X2, X3, Y> value<X1, X2, X3, Y>(Function<X1, X2, X3, Y> f)
-            => (x1, x2, x3) => f.Eval(x1, x2, x3);
+            => (x1, x2, x3) => (x1, x2, x3) >f;
 
         /// <summary>
         /// Transforms a lifted Function back to its canonical/original system form
@@ -105,7 +105,7 @@ namespace Meta.Core.Modules
         /// <param name="f">The function</param>
         /// <returns></returns>
         public static Func<X1, X2, X3, X4, Y> value<X1, X2, X3, X4, Y>(Function<X1, X2, X3, X4, Y> f)
-            => (x1, x2, x3, x4) => f.Eval(x1, x2, x3, x4);
+            => (x1, x2, x3, x4) => (x1, x2, x3, x4) > f;
 
         /// <summary>
         /// Defines a composition h:X->Z from functions f:X-Y and g:Y-Z
@@ -117,9 +117,9 @@ namespace Meta.Core.Modules
         /// <param name="g"></param>
         /// <returns></returns>
         public static Function<X1, X3> compose<X1, X2, X3>(Function<X1, X2> f, Function<X2, X3> g)
-            => new Function<X1, X3>(x1 => g.Eval(f.Eval(x1)));
-            
-            //=> new Function<X1, X3>(x => g(f(x)));
+            => new Function<X1, X3>(x1 => x1 > f > g);
+
+        //=> new Function<X1, X3>(x => g(f(x)));
 
         /// <summary>
         /// Defines a composition g:X1->X4 via binary compositions X1->X2->X3->X4
@@ -133,7 +133,7 @@ namespace Meta.Core.Modules
         /// <param name="f3">The third function</param>
         /// <returns></returns>
         public static Function<X1, X4> compose<X1, X2, X3, X4>(Function<X1, X2> f1, Function<X2, X3> f2, Function<X3, X4> f3)
-            => new Function<X1, X4>(x => f3.Eval(f2.Eval(f1.Eval(x))));
+            => new Function<X1, X4>(x => x > f1 > f2 > f3);
 
         /// <summary>
         /// Evaluates f(x)
@@ -144,7 +144,7 @@ namespace Meta.Core.Modules
         /// <param name="x">The point of evaluation</param>
         /// <returns></returns>
         public static Y eval<X, Y>(Function<X, Y> f, X x)
-            => f.Eval(x);
+            => x > f;
 
         /// <summary>
         /// Lazily evaluate the function over a sequence
@@ -177,7 +177,7 @@ namespace Meta.Core.Modules
         /// <param name="x3">The third argument</param>
         /// <returns></returns>
         public static Y eval<X1, X2, X3, Y>(Function<X1, X2, X3, Y> f, X1 x1, X2 x2, X3 x3)
-            => f.Eval(x1, x2, x3);
+            => (x1,x2,x3) > f;
 
         /// <summary>
         /// Evaluates f(x1,x2)
@@ -190,7 +190,7 @@ namespace Meta.Core.Modules
         /// <param name="x2">The second argument</param>
         /// <returns></returns>
         public static Y eval<X1, X2, Y>(Function<X1, X2, Y> f, X1 x1, X2 x2)
-            => f.Eval(x1, x2);
+            => (x1, x2) > f;
 
         /// <summary>
         /// Evaluates f(x1,x2,x3)

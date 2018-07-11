@@ -27,7 +27,7 @@ namespace SqlT.Dac
                     (
                         TypeName: o.SpecifyTableTypeName(),
                         Columns: o.SpecifyColumns(),
-                        Properties: xpidx.ModelExtendedProperties(o)
+                        Properties: xpidx.ModelExtendedProperties(o).Stream()
                     );
             }
         }

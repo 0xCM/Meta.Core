@@ -11,6 +11,8 @@ namespace SqlT.SqlSystem
 
     using SqlT.Core;
     using SqlT.Models;
+
+    using static metacore;
     using PN = SqlT.Core.SqlPropertyNames;
 
     public static class SqlSystemX
@@ -49,6 +51,20 @@ namespace SqlT.SqlSystem
             var sql = h.DatabaseName.SQL_COMPATIBILITY_LEVEL();
             return h.ExecuteScalarScript<byte>(sql).TryMapValue(x => ((SqlVersionIndicator)x).GetVersion());
         }
+
+        public static K DatabaseType<K>(this vDatabase db)
+            where K : Enum
+           => db.Properties.TryFind(PN.DbType)
+                       .MapValueOrDefault(xp
+                               => parseEnum<K>(toString(xp.value)));
+
+
+        public static Version DatabaseVersion(this vDatabase db)
+            => db.Properties.TryFind(PN.DbVersion)
+                        .MapValueOrDefault(xp
+                                => Version.Parse(toString(xp.value)),
+                                        Version.Parse("1.0.0.0"));
+
     }
 
 }

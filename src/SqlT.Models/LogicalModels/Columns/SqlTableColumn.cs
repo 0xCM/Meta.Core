@@ -83,7 +83,7 @@ namespace SqlT.Models
         public override SqlTableColumn Rename(SqlColumnName newName)
             => new SqlTableColumn(Definition.Rename(newName));
 
-        public override SqlTableColumn Retype(SqlTypeDescriptor newType)
+        public override SqlTableColumn Retype(SqlTypeReference newType)
             => new SqlTableColumn(Definition.Retype(DataTypeReference.retype(newType)));
 
 

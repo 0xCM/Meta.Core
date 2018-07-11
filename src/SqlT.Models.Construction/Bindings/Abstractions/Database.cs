@@ -1,29 +1,27 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// MetaCore
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Bindings
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
 
+    using Meta.Core;
     using Meta.Models;
 
     using SqlT.Core;
-    using SqlT.Syntax;
     using SqlT.Models;
-    using static metacore;
 
+    using static metacore;
     using static SqlT.Syntax.SqlSyntax;
 
     using sxc = SqlT.Syntax.contracts;
 
     public abstract class Database<M> : SqlElement<M, SqlDatabaseName>
         where M : Database<M>
-    {
-       
+    {       
         protected Database(SqlDatabaseName DatabaseName = null)
             : base(DatabaseName ?? typeof(M).Name)
         {
@@ -42,26 +40,26 @@ namespace SqlT.Bindings
         public ModelOption<recovery_model> recovery_model { get; }
             = recovery_models.SIMPLE;
 
-        public virtual IEnumerable<SqlTableType> TableTypes
-            => stream<SqlTableType>();
+        public virtual Seq<SqlTableType> TableTypes
+            => seq<SqlTableType>();
 
-        public virtual IEnumerable<SqlMessageType> MessageTypes
-            => stream<SqlMessageType>();
+        public virtual Seq<SqlMessageType> MessageTypes
+            => seq<SqlMessageType>();
 
-        public virtual IEnumerable<SqlQueue> Queues
-            => stream<SqlQueue>();
+        public virtual Seq<SqlQueue> Queues
+            => seq<SqlQueue>();
 
-        public virtual IEnumerable<SqlFileGroup> DataFileGroups
-            => stream<SqlFileGroup>();
+        public virtual Seq<SqlFileGroup> DataFileGroups
+            => seq<SqlFileGroup>();
 
-        public virtual IEnumerable<SqlFileGroup> LogFileGroups
-            => stream<SqlFileGroup>();
+        public virtual Seq<SqlFileGroup> LogFileGroups
+            => seq<SqlFileGroup>();
 
-        public virtual IEnumerable<SqlSchema> Schemas
-            => stream<SqlSchema>();
+        public virtual Seq<SqlSchema> Schemas
+            => seq<SqlSchema>();
 
-        public virtual IEnumerable<SqlTable> Tables
-            => stream<SqlTable>();
+        public virtual Seq<SqlTable> Tables
+            => seq<SqlTable>();
 
         public virtual SqlVersion SqlVersion
             => SqlVersions.Latest;
@@ -69,8 +67,12 @@ namespace SqlT.Bindings
         public virtual SemanticVersion DbVersion
             => "1.0.0";
        
-        public IEnumerable<sxc.sql_object> Objects
-            => unionize<sxc.sql_object>(Tables, TableTypes, Queues);
+        public Seq<sxc.sql_object> Objects
+            => Seq.union(
+                Tables.Cast<sxc.sql_object>(),
+                TableTypes.Cast<sxc.sql_object>(), 
+                Queues.Cast<sxc.sql_object>()
+                );
 
         public dboptions DatabaseOptions
             => new dboptions(containment_type: containment_type.value,

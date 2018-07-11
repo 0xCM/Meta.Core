@@ -9,6 +9,6 @@ using static metacore;
 public class MetaShell : CoreModule<MetaShell>
 {
     public override IReadOnlyList<Assembly> ModuleDependencies
-        => map(MetaCoreOperations.SystemComponents, c => c.Load());
+        => map(MetaCorePlatform.SystemComponents, c => c.Load());
 
 }

@@ -1,4 +1,9 @@
-﻿namespace SqlT.Core
+﻿//-------------------------------------------------------------------------------------------
+// MetaCore
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
+//-------------------------------------------------------------------------------------------
+namespace SqlT.Core
 {
     /// <summary>
     /// See: https://msdn.microsoft.com/en-us/library/ms173760.aspx

@@ -6,7 +6,6 @@
 namespace SqlT.Core
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
     using System.Data;
@@ -16,10 +15,7 @@ namespace SqlT.Core
     
     public class SqlCopier : ISqlCopier
     {
-        public static SqlCopier Create(SqlCopyOptions options, Action<int> observer = null)
-            => new SqlCopier(options, observer);
-
-        internal static SqlBulkCopy CreateSqlCopier(SqlCopyOptions options, Action<int> observer = null)
+        internal static SqlBulkCopy Create(SqlCopyOptions options, Action<int> observer = null)
         {
             var flags = SqlBulkCopyOptions.TableLock | SqlBulkCopyOptions.KeepNulls;
             if (options.Atomic)
@@ -56,9 +52,6 @@ namespace SqlT.Core
             return bcp;
         }
 
-        readonly SqlCopyOptions options;
-        readonly Action<int> observer;
-        readonly SqlBulkCopyOptions flags;
 
         public SqlCopier(SqlCopyOptions options, Action<int> observer = null)
         {
@@ -69,6 +62,12 @@ namespace SqlT.Core
                | SqlBulkCopyOptions.KeepNulls
                | SqlBulkCopyOptions.UseInternalTransaction;
         }
+
+        SqlCopyOptions options { get; }
+
+        Action<int> observer { get; }
+
+        SqlBulkCopyOptions flags { get; }
 
         public SqlOutcome<int> CopyFrom(SqlDataFrame source)
         {
@@ -81,7 +80,6 @@ namespace SqlT.Core
 
             using (var bcp = new SqlBulkCopy(options.TargetConnector.ValueOrDefault(), flags))
             {
-
                 var lastTotal = 0;
                 Func<long, int> lastCount = (newTotal) 
                     => 

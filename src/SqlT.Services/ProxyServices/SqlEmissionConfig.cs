@@ -1,27 +1,20 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Services
 {
     using System;
     using System.Linq;
-    using System.Reflection;
-    using System.Collections.Generic;
-    using System.IO;
     using Meta.Core;
     using SqlT.Core;
-
-    using static metacore;
-    using static sqlfunc;
 
     public class SqlEmissionConfig
     {
 
         public SqlEmissionConfig(SqlConnectionString Connector, SqlFunctionName ExportFunction)
         {
-
             this.Connector = Connector;
             this.ExportFunction = ExportFunction;
         }
@@ -31,7 +24,6 @@ namespace SqlT.Services
         public object[] ExportFunctionArgs { get; }
 
         public SqlConnectionString Connector { get; }
-
 
         public DelimitedTextDescription Description { get; }
             = new DelimitedTextDescription();
@@ -57,6 +49,4 @@ namespace SqlT.Services
 
         }
     }
-
-
 }

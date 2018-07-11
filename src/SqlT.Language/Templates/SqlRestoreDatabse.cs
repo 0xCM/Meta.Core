@@ -1,9 +1,9 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// MetaCore
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
-namespace SqlT.Templates
+namespace SqlT.Language
 {
     using System;
     using System.Collections.Generic;
@@ -13,8 +13,6 @@ namespace SqlT.Templates
     using SqlT.Models;
 
     using static metacore;
-
-
 
     /// <summary>
     /// Represents the intent to restore a database from a BAK file

@@ -6,11 +6,18 @@
 using System;
 using System.Linq;
 
+using Meta.Core;
 using static metacore;
 
 partial class Union
-{   
-    public readonly struct LU<L, X1> : IEquatable<LU<L, X1>>
+{
+
+    /// <summary>
+    /// A single-cased labeled union 
+    /// </summary>
+    /// <typeparam name="L">The label type</typeparam>
+    /// <typeparam name="X1">The type of the first slot</typeparam>
+    public readonly struct LU<L, X1> : IEquatable<LU<L, X1>>, ILabeledUnion<L, X1>
     {
         public static implicit operator LU<L, X1>((L, X1 x1) x)
             => new LU<L, X1>(x);
@@ -40,9 +47,9 @@ partial class Union
             this.x1 = x1;
         }
 
-        L label { get; }
+        public L label { get; }
 
-        Option<X1> x1 { get; }
+        public Option<X1> x1 { get; }
 
         public Option<Y1> match<Y1>(Func<X1, Y1> f1)
             => x1.Map(x => f1(x));

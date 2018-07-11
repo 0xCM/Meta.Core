@@ -69,12 +69,12 @@ public sealed class Script : IScript
         => GetParameterNames(skipSecondary).Aggregate(Body,
              (input, name) => SpecifyParameter(input, name,
                 parameters.Any(p => p.paramName == name)
-              ? toString(parameters.First(p => p.paramName == name).paramValue)
+              ? show(parameters.First(p => p.paramName == name).paramValue)
               : string.Empty));
     
     public Script SpecifyParameters<T>(IReadOnlyDictionary<string, T> values, bool skipSecondary)
         => GetParameterNames(skipSecondary).Aggregate(Body,
-            (input, name) => SpecifyParameter(input, name, values.ContainsKey(name) ? toString(values[name]) : String.Empty));
+            (input, name) => SpecifyParameter(input, name, values.ContainsKey(name) ? show(values[name]) : String.Empty));
 
     public Script SpecifyEnvironmentParameters()
         => GetParameterNames(true).Aggregate(Body,

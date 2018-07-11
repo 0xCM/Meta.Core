@@ -175,6 +175,10 @@ namespace Meta.Core
 
         IEnumerable IStreamable.Stream()
             => Stream();
+
+        public Seq<Y> Cast<Y>()
+            => from item in this
+               select cast<Y>(item);
     }
 
 }

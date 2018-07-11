@@ -1,7 +1,11 @@
+//-------------------------------------------------------------------------------------------
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
+//-------------------------------------------------------------------------------------------
 namespace SqlT.Types
 {
     using System;
-    using System.Collections.Generic;
     using SqlT.Core;
 
 
@@ -154,4 +158,4 @@ namespace SqlT.Types
     }
 
 }
-// Emission concluded at 6/14/2017 11:27:52 AM
+

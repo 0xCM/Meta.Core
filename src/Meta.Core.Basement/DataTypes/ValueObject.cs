@@ -234,6 +234,3 @@ public abstract class ValueObject<T, TKey> : ValueObject<T>
     public override sealed Option<K> GetKey<K>()
         => (K)(object)Key;
 }
-
-
-

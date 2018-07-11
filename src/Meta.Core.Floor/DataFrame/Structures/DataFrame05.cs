@@ -7,6 +7,7 @@ namespace Meta.Core
 {
     using System;
     using System.Linq;
+    using Modules;
 
     using static metacore;
 
@@ -21,22 +22,25 @@ namespace Meta.Core
     public class DataFrame<X1, X2, X3, X4, X5> : DataFrameRoot<DataFrame<X1, X2, X3, X4, X5>>
     {
         /// <summary>
+        /// Captures a sequence of records into a frame
+        /// </summary>
+        /// <param name="source">The record source</param>
+        public static implicit operator DataFrame<X1, X2, X3, X4, X5>(Seq<Record<X1, X2, X3, X4, X5>> source)
+            => new DataFrame<X1, X2, X3, X4, X5>(source);
+
+        /// <summary>
         /// Initializes an empty frame
         /// </summary>
-        public DataFrame()
-            : base(null)
+        public DataFrame()            
             => this.Rows = Seq<Record<X1, X2, X3, X4, X5>>.Empty;
 
         /// <summary>
-        /// Initializes a nonempty frame
+        /// Initializes a nonempty frame from a row container
         /// </summary>
         /// <param name="rows">The data that will be encapsualted by the frame</param>
         /// <param name="schema">The frame schema, if any</param>
-        public DataFrame(Seq<Record<X1, X2, X3, X4, X5>> DataRows, DataFrameSchema? Description = null)
-            : base(Description)
-        {
-            this.Rows = DataRows;
-        }
+        public DataFrame(IContainer<Record<X1, X2, X3, X4, X5>> rows)            
+            => this.Rows = Index.make(rows.Stream());
 
         /// <summary>
         /// The data encapsulated by the frame
@@ -56,8 +60,8 @@ namespace Meta.Core
         /// <param name="data">The item arrays to transform</param>
         /// <param name="schema">The associated schema, if any</param>
         /// <returns></returns>
-        public override DataFrame<X1, X2, X3, X4, X5> Construct(Seq<object[]> data, DataFrameSchema? schema = null)
-            => DataFrame.make(map(data, item => Record.make(tupleOf<X1, X2, X3, X4, X5>(item))), schema);
+        public override DataFrame<X1, X2, X3, X4, X5> Construct(IContainer<object[]> data)
+            => map(data.AsSeq(), item => Record.make(tupleOf<X1, X2, X3, X4, X5>(item)));
 
         /// <summary>
         /// Presents the first column of data as a sequence

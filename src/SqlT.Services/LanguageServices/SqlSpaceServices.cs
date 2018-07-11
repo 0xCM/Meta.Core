@@ -5,12 +5,11 @@
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Services
 {
+    using System;
     using System.Linq;
     using System.Reflection;
-    using System.ComponentModel;
     using System.Collections.Generic;
-
-    using System;
+    
     using Meta.Core;
     using Meta.Models;
     using SqlT.Core;
@@ -64,9 +63,7 @@ namespace SqlT.Services
                 var factory = (IElement)Activator.CreateInstance(t);
                 if (factory is IObject)
                     schemas.Add((factory as IObject).Name.SchemaNamePart);
-
-                modelScripts.Add(ScriptModel(factory.CreateModel()));
-                
+                modelScripts.Add(ScriptModel(factory.CreateModel()));                
             }
 
             var schemaScripts = schemas.Select(s => ScriptModel(new SqlSchema(s)));

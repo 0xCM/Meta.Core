@@ -89,7 +89,7 @@ public abstract class CoreDataType<T> : CoreDataType, ICoreType<ICoreType>
     }
          
     public virtual string CreateValueText(T value) 
-        => isNull(value) ? null : toString(value);
+        => isNull(value) ? null : show(value);
 
     public ICoreType CoreType
         => this;

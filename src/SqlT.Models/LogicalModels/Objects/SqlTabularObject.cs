@@ -1,5 +1,5 @@
 ﻿//-------------------------------------------------------------------------------------------
-// SqlT
+// MetaCore
 // Author: Chris Moore, 0xCM@gmail.com
 // License: MIT
 //-------------------------------------------------------------------------------------------
@@ -7,6 +7,7 @@ namespace SqlT.Models
 {
     using System;
     using System.Collections.Generic;
+
     using SqlT.Core;
     using sxc = SqlT.Syntax.contracts;
 
@@ -36,13 +37,9 @@ namespace SqlT.Models
         where N : sxc.ISqlObjectName, new()
     {
 
-        protected SqlTabularObject(
-            N Name,
-            SqlElementDescription Documentation = null,
-            IEnumerable<SqlPropertyAttachment> Properties = null,
-            bool IsIntrinsic = false
-            )
-            : base(Name, Documentation, Properties, IsIntrinsic)
+        protected SqlTabularObject(N Name, SqlElementDescription Documentation = null,
+            IEnumerable<SqlPropertyAttachment> Properties = null, bool IsIntrinsic = false)
+                : base(Name, Documentation, Properties, IsIntrinsic)
         {
             this.Name = Name;
         }

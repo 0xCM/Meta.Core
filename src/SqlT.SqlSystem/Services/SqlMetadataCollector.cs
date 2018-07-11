@@ -21,7 +21,7 @@ namespace SqlT.Services
 
 
     using static metacore;
-    using static SqlStatusMessages;
+    using static SqlSystem.SqlStatusMessages;
 
     [Service(typeof(ISqlMetadataProvider))]
     public class SqlMetadataCollector : ApplicationService<SqlMetadataCollector, ISqlMetadataProvider>, ISqlMetadataProvider

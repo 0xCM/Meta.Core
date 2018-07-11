@@ -7,11 +7,6 @@ namespace SqlT.Services
 {
     using System;
     using System.Linq;
-    using System.Collections.Generic;
-    using System.IO;
-    using SqlT.Models;
-    using SqlT.Core;
-    using System.Reflection;
 
     using static metacore;
 

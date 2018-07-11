@@ -1,7 +1,7 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Dac
 {
@@ -25,6 +25,7 @@ namespace SqlT.Dac
     {
         static string GetXmlFile(Package package, string fileName)
         {
+            
             var part = package.GetPart(new Uri(string.Format("/{0}", fileName), UriKind.Relative));
             var stream = part.GetStream();
             return new StreamReader(stream).ReadToEnd();

@@ -49,7 +49,6 @@ public class NodeContext : ApplicationContext, INodeContext
     {
         lock (locker2)
         {
-
             return (from i in dict(Instantiations.Select(x => (x, x.Descriptor)))
                     where i.Value.Contracts.Contains(ContractType)
                     && i.Value.ImplementationName == ImplementationName

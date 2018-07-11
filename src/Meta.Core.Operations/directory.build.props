@@ -1,9 +1,0 @@
-<Project>
-
-  <Import Project="../common.props"/>
-
-  <PropertyGroup>
-    <ProductName>metacore/operations</ProductName>
-  </PropertyGroup>
-
-</Project>

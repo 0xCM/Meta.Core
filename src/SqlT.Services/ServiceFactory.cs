@@ -9,6 +9,7 @@ namespace SqlT.Services
     using System.Linq;    
     using System.Collections.Generic;
     using System.IO;
+
     using SqlT.Models;
     using SqlT.Core;
     using System.Reflection;
@@ -36,17 +37,11 @@ namespace SqlT.Services
         public static ISqlSpaceServices SqlSpaceServices(this IApplicationContext C)
             => C.Service<ISqlSpaceServices>();
 
-        public static ISqlResourceLocator SqlResources(this IApplicationContext C)
-            => C.Service<ISqlResourceLocator>();
-
         public static IMessageBroker SqlLogMessageBroker(this SqlConnectionString Connector, AppMessageObserver Sentinel = null)
             => new SqlLogMessageBroker(Connector, Sentinel);
 
         public static ISqlRuntimeProvider SqlRuntimeProvider(this IApplicationContext C)
             => C.Service<ISqlRuntimeProvider>();
-
-        public static ISqlResourceProvider SqlResourceProvider(this IApplicationContext C)
-           => C.Service<ISqlResourceProvider>();
 
         public static ISqlScriptProvider SqlScriptProvider(this IApplicationContext C)
             => C.Service<ISqlScriptProvider>();
@@ -69,6 +64,8 @@ namespace SqlT.Services
         public static ISqlMetadataStore SqlMetadataStore(this IApplicationContext C)
             => C.Service<ISqlMetadataStore>();
 
+        public static ISqlExecutor SqlExecutor(this IApplicationContext C)
+            => C.Service<ISqlExecutor>();
 
         public static IEnumerable<SqlProxyGenerationProfile> GetEmbeddedProfiles(this ISqlProxyAssembly pa)
             => from resource in ClrAssembly.Get(pa.DefininingAssembly).TextResources(".sqlt")

@@ -1,53 +1,44 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Core
 {
     using System;
     using System.Linq;
-    using System.Collections.Generic;
-    using System.Data;
-    using System.Data.SqlClient;
+
+    using Meta.Core;
 
     /// <summary>
     /// Codifies a relationship between two columns
     /// </summary>
     public class SqlColumnAssociation
     {
-        public static IEnumerable<SqlColumnAssociation> Symmetric(IEnumerable<SqlColumnIdentifier> ColumnIdentifiers)
+        public static Seq<SqlColumnAssociation> Symmetric(Seq<SqlColumnIdentifier> ColumnIdentifiers)
             => ColumnIdentifiers.Select(n => new SqlColumnAssociation(n, n));
 
-        public static IEnumerable<SqlColumnAssociation> Symmetric(IEnumerable<SqlColumnName> ColumnNames)
+        public static Seq<SqlColumnAssociation> Symmetric(Seq<SqlColumnName> ColumnNames)
             => ColumnNames.Select(n => new SqlColumnAssociation(n, n));
 
-        public static IEnumerable<SqlColumnAssociation> Symmetric(IEnumerable<int> ColumnPositions)
+        public static Seq<SqlColumnAssociation> Symmetric(Seq<int> ColumnPositions)
             => ColumnPositions.Select(n => new SqlColumnAssociation(n, n));
 
-        public static IEnumerable<SqlColumnAssociation> TargetOffset(IEnumerable<int> ColumnPositions, int Offset)
+        public static Seq<SqlColumnAssociation> TargetOffset(Seq<int> ColumnPositions, int Offset)
             => ColumnPositions.Select(n => new SqlColumnAssociation(n, n + Offset));
 
-        public static IEnumerable<SqlColumnAssociation> TargetOffset(IEnumerable<SqlColumnIdentifier> ColumnIdentifiers, int Offset)
-        {
-            foreach(var sourceCol in ColumnIdentifiers)
-            {
-                var targetCol = new SqlColumnIdentifier(sourceCol.ColumnName, (sourceCol.ColumnPosition ?? 0) + Offset);
-                yield return new SqlColumnAssociation(sourceCol, targetCol);
-            }
-        }
+        public static Seq<SqlColumnAssociation> TargetOffset(Seq<SqlColumnIdentifier> columns, int offset)
+            => from source in columns
+               let target = new SqlColumnIdentifier(source.ColumnName, (source.ColumnPosition ?? 0) + offset)
+               select new SqlColumnAssociation(source, target);
 
-        public static IEnumerable<SqlColumnAssociation> SourceOffset(IEnumerable<int> ColumnPositions, int Offset)
+        public static Seq<SqlColumnAssociation> SourceOffset(Seq<int> ColumnPositions, int Offset)
             => ColumnPositions.Select(n => new SqlColumnAssociation(n + Offset, n));
 
-        public static IEnumerable<SqlColumnAssociation> SourceOffset(IEnumerable<SqlColumnIdentifier> ColumnIdentifiers, int Offset)
-        {
-            foreach (var targetCol in ColumnIdentifiers)
-            {
-                var sourceCol = new SqlColumnIdentifier(targetCol.ColumnName, (targetCol.ColumnPosition ?? 0) + Offset);
-                yield return new SqlColumnAssociation(sourceCol, targetCol);
-            }
-        }
+        public static Seq<SqlColumnAssociation> SourceOffset(Seq<SqlColumnIdentifier> columns, int offset)
+            => from target in columns
+               let source = new SqlColumnIdentifier(target.ColumnName, (target.ColumnPosition ?? 0) + offset)
+               select new SqlColumnAssociation(source, target);
 
         public SqlColumnAssociation(SqlColumnIdentifier SourceColumn, SqlColumnIdentifier TargetColumn)
         {
@@ -67,40 +58,5 @@ namespace SqlT.Core
 
         public override string ToString()
            => $"{SourceColumn} --> {TargetColumn}";
-
-        internal SqlBulkCopyColumnMapping ToBcpMapping()
-        {
-            var association = this;
-            var src = association.SourceColumn;
-            var dst = association.TargetColumn;
-            switch (src.IdentifierKind)
-            {
-                case SqlColumnIdentifierKind.ColumnName:
-                case SqlColumnIdentifierKind.NameAndPosition:
-                    switch (dst.IdentifierKind)
-                    {
-                        case SqlColumnIdentifierKind.ColumnName:
-                        case SqlColumnIdentifierKind.NameAndPosition:
-                            return new SqlBulkCopyColumnMapping(src.ColumnName, dst.ColumnName);
-                        case SqlColumnIdentifierKind.ColumnPosition:
-                            return new SqlBulkCopyColumnMapping(src.ColumnName, dst.ColumnPosition.Value);
-                        default:
-                            throw new NotSupportedException();
-                    }
-                case SqlColumnIdentifierKind.ColumnPosition:
-                    switch (dst.IdentifierKind)
-                    {
-                        case SqlColumnIdentifierKind.ColumnName:
-                        case SqlColumnIdentifierKind.NameAndPosition:
-                            return new SqlBulkCopyColumnMapping(src.ColumnPosition.Value, dst.ColumnName);
-                        case SqlColumnIdentifierKind.ColumnPosition:
-                            return new SqlBulkCopyColumnMapping(src.ColumnPosition.Value, dst.ColumnPosition.Value);
-                        default:
-                            throw new NotSupportedException();
-                    }
-                default:
-                    throw new NotSupportedException();
-            }
-        }
     }
 }

@@ -9,7 +9,28 @@ namespace Meta.Core
 
     using static metacore;
 
+    /// <summary>
+    /// Defines signature for function that lifts a 5-tuple into a 5-record
+    /// </summary>
+    /// <typeparam name="X1">The data type of the first attribute</typeparam>
+    /// <typeparam name="X2">The data type of the second attribute</typeparam>
+    /// <typeparam name="X3">The data type of the third attribute</typeparam>
+    /// <typeparam name="X4">The data type of the fourth attribute</typeparam>
+    /// <typeparam name="X5">The data type of the fifth attribute</typeparam>
+    /// <param name="x">The source tuple</param>
     public delegate Record<X1, X2, X3, X4, X5> RecordFactory<X1, X2, X3, X4, X5>((X1 x1, X2 x2, X3 x3, X4 x4, X5 x5) x);
+
+    /// <summary>
+    /// Defines signature for function that derives a 5-record from an input value
+    /// </summary>
+    /// <typeparam name="X1">The data type of the first attribute</typeparam>
+    /// <typeparam name="X2">The data type of the second attribute</typeparam>
+    /// <typeparam name="X3">The data type of the third attribute</typeparam>
+    /// <typeparam name="X4">The data type of the fourth attribute</typeparam>
+    /// <typeparam name="X5">The data type of the fifth attribute</typeparam>
+    /// <param name="x">The source value</param>
+    /// <returns></returns>
+    public delegate Record<X1, X2, X3, X4, X5> RecordDerivation<X, X1, X2, X3, X4, X5>(X x);
 
     /// <summary>
     /// Defines a 5-attribute record
@@ -19,7 +40,7 @@ namespace Meta.Core
     /// <typeparam name="X3">The data type of the third attribute</typeparam>
     /// <typeparam name="X4">The data type of the fourth attribute</typeparam>
     /// <typeparam name="X5">The data type of the fifth attribute</typeparam>
-    public readonly struct Record<X1, X2, X3, X4, X5> : IRecordMeta<Record<X1, X2, X3, X4, X5>,RecordFactory<X1, X2, X3, X4, X5>>
+    public readonly struct Record<X1, X2, X3, X4, X5> : IRecordMeta<Record<X1, X2, X3, X4, X5>, RecordFactory<X1, X2, X3, X4, X5>>
     {
         /// <summary>
         /// The canonical empty record
@@ -27,16 +48,24 @@ namespace Meta.Core
         public static readonly Record<X1, X2, X3, X4, X5> Empty = default;
 
         /// <summary>
-        /// Constructs record values when invoked
+        /// Specifies the canonical value constructor
         /// </summary>
         public static readonly RecordFactory<X1, X2, X3, X4, X5> Factory
             = x => new Record<X1, X2, X3, X4, X5>(x.x1, x.x2, x.x3, x.x4, x.x5);
 
+        /// <summary>
+        /// Lifts a tuple into a record
+        /// </summary>
+        /// <param name="x">The source tuple</param>
         public static implicit operator Record<X1, X2, X3, X4, X5>((X1 x1, X2 x2, X3 x3, X4 x4, X5 x5) x)
              => new Record<X1, X2, X3, X4, X5>(x);
 
-        public static implicit operator (X1 x1, X2 x2, X3 x3, X4 x4, X5 x5) (Record<X1, X2, X3, X4, X5> row)
-             => row.AsTuple();
+        /// <summary>
+        /// Drops a record onto a tuple
+        /// </summary>
+        /// <param name="record">The source record</param>
+        public static implicit operator (X1 x1, X2 x2, X3 x3, X4 x4, X5 x5) (Record<X1, X2, X3, X4, X5> record)
+             => record.AsTuple();
 
 
         /// <summary>

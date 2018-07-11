@@ -25,7 +25,7 @@ namespace SqlT.Syntax
                 : this(ReferencedType.Name, IsNullable, MaxLength, NumericPrecision, NumericScale)
                     => Validate(ReferencedType, new SqlDataFacets(not(IsNullable), MaxLength, NumericPrecision, NumericScale));
 
-        protected typeref(SqlTypeDescriptor d)
+        protected typeref(SqlTypeReference d)
             : this(d.TypeName, d.IsNullable, d.Length, d.Precision, d.Scale)
         {
 
@@ -87,7 +87,7 @@ namespace SqlT.Syntax
         public SqlDataFacets facets
             => new SqlDataFacets(not(nullable), length, precision, scale);
 
-        public abstract sxc.data_type_ref retype(SqlTypeDescriptor descriptor);
+        public abstract sxc.data_type_ref retype(SqlTypeReference descriptor);
 
         public override string ToString()
         {
@@ -133,10 +133,10 @@ namespace SqlT.Syntax
         public static implicit operator typeref(typeref<t> r)
             => new typeref(r.descriptor);
 
-        public static implicit operator SqlTypeDescriptor(typeref<t> r)
+        public static implicit operator SqlTypeReference(typeref<t> r)
             => r.descriptor;
 
-        public typeref(SqlTypeDescriptor descriptor)
+        public typeref(SqlTypeReference descriptor)
             : base(descriptor)
         {
 
@@ -174,10 +174,10 @@ namespace SqlT.Syntax
 
         }
 
-        public SqlTypeDescriptor descriptor
-            => new SqlTypeDescriptor(this);
+        public SqlTypeReference descriptor
+            => new SqlTypeReference(this);
 
-        public override sxc.data_type_ref retype(SqlTypeDescriptor descriptor)
+        public override sxc.data_type_ref retype(SqlTypeReference descriptor)
             => new typeref<t>(descriptor);
     }
 
@@ -216,7 +216,7 @@ namespace SqlT.Syntax
 
         }
 
-        public typeref(SqlTypeDescriptor descriptor)
+        public typeref(SqlTypeReference descriptor)
             : base(descriptor)
         {
 
@@ -229,7 +229,7 @@ namespace SqlT.Syntax
 
         }
 
-        public override sxc.data_type_ref retype(SqlTypeDescriptor descriptor)
+        public override sxc.data_type_ref retype(SqlTypeReference descriptor)
             => new typeref(descriptor);
     }
 

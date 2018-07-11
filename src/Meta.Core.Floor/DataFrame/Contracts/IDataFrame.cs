@@ -16,7 +16,6 @@ namespace Meta.Core
     /// </summary>
     public interface IDataFrame
     {
-        Option<DataFrameSchema> Schema { get; }
 
         Seq<Index<object>> ItemArrays { get; }
     }

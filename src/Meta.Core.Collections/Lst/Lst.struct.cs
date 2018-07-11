@@ -83,6 +83,35 @@ namespace Meta.Core
             => Factory(l1.Stream().Concat(l2.Stream()));
 
         /// <summary>
+        /// Constructs a list from the components of a homogenous 2-tuple
+        /// </summary>
+        /// <param name="x"></param>
+        public static implicit operator Lst<X>((X x1, X x2) x)
+            => Factory((new X[] {x.x1, x.x2}));
+
+        /// <summary>
+        /// Constructs a list from the components of a homogenous 3-tuple
+        /// </summary>
+        /// <param name="x"></param>
+        public static implicit operator Lst<X>((X x1, X x2, X x3) x)
+            => Factory((new X[] { x.x1, x.x2, x.x3 }));
+
+        /// <summary>
+        /// Constructs a list from the components of a homogenous 4-tuple
+        /// </summary>
+        /// <param name="x"></param>
+        public static implicit operator Lst<X>((X x1, X x2, X x3, X x4) x)
+            => Factory((new X[] { x.x1, x.x2, x.x3, x.x4 }));
+
+        /// <summary>
+        /// Constructs a list from the components of a homogenous 5-tuple
+        /// </summary>
+        /// <param name="x"></param>
+        public static implicit operator Lst<X>((X x1, X x2, X x3, X x4, X x5) x)
+            => Factory((new X[] { x.x1, x.x2, x.x3, x.x4 }));
+
+
+        /// <summary>
         /// Determines whether two lists are structurally equal
         /// </summary>
         /// <param name="l1">The first list</param>

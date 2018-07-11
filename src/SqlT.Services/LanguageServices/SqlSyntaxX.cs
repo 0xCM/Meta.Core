@@ -1,7 +1,7 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Services
 {
@@ -29,7 +29,5 @@ namespace SqlT.Services
             return tSql.SqlTModel();
         }
 
-        static Option<sxc.statement> Weak<S>(this Option<S> statement)
-            where S : sxc.statement => statement.Map(x => (sxc.statement)x);
     }
 }

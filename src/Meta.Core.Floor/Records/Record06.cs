@@ -9,7 +9,30 @@ namespace Meta.Core
 
     using static metacore;
 
+    /// <summary>
+    /// Defines signature for function that lifts a 6-tuple into a 6-record
+    /// </summary>
+    /// <typeparam name="X1">The data type of the first attribute</typeparam>
+    /// <typeparam name="X2">The data type of the second attribute</typeparam>
+    /// <typeparam name="X3">The data type of the third attribute</typeparam>
+    /// <typeparam name="X4">The data type of the fourth attribute</typeparam>
+    /// <typeparam name="X5">The data type of the fifth attribute</typeparam>
+    /// <typeparam name="X6">The data type of the sixth attribute</typeparam>
+    /// <param name="x">The source tuple</param>
     public delegate Record<X1, X2, X3, X4, X5, X6> RecordFactory<X1, X2, X3, X4, X5, X6>((X1 x1, X2 x2, X3 x3, X4 x4, X5 x5, X6 x6) x);
+
+    /// <summary>
+    /// Defines signature for function that derives a 6-record from an input value
+    /// </summary>
+    /// <typeparam name="X1">The data type of the first attribute</typeparam>
+    /// <typeparam name="X2">The data type of the second attribute</typeparam>
+    /// <typeparam name="X3">The data type of the third attribute</typeparam>
+    /// <typeparam name="X4">The data type of the fourth attribute</typeparam>
+    /// <typeparam name="X5">The data type of the fifth attribute</typeparam>
+    /// <typeparam name="X6">The data type of the sixth attribute</typeparam>
+    /// <param name="x">The source value</param>
+    /// <returns></returns>
+    public delegate Record<X1, X2, X3, X4, X5, X6> RecordDerivation<X, X1, X2, X3, X4, X5, X6>(X x);
 
     /// <summary>
     /// Defines a 6-attribute record
@@ -28,24 +51,24 @@ namespace Meta.Core
         public static readonly Record<X1, X2, X3, X4, X5, X6> Empty = default;
 
         /// <summary>
-        /// Constructs record values when invoked
+        /// Specifies the canonical value constructor
         /// </summary>
         public static readonly RecordFactory<X1, X2, X3, X4, X5, X6> Factory
             = x => new Record<X1, X2, X3, X4, X5, X6>(x.x1, x.x2, x.x3, x.x4, x.x5, x.x6);
 
         /// <summary>
-        /// Converts a tuple into a row
+        /// Lifts a tuple into a record
         /// </summary>
         /// <param name="x">The source tuple</param>
         public static implicit operator Record<X1, X2, X3, X4, X5, X6>((X1 x1, X2 x2, X3 x3, X4 x4, X5 x5, X6 x6) x)
             => new Record<X1, X2, X3, X4, X5, X6>(x);
 
         /// <summary>
-        /// Converts the row into a tuple
+        /// Drops a record onto a tuple
         /// </summary>
-        /// <param name="row">The source row</param>
-        public static implicit operator (X1 x1, X2 x2, X3 x3, X4 x4, X5 x5, X6 x6) (Record<X1, X2, X3, X4, X5, X6> row)
-             => row.AsTuple();
+        /// <param name="record">The source record</param>
+        public static implicit operator (X1 x1, X2 x2, X3 x3, X4 x4, X5 x5, X6 x6) (Record<X1, X2, X3, X4, X5, X6> record)
+             => record.AsTuple();
 
 
         /// <summary>

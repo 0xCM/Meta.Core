@@ -19,16 +19,24 @@ namespace Meta.Core.Test
     {
 
         [UT.TestMethod]
-        public void Test01()
+        public void TheFunctor()
         {
-            var input = Lst.fuse(1, 2, 3, 4, 5);
-            var square = Function.make((int x) => x*x);
-            var output = square * input;
-            var expect = Lst.fuse(1, 4, 9, 16, 25);
-            claim.equal(expect, output);
-            
+            var input = list(1, 2, 3, 4, 5);
+            var square = func((int x) => x*x);
+            var output = square[input];
+            var expect = list(1, 4, 9, 16, 25);
+            claim.equal(expect, output);            
+        }
 
-
+        [UT.TestMethod]
+        public void ThePipe()
+        {
+            var f = func((int x) => x * 2L);
+            var g = func((long x) => x * 2.5m);
+            var h = func((decimal x) => show(x));
+            var result = 4 > f > g > h;
+            var expect = (4 * 2L * 2.5m).ToString();
+            claim.equal(expect, result);
         }
 
     }

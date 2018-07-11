@@ -38,11 +38,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Meta.Core.Operations\Meta.Core.Operations.csproj" />
-    <ProjectReference Include="..\Meta.Core\Meta.Core.csproj" />
-    <ProjectReference Include="..\SqlT.Operations\SqlT.Operations.csproj" />
-    <ProjectReference Include="..\SqlT.Services\SqlT.Services.csproj" />
-    <ProjectReference Include="..\SqlT.Workflow\SqlT.Workflow.csproj" />
+    <ProjectReference Include="..\SqlT\SqlT.csproj" />
   </ItemGroup>
 
 </Project>

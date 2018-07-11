@@ -18,7 +18,7 @@ public interface IPath<X> : ILink<X>, IReadOnlyList<Link<X>>
 
 }
 
-public interface INodePath : IPath<N>
+public interface INodeChain : IPath<N>
 {
 
 }

@@ -61,7 +61,7 @@ namespace Meta.Core.Test
                 );
 
 
-            var application = composition.Eval(1);
+            var application = 1 > composition;
             claim.equal(12L, application);
 
         }

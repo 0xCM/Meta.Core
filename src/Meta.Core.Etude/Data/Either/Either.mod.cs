@@ -74,9 +74,5 @@ namespace Meta.Core.Modules
         /// <returns></returns>
         public Either<L, Y> map<L, R, Y>(Func<R, Y> rf, Either<L, R> e)
             => e.IsLeft ? make<L, Y>(e.Left) : make<L, Y>(rf(e.Right));
-
-
     }
-
-
 }

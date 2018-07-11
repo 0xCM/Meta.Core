@@ -14,8 +14,8 @@ namespace Meta.Core
     public abstract class DataFrameRoot<F> : IDataFrameRoot, IEquatable<F>
         where F : DataFrameRoot<F>, new()
     {
-        IDataFrame IDataFrameRoot.Construct(Seq<object[]> data, DataFrameSchema? schema)
-            => Construct(data, schema);
+        IDataFrame IDataFrameRoot.Construct(IContainer<object[]> data)
+            => Construct(data);
 
 
         public static bool operator ==(DataFrameRoot<F> x, DataFrameRoot<F> y)
@@ -24,18 +24,16 @@ namespace Meta.Core
         public static bool operator !=(DataFrameRoot<F> x, DataFrameRoot<F> y)
             => not(x == y);
 
-        public abstract F Construct(Seq<object[]> data, DataFrameSchema? schema = null);
+        public abstract F Construct(IContainer<object[]> data);
 
         public bool Equals(F other)
             => other is null ? false
                 : ItemArrays.Equals(other.ItemArrays);
 
-        protected DataFrameRoot(DataFrameSchema? schema = null)
+        protected DataFrameRoot()
         {
-            this.Schema = schema.ValueOrNone();
+            
         }
-
-        public Option<DataFrameSchema> Schema { get; }
 
         public abstract Seq<Index<object>> ItemArrays { get; }
 

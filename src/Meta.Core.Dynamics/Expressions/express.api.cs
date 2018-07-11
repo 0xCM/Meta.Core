@@ -30,8 +30,8 @@ public static class express
     /// <param name="e"></param>
     /// <param name="dstType"></param>
     /// <returns></returns>
-    public static UnaryExpression conversion(Expression e, Type dstType)
-        => Expression.Convert(e, dstType);
+    public static UnaryExpression conversion(XPR e, Type dstType)
+        => XPR.Convert(e, dstType);
 
     /// <summary>
     /// Defines a conversion expression from an expression value <paramref name="e"/>
@@ -40,7 +40,7 @@ public static class express
     /// <typeparam name="T">The target type</typeparam>
     /// <param name="e">The source value</param>
     /// <returns></returns>
-    public static UnaryExpression conversion<T>(Expression e)
+    public static UnaryExpression conversion<T>(XPR e)
         => conversion(e, typeof(T));
 
     //public static Converter converter(MethodInfo m)
@@ -168,7 +168,7 @@ public static class express
     /// <param name="i">The paremeter index</param>
     /// <returns></returns>
     public static PX paramX<T>(int i)
-        => Expression.Parameter(typeof(T), "x" + i.ToString());
+        => XPR.Parameter(typeof(T), "x" + i.ToString());
 
     /// <summary>
     /// Creates an auto-named parameter expression array from an array of parameter types
@@ -177,7 +177,7 @@ public static class express
     /// <returns></returns>
     public static PX[] @params(params Type[] paramTypes)
         => Enumerable.Range(0, paramTypes.Length)
-                .Map(i => Expression.Parameter(paramTypes[i], "x" + (i + 1).ToString()))
+                .Map(i => XPR.Parameter(paramTypes[i], "x" + (i + 1).ToString()))
                 .ToArray();
 
     /// <summary>
@@ -188,7 +188,7 @@ public static class express
     /// <param name="body"></param>
     /// <returns></returns>
     public static Expression<T> lambda<T>(IEnumerable<PX> parameters, Expression body)
-        where T : Delegate => Expression.Lambda<T>(body, parameters);
+        where T : Delegate => XPR.Lambda<T>(body, parameters);
 
     /// <summary>
     /// Defines a lambda expression
@@ -199,7 +199,7 @@ public static class express
     /// <returns></returns>
     public static Expression<T> lambda<T>((PX p1, PX p2) parameters, Expression body)
         where T : Delegate
-            => Expression.Lambda<T>(body, stream(parameters.p1, parameters.p2));
+            => XPR.Lambda<T>(body, stream(parameters.p1, parameters.p2));
 
     /// <summary>
     /// Defines a lambda expression
@@ -210,7 +210,7 @@ public static class express
     /// <returns></returns>
     public static Expression<T> lambda<T>((PX p1, PX p2, PX p3) parameters, Expression body)
         where T : Delegate
-            => Expression.Lambda<T>(body, stream(parameters.p1, parameters.p2, parameters.p3));
+            => XPR.Lambda<T>(body, stream(parameters.p1, parameters.p2, parameters.p3));
 
     /// <summary>
     /// Defines a lambda expression sans parameters
@@ -218,8 +218,8 @@ public static class express
     /// <typeparam name="T">The aligned delegate type</typeparam>
     /// <param name="body"></param>
     /// <returns></returns>
-    public static Expression<T> lambda<T>(Expression body)
-        where T : Delegate => Expression.Lambda<T>(body);
+    public static Expression<T> lambda<T>(XPR body)
+        where T : Delegate => XPR.Lambda<T>(body);
 
     /// <summary>
     /// Defines a lambda expression
@@ -227,8 +227,8 @@ public static class express
     /// <param name="parameters"></param>
     /// <param name="body"></param>
     /// <returns></returns>
-    public static Expression<Func<X, Y>> lambda<X, Y>(IEnumerable<PX> parameters, Expression body)
-            => Expression.Lambda<Func<X, Y>>(body, parameters);
+    public static Expression<Func<X, Y>> lambda<X, Y>(IEnumerable<PX> parameters, XPR body)
+            => XPR.Lambda<Func<X, Y>>(body, parameters);
 
     /// <summary>
     /// Defines a 2-argument lambda expression
@@ -236,8 +236,8 @@ public static class express
     /// <param name="parameters">The expression parameters</param>
     /// <param name="body">The expression body</param>
     /// <returns></returns>
-    public static Expression<Func<X1, X2, Y>> lambda<X1, X2, Y>(IEnumerable<PX> parameters, Expression body)
-        => Expression.Lambda<Func<X1, X2, Y>>(body, parameters);
+    public static Expression<Func<X1, X2, Y>> lambda<X1, X2, Y>(IEnumerable<PX> parameters, XPR body)
+        => XPR.Lambda<Func<X1, X2, Y>>(body, parameters);
 
     /// <summary>
     /// Defines a 2-argument lambda expression
@@ -245,15 +245,15 @@ public static class express
     /// <param name="parameters">The expression parameters</param>
     /// <param name="body">The expression body</param>
     /// <returns></returns>
-    public static Expression<Func<X1, X2, X3, Y>> lambda<X1, X2, X3, Y>(IEnumerable<PX> parameters, Expression body)
-        => Expression.Lambda<Func<X1, X2, X3, Y>>(body, parameters);
+    public static Expression<Func<X1, X2, X3, Y>> lambda<X1, X2, X3, Y>(IEnumerable<PX> parameters, XPR body)
+        => XPR.Lambda<Func<X1, X2, X3, Y>>(body, parameters);
 
     /// <summary>
     /// Creates a unary lambda expression 
     /// </summary>
     /// <param name="f">The defining function</param>
     /// <returns></returns>
-    public static Expression<Func<X, Y>> lambda<X, Y>(Func<Expression, UnaryExpression> f)
+    public static Expression<Func<X, Y>> lambda<X, Y>(Func<XPR, UnaryExpression> f)
     {
         var p1 = paramX<X>("p1");
         var eval = f(p1);
@@ -265,7 +265,7 @@ public static class express
     /// </summary>
     /// <param name="f">The defining function</param>
     /// <returns></returns>
-    public static Expression<Func<X, Y, Z>> lambda<X, Y, Z>(Func<Expression, Expression, BinaryExpression> f)
+    public static Expression<Func<X, Y, Z>> lambda<X, Y, Z>(Func<XPR, XPR, BinaryExpression> f)
     {
         var p1 = paramX<X>("p1");
         var p2 = paramX<Y>("p2");
@@ -281,8 +281,8 @@ public static class express
     /// <returns></returns>
     public static Option<Func<X>> factory<X>()
         => from c in constructor<X>()
-            let x = Expression.New(c)
-            select Expression.Lambda<Func<X>>(x).Compile();
+            let x = XPR.New(c)
+            select XPR.Lambda<Func<X>>(x).Compile();
 
     /// <summary>                                                               
     /// Defines a function that will invoke a one parameter constructor to create
@@ -294,7 +294,7 @@ public static class express
     public static Option<Func<X, Y>> factory<X, Y>()
         => from c in constructor<Y>(typeof(X))
             let parameters = array(paramX<X>("a1"))
-            let body = Expression.New(c, parameters)
+            let body = XPR.New(c, parameters)
             select lambda<Func<X, Y>>(parameters, body).Compile();
 
     /// <summary>
@@ -309,7 +309,7 @@ public static class express
             let cParams = array(paramX(arg1Type, "a1"))
             let lParams = array(paramX(typeof(object), "o1"))
             let converted = array(conversion(lParams[0], arg1Type))
-            let body = Expression.New(c, converted)
+            let body = XPR.New(c, converted)
             select lambda<Func<object, object>>(lParams, body).Compile();
 
     /// <summary>                                                               
@@ -323,7 +323,7 @@ public static class express
     public static Option<Func<X1, X2, Y>> factory<X1, X2, Y>()
         => from c in constructor<Y>(typeof(X1), typeof(X2))
             let parameters = array(paramX<X1>("a1"), paramX<X2>("a2"))
-            let body = Expression.New(c, parameters)
+            let body = XPR.New(c, parameters)
             select lambda<Func<X1, X2, Y>>(parameters, body).Compile();
 
     /// <summary>
@@ -337,7 +337,7 @@ public static class express
         => from c in constructor(targetType, arg1Type, arg2Type)
             let lParams = array(paramX<object>("o1"), paramX<object>("o2"))
             let converted = array(conversion(lParams[0], arg1Type), conversion(lParams[1], arg2Type))
-            let body = conversion(Expression.New(c, converted), typeof(object))
+            let body = conversion(XPR.New(c, converted), typeof(object))
             let final = lambda<Func<object, object, object>>(lParams, body)
             select final.Compile();
 
@@ -364,7 +364,7 @@ public static class express
     /// <param name="args">The arguments supplied to the method when invoked</param>
     /// <returns></returns>
     public static MethodCallExpression invocation(object Host, MethodInfo m, params PX[] args)
-        => Expression.Call(ifNotNull(Host, h => constant(h)), m, args);
+        => XPR.Call(ifNotNull(Host, h => constant(h)), m, args);
 
     /// <summary>
     /// Creates an expression that invokes a static method
@@ -384,7 +384,7 @@ public static class express
     /// <param name="argName">The name of argument</param>
     /// <returns></returns>
     public static InvocationExpression invocation<X, Y>(Func<X, Y> f, string argName)
-        => Expression.Invoke(funcx(f), paramX<X>(argName));
+        => XPR.Invoke(funcx(f), paramX<X>(argName));
 
     /// <summary>
     /// Creates an invocation expression for a function delegate of the form X1->X2->Y
@@ -397,7 +397,7 @@ public static class express
     /// <param name="arg2">The name of the second argument</param>
     /// <returns></returns>
     public static InvocationExpression invocation<X1, X2, Y>(Func<X1, X2, Y> f, string arg1 = "x1", string arg2 = "x2")
-        => Expression.Invoke(funcx(f), paramX<X1>(arg1), paramX<X2>(arg2));
+        => XPR.Invoke(funcx(f), paramX<X1>(arg1), paramX<X2>(arg2));
 
     /// <summary>
     /// Creates and caches a function delegate m:() => X
@@ -410,7 +410,7 @@ public static class express
         => Try(() => (Func<X>)_funcCache.GetOrAdd(m, method =>
         {
             var result = conversion<X>(invocation(instance, m));
-            return Expression.Lambda<Func<X>>(result).Compile();
+            return XPR.Lambda<Func<X>>(result).Compile();
         }));
 
     /// <summary>
@@ -510,11 +510,11 @@ public static class express
 
     public static class linqx
     {
-        public static BinaryExpression and(Expression left, Expression right)
-            => Expression.AndAlso(left, right);
+        public static BinaryExpression and(XPR left, XPR right)
+            => XPR.AndAlso(left, right);
 
-        public static BinaryExpression or(Expression left, Expression right)
-            => Expression.OrElse(left, right);
+        public static BinaryExpression or(XPR left, XPR right)
+            => XPR.OrElse(left, right);
 
         /// <summary>
         /// Lifts a value to a constant expression
@@ -522,7 +522,7 @@ public static class express
         /// <param name="value">The value to lift</param>
         /// <returns></returns>
         public static ConstantExpression constant(object value)
-            => Expression.Constant(value);
+            => XPR.Constant(value);
 
         /// <summary>
         /// Creates an expression to adjudicate whether a value if of a specified type
@@ -531,7 +531,7 @@ public static class express
         /// <param name="t">The type to test against</param>
         /// <returns></returns>
         public static TypeBinaryExpression typeIs(object value, Type t)
-            => Expression.TypeIs(constant(value), t);
+            => XPR.TypeIs(constant(value), t);
 
         /// <summary>
         /// Creates an expression to adjudicate whether a value if of a specified type
@@ -540,7 +540,7 @@ public static class express
         /// <typeparam name="T">The type to test against</typeparam>
         /// <returns></returns>
         public static TypeBinaryExpression typeIs<T>(object value)
-            => Expression.TypeIs(constant(value), typeof(T));
+            => XPR.TypeIs(constant(value), typeof(T));
 
         /// <summary>
         /// Creates an expression to call a function
@@ -548,8 +548,8 @@ public static class express
         /// <param name="f">An expression representing the function to invoke</param>
         /// <param name="args"></param>
         /// <returns></returns>
-        public static InvocationExpression invoke(Expression f, params Expression[] args)
-            => Expression.Invoke(f, args);
+        public static InvocationExpression invoke(XPR f, params XPR[] args)
+            => XPR.Invoke(f, args);
 
         /// <summary>
         /// Forms a conjunction from two function predicates
@@ -580,9 +580,5 @@ public static class express
                 let right = invoke(funcx(p2), args.x2)
                 let body = or(left, right)
                 select lambda<Func<X1, X2, bool>>(args, body).Compile();
-
     }
-
-
-
 }

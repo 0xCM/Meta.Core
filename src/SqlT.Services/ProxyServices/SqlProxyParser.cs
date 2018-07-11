@@ -1,14 +1,13 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Services
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.ComponentModel;
 
     using SqlT.Core;
     using Meta.Core;
@@ -56,13 +55,11 @@ namespace SqlT.Services
 
              };
             return parser;
-
         }
 
         IEnumerable<(TextLine Line, P Proxy)> Parse<P>(ITextFile Src, Action<IApplicationMessage> Observer, DelimitedTextDescription Config)
             where P : class, ISqlTabularProxy, new()
         {
-
             var proxyInfo = Describe<P>();
             var colcount = proxyInfo.Columns.Count;
             var fieldParsers = FieldParsers<P>();

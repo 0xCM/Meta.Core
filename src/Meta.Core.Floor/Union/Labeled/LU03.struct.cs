@@ -8,9 +8,19 @@ using System.Linq;
 
 using static metacore;
 
+using Meta.Core;
+
 partial class Union
 {
-    public readonly struct LU<L, X1, X2, X3> : IEquatable<LU<L, X1, X2, X3>>
+
+    /// <summary>
+    /// A labled heterogenous union with 3 potential slots where exactly one will be populated
+    /// </summary>
+    /// <typeparam name="L">The label type</typeparam>
+    /// <typeparam name="X1">The type of the first slot</typeparam>
+    /// <typeparam name="X2">The type of the second slot</typeparam>
+    /// <typeparam name="X3">The type of the third slot</typeparam>
+    public readonly struct LU<L, X1, X2, X3> : IEquatable<LU<L, X1, X2, X3>>, ILabeledUnion<L, X1, X2, X3>
     {
         public static implicit operator LU<L, X1, X2, X3>((L label, X1 x1) x)
             => new LU<L, X1, X2, X3>(x);
@@ -94,13 +104,13 @@ partial class Union
         }
 
 
-        L label { get; }
+        public L label { get; }
 
-        Option<X1> x1 { get; }
+        public Option<X1> x1 { get; }
 
-        Option<X2> x2 { get; }
+        public Option<X2> x2 { get; }
 
-        Option<X3> x3 { get; }
+        public Option<X3> x3 { get; }
 
         public Option<Y1> Match<Y1>(Func<X1, Y1> f)
             => x1.Map(x => f(x));

@@ -1,7 +1,7 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Services
 {
@@ -11,32 +11,17 @@ namespace SqlT.Services
 
     using SqlT.Core;
     using SqlT.Models;
-    using SqlT.SqlSystem;
-
+    
     using sx = SqlT.Syntax.SqlSyntax;
+
 
     /// <summary>
     /// Provides access to database-centric runtime capabilities
     /// </summary>
-    public interface ISqlDatabaseRuntime : ISqlElementRuntime
+    public interface ISqlDatabaseRuntime : ISqlElementRuntime, ICatalogViews
     {
         /// <summary>
-        /// Specifies the names of the tables defined by the database
-        /// </summary>
-        IEnumerable<SqlTableName> TableNames { get; }
-
-        /// <summary>
-        /// Specifies the names of the views defined by the database
-        /// </summary>
-        IEnumerable<SqlViewName> ViewNames { get; }
-
-        /// <summary>
-        /// Specifies the names of the sequences defined by the database
-        /// </summary>
-        IEnumerable<SqlSequenceName> SequenceNames { get; }
-
-        /// <summary>
-        /// The server hosting the database
+        /// Specifies the hosting server
         /// </summary>
         ISqlServerRuntime Server { get; }
 
@@ -58,27 +43,11 @@ namespace SqlT.Services
 
         ISqlSequenceRuntime Sequence(SqlSequenceName name);
 
-        IReadOnlyList<vTable> TableCatalog { get; }
-
-        IReadOnlyList<vTableType> TableTypeCatalog{ get; }
-
-        IReadOnlyList<vView> ViewCatalog { get; }
-
-        IReadOnlyList<vTableFunction> TableFunctionCatalog { get; }
-
-        IReadOnlyList<vPrimaryKey> PrimaryKeyCatalog { get; }
-
         ISqlTableRuntime Table(SqlTableName name);
 
         ISqlSchemaHandle Schema(SqlSchemaName name);
 
         IEnumerable<ISqlSchemaHandle> Schemas { get; }
-
-        IReadOnlyList<vSequence> SequenceCatalog { get; }
-
-        IReadOnlyList<vIndex> IndexCatalog { get; }
-
-        IReadOnlyList<vIndexColumn> IndexColumnCatalog { get; }
 
         /// <summary>
         /// Determines whether the represented database exists
@@ -93,6 +62,8 @@ namespace SqlT.Services
         /// <returns></returns>
         Option<SqlSchema> CreateSchema(SqlSchemaName name);
 
+        Option<SqlSequence> CreateSequence(SqlSequenceName SequenceName, SqlTypeName TypeName);
+
         /// <summary>
         /// Creates a schema in the represented database if it does not exist
         /// </summary>
@@ -100,11 +71,18 @@ namespace SqlT.Services
         /// <returns></returns>
         Option<ConditionalCreateResult> CreateSchemaIfMissing(SqlSchemaName name);
 
-
         IEnumerable<sx.xprop_value> ExtendedProperties { get; }
 
+        /// <summary>
+        /// Enables service broker capabilities in the database
+        /// </summary>
+        /// <returns></returns>
         Option<int> EnableBroker();
 
+        /// <summary>
+        /// Sisables service broker capabilities in the database
+        /// </summary>
+        /// <returns></returns>
         Option<int> DisableBroker();
 
         /// <summary>

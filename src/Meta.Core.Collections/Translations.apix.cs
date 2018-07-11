@@ -39,42 +39,6 @@ namespace Meta.Core
             => s;
 
         /// <summary>
-        /// Creates a sequence from a list
-        /// </summary>
-        /// <typeparam name="X"></typeparam>
-        /// <param name="l"></param>
-        /// <returns></returns>
-        public static Seq<X> AsSeq<X>(this Lst<X> l)
-            => l;
-
-        /// <summary>
-        /// Creates an index from a sequence
-        /// </summary>
-        /// <typeparam name="X">The item type</typeparam>
-        /// <param name="s">The input list</param>
-        /// <returns></returns>
-        public static Index<X> AsIndex<X>(this Seq<X> s)
-            => s;
-
-        /// <summary>
-        /// Creates a native array from a sequence
-        /// </summary>
-        /// <typeparam name="X">The item type</typeparam>
-        /// <param name="l">The input sequence</param>
-        /// <returns></returns>
-        public static X[] AsArray<X>(this Seq<X> s)
-            => s;
-
-        /// <summary>
-        /// Creates an index from a list
-        /// </summary>
-        /// <typeparam name="X">The item type</typeparam>
-        /// <param name="l">The input list</param>
-        /// <returns></returns>
-        public static Index<X> AsIndex<X>(this Lst<X> l)
-            => l;
-
-        /// <summary>
         /// Constructs a map from a sequence of 2-tuples
         /// </summary>
         /// <typeparam name="X">The type of the first coordinate</typeparam>
@@ -82,7 +46,7 @@ namespace Meta.Core
         /// <param name="items"></param>
         /// <returns></returns>
         public static Map<X, Y> AsMap<X, Y>(this Seq<(X, Y)> items)
-            => Modules.Map.make(items);
+            => Map.make(items);
 
         /// <summary>
         /// Creates a map from a list and key selection function
@@ -125,19 +89,46 @@ namespace Meta.Core
         /// <typeparam name="Y">The output item type</typeparam>
         /// <param name="s">The input sequence</param>
         /// <returns></returns>
-        public static Seq<Y> Weaken<X, Y>(this Seq<X> s)
+        public static Seq<Y> Upcast<X, Y>(this Seq<X> s)
             where Y : class
             where X : Y
                 => Seq.weaken<X, Y>(s);
 
         /// <summary>
-        /// Presents the set as a Seq
+        /// Presents a container of elements as a Seq
         /// </summary>
-        /// <typeparam name="X"></typeparam>
-        /// <param name="set"></param>
+        /// <typeparam name="X">The element type</typeparam>
+        /// <param name="source">The data source</param>
         /// <returns></returns>
-        public static Seq<X> AsSeq<X>(this Set<X> set)
-            => Seq.make(set.Stream());
+        public static Seq<X> AsSeq<X>(this IContainer<X> source)
+            => Seq.make(source.Stream());
+
+        /// <summary>
+        /// Presents a container of elements as a Seq
+        /// </summary>
+        /// <typeparam name="X">The element type</typeparam>
+        /// <param name="source">The data source</param>
+        /// <returns></returns>
+        public static Seq<X> AsList<X>(this IContainer<X> source)
+            => Lst.make(source.Stream());
+
+        /// <summary>
+        /// Presents a container of elements as an Index
+        /// </summary>
+        /// <typeparam name="X">The element type</typeparam>
+        /// <param name="source">The data source</param>
+        /// <returns></returns>
+        public static Index<X> AsIndex<X>(this IContainer<X> source)
+            => Index.make(source.Stream());
+
+        /// <summary>
+        /// Presents a container of elements as an array
+        /// </summary>
+        /// <typeparam name="X">The element type</typeparam>
+        /// <param name="source">The data source</param>
+        /// <returns></returns>
+        public static X[] AsArray<X>(this IContainer<X> source)
+            => source.Stream().ToArray();
 
         /// <summary>
         /// Converts a map to a readonly dictionary

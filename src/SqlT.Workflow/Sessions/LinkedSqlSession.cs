@@ -15,7 +15,8 @@ namespace SqlT.Services
     using SqlT.Core;
     using SqlT.Services;
     using SqlT.SqlSystem;
-    using SqlT.Templates;
+    using SqlT.Language;
+
     using static metacore;
     using N = SystemNode;
     
@@ -303,24 +304,17 @@ namespace SqlT.Services
         ISqlClientBroker ILinkedSqlSession.TargetBroker(N Host)
             => SessionConnector(Host, TargetDbName).GetClientBroker(OnSqlNotification);
 
-        protected IReadOnlyList<vTable> SourceTableCatalog
+        protected IEnumerable<vTable> SourceTableCatalog
             => SourceDbRuntime.TableCatalog;
 
-        protected IReadOnlyList<vTable> TargetTableCatalog
+        protected IEnumerable<vTable> TargetTableCatalog
             => TargetDbRuntime.TableCatalog;
 
-        protected Link<IReadOnlyList<vTable>> TableCatalogs
-            => link(SourceTableCatalog, TargetTableCatalog);
-
-
-        protected IReadOnlyList<vSequence> SourceSequenceCatalog
+        protected IEnumerable<vSequence> SourceSequenceCatalog
             => SourceDbRuntime.SequenceCatalog;
 
-        protected IReadOnlyList<vSequence> TargetSequenceCatalog
+        protected IEnumerable<vSequence> TargetSequenceCatalog
             => TargetDbRuntime.SequenceCatalog;
-
-        protected Link<IReadOnlyList<vSequence>> SequenceCatalogs
-            => link(SourceSequenceCatalog,TargetSequenceCatalog);
 
         public void ExecuteSqlScript(string ScriptPath, string DstNode = null, string DstDatabase = null)
         {

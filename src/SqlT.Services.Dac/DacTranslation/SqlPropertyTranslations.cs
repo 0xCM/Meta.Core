@@ -8,12 +8,11 @@ namespace SqlT.Dac
     using System;
     using System.Collections.Generic;
     using System.Linq;
+
+    using Meta.Core;
     using SqlT.Core;
     using SqlT.Models;
-    using SqlT.Language;
-    using SqlT.Services;
 
-    using TSql = Microsoft.SqlServer.TransactSql.ScriptDom;
     using DacM = Microsoft.SqlServer.Dac.Model;
     using DacX = Microsoft.SqlServer.Dac.Extensions.Prototype;
 
@@ -26,11 +25,11 @@ namespace SqlT.Dac
     {
 
         [SqlTBuilder]
-        public static IReadOnlyList<SqlPropertyAttachment> ModelExtendedProperties(this SqlPropertyIndex index, DacM.ObjectIdentifier dsql) 
+        public static Lst<SqlPropertyAttachment> ModelExtendedProperties(this SqlPropertyIndex index, DacM.ObjectIdentifier dsql) 
             => index.GetProperties(dsql.FormatName());
 
         [SqlTBuilder]
-        public static IReadOnlyList<SqlPropertyAttachment> ModelExtendedProperties(this SqlPropertyIndex index, DacX.TSqlModelElement dsql) 
+        public static Lst<SqlPropertyAttachment> ModelExtendedProperties(this SqlPropertyIndex index, DacX.TSqlModelElement dsql) 
             => index.ModelExtendedProperties(dsql.Name);
 
         [SqlTBuilder]

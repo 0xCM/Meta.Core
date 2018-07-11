@@ -25,7 +25,34 @@ namespace Meta.Core
         /// <param name="f">The function to evaluate</param>
         /// <param name="x">The value over which evaluation will occur</param>
         /// <returns></returns>
-        public static Y operator *(Function<X1, X2, Y> f, (X1 x1, X2 x2) x)
+        public static Y operator <((X1 x1, X2 x2) x, Function<X1, X2, Y> f)
+            => f.Eval(x);
+
+        /// <summary>
+        /// Evaluates the function f at x
+        /// </summary>
+        /// <param name="f">The function to evaluate</param>
+        /// <param name="x">The value over which evaluation will occur</param>
+        /// <returns></returns>
+        public static Y operator >((X1 x1, X2 x2) x, Function<X1, X2, Y> f)
+            => f.Eval(x);
+
+        /// <summary>
+        /// Evaluates the function f at x
+        /// </summary>
+        /// <param name="f">The function to evaluate</param>
+        /// <param name="x">The value over which evaluation will occur</param>
+        /// <returns></returns>
+        public static Y operator <(Function<X1, X2, Y> f, (X1 x1, X2 x2) x)
+            => f.Eval(x);
+
+        /// <summary>
+        /// Evaluates the function f at x
+        /// </summary>
+        /// <param name="f">The function to evaluate</param>
+        /// <param name="x">The value over which evaluation will occur</param>
+        /// <returns></returns>
+        public static Y operator >(Function<X1, X2, Y> f, (X1 x1, X2 x2) x)
             => f.Eval(x);
 
         /// <summary>
@@ -50,9 +77,8 @@ namespace Meta.Core
         /// </summary>
         public Func<X1, X2, Y> F { get; }
 
-
         /// <summary>
-        /// Evaluates the function at a specified point
+        /// Value-wise evaulation
         /// </summary>
         /// <param name="x1">The first coordinate value</param>
         /// <param name="x2">The second coordinate value</param>

@@ -31,6 +31,7 @@ namespace Meta.Core.Modules
         public static Index<X> make<X>(IEnumerable<X> items)
             => Index<X>.Factory(Seq.make(items));
 
+
         /// <summary>
         /// Creates an index containing <paramref name="n"/> copies of <paramref name="value"/> 
         /// </summary>
@@ -96,6 +97,17 @@ namespace Meta.Core.Modules
         /// <param name="index">The indexed data</param>
         /// <returns></returns>
         public static Index<Y> map<X, Y>(Func<X, Y> f, Index<X> index)
+            => Seq.make(index.Stream().Select(f));
+        
+        /// <summary>
+        /// Effects the cananical mapping over an index by a function
+        /// </summary>
+        /// <typeparam name="X">The source item type</typeparam>
+        /// <typeparam name="Y">The target item type</typeparam>
+        /// <param name="f">The mapping function</param>
+        /// <param name="index">The indexed data</param>
+        /// <returns></returns>
+        public static Index<Y> map<X, Y>(Index<X> index, Func<X, Y> f)
             => Seq.make(index.Stream().Select(f));
 
 

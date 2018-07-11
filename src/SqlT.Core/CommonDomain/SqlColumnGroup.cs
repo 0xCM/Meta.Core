@@ -1,7 +1,7 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Core
 {
@@ -41,14 +41,31 @@ namespace SqlT.Core
             this.Columns = Columns.ToList();
         }
 
+        /// <summary>
+        /// The name of the grouping
+        /// </summary>
         public string GroupName { get; }
 
+        /// <summary>
+        /// The group classification
+        /// </summary>
         public SqlColumnGroupKind GroupKind { get; }
 
+        /// <summary>
+        /// The column-defining object
+        /// </summary>
         public sxc.tabular_name TabularName { get; }
 
+        /// <summary>
+        /// The columns included in the group
+        /// </summary>
         public IReadOnlyList<SqlColumnName> Columns { get; }
 
+        /// <summary>
+        /// Replaces the group's classification
+        /// </summary>
+        /// <param name="DstGroup">The new classification</param>
+        /// <returns></returns>
         public SqlColumnGroup Regroup(SqlColumnGroupKind DstGroup)
             => new SqlColumnGroup(TabularName, GroupName, DstGroup, Columns.ToArray());
 

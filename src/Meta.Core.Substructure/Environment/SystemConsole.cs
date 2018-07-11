@@ -4,7 +4,6 @@
 // as you like. But please, for the love of Zeus, don't clutter it with regions.
 //-------------------------------------------------------------------------------------------
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics.Tracing;
 using System.Threading;

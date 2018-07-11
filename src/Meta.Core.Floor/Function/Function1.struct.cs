@@ -18,32 +18,18 @@ namespace Meta.Core
     /// <typeparam name="Y">The function codomain</typeparam>
     public readonly struct Function<X, Y> : IFunction<X,Y> 
     {
-        /// <summary>
-        /// Evaluates the function f at x
-        /// </summary>
-        /// <param name="f">The function to evaluate</param>
-        /// <param name="x">The value over which evaluation will occur</param>
-        /// <returns></returns>
-        public static Y operator *(Function<X, Y> f, X x)
+
+        public static Y operator <(X x, Function<X, Y> f)
             => f.Eval(x);
 
-        /// <summary>
-        /// Lazily evaluate the function over a sequence
-        /// </summary>
-        /// <param name="f">The function to evaluate</param>
-        /// <param name="values">The value over which evaluation will occur</param>
-        /// <returns></returns>
-        public static Seq<Y> operator *(Function<X, Y> f, Seq<X> values)
-            => Function.eval(f, values);
+        public static Y operator >(X x, Function<X, Y> f)
+            => f.Eval(x);
 
-        /// <summary>
-        /// Eagerly evaluates the function over a list
-        /// </summary>
-        /// <param name="f">The function to evaluate</param>
-        /// <param name="values">The values over which evaluation will occur</param>
-        /// <returns></returns>
-        public static Lst<Y> operator *(Function<X, Y> f, Lst<X> values)
-            => Function.eval(f, values);
+        public static Y operator <(Function<X, Y> f, X x)
+            => f.Eval(x);
+
+        public static Y operator >(Function<X, Y> f, X x)
+            => f.Eval(x);
 
         /// <summary>
         /// Implicitly constructs a <see cref="Function{X,Y}"/> representation
@@ -74,11 +60,29 @@ namespace Meta.Core
         /// <summary>
         /// Binds the represented function to a value
         /// </summary>
-        /// <param name="input">The point at which to evaluate</param>
+        /// <param name="x">The value at which to evaluate the function</param>
         /// <returns></returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public Y Eval(X input) 
-            => F(input);
+        public Y Eval(X x) 
+            => F(x);
+
+        /// <summary>
+        /// Lazily evaluate the function over a sequence
+        /// </summary>
+        /// <param name="f">The function to evaluate</param>
+        /// <param name="values">The value over which evaluation will occur</param>
+        /// <returns></returns>
+        public Seq<Y> this [Seq<X> values]
+            => values.Select(F);
+
+        /// <summary>
+        /// Eagerly evaluate the function over a list
+        /// </summary>
+        /// <param name="f">The function to evaluate</param>
+        /// <param name="values">The value over which evaluation will occur</param>
+        /// <returns></returns>
+        public Lst<Y> this[Lst<X> values]
+            => values.Select(F);
 
         /// <summary>
         /// Facilitates fluent workflow construction
@@ -92,7 +96,7 @@ namespace Meta.Core
         /// Renders the function to its canonical display format
         /// </summary>
         public string Format()
-            => Function.format(this);
+            => Function.format(this);        
 
         /// <summary>
         /// Renders the function to its canonical display format

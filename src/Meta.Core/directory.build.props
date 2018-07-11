@@ -3,8 +3,7 @@
   <Import Project="../common.props"/>
 
   <PropertyGroup>
-    <ProductName>metacore/metacore</ProductName>
-    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <ProductName>metacore/operations</ProductName>
   </PropertyGroup>
 
 </Project>

@@ -79,7 +79,7 @@ public static class ScriptText
                         select new
                         {
                             ArgName = p.Name,
-                            ArgValue = toString(p.GetValue(arg))
+                            ArgValue = show(p.GetValue(arg))
                         };
         var result = script;
         foreach (var argValue in argValues)
@@ -89,7 +89,7 @@ public static class ScriptText
 
     public static string SpecifyParameters<T>(string script, IReadOnlyDictionary<string, T> values, bool skipSecondary)
         => GetParameterNames(script, skipSecondary).Aggregate(script,
-            (input, name) => SpecifyParameter(input, name, values.ContainsKey(name) ? toString(values[name]) : String.Empty));
+            (input, name) => SpecifyParameter(input, name, values.ContainsKey(name) ? show(values[name]) : String.Empty));
 
     public static string SpecifyEnvironmentParameters(string script)
         => GetParameterNames(script, true).Aggregate(script,

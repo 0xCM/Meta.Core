@@ -43,29 +43,46 @@ namespace Meta.Core.Test
         [UT.TestMethod]
         public void Test10()
         {
-            var input = Lst.fuse(int32(5), int32(10), int32(15));
-            var expect = Lst.fuse(int32(-5), int32(-10), int32(-15));
-            var output = Lst.map(neg, input);
+            var input = list(int32(5), int32(10), int32(15));
+            var expect = list(int32(-5), int32(-10), int32(-15));
+            var output =  Lst.map(neg, input);
             claim.equal(expect, output);
         }
 
 
         [UT.TestMethod]
         public void Test15()
-        {
+        {            
             var f = func((int x) => 3 * x);
             var g = func((int x) => 2 * x);
-            var list1 = Lst.fuse(2, 5);
-            var list2 = Lst.fuse(4, 6, 8);
+            var list1 = list(1, 2, 3, 4);
+            var list2 = list(5, 6, 7, 8);
 
-            var h = from z in Lst.map(f.Eval,list1).Stream()
-                    from y in Lst.map(g.Eval,list2).Stream()
-                    select z + y;
+            //custom LINQ over custom list where
+            //functions evaulate over custom list instances
+            var result1 = from x in f[list1]
+                          from y in g[list2]
+                          select $"{x}{y}";
 
-             
-            //var output = List.apply(List.cons(f,f))(input);
-            //var expect = List.cons(6, 15, 6, 15);
-            //claim.sequal(expect, output);                           
+            //standard LINQ over IEnumerable where
+            //functions evaluate point-wise as usual
+            var result2 = list(from x in list1.Stream()
+                               from y in list2.Stream()
+                               select $"{f.Eval(x)}{g.Eval(y)}"
+                               );
+
+            //custom LINQ over custom list where
+            //functions evaluate point-wise via custom 'pipe' operator
+            var result3 = from x in list1
+                          from y in list2                          
+                          select $"{x > f}{y > g}";
+
+
+            //qed
+            claim.allEqual(result1, result2, result3);
+            
+            //heh. 
+
         }
 
 

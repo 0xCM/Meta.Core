@@ -80,7 +80,7 @@ namespace SqlT.Syntax
             /// </summary>
             /// <param name="descriptor"></param>
             /// <returns></returns>
-            data_type_ref retype(SqlTypeDescriptor descriptor);
+            data_type_ref retype(SqlTypeReference descriptor);
         }
     }
 }

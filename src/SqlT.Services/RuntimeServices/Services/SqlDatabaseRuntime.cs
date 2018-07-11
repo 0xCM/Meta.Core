@@ -1,7 +1,7 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Services
 {
@@ -34,12 +34,14 @@ namespace SqlT.Services
             this.Server = C.SqlRuntimeProvider().Server(Handle.Server());
         }
 
+        /// <summary>
+        /// Specifies the hosting server
+        /// </summary>
         public ISqlServerRuntime Server { get; }
 
         IEnumerable<ISqlSequenceHandle> SequenceHandles
             => from v in Handle.SystemViews().GetVirtualView<vSequence>()
                select new SqlSequenceHandle(Handle.Broker, new SqlSequenceName(v.SchemaName, v.Name));
-
 
         SqlVersion ISqlDatabaseRuntime.CompatibilityVersion
             => Handle.GetCompatibilityVersion().Require();
@@ -121,58 +123,6 @@ namespace SqlT.Services
             => from t in Handle.SystemViews().GetVirtualView<vTable>()
                select new SqlTableHandle(Broker, new SqlTableName(t.SchemaName, t.Name));
 
-        IReadOnlyList<vSequence> ISqlDatabaseRuntime.SequenceCatalog
-            => Handle.SystemViews().GetVirtualView<vSequence>();
-
-        IEnumerable<xprop_value> ISqlDatabaseRuntime.ExtendedProperties
-            => from prop in Handle.SystemViews().GetNativeView<IExtendedProperty>()
-               where prop.@class == 0 && prop.major_id == 0 && prop.minor_id == 0
-               let name = SqlExtendedPropertyName.Parse(prop.name)
-               let val = new SqlVariant(prop.value)
-               select kwt.DATABASE.get().XProp(name, val);
-
-        IReadOnlyList <vTable> ISqlDatabaseRuntime.TableCatalog 
-            => Handle.SystemViews().GetVirtualView<vTable>();
-
-        IReadOnlyList<vTableType> ISqlDatabaseRuntime.TableTypeCatalog
-            => Handle.SystemViews().GetVirtualView<vTableType>();
-
-        IReadOnlyList<vView> ISqlDatabaseRuntime.ViewCatalog
-            => Handle.SystemViews().GetVirtualView<vView>();
-
-        IReadOnlyList<vTableFunction> ISqlDatabaseRuntime.TableFunctionCatalog
-            => Handle.SystemViews().GetVirtualView<vTableFunction>();
-
-        IReadOnlyList<vPrimaryKey> ISqlDatabaseRuntime.PrimaryKeyCatalog
-            => Handle.SystemViews().GetVirtualView<vPrimaryKey>();
-
-        public IReadOnlyList<vIndex> IndexCatalog
-            => Handle.SystemViews().GetVirtualView<vIndex>();
-
-        ISqlDatabaseRuntime Self
-            => this;
-
-        SqlDatabaseName ISqlDatabaseRuntime.Name
-            => Handle.DatabaseName;
-
-        IEnumerable<SqlTableName> ISqlDatabaseRuntime.TableNames
-            => from t in Self.TableCatalog
-               select t.ObjectName.AsTableName();
-
-        IEnumerable<SqlViewName> ISqlDatabaseRuntime.ViewNames
-            => from t in Self.ViewCatalog
-               select t.ObjectName.AsViewName();
-
-        IEnumerable<SqlSequenceName> ISqlDatabaseRuntime.SequenceNames
-            => from t in Self.SequenceCatalog
-               select t.ObjectName.AsSequenceName();
-
-        IReadOnlyList<vIndex> ISqlDatabaseRuntime.IndexCatalog
-            => Handle.SystemViews().GetVirtualView<vIndex>();
-
-        IReadOnlyList<vIndexColumn> ISqlDatabaseRuntime.IndexColumnCatalog
-            => Handle.SystemViews().GetVirtualView<vIndexColumn>();
-
         /// <summary>
         /// Shrinks the size of the specified data or log file for the current database, 
         /// or empties a file by moving the data from the specified file to other files in the same 
@@ -190,6 +140,70 @@ namespace SqlT.Services
             var result = Broker.Select<SqlShrinkFileResult>(sql);
             return result.Map(r => r.FirstOrDefault());
         }
+
+        public Option<SqlSequence> CreateSequence(SqlSequenceName SequenceName, SqlTypeName TypeName)
+        {
+            var specification = new SqlSequence(
+                SequenceName: SequenceName,
+                SequenceDataType: SqlNativeTypes.TryFind(TypeName).Require().Reference(false),
+                InitialValue: "1",
+                Increment: "1",
+                CacheSize: "10"
+                );
+
+            C.SqlExecutor().CreateElement(Broker.ConnectionString, specification);
+            return specification;
+        }
+
+        IEnumerable<vSequence> ICatalogViews.SequenceCatalog
+            => Handle.SystemViews().GetVirtualView<vSequence>();
+
+        IEnumerable<xprop_value> ISqlDatabaseRuntime.ExtendedProperties
+            => from prop in Handle.SystemViews().GetNativeView<IExtendedProperty>()
+               where prop.@class == 0 && prop.major_id == 0 && prop.minor_id == 0
+               let name = SqlExtendedPropertyName.Parse(prop.name)
+               let val = new SqlVariant(prop.value)
+               select kwt.DATABASE.get().XProp(name, val);
+
+        IEnumerable<vTable> ICatalogViews.TableCatalog 
+            => Handle.SystemViews().GetVirtualView<vTable>();
+
+        IEnumerable<vTableType> ICatalogViews.TableTypeCatalog
+            => Handle.SystemViews().GetVirtualView<vTableType>();
+
+        IEnumerable<vView> ICatalogViews.ViewCatalog
+            => Handle.SystemViews().GetVirtualView<vView>();
+
+        IEnumerable<vTableFunction> ICatalogViews.TableFunctionCatalog
+            => Handle.SystemViews().GetVirtualView<vTableFunction>();
+
+        IEnumerable<vPrimaryKey> ICatalogViews.PrimaryKeyCatalog
+            => Handle.SystemViews().GetVirtualView<vPrimaryKey>();
+
+        IEnumerable<vIndex> ICatalogViews.IndexCatalog
+            => Handle.SystemViews().GetVirtualView<vIndex>();
+
+        ISqlDatabaseRuntime Self
+            => this;
+
+        SqlDatabaseName ISqlDatabaseRuntime.Name
+            => Handle.DatabaseName;
+
+        IEnumerable<SqlTableName> ICatalogViews.TableNames
+            => from t in Self.TableCatalog
+               select t.ObjectName.AsTableName();
+
+        IEnumerable<SqlViewName> ICatalogViews.ViewNames
+            => from t in Self.ViewCatalog
+               select t.ObjectName.AsViewName();
+
+        IEnumerable<SqlSequenceName> ICatalogViews.SequenceNames
+            => from t in Self.SequenceCatalog
+               select t.ObjectName.AsSequenceName();
+
+        IEnumerable<vIndexColumn> ICatalogViews.IndexColumnCatalog
+            => Handle.SystemViews().GetVirtualView<vIndexColumn>();
+
     }
 }
     

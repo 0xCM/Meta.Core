@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net472</TargetFrameworks>
+    <OutputType>EXE</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SqlT\SqlT.csproj" />
+  </ItemGroup>
+
+
+</Project>

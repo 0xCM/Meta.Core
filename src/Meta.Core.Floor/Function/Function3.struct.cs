@@ -11,7 +11,6 @@ namespace Meta.Core
 
     using Modules;
 
-
     /// <summary>
     /// Represents a function F:X1->X2->X3->Y
     /// </summary>
@@ -21,13 +20,41 @@ namespace Meta.Core
     /// <typeparam name="Y">The function codomain</typeparam>
     public readonly struct Function<X1, X2, X3, Y> : IFunction<(X1 x1, X2 x2, X3 x3), Y>
     {
+
         /// <summary>
         /// Evaluates the function f at x
         /// </summary>
         /// <param name="f">The function to evaluate</param>
         /// <param name="x">The value over which evaluation will occur</param>
         /// <returns></returns>
-        public static Y operator *(Function<X1, X2, X3, Y> f, (X1 x1, X2 x2, X3 x3) x)
+        public static Y operator <((X1 x1, X2 x2, X3 x3) x, Function<X1, X2, X3, Y> f)
+            => f.Eval(x);
+
+        /// <summary>
+        /// Evaluates the function f at x
+        /// </summary>
+        /// <param name="f">The function to evaluate</param>
+        /// <param name="x">The value over which evaluation will occur</param>
+        /// <returns></returns>
+        public static Y operator >((X1 x1, X2 x2, X3 x3) x, Function<X1, X2, X3, Y> f)
+            => f.Eval(x);
+
+        /// <summary>
+        /// Evaluates the function f at x
+        /// </summary>
+        /// <param name="f">The function to evaluate</param>
+        /// <param name="x">The value over which evaluation will occur</param>
+        /// <returns></returns>
+        public static Y operator <(Function<X1, X2, X3, Y> f, (X1 x1, X2 x2, X3 x3) x)
+            => f.Eval(x);
+
+        /// <summary>
+        /// Evaluates the function f at x
+        /// </summary>
+        /// <param name="f">The function to evaluate</param>
+        /// <param name="x">The value over which evaluation will occur</param>
+        /// <returns></returns>
+        public static Y operator >(Function<X1, X2, X3, Y> f, (X1 x1, X2 x2, X3 x3) x)
             => f.Eval(x);
 
         /// <summary>
@@ -36,9 +63,9 @@ namespace Meta.Core
         /// <param name="f">The function to evaluate</param>
         /// <param name="values">The value over which evaluation will occur</param>
         /// <returns></returns>
-        public static Seq<Y> operator *(Function<X1, X2, X3, Y> f, Seq<(X1,X2,X3)> values)
+        public static Seq<Y> operator *(Function<X1, X2, X3, Y> f, Seq<(X1, X2, X3)> values)
             => Seq.make(from v in values.Stream()
-                          select f.Eval(v));
+                        select f.Eval(v));
 
         /// <summary>
         /// Eagerly evaluates the function over a list
@@ -48,7 +75,39 @@ namespace Meta.Core
         /// <returns></returns>
         public static Lst<Y> operator *(Function<X1, X2, X3, Y> f, Lst<(X1, X2, X3)> values)
             => Lst.make(from v in values.Stream()
-                          select f.Eval(v));
+                        select f.Eval(v));
+
+        /// <summary>
+        /// Lazily evaluate the function over a sequence
+        /// </summary>
+        /// <param name="f">The function to evaluate</param>
+        /// <param name="values">The value over which evaluation will occur</param>
+        /// <returns></returns>
+        public Seq<Y> this[Seq<(X1 x1, X2 x2, X3 x3)> values]
+        {
+            get
+            {
+                var _f = F;
+                return Seq.make((from v in values.Stream()
+                       select _f(v.x1, v.x2, v.x3)));
+            }
+        }
+
+        /// <summary>
+        /// Eagerly evaluate the function over a sequence
+        /// </summary>
+        /// <param name="f">The function to evaluate</param>
+        /// <param name="values">The value over which evaluation will occur</param>
+        /// <returns></returns>
+        public Lst<Y> this[Lst<(X1 x1, X2 x2, X3 x3)> values]
+        {
+            get
+            {
+                var _f = F;
+                return Lst.make((from v in values.Stream()
+                    select _f(v.x1, v.x2, v.x3)));
+            }
+        }
 
         /// <summary>
         /// Implicitly lifts a delegate to a Function

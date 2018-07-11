@@ -6,19 +6,22 @@
 using System;
 using System.Linq;
 
+using Meta.Core;
 using static metacore;
+
+
 
 partial class Union
 {
     /// <summary>
-    /// A labled heterogenous union with 4 potential slots from which exactly one will be populated
+    /// A labled heterogenous union with 4 potential slots where exactly one will be populated
     /// </summary>
     /// <typeparam name="L">The label type</typeparam>
     /// <typeparam name="X1">The type of the first slot</typeparam>
     /// <typeparam name="X2">The type of the second slot</typeparam>
     /// <typeparam name="X3">The type of the third slot</typeparam>
     /// <typeparam name="X4">The type of the fourth slot</typeparam>
-    public readonly struct LU<L, X1, X2, X3, X4> : IEquatable<LU<L, X1, X2, X3, X4>>
+    public readonly struct LU<L, X1, X2, X3, X4> : IEquatable<LU<L, X1, X2, X3, X4>>, ILabeledUnion<L,X1,X2,X3,X4>
     {
         public static implicit operator LU<L, X1, X2, X3, X4>((L label, X1 x1) x)
             => new LU<L, X1, X2, X3, X4>(x);
@@ -134,19 +137,18 @@ partial class Union
             this.x4 = x4.x4;
         }
 
-        L label { get; }
+        public L label { get; }
 
-        Option<X1> x1 { get; }
+        public Option<X1> x1 { get; }
 
-        Option<X2> x2 { get; }
+        public Option<X2> x2 { get; }
 
-        Option<X3> x3 { get; }
+        public Option<X3> x3 { get; }
 
-        Option<X4> x4 { get; }
+        public Option<X4> x4 { get; }
 
         public Option<Y1> Match<Y1>(Func<X1, Y1> f)
             => x1.Map(x => f(x));
-
 
         public Option<Y2> Match<Y2>(Func<X2, Y2> f)
             => x2.Map(x => f(x));

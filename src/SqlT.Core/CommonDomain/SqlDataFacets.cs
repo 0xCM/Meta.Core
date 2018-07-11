@@ -1,35 +1,38 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Core
 {
     using static metacore;
 
-    public class SqlDataFacets : ValueObject<SqlDataFacets>
+    /// <summary>
+    /// Defines SQL-specific data type facets
+    /// </summary>
+    public readonly struct SqlDataFacets 
     {
-        private const string RequiredLabel = "not null";
-        private const string OptionalLabel = "null";
+        const string RequiredLabel = "not null";
+        const string OptionalLabel = "null";
 
+        /// <summary>
+        /// Transforms core => sql facets
+        /// </summary>
+        /// <param name="src">The source facets</param>
+        /// <returns></returns>
         public static SqlDataFacets FromCoreFacets(CoreDataFacets src) 
             => new SqlDataFacets(src.IsValueRequired, src.MaxLength, src.NumericPrecision, src.NumericScale);
 
+        /// <summary>
+        /// Transforms sql => core facets
+        /// </summary>
+        /// <param name="src">The source facets</param>
+        /// <returns></returns>
         public static implicit operator CoreDataFacets(SqlDataFacets src) 
             => new CoreDataFacets(src.MaxLength, src.NumericPrecision, src.NumericScale, src.IsValueRequired);
 
-        public readonly bool IsValueRequired;
-        public readonly int? MaxLength;
-        public readonly byte? NumericPrecision;
-        public readonly byte? NumericScale;
-
-        public SqlDataFacets
-        (
-            bool IsValueRequired,
-            int? MaxLength = null,
-            byte? NumericPrecision = null,
-            byte? NumericScale = null
-        )
+        public SqlDataFacets(bool IsValueRequired, int? MaxLength = null,
+            byte? NumericPrecision = null, byte? NumericScale = null)
         {
             this.IsValueRequired = IsValueRequired;
             this.MaxLength = MaxLength;
@@ -37,17 +40,40 @@ namespace SqlT.Core
             this.NumericScale = NumericScale;
         }
 
+        /// <summary>
+        /// Specifies whether a value is required (i.e., declaration must specify not null)
+        /// </summary>
+        public bool IsValueRequired { get; }
+
+        /// <summary>
+        /// Indicates the maximum length of a value, if specified/applicable
+        /// </summary>
+        public int? MaxLength { get; }
+
+        /// <summary>
+        /// Indicates the numeric precision of a value, if specified/applicable
+        /// </summary>
+        public byte? NumericPrecision { get; }
+
+        /// <summary>
+        /// Indicates the numeric scale of a value, if specified/applicable
+        /// </summary>
+        public byte? NumericScale { get; }
+
+        /// <summary>
+        /// Specifies whether a value is optionail (i.e., NULL 'values' are allowed)
+        /// </summary>
         public bool IsValueOptional 
             => !IsValueRequired;
 
+        /// <summary>
+        /// Renders either 'null' or 'not null' as appropriate
+        /// </summary>
         private string RequiredDescription 
             => IsValueRequired ? RequiredLabel : OptionalLabel;
 
         public override string ToString() 
             => $"({ MaxLength ?? -1 }, {NumericPrecision ?? -1}, {NumericScale ?? -1}, {RequiredDescription})";
-
-        public bool AnySpecified 
-            => MaxLength != null || NumericScale != null || NumericPrecision != null;
 
     }
 }

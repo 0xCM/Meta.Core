@@ -57,9 +57,7 @@ namespace Meta.Core
         public Func<Lst<X>, Lst<Y>> fmap(Func<X, Y> f)
             => Lst.fmap(f);
     }
-
-    
-
+   
     public interface IIndexFunctor<X,Y> 
         : IFunctor<X, Index<X>, Y, Index<Y>> { }
 

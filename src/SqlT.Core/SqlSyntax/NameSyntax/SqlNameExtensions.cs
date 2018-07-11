@@ -79,25 +79,6 @@ namespace SqlT.Core
             return result;
         }
 
-        public static string GetVersionName(this SqlVersionIndicator indicator)
-        {
-            switch (indicator)
-            {
-                case SqlVersionIndicator.Sql2005: return SqlVersionNames.Sql2005;
-                case SqlVersionIndicator.Sql2008: return SqlVersionNames.Sql2008;
-                case SqlVersionIndicator.Sql2008R2: return SqlVersionNames.Sql2008R2;
-                case SqlVersionIndicator.Sql2012: return SqlVersionNames.Sql2012;
-                case SqlVersionIndicator.Sql2014: return SqlVersionNames.Sql2014;
-                case SqlVersionIndicator.Sql2016: return SqlVersionNames.Sql2016;
-                case SqlVersionIndicator.Sql2017: return SqlVersionNames.Sql2017;
-                default:
-                    throw new NotSupportedException($"The SQL Version {indicator} is unrecognized");
-            }
-        }
-
-        public static SqlVersion GetVersion(this SqlVersionIndicator indicator)
-            => new SqlVersion(indicator.GetVersionName());
-
         /// <summary>
         /// Writes a collection of names to a file in a standardized format
         /// </summary>

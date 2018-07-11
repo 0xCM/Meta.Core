@@ -11,20 +11,15 @@ namespace SqlT.Core
     using System.Linq;
     using System.Runtime.CompilerServices;
 
-    using Meta.Core.Workflow;
-
     using SqlT;
     using SqlT.Core;
     using SqlT.Services;
     using SqlT.SqlSystem;
-    using SqlT.Templates;
 
     using N = SystemNode;
 
     using static metacore;
     using static SqlT.Core.SqlChannelMessages;
-
-
 
     public class SqlProxyChannel : SqlChannel<ISqlProxyBroker>, ISqlProxyChannel
     {

@@ -38,14 +38,6 @@ namespace SqlT.Core
             => from error in e.ErrorList()
                select new SqlErrorMessage(error);
 
-        public static IReadOnlyList<SqlMessage> GetMessages<P>(this IEnumerable<SqlOutcome<P>> outcomes)
-            => Enumerable.SelectMany(outcomes, oc => oc.Messages).ToList();
-
-        private static SqlOutcome<P> Create<P>(P payload)
-            => new SqlOutcome<P>(payload);
-
-        public static SqlOutcome<P> Lift<P>(P payload)
-            => new SqlOutcome<P>(payload);
 
         public static SqlOutcome<P> Success<P>(P payload)
             => new SqlOutcome<P>(payload);
@@ -97,23 +89,6 @@ namespace SqlT.Core
             {
                 return Failure<P>(x.Messages);
             }
-
-        }
-
-
-        public static SqlOutcome<TResult> Use<T, TResult>(T resource, Func<T, TResult> use) where T : IDisposable
-        {
-            try
-            {
-                using (resource)
-                {
-                    return use(resource);
-                }
-            }
-            catch (Exception e)
-            {
-                return new SqlOutcome<TResult>(e);
-            }
         }
 
         public static SqlOutcome<TResult> Use<T, TResult>(string sql, T resource, Func<T, TResult> use) where T : IDisposable
@@ -145,7 +120,5 @@ namespace SqlT.Core
                 return SqlOutcome.Failure<T>(e);
             }
         }
-
-
     }
 }

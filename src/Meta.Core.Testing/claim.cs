@@ -18,6 +18,18 @@ namespace Meta.Core
         public static void equal<T>(T expect, T actual)
             => UT.Assert.AreEqual(expect, actual);
 
+        /// <summary>
+        /// Asserts that all supplied values are equal
+        /// </summary>
+        /// <typeparam name="T">The value type</typeparam>
+        /// <param name="values">The values to test for equality</param>
+        public static void allEqual<T>(params T[] values)
+        {
+            for (var i = 0; i < values.Length - 1; i++)
+                equal(values[i], values[i + 1]);            
+        }
+            
+
         public static void equal<T>(T expect, Option<T> actual)
             => UT.Assert.AreEqual(expect, actual.ValueOrDefault());
 

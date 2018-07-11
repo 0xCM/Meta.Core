@@ -257,7 +257,7 @@ static partial class metacore
     /// <returns></returns>
     [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string cmdOption(object value)
-        => toString(value);
+        => show(value);
 
     /// <summary>
     /// Renders the input value as text
@@ -268,7 +268,7 @@ static partial class metacore
     // TODO: Implement this using the value formatter pattern
     [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string format<X>(X input)
-        => toString(input);
+        => show(input);
 
     /// <summary>
     /// Conditionally emits the value of a <see cref="FilePath"/> command option predicated on whether 
@@ -405,6 +405,30 @@ static partial class metacore
     /// <param name="subject">The subject</param>
     /// <returns></returns>
     [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static string show<T>(T subject, string ifMissing)
+        => (subject is string)
+            ? toString(subject as string, ifMissing)
+            : (subject != null ? subject.ToString() : ifMissing ?? emptys());
+
+    /// <summary>
+    /// If subject is not null, invokes its ToString() method; otherwise, returns an empty string or a supplied marker
+    /// </summary>
+    /// <typeparam name="T">The subject type</typeparam>
+    /// <param name="subject">The subject</param>
+    /// <returns></returns>
+    [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static string show<T>(T subject)
+        => (subject is string)
+            ? toString(subject as string, emptys())
+            : (subject != null ? subject.ToString() : emptys());
+
+    /// <summary>
+    /// If subject is not null, invokes its ToString() method; otherwise, returns an empty string or a supplied marker
+    /// </summary>
+    /// <typeparam name="T">The subject type</typeparam>
+    /// <param name="subject">The subject</param>
+    /// <returns></returns>
+    [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string toString<T>(T subject, string ifMissing = null)
         => (subject is string)
             ? toString(subject as string, ifMissing)
@@ -529,7 +553,7 @@ static partial class metacore
     /// <returns></returns>
     [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string wrap(object left, object content, object right)
-        => $"{toString(left)}{toString(content)}{toString(right)}";
+        => $"{show(left)}{show(content)}{show(right)}";
 
     /// <summary>
     /// Encloses text between single quote (') characters

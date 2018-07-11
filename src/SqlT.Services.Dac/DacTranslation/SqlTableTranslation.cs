@@ -81,7 +81,7 @@ namespace SqlT.Dac
                         TableName: new SqlTableName(table.SpecifyObjectName()),
                         Columns: sqlcols,
                         PrimaryKey: sqlPK.ValueOrDefault(),
-                        Properties: xpidx.ModelExtendedProperties(table)
+                        Properties: xpidx.ModelExtendedProperties(table).Stream()
                     );
             }
         }

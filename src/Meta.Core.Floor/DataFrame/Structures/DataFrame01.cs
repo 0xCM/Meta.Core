@@ -7,6 +7,7 @@ namespace Meta.Core
 {
     using System;
     using System.Linq;
+    using Modules;
 
     using static metacore;
 
@@ -16,11 +17,13 @@ namespace Meta.Core
     /// <typeparam name="X1">The first column's data type</typeparam>
     public class DataFrame<X1> : DataFrameRoot<DataFrame<X1>>
     {
+        public static implicit operator DataFrame<X1>(Seq<Record<X1>> source)
+            => new DataFrame<X1>(source);
+
         /// <summary>
         /// Initializes an empty frame
         /// </summary>
         public DataFrame()
-            : base(null)
             => this.Rows = Seq<Record<X1>>.Empty;
 
         /// <summary>
@@ -28,9 +31,8 @@ namespace Meta.Core
         /// </summary>
         /// <param name="rows">The data that will be encapsualted by the frame</param>
         /// <param name="schema">The frame schema, if any</param>
-        public DataFrame(Seq<Record<X1>> rows, DataFrameSchema? schema = null)
-            : base(schema)
-                => this.Rows = rows;
+        public DataFrame(IContainer<Record<X1>> rows)
+            => this.Rows = Index.make(rows.Stream());
 
         /// <summary>
         /// The data encapsulated by the frame
@@ -50,7 +52,8 @@ namespace Meta.Core
         /// <param name="data">The item arrays to transform</param>
         /// <param name="schema">The associated schema, if any</param>
         /// <returns></returns>
-        public override DataFrame<X1> Construct(Seq<object[]> data, DataFrameSchema? schema = null)
-            => DataFrame.make(map(data, item => Record.make((X1)item[0])),schema);
+        public override DataFrame<X1> Construct(IContainer<object[]> data)
+            => DataFrame.make(seq(data.Stream().Select(item 
+                    => Record.make((X1)item[0]))));
     }
 }

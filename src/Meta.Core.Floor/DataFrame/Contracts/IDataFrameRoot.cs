@@ -14,6 +14,6 @@ namespace Meta.Core
 
     public interface IDataFrameRoot : IDataFrame
     {
-        IDataFrame Construct(Seq<object[]> data, DataFrameSchema? schema);
+        IDataFrame Construct(IContainer<object[]> data);
     }
 }

@@ -225,26 +225,6 @@ namespace Meta.Core
                     return new FolderSymLink(SrcPath, DstLink);
             });
 
-        /// <summary>
-        /// Attemps to locatate a <see cref="FolderPath"/> given an nfts URI
-        /// </summary>
-        /// <param name="uri"></param>
-        /// <returns></returns>
-        public static Option<FolderPath> LocateNtfsPath(this SystemUri uri)
-        {
-            if (uri.Scheme.IdentifierText.Contains(".ntfs"))
-            {
-                var ntfsStart = CommonFolders.DevRoot;
-                var ntfsFolderPath
-                    = ntfsStart
-                    + (RelativePath.Parse($"{uri.Host}\\ntfs")
-                    + RelativePath.Parse(string.Join("\\", uri.Path.Components()))
-                        );
-                if (ntfsFolderPath.Exists())
-                    return ntfsFolderPath;
-            }
-            return null;
-        }
 
         /// <summary>
         /// Enumerates the files contained in the folder or subfolders accoring to the

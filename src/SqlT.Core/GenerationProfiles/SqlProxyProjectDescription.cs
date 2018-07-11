@@ -23,13 +23,29 @@ namespace SqlT.Core
             params SqlProxyProfileIdentifier[] ProfileIdentifiers)
         {
             this.ProjectName = ProjectName;
-            this.ProfileIdentifiers = ProfileIdentifiers.ToList();
+            this.ProfileIdentifiers = ProfileIdentifiers;
 
         }
 
         public string ProjectName { get; set; }
 
-        public IReadOnlyList<SqlProxyProfileIdentifier> ProfileIdentifiers { get; set; }
+        public Lst<SqlProxyProfileIdentifier> ProfileIdentifiers { get; set; }
+    }
+
+    public sealed class SqlProxyProjectDescriptions : ReadOnlySet<SqlProxyProjectDescription>
+    {
+        public static implicit operator SqlProxyProjectDescriptions(SqlProxyProjectDescription[] items)
+            => new SqlProxyProjectDescriptions(items);
+
+
+        public SqlProxyProjectDescriptions(IEnumerable<SqlProxyProjectDescription> items)
+            : base(items)
+        { }
+
+        public SqlProxyProjectDescriptions(params SqlProxyProjectDescription[] items)
+            : base(items)
+        { }
+
     }
 
 }

@@ -91,7 +91,6 @@ namespace SqlT.Core
         /// </summary>
         public static SqlExtendedPropertyName IndexReason { get; } = "SqlT_IndexReason";
 
-
         /// <summary>
         /// Applied to a table to indicate that a bijection can be defined between the
         /// rows of the table and the literals of a CLR enumeration type 
@@ -110,6 +109,15 @@ namespace SqlT.Core
         /// </remarks>
         public static SqlExtendedPropertyName EnumProvider { get; } = "SqlT_EnumProvider";
 
+        /// <summary>
+        /// Applied to a database to assign a classification
+        /// </summary>
+        public static SqlExtendedPropertyName DbType { get; }  = new SqlExtendedPropertyName("SqlT_DbType");
+
+        /// <summary>
+        /// Applied to a database to indicate its version
+        /// </summary>
+        public static SqlExtendedPropertyName DbVersion { get; } = new SqlExtendedPropertyName("SqlT_DbVersion");
     }
 
 }

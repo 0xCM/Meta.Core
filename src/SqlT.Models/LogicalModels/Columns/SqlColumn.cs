@@ -119,7 +119,7 @@ namespace SqlT.Models
         public override string ToString()
             => $"[{Name} {DataTypeReference}";
 
-        public abstract C Retype(SqlTypeDescriptor newType);
+        public abstract C Retype(SqlTypeReference newType);
 
         public abstract C Reparent(sxc.sql_object newParent);
 
@@ -130,7 +130,7 @@ namespace SqlT.Models
         ISqlColumn ISqlColumn.Reparent(sxc.sql_object newParent)
             => Reparent(newParent);
 
-        ISqlColumn ISqlColumn.Retype(SqlTypeDescriptor newType)
+        ISqlColumn ISqlColumn.Retype(SqlTypeReference newType)
             => Retype(newType);
 
         ISqlColumn ISqlColumn.Reposition(int newPosition)
@@ -146,7 +146,7 @@ namespace SqlT.Models
             : base(Name, Position, TypeReference, Parent)
         { }
 
-        public override SqlColumn Retype(SqlTypeDescriptor newType)
+        public override SqlColumn Retype(SqlTypeReference newType)
             => new SqlColumn(Name, Position, DataTypeReference.retype(newType), Parent.ValueOrDefault());
 
         public override SqlColumn Rename(SqlColumnName newName)

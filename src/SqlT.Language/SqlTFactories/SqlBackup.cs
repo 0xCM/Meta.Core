@@ -11,9 +11,8 @@ namespace SqlT.Language
     using SqlT.Core;
     using SqlT.Models;
     using SqlT.Services;
-    using SqlT.Templates;
 
-    using static SqlT.Templates.SqlRestoreDatabase;
+    using static SqlRestoreDatabase;
 
     using TSql = Microsoft.SqlServer.TransactSql.ScriptDom;
 

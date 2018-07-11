@@ -15,8 +15,8 @@ using N = SystemNode;
 /// </summary>
 public struct NodeLink : ILink<N>
 {
-    public static implicit operator NodePath(NodeLink link)
-        => new NodePath(stream(link));
+    public static implicit operator NodeChain(NodeLink link)
+        => new NodeChain(stream(link));
 
     public static implicit operator Link<N,N>(NodeLink link)
         => new Link<N, N>(link.Source, link.Target);

@@ -1,7 +1,7 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// MetaCore
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Models
 {
@@ -11,10 +11,9 @@ namespace SqlT.Models
 
     using Meta.Models;
     using SqlT.Core;
-    using SqlT.Syntax;
+
     using sxc = Syntax.contracts;
     using static metacore;
-
 
     public abstract class SqlObject<M> : SqlElement<M>, sxc.sql_object
         where M : SqlObject<M>
@@ -41,19 +40,9 @@ namespace SqlT.Models
         }
 
 
-        protected SqlObject
-        (
-            sxc.ISqlObjectName ObjectName, 
-            SqlElementDescription Documentation = null,
-            IEnumerable<SqlPropertyAttachment> Properties = null,
-            bool IsIntrinsic = false
-        ) : base
-            (
-                  ObjectName,
-                  Documentation : Documentation, 
-                  Properties : Properties 
-                  
-            )
+        protected SqlObject(sxc.ISqlObjectName ObjectName,  SqlElementDescription Documentation = null,
+            IEnumerable<SqlPropertyAttachment> Properties = null, bool IsIntrinsic = false) 
+            : base(ObjectName, Documentation : Documentation, Properties : Properties )
         {
             this.ObjectName = ObjectName;
         }
@@ -78,18 +67,8 @@ namespace SqlT.Models
         where M : SqlObject<M,N>
         where N : SqlObjectName<N>, new()
     {
-        protected SqlObject
-        (
-            N Name,
-            SqlElementDescription Documentation = null,
-            IEnumerable<SqlPropertyAttachment> Properties = null
-            
-        ) : base
-            (
-                ObjectName: Name,
-                Documentation: Documentation,
-                Properties: Properties
-            )
+        protected SqlObject(N Name, SqlElementDescription Documentation = null, IEnumerable<SqlPropertyAttachment> Properties = null) 
+            : base( ObjectName: Name, Documentation: Documentation, Properties: Properties)
         {
             this.Name = Name;
         }

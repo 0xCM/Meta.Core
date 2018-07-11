@@ -9,7 +9,6 @@ namespace Meta.Core.Modules
     using System.Collections.Generic;
     using System.Linq;
 
-    using Modules;
 
     using static minicore;
 
@@ -193,7 +192,7 @@ namespace Meta.Core.Modules
         public static Seq<Y> weaken<X, Y>(Seq<X> s)
             where Y : class
             where X : Y
-                => make(from Y x in s select x);
+                => from Y x in s select x;
 
         /// <summary>
         /// Evaluates the sequence

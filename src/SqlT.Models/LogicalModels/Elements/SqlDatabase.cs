@@ -1,7 +1,7 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// MetaCore
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Models
 {
@@ -9,6 +9,7 @@ namespace SqlT.Models
     using System.Collections.Generic;
     using System.Linq;
 
+    using Meta.Core;
     using SqlT.Core;
     using SqlT.Syntax;
 
@@ -22,37 +23,34 @@ namespace SqlT.Models
         
         public SqlDatabase(SqlDatabaseName DatabaseName,
                 dboptions DatabaseOptions = null,
-                IEnumerable<SqlFileGroup> DataFileGroups = null,
-                IEnumerable<SqlFileGroup> LogFileGroups = null,
-                IEnumerable<SqlSchema> Schemas = null,
-                IEnumerable<sxc.sql_object> Objects = null,
+                Seq<SqlFileGroup>? DataFileGroups = null,
+                Seq<SqlFileGroup>? LogFileGroups = null,
+                Seq<SqlSchema>? Schemas = null,
+                Seq<sxc.sql_object>? Objects = null,
                 IEnumerable<SqlPropertyAttachment> Properties = null,
                 SqlElementDescription Documentation = null,
                 SqlCollationName Collation = null
-            ) : base(DatabaseName, 
-               Properties: Properties, 
-               Documentation: Documentation)
+            ) : base(DatabaseName, Properties: Properties, Documentation: Documentation)
         {
             this.DatabaseOptions = DatabaseOptions;
-            this.DataFileGroups = rolist(DataFileGroups);
-            this.LogFileGroups = rolist(LogFileGroups);
-            this.Objects = rolist(Objects);
-            this.Schemas = rolist(Schemas);
+            this.DataFileGroups = DataFileGroups ?? seq<SqlFileGroup>();
+            this.LogFileGroups = LogFileGroups ?? seq<SqlFileGroup>();
+            this.Objects = Objects ?? seq<sxc.sql_object>();
+            this.Schemas = Schemas ?? seq<SqlSchema>();
             this.Collation = Collation;
         }
 
         public dboptions DatabaseOptions { get; }
 
-        public IReadOnlyList<SqlFileGroup> DataFileGroups { get; }
+        public Lst<SqlFileGroup> DataFileGroups { get; }
 
-        public IReadOnlyList<SqlFileGroup> LogFileGroups { get; }
+        public Lst<SqlFileGroup> LogFileGroups { get; }
 
-        public IReadOnlyList<sxc.sql_object> Objects { get; }
+        public Lst<sxc.sql_object> Objects { get; }
 
-        public IReadOnlyList<SqlSchema> Schemas { get; }
+        public Lst<SqlSchema> Schemas { get; }
 
         public Option<SqlCollationName> Collation { get; }
-
 
         public override string ToString()
             => Name.ToString();

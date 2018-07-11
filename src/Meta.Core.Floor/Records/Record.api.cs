@@ -93,7 +93,7 @@ partial class metacore
     /// <param name="x5">The value of field 5</param>
     /// <param name="x6">The value of field 6</param>
     /// <returns></returns>
-    public static Record<X1, X2, X3, X4, X5, X6> row<X1, X2, X3, X4, X5, X6>(X1 x1, X2 x2, X3 x3, X4 x4, X5 x5, X6 x6)
+    public static Record<X1, X2, X3, X4, X5, X6> record<X1, X2, X3, X4, X5, X6>(X1 x1, X2 x2, X3 x3, X4 x4, X5 x5, X6 x6)
         => Record.make(x1, x2, x3, x4, x5, x6);
 
     /// <summary>

@@ -622,15 +622,15 @@ namespace SqlT.Core
             => BulkCopy(bcp, proxyType, items.Select(x => x.GetItemArray()), EffectiveOptions(options), observer);
 
         Option<int> ISqlProxyBroker.BulkCopy(Type proxyType, IEnumerable<ISqlTabularProxy> items, SqlCopyOptions options, Action<int> observer)
-            => Use(SqlCopier.CreateSqlCopier(EffectiveOptions(options), observer), 
+            => Use(SqlCopier.Create(EffectiveOptions(options), observer), 
                     bcp => BulkCopy(bcp, proxyType, items, EffectiveOptions(options), observer));
 
         Option<int> ISqlProxyBroker.BulkCopy(Type proxyType, IEnumerable<object[]> itemArrays, SqlCopyOptions options, Action<int> observer)
-            => Use(SqlCopier.CreateSqlCopier(EffectiveOptions(options), observer), 
+            => Use(SqlCopier.Create(EffectiveOptions(options), observer), 
                     bcp => BulkCopy(bcp, proxyType, itemArrays, EffectiveOptions(options), observer));
 
         Option<int> ISqlProxyBroker.BulkCopy<T>(IEnumerable<T> items, SqlCopyOptions options, Action<int> observer)
-            => Use(SqlCopier.CreateSqlCopier(EffectiveOptions(options), observer), 
+            => Use(SqlCopier.Create(EffectiveOptions(options), observer), 
                     bcp => BulkCopy(bcp, typeof(T), items, EffectiveOptions(options), observer));
 
         Option<int> ISqlProxyBroker.Save<T>(IEnumerable<T> src, SqlSaveOptions options, Action<long> observer)

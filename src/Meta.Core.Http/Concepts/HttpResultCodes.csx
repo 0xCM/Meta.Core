@@ -1,10 +1,18 @@
-﻿#load "..\Payments.Core.Scripts\tinygen.csx"
+﻿#load "tinygen.csx"
+#r "/bin/lib/net472/Meta.Core.Floor.dll"
+
 using System.Collections.Generic;
+
+
+void Test()
+{
+    Console.WriteLine("test");
+}
 
 var config = new Config
 {
     OutputFile = @"..\Payments.Core\Http\Concepts\HttpResultCodes.List.cs",
-    Using = new List<string> { "System" },
+    Using = new string[] { "System" },
     Namespace = "Meta.Core.Http",
     Query = new QuerySpecification
     {

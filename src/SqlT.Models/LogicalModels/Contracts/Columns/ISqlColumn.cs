@@ -55,7 +55,7 @@ namespace SqlT.Models
         /// </summary>
         /// <param name="newType">Describes the new data type</param>
         /// <returns></returns>
-        ISqlColumn Retype(SqlTypeDescriptor newType);
+        ISqlColumn Retype(SqlTypeReference newType);
 
         /// <summary>
         /// Clones the column while assigning it a new parent

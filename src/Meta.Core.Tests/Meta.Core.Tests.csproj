@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Etude\" />
     <Folder Include="Properties\" />
   </ItemGroup>
 

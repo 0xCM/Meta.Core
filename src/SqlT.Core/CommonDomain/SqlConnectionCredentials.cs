@@ -1,22 +1,31 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Core
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
+    using System;    
 
-    public class SqlConnectionCredentials
+    /// <summary>
+    /// Specifies credentials for authenticating via SQL Server security
+    /// </summary>
+    public readonly struct SqlConnectionCredentials
     {
         public SqlConnectionCredentials(string Username, string Password)
         {
             this.Username = Username;
             this.Password = Password;
         }
+
+        /// <summary>
+        /// The credential username
+        /// </summary>
         public string Username { get; }
+
+        /// <summary>
+        /// The credential password
+        /// </summary>
         public string Password { get; }
 
         public override string ToString()

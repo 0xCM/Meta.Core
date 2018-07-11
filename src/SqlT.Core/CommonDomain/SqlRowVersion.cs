@@ -1,7 +1,7 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// SqlT
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace SqlT.Core
 {
@@ -16,15 +16,32 @@ namespace SqlT.Core
     /// Taken from https://gist.github.com/jnm2/929d194c87df8ad0438f6cab0139a0a6
     ///</remarks>
     [DebuggerDisplay("{ToString(),nq}")]
-    public struct SqlRowVersion : IComparable, IEquatable<SqlRowVersion>, IComparable<SqlRowVersion>
+    public readonly struct SqlRowVersion : IComparable, IEquatable<SqlRowVersion>, IComparable<SqlRowVersion>
     {
         public static readonly SqlRowVersion Zero = default(SqlRowVersion);
 
         public readonly ulong Value;
 
+        public static bool operator ==(SqlRowVersion comparand1, SqlRowVersion comparand2)
+            => comparand1.Equals(comparand2);
+
+        public static bool operator !=(SqlRowVersion comparand1, SqlRowVersion comparand2)
+            => !comparand1.Equals(comparand2);
+
+        public static bool operator >(SqlRowVersion comparand1, SqlRowVersion comparand2)
+            => comparand1.CompareTo(comparand2) > 0;
+
+        public static bool operator >=(SqlRowVersion comparand1, SqlRowVersion comparand2)
+            => comparand1.CompareTo(comparand2) >= 0;
+
+        public static bool operator <(SqlRowVersion comparand1, SqlRowVersion comparand2)
+            => comparand1.CompareTo(comparand2) < 0;
+
+        public static bool operator <=(SqlRowVersion comparand1, SqlRowVersion comparand2)
+            => comparand1.CompareTo(comparand2) <= 0;
+
         public static SqlRowVersion Parse(string s)
             => new SqlRowVersion(Convert.ToUInt64(s, 16));
-
 
         SqlRowVersion(ulong Value)
         {
@@ -80,7 +97,6 @@ namespace SqlT.Core
             r[6] = (byte)(Value >> 8);
             r[7] = (byte)Value;
             return r;
-
         }
 
         public override bool Equals(object obj)
@@ -95,32 +111,8 @@ namespace SqlT.Core
         int IComparable.CompareTo(object obj)        
             => obj == null ? 1 : CompareTo((SqlRowVersion)obj);
         
-
         public int CompareTo(SqlRowVersion other)
             => Value == other.Value ? 0 : Value < other.Value ? -1 : 1;
-
-        public static bool operator ==(SqlRowVersion comparand1, SqlRowVersion comparand2)        
-            => comparand1.Equals(comparand2);
-        
-        public static bool operator !=(SqlRowVersion comparand1, SqlRowVersion comparand2)        
-            => !comparand1.Equals(comparand2);
-        
-        public static bool operator >(SqlRowVersion comparand1, SqlRowVersion comparand2)
-        {
-            return comparand1.CompareTo(comparand2) > 0;
-        }
-        public static bool operator >=(SqlRowVersion comparand1, SqlRowVersion comparand2)
-        {
-            return comparand1.CompareTo(comparand2) >= 0;
-        }
-        public static bool operator <(SqlRowVersion comparand1, SqlRowVersion comparand2)
-        {
-            return comparand1.CompareTo(comparand2) < 0;
-        }
-        public static bool operator <=(SqlRowVersion comparand1, SqlRowVersion comparand2)
-        {
-            return comparand1.CompareTo(comparand2) <= 0;
-        }
 
         public object ConvertTo(Type t)
         {
@@ -132,14 +124,11 @@ namespace SqlT.Core
                 throw new NotSupportedException($"Cannot convert the rowversion value {this} to a value of type {t.Name}");
         }
 
-        public override string ToString()
-        {
-            return Value.ToString("x16");
-        }
+        public override string ToString()        
+            => Value.ToString("x16");
+        
 
         public static SqlRowVersion Max(SqlRowVersion comparand1, SqlRowVersion comparand2)
-        {
-            return comparand1.Value < comparand2.Value ? comparand2 : comparand1;
-        }
+            => comparand1.Value < comparand2.Value ? comparand2 : comparand1;
     }
 }

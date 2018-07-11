@@ -74,7 +74,7 @@ namespace SqlT.Models
         public override T Reparent(sxc.sql_object newParent)
             => new T(Definition.Reparent(newParent));
 
-        public override T Retype(SqlTypeDescriptor newType)
+        public override T Retype(SqlTypeReference newType)
             => new T(Definition.Retype(DataTypeReference.retype(newType)));
 
         public T ToTableColumn()

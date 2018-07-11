@@ -108,8 +108,8 @@ namespace SqlT.Syntax
                ColumnRole: src.ColumnRole
             );
 
-        public static SqlTypeDescriptor TypeDescriptor(this SqlColumnDefinition src)
-            => new SqlTypeDescriptor(src.DataType);
+        public static SqlTypeReference TypeDescriptor(this SqlColumnDefinition src)
+            => new SqlTypeReference(src.DataType);
 
         /// <summary>
         /// Replicates the source column while changing, if necessary, the column
@@ -121,7 +121,7 @@ namespace SqlT.Syntax
             => src.Retype(src.DataType.retype
                 (
                     src.TypeDescriptor().Transform
-                    (d => new SqlTypeDescriptor
+                    (d => new SqlTypeReference
                         (
                             TypeName: d.TypeName,
                             IsNullable: false,

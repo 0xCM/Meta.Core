@@ -10,31 +10,19 @@ namespace SqlT.Core
     using System.Linq;
     using System.Data.SqlClient;
 
+    using Meta.Core;
+
     public class SqlTableAssociation
     {
-        public SqlTableAssociation
-        (
-            SqlTableName SourceTable,
-            SqlTableName TargetTable,
-            IEnumerable<SqlColumnAssociation> ColumnAssociations
-        )
+        public SqlTableAssociation(SqlTableName SourceTable, SqlTableName TargetTable,
+            Seq<SqlColumnAssociation> ColumnAssociations)
         {
             this.SourceTable = SourceTable;
             this.TargetTable = TargetTable;
-            this.ColumnAssociations = ColumnAssociations.ToList();
+            this.ColumnAssociations = ColumnAssociations;
         }
 
-        public SqlTableAssociation
-        (
-            SqlTableName SourceTable,
-            SqlTableName TargetTable,
-            params SqlColumnAssociation[] ColumnAssociations
-        ) : this(SourceTable, TargetTable, (IEnumerable<SqlColumnAssociation>)ColumnAssociations)
-        {
-        }
-
-
-        public IReadOnlyList<SqlColumnAssociation> ColumnAssociations { get; }
+        public Lst<SqlColumnAssociation> ColumnAssociations { get; }
 
         /// <summary>
         /// The client table in the association
@@ -50,7 +38,7 @@ namespace SqlT.Core
         => $"{SourceTable} --> {TargetTable}";
 
 
-        internal IEnumerable<SqlBulkCopyColumnMapping> ToBcpMappings()
+        internal Seq<SqlBulkCopyColumnMapping> ToBcpMappings()
             => this.ColumnAssociations.Select(c => c.ToBcpMapping());
 
     }

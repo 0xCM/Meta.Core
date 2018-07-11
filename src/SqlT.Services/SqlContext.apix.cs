@@ -11,6 +11,7 @@ namespace SqlT.Services
     using Meta.Core;
     using SqlT.Core;
 
+    using SqlT.SqlSystem;
     using static metacore;
 
     public static class SqlContextX
