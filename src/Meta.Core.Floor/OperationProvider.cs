@@ -9,7 +9,7 @@ namespace Meta.Core
     using System.Linq;
 
     using static metacore;
-    using static ApplicationMessage;
+    using static AppMessage;
     using static OperationProviderMessages;
 
     public interface IOperationProvider

@@ -35,7 +35,7 @@ namespace Meta.Core.Testing
         /// <summary>
         /// Describes the outcome of the test
         /// </summary>
-        IApplicationMessage Description { get; }
+        IAppMessage Description { get; }
     }
 
     public interface ITestResult<T> : ITestResult
@@ -75,7 +75,7 @@ namespace Meta.Core.Testing
         object ITestResult.Actual
             => Actual;
 
-        public IApplicationMessage Description
+        public IAppMessage Description
             => Succeeded
             ? inform($"{TestName} succeeded") :
               error($"{TestName} failed: {Expect} <> {Actual}");

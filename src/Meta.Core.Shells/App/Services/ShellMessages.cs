@@ -17,69 +17,69 @@ using Meta.Core;
 public static class ShellMessages
 {
 
-    public static IApplicationMessage CompletedCommand(ICommandResult result)
+    public static IAppMessage CompletedCommand(ICommandResult result)
         => result.Succeeded
-        ? ApplicationMessage.Inform("Successfully completed execution of the @CommandName with submission id @SubmissionId", new
+        ? AppMessage.Inform("Successfully completed execution of the @CommandName with submission id @SubmissionId", new
         {
             result.Spec.CommandName,
             result.SubmissionId
         })
         : result.Message;
 
-    public static IApplicationMessage ListedNamedValue(string ItemName, object ItemValue)
-        => ApplicationMessage.Inform($"{ItemName}:{ItemValue}");
+    public static IAppMessage ListedNamedValue(string ItemName, object ItemValue)
+        => AppMessage.Inform($"{ItemName}:{ItemValue}");
 
-    public static IApplicationMessage ControllerAlreadyRunning()
-        => ApplicationMessage.Warn("Controller already running");
+    public static IAppMessage ControllerAlreadyRunning()
+        => AppMessage.Warn("Controller already running");
 
-    public static IApplicationMessage CommandSpecNotFound(string SpecName)
-        => ApplicationMessage.Error($"The '@SpecName' specification could not be found",
+    public static IAppMessage CommandSpecNotFound(string SpecName)
+        => AppMessage.Error($"The '@SpecName' specification could not be found",
             new
             {
                 SpecName
             });
 
-    public static IApplicationMessage CommandNotFound(string CommandName)
-        => ApplicationMessage.Error($"The @CommandName command could not be found",
+    public static IAppMessage CommandNotFound(string CommandName)
+        => AppMessage.Error($"The @CommandName command could not be found",
             new
             {
                 CommandName
             });
 
-    public static IApplicationMessage SubmittedSpec(string SpecName)
-        => ApplicationMessage.Inform($"The @SpecName specification was submitted",
+    public static IAppMessage SubmittedSpec(string SpecName)
+        => AppMessage.Inform($"The @SpecName specification was submitted",
             new
             {
                 SpecName
             });
 
 
-    public static IApplicationMessage HostException(string Summary, string Detail)
-        => ApplicationMessage.Error("Error: @Summary - @Detail",
+    public static IAppMessage HostException(string Summary, string Detail)
+        => AppMessage.Error("Error: @Summary - @Detail",
             new
             {
                 Summary,
                 Detail
             });
 
-    public static IApplicationMessage SpecNotFound(string SpecName)
-        => ApplicationMessage.Inform("The @SpecName command specification doesn't exist",
+    public static IAppMessage SpecNotFound(string SpecName)
+        => AppMessage.Inform("The @SpecName command specification doesn't exist",
                 new
                 {
                     SpecName
                 }
             );
 
-    public static IApplicationMessage CommandLibraryUnspecified()
-        => ApplicationMessage.Error("The Command Library cannot be instantiated",
+    public static IAppMessage CommandLibraryUnspecified()
+        => AppMessage.Error("The Command Library cannot be instantiated",
                 new
                 {
 
                 }
             );
 
-    public static IApplicationMessage NoResultOrMessage(IConsoleCommand command)
-        => ApplicationMessage.Warn("The @CommandName command had no result but had no explanation as to why",
+    public static IAppMessage NoResultOrMessage(IConsoleCommand command)
+        => AppMessage.Warn("The @CommandName command had no result but had no explanation as to why",
                 new
                 {
                     CommandName = command.CommandName.ToString()

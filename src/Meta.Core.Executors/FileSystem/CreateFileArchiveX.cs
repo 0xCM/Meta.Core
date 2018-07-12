@@ -26,8 +26,8 @@ namespace Meta.Core.Commands
     {
 
 
-        static IApplicationMessage DestinationExists(C command)
-            => ApplicationMessage.Error($"Destination path @ArchivePath exists and {nameof(command.Overwrite)} is false",
+        static IAppMessage DestinationExists(C command)
+            => AppMessage.Error($"Destination path @ArchivePath exists and {nameof(command.Overwrite)} is false",
                 new
                 {
                     command.ArchivePath                    

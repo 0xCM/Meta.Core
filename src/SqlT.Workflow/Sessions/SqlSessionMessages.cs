@@ -19,84 +19,84 @@ namespace SqlT.Services
         }
 
 
-        public IApplicationMessage CreatedTable(SqlTableName TableName)
+        public IAppMessage CreatedTable(SqlTableName TableName)
             => PostMessage(inform("Created table @TableName", new
             {
                 TableName
             }));
 
-        public IApplicationMessage CreatedSchema(SqlSchemaName SchemaName)
+        public IAppMessage CreatedSchema(SqlSchemaName SchemaName)
             => PostMessage(inform("Created schema @SchemaName", new
             {
                 SchemaName
             }));
 
 
-        public IApplicationMessage DroppedTable(SqlTableName TableName)
+        public IAppMessage DroppedTable(SqlTableName TableName)
             => PostMessage(inform("Dropped @TableName", new
             {
                 TableName
             }));
 
-        public IApplicationMessage ConnectedToSourceNode(N Source)
+        public IAppMessage ConnectedToSourceNode(N Source)
             => PostMessage(inform("Connected to @Source", new
             {
                 Source
             }));
 
-        public IApplicationMessage ConnectedToTargetNode(N Target)
+        public IAppMessage ConnectedToTargetNode(N Target)
             => PostMessage(inform("Connected to @Target", new
             {
                 Target
             }));
 
-        public IApplicationMessage ConnectedToTargetDb(SqlDatabaseName Target)
+        public IAppMessage ConnectedToTargetDb(SqlDatabaseName Target)
             => PostMessage(inform("Connected to target database @Target", new
             {
                 Target
             }));
 
 
-        public IApplicationMessage ConnectedToSourceDb(SqlDatabaseName Source)
+        public IAppMessage ConnectedToSourceDb(SqlDatabaseName Source)
             => PostMessage(inform("Connected to source database @Source", new
             {
                 Source
             }));
 
 
-        public IApplicationMessage CapturingRecords(int Count)
+        public IAppMessage CapturingRecords(int Count)
             => PostMessage(inform("Capturing @Count records", new
             {
                 Count
             }));
 
-        public IApplicationMessage CapturedRecords(int Count)
+        public IAppMessage CapturedRecords(int Count)
             => PostMessage(inform("Captured @Count records", new
             {
                 Count
             }));
 
-        public IApplicationMessage TraversingSqlPackageArchive(FolderPath ArchivePath)
+        public IAppMessage TraversingSqlPackageArchive(FolderPath ArchivePath)
             => inform($"Traversing package archive @ArchivePath", new
             {
                 ArchivePath
             });
 
-        public IApplicationMessage DiscoveredSqlPackageDependency(SqlPackageName ClientPackage, SqlPackageName SupplierPackage)
+        public IAppMessage DiscoveredSqlPackageDependency(SqlPackageName ClientPackage, SqlPackageName SupplierPackage)
             => inform($"Discovered dependency @ClientPackage -> @SupplierPackage", new
             {
                 ClientPackage,
                 SupplierPackage
             });
 
-        public IApplicationMessage ExecutedSqlBatchSegment(SqlBatchScriptSegment Segment)
+        public IAppMessage ExecutedSqlBatchSegment(SqlBatchScriptSegment Segment)
             => inform($"Executed batch segment [{Segment.StartLine}, {Segment.EndLine}]");
 
-        public IApplicationMessage ToolProcessCompleted(FileName ToolName)
+        public IAppMessage ToolProcessCompleted(FileName ToolName)
             => babble($"The {ToolName} tool process has completed");
 
 
-        public static IApplicationMessage DispatchingCommand(N Host, ICommandDispatch dispatch)
+        public static IAppMessage DispatchingCommand(N Host, ICommandDispatch dispatch)
             => inform("Dispatching @SpecName", new
             {
                 Host,
@@ -104,7 +104,7 @@ namespace SqlT.Services
                 dispatch.Spec.SpecName,
             });
 
-        public static IApplicationMessage CompletedCommand(N Host, ICommandCompletion completion)
+        public static IAppMessage CompletedCommand(N Host, ICommandCompletion completion)
             => completion.Succeeded ? inform($"{Host}: {completion.Spec.SpecName} Succeeded")
                                     : error($"{Host}: {completion.Spec.SpecName} Failed");
 

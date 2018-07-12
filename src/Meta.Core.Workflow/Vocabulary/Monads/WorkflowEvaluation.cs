@@ -47,7 +47,7 @@ public struct WorkflowEvaluation<W>
 
     public WorkFlowed<W> Evaluated { get; }
 
-    public IApplicationMessage Description { get; }
+    public IAppMessage Description { get; }
 
     public bool Succeeded { get; }
 

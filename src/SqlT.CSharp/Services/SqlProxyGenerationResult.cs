@@ -14,7 +14,7 @@ namespace SqlT.Core
     public class SqlProxyGenerationResult
     {
 
-        public static SqlProxyGenerationResult Failure(string ProfileText, IApplicationMessage Description)
+        public static SqlProxyGenerationResult Failure(string ProfileText, IAppMessage Description)
             => new SqlProxyGenerationResult(ProfileText, Description);
 
         public static SqlProxyGenerationResult Success(SqlProxyGenerationProfile Profile, IReadOnlyList<FilePath> Emissions)
@@ -28,7 +28,7 @@ namespace SqlT.Core
             this.ProfileText = JsonServices.ToJson(Profile);
         }
 
-        SqlProxyGenerationResult(string ProfileText, IApplicationMessage Description)
+        SqlProxyGenerationResult(string ProfileText, IAppMessage Description)
         {
             this._Result = none<IReadOnlyList<FilePath>>(Description);
             this.ProfileText = ProfileText;
@@ -48,7 +48,7 @@ namespace SqlT.Core
         public bool Succeeded
             => _Result.IsSome();
 
-        public IApplicationMessage Description
+        public IAppMessage Description
             => _Result.Message;
 
         public override string ToString()

@@ -57,7 +57,7 @@ namespace SqlT.Services
             return parser;
         }
 
-        IEnumerable<(TextLine Line, P Proxy)> Parse<P>(ITextFile Src, Action<IApplicationMessage> Observer, DelimitedTextDescription Config)
+        IEnumerable<(TextLine Line, P Proxy)> Parse<P>(ITextFile Src, Action<IAppMessage> Observer, DelimitedTextDescription Config)
             where P : class, ISqlTabularProxy, new()
         {
             var proxyInfo = Describe<P>();

@@ -17,32 +17,32 @@ namespace SqlT.Core
     public static class SqlChannelMessages
     {
 
-        public static IApplicationMessage Truncated<T>()
+        public static IAppMessage Truncated<T>()
             where T : class, ISqlTableProxy, new()
                 => inform($"Truncated {PXM.Table<T>()}");
 
-        public static IApplicationMessage Deleted<T>(long count)
+        public static IAppMessage Deleted<T>(long count)
             where T : class, ISqlTableProxy, new()
             => inform($"Deleted {count} records from {PXM.Table<T>()}");
 
-        public static IApplicationMessage Saved<T>(long count)
+        public static IAppMessage Saved<T>(long count)
             where T : class, ISqlTabularProxy, new()
             => inform($"Saved {count} records to {PXM.TabularName<T>()}");
 
-        public static IApplicationMessage Loaded<T>(long count)
+        public static IAppMessage Loaded<T>(long count)
             where T : class, ISqlTabularProxy, new()
             => inform($"Loaded {count} records from {PXM.TabularName<T>()}");
 
-        public static IApplicationMessage FunctionLoaded<F, R>(long count)
+        public static IAppMessage FunctionLoaded<F, R>(long count)
               where F : class, ISqlTableFunctionProxy<F, R>, new()
                     where R : class, ISqlTabularProxy, new()
                 => inform($"Loaded {count} records from the {PXM.TableFunctionName<F, R>()} function result");
 
-        public static IApplicationMessage CountedDistinct<T>(long count, SqlColumnName col)
+        public static IAppMessage CountedDistinct<T>(long count, SqlColumnName col)
             where T : class, ISqlTabularProxy, new()
             => inform($"Counted {count} distinct values of {col} from {PXM.TabularName<T>()}");
 
-        public static IApplicationMessage Counted<T>(long count)
+        public static IAppMessage Counted<T>(long count)
             where T : class, ISqlTabularProxy, new()
             => inform($"Counted {count} records in {PXM.TabularName<T>()}");
     }

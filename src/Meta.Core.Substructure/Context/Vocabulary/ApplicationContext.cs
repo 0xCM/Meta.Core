@@ -171,7 +171,7 @@ public class ApplicationContext : IMutableContext
         }
         catch (Exception e)
         {
-            return none<object>(ApplicationMessage.Error(e));
+            return none<object>(AppMessage.Error(e));
         }
 
 
@@ -286,7 +286,7 @@ public class ApplicationContext : IMutableContext
         => ConfigurationProvider.GetSetting<T>(SettingName);
 
 
-    public void PostMessage(IApplicationMessage message)
+    public void PostMessage(IAppMessage message)
     {
         if (Broker == null)
             throw new ArgumentNullException("No broker is specified");
@@ -301,18 +301,13 @@ public class ApplicationContext : IMutableContext
         var final = MutableList.Create<IDisposable>();
         foreach (var i in Instantiations)
         {
-            if (i.Instance is IMessageStore && i.Instance is IDisposable)
-                final.Add(i.Instance as IDisposable);
-            else
+            try
             {
-                try
-                {
-                    (i.Instance as IDisposable)?.Dispose();
-                }
-                catch (Exception e)
-                {
-                    PostMessage(ApplicationMessage.Error(e));
-                }
+                (i.Instance as IDisposable)?.Dispose();
+            }
+            catch (Exception e)
+            {
+                PostMessage(AppMessage.Error(e));
             }
         }
 

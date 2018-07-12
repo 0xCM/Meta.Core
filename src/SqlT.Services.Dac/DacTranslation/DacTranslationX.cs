@@ -43,7 +43,7 @@ namespace SqlT.Dac
             }            
         }
 
-        public static IApplicationMessage ToAppMessage(this SqlDac.DacMessage message, object o = null)
+        public static IAppMessage ToAppMessage(this SqlDac.DacMessage message, object o = null)
         {
             var content = concat(message.MessageContent().ToString(), o?.ToString() ?? string.Empty);
             if (message.MessageType == SqlDac.DacMessageType.Error)

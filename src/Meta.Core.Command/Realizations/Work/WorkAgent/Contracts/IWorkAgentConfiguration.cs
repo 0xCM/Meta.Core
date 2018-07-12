@@ -20,7 +20,7 @@ namespace Meta.Core
         /// The receiver to which messages are transmitted to communicate
         /// status, error conditions, etc.
         /// </summary>
-        Action<IApplicationMessage> MessageReceiver { get; }
+        Action<IAppMessage> MessageReceiver { get; }
 
 
         /// <summary>

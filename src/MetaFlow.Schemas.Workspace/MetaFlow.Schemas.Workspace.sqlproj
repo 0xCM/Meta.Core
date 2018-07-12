@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="Configuration\Build.props" />
+  <PropertyGroup>
+    <ProjectGuid>{b7522f13-cf01-473c-a552-901cbdc02d8a}</ProjectGuid>
+    <RootNamespace>PDMS.Schemas.Workspace</RootNamespace>
+    <AppDesignerFolder>Configuration</AppDesignerFolder>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="Configuration\Build.props" />
+    <None Include="Configuration\Node00.publish.xml" />
+    <RefactorLog Include="Configuration\RefectorLog.xml" />
+    <None Include="Configuration\Node50.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="WS" />
+    <Folder Include="Configuration\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="WS\WS.sql" />
+    <Build Include="Configuration\Properties.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuration\Designator.cs" />
+  </ItemGroup>
+</Project>

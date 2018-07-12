@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+	    <TargetFrameworks>net472</TargetFrameworks>
+	</PropertyGroup>
+	 
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.5.1" />
+  </ItemGroup>
+	 
+  <ItemGroup>
+    <ProjectReference Include="..\Meta.Core.Floor\Meta.Core.Floor.csproj" />
+    <ProjectReference Include="..\MetaFlow.Types.Proxies\MetaFlow.Types.Proxies.csproj" />
+    <ProjectReference Include="..\SqlT.Core\SqlT.Core.csproj" />
+    <ProjectReference Include="..\SqlT.Proxies.Store\SqlT.Proxies.Store.csproj" />
+    <ProjectReference Include="..\SqlT.Proxies.Types\SqlT.Proxies.Types.csproj" />
+    <ProjectReference Include="..\SqlT.Proxies.Z0\SqlT.Proxies.Z0.csproj" />
+  </ItemGroup>
+</Project>

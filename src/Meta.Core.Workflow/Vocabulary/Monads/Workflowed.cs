@@ -67,25 +67,25 @@ public struct WorkFlowed<W> : IWorkflowed<W>
         this.Evaluated = true;
     }
 
-    public WorkFlowed(IWorkFlowed antecedent, IEnumerable<W> Payload, IApplicationMessage Description = null)
+    public WorkFlowed(IWorkFlowed antecedent, IEnumerable<W> Payload, IAppMessage Description = null)
     {
         this.Payload = Payload;
-        this.Description = Description ?? ApplicationMessage.Empty;
+        this.Description = Description ?? AppMessage.Empty;
         this.Succeeded = true;
         this.Antecedent = some(antecedent);
         this.Evaluated = false;
     }
 
-    public WorkFlowed(IEnumerable<W> Payload, IApplicationMessage Description = null)
+    public WorkFlowed(IEnumerable<W> Payload, IAppMessage Description = null)
     {
         this.Payload = Payload;
-        this.Description = Description ?? ApplicationMessage.Empty;
+        this.Description = Description ?? AppMessage.Empty;
         this.Succeeded = true;
         this.Antecedent = none<IWorkFlowed>();
         this.Evaluated = false;
     }
 
-    public WorkFlowed(IApplicationMessage Description)
+    public WorkFlowed(IAppMessage Description)
     {
         this.Description = Description;
         this.Payload = stream<W>();
@@ -94,7 +94,7 @@ public struct WorkFlowed<W> : IWorkflowed<W>
         this.Evaluated = false;
     }
 
-    public WorkFlowed(IWorkFlowed Antecedent, IApplicationMessage Description)
+    public WorkFlowed(IWorkFlowed Antecedent, IAppMessage Description)
     {
         this.Description = Description;
         this.Payload = stream<W>();
@@ -121,7 +121,7 @@ public struct WorkFlowed<W> : IWorkflowed<W>
     /// </summary>
     public Option<IWorkFlowed> Antecedent { get; }
 
-    public IApplicationMessage Description { get; }
+    public IAppMessage Description { get; }
 
     IEnumerable<IWorkFlowed> GetAntecedents(IWorkFlowed child)
     {
@@ -140,7 +140,7 @@ public struct WorkFlowed<W> : IWorkflowed<W>
     public IEnumerable<W> Value
         => Payload;
 
-    public WorkFlowed<W> StripPayload(IApplicationMessage Reason)
+    public WorkFlowed<W> StripPayload(IAppMessage Reason)
         => new WorkFlowed<W>(this, Reason);
 
     public WorkFlowed<W> OnSuccess(Func<WorkFlowed<W>, WorkFlowed<W>> flowed)
@@ -228,7 +228,7 @@ partial class wf
     /// <param name="payload"></param>
     /// <param name="msg"></param>
     /// <returns></returns>
-    public static WorkFlowed<W> flowed<W>(IEnumerable<W> payload, IApplicationMessage msg = null)
+    public static WorkFlowed<W> flowed<W>(IEnumerable<W> payload, IAppMessage msg = null)
         => new WorkFlowed<W>(payload, msg);
 
     /// <summary>
@@ -239,7 +239,7 @@ partial class wf
     /// <param name="payload"></param>
     /// <param name="msg"></param>
     /// <returns></returns>
-    public static WorkFlowed<W> flowed<W>(IWorkFlowed antecedent, IEnumerable<W> payload, IApplicationMessage msg = null)
+    public static WorkFlowed<W> flowed<W>(IWorkFlowed antecedent, IEnumerable<W> payload, IAppMessage msg = null)
         => new WorkFlowed<W>(antecedent, payload, msg);
 
     /// <summary>
@@ -248,7 +248,7 @@ partial class wf
     /// <typeparam name="W">The payload item type</typeparam>
     /// <param name="error">The reason for failure</param>
     /// <returns></returns>
-    public static WorkFlowed<W> failed<W>(IApplicationMessage error)
+    public static WorkFlowed<W> failed<W>(IAppMessage error)
         => new WorkFlowed<W>(error);
 
     /// <summary>
@@ -258,7 +258,7 @@ partial class wf
     /// <param name="antecedent">The preceding flow</param>
     /// <param name="error">The reason for failure</param>
     /// <returns></returns>
-    public static WorkFlowed<W> failed<W>(IWorkFlowed  antecedent, IApplicationMessage error)
+    public static WorkFlowed<W> failed<W>(IWorkFlowed  antecedent, IAppMessage error)
             => new WorkFlowed<W>(antecedent, error);
 
     /// <summary>

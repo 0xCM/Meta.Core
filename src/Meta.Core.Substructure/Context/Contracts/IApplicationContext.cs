@@ -24,7 +24,7 @@ public interface IApplicationContext : IDisposable
 
     T Settings<T>();
 
-    void PostMessage(IApplicationMessage message);
+    void PostMessage(IAppMessage message);
 
     IConfigurationProvider ConfigurationProvider { get; }
 

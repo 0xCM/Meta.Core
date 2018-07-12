@@ -31,9 +31,9 @@ public interface ITaskAgent<P>
     /// </summary>
     void Resume();
 
-    Task<IApplicationMessage> Task { get; }
+    Task<IAppMessage> Task { get; }
 
-    IApplicationMessage Wait();
+    IAppMessage Wait();
 
     IEnumerable<P> Compute();
 

@@ -23,7 +23,7 @@ public class AgentControlTask : ApplicationComponent, IDisposable
             }
             catch (Exception e)
             {
-                var message = ApplicationMessage.Error(e);
+                var message = AppMessage.Error(e);
                 C.Notify(message);
                 return message;
             }
@@ -34,7 +34,7 @@ public class AgentControlTask : ApplicationComponent, IDisposable
 
     }
 
-    public AgentControlTask(IApplicationContext C, IServiceAgent ControlledAgent, Task<IApplicationMessage> SystemTask)
+    public AgentControlTask(IApplicationContext C, IServiceAgent ControlledAgent, Task<IAppMessage> SystemTask)
         : base(C)
     {
         this.ControlledAgent = ControlledAgent;
@@ -43,7 +43,7 @@ public class AgentControlTask : ApplicationComponent, IDisposable
 
     public IServiceAgent ControlledAgent { get; }
 
-    public Task<IApplicationMessage> SystemTask { get; }
+    public Task<IAppMessage> SystemTask { get; }
 
     public bool WaitForCompletion(int timeout = 0)
     {

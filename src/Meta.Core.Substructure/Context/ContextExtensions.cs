@@ -43,7 +43,7 @@ public static class ContextExtensions
     /// <param name="C">The extended context</param>
     /// <param name="message">The message to raise</param>
     /// <returns></returns>
-    public static IApplicationMessage Notify(this IApplicationContext C, IApplicationMessage message)
+    public static IAppMessage Notify(this IApplicationContext C, IAppMessage message)
     {
         C.PostMessage(message);
         return message;
@@ -57,12 +57,12 @@ public static class ContextExtensions
     /// <param name="callerFile"></param>
     /// <param name="callerName"></param>
     /// <returns></returns>
-    public static IApplicationMessage NotifyStatus(this IApplicationContext C, string text,
+    public static IAppMessage NotifyStatus(this IApplicationContext C, string text,
             bool babble = false,
             [CallerMemberName] string callerFile = null,
             [CallerMemberName] string callerName = null)
-        => C.Notify(babble ? ApplicationMessage.Babble(text, callerFile, callerName)
-                            : ApplicationMessage.Inform(text, callerFile, callerName)
+        => C.Notify(babble ? AppMessage.Babble(text, callerFile, callerName)
+                            : AppMessage.Inform(text, callerFile, callerName)
             );
 
     /// <summary>
@@ -73,10 +73,10 @@ public static class ContextExtensions
     /// <param name="callerFile"></param>
     /// <param name="callerName"></param>
     /// <returns></returns>
-    public static IApplicationMessage NotifyError(this IApplicationContext C, Exception e,
+    public static IAppMessage NotifyError(this IApplicationContext C, Exception e,
             [CallerMemberName] string callerFile = null,
             [CallerMemberName] string callerName = null)
-        => C.Notify(ApplicationMessage.Error(e, callerFile, callerName));
+        => C.Notify(AppMessage.Error(e, callerFile, callerName));
 
     /// <summary>
     /// Posts an error notification without semantic content 
@@ -86,10 +86,10 @@ public static class ContextExtensions
     /// <param name="callerFile"></param>
     /// <param name="callerName"></param>
     /// <returns></returns>
-    public static IApplicationMessage NotifyError(this IApplicationContext C, string text,
+    public static IAppMessage NotifyError(this IApplicationContext C, string text,
             [CallerMemberName] string callerFile = null,
             [CallerMemberName] string callerName = null)
-        => C.Notify(ApplicationMessage.Error(text, callerFile, callerName));
+        => C.Notify(AppMessage.Error(text, callerFile, callerName));
 
     /// <summary>
     /// Raises a notification for each message in a sequence
@@ -97,8 +97,8 @@ public static class ContextExtensions
     /// <param name="C">The extended context</param>
     /// <param name="messages"></param>
     /// <returns></returns>
-    public static ReadOnlyList<IApplicationMessage> Notify(this IApplicationContext C,
-        IEnumerable<IApplicationMessage> messages)
+    public static ReadOnlyList<IAppMessage> Notify(this IApplicationContext C,
+        IEnumerable<IAppMessage> messages)
             => messages.Select(message => C.Notify(message)).ToReadOnlyList();
 
     public static bool _Evaluate(this IApplicationContext C, IOption option)

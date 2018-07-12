@@ -111,7 +111,7 @@ public class LinkedContext : ILinkedContext
     T IApplicationContext.Settings<T>()
         => SourceContext.Settings<T>();
 
-    void IApplicationContext.PostMessage(IApplicationMessage message)
+    void IApplicationContext.PostMessage(IAppMessage message)
         => SourceContext.PostMessage(message);
 
     bool IApplicationContext.IsServiceProvided<T>(string ImplementationName)

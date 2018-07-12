@@ -1,0 +1,63 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="Configuration\Build.props" />
+  <PropertyGroup>
+    <RootNamespace>PDMS.Schemas.Core</RootNamespace>
+    <AppDesignerFolder>Configuration</AppDesignerFolder>
+    <Containment>Partial</Containment>
+    <ProjectGuid>{28665f5f-4ff6-48d9-812b-0ffa2c57e842}</ProjectGuid>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <Name>MetaFlow.Schemas.Core.Messages</Name>
+    <TargetDatabase>PDMS.Schemas.Core.Messages</TargetDatabase>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="Configuration\Build.props" />
+    <RefactorLog Include="Configuration\RefactorLog.xml" />
+    <Folder Include="Configuration" />
+    <Build Include="Configuration\Schemas.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuration\Designator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Commands" />
+    <Folder Include="Events" />
+    <Folder Include="Commands\Agents" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Commands\CopyDataset.sql" />
+    <Build Include="Commands\CopyFile.sql" />
+    <Build Include="Commands\DefineVariable.sql" />
+    <Build Include="Commands\DeploySqlDac.sql" />
+    <Build Include="Commands\DistributePackage.sql" />
+    <Build Include="Commands\ExecuteTypedDataFlow.sql" />
+    <Build Include="Commands\GenerateProxies.sql" />
+    <Build Include="Events\DatabaseDeployed.sql" />
+    <Build Include="Events\FileReceived.sql" />
+    <Build Include="Events\PlatformEntityUpdated.sql" />
+    <Build Include="Events\VariableDefined.sql" />
+    <Build Include="Events\ExchangeConnected.sql" />
+    <Build Include="Events\DistributionReceived.sql" />
+    <Build Include="Events\CommandExecuted.sql" />
+    <Build Include="Events\CommandExecuting.sql" />
+    <Build Include="Events\DatabaseBackupReceived.sql" />
+    <Build Include="Commands\DescribeBackup.sql" />
+    <Build Include="Events\BackupDescriptionCaptured.sql" />
+    <Build Include="Events\DatabaseBackupArchiveReceived.sql" />
+    <Build Include="Commands\ExtractArchive.sql" />
+    <Build Include="Commands\DeployDatabase.sql" />
+    <Build Include="Commands\Agents\EnableAgent.sql" />
+    <Build Include="Commands\Agents\DisableAgent.sql" />
+    <Build Include="Commands\Agents\PauseAgent.sql" />
+    <Build Include="Commands\Agents\ResumeAgent.sql" />
+    <Build Include="Commands\Agents\StartAgent.sql" />
+    <Build Include="Commands\Agents\StopAgent.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MetaFlow.Schemas.Core.Types\MetaFlow.Schemas.Core.Types.sqlproj">
+      <Name>MetaFlow.Schemas.Core.Types</Name>
+      <Project>{12910946-263d-4c79-a924-59a0c6f34b5a}</Project>
+      <Private>True</Private>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

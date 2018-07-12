@@ -26,7 +26,7 @@ namespace SqlT.Dac
         public bool Succeeded
             => Deployments.All(d => d.Succeded);
 
-        public IApplicationMessage Message
+        public IAppMessage Message
             => Succeeded ?
                 inform($"{System} system deployment succeded")
                 : error($"{System} system deployment failed. Failing packages: {Deployments.Where(x => not(x.Succeded)).Select(x => x.SourcePackage.FileName).ToReadOnlyList()}");

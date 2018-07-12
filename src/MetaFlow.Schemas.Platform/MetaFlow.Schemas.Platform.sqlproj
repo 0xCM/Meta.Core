@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="Configuration\Build.props" />
+  <PropertyGroup>
+    <ProjectGuid>{5fb9880b-b596-4364-bfb6-541727a0cb70}</ProjectGuid>
+    <RootNamespace>PDMS.Schemas.Platform</RootNamespace>
+    <AppDesignerFolder>Configuration</AppDesignerFolder>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Host" />
+    <Folder Include="Settings" />
+    <Folder Include="Settings\Functions" />
+    <Folder Include="Settings\Procedures" />
+    <Folder Include="Settings\Tables" />
+    <Folder Include="Settings\Types" />
+    <Folder Include="Settings\Views" />
+    <Folder Include="Reactions" />
+    <Folder Include="Reactions\Server" />
+    <Folder Include="Reactions\Server\DatabaseCreate" />
+    <Folder Include="Reactions\Server\DatabaseDrop" />
+    <Folder Include="Reactions\Server\XEvents" />
+    <Folder Include="Reactions\Server\XEvents\Functions" />
+    <Folder Include="Reactions\Server\XEvents\PlatformSession" />
+    <Folder Include="Reactions\Database" />
+    <Folder Include="Reactions\Database\PlatformEntityChange" />
+    <Folder Include="Reactions\Database\PlatformVariableChange" />
+    <Folder Include="Reactions\Database\PlatformFileChange" />
+    <Folder Include="FileSystem" />
+    <Folder Include="FileSystem\FileTables" />
+    <Folder Include="FileSystem\FileTables\Receipt" />
+    <Folder Include="FileSystem\Queries" />
+    <Folder Include="SemanticLogs" />
+    <Folder Include="DatabaseVersionStore" />
+    <Folder Include="AgentCommands" />
+    <Folder Include="AgentCommands\Procedures" />
+    <Folder Include="AgentCommands\Tables" />
+    <Folder Include="AgentCommands\Types" />
+    <Folder Include="AgentConfiguration" />
+    <Folder Include="AgentStatus" />
+    <Folder Include="CommandTable" />
+    <Folder Include="PlatformNotification" />
+    <Folder Include="WorkflowSpec" />
+    <Folder Include="SystemCommand" />
+    <Folder Include="SystemCommand\Operators" />
+    <Folder Include="SystemCommand\Queries" />
+    <Folder Include="SystemCommand\Storage" />
+    <Folder Include="SystemEvent" />
+    <Folder Include="SystemEvent\Operators" />
+    <Folder Include="SystemEvent\Storage" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Configuration\Node00.publish.xml" />
+    <None Include="Configuration\Build.props" />
+    <RefactorLog Include="Configuration\RefactorLog.xml" />
+    <None Include="Configuration\Node50.publish.xml" />
+    <None Include="Reactions\Server\XEvents\PlatformSession\PlatformNotificationExample.xml" />
+    <None Include="Reactions\Server\XEvents\PlatformSession\PlatformNotifications.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Configuration" />
+  </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="Configuration\PreDeploy.sql" />
+    <Build Include="Configuration\Properties.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Host\UnclassifiedDatabases.sql" />
+    <Build Include="Settings\Functions\fComponentConfiguration.sql" />
+    <Build Include="Settings\Functions\SelectComponentSettings.sql" />
+    <Build Include="Settings\Procedures\pComponentConfigurationSave.sql" />
+    <Build Include="Settings\Procedures\pCopyDescriptions.sql" />
+    <Build Include="Settings\Procedures\SaveComponentSettings.sql" />
+    <Build Include="Settings\Tables\ComponentConfiguration.sql" />
+    <Build Include="Settings\Types\ComponentConfigurationRecord.sql" />
+    <Build Include="Settings\Types\ComponentSettingRecord.sql" />
+    <Build Include="Settings\Views\vComponentConfiguration.sql" />
+    <Build Include="Settings\Views\vComponentSetting.sql" />
+    <Build Include="Settings\Configuration.sql" />
+    <Build Include="Host\ApplyDropLogs.sql" />
+    <Build Include="Host\UnregisterMissingHostDatabases.sql" />
+    <Build Include="Host\SyncHostDatabases.sql" />
+    <Build Include="Reactions\Server\DatabaseCreate\DatabaseCreateEventData.sql" />
+    <Build Include="Reactions\Server\DatabaseCreate\OnDatabaseCreated.sql" />
+    <Build Include="Reactions\Server\DatabaseDrop\DatabaseDropEventData.sql" />
+    <Build Include="Reactions\Server\DatabaseDrop\OnDatabaseDropped.sql" />
+    <Build Include="Reactions\Server\XEvents\Functions\PlatformNotificationArchive.sql" />
+    <Build Include="Reactions\Server\XEvents\Functions\PlatformNotifications.sql" />
+    <Build Include="Reactions\Server\XEvents\Functions\XEventDataBlocks.sql" />
+    <Build Include="Reactions\Server\XEvents\Functions\XEventLogFiles.sql" />
+    <Build Include="Reactions\Server\XEvents\PlatformSession\PlatformNotificationData.sql" />
+    <Build Include="Reactions\Server\XEvents\PlatformSession\PlatformNotifications.sql" />
+    <Build Include="Reactions\Database\PlatformEntityChange\OnPlatformEntityCreated.sql" />
+    <Build Include="Reactions\Database\PlatformEntityChange\OnPlatformEntityDeleted.sql" />
+    <Build Include="Reactions\Database\PlatformEntityChange\OnPlatformEntityUpdated.sql" />
+    <Build Include="Reactions\Database\PlatformVariableChange\OnPlatformVariableCreated.sql" />
+    <Build Include="Reactions\Database\PlatformVariableChange\OnPlatformVariableDeleted.sql" />
+    <Build Include="Reactions\Database\PlatformVariableChange\OnPlatformVariableUpdated.sql" />
+    <Build Include="Reactions\Database\PlatformFileChange\OnDistributionReceived.sql" />
+    <Build Include="FileSystem\FileTables\Receipt\FileListenerContract.sql" />
+    <Build Include="FileSystem\FileTables\Receipt\FileListenerService.sql" />
+    <Build Include="FileSystem\FileTables\Receipt\FileReceiptQueue.sql" />
+    <Build Include="FileSystem\FileTables\Receipt\FileReceivedMessage.sql" />
+    <Build Include="FileSystem\FileTables\Receipt\HandleReleaseReceipt.sql" />
+    <Build Include="FileSystem\FileTables\Receipt\OnReleaseFileInserted.sql" />
+    <Build Include="FileSystem\FileTables\Receipt\PopFileReceiptQueue.sql" />
+    <Build Include="FileSystem\FileTables\Receipt\ProcessReleases.sql" />
+    <Build Include="FileSystem\FileTables\Receipt\PublishFileReceipt.sql" />
+    <Build Include="FileSystem\FileTables\Receipt\PurgeFileReceiptQueue.sql" />
+    <Build Include="FileSystem\FileTables\Receipt\ReceivedFile.sql" />
+    <Build Include="FileSystem\FileTables\DatabaseBackup.sql" />
+    <Build Include="FileSystem\FileTables\DatabaseBackups.sql" />
+    <Build Include="FileSystem\FileTables\PlatformReleases.sql" />
+    <Build Include="FileSystem\FileTables\SystemDistribution.sql" />
+    <Build Include="FileSystem\FileTables\SystemLog.sql" />
+    <Build Include="FileSystem\FileTables\ToolDistribution.sql" />
+    <Build Include="FileSystem\FileTables\VirtualDisk.sql" />
+    <Build Include="FileSystem\Queries\HostFiles.sql" />
+    <Build Include="FileSystem\Queries\FolderFromPath.sql" />
+    <Build Include="FileSystem\Queries\FileNameFromPath.sql" />
+    <Build Include="Reactions\Database\PlatformFileChange\OnDatabaseBackupReceived.sql" />
+    <Build Include="Reactions\Database\PlatformFileChange\OnDatabaseBackupArchiveReceived.sql" />
+    <Build Include="FileSystem\FileTables\FileGroups.sql" />
+    <Build Include="SemanticLogs\DatabaseCreateLog.sql" />
+    <Build Include="SemanticLogs\DatabaseDropLog.sql" />
+    <Build Include="SemanticLogs\LogPlatformStoreChanges.sql" />
+    <Build Include="SemanticLogs\PlatformStoreChangeLog.sql" />
+    <Build Include="DatabaseVersionStore\DatabaseVersion.sql" />
+    <Build Include="DatabaseVersionStore\StoreDatabaseVersions.sql" />
+    <Build Include="AgentCommands\Procedures\CompleteAgentCommand.sql" />
+    <Build Include="AgentCommands\Procedures\DispatchAgentCommands.sql" />
+    <Build Include="AgentCommands\Procedures\SubmitAgentCommand.sql" />
+    <Build Include="AgentCommands\Tables\AgentCommandArchive.sql" />
+    <Build Include="AgentCommands\Tables\AgentCommandQueue.sql" />
+    <Build Include="AgentCommands\Types\AgentStatusMessage.sql" />
+    <Build Include="AgentConfiguration\AgentConfigurations.sql" />
+    <Build Include="AgentConfiguration\AgentConfigurationStore.sql" />
+    <Build Include="AgentConfiguration\StoreAgentConfigurations.sql" />
+    <Build Include="AgentStatus\AgentStatusLog.sql" />
+    <Build Include="AgentStatus\AgentStatusSummary.sql" />
+    <Build Include="AgentStatus\LogAgentStatus.sql" />
+    <Build Include="CommandTable\CommandTableStore.sql" />
+    <Build Include="PlatformNotification\PlatformNotificationStore.sql" />
+    <Build Include="PlatformNotification\StorePlatformNotifications.sql" />
+    <Build Include="WorkflowSpec\ControlFlow.sql" />
+    <Build Include="WorkflowSpec\ControlOperationType.sql" />
+    <Build Include="WorkflowSpec\EvaluatorType.sql" />
+    <Build Include="WorkflowSpec\StepDefinition.sql" />
+    <Build Include="WorkflowSpec\StepType.sql" />
+    <Build Include="WorkflowSpec\WorkflowDefinition.sql" />
+    <Build Include="SystemCommand\Operators\ArchiveSystemTasks.sql" />
+    <Build Include="SystemCommand\Operators\CompleteSystemTask.sql" />
+    <Build Include="SystemCommand\Operators\DefineSystemTask.sql" />
+    <Build Include="SystemCommand\Operators\DispatchSystemTasks.sql" />
+    <Build Include="SystemCommand\Operators\DispatchSystemTasksByName.sql" />
+    <Build Include="SystemCommand\Operators\SubmitSystemCommand.sql" />
+    <Build Include="SystemCommand\Operators\SubmitSystemCommands.sql" />
+    <Build Include="SystemCommand\Queries\ParseCommandArgument.sql" />
+    <Build Include="SystemCommand\Queries\ParseCommandBody.sql" />
+    <Build Include="SystemCommand\Queries\PendingSystemTasks.sql" />
+    <Build Include="SystemCommand\Queries\SytemTaskStates.sql" />
+    <Build Include="SystemCommand\Storage\SystemTaskArchive.sql" />
+    <Build Include="SystemCommand\Storage\SystemTaskDefinition.sql" />
+    <Build Include="SystemCommand\Storage\SystemTaskQueue.sql" />
+    <Build Include="SystemEvent\Operators\RaiseSystemEvent.sql" />
+    <Build Include="SystemEvent\Storage\SystemEventStore.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuration\Designator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MetaFlow.Schemas.Core.Messages\MetaFlow.Schemas.Core.Messages.sqlproj">
+      <Name>MetaFlow.Schemas.Core.Messages</Name>
+      <Project>{28665f5f-4ff6-48d9-812b-0ffa2c57e842}</Project>
+      <Private>True</Private>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+    </ProjectReference>
+    <ProjectReference Include="..\MetaFlow.Schemas.Core.Types\MetaFlow.Schemas.Core.Types.sqlproj">
+      <Name>MetaFlow.Schemas.Core.Types</Name>
+      <Project>{12910946-263d-4c79-a924-59a0c6f34b5a}</Project>
+      <Private>True</Private>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+    </ProjectReference>
+    <ProjectReference Include="..\MetaFlow.Schemas.Core.Storage\MetaFlow.Schemas.Core.Storage.sqlproj">
+      <Name>MetaFlow.Schemas.Core.Storage</Name>
+      <Project>{0aa75660-460e-4952-8e59-4e00375aa168}</Project>
+      <Private>True</Private>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+    </ProjectReference>
+    <ProjectReference Include="..\SqlT.Schemas.Scripts\SqlT.Schemas.Scripts.sqlproj">
+      <Name>SqlT.Schemas.Scripts</Name>
+      <Project>{3c4ddba7-c551-4d58-b768-d9b8fabaa9f2}</Project>
+      <Private>True</Private>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+    </ProjectReference>
+    <ProjectReference Include="..\SqlT.SqlClr\SqlT.SqlClr.sqlproj">
+      <Name>SqlT.SqlClr</Name>
+      <Project>{b10fa6a8-f6c6-4675-9b98-eb82edc17f80}</Project>
+      <Private>True</Private>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+    </ProjectReference>
+    <ProjectReference Include="..\SqlT.Types\SqlT.Types.sqlproj">
+      <Name>SqlT.Types</Name>
+      <Project>{e9382294-8dc4-40c0-bfca-29c4a9c8e729}</Project>
+      <Private>True</Private>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+    </ProjectReference>
+    <ProjectReference Include="..\SqlT.Z0.Schemas\SqlT.Z0.Schemas.sqlproj">
+      <Name>SqlT.Z0.Schemas</Name>
+      <Project>{3a8cb6f7-b9a5-4ebe-9d7b-8e042c8f8ef4}</Project>
+      <Private>True</Private>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

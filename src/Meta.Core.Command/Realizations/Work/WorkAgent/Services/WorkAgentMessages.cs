@@ -10,59 +10,59 @@ using System.Text;
 
 static class WorkAgentMessages
 {
-    public static IApplicationMessage TaskGroupExecutionCancelled(string GroupName)
-        => ApplicationMessage.Inform("The @GroupName task group was cancelled", new
+    public static IAppMessage TaskGroupExecutionCancelled(string GroupName)
+        => AppMessage.Inform("The @GroupName task group was cancelled", new
         {
             GroupName
         });
 
-    public static IApplicationMessage WaitingForTasks(int Count, int Timeout)
-        => ApplicationMessage.Inform("Waiting a maximum of @Timeout ms for @Count currently executing tasks to finish", new
+    public static IAppMessage WaitingForTasks(int Count, int Timeout)
+        => AppMessage.Inform("Waiting a maximum of @Timeout ms for @Count currently executing tasks to finish", new
         {
             Count,
             Timeout
         });
 
-    public static IApplicationMessage TasksUnfinished(int Count, int Timeout)
-        => ApplicationMessage.Warn("There were @Count currentingly executing tasks when a wait timeout of @Timeout ms expired", new
+    public static IAppMessage TasksUnfinished(int Count, int Timeout)
+        => AppMessage.Warn("There were @Count currentingly executing tasks when a wait timeout of @Timeout ms expired", new
         {
             Count,
             Timeout
         });
 
-    public static IApplicationMessage ExecutionIndexUpdateFailed(int TaskId)
-        => ApplicationMessage.Error("Could not add task @TaskId to the execution index", new
+    public static IAppMessage ExecutionIndexUpdateFailed(int TaskId)
+        => AppMessage.Error("Could not add task @TaskId to the execution index", new
         {
             TaskId
         });
 
-    public static IApplicationMessage Pausing(int TaskId, int Duration)
-        => ApplicationMessage.Babble("Pausing control task @TaskId for @Duration ms",
+    public static IAppMessage Pausing(int TaskId, int Duration)
+        => AppMessage.Babble("Pausing control task @TaskId for @Duration ms",
             new
             {
                 TaskId,
                 Duration
             });
 
-    public static IApplicationMessage SpinnerCreated(Task spinner)
-        => ApplicationMessage.Babble("Spinner @TaskId created", new
+    public static IAppMessage SpinnerCreated(Task spinner)
+        => AppMessage.Babble("Spinner @TaskId created", new
         {
             TaskId = spinner.Id
         });
 
-    public static IApplicationMessage SpinnerCompleted(Task spinner)
-        => ApplicationMessage.Babble("Spinner @TaskId completed", new
+    public static IAppMessage SpinnerCompleted(Task spinner)
+        => AppMessage.Babble("Spinner @TaskId completed", new
         {
             TaskId = spinner.Id
         });
 
-    public static IApplicationMessage Stopping()
-        => ApplicationMessage.Inform("Stopping agent");
+    public static IAppMessage Stopping()
+        => AppMessage.Inform("Stopping agent");
 
-    public static IApplicationMessage Stopped()
-        => ApplicationMessage.Inform("Agent execution stopped");
+    public static IAppMessage Stopped()
+        => AppMessage.Inform("Agent execution stopped");
 
-    public static IApplicationMessage AlreadyRunning()
-        => ApplicationMessage.Warn("The agent is already running");
+    public static IAppMessage AlreadyRunning()
+        => AppMessage.Warn("The agent is already running");
 
 }

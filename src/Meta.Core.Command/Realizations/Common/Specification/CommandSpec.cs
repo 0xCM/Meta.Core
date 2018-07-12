@@ -20,9 +20,9 @@ public class CommandSpec<TSpec> : CommandArgumentSet<TSpec>, ICommandSpec<TSpec>
     where TSpec : CommandSpec<TSpec>, new()
 {
 
-    protected static IApplicationMessage Describe<C>(string template, C content,
+    protected static IAppMessage Describe<C>(string template, C content,
         [CallerFilePath] string callerFile = null, [CallerMemberName] string callerName = null)
-            => ApplicationMessage.Inform(template, content, callerFile, callerName);
+            => AppMessage.Inform(template, content, callerFile, callerName);
 
     static IReadOnlyDictionary<string, PropertyInfo> argprops
         = typeof(TSpec).GetProperties().Select(p => (p.Name, p)).ToReadOnlyDictionary();
@@ -163,7 +163,7 @@ public class CommandSpec<TSpec> : CommandArgumentSet<TSpec>, ICommandSpec<TSpec>
     TSpec ICommandSpec<TSpec>.ExpandVariables()
         => Expand(this);
 
-    public virtual IApplicationMessage DescribeIntent()
+    public virtual IAppMessage DescribeIntent()
         => Describe("Beginning execution of the @CommandName command as specified by @SpecName",
             new
             {

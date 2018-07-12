@@ -10,7 +10,7 @@ namespace Meta.Core.Workflow
 
     public class StepFailure<P> : StepResult<P>
     {
-        public StepFailure(IApplicationMessage Reason)
+        public StepFailure(IAppMessage Reason)
             : base(default(P), false, Reason)
         {
 
@@ -19,7 +19,7 @@ namespace Meta.Core.Workflow
 
     public abstract class StepFailure : StepFailure<object>
     {
-        protected StepFailure(IApplicationMessage Reason)
+        protected StepFailure(IAppMessage Reason)
             : base(Reason)
         {
 

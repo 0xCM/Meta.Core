@@ -11,7 +11,7 @@ namespace Meta.Core
     using System.Linq;
     using System.Threading.Tasks;
 
-    using static ApplicationMessage;
+    using static AppMessage;
 
     using static metacore;
 
@@ -72,7 +72,7 @@ namespace Meta.Core
         protected void Notify(Exception e)
             => NotificationBroker.Route(e.DefineExceptionMessage());
 
-        protected void Notify(IApplicationMessage Message)
+        protected void Notify(IAppMessage Message)
             => NotificationBroker.Route(Message);
 
         Type IMetaApp.AppType
@@ -287,16 +287,16 @@ namespace Meta.Core
         protected AppMessageFormatter MessageFormatter
             => FormatMessage;
 
-        protected virtual void OnNotificationReceived(IApplicationMessage message)
+        protected virtual void OnNotificationReceived(IAppMessage message)
             => Display(message);
 
-        protected virtual string GetPromptName(IApplicationMessage message)
+        protected virtual string GetPromptName(IAppMessage message)
             => ifBlank(message.SourceComponent, "status");
 
-        string FormatMessage(IApplicationMessage message)                    
+        string FormatMessage(IAppMessage message)                    
             => $"{GetPromptName(message)}> {message.Format(false)}";        
 
-        protected virtual void Display(IApplicationMessage message)
+        protected virtual void Display(IAppMessage message)
             => SystemConsole.Get().Write(message);
 
         public virtual IConfigurationProvider ConfigurationProvider
@@ -464,7 +464,7 @@ namespace Meta.Core
         public T Settings<T>()
             => Root.Settings<T>();
 
-        public void PostMessage(IApplicationMessage message)
+        public void PostMessage(IAppMessage message)
             => Root.PostMessage(message);
 
         public bool IsServiceProvided<T>(string ImplementationName = "Default")
@@ -476,20 +476,20 @@ namespace Meta.Core
         public void Dispose()
             => Root.Dispose();
 
-        protected T Step<T>(Func<T> f, Func<T, IApplicationMessage> After)
+        protected T Step<T>(Func<T> f, Func<T, IAppMessage> After)
         {
             var result = f();
             Notify(After(result));
             return result;
         }
 
-        protected T Step<T>(IApplicationMessage Before, Func<T> f)
+        protected T Step<T>(IAppMessage Before, Func<T> f)
         {
             Notify(Before);
             return f();
         }
 
-        protected T Step<T>(IApplicationMessage Before, Func<T> f, Func<T, IApplicationMessage> After)
+        protected T Step<T>(IAppMessage Before, Func<T> f, Func<T, IAppMessage> After)
         {
             Notify(Before);
             var result = f();

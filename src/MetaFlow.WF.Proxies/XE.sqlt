@@ -1,0 +1,45 @@
+{
+  "Name": "XE",
+  "ProjectName": "PDMS.Proxies.WF",
+  "EmitProject":  false,
+  "OutputDirectory": "",
+  "ConnectionString": "Data Source = localhost; Integrated Security = true; Database = WF",
+  "Schemas": [
+    {
+      "SchemaName": "XE",
+      "SpecializeNamespace": true
+    }
+
+
+
+  ],
+
+  "RootNamespace": "PDMS.Proxies",
+  "ExcludedColumns": [
+    "DbCreateUser",
+    "DbCreateTime",
+    "DbUpdateUser",
+    "DbUpdateTime",
+    "DbRowVersion"
+  ],
+  "DefaultUsings": [
+    "MetaFlow.XE"
+
+  ],
+  "EmitTables": false,
+  "EmitViews": true,
+  "EmitGenerationSpec": false,
+  "EmitPrimaryKeys": false,
+  "EmitDependencies": false,
+  "EmitDateType": false,
+  "EmitSingleFile": false,
+  "EmitStoredProcedures": true,
+  "EmitTableFunctions": true,
+  "EmitTableTypes": false,
+  "EmitSequences": false,
+  "EmitSequenceNames":  false,
+  "EmitBrokerFactory": false,
+  "EmitTypeContracts": false,
+  "EmitOperationContracts": false,
+  "AlwaysEmitNames":  false
+}

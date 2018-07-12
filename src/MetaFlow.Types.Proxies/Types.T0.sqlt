@@ -1,0 +1,36 @@
+﻿{
+  "Name": "Types.T0",
+  "ProjectName": "MetaFlow.Core.Types",
+  "EmitProject":  false,
+  "OutputDirectory": "",
+  "ConnectionString": "Data Source = localhost; Database = MetaFlow; Integrated Security = true",
+  "Schemas": [
+    {
+      "SchemaName": "T0",
+      "SpecializeNamespace": false
+    },
+    {
+      "SchemaName": "PF",
+      "SpecializeNamespace": false
+    }
+
+
+  ],
+  "RootNamespace": "MetaFlow.Core",
+  "AlwaysEmitNames":  false,
+  "EmitTables": false,
+  "EmitViews": false,
+  "EmitGenerationSpec": false,
+  "EmitPrimaryKeys": false,
+  "EmitDependencies": false,
+  "EmitDateType": false,
+  "EmitSingleFile": true,
+  "EmitStoredProcedures": false,
+  "EmitTableFunctions": false,
+  "EmitTableTypes": true,
+  "EmitSequences": false,
+  "EmitBrokerFactory": true,
+  "EmitTypeContracts": true,
+  "EmitEnums" :  true
+}
+

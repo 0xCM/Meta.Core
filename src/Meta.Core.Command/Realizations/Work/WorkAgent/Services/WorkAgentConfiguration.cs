@@ -21,12 +21,12 @@ namespace Meta.Core
     {
 
 
-        static IApplicationMessage EmptyWorker() => ApplicationMessage.Warn("I do nothing");
+        static IAppMessage EmptyWorker() => AppMessage.Warn("I do nothing");
 
         public WorkAgentConfiguration
         (
             WorkAgentSettings Settings,
-            Action<IApplicationMessage> MessageReceiver,
+            Action<IAppMessage> MessageReceiver,
             Action<W> DefaultWorker = null,
             IReadOnlyList<IWorkAgentObserver<W>> DefaultObservers = null,
             IReadOnlyList<IWorkSupplier<W>> DefaultSuppliers = null
@@ -45,7 +45,7 @@ namespace Meta.Core
         /// The receiver to which messages are transmitted to communicate
         /// status, error conditions, etc.
         /// </summary>
-        public Action<IApplicationMessage> MessageReceiver { get; }
+        public Action<IAppMessage> MessageReceiver { get; }
 
 
         /// <summary>
@@ -79,13 +79,13 @@ namespace Meta.Core
         where W : IPartitionedWork
     {
 
-        static IApplicationMessage EmptyWorker() => ApplicationMessage.Warn("I do nothing");
+        static IAppMessage EmptyWorker() => AppMessage.Warn("I do nothing");
 
 
         public WorkAgentConfiguration
         (
             WorkAgentSettings Settings,
-            Action<IApplicationMessage> MessageReceiver,
+            Action<IAppMessage> MessageReceiver,
             Func<W, R> DefaultWorker = null,
             IReadOnlyList<IWorkAgentObserver<W, R>> DefaultObservers = null,
             IReadOnlyList<IWorkSupplier<W>> DefaultSuppliers = null
@@ -106,7 +106,7 @@ namespace Meta.Core
 
         public WorkAgentSettings Settings { get; }
 
-        public Action<IApplicationMessage> MessageReceiver { get; }
+        public Action<IAppMessage> MessageReceiver { get; }
 
         /// <summary>
         /// The work action

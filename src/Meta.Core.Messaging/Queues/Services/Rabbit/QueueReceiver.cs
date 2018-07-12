@@ -38,7 +38,7 @@ namespace Meta.Core.Queues
             => Connection.Channel;
 
 
-        void OnDelieveryFailure(BasicDeliverEventArgs @event, IApplicationMessage Reason)
+        void OnDelieveryFailure(BasicDeliverEventArgs @event, IAppMessage Reason)
         {
             Interlocked.Increment(ref Failures);
             Notify(Reason);

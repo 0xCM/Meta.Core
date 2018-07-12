@@ -7,7 +7,7 @@ using System;
 using System.Linq;
 
 using static metacore;
-using static ApplicationMessage;
+using static AppMessage;
 
 /// <summary>
 /// Defines a <see cref="TypedTemplate"/> argument

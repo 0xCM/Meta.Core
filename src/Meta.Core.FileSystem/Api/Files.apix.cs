@@ -62,7 +62,7 @@ namespace Meta.Core
                     {
                         if (path.Exists())
                             return FileWriteResult.Failure(path,
-                                ApplicationMessage.Error($"The file {path} exists and the {nameof(overwrite)} option is false"));
+                                AppMessage.Error($"The file {path} exists and the {nameof(overwrite)} option is false"));
                     }
                     else        
                         File.WriteAllText(path, text);

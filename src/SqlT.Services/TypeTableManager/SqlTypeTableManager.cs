@@ -62,9 +62,9 @@ namespace SqlT.Services
         {
             var tableDescription = Broker.Metadata.Tables.TryGetSingle(x => x.ObjectName == TypeTableName);
             if (!tableDescription)
-                return none<int>(ApplicationMessage.Error($"The {TypeTableName} table could not be found"));
+                return none<int>(AppMessage.Error($"The {TypeTableName} table could not be found"));
             else if (!PXM.IsTypeTable((~tableDescription)))
-                return none<int>(ApplicationMessage.Error($"The {TypeTableName} table is not a type table"));
+                return none<int>(AppMessage.Error($"The {TypeTableName} table is not a type table"));
 
             var proxyType = (~tableDescription).RuntimeType;
             var literals = ClrEnum.Get(enumType).Literals;

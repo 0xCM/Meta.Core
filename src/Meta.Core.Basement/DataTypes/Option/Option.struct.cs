@@ -20,7 +20,7 @@ public struct Option<T> : IOption<T>, IEquatable<Option<T>>
     /// </summary>
     /// <param name="Message">The reason for None</param>
     /// <returns></returns>
-    public static Option<T> None(IApplicationMessage Message = null)
+    public static Option<T> None(IAppMessage Message = null)
         => new Option<T>(Message);
     
     /// <summary>
@@ -29,7 +29,7 @@ public struct Option<T> : IOption<T>, IEquatable<Option<T>>
     /// <param name="Value">The encapsulated value</param>
     /// <param name="Message">The associated message</param>
     /// <returns></returns>
-    public static Option<T> Some(T Value, IApplicationMessage Message = null)
+    public static Option<T> Some(T Value, IAppMessage Message = null)
         => new Option<T>(Value, Message);
 
     /// <summary>
@@ -38,7 +38,7 @@ public struct Option<T> : IOption<T>, IEquatable<Option<T>>
     /// <param name="e">The reason for None</param>
     /// <returns></returns>
     public static Option<T> None(Exception e)
-        => new Option<T>(ApplicationMessage.Error(e.ToString()));
+        => new Option<T>(AppMessage.Error(e.ToString()));
 
     public static explicit operator T(Option<T> x)
         => x ? x.value : throw new ArgumentNullException();
@@ -49,7 +49,7 @@ public struct Option<T> : IOption<T>, IEquatable<Option<T>>
     public static implicit operator Option<T>(T x)
         => x != null 
         ? new Option<T>(x) 
-        : new Option<T>(ApplicationMessage.Empty);
+        : new Option<T>(AppMessage.Empty);
 
     /// <summary>
     /// Implmements value-based equality
@@ -79,11 +79,11 @@ public struct Option<T> : IOption<T>, IEquatable<Option<T>>
     public static bool operator !(Option<T> x)
         => !x.Exists;
    
-    Option(bool isSome, T value, IApplicationMessage message)
+    Option(bool isSome, T value, IAppMessage message)
     {
         this.Exists = isSome;
         this.value = value;
-        this.Message = message ?? ApplicationMessage.Empty;
+        this.Message = message ?? AppMessage.Empty;
     }
 
     /// <summary>
@@ -91,13 +91,13 @@ public struct Option<T> : IOption<T>, IEquatable<Option<T>>
     /// </summary>
     /// <param name="value">The encapsulated value</param>
     /// <param name="message">An optional message</param>
-    public Option(T value, IApplicationMessage message = null)
+    public Option(T value, IAppMessage message = null)
     {
         if (value is IOption)
         {
             var o = value as IOption;
             this.Exists = o.IsSome;
-            this.Message = message ?? o.Message ?? ApplicationMessage.Empty;
+            this.Message = message ?? o.Message ?? AppMessage.Empty;
             this.value = this.Exists ?
                 (o.Value is T ? (T)o.Value : value)                
                 : default;
@@ -106,15 +106,15 @@ public struct Option<T> : IOption<T>, IEquatable<Option<T>>
         {
             this.Exists = (value != null);
             this.value = value;
-            this.Message = message ?? ApplicationMessage.Empty;
+            this.Message = message ?? AppMessage.Empty;
         }
     }
 
-    public Option(IApplicationMessage message = null)
+    public Option(IAppMessage message = null)
     {
         this.Exists = false;
         this.value = default;
-        this.Message = message ?? ApplicationMessage.Empty;
+        this.Message = message ?? AppMessage.Empty;
     }
 
     /// <summary>
@@ -130,7 +130,7 @@ public struct Option<T> : IOption<T>, IEquatable<Option<T>>
     /// <summary>
     /// Specifies the message associated with the optional value
     /// </summary>
-    public IApplicationMessage Message { get; }
+    public IAppMessage Message { get; }
 
     /// <summary>
     /// Returns true if the value exists
@@ -172,7 +172,7 @@ public struct Option<T> : IOption<T>, IEquatable<Option<T>>
     /// </summary>
     /// <param name="ifSome">The action to potentially ivoke</param>
     /// <returns></returns>
-    public Option<T> OnSome(Action<T, IApplicationMessage> ifSome)
+    public Option<T> OnSome(Action<T, IAppMessage> ifSome)
     {
         if (Exists)
             ifSome(value, Message);
@@ -196,7 +196,7 @@ public struct Option<T> : IOption<T>, IEquatable<Option<T>>
     /// </summary>
     /// <param name="message">The new message</param>
     /// <returns></returns>
-    public Option<T> WithMessage(IApplicationMessage message)
+    public Option<T> WithMessage(IAppMessage message)
         => new Option<T>(this.Exists, this.value, message);
 
     /// <summary>
@@ -204,7 +204,7 @@ public struct Option<T> : IOption<T>, IEquatable<Option<T>>
     /// </summary>
     /// <param name="f">The message factory</param>
     /// <returns></returns>
-    public Option<T> WithMessage(Func<T, IApplicationMessage> f)
+    public Option<T> WithMessage(Func<T, IAppMessage> f)
         => this.Exists 
         ? new Option<T>(this.Exists, this.value, f(this.value))
         : this;
@@ -214,7 +214,7 @@ public struct Option<T> : IOption<T>, IEquatable<Option<T>>
     /// </summary>
     /// <param name="ifNone">The action to invoke</param>
     /// <returns></returns>
-    public Option<T> OnNone(Action<IApplicationMessage> ifNone)
+    public Option<T> OnNone(Action<IAppMessage> ifNone)
     {
         if (IsNone())
             ifNone(Message);
@@ -291,7 +291,7 @@ public struct Option<T> : IOption<T>, IEquatable<Option<T>>
     /// <param name="f">The function to apply when value exists</param>
     /// <param name="fallback">The function to invoke when no value exists</param>
     /// <returns></returns>
-    public S Map<S>(Func<T, S> f, Func<IApplicationMessage,S> fallback)
+    public S Map<S>(Func<T, S> f, Func<IAppMessage,S> fallback)
         => Exists ? f(value) : fallback(Message);
 
     /// <summary>
@@ -311,7 +311,7 @@ public struct Option<T> : IOption<T>, IEquatable<Option<T>>
     /// <param name="ifSome">The transformer</param>
     /// <param name="fallback">The alternate transformer</param>
     /// <returns></returns>
-    public S MapValueOrElse<S>(Func<T, S> ifSome, Func<IApplicationMessage, S> fallback)
+    public S MapValueOrElse<S>(Func<T, S> ifSome, Func<IAppMessage, S> fallback)
         => Exists  ? ifSome(value)  : fallback(Message);
 
     /// <summary>
@@ -322,7 +322,7 @@ public struct Option<T> : IOption<T>, IEquatable<Option<T>>
     /// <param name="ifSome">The transformer</param>
     /// <param name="fallback">The alternate transformer</param>
     /// <returns></returns>
-    public S MapValueOrElse<S>(Func<T, IApplicationMessage, S> ifSome, Func<IApplicationMessage, S> fallback)
+    public S MapValueOrElse<S>(Func<T, IAppMessage, S> ifSome, Func<IAppMessage, S> fallback)
         => Exists  ? ifSome(value, Message)  : fallback(Message);
 
     /// <summary>
@@ -348,12 +348,12 @@ public struct Option<T> : IOption<T>, IEquatable<Option<T>>
     /// </summary>
     /// <param name="action">The action to potentially invoke</param>
     /// <returns></returns>
-    public Option<T> OnMessage(Action<IApplicationMessage> action)
+    public Option<T> OnMessage(Action<IAppMessage> action)
     {
         if (!Message.IsEmpty)
             action(Message);
         else if (!Exists)
-            action(ApplicationMessage.Error("No value"));
+            action(AppMessage.Error("No value"));
         return this;
     }
 
@@ -399,7 +399,7 @@ public struct Option<T> : IOption<T>, IEquatable<Option<T>>
             if (predicate(value))
                 return value;
             else
-                return new Option<T>(ApplicationMessage.Empty);
+                return new Option<T>(AppMessage.Empty);
         }
         else
             return value;

@@ -61,8 +61,8 @@ namespace Meta.Core
             isSealed = true;
         }
 
-        public IApplicationMessage ToMessage()
-            => ApplicationMessage.Inform(
+        public IAppMessage ToMessage()
+            => AppMessage.Inform(
                 $"{nameof(TotalSubmissions)}: @{nameof(TotalSubmissions)}, "
              + $"{nameof(TotalDispatches)}: @{nameof(TotalDispatches)}, " +
                 $"{nameof(TotalCompletions)}: @{nameof(TotalCompletions)} " +

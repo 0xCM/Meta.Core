@@ -40,8 +40,8 @@ namespace SqlT.Language
 
         public bool Failed => Error.IsSome();
 
-        public IApplicationMessage GetApplicationError()
-            => Error.MapValueOrDefault(e => e.GetApplicationError(), ApplicationMessage.Empty);
+        public IAppMessage GetApplicationError()
+            => Error.MapValueOrDefault(e => e.GetApplicationError(), AppMessage.Empty);
 
         public C As<C>()
             => cast<C>(Content.Require());

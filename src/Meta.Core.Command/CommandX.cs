@@ -197,7 +197,7 @@ public static class CommandX
     public static Option<ITaskAgent<P>> CreateTaskAgent<A, P>(this IApplicationContext C,
         A ComputationAgent,
         Action<P> PayloadObserver = null,
-        Action<IApplicationMessage> MessageObserver = null)
+        Action<IAppMessage> MessageObserver = null)
             where A : IComputationAgent<P>
                 => new TaskAgent<A, P>(ComputationAgent, PayloadObserver, MessageObserver);
 

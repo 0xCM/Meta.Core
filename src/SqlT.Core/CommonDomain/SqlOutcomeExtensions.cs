@@ -23,12 +23,12 @@ namespace SqlT.Core
             return sb.ToString();
         }
 
-        public static IApplicationMessage ToApplicationMessage(this SqlMessage message)
+        public static IAppMessage ToApplicationMessage(this SqlMessage message)
             => message.IsErrorMessage
-            ? ApplicationMessage.Error(message.MessageText)
-            : ApplicationMessage.Inform(message.MessageText);
+            ? AppMessage.Error(message.MessageText)
+            : AppMessage.Inform(message.MessageText);
 
-        public static IApplicationMessage ToApplicationMessage(this SqlNotification message)
+        public static IAppMessage ToApplicationMessage(this SqlNotification message)
             => inform(message.Detail);
 
         public static IEnumerable<SqlError> ErrorList(this SqlException e)
@@ -54,7 +54,7 @@ namespace SqlT.Core
         public static SqlOutcome<P> Failure<P>(SqlException e)
             => new SqlOutcome<P>(e);
 
-        public static SqlOutcome<P> Failure<P>(IApplicationMessage message)
+        public static SqlOutcome<P> Failure<P>(IAppMessage message)
             => new SqlOutcome<P>(message);
 
         public static SqlOutcome<P> Failure<P>(IEnumerable<SqlMessage> Messages)

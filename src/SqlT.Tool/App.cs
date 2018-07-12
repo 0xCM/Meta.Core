@@ -188,7 +188,7 @@ namespace SqlT.Tool
             Console.ReadLine();
         }
 
-        static void DisplayError(IApplicationMessage message)
+        static void DisplayError(IAppMessage message)
         {
             Console.Write(message);
             Console.WriteLine("Press <enter> to exit");
@@ -213,7 +213,7 @@ namespace SqlT.Tool
                     if (!FilePath.Parse(arg).Exists())
                     {
                         Console.Error.WriteLine(
-                            ApplicationMessage.Error($"The input file ${arg} could not be found").Format());
+                            AppMessage.Error($"The input file ${arg} could not be found").Format());
                         return -1;
                     }
                 }

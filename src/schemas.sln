@@ -25,8 +25,6 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MetaFlow.Schemas.Core.Stora
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MetaFlow.Schemas.Platform", "MetaFlow.Schemas.Platform\MetaFlow.Schemas.Platform.sqlproj", "{5FB9880B-B596-4364-BFB6-541727A0CB70}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MetaFlow.Schemas.WF", "Metaflow.Schemas.WF\MetaFlow.Schemas.WF.sqlproj", "{0ECDBE0A-18C8-4571-9E22-76E3FEF57C63}"
-EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MetaFlow.Schemas.Workspace", "MetaFlow.Schemas.Workspace\MetaFlow.Schemas.Workspace.sqlproj", "{B7522F13-CF01-473C-A552-901CBDC02D8A}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MetaFlow.Schemas.Reference", "MetaFlow.Schemas.Reference\MetaFlow.Schemas.Reference.sqlproj", "{3CABABA2-1045-41FD-A584-DDA7035A7121}"
@@ -105,12 +103,6 @@ Global
 		{5FB9880B-B596-4364-BFB6-541727A0CB70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FB9880B-B596-4364-BFB6-541727A0CB70}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5FB9880B-B596-4364-BFB6-541727A0CB70}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{0ECDBE0A-18C8-4571-9E22-76E3FEF57C63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0ECDBE0A-18C8-4571-9E22-76E3FEF57C63}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0ECDBE0A-18C8-4571-9E22-76E3FEF57C63}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{0ECDBE0A-18C8-4571-9E22-76E3FEF57C63}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0ECDBE0A-18C8-4571-9E22-76E3FEF57C63}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0ECDBE0A-18C8-4571-9E22-76E3FEF57C63}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{B7522F13-CF01-473C-A552-901CBDC02D8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B7522F13-CF01-473C-A552-901CBDC02D8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7522F13-CF01-473C-A552-901CBDC02D8A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU

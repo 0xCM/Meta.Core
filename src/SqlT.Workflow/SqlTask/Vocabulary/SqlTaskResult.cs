@@ -21,7 +21,7 @@ namespace SqlT.Workflow
         where T : SqlTaskResult<T>
     {
         
-        protected SqlTaskResult(SqlTaskName TaskName, bool Succeeded,  long? TaskId = null, IApplicationMessage Description = null, CorrelationToken? CT = null)
+        protected SqlTaskResult(SqlTaskName TaskName, bool Succeeded,  long? TaskId = null, IAppMessage Description = null, CorrelationToken? CT = null)
         {
             this.TaskName = TaskName;
             this.Succeeded = Succeeded;
@@ -36,7 +36,7 @@ namespace SqlT.Workflow
 
         public long? TaskId { get; }
 
-        public IApplicationMessage Description { get; }
+        public IAppMessage Description { get; }
 
         public CorrelationToken? CT { get; }
 
@@ -48,7 +48,7 @@ namespace SqlT.Workflow
     public sealed class SqlTaskResult : SqlTaskResult<SqlTaskResult>
     {
 
-        public SqlTaskResult(SqlTaskName TaskName, bool Succeeded, long? TaskId = null, IApplicationMessage Description = null, CorrelationToken? CT = null)
+        public SqlTaskResult(SqlTaskName TaskName, bool Succeeded, long? TaskId = null, IAppMessage Description = null, CorrelationToken? CT = null)
             : base(TaskName, Succeeded, TaskId, Description, CT)
         {
 

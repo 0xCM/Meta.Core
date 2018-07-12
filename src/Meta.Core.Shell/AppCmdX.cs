@@ -19,14 +19,14 @@ namespace Meta.Core
     {
         static IApplicationContext C;
 
-        static IApplicationMessage ArchivedFolder(FolderPath Src, FilePath Dst)
+        static IAppMessage ArchivedFolder(FolderPath Src, FilePath Dst)
                     => inform($"Archived @Src to @Dst", new
                     {
                         Src,
                         Dst
                     });
 
-        static IApplicationMessage ExtractedArchive(FilePath Src, FolderPath Dst)
+        static IAppMessage ExtractedArchive(FilePath Src, FolderPath Dst)
                     => inform($"Extracted @Src to @Dst", new
                     {
                         Src,

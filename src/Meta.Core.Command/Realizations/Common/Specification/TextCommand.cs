@@ -48,8 +48,8 @@ public sealed class TextCommand : ICommandSpec
     public override string ToString()
         => Text;
 
-    IApplicationMessage ICommandSpec.DescribeIntent()
-        => ApplicationMessage.Empty;
+    IAppMessage ICommandSpec.DescribeIntent()
+        => AppMessage.Empty;
 
     ICommandSpec ICommandSpec.ExpandVariables()
         => this;

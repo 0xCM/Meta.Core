@@ -63,7 +63,7 @@ public class CommandQueueExecutor<TSpec>
         }
         catch (Exception e)
         {
-            Notify(ApplicationMessage.Error(e));
+            Notify(AppMessage.Error(e));
             throw;
         }
 

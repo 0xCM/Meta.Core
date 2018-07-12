@@ -28,7 +28,7 @@ public interface ICommandResult
     /// <summary>
     /// A message describing the command execution outcome
     /// </summary>
-    IApplicationMessage Message { get; }
+    IAppMessage Message { get; }
 
     /// <summary>
     /// The identifier that was assigned when the command was submitted for execution

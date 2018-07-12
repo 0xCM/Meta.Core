@@ -153,7 +153,7 @@ namespace Meta.Core
         public bool IsValid
             => Schema.Exists;
 
-        public Option<IApplicationMessage> ErrorMessage
+        public Option<IAppMessage> ErrorMessage
             => Schema.MapValueOrElse(v => null, message => some(message));
 
         public override string ToString()

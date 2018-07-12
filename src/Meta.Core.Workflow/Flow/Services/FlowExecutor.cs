@@ -234,7 +234,7 @@ namespace Meta.Core
                 return some(new FlowSummary($"{typeof(TSrc).Name} => {typeof(TDst).Name}")
                 {
                     Metrics = srcMetrics + dstMetrics,
-                    ErrorMessages = MutableList.Create<IApplicationMessage>()
+                    ErrorMessages = MutableList.Create<IAppMessage>()
                 });
             };
     }

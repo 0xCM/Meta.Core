@@ -19,7 +19,7 @@ namespace Meta.Core
 
         public LocalCommandStore(IApplicationContext C, FolderPath StorageRoot, 
                 Action<FilePath, ICommandSpec> Process = null,
-                Action<IApplicationMessage> Observe = null
+                Action<IAppMessage> Observe = null
                 )
             : base(C)
         {
@@ -39,7 +39,7 @@ namespace Meta.Core
         Action<FilePath, ICommandSpec> Process { get; }
             = (path, spec) => {};
 
-        Action<IApplicationMessage> Observe { get; }
+        Action<IAppMessage> Observe { get; }
             = msg => { };
 
 

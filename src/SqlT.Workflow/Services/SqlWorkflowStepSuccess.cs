@@ -17,7 +17,7 @@ namespace SqlT.Workflow
     public class SqlWorkflowStepSuccess<P> : SqlWorkflowStepResult<P>
     {
 
-        public SqlWorkflowStepSuccess(P Payload, IApplicationMessage Message)
+        public SqlWorkflowStepSuccess(P Payload, IAppMessage Message)
             : base(Payload, true, Message)
         {
         }
@@ -27,15 +27,15 @@ namespace SqlT.Workflow
 
     public class SqlWorkflowStepSuccess : SqlWorkflowStepResult
     {
-        public static SqlWorkflowStepSuccess<P> Create<P>(P Payload, IApplicationMessage Message = null)
+        public static SqlWorkflowStepSuccess<P> Create<P>(P Payload, IAppMessage Message = null)
             => new SqlWorkflowStepSuccess<P>(Payload, Message);
 
-        public static SqlWorkflowStepSuccess Create(object Payload, IApplicationMessage Message)
+        public static SqlWorkflowStepSuccess Create(object Payload, IAppMessage Message)
             => new SqlWorkflowStepSuccess(Payload, Message);
 
         protected object UntypedPayload { get; }
 
-        public SqlWorkflowStepSuccess(object Payload, IApplicationMessage Message = null)
+        public SqlWorkflowStepSuccess(object Payload, IAppMessage Message = null)
              : base(Payload, true, Message)
         {
 

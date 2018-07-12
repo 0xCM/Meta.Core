@@ -50,7 +50,7 @@ public class TransientMessageBroker : IMessageBroker
         this.Sentinel = sentinel;
     }
 
-    public static IMessageBroker Create(Action<IApplicationMessage> sentinel = null)
+    public static IMessageBroker Create(Action<IAppMessage> sentinel = null)
         => new TransientMessageBroker(new AppMessageObserver(sentinel));
 
 
@@ -70,14 +70,14 @@ public class TransientMessageBroker : IMessageBroker
 
     public IDisposable Listen(AppMessageObserver Observer, string messageTypeName)
     {
-        var mtn = messageTypeName ?? nameof(IApplicationMessage);
+        var mtn = messageTypeName ?? nameof(IAppMessage);
         var subscriber = new Subscriber(mtn, Observer, Unsubscribe);
         subscribers.GetOrAdd(mtn, t => new ConcurrentBag<Subscriber>())
                     .Add(subscriber);
         return subscriber;
     }
 
-    public CorrelationToken? Route(IApplicationMessage message, bool immediate)
+    public CorrelationToken? Route(IAppMessage message, bool immediate)
     {
         if (!RoutedMessages.TryAdd(message.MessageId, message.MessageId))
             return message.CT;
@@ -86,7 +86,7 @@ public class TransientMessageBroker : IMessageBroker
 
         foreach (var mtn in subscribers.Keys)
         {
-            if (mtn == message.MessageType || mtn == nameof(IApplicationMessage))
+            if (mtn == message.MessageType || mtn == nameof(IAppMessage))
             {
                 foreach (var subscriber in subscribers[mtn])
                     subscriber.Observer(message);

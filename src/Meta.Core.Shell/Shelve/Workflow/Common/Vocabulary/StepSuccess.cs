@@ -9,7 +9,7 @@ namespace Meta.Core.Workflow
     using static metacore;
     public class StepSuccess<P> : StepResult<P>
     {
-        public StepSuccess(P Payload, IApplicationMessage Message)
+        public StepSuccess(P Payload, IAppMessage Message)
             : base(Payload, true, Message)
         {
 
@@ -18,7 +18,7 @@ namespace Meta.Core.Workflow
 
     public abstract class StepSuccess : StepResult<object>
     {
-        public StepSuccess(object Payload, IApplicationMessage Message = null)
+        public StepSuccess(object Payload, IAppMessage Message = null)
             : base(Payload, true, Message)
         {
             if (isNull(Payload))

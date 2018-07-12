@@ -12,7 +12,7 @@ namespace Meta.Core.Resources
 
     using static metacore;
 
-    using static ApplicationMessage;
+    using static AppMessage;
 
 
     class NodeFileSystemTransport : ApplicationService<NodeFileSystemTransport, INodeFileSystemChannel>, INodeFileSystemChannel

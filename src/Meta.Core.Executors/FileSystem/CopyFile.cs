@@ -15,22 +15,22 @@ namespace Meta.Core.Commands
     class CopyFileX : CommandExecutionService<CopyFileX, C, FileCopyResult>
     {
 
-        static IApplicationMessage DestinationExists(C spec)
-            => ApplicationMessage.Error($"Destination path @DstPath exists and {nameof(spec.Overwrite)} is false",
+        static IAppMessage DestinationExists(C spec)
+            => AppMessage.Error($"Destination path @DstPath exists and {nameof(spec.Overwrite)} is false",
                 new
                 {
                     spec.DstPath
                 });
 
-        static IApplicationMessage DirectoryDoesNotExist(C spec)
-            => ApplicationMessage.Error($"Destination directory @DstDir does not exist and {nameof(spec.CreateDirectory)} is false",
+        static IAppMessage DirectoryDoesNotExist(C spec)
+            => AppMessage.Error($"Destination directory @DstDir does not exist and {nameof(spec.CreateDirectory)} is false",
                 new
                 {
                     DstDir = Path.GetDirectoryName(spec.DstPath)
                 });
 
-        static IApplicationMessage SourceDoesNotExist(C spec)
-            => ApplicationMessage.Error("The source path @SrcPath does not exist",
+        static IAppMessage SourceDoesNotExist(C spec)
+            => AppMessage.Error("The source path @SrcPath does not exist",
                 new
                 {
                     spec.SrcPath

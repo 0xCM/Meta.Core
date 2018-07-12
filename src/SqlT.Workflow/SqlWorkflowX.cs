@@ -88,7 +88,7 @@ namespace SqlT.Services
             where P : class, ISqlProcedureProxy, new()
                 => proc.GetItemArray();
 
-        public static IApplicationMessage SuccessMessage<P, D>(this ISqlProxyBroker broker, P proc, D data)
+        public static IAppMessage SuccessMessage<P, D>(this ISqlProxyBroker broker, P proc, D data)
             where P : class, ISqlProcedureProxy, new()
                 => inform(
                     concat("Succesfully executed", 
@@ -133,7 +133,7 @@ namespace SqlT.Services
         }
 
         public static Task<ReadOnlyList<Option<FlowMetrics>>> ExecWorkflowSequence(this IApplicationContext C,
-                TransformationJob job, Func<bool> quit, Action<IApplicationMessage> observer)
+                TransformationJob job, Func<bool> quit, Action<IAppMessage> observer)
         {
             return Task.Factory.StartNew(()
                 =>

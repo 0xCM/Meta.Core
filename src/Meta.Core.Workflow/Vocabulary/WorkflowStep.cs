@@ -16,7 +16,7 @@ namespace Meta.Core.Workflow
     public class WorkflowStep
     {
         static IEnumerable<IWorkflowStep<R>> DefineNestedSteps<R>(IWorkflowNode Parent,
-            Func<IApplicationMessage> beforeExec, WorkflowTransformer<R> afterSuccess,
+            Func<IAppMessage> beforeExec, WorkflowTransformer<R> afterSuccess,
             WorkflowTransformer<R> afterError = null)
                 => from m in Parent.GetType().ClrType().Require().DeclaredPublicInstanceMethods.Stream()
                    where m.ReturnsType<IEnumerable<WorkFlowed<R>>>()
@@ -27,7 +27,7 @@ namespace Meta.Core.Workflow
                    select step;
 
         public static IEnumerable<IWorkflowStep<R>> DefineSteps<R>(IWorkflowNode Parent,           
-            Func<IApplicationMessage> beforeExec, WorkflowTransformer<R> afterSuccess,
+            Func<IAppMessage> beforeExec, WorkflowTransformer<R> afterSuccess,
             WorkflowTransformer<R> afterError = null) 
                 => (from m in Parent.GetType().ClrType().Require().DeclaredPublicInstanceMethods.Stream()
                     where m.ReturnsType<WorkFlowed<R>>()
@@ -40,7 +40,7 @@ namespace Meta.Core.Workflow
     public class WorkflowStep<R> : WorkflowNode<R>, IWorkflowStep<R>
     {
         public WorkflowStep(IWorkflowNode Parent, WorkflowStepName Name, Func<WorkFlowed<R>> StepBuilder,
-            IEnumerable<FacetInfo> Facets, Func<IApplicationMessage> BeforeExec = null,
+            IEnumerable<FacetInfo> Facets, Func<IAppMessage> BeforeExec = null,
             WorkflowTransformer<R> AfterSuccess = null, WorkflowTransformer<R> AfterError = null
                 ) : base(Parent, Facets, AfterSuccess, AfterError)                
         {
@@ -49,13 +49,13 @@ namespace Meta.Core.Workflow
             this.StepBuilder = Prepend(BeforeExec ?? (() => inform($"Executing {Name}")), StepBuilder);
         }
 
-        Func<WorkFlowed<R>> Prepend(Func<IApplicationMessage> Message, Func<WorkFlowed<R>> StepBuilder)
+        Func<WorkFlowed<R>> Prepend(Func<IAppMessage> Message, Func<WorkFlowed<R>> StepBuilder)
         {
             Post(Message());
             return StepBuilder;          
         }
         
-        protected void Post(IApplicationMessage Message)
+        protected void Post(IAppMessage Message)
             => Notify(Message);
 
         public Func<WorkFlowed<R>> StepBuilder { get; }
@@ -88,7 +88,7 @@ namespace Meta.Core.Workflow
     public class WorkflowStep<X, R> : WorkflowNode<X, R>
     {
         public WorkflowStep(IWorkflowContext C, WorkflowStepName Name, Func<X, WorkFlowed<R>> StepBuilder,
-            IEnumerable<FacetInfo> Facets,Func<X, IApplicationMessage> BeforeExec = null,
+            IEnumerable<FacetInfo> Facets,Func<X, IAppMessage> BeforeExec = null,
             WorkflowTransformer<R> AfterSuccess = null, WorkflowTransformer<R> AfterError = null)
                 : base(C,Facets)
         {
@@ -98,14 +98,14 @@ namespace Meta.Core.Workflow
             this.AfterError = AfterError;
         }
 
-        Func<X, WorkFlowed<R>> Prepend(Func<X, IApplicationMessage> Message, Func<X, WorkFlowed<R>> StepBuilder)
+        Func<X, WorkFlowed<R>> Prepend(Func<X, IAppMessage> Message, Func<X, WorkFlowed<R>> StepBuilder)
             => x =>
             {
                 Post(Message(x));
                 return StepBuilder(x);
             };
 
-        protected void Post(IApplicationMessage Message)
+        protected void Post(IAppMessage Message)
             => Notify(Message);
 
         public Func<X, WorkFlowed<R>> StepBuilder { get; }
@@ -138,7 +138,7 @@ namespace Meta.Core.Workflow
     public class WorkflowStep<X1,X2, R> : WorkflowNode<X1, X2, R>
     {
         public WorkflowStep(IWorkflowContext C, WorkflowStepName Name, Func<X1,X2, WorkFlowed<R>> StepBuilder,
-            IEnumerable<FacetInfo> Facets, Func<X1,X2, IApplicationMessage> BeforeExec = null,
+            IEnumerable<FacetInfo> Facets, Func<X1,X2, IAppMessage> BeforeExec = null,
             WorkflowTransformer<R> AfterSuccess = null, WorkflowTransformer<R> AfterError = null)
                 : base(C,Facets)
         {
@@ -149,14 +149,14 @@ namespace Meta.Core.Workflow
             this.AfterError = AfterError;            
         }
 
-        Func<X1, X2, WorkFlowed<R>> Prepend(Func<X1,X2, IApplicationMessage> Message, Func<X1, X2, WorkFlowed<R>> StepBuilder)
+        Func<X1, X2, WorkFlowed<R>> Prepend(Func<X1,X2, IAppMessage> Message, Func<X1, X2, WorkFlowed<R>> StepBuilder)
             => (x1,x2) =>
             {
                 Post(Message(x1,x2));
                 return StepBuilder(x1,x2);
             };
 
-        protected void Post(IApplicationMessage Message)
+        protected void Post(IAppMessage Message)
             => Notify(Message);
 
         public WorkflowStepName Name { get; }

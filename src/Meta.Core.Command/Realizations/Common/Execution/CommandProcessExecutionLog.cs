@@ -14,12 +14,12 @@ using Meta.Core;
 /// </summary>
 public class CommandProcessExecutionLog
 {
-    public CommandProcessExecutionLog(bool Executed = true, IApplicationMessage Message = null)
+    public CommandProcessExecutionLog(bool Executed = true, IAppMessage Message = null)
     {
         this.ErrorMessages = MutableList.Create<string>();
         this.StatusMessages = MutableList.Create<string>();
         this.Executed = Executed;
-        this.AppMessage = Message ?? ApplicationMessage.Empty;
+        this.AppMessage = Message ?? global::AppMessage.Empty;
     }
 
     /// <summary>
@@ -45,7 +45,7 @@ public class CommandProcessExecutionLog
     /// <summary>
     /// Specifies a summary message
     /// </summary>
-    public IApplicationMessage AppMessage { get; }
+    public IAppMessage AppMessage { get; }
 
     /// <summary>
     /// Retrieves the union of status and error messages

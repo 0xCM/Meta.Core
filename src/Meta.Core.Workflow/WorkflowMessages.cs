@@ -9,7 +9,7 @@ namespace Meta.Core
 
     public static class WorkflowMessages
     {
-        public static IApplicationMessage PublicationSucceeded<TSrc, TDst>(int RecordCount, int TotalCount)
+        public static IAppMessage PublicationSucceeded<TSrc, TDst>(int RecordCount, int TotalCount)
             => inform("Published @RecordCount @DstTypeName target records from @SrcTypeName for a total of @TotalCount so far",
                     new
                     {
@@ -19,14 +19,14 @@ namespace Meta.Core
                         DstTypeName = typeof(TDst).Name
                     }
                 );
-        internal static IApplicationMessage ExecutingWorkflow(string WorkflowName)
+        internal static IAppMessage ExecutingWorkflow(string WorkflowName)
             => inform("Executing @WorkflowName workflow",
                 new
                 {
                     WorkflowName
                 });
 
-        internal static IApplicationMessage InvokedEmission(Option<int> EmissionResult, string TargetTypeName)
+        internal static IAppMessage InvokedEmission(Option<int> EmissionResult, string TargetTypeName)
              => EmissionResult ? inform(EmissionResult.Value() != 0
                      ? "Emitted @RecordCount @TargetTypeName records"
                      : "No @TargetTypeName Records to emit", new

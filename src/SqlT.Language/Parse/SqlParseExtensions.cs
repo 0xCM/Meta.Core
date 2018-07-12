@@ -33,12 +33,12 @@ namespace SqlT.Language
             => sql.TryParseStatement().Map(x => x as TSql.SelectStatement);
 
         /// <summary>
-        /// Converts a sql parser error to a <see cref="IApplicationMessage"/> error
+        /// Converts a sql parser error to a <see cref="IAppMessage"/> error
         /// </summary>
         /// <param name="error"></param>
         /// <returns></returns>
-        public static IApplicationMessage GetApplicationError(this SqlParseError error)
-            => ApplicationMessage.Error($"The SQL parser encountered one or more error conditions: {error}");
+        public static IAppMessage GetApplicationError(this SqlParseError error)
+            => AppMessage.Error($"The SQL parser encountered one or more error conditions: {error}");
 
         static void onType<V>(object value, Action<V> action)
         {

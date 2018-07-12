@@ -6,15 +6,13 @@
 using System;
 using System.Linq;
 
-using Meta.Core;
-
 public interface IMessageBroker : IDisposable
 {
     /// <summary>
     /// Posts a message to the broker
     /// </summary>
     /// <param name="message">The notification</param>
-    CorrelationToken? Route(IApplicationMessage message, bool immediate = false);
+    CorrelationToken? Route(IAppMessage message, bool immediate = false);
 
     /// <summary>
     /// Subscribes to a notification

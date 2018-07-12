@@ -1,0 +1,112 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="Configuration\Build.props" />
+  <PropertyGroup>
+    <RootNamespace>PDMS.Schemas.Core</RootNamespace>
+    <AppDesignerFolder>Configuration</AppDesignerFolder>
+    <Containment>Partial</Containment>
+    <ProjectGuid>{12910946-263d-4c79-a924-59a0c6f34b5a}</ProjectGuid>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <Name>MetaFlow.Schemas.Core.Types</Name>
+    <TargetDatabase>PDMS.Schemas.Core.Types</TargetDatabase>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="Configuration\Build.props" />
+    <RefactorLog Include="Configuration\RefactorLog.xml" />
+    <Folder Include="Configuration" />
+    <Build Include="Configuration\Schemas.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuration\Designator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="T0\ArtifactReferenceSpec.sql" />
+    <Build Include="WF\ArchiveOperator.sql" />
+    <Build Include="WF\BatchCompletion.sql" />
+    <Build Include="WF\ComandSpecifier.sql" />
+    <Build Include="WF\CommandTableEntry.sql" />
+    <Build Include="WF\CompletionOperator.sql" />
+    <Build Include="WF\DequeOperator.sql" />
+    <Build Include="WF\EnqueueOperator.sql" />
+    <Build Include="WF\MergeAction.sql" />
+    <Build Include="WF\MergeActionCount.sql" />
+    <Build Include="WF\PeekOperator.sql" />
+    <Build Include="WF\ProcessingBatch.sql" />
+    <Build Include="WF\SystemCommand.sql" />
+    <Build Include="WF\SystemEvent.sql" />
+    <Build Include="WF\SystemEventCapture.sql" />
+    <Build Include="WF\SystemEventIdentity.sql" />
+    <Build Include="WF\SystemNotification.sql" />
+    <Build Include="WF\SystemTask.sql" />
+    <Build Include="WF\SystemTaskResult.sql" />
+    <Build Include="WF\SystemTaskState.sql" />
+    <Build Include="WF\WorkflowTask.sql" />
+    <Build Include="WF\TaskArchive.sql" />
+    <Build Include="WF\TaskQueue.sql" />
+    <Build Include="WF\TaskResult.sql" />
+    <Build Include="WF\TaskState.sql" />
+    <Build Include="WF\WorkflowOptions.sql" />
+    <Build Include="WF\SystemCommandSubmission.sql" />
+    <Build Include="T0\HostFileInfo.sql" />
+    <Build Include="WF\SystemReaction.sql" />
+    <Build Include="T0\TableMonitorLogEntry.sql" />
+    <Build Include="T0\MonitoredTable.sql" />
+    <Build Include="T0\NavigationFolder.sql" />
+    <Build Include="XE\PlatformNotification\ArchivedPlatformNotification.sql" />
+    <Build Include="XE\PlatformNotification\PlatformNotification.sql" />
+    <Build Include="XE\XEventDataBlock.sql" />
+    <Build Include="XE\XEventLogFile.sql" />
+    <Build Include="WF\SystemTaskDefinition.sql" />
+    <Build Include="XE\XEventDataType.sql" />
+    <Build Include="T0\MessageFormat.sql" />
+    <Build Include="T0\MessageTypeRegistration.sql" />
+    <Build Include="T0\MessageAttribute.sql" />
+    <Build Include="WF\SystemTaskEvent.sql" />
+    <Build Include="T0\TypeTableRows.sql" />
+    <Build Include="T0\ProjectComponent.sql" />
+    <Build Include="T0\PlatformDatabaseProfile.sql" />
+    <Build Include="T0\TargetedDatabaseComponent.sql" />
+    <Build Include="WF\AgentCommand.sql" />
+    <Build Include="WF\AgentStatus.sql" />
+    <Build Include="WF\AgentControlCommand.sql" />
+    <Build Include="WF\AgentConfiguration.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="T0\Classifier.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="T0" />
+    <Folder Include="WF" />
+    <Folder Include="XE" />
+    <Folder Include="XE\PlatformNotification" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="T0\SystemCommandRegistration.sql" />
+    <Build Include="T0\DacDeploymentToken.sql" />
+    <Build Include="T0\DatabaseServer.sql" />
+    <Build Include="T0\DatabaseVersion.sql" />
+    <Build Include="T0\DistributionDescription.sql" />
+    <Build Include="T0\SystemEventRegistration.sql" />
+    <Build Include="T0\FileReceipt.sql" />
+    <Build Include="T0\FileStreamIdentifier.sql" />
+    <Build Include="T0\PlatformAgent.sql" />
+    <Build Include="T0\PlatformComponent.sql" />
+    <Build Include="T0\DacProfileDefinition.sql" />
+    <Build Include="T0\PlatformDacRegistration.sql" />
+    <Build Include="T0\PlatformDatabase.sql" />
+    <Build Include="T0\PlatformEntity.sql" />
+    <Build Include="T0\PlatformNode.sql" />
+    <Build Include="T0\PlatformProject.sql" />
+    <Build Include="T0\PlatformSolution.sql" />
+    <Build Include="T0\PlatformStoreChange.sql" />
+    <Build Include="T0\PlatformSystem.sql" />
+    <Build Include="T0\PlatformVariable.sql" />
+    <Build Include="T0\QueueRecord.sql" />
+    <Build Include="T0\SqlMessageSpec.sql" />
+    <Build Include="T0\SqlProxyDefinition.sql" />
+    <Build Include="T0\SystemArtifact.sql" />
+    <Build Include="T0\SystemComponent.sql" />
+    <Build Include="T0\SystemSetting.sql" />
+    <Build Include="T0\TypedDataFlowDescriptor.sql" />
+    <Build Include="T0\TypedDataFlowIdentifier.sql" />
+  </ItemGroup>
+</Project>

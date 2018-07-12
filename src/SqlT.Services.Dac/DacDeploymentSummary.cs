@@ -16,7 +16,7 @@ namespace SqlT.Dac
     /// </summary>
     public class DacDeploymentSummary  : IOption
     {
-        public DacDeploymentSummary(NodeFilePath SourcePackage, SystemNodeIdentifier TargetNode, IApplicationMessage Message, CorrelationToken? CT = null)
+        public DacDeploymentSummary(NodeFilePath SourcePackage, SystemNodeIdentifier TargetNode, IAppMessage Message, CorrelationToken? CT = null)
         {
             this.SourcePackage = SourcePackage;
             this.TargetNode = TargetNode;
@@ -31,7 +31,7 @@ namespace SqlT.Dac
 
         public bool Succeded { get; }
 
-        public IApplicationMessage Message { get; }
+        public IAppMessage Message { get; }
 
         public CorrelationToken? CT { get; }
 

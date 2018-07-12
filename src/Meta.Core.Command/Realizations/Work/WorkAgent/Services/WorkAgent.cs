@@ -115,7 +115,7 @@ namespace Meta.Core
             }
             catch (Exception e)
             {
-                Notify(ApplicationMessage.Error(e));
+                Notify(AppMessage.Error(e));
             }
 
         }
@@ -145,7 +145,7 @@ namespace Meta.Core
                 }
                 catch (Exception e)
                 {
-                    Notify(ApplicationMessage.Error(e));
+                    Notify(AppMessage.Error(e));
                 }
                 return tasks;
             });
@@ -189,7 +189,7 @@ namespace Meta.Core
                  finally
                  {
                      HandleTaskCompletion(clrTaskId).OnNone(()
-                         => Notify(ApplicationMessage.Warn("There was no task to complete")));
+                         => Notify(AppMessage.Warn("There was no task to complete")));
                  }
 
                  iter(observers, observer => observer.RaiseWorkCompleted(work, result));

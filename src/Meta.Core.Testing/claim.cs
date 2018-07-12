@@ -49,7 +49,7 @@ namespace Meta.Core
         /// Fail a test, with our without explanation
         /// </summary>
         /// <param name="reason"></param>
-        public static void fail(IApplicationMessage reason = null)
+        public static void fail(IAppMessage reason = null)
             => UT.Assert.Fail(reason?.Format(false));
 
         /// <summary>

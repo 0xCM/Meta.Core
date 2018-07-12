@@ -51,19 +51,19 @@ namespace SqlT.Services
 
         }
 
-        static IApplicationMessage SavedDatabaseMetadataSet(string DatabaseName, SqlMetadataStats stats)
-            => ApplicationMessage.Inform("Saved @SchemaObjectCount schema objects for @DatabaseName", new {            
+        static IAppMessage SavedDatabaseMetadataSet(string DatabaseName, SqlMetadataStats stats)
+            => AppMessage.Inform("Saved @SchemaObjectCount schema objects for @DatabaseName", new {            
                 stats.SchemaObjectCount,
                 DatabaseName
             });
 
-        static IApplicationMessage SavedInstanceDescription(SqlServerInstanceDescription description, SqlMetadataStats stats)
+        static IAppMessage SavedInstanceDescription(SqlServerInstanceDescription description, SqlMetadataStats stats)
         {
             var sbTemplate = new StringBuilder();
             sbTemplate.AppendLine("Received @ServerCount linked server records and @DatabaseCount database records for @ServerName");
             sbTemplate.AppendLine("Inserted or updated @TotalItemCount records");
             var template = sbTemplate.ToString();
-            return ApplicationMessage.Inform(template, new
+            return AppMessage.Inform(template, new
             {
                 ServerCount = description.Servers.Count,
                 DatabaseCount = description.Databases.Count,

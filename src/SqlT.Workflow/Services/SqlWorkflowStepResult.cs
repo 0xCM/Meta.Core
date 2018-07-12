@@ -20,13 +20,13 @@ namespace SqlT.Workflow
     public class SqlWorkflowStepResult<P> : StepResult<P>, ISqlStepResult<P>
     {
 
-        public SqlWorkflowStepResult(P Payload, bool Succeeded, IApplicationMessage Message = null)
+        public SqlWorkflowStepResult(P Payload, bool Succeeded, IAppMessage Message = null)
             : base(Payload, Succeeded, Message)
         {
 
         }
 
-        public SqlWorkflowStepResult(IApplicationMessage Error)
+        public SqlWorkflowStepResult(IAppMessage Error)
             : base(Error)
         {
 
@@ -39,11 +39,11 @@ namespace SqlT.Workflow
 
 
 
-        protected SqlWorkflowStepResult(object Payload, bool Succeeded, IApplicationMessage Message = null)
+        protected SqlWorkflowStepResult(object Payload, bool Succeeded, IAppMessage Message = null)
             : base(Payload, Succeeded, Message)
         { }
 
-        protected SqlWorkflowStepResult(IApplicationMessage Error)
+        protected SqlWorkflowStepResult(IAppMessage Error)
             : base(Error)
         { }
 

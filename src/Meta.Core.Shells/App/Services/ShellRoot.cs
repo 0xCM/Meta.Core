@@ -36,11 +36,11 @@ namespace Meta.Core
             => Context.Settings<T>();
 
 
-        void Notify(IApplicationMessage message)
+        void Notify(IAppMessage message)
             => Service<IMessageBroker>().Route(message);
 
         void Status(string message)
-            => Notify(ApplicationMessage.Inform(message));
+            => Notify(AppMessage.Inform(message));
 
 
 
@@ -73,7 +73,7 @@ namespace Meta.Core
         public bool IsServiceProvided<T>(string ImplementationName)
             => Context.IsServiceProvided<T>(ImplementationName);
 
-        public void PostMessage(IApplicationMessage message)
+        public void PostMessage(IAppMessage message)
             => Context.PostMessage(message);
 
 

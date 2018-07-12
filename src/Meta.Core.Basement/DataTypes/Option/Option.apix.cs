@@ -48,7 +48,7 @@ public static class OptionCondense
     public static ReadOnlyList<P> Items<P>(this Option<ReadOnlyList<P>> x)
         => x.IsSome() ? ~x : ReadOnlyList.Create(new P[] { });
 
-    public static ReadOnlyList<P> Items<P>(this Option<ReadOnlyList<P>> x, Action<IApplicationMessage> error)
+    public static ReadOnlyList<P> Items<P>(this Option<ReadOnlyList<P>> x, Action<IAppMessage> error)
     {
         if (x.IsSome())
             return x.Items();
@@ -56,7 +56,7 @@ public static class OptionCondense
         {
             var message
                 = x.Message.IsEmpty
-                ? ApplicationMessage.Error("Required option has no value")
+                ? AppMessage.Error("Required option has no value")
                 : x.Message;
             error(message);
             return ReadOnlyList.Create(new P[] { });
@@ -64,7 +64,7 @@ public static class OptionCondense
     }
 
 
-    public static IEnumerable<T> Items<T>(this Option<IEnumerable<T>> x, Action<IApplicationMessage> error = null)
+    public static IEnumerable<T> Items<T>(this Option<IEnumerable<T>> x, Action<IAppMessage> error = null)
     {
 
         if (x)

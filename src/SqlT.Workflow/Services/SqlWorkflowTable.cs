@@ -11,7 +11,7 @@ namespace SqlT.Workflow
     public class SqlWorkflowTable : ISqlWorkflowTable
     {
 
-        public SqlWorkflowTable(ISqlTabularProxy Proxy, SqlWorkflowState State, bool OperationSucceeded, IApplicationMessage Description)
+        public SqlWorkflowTable(ISqlTabularProxy Proxy, SqlWorkflowState State, bool OperationSucceeded, IAppMessage Description)
         {
             this.Subject = Proxy;
             this.State = State;
@@ -22,7 +22,7 @@ namespace SqlT.Workflow
 
         public SqlWorkflowState State { get; }
 
-        public IApplicationMessage Description { get; }
+        public IAppMessage Description { get; }
 
         public bool OperationSucceeded { get; }
     }
@@ -35,8 +35,8 @@ namespace SqlT.Workflow
         public static implicit operator P(SqlWorkflowTable<P> x)
             => x.Subject;
 
-        public SqlWorkflowTable(P Proxy, SqlWorkflowState State = null, bool OperationSucceded = true, IApplicationMessage Description = null)
-            : base(Proxy, State ?? SqlWorkflowStates.Populated, OperationSucceded, Description ?? ApplicationMessage.Empty)
+        public SqlWorkflowTable(P Proxy, SqlWorkflowState State = null, bool OperationSucceded = true, IAppMessage Description = null)
+            : base(Proxy, State ?? SqlWorkflowStates.Populated, OperationSucceded, Description ?? AppMessage.Empty)
         {
         }
 

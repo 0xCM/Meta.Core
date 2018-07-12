@@ -13,7 +13,7 @@ public class CommandEmission
         this.CommandSpec = CommandSpec;
         this.OutputPath = OutputPath;
         this.Description = Succeeded
-            ? ApplicationMessage.Inform($"Emitted {CommandSpec.SpecName}")
+            ? AppMessage.Inform($"Emitted {CommandSpec.SpecName}")
             : OutputPath.Message;
     }
 
@@ -24,7 +24,7 @@ public class CommandEmission
     public bool Succeeded
         => OutputPath.Exists;
 
-    public IApplicationMessage Description { get; }
+    public IAppMessage Description { get; }
 
     public override string ToString()
         => Description.Format(false);

@@ -17,7 +17,7 @@ namespace Meta.Core
     public class Exception<T> : Exception
     {
 
-        public Exception(IApplicationMessage AppMessage, T Content = default)
+        public Exception(IAppMessage AppMessage, T Content = default)
         {
             this.AppMessage = AppMessage;
             this.Content = Content;
@@ -27,7 +27,7 @@ namespace Meta.Core
         public Exception(string reason, string member, string path, int line)
             : base(reason)
         {
-            this.AppMessage = ApplicationMessage.Empty;
+            this.AppMessage = global::AppMessage.Empty;
             this.Content = default;
             this.Member = member;
             this.Path = path;
@@ -37,14 +37,14 @@ namespace Meta.Core
         public Exception(T data, string reason, string member, string path, int line)
             : base(reason)
         {
-            this.AppMessage = ApplicationMessage.Empty;
+            this.AppMessage = global::AppMessage.Empty;
             this.Content = data;
             this.Member = member;
             this.Path = path;
             this.Line = line;
         }
 
-        public IApplicationMessage AppMessage { get; }
+        public IAppMessage AppMessage { get; }
 
         /// <summary>
         /// Data to associate with the exception

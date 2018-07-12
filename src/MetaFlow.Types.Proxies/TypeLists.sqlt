@@ -1,0 +1,76 @@
+{
+  "EmitListedTypes": true,
+  "FieldLists": [
+    {
+      "ListName": "PlatformDatabaseServers",
+      "RowSource": "[PF].[PlatformDatabaseServer]",
+      "IdentifierColumn": "SqlAlias",
+      "TableType": "[T0].[DatabaseServer]",
+      "RowSourceType":  "View"
+    },
+    {
+      "ListName": "PlatformAgents",
+      "RowSource": "[PF].[PlatformAgentRegistry]",
+      "IdentifierColumn": "AgentId",
+      "TypedIdentifierType": "AgentIdentifier",
+      "IdentifierValueColumn": "AgentId"
+    },
+    {
+      "ListName": "PlatformDatabaseTypes",
+      "RowSource": "[PF].[PlatformDatabaseType]",
+      "IdentifierColumn": "Identifier",
+      "TableType": "[T0].[Classifier]"
+    },
+    {
+      "ListName": "PlatformSystems",
+      "RowSource": "[PF].[PlatformSystemType]",
+      "IdentifierColumn": "Identifier",
+      "TypedIdentifierType": "SystemIdentifier",
+      "IdentifierValueColumn": "Identifier"
+
+    },
+    {
+      "ListName": "ComponentTypes",
+      "RowSource": "[PF].[ComponentType]",
+      "IdentifierColumn": "Identifier",
+      "TableType": "[T0].[Classifier]"
+    },
+    {
+      "ListName": "PlatformShareTypes",
+      "RowSource": "[PF].[PlatformShareType]",
+      "IdentifierColumn": "Identifier",
+      "TableType": "[T0].[Classifier]"
+    },
+    {
+      "ListName": "NavigationFolders",
+      "RowSource": "[PF].[NavigationFolderDefinition]",
+      "IdentifierColumn": "Identifier",
+      "TableType": "[T0].[NavigationFolder]"
+    }
+
+
+  ],
+  "ExcludeSystemObjects": true,
+  "ProfileType": "FieldList",
+  "Name": "TypeLists",
+  "RootNamespace": "MetaFlow.Core",
+  "OutputDirectory": "",
+  "DefaultUsings": [
+    "System",
+    "System.Collections.Generic"
+  ],
+  "Internalize": false,
+  "EmitDependencies": false,
+  "EmitSingleFile": true,
+  "EmitGenerationSpec": false,
+  "ProjectName": "",
+  "DistributionLabel": "",
+  "EmitProject": false,
+  "BuildProject": false,
+  "AssemblyDesignatorName": "",
+  "AssemblyVersion": "1.0.0",
+  "ConnectionString": "Data Source=localhost;Initial Catalog=MetaFlow;Integrated Security=True",
+  "AssemblyReferences": [],
+  "ReturnTypeStyle": "Outcome",
+  "EmitTypeContracts": false
+}

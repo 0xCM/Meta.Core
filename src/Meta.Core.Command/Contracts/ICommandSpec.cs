@@ -53,7 +53,7 @@ public interface ICommandSpec
     /// <summary>
     /// The message that describes the command upon commencement of execution
     /// </summary>
-    IApplicationMessage DescribeIntent();
+    IAppMessage DescribeIntent();
 
 
     

@@ -14,7 +14,7 @@ public static class ServiceX
     public static IAssemblyRegistrar AssemblyRegistrar(this IApplicationContext C)
         => C.Service<IAssemblyRegistrar>();
 
-    public static IMutableContext WithTransientBroker(this IMutableContext C, Action<IApplicationMessage> observer)
+    public static IMutableContext WithTransientBroker(this IMutableContext C, Action<IAppMessage> observer)
     {
         C.InjectService<IMessageBroker>(TransientMessageBroker.Create(observer));
         return C;

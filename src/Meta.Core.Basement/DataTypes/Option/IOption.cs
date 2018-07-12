@@ -28,7 +28,7 @@ public interface IOption
     /// <summary>
     /// Message that explains why there is or is not a value present
     /// </summary>
-    IApplicationMessage Message { get; }
+    IAppMessage Message { get; }
 
     /// <summary>
     /// The type of the encapsulated value, if present

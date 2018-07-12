@@ -88,7 +88,7 @@ namespace SqlT.CSharp
 
 
         static void EmitProject(this CodeGenerationProfile gp, 
-            IReadOnlyList<FilePath> files, Action<IApplicationMessage> observer)
+            IReadOnlyList<FilePath> files, Action<IAppMessage> observer)
         {
             observer?.Invoke(gp.GeneratingProject());
 
@@ -192,7 +192,7 @@ namespace SqlT.CSharp
 
         }
         public static IReadOnlyList<FilePath> Emit(this CodeGenerationProfile gp, IReadOnlyList<CodeFileSpec> files,
-            Action<IApplicationMessage> observer = null, IReadOnlyDictionary<string, string> dependencies = null)
+            Action<IAppMessage> observer = null, IReadOnlyDictionary<string, string> dependencies = null)
         {
 
             var outpaths = MutableList.Create<FilePath>();

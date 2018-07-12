@@ -1,0 +1,39 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="15.0">
+  <Import Project="Configuration\Build.props" />
+  <PropertyGroup>
+    <ProjectGuid>{3cababa2-1045-41fd-a584-dda7035a7121}</ProjectGuid>
+    <RootNamespace>PDMS.Schemas.Reference</RootNamespace>
+    <AppDesignerFolder>Configuration</AppDesignerFolder>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Configuration" />
+    <Folder Include="Tables" />
+    <Folder Include="Procedures" />
+    <Folder Include="Functions" />
+    <Folder Include="Views" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Schemas.sql" />
+    <PostDeploy Include="Configuration\PostDeploy.sql" />
+    <Build Include="Configuration\Properties.sql" />
+    <Build Include="Tables\Calendar.sql" />
+    <Build Include="Procedures\BuildTimeOfDayLookup.sql" />
+    <Build Include="Procedures\RebuildCalendar.sql" />
+    <Build Include="Functions\now.sql" />
+    <Build Include="Tables\TimeOfDayLookup.sql" />
+    <Build Include="Views\vCalendarInfo.sql" />
+    <Build Include="Functions\TypeTables.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Configuration\Node00.publish.xml" />
+    <None Include="Configuration\Build.props" />
+    <RefactorLog Include="Configuration\RefactorLog.xml" />
+    <None Include="Configuration\Node50.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuration\Designator.cs" />
+  </ItemGroup>
+  <PropertyGroup>
+    <PostBuildEvent />
+  </PropertyGroup>
+</Project>

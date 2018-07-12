@@ -569,19 +569,6 @@ public static class TextX
     public static string ToMoneyString(this decimal d)
         => String.Format("{0:C2}", d);
 
-    /// <summary>
-    /// Gets the value of a regular expression group
-    /// </summary>
-    /// <param name="m"></param>
-    /// <param name="name"></param>
-    /// <returns></returns>
-    public static string GroupValue(this Match m, string name)
-    {
-        if (!m.Groups[name].Success)
-            throw new ArgumentException($"The group {name} was not matched successfully");
-
-        return m.Groups[name].Value;
-    }
 
     /// <summary>
     /// Determines whether a <see cref="Match"/> obtained via a regular expression contains a specified group

@@ -57,14 +57,14 @@ public abstract class CompositionRoot<TRoot> : ICompositionRoot
     protected virtual AppMessageFormatter MessageFormatter
         => m => m.Format();
 
-    protected virtual Action<IApplicationMessage> MessageObserver
+    protected virtual Action<IAppMessage> MessageObserver
         => m => AppConsole.Write(m, MessageFormatter);
   
-    protected void Notify(IApplicationMessage message)
+    protected void Notify(IAppMessage message)
         => Service<IMessageBroker>().Route(message);
 
     protected void Status(string message)
-        => Notify(ApplicationMessage.Inform(message));
+        => Notify(AppMessage.Inform(message));
 
     protected IAssemblyDesignator AssemblyDesignator
         => typeof(TRoot).Assembly.GetRealizations<IAssemblyDesignator>()
@@ -108,7 +108,7 @@ public abstract class CompositionRoot<TRoot> : ICompositionRoot
     bool IApplicationContext.IsServiceProvided<T>(string ImplementationName) 
         => Context.IsServiceProvided<T>(ImplementationName);
 
-    void IApplicationContext.PostMessage(IApplicationMessage message) 
+    void IApplicationContext.PostMessage(IAppMessage message) 
         => Context.PostMessage(message);
 
     T IApplicationContext.Service<T>() 

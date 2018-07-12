@@ -45,7 +45,7 @@ public static class ShellTool
             if (isNotBlank(e.Data))
             {
                 result.StatusMessages.Add(e.Data);
-                SystemConsole.Get().Write(ApplicationMessage.Inform(e.Data));
+                SystemConsole.Get().Write(AppMessage.Inform(e.Data));
 
             }
 
@@ -56,7 +56,7 @@ public static class ShellTool
             if (isNotBlank(e.Data))
             {
                 result.ErrorMessages.Add(e.Data);
-                SystemConsole.Get().Write(ApplicationMessage.Error(e.Data));
+                SystemConsole.Get().Write(AppMessage.Error(e.Data));
             }
 
         };

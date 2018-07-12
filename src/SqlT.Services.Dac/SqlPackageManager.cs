@@ -330,7 +330,7 @@ namespace SqlT.Dac
             }
             catch (Exception e)
             {
-                return none<string>(ApplicationMessage.Error($"{e.Message}. Script: {script}"));
+                return none<string>(AppMessage.Error($"{e.Message}. Script: {script}"));
             }
             return script;
         }

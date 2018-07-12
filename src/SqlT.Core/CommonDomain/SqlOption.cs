@@ -18,7 +18,7 @@ namespace SqlT.Core
         
         public static Option<P> ToOption<P>(this SqlOutcome<P> x)
         => x ? some(x.Payload)
-             : none<P>(ApplicationMessage.Error(x.Messages.Render()));
+             : none<P>(AppMessage.Error(x.Messages.Render()));
 
 
 

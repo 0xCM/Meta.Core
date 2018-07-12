@@ -354,7 +354,7 @@ public partial class ShellConsole : IShellConsole
 
     public void Write(string message)
         => Console.Write(message);
-    public void Write(IApplicationMessage Message, AppMessageFormatter MessageFormatter = null)
+    public void Write(IAppMessage Message, AppMessageFormatter MessageFormatter = null)
     {
         var text = MessageFormatter?.Invoke(Message) ?? Message.Format();
         Action<string> emit = EmitStandard;
@@ -420,7 +420,7 @@ public partial class ShellConsole : IShellConsole
         }
     }
 
-    public void Write(IApplicationMessage message, Func<IApplicationMessage, string> formatter)
+    public void Write(IAppMessage message, Func<IAppMessage, string> formatter)
     {
 
         lock (locker)

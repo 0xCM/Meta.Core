@@ -416,7 +416,7 @@ public static class CollectionExtensions
     /// <param name="values">The values to search</param>
     /// <param name="ifNone">Invoked if no match was found</param>
     /// <returns></returns>
-    public static Option<TValue> TryGetFirst<TValue>(this IEnumerable<TValue> values, Func<IApplicationMessage> ifNone = null)
+    public static Option<TValue> TryGetFirst<TValue>(this IEnumerable<TValue> values, Func<IAppMessage> ifNone = null)
         where TValue : class
     {
         var first = values.FirstOrDefault();
@@ -435,7 +435,7 @@ public static class CollectionExtensions
     /// <param name="predicate">Adudicates whether there is a match</param>
     /// <returns></returns>
     public static Option<TValue> TryGetFirst<TValue>(this IEnumerable<TValue> values,
-        Func<TValue, bool> predicate, Func<IApplicationMessage> ifNone = null)
+        Func<TValue, bool> predicate, Func<IAppMessage> ifNone = null)
             where TValue : class
     {
         foreach (var value in values)
@@ -898,7 +898,7 @@ public static class CollectionExtensions
     /// <param name="key">The key that identifies the value</param>
     /// <returns></returns>
     public static Option<TValue> TryFind<TKey, TValue>(this IReadOnlyDictionary<TKey, TValue> subject,
-        TKey key, Func<IApplicationMessage> ifNone = null)
+        TKey key, Func<IAppMessage> ifNone = null)
             => key == null ? Option.None<TValue>()
               : (subject.TryGetValue(key, out TValue value)
               ? Option.Some(value)

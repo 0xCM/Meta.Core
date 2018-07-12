@@ -30,7 +30,7 @@ namespace Meta.Core.Text
         /// <param name="input">The input that could not be parsed</param>
         /// <param name="message">The reason for the failure</param>
         /// <returns></returns>
-        static ParseError error(TextBlock input, IApplicationMessage message)
+        static ParseError error(TextBlock input, IAppMessage message)
             => new ParseError(input, message);
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace Meta.Core.Text
         /// <param name="message">The reason for the failure</param>
         /// <returns></returns>
         /// <typeparam name="A">The type of value for which a parse attempt was made</typeparam>
-        static ParseResult<A> error<A>(TextBlock input, IApplicationMessage message)
+        static ParseResult<A> error<A>(TextBlock input, IAppMessage message)
             => new ParseResult<A>(error(input, message));
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace Meta.Core.Text
             => from c in character.parse(input).Value
                select predicate(c.Parsed)
                    ? success(c.Parsed, c.Remainder)
-                   : error<char>(input, ApplicationMessage.Error("Predicate was not satisfied"));
+                   : error<char>(input, AppMessage.Error("Predicate was not satisfied"));
 
         /// <summary>
         /// Retrieves a <see cref="char"/> parser that succeeds when the current character satisfies a supplied predicate
@@ -123,7 +123,7 @@ namespace Meta.Core.Text
         static ParseResult<char> _match(TextBlock input, char value)
             => from c in character.parse(input).Value
                select c.Parsed == value ? success(c.Parsed, c.Remainder)
-                   : error<char>(input, ApplicationMessage.Error($"The character '{value}' was not matched"));
+                   : error<char>(input, AppMessage.Error($"The character '{value}' was not matched"));
 
         /// <summary>
         /// Succeeds when the current character matches a supplied value

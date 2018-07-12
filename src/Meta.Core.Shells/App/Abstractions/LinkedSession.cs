@@ -18,8 +18,8 @@ namespace Meta.Core
        
     public abstract class LinkedSession : LinkedComponent, ILinkedShellSession
     {
-        public static IApplicationMessage ListedItem(string ItemName)
-            => ApplicationMessage.Inform(ItemName);
+        public static IAppMessage ListedItem(string ItemName)
+            => AppMessage.Inform(ItemName);
 
         static bool IsFileSystemResource(SystemUri uri)
             => roset("lib", "unc").Intersect(uri.Scheme.Components).Any();
@@ -207,15 +207,15 @@ namespace Meta.Core
         public IOption ExecuteCommand(ICommandSpec command, CorrelationToken? ct)
             => CommandController.ExecuteCommand(command, ct);
 
-        public IApplicationMessage ListItem(object item)
+        public IAppMessage ListItem(object item)
             => ListedItem(toString(item));
 
 
-        public IReadOnlyList<IApplicationMessage> ListItems(IEnumerable<object> items)
+        public IReadOnlyList<IAppMessage> ListItems(IEnumerable<object> items)
             => map(items, item => ListedItem(toString(item)));
 
 
-        public IReadOnlyList<IApplicationMessage> ListItems<T>(IEnumerable<T> items, Func<T, string> formatter)
+        public IReadOnlyList<IAppMessage> ListItems<T>(IEnumerable<T> items, Func<T, string> formatter)
             => map(items, item => ListedItem(formatter(item)));
 
 
@@ -372,7 +372,7 @@ namespace Meta.Core
 
         }
 
-        void ILinkedShellSession.Notify(IApplicationMessage m)
+        void ILinkedShellSession.Notify(IAppMessage m)
             => Notify(m);
 
     }

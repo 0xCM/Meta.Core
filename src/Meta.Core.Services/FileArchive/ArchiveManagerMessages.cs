@@ -11,10 +11,10 @@ namespace Meta.Core
     public static class ArchiveManagerMessages
     {
 
-        public static IApplicationMessage AddingFileToArchive(FilePath SrcFile, FilePath DstArchive)
+        public static IAppMessage AddingFileToArchive(FilePath SrcFile, FilePath DstArchive)
             => babble($"Adding {SrcFile} to {DstArchive}");
 
-        public static IApplicationMessage ExtractingFile(FileName SrcFile, FilePath DstPath)
+        public static IAppMessage ExtractingFile(FileName SrcFile, FilePath DstPath)
             => inform($"Extracting {SrcFile} to {DstPath}");
 
     }

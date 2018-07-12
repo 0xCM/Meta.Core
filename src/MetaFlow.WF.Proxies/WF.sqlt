@@ -1,0 +1,48 @@
+{
+  "Name": "WF",
+  "ProjectName": "MetaFlow.Proxies.WF",
+  "EmitProject":  false,
+  "OutputDirectory": "",
+  "ConnectionString": "Data Source = localhost; Integrated Security = true; Database = WF",
+  "Schemas": [
+    {
+      "SchemaName": "WF",
+      "SpecializeNamespace": true
+    }
+
+
+
+  ],
+
+  "RootNamespace": "PDMS.Proxies",
+  "ExcludedColumns": [
+    "DbCreateUser",
+    "DbCreateTime",
+    "DbUpdateUser",
+    "DbUpdateTime",
+    "DbRowVersion"
+  ],
+  "ExcludeTables": false,
+  "DefaultUsings": [
+    "MetaFlow.Core",
+    "MetaFlow.WF",
+    "SqlT.Types"
+
+  ],
+  "EmitTables": true,
+  "EmitViews": true,
+  "EmitGenerationSpec": false,
+  "EmitPrimaryKeys": false,
+  "EmitDependencies": false,
+  "EmitDateType": false,
+  "EmitSingleFile": false,
+  "EmitStoredProcedures": true,
+  "EmitTableFunctions": true,
+  "EmitTableTypes": false,
+  "EmitSequences": false,
+  "EmitSequenceNames":  false,
+  "EmitBrokerFactory": true,
+  "EmitTypeContracts": false,
+  "EmitOperationContracts": false,
+  "AlwaysEmitNames":  false
+}

@@ -46,8 +46,8 @@ public abstract class ApplicationService<S, I> : ApplicationService, IDisposable
         return $"{typeof(I).Name}/{name}";
     }
 
-    protected static IApplicationMessage OperationNotImplemented([CallerMemberName] string name = null)
-        => ApplicationMessage.Warn($"The service operation {typeof(I).Name}/{name} has not been implemented");
+    protected static IAppMessage OperationNotImplemented([CallerMemberName] string name = null)
+        => AppMessage.Warn($"The service operation {typeof(I).Name}/{name} has not been implemented");
 
     public static ServiceDescriptor ServiceDescriptor
         => new ServiceDescriptor(typeof(S), ImplementationName, typeof(I));

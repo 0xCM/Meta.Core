@@ -22,9 +22,9 @@ namespace SqlT.Core
     {
 
         public static implicit operator Option<P>(SqlOutcome<P> x)
-            => x ? some(x.Payload) : none<P>(ApplicationMessage.Error(x.Messages.Render()));
+            => x ? some(x.Payload) : none<P>(AppMessage.Error(x.Messages.Render()));
 
-        public static SqlOutcome<P> Fail(IApplicationMessage Reason)
+        public static SqlOutcome<P> Fail(IAppMessage Reason)
             => new SqlOutcome<P>(Reason);
         
         /// <summary>
@@ -104,7 +104,7 @@ namespace SqlT.Core
 
         }
 
-        public SqlOutcome(IApplicationMessage Message)
+        public SqlOutcome(IAppMessage Message)
         {
             this.Sql = string.Empty;
             this.Message = new SqlMessage(Message.Format(false));

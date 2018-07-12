@@ -7,7 +7,7 @@ namespace Meta.Core
 {
     using System;
     using System.Linq;
-        
+
     /// <summary>
     /// Specifies a <see cref="IFunctor"/> typeclass predicated on a
     /// constructor-injected transformer
@@ -31,26 +31,37 @@ namespace Meta.Core
 
     }
 
-    public abstract class TypeClass<T>
-        where T : TypeClass<T>
-    {
 
-    }
 
-    public class Functor<F> : TypeClass<Functor<F>>        
-    {
-        public static Func<Functor<A>, Functor<B>> fmap<A, B>(Func<A, B> f)
-            => fa => new Functor<F,A,B>(f);
+    //public class Functor<F,A,B> :  Functor<B>
+    //{
+    //    public Functor(Func<A, B> f)
+    //        => this.map = f;
 
-    }
+    //    public Func<A, B> map { get; }
+    //}
 
-    public class Functor<F,A,B> :  Functor<B>
-    {
-        public Functor(Func<A, B> f)
-            => this.map = f;
+    //public abstract class TypeClass<T>
+    //    where T : TypeClass<T>
+    //{
 
-        public Func<A, B> map { get; }
-    }
+    //}
+
+    //public class Functor<F> : TypeClass<Functor<F>>        
+    //{
+    //    public static Func<Functor<A>, Functor<B>> fmap<A, B>(Func<A, B> f)
+    //        => fa => new Functor<F,A,B>(f);
+
+    //}
+
+    //public class Functor<F,A,B> :  Functor<B>
+    //{
+    //    public Functor(Func<A, B> f)
+    //        => this.map = f;
+
+    //    public Func<A, B> map { get; }
+    //}
+
 
 
 

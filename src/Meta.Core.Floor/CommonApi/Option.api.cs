@@ -19,8 +19,8 @@ public static partial class metacore
     /// </summary>
     /// <typeparam name="T">The type of the optional value</typeparam>
     /// <returns></returns>
-    public static Option<T> none<T>(IApplicationMessage message = null)
-        => Option<T>.None(message ?? ApplicationMessage.Empty);
+    public static Option<T> none<T>(IAppMessage message = null)
+        => Option<T>.None(message ?? AppMessage.Empty);
 
     /// <summary>
     /// Creates a <see cref="Option{T}"/> with no value based on an exception
@@ -35,7 +35,7 @@ public static partial class metacore
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static Option<T> some<T>(T value, IApplicationMessage message = null)
+    public static Option<T> some<T>(T value, IAppMessage message = null)
         => new Option<T>(value, message);
 
     /// <summary>

@@ -8,10 +8,10 @@ using System.Linq;
 
 public static class Option
 {
-    internal static Option<T> None<T>(IApplicationMessage message = null)
+    internal static Option<T> None<T>(IAppMessage message = null)
         => Option<T>.None(message);
 
-    internal static Option<T> Some<T>(T value, IApplicationMessage message = null)
+    internal static Option<T> Some<T>(T value, IAppMessage message = null)
         => Option<T>.Some(value, message);
 
     /// <summary>
@@ -56,7 +56,7 @@ public static class Option
         if (x)
         {
             var y = f(x.ValueOrDefault());
-            var m = ApplicationMessage.Combine(x.Message, y.Message);
+            var m = AppMessage.Combine(x.Message, y.Message);
             return y.WithMessage(m);
         }
         else

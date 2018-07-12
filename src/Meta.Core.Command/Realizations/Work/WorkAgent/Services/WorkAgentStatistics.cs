@@ -89,8 +89,8 @@ namespace Meta.Core
         /// </summary>
         public int LastSubmissionCount { get; }
 
-        public IApplicationMessage ToMessage()
-            => ApplicationMessage.Inform(
+        public IAppMessage ToMessage()
+            => AppMessage.Inform(
                     "Pending:@PendingTaskCount Executing:@ExecutingTaskCount Executed:@ExecutedTaskCount Spinners:@SpinnerCount Revolutions:@RevolutionCount Last Submitted: @LastSubmissionCount", this);
 
 

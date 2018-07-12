@@ -14,7 +14,7 @@ class TaskAgent<A,R> : ITaskAgent<R>
     where A : IComputationAgent<R>
 {
 
-    public TaskAgent(A ComputationAgent, Action<R> PayloadObserver = null, Action<IApplicationMessage> MessageObserver = null)
+    public TaskAgent(A ComputationAgent, Action<R> PayloadObserver = null, Action<IAppMessage> MessageObserver = null)
     {      
         this.ComputationAgent = ComputationAgent;
         this.MessageObserver = MessageObserver ?? (message => SystemConsole.Get().Write(message));
@@ -31,16 +31,16 @@ class TaskAgent<A,R> : ITaskAgent<R>
 
     public A ComputationAgent { get; }
 
-    Lazy<Task<IApplicationMessage>> _Task;
+    Lazy<Task<IAppMessage>> _Task;
 
-    public Task<IApplicationMessage> Task
+    public Task<IAppMessage> Task
         => _Task.Value;
 
-    Action<IApplicationMessage> MessageObserver { get; }
+    Action<IAppMessage> MessageObserver { get; }
 
     Action<R> PayloadObserver { get; }
 
-    public IApplicationMessage Wait()
+    public IAppMessage Wait()
         => Task.Result;
 
     public void Dispose()

@@ -13,12 +13,12 @@ namespace Meta.Core.Workflow
     public sealed class StepResult : StepResult<object>
     {
 
-        public StepResult(object Payload, bool Succeeded, IApplicationMessage Message = null)
+        public StepResult(object Payload, bool Succeeded, IAppMessage Message = null)
             : base(Payload, Succeeded, Message)
         {
         }
 
-        public StepResult(IApplicationMessage Error)
+        public StepResult(IAppMessage Error)
             : base(Error)
         {
         }

@@ -118,7 +118,7 @@ namespace SqlT.Workflow
                     .OnSome(_ => Notify(Truncated<T>())))
                select purge;
 
-        protected WorkFlowed<T> LiftOption<T>(Option<T> option, Func<T, IApplicationMessage> success)
+        protected WorkFlowed<T> LiftOption<T>(Option<T> option, Func<T, IAppMessage> success)
             => option.MapValueOrElse(value => wf.lift(stream(value)),        
                 message => wf.failed<T>(message));
        

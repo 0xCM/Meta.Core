@@ -13,7 +13,7 @@ using System.Text;
 public class AgentNotification : IAgentNotification
 {
     public AgentNotification(SystemNodeIdentifier Host, SystemIdentifier System,
-        AgentIdentifier Agent, ServiceAgentState State, IApplicationMessage Message)
+        AgentIdentifier Agent, ServiceAgentState State, IAppMessage Message)
     {
         this.Host = Host;
         this.System = System;
@@ -45,7 +45,7 @@ public class AgentNotification : IAgentNotification
     /// <summary>
     /// The notification content
     /// </summary>
-    public IApplicationMessage Message { get; }
+    public IAppMessage Message { get; }
 
     /// <summary>
     /// The agent's system-specific URI

@@ -19,7 +19,7 @@ namespace Meta.Core
         public WorkCommandAgentConfiguration
         (
             WorkAgentSettings Settings,
-            Action<IApplicationMessage> MessageReceiver,
+            Action<IAppMessage> MessageReceiver,
             Action<TSpec> DefaultWorker = null,
             IReadOnlyList<IWorkCommandAgentObserver<TSpec>> DefaultObservers = null,
             IReadOnlyList<IWorkCommandSupplier<TSpec>> DefaultSuppliers = null

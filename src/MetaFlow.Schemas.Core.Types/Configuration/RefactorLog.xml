@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="077fd0a4-7133-472a-a946-ebac47dca94d" ChangeDateTime="04/27/2018 20:21:19">
+    <Property Name="ElementName" Value="[T0].[PlatformDacProfile]" />
+    <Property Name="ElementType" Value="SqlTableType" />
+    <Property Name="ParentElementName" Value="[T0]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[DacProfileDefinition]" />
+  </Operation>
+</Operations>

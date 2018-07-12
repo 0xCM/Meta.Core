@@ -1,0 +1,2 @@
+sqlt Messages.sqlt 
+exit

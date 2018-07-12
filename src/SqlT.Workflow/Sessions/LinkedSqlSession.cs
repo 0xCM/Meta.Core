@@ -26,7 +26,7 @@ namespace SqlT.Services
         where T : LinkedSqlSession<T>
     {
 
-        protected IApplicationMessage ReceivingRecords<P>(IReadOnlyList<P> records)
+        protected IAppMessage ReceivingRecords<P>(IReadOnlyList<P> records)
             => inform($"Receiving  {records.Count}, {typeof(P).Name} records");
 
 
@@ -192,7 +192,7 @@ namespace SqlT.Services
 
         protected void Process<P>(SqlOutcome<IReadOnlyList<P>> result,
             Action<IReadOnlyList<P>> receiver,
-            Func<IApplicationMessage> onPreProcess = null)
+            Func<IAppMessage> onPreProcess = null)
         {
             if (onPreProcess != null)
                 Notify(onPreProcess());
@@ -211,7 +211,7 @@ namespace SqlT.Services
 
         protected void Process<X>(SqlOutcome<X> result,
             Action<X> receiver,
-            Func<IApplicationMessage> onPreProcess = null)
+            Func<IAppMessage> onPreProcess = null)
         {
             if (onPreProcess != null)
                 Notify(onPreProcess());

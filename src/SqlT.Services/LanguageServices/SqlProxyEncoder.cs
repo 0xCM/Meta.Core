@@ -17,7 +17,7 @@ namespace SqlT.Services
 
     using SqlT.Core;
 
-    using static ApplicationMessage;
+    using static AppMessage;
     using static metacore;    
 
     /// <summary>
@@ -144,7 +144,7 @@ namespace SqlT.Services
             }
         }
 
-        IEnumerable<T> DecodeDelimitedText<T>(TextFieldParser reader, Action<IApplicationMessage> ErrorHandler, SqlProxyEncodingOptions Options)
+        IEnumerable<T> DecodeDelimitedText<T>(TextFieldParser reader, Action<IAppMessage> ErrorHandler, SqlProxyEncodingOptions Options)
             where T : class, ISqlTabularProxy, new()
         {
             
@@ -193,7 +193,7 @@ namespace SqlT.Services
         /// <summary>
         /// Hydrates proxies, where possible, from the supplied text; failures are pushed to the error handler
         /// </summary>
-        public IEnumerable<T> DecodeDelimitedText<T>(string InputData, Action<IApplicationMessage> ErrorHandler, SqlProxyEncodingOptions Options)
+        public IEnumerable<T> DecodeDelimitedText<T>(string InputData, Action<IAppMessage> ErrorHandler, SqlProxyEncodingOptions Options)
             where T : class, ISqlTabularProxy, new()
         {
             var options = Options ?? new SqlProxyEncodingOptions();
@@ -208,7 +208,7 @@ namespace SqlT.Services
         /// <summary>
         /// Hydrates proxies, where possible, from the supplied file; failures are pushed to the error handler
         /// </summary>
-        public IEnumerable<T> DecodeDelimitedText<T>(FilePath InputFile, Action<IApplicationMessage> ErrorHandler, SqlProxyEncodingOptions Options)
+        public IEnumerable<T> DecodeDelimitedText<T>(FilePath InputFile, Action<IAppMessage> ErrorHandler, SqlProxyEncodingOptions Options)
             where T : class, ISqlTabularProxy, new()
         {
             var options = Options ?? new SqlProxyEncodingOptions();

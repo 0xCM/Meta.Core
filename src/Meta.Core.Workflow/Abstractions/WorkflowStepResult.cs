@@ -9,7 +9,7 @@ namespace Meta.Core.Workflow
 
     public abstract class StepResult<P>:  IStepResult<P>
     {
-        public StepResult(P Payload, bool Succeeded, IApplicationMessage Message = null)
+        public StepResult(P Payload, bool Succeeded, IAppMessage Message = null)
         {
             this.Payload = Payload;
             this.Succeeded = Succeeded;
@@ -19,7 +19,7 @@ namespace Meta.Core.Workflow
                 : Message;
         }
 
-        public StepResult(IApplicationMessage Error)
+        public StepResult(IAppMessage Error)
         {
             this.Payload = default(P);
             this.Succeeded = false;
@@ -33,7 +33,7 @@ namespace Meta.Core.Workflow
 
         public bool Succeeded { get; }
 
-        public IApplicationMessage Message { get; }
+        public IAppMessage Message { get; }
 
         object IStepResult.Payload
             => Payload;

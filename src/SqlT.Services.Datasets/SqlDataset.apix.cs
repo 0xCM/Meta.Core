@@ -26,7 +26,7 @@ namespace SqlT.Core
             var col = F.Columns.FirstOrDefault(c => c.ColumnName == ColumnName);
             var colidx = col != null ? col.ColumnPosition : null;
             if (colidx == null)
-                return none<IReadOnlyList<T>>(ApplicationMessage.Error($"The {ColumnName} was not found"));
+                return none<IReadOnlyList<T>>(AppMessage.Error($"The {ColumnName} was not found"));
             else
                 return F.Slice<T>(colidx.Value);
         }
@@ -45,7 +45,7 @@ namespace SqlT.Core
                 }
                 catch (Exception)
                 {
-                    return none<IReadOnlyList<T>>(ApplicationMessage.Error($"Could not cast the value {row[ColumnIndex]} to a value of type {typeof(T).Name}"));
+                    return none<IReadOnlyList<T>>(AppMessage.Error($"Could not cast the value {row[ColumnIndex]} to a value of type {typeof(T).Name}"));
                 }
             }
             return slice;

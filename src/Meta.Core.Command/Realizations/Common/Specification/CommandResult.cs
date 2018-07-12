@@ -21,7 +21,7 @@ public sealed class CommandResult<TSpec> : ICommandResult<TSpec>
         this.CorrelationToken = src.CorrelationToken;
     }
 
-    public CommandResult(TSpec spec, object payload, bool succeeded, IApplicationMessage message, long subid, CorrelationToken? ct = null)
+    public CommandResult(TSpec spec, object payload, bool succeeded, IAppMessage message, long subid, CorrelationToken? ct = null)
     {
         this.Spec = spec;
         this.Payload = payload;
@@ -37,7 +37,7 @@ public sealed class CommandResult<TSpec> : ICommandResult<TSpec>
 
     public bool Succeeded { get; private set; }
 
-    public IApplicationMessage Message { get; private set; }
+    public IAppMessage Message { get; private set; }
 
     public long SubmissionId { get; private set; }
 
@@ -62,13 +62,13 @@ public sealed class CommandResult<TSpec, TPayload> : ICommandResult<TSpec,TPaylo
     public static implicit operator CommandResult<TSpec>(CommandResult<TSpec, TPayload> result)
         => result.Degrade();
 
-    public CommandResult(TSpec spec, TPayload payload, bool succeeded, IApplicationMessage message, 
+    public CommandResult(TSpec spec, TPayload payload, bool succeeded, IAppMessage message, 
         long subid, CorrelationToken? ct = null)
     {
         this.Spec = spec;
         this.Payload = payload;
         this.Succeeded = succeeded;
-        this.Message = message ?? ApplicationMessage.Empty;
+        this.Message = message ?? AppMessage.Empty;
         this.SubmissionId = subid;
         this.CorrelationToken = ct;
     }
@@ -79,7 +79,7 @@ public sealed class CommandResult<TSpec, TPayload> : ICommandResult<TSpec,TPaylo
 
     public bool Succeeded { get; private set; }
 
-    public IApplicationMessage Message { get; private set; }
+    public IAppMessage Message { get; private set; }
 
     public long SubmissionId { get; private set; }
 
@@ -97,12 +97,12 @@ public sealed class CommandResult<TSpec, TPayload> : ICommandResult<TSpec,TPaylo
 
 public sealed class CommandResult : ICommandResult
 {
-    public static CommandResult Failure(ICommandSpec spec, IApplicationMessage message = null, 
+    public static CommandResult Failure(ICommandSpec spec, IAppMessage message = null, 
         long? subid = null, CorrelationToken? ct = null)
             => new CommandResult(spec, null, false, message, subid ?? 0, ct);
 
     public static CommandResult<TSpec, TPayload> Failure<TSpec, TPayload>(TSpec spec,
-        IApplicationMessage message = null, long? subid = null, CorrelationToken? ct = null)
+        IAppMessage message = null, long? subid = null, CorrelationToken? ct = null)
             where TSpec : CommandSpec<TSpec, TPayload>, new()
                 => new CommandResult<TSpec, TPayload>(spec, default, false, message, subid ?? 0, ct);
 
@@ -113,7 +113,7 @@ public sealed class CommandResult : ICommandResult
                     (message) => new CommandResult(spec, default(TResult),  false, message, 0, null)
                     );
                
-    public CommandResult(ICommandSpec spec, object payload, bool succeeded, IApplicationMessage message = null, 
+    public CommandResult(ICommandSpec spec, object payload, bool succeeded, IAppMessage message = null, 
         long subid = 0, CorrelationToken? ct = null)
     {
         this.Spec = spec;
@@ -146,7 +146,7 @@ public sealed class CommandResult : ICommandResult
 
     public ICommandSpec Spec { get; private set; }
 
-    public IApplicationMessage Message { get; private set; }
+    public IAppMessage Message { get; private set; }
 
     public string CommandName
         => Spec.CommandName;

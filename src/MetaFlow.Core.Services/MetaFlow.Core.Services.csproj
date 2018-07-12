@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+	    <TargetFrameworks>net472</TargetFrameworks>
+	</PropertyGroup>
+	 
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.5.1" />
+  </ItemGroup>
+	 
+  <ItemGroup>
+    <ProjectReference Include="..\Meta.Core.Floor\Meta.Core.Floor.csproj" />
+    <ProjectReference Include="..\Meta.Core.Messaging\Meta.Core.Messaging.csproj" />
+    <ProjectReference Include="..\Meta.Core.Substructure\Meta.Core.Substructure.csproj" />
+    <ProjectReference Include="..\MetaFlow.Core.Messages\MetaFlow.Core.Messages.csproj" />
+    <ProjectReference Include="..\MetaFlow.Core.Storage\MetaFlow.Core.Storage.csproj" />
+    <ProjectReference Include="..\MetaFlow.Core.Types\MetaFlow.Core.Types.csproj" />
+    <ProjectReference Include="..\MetaFlow.Core\MetaFlow.Core.csproj" />
+    <ProjectReference Include="..\SqlT.Core\SqlT.Core.csproj" />
+    <ProjectReference Include="..\SqlT.Proxies.Types\SqlT.Proxies.Types.csproj" />
+  </ItemGroup>
+	 
+  <ItemGroup>
+    <Reference Include="System.ServiceModel" />
+  </ItemGroup>
+</Project>

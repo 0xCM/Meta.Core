@@ -45,9 +45,9 @@ public abstract class CommandExecutionService<I, TSpec, TPayload>
         C content,
         [CallerFilePath] string callerFile = null, 
         [CallerMemberName] string callerName = null)
-            => none<TPayload>(ApplicationMessage.Error(template, content, callerFile, callerName));
+            => none<TPayload>(AppMessage.Error(template, content, callerFile, callerName));
 
-    protected static Option<TPayload> CommandError(IApplicationMessage message)
+    protected static Option<TPayload> CommandError(IAppMessage message)
         => none<TPayload>(message);
 
     protected abstract Option<TPayload> TryExecute(TSpec command);

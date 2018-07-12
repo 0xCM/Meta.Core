@@ -14,26 +14,26 @@ using static metacore;
 /// </summary>
 class CommandSpecSerializer : ApplicationService<CommandSpecSerializer, ICommandSpecSerializer>, ICommandSpecSerializer
 {
-    static IApplicationMessage CommandNameUnspecified(Json j)
-        => ApplicationMessage.Error("The command name could not be parsed from the block: @JsonBlock", new
+    static IAppMessage CommandNameUnspecified(Json j)
+        => AppMessage.Error("The command name could not be parsed from the block: @JsonBlock", new
         {
             JsonBlock = j.Text
         });
 
-    static IApplicationMessage CommandSpecNameUnspecified(Json j)
-        => ApplicationMessage.Error("The command spec name could not be parsed from the block: @JsonBlock", new
+    static IAppMessage CommandSpecNameUnspecified(Json j)
+        => AppMessage.Error("The command spec name could not be parsed from the block: @JsonBlock", new
         {
             JsonBlock = j.Text
         });
 
-    static IApplicationMessage CommandTypeNotFound(string CommandName)
-        => ApplicationMessage.Error("The command spec for the @CommandName command could not be found", new
+    static IAppMessage CommandTypeNotFound(string CommandName)
+        => AppMessage.Error("The command spec for the @CommandName command could not be found", new
         {
             CommandName
         });
 
-    static IApplicationMessage CouldNotMaterialize(string CommandName, Json j)
-        => ApplicationMessage.Error("The @CommandName command could not be materialized from the block: @JsonBlock", new
+    static IAppMessage CouldNotMaterialize(string CommandName, Json j)
+        => AppMessage.Error("The @CommandName command could not be materialized from the block: @JsonBlock", new
         {
             CommandName,
             JsonBlock = j.Text

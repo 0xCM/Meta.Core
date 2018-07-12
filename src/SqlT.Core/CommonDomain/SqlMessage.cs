@@ -25,7 +25,7 @@ namespace SqlT.Core
 
         string Text { get; }
         
-        public SqlMessage(IApplicationMessage message)
+        public SqlMessage(IAppMessage message)
         {
             this.Text = message.Format(false);
         }

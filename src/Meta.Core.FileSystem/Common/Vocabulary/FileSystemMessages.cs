@@ -12,29 +12,29 @@ using static metacore;
 
 public static class FileSystemMessages
 {
-    public static IApplicationMessage PathDoesNotExist(string Path)
-        => ApplicationMessage.Error("The path @Path does not exist",
+    public static IAppMessage PathDoesNotExist(string Path)
+        => AppMessage.Error("The path @Path does not exist",
             new
             {
                 Path
 
             });
 
-    public static IApplicationMessage ArchivedFolder(FolderPath Src, FilePath Dst)
+    public static IAppMessage ArchivedFolder(FolderPath Src, FilePath Dst)
                 => inform($"Archived @Src to @Dst", new
                 {
                     Src,
                     Dst
                 });
 
-    public static IApplicationMessage ExtractedArchive(FilePath Src, FolderPath Dst)
+    public static IAppMessage ExtractedArchive(FilePath Src, FolderPath Dst)
                 => inform($"Extracted @Src to @Dst", new
                 {
                     Src,
                     Dst
                 });
 
-    public static IApplicationMessage SymbolicLinkCreationFailed(FolderPath SrcFolder, FolderPath LinkPath)
+    public static IAppMessage SymbolicLinkCreationFailed(FolderPath SrcFolder, FolderPath LinkPath)
         => error($"Attempt to create the {LinkPath} to {SrcFolder} failed for reasons unknown");
 }
 

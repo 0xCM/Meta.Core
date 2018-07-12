@@ -51,7 +51,7 @@ namespace SqlT.Services
             => C.SqlDomReader();
 
 
-        void Notify(IApplicationMessage message)
+        void Notify(IAppMessage message)
             => C.Notify(message);
 
 

@@ -67,8 +67,8 @@ public static class minicore
     /// </summary>
     /// <typeparam name="T">The type of the optional value</typeparam>
     /// <returns></returns>
-    public static Option<T> none<T>(IApplicationMessage message = null)
-        => Option<T>.None(message ?? ApplicationMessage.Empty);
+    public static Option<T> none<T>(IAppMessage message = null)
+        => Option<T>.None(message ?? AppMessage.Empty);
 
     /// <summary>
     /// Creates a <see cref="Option{T}"/> with no value based on an exception
@@ -83,7 +83,7 @@ public static class minicore
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static Option<T> some<T>(T value, IApplicationMessage message = null)
+    public static Option<T> some<T>(T value, IAppMessage message = null)
         => new Option<T>(value, message);
 
     /// <summary>
@@ -253,7 +253,7 @@ public static class minicore
         }
         catch (Exception e)
         {
-            return none<T>(ApplicationMessage.Error(e));
+            return none<T>(AppMessage.Error(e));
         }
     }
 
@@ -309,6 +309,20 @@ public static class minicore
     [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static TResult ifNotNull<T, TResult>(T x, Func<T, TResult> f1, TResult @default = default)
         => x != null ? f1(x) : @default;
+
+    /// <summary>
+    /// Returns the supplied value if not null, otherwise invokes a function to provide
+    /// a non-null value as a replacement
+    /// </summary>
+    /// <typeparam name="T">The object type</typeparam>
+    /// <param name="x">The object to test</param>
+    /// <param name="replace">The function that yields a replacement value in the event that the supplied value is null</param>
+    /// <returns></returns>
+    [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static T ifNull<T>(T x, Func<T> replace)
+        where T : class => x ?? replace();
+
+
     /// <summary>
     /// Gets the type's classification code
     /// </summary>

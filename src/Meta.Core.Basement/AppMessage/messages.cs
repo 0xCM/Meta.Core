@@ -8,20 +8,20 @@ using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
 
-using static ApplicationMessage;
+using static AppMessage;
 
 public static class CommonMessages
 {
 
-    public static IApplicationMessage SequencePredicateUnsatisfied()
+    public static IAppMessage SequencePredicateUnsatisfied()
         => Inform("The sequence has no values that satisfies the predicate");
 
-    public static IApplicationMessage MoreThanOneSequencePredicate()
+    public static IAppMessage MoreThanOneSequencePredicate()
         => Inform("The sequence has more than one value that satisfies the predicate");
 
-    public static IApplicationMessage SequenceIsEmpty()
+    public static IAppMessage SequenceIsEmpty()
         => Inform("The sequence has no values");
 
-    public static IApplicationMessage SequenceIsNotSingleton()
+    public static IAppMessage SequenceIsNotSingleton()
         => Inform("The sequence has more than one value");
 }

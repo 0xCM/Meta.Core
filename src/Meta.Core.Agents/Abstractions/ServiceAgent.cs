@@ -115,10 +115,10 @@ public abstract class ServiceAgent<T, S, A> : ApplicationService<T, A>, IService
     protected virtual bool DiagnosticMode
         => false;
 
-    protected void AgentNotify(IApplicationMessage Message)
+    protected void AgentNotify(IAppMessage Message)
         => NotificationChannel(new AgentNotification(Host, System, AgentName, AgentState, Message));
 
-    protected new void Notify(IApplicationMessage Message)
+    protected new void Notify(IAppMessage Message)
         => AgentNotify(Message);
 
 
@@ -303,7 +303,7 @@ public abstract class ServiceAgent<T, S, A> : ApplicationService<T, A>, IService
         }
         catch (Exception e)
         {
-            Notify(ApplicationMessage.Error(e));
+            Notify(AppMessage.Error(e));
         }
         finally
         {

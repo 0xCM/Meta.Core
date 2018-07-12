@@ -16,7 +16,7 @@ namespace SqlT.Workflow
     static class SqlChannelMessages
     {
 
-        public static IApplicationMessage SavedRowsToTarget<T>(this ILinkedContext C, long Count)
+        public static IAppMessage SavedRowsToTarget<T>(this ILinkedContext C, long Count)
             where T : class, ISqlTabularProxy, new()                    
             => babble($"Saved {Count} rows from {C.SourceNode} to {PXM.TabularName<T>()} on {C.TargetNode}");
                        

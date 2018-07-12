@@ -77,12 +77,7 @@ namespace Meta.Core.Test
                           from y in list2                          
                           select $"{x > f}{y > g}";
 
-
-            //qed
-            claim.allEqual(result1, result2, result3);
-            
-            //heh. 
-
+            claim.allEqual(result1, result2, result3);            
         }
 
 

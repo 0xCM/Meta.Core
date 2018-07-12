@@ -9,7 +9,7 @@ namespace Meta.Core.Text
 
     public readonly struct ParseError
     {
-        public ParseError(TextBlock Text, IApplicationMessage Message)
+        public ParseError(TextBlock Text, IAppMessage Message)
         {
 
             this.Text = Text;
@@ -31,7 +31,7 @@ namespace Meta.Core.Text
         /// <summary>
         /// The reason for failure
         /// </summary>
-        public IApplicationMessage Message { get; }
+        public IAppMessage Message { get; }
 
         public override string ToString()
             => Message.Format();

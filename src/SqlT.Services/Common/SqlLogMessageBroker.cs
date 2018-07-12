@@ -50,23 +50,23 @@ namespace SqlT.Services
 
         public IDisposable Listen(AppMessageObserver Observer, string messageTypeName)
         {
-            var mtn = messageTypeName ?? nameof(IApplicationMessage);
+            var mtn = messageTypeName ?? nameof(IAppMessage);
             var subscriber = new AppMessageSubscriber(mtn, Observer, Unsubscribe);
             subscribers.GetOrAdd(mtn, t => new ConcurrentBag<AppMessageSubscriber>())
                         .Add(subscriber);
             return subscriber;
         }
 
-        static string FormatMessage(IApplicationMessage message)
+        static string FormatMessage(IAppMessage message)
         {
             var text = message.Format(false);
             return text.Replace('%', 'π');
         }
 
-        static SqlScript ToSqlMessage(IApplicationMessage message)
+        static SqlScript ToSqlMessage(IAppMessage message)
             => raiserror(FormatMessage(message), WITH, NOWAIT).FormatSyntax();
 
-        public CorrelationToken? Route(IApplicationMessage message, bool immediate)
+        public CorrelationToken? Route(IAppMessage message, bool immediate)
         {
 
             if (!RoutedMessages.TryAdd(message.MessageId, message.MessageId))
@@ -78,7 +78,7 @@ namespace SqlT.Services
 
             foreach (var mtn in subscribers.Keys)
             {
-                if (mtn == message.MessageType || mtn == nameof(IApplicationMessage))
+                if (mtn == message.MessageType || mtn == nameof(IAppMessage))
                 {
                     foreach (var subscriber in subscribers[mtn])
                         subscriber.Observer(message);

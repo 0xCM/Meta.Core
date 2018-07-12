@@ -105,8 +105,8 @@ namespace SqlT.Dom
 
         }
 
-        static IApplicationMessage EmittedSignatures(FilePath dstPath)
-            => ApplicationMessage.Inform("Signatures emitted to @dstPath", new
+        static IAppMessage EmittedSignatures(FilePath dstPath)
+            => AppMessage.Inform("Signatures emitted to @dstPath", new
             {
                 dstPath
             });

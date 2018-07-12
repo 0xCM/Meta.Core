@@ -7,10 +7,10 @@
 public abstract class AgentComputationResult : IAgentComputationResult
 {
     public static IAgentComputationResult<P> Create<P>(AgentIdentifier Agent, 
-        P Payload, IApplicationMessage Message = null)
-        => new AgentComputationResult<P>(Agent, Payload, Message ?? ApplicationMessage.Empty);
+        P Payload, IAppMessage Message = null)
+        => new AgentComputationResult<P>(Agent, Payload, Message ?? AppMessage.Empty);
 
-    public AgentComputationResult(AgentIdentifier AgentIdentifier, object Payload, IApplicationMessage Description)
+    public AgentComputationResult(AgentIdentifier AgentIdentifier, object Payload, IAppMessage Description)
     {
         this.AgentIdentifier = AgentIdentifier;
         this.Payload = Payload;
@@ -21,7 +21,7 @@ public abstract class AgentComputationResult : IAgentComputationResult
 
     public object Payload { get; }
 
-    public IApplicationMessage Description { get; }
+    public IAppMessage Description { get; }
 
 
 }
@@ -29,7 +29,7 @@ public abstract class AgentComputationResult : IAgentComputationResult
 
 public sealed class AgentComputationResult<P> : AgentComputationResult, IAgentComputationResult<P>
 {
-    public AgentComputationResult(AgentIdentifier AgentIdentifier, P Payload, IApplicationMessage Description)
+    public AgentComputationResult(AgentIdentifier AgentIdentifier, P Payload, IAppMessage Description)
         : base(AgentIdentifier, Payload, Description)
     {
         this.Payload = Payload;

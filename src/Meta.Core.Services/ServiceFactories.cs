@@ -20,7 +20,7 @@ namespace Meta.Core
         public static ILocalCommandStore LocalCommandStore(this IApplicationContext C, 
                 FolderPath StorgeRoot, 
                 Action<FilePath, ICommandSpec> Processor = null,
-                Action<IApplicationMessage> Observer = null)
+                Action<IAppMessage> Observer = null)
                     => new LocalCommandStore(C, StorgeRoot, Processor, Observer);
 
         public static IFileArchiveManager FileArchiveManager(this IApplicationContext C)

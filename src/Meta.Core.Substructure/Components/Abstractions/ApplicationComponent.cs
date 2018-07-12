@@ -41,11 +41,11 @@ public abstract class ApplicationComponent : IApplicationComponent
     protected virtual EventLevel NotificationEventLevel
         => EventLevel.Verbose;
 
-    bool Allow(IApplicationMessage message)
+    bool Allow(IAppMessage message)
     {
         if (message == null)
         {
-            Notify(ApplicationMessage.Error("Notification message is null"));
+            Notify(AppMessage.Error("Notification message is null"));
             return false;
         }
         var incoming = cast<int>(message.EventLevel);
@@ -68,7 +68,7 @@ public abstract class ApplicationComponent : IApplicationComponent
     /// Posts a message to the message broker
     /// </summary>
     /// <param name="m">The notification instance</param>    
-    protected void Notify(IApplicationMessage m)
+    protected void Notify(IAppMessage m)
         => Broker.Route(m);
 
     /// <summary>
@@ -76,21 +76,21 @@ public abstract class ApplicationComponent : IApplicationComponent
     /// </summary>
     /// <param name="StatusMessage"></param>
     protected void NotifyStatus(string StatusMessage)
-        => Broker.Route(ApplicationMessage.Inform(StatusMessage));
+        => Broker.Route(AppMessage.Inform(StatusMessage));
 
     /// <summary>
     /// Posts an error message to the message broker
     /// </summary>
     /// <param name="ErrorMessage"></param>
     protected void NotifyError(string ErrorMessage)
-        => Broker.Route(ApplicationMessage.Error(ErrorMessage));
+        => Broker.Route(AppMessage.Error(ErrorMessage));
 
     /// <summary>
     /// Posts an error message to the message broker
     /// </summary>
     /// <param name="e">The related exception</param>
     protected void NotifyError(Exception e)
-        => Broker.Route(ApplicationMessage.Error(e));
+        => Broker.Route(AppMessage.Error(e));
 
     protected T Setting<T>(string name) 
         => Context.ConfigurationProvider.GetSetting<T>(name);
@@ -176,7 +176,7 @@ public abstract class ApplicationComponent : IApplicationComponent
               .OnSome(records => processor(records));        
     }
 
-    protected void ProcessValue<X>(X outcome, Action<X> receiver, Func<IApplicationMessage> onPreProcess = null)
+    protected void ProcessValue<X>(X outcome, Action<X> receiver, Func<IAppMessage> onPreProcess = null)
     {
         if (onPreProcess != null)
             Notify(onPreProcess());
@@ -188,7 +188,7 @@ public abstract class ApplicationComponent : IApplicationComponent
     }
 
     protected void Process<X>(Option<X> outcome, Action<X> receiver,
-        Func<IApplicationMessage> onPreProcess = null)
+        Func<IAppMessage> onPreProcess = null)
     {
         if (onPreProcess != null)
             Notify(onPreProcess());
@@ -197,7 +197,7 @@ public abstract class ApplicationComponent : IApplicationComponent
     }
 
     protected void Process<X>(Option<IReadOnlyList<X>> outcome, Action<IReadOnlyList<X>> receiver,
-        Func<IApplicationMessage> onPreProcess = null)
+        Func<IAppMessage> onPreProcess = null)
     {
         if (onPreProcess != null)
             Notify(onPreProcess());
@@ -211,7 +211,7 @@ public abstract class ApplicationComponent : IApplicationComponent
     protected void ProcessItems<P>(IEnumerable<P> result, Action<P> receiver)
         => iter(result, receiver);
 
-    protected Option<T> Witness<T>(Option<T> input, Action<T> Success, Action<IApplicationMessage> Failure)
+    protected Option<T> Witness<T>(Option<T> input, Action<T> Success, Action<IAppMessage> Failure)
     {
         input.OnSome(Success).OnNone(Failure);
         return input;
@@ -220,7 +220,7 @@ public abstract class ApplicationComponent : IApplicationComponent
     //protected ICommandPatternLibrary CommandLibrary
     //    => C.CommandLibrary();
 
-    protected IApplicationMessage PostMessage(IApplicationMessage message)
+    protected IAppMessage PostMessage(IAppMessage message)
     {
         Notify(message);
         return message;

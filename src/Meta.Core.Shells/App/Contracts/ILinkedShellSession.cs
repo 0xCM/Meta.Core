@@ -27,15 +27,15 @@ namespace Meta.Core
         Option<TResult> ExecuteCommand<TSpec, TResult>(TSpec command, CorrelationToken? ct)
             where TSpec : CommandSpec<TSpec, TResult>, new();
                    
-        IApplicationMessage ListItem(object item);
+        IAppMessage ListItem(object item);
 
-        IReadOnlyList<IApplicationMessage> ListItems(IEnumerable<object> items);
+        IReadOnlyList<IAppMessage> ListItems(IEnumerable<object> items);
 
-        IReadOnlyList<IApplicationMessage> ListItems<T>(IEnumerable<T> items, Func<T, string> formatter);
+        IReadOnlyList<IAppMessage> ListItems<T>(IEnumerable<T> items, Func<T, string> formatter);
 
         void setValue(string SettingName, string SettingValue);
 
-        void Notify(IApplicationMessage m);
+        void Notify(IAppMessage m);
 
 
 

@@ -110,7 +110,7 @@ namespace SqlT.Workflow
         FlowSettings Settings
             => Settings<FlowSettings>();
 
-        Action<IApplicationMessage> Observer { get; }
+        Action<IAppMessage> Observer { get; }
 
         MutableList<Task<Option<FlowSummary>>> Tasks { get; }
 

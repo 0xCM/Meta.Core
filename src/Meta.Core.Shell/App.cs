@@ -11,7 +11,7 @@ namespace Meta.Core
     using Meta.Core.Messaging;
     
     using static metacore;
-    using static ApplicationMessage;
+    using static AppMessage;
 
     class MetaShell : MetaApp<MetaShell>, IShellCommandProvider
     {

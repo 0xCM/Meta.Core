@@ -13,7 +13,7 @@ namespace SqlT.Workflow
 
         SqlWorkflowState State { get; }
 
-        IApplicationMessage Description { get; }
+        IAppMessage Description { get; }
 
         bool OperationSucceeded { get; }
 

@@ -8,7 +8,7 @@ namespace Meta.Core.Workflow
     public interface IStepResult
     {
         bool Succeeded { get; }
-        IApplicationMessage Message { get; }
+        IAppMessage Message { get; }
         
         object Payload { get; }
     }

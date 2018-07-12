@@ -54,7 +54,7 @@ namespace SqlT.Core
         public O TargetOps<O>()
             => Target.Operations<O>().Require();
 
-        protected WorkFlowed<T> LiftOption<T>(Option<T> option, Func<T, IApplicationMessage> success)
+        protected WorkFlowed<T> LiftOption<T>(Option<T> option, Func<T, IAppMessage> success)
             => option.MapValueOrElse
                         (count => wf.flowed<T>(stream(count), success(count)),
                         message => wf.failed<T>(message));

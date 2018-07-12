@@ -14,7 +14,7 @@ namespace Meta.Core.Workflow
     public interface IWorkFlowed 
     {
 
-        IApplicationMessage Description { get; }  
+        IAppMessage Description { get; }  
         
         Option<IWorkFlowed> Antecedent { get; }
 

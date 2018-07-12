@@ -23,7 +23,7 @@ public interface ISystemConsole
 
     void WriteLine(object o);
 
-    void Write(IApplicationMessage message, AppMessageFormatter formatter = null);
+    void Write(IAppMessage message, AppMessageFormatter formatter = null);
 
     void Write(string txt);
 

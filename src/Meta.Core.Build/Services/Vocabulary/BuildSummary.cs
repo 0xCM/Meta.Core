@@ -23,7 +23,7 @@ namespace Meta.Core.Build
 
         public FilePath BuildLog { get; set; }
 
-        public IApplicationMessage Description
+        public IAppMessage Description
             => Succeeded 
             ? inform($"{ProjectName} build succeded at {EndTime} after {Duration.TotalSeconds} (s)")
             : error($"{ProjectName} build failed at {EndTime} after {Duration.TotalSeconds} (s)");            

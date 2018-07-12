@@ -6,7 +6,6 @@
 using System;
 
 using Meta.Core;
-using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
@@ -201,7 +200,6 @@ partial class metacore
     public static X ifTrue<X>(bool criterion, X value, Func<X, X> onTrue)
         => criterion ? onTrue(value) : value;
 
-
     /// <summary>
     /// Returns the supplied value if not null, otherwise invokes a function to provide
     /// a non-null value as a replacement
@@ -212,7 +210,7 @@ partial class metacore
     /// <returns></returns>
     [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static T ifNull<T>(T x, Func<T> replace)
-        where T : class => (x != null) ? x : replace();
+        where T : class => x ?? replace();
 
     /// <summary>
     /// Maps the source <paramref name="x"/> to a value in the target space <typeparamref name="Y"/>

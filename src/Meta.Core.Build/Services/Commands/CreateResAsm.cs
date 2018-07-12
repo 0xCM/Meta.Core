@@ -45,7 +45,7 @@ namespace Meta.Core.Build
         [CommandParameter("The version of the assembly")]
         public string AssemblyVersion { get; set; }
 
-        public override IApplicationMessage DescribeIntent()
+        public override IAppMessage DescribeIntent()
             => Describe("Creating a source code resource assembly for the @ProjectFile project",
                     new
                     {

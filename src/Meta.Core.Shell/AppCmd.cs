@@ -17,7 +17,7 @@ namespace Meta.Core
     using Meta.Core.Workflow;
 
     using static metacore;
-    using static ApplicationMessage;
+    using static AppMessage;
 
     public sealed class AppCommands : LinkedSession<AppCommands>
     {
@@ -57,7 +57,7 @@ namespace Meta.Core
 
         
 
-        IApplicationMessage ArchivedFolder(FolderPath SrcFolder, FileArchiveDescription DstArchive)
+        IAppMessage ArchivedFolder(FolderPath SrcFolder, FileArchiveDescription DstArchive)
             => Inform($"Archived @FolderPath to @ArchivePath", new
             {
                 DstArchive.ArchivePath

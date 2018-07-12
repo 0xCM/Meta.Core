@@ -125,7 +125,7 @@ public sealed class CommandOrchestrator<TSpec,TPayload>
     ICommandExecStore ExecStore
         => Context.Service<ICommandExecStore>();
 
-    IEnumerable<IApplicationMessage> Dispatch()
+    IEnumerable<IAppMessage> Dispatch()
     {
         var doWork = true;
         while (doWork)
@@ -158,7 +158,7 @@ public sealed class CommandOrchestrator<TSpec,TPayload>
 
     }
 
-    IEnumerable<IApplicationMessage> Enqueue()
+    IEnumerable<IAppMessage> Enqueue()
     {
         if (Settings.ScheduleCommands)
         {
@@ -185,7 +185,7 @@ public sealed class CommandOrchestrator<TSpec,TPayload>
             yield return OrchestrationDisabled(CommandName);
     }
 
-    IEnumerable<IApplicationMessage> Run()
+    IEnumerable<IAppMessage> Run()
     {
         yield return OrchestrationStarted(CommandName);
 

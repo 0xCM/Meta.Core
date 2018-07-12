@@ -40,7 +40,7 @@ public sealed class CommandExecutor<TSpec,TPayload>
     ICommandExecStore ExecStore
         => Context.Service<ICommandExecStore>();
 
-    static IApplicationMessage CompletedCommand(ICommandResult result, Option<CommandCompletion<TSpec, TPayload>> completion)
+    static IAppMessage CompletedCommand(ICommandResult result, Option<CommandCompletion<TSpec, TPayload>> completion)
     {
         return completion.Map(
             c => CommandStatusMessages.CompletedCommand(c), 
@@ -52,7 +52,7 @@ public sealed class CommandExecutor<TSpec,TPayload>
                 if (!result.Succeeded)
                     return CommandExecutionAndCompletionError(result, completion.Message);
 
-                return ApplicationMessage.Error("My logic is broken");
+                return AppMessage.Error("My logic is broken");
             });
     }
 
@@ -75,7 +75,7 @@ public sealed class CommandExecutor<TSpec,TPayload>
         {
             var errorResult = new CommandResult<TSpec,TPayload>
             (
-                dispatch.Spec, default, false, ApplicationMessage.Error(e), 
+                dispatch.Spec, default, false, AppMessage.Error(e), 
                 dispatch.SubmissionId, dispatch.CorrelationToken
             );
             Notify(errorResult.Message);

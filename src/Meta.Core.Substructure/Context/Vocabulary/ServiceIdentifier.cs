@@ -25,7 +25,7 @@ public struct ServiceIdentifier : IEquatable<ServiceIdentifier>
         var components = text.Split('/');
 
         if (components.Length != 1)
-            return none<ServiceIdentifier>(ApplicationMessage.Error($"A maximum of 2 segments is supported: {text}"));
+            return none<ServiceIdentifier>(AppMessage.Error($"A maximum of 2 segments is supported: {text}"));
 
         return new ServiceIdentifier(components[0], components[1]);        
     }

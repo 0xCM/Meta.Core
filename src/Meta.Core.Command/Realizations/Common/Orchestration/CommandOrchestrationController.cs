@@ -15,15 +15,15 @@ using System.Collections.Concurrent;
 
 class CommandOrchestrationController : ApplicationService<CommandOrchestrationController, ICommandOrchestrationController>, ICommandOrchestrationController
 {
-    static IApplicationMessage OrchestrationStartError(Type SpecType, Exception e)
-        => ApplicationMessage.Error("@CommandName orchestration start error: @ErrorDetail", new
+    static IAppMessage OrchestrationStartError(Type SpecType, Exception e)
+        => AppMessage.Error("@CommandName orchestration start error: @ErrorDetail", new
         {
             CommandName = CommandSpecDescriptor.FromSpecType(SpecType).CommandName,
             ErrorDetail = e.ToString()
         });
 
-    static IApplicationMessage ControllerStarting()
-        => ApplicationMessage.Inform("Starting controller and subject orchestrations", new
+    static IAppMessage ControllerStarting()
+        => AppMessage.Inform("Starting controller and subject orchestrations", new
         {
 
         });

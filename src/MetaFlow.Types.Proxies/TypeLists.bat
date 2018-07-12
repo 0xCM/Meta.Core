@@ -1,0 +1,2 @@
+sqlt TypeLists.sqlt
+exit

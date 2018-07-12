@@ -35,8 +35,8 @@ namespace SqlT.Models
         public override string ToString()
             => MessageDetail;
 
-        public IApplicationMessage ToAppMessage()
-            => ApplicationMessage.Error(ToString());
+        public IAppMessage ToAppMessage()
+            => AppMessage.Error(ToString());
 
     }
 

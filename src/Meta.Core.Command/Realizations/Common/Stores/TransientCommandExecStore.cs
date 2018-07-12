@@ -91,7 +91,7 @@ public class TransientCommandExecStore : ApplicationService<TransientCommandExec
         if (Dispatches.TryAdd(d.SubmissionId, d))
             return some(d);
         else
-            return none<D>(ApplicationMessage.Error("Can't add submission to dispatch queue"));
+            return none<D>(AppMessage.Error("Can't add submission to dispatch queue"));
     }
 
     Option<ICommandDispatch> Dispatch()

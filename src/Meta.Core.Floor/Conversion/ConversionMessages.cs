@@ -13,13 +13,13 @@ using static metacore;
 static class ConversionMessages
 {
 
-    public static IApplicationMessage ConversionInputNull(Type DstType)
+    public static IAppMessage ConversionInputNull(Type DstType)
         => error(@"The attempt to convert to a value of type @DstType failed as the input argument was NULL", new
         {
             DstType
         });
 
-    public static IApplicationMessage ConversionUndefined(Type SrcType, Type DstType)
+    public static IAppMessage ConversionUndefined(Type SrcType, Type DstType)
         => error(@"Conversion from @SrcType to @DstType is undefined", new
         {
             SrcType,

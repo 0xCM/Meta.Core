@@ -1,0 +1,43 @@
+﻿<event name="error_reported" package="sqlserver" timestamp="2017-12-15T05:58:38.887Z">
+  <data name="error_number">
+    <value>50000</value>
+  </data>
+  <data name="severity">
+    <value>1</value>
+  </data>
+  <data name="state">
+    <value>1</value>
+  </data>
+  <data name="user_defined">
+    <value>true</value>
+  </data>
+  <data name="category">
+    <value>2</value>
+    <text>SERVER</text>
+  </data>
+  <data name="destination">
+    <value>0x00000002</value>
+    <text>USER</text>
+  </data>
+  <data name="is_intercepted">
+    <value>false</value>
+  </data>
+  <data name="message">
+    <value> Unfortunately, the event download queue is empty</value>
+  </data>
+  <action name="username" package="sqlserver">
+    <value>EXACORE07\Administrator</value>
+  </action>
+  <action name="database_id" package="sqlserver">
+    <value>1</value>
+  </action>
+  <action name="client_hostname" package="sqlserver">
+    <value>EXACORE07</value>
+  </action>
+  <action name="client_app_name" package="sqlserver">
+    <value>.Net SqlClient Data Provider</value>
+  </action>
+  <action name="session_id" package="sqlserver">
+    <value>62</value>
+  </action>
+</event>

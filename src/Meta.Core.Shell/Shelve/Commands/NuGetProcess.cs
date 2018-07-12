@@ -114,7 +114,7 @@ namespace Meta.Core.Commands
         {
             var outdir = Environment.GetEnvironmentVariable("NugetLib");
             if (isNotBlank(outdir) && not(Directory.Exists(outdir)))
-                return none<NugetConfig>(ApplicationMessage.Error($"Environment variable 'NugetLib' is specified but referenced directory {outdir} does not exist"));
+                return none<NugetConfig>(AppMessage.Error($"Environment variable 'NugetLib' is specified but referenced directory {outdir} does not exist"));
 
             if (isBlank(outdir))
                 outdir = Environment.CurrentDirectory;

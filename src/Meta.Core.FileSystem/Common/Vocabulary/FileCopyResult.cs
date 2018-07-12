@@ -28,7 +28,7 @@ public sealed class FileCopyResult : FileOperationResult<FileCopyResult, FilePat
     }
 
     public FileCopyResult(FilePath SrcPath, FilePath DstPath, string ErrorMessage)
-        : base(ApplicationMessage.Error(ErrorMessage))
+        : base(AppMessage.Error(ErrorMessage))
     {
         this.SrcPath = SrcPath;
         this.DstPath = DstPath;

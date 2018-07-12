@@ -19,8 +19,8 @@ public static partial class metacore
     /// <param name="m1">The first message</param>
     /// <param name="m2">The second message</param>
     /// <returns></returns>
-    public static IApplicationMessage combine(IApplicationMessage m1, IApplicationMessage m2)
-        => ApplicationMessage.Combine(m1, m2);
+    public static IAppMessage combine(IAppMessage m1, IAppMessage m2)
+        => AppMessage.Combine(m1, m2);
 
     /// <summary>
     /// Formats a typed message using type-specific formatting, if available; otherwise, renders the message via ToString()
@@ -38,10 +38,10 @@ public static partial class metacore
     /// <param name="callerFile">The file from which the call was made</param>
     /// <param name="callerName">The name of the invoking member</param>
     /// <returns></returns>
-    public static IApplicationMessage babble(string text,
+    public static IAppMessage babble(string text,
         [CallerFilePath] string callerFile = null,
         [CallerMemberName] string callerName = null)
-            => ApplicationMessage.Babble(text, callerFile, callerName);
+            => AppMessage.Babble(text, callerFile, callerName);
 
     /// <summary>
     /// Defines a verbose correlated message
@@ -51,10 +51,10 @@ public static partial class metacore
     /// <param name="callerFile">The file from which the call was made</param>
     /// <param name="callerName">The name of the invoking member</param>
     /// <returns></returns>
-    public static IApplicationMessage babble(CorrelationToken CT, string text,
+    public static IAppMessage babble(CorrelationToken CT, string text,
         [CallerFilePath] string callerFile = null,
         [CallerMemberName] string callerName = null)
-            => ApplicationMessage.Babble(CT, text, callerFile, callerName);
+            => AppMessage.Babble(CT, text, callerFile, callerName);
 
     /// <summary>
     /// Defines a verbose message with typed content
@@ -65,10 +65,10 @@ public static partial class metacore
     /// <param name="callerFile">The file from which the call was made</param>
     /// <param name="callerName">The name of the invoking member</param>
     /// <returns></returns>
-    public static IApplicationMessage babble<C>(string template, C content,
+    public static IAppMessage babble<C>(string template, C content,
         [CallerFilePath] string callerFile = null,
         [CallerMemberName] string callerName = null)
-            => ApplicationMessage.Babble(template, content, callerFile, callerName);
+            => AppMessage.Babble(template, content, callerFile, callerName);
 
     /// <summary>
     /// Defines a verbose correlated message with typed content
@@ -80,10 +80,10 @@ public static partial class metacore
     /// <param name="callerFile">The file from which the call was made</param>
     /// <param name="callerName">The name of the invoking member</param>
     /// <returns></returns>
-    public static IApplicationMessage babble<C>(CorrelationToken CT, string template, C content,
+    public static IAppMessage babble<C>(CorrelationToken CT, string template, C content,
         [CallerFilePath] string callerFile = null,
         [CallerMemberName] string callerName = null)
-            => ApplicationMessage.Babble(CT, template, content, callerFile, callerName);
+            => AppMessage.Babble(CT, template, content, callerFile, callerName);
 
     /// <summary>
     /// Defines a status message
@@ -92,10 +92,10 @@ public static partial class metacore
     /// <param name="callerFile">The file from which the call was made</param>
     /// <param name="callerName">The name of the invoking member</param>
     /// <returns></returns>
-    public static IApplicationMessage inform(string text,
+    public static IAppMessage inform(string text,
         [CallerFilePath] string callerFile = null,
         [CallerMemberName] string callerName = null)
-            => ApplicationMessage.Inform(text, callerFile, callerName);
+            => AppMessage.Inform(text, callerFile, callerName);
 
     /// <summary>
     /// Defines a correlated status message
@@ -105,10 +105,10 @@ public static partial class metacore
     /// <param name="callerFile">The file from which the call was made</param>
     /// <param name="callerName">The name of the invoking member</param>
     /// <returns></returns>
-    public static IApplicationMessage inform(CorrelationToken CT, string text,
+    public static IAppMessage inform(CorrelationToken CT, string text,
         [CallerFilePath] string callerFile = null,
         [CallerMemberName] string callerName = null)
-            => ApplicationMessage.Inform(CT, text, callerFile, callerName);
+            => AppMessage.Inform(CT, text, callerFile, callerName);
 
     /// <summary>
     /// Defines a status message with typed content
@@ -119,10 +119,10 @@ public static partial class metacore
     /// <param name="callerFile">The file from which the call was made</param>
     /// <param name="callerName">The name of the invoking member</param>
     /// <returns></returns>
-    public static IApplicationMessage inform<C>(string template, C content,
+    public static IAppMessage inform<C>(string template, C content,
         [CallerFilePath] string callerFile = null,
         [CallerMemberName] string callerName = null)
-            => ApplicationMessage.Inform(template, content, callerFile, callerName);
+            => AppMessage.Inform(template, content, callerFile, callerName);
 
     /// <summary>
     /// Defines a correlated status message with typed content
@@ -134,10 +134,10 @@ public static partial class metacore
     /// <param name="callerFile">The file from which the call was made</param>
     /// <param name="callerName">The name of the invoking member</param>
     /// <returns></returns>
-    public static IApplicationMessage inform<C>(CorrelationToken CT, string template, C content,
+    public static IAppMessage inform<C>(CorrelationToken CT, string template, C content,
         [CallerFilePath] string callerFile = null,
         [CallerMemberName] string callerName = null)
-            => ApplicationMessage.Inform(CT, template, content, callerFile, callerName);
+            => AppMessage.Inform(CT, template, content, callerFile, callerName);
 
     /// <summary>
     /// Defines a warning
@@ -146,10 +146,10 @@ public static partial class metacore
     /// <param name="callerFile">The file from which the call was made</param>
     /// <param name="callerName">The name of the invoking member</param>
     /// <returns></returns>
-    public static IApplicationMessage warn(string text,
+    public static IAppMessage warn(string text,
         [CallerFilePath] string callerFile = null,
         [CallerMemberName] string callerName = null)
-            => ApplicationMessage.Warn(text, callerFile, callerName);
+            => AppMessage.Warn(text, callerFile, callerName);
 
     /// <summary>
     /// Defines a correlated warning
@@ -159,10 +159,10 @@ public static partial class metacore
     /// <param name="callerFile">The file from which the call was made</param>
     /// <param name="callerName">The name of the invoking member</param>
     /// <returns></returns>
-    public static IApplicationMessage warn(CorrelationToken CT, string text,
+    public static IAppMessage warn(CorrelationToken CT, string text,
         [CallerFilePath] string callerFile = null,
         [CallerMemberName] string callerName = null)
-            => ApplicationMessage.Warn(text, callerFile, callerName);
+            => AppMessage.Warn(text, callerFile, callerName);
 
     /// <summary>
     /// Defines a warning message with typed content
@@ -173,10 +173,10 @@ public static partial class metacore
     /// <param name="callerFile">The file from which the call was made</param>
     /// <param name="callerName">The name of the invoking member</param>
     /// <returns></returns>
-    public static IApplicationMessage warn<C>(string template, C content,
+    public static IAppMessage warn<C>(string template, C content,
         [CallerFilePath] string callerFile = null,
         [CallerMemberName] string callerName = null)
-            => ApplicationMessage.Warn(template, content, callerFile, callerName);
+            => AppMessage.Warn(template, content, callerFile, callerName);
 
     /// <summary>
     /// Defines a correlated warning with typed content
@@ -188,10 +188,10 @@ public static partial class metacore
     /// <param name="callerFile">The file from which the call was made</param>
     /// <param name="callerName">The name of the invoking member</param>
     /// <returns></returns>
-    public static IApplicationMessage warn<C>(CorrelationToken CT, string template, C content,
+    public static IAppMessage warn<C>(CorrelationToken CT, string template, C content,
         [CallerFilePath] string callerFile = null,
         [CallerMemberName] string callerName = null)
-            => ApplicationMessage.Warn(CT, template, content, callerFile, callerName);
+            => AppMessage.Warn(CT, template, content, callerFile, callerName);
 
     /// <summary>
     /// Defines an error message
@@ -200,10 +200,10 @@ public static partial class metacore
     /// <param name="callerFile">The file from which the call was made</param>
     /// <param name="callerName">The name of the invoking member</param>
     /// <returns></returns>
-    public static IApplicationMessage error(string text,
+    public static IAppMessage error(string text,
         [CallerFilePath] string callerFile = null,
         [CallerMemberName] string callerName = null)
-            => ApplicationMessage.Error(text, callerFile, callerName);
+            => AppMessage.Error(text, callerFile, callerName);
 
     /// <summary>
     /// Defines a correlated error message
@@ -213,10 +213,10 @@ public static partial class metacore
     /// <param name="callerFile">The file from which the call was made</param>
     /// <param name="callerName">The name of the invoking member</param>
     /// <returns></returns>
-    public static IApplicationMessage error(CorrelationToken CT, string text,
+    public static IAppMessage error(CorrelationToken CT, string text,
         [CallerFilePath] string callerFile = null,
         [CallerMemberName] string callerName = null)
-            => ApplicationMessage.Error(CT, text, callerFile, callerName);
+            => AppMessage.Error(CT, text, callerFile, callerName);
 
     /// <summary>
     /// Defines a error message with typed content
@@ -227,10 +227,10 @@ public static partial class metacore
     /// <param name="callerFile">The file from which the call was made</param>
     /// <param name="callerName">The name of the invoking member</param>
     /// <returns></returns>
-    public static IApplicationMessage error<C>(string template, C content,
+    public static IAppMessage error<C>(string template, C content,
         [CallerFilePath] string callerFile = null,
         [CallerMemberName] string callerName = null)
-            => ApplicationMessage.Error(template, content, callerFile, callerName);
+            => AppMessage.Error(template, content, callerFile, callerName);
 
     /// <summary>
     /// Defines an error message based on an exception
@@ -239,10 +239,10 @@ public static partial class metacore
     /// <param name="callerFile">The file from which the call was made</param>
     /// <param name="callerName">The name of the invoking member</param>
     /// <returns></returns>
-    public static IApplicationMessage error(Exception e,
+    public static IAppMessage error(Exception e,
         [CallerFilePath] string callerFile = null,
         [CallerMemberName] string callerName = null)
-            => ApplicationMessage.Error(e, callerFile, callerName);
+            => AppMessage.Error(e, callerFile, callerName);
 
     /// <summary>
     /// Defines a correlated error message based on an exception
@@ -251,10 +251,10 @@ public static partial class metacore
     /// <param name="callerFile">The file from which the call was made</param>
     /// <param name="callerName">The name of the invoking member</param>
     /// <returns></returns>
-    public static IApplicationMessage error(CorrelationToken CT, Exception e,
+    public static IAppMessage error(CorrelationToken CT, Exception e,
         [CallerFilePath] string callerFile = null,
         [CallerMemberName] string callerName = null)
-            => ApplicationMessage.Error(CT, e, callerFile, callerName);
+            => AppMessage.Error(CT, e, callerFile, callerName);
 
     /// <summary>
     /// Defines a correlated error message with typed content
@@ -266,10 +266,10 @@ public static partial class metacore
     /// <param name="callerFile">The file from which the call was made</param>
     /// <param name="callerName">The name of the invoking member</param>
     /// <returns></returns>
-    public static IApplicationMessage error<C>(CorrelationToken CT, string template, C content,
+    public static IAppMessage error<C>(CorrelationToken CT, string template, C content,
         [CallerFilePath] string callerFile = null,
         [CallerMemberName] string callerName = null)
-            => ApplicationMessage.Error(CT, template, content, callerFile, callerName);
+            => AppMessage.Error(CT, template, content, callerFile, callerName);
 
     /// <summary>
     /// Defines a typed message format

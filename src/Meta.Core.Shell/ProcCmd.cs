@@ -19,7 +19,7 @@ namespace Meta.Core
     using Meta.Core.Build;
 
     using static metacore;
-    using static ApplicationMessage;
+    using static AppMessage;
     using CL = Shell.commands_spec;
 
 

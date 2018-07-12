@@ -9,13 +9,6 @@ namespace Meta.Core
     using System.Collections.Generic;    
     using System.Linq;
 
-    public interface IContextFactory<X, CX>
-        where CX : IContext<X, CX>, new()
-    {
-
-        CX CreateContext(IEnumerable<X> Data);
-    }
-
     public interface IContext
     {
 

@@ -20,21 +20,21 @@ namespace Meta.Core
         {
             this.TransformationName = TransformationName;
             this.Metrics = new FlowMetrics(TransformationName, this.TransformationName);
-            this.ErrorMessages = rolist<IApplicationMessage>();
+            this.ErrorMessages = rolist<IAppMessage>();
         }
 
-        public FlowSummary(string TransformationName, FlowMetrics metrics, IEnumerable<IApplicationMessage> ErrorMessages = null)
+        public FlowSummary(string TransformationName, FlowMetrics metrics, IEnumerable<IAppMessage> ErrorMessages = null)
         {
             this.TransformationName = TransformationName;
             this.Metrics = metrics;
-            this.ErrorMessages = rolist(ErrorMessages ?? array<IApplicationMessage>());
+            this.ErrorMessages = rolist(ErrorMessages ?? array<IAppMessage>());
         }
 
         public FlowMetrics Metrics { get; set; }
 
         public string TransformationName { get; set; }
 
-        public IReadOnlyList<IApplicationMessage> ErrorMessages { get; set; }
+        public IReadOnlyList<IAppMessage> ErrorMessages { get; set; }
 
         public override string ToString() 
             => $"Emitted {Metrics.EmissionCount} target records from {Metrics.SelectionCount} source records";

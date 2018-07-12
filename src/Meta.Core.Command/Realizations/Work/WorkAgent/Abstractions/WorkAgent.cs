@@ -79,10 +79,10 @@ namespace Meta.Core
         protected void CancelChildren()
             => ChildCancellation.Cancel();
 
-        protected Action<IApplicationMessage> MessageReceiver
+        protected Action<IAppMessage> MessageReceiver
             => AgentConfiguration.MessageReceiver;
 
-        protected void Notify(IApplicationMessage message)
+        protected void Notify(IAppMessage message)
             => MessageReceiver(message);
 
         protected bool IsAgentCancelling
@@ -206,7 +206,7 @@ namespace Meta.Core
             }
             catch (Exception e)
             {
-                Notify(ApplicationMessage.Error(e));
+                Notify(AppMessage.Error(e));
             }
 
         }
@@ -253,7 +253,7 @@ namespace Meta.Core
             }
             catch (Exception e)
             {
-                Notify(ApplicationMessage.Error(e));
+                Notify(AppMessage.Error(e));
             }
         }
 
@@ -380,7 +380,7 @@ namespace Meta.Core
                 }
                 catch (Exception e)
                 {
-                    Notify(ApplicationMessage.Error(e));
+                    Notify(AppMessage.Error(e));
                 }
                 return tasks;
             });
@@ -409,7 +409,7 @@ namespace Meta.Core
                 finally
                 {
                     HandleTaskCompletion(clrTaskId).OnNone(()
-                        => Notify(ApplicationMessage.Warn("There was no task to complete")));
+                        => Notify(AppMessage.Warn("There was no task to complete")));
                 }
 
                 iter(observers, observer => observer.RaiseWorkCompleted(work));

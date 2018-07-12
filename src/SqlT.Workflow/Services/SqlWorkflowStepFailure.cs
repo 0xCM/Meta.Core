@@ -16,13 +16,13 @@ namespace SqlT.Workflow
 
     public class SqlWorkflowStepFailure : SqlWorkflowStepResult
     {
-        public static SqlWorkflowStepFailure Create(IApplicationMessage Reason)
+        public static SqlWorkflowStepFailure Create(IAppMessage Reason)
             => new SqlWorkflowStepFailure(Reason);
 
-        public static SqlWorkflowStepFailure<P> Create<P>(IApplicationMessage Reason)
+        public static SqlWorkflowStepFailure<P> Create<P>(IAppMessage Reason)
             => new SqlWorkflowStepFailure<P>(Reason);
 
-        public SqlWorkflowStepFailure(IApplicationMessage Reason)
+        public SqlWorkflowStepFailure(IAppMessage Reason)
              : base(Reason)
         {
 
@@ -35,7 +35,7 @@ namespace SqlT.Workflow
     public class SqlWorkflowStepFailure<P> : SqlWorkflowStepResult<P>
     {
 
-        public SqlWorkflowStepFailure(IApplicationMessage Reason)
+        public SqlWorkflowStepFailure(IAppMessage Reason)
             : base(Reason)
         {
 

@@ -11,19 +11,19 @@ namespace SqlT.Core
     static class SqlStatusMessages
     {
 
-        public static IApplicationMessage Executing(SqlProcedureName procedure)
+        public static IAppMessage Executing(SqlProcedureName procedure)
             => inform($"Executing {procedure}");
 
-        public static IApplicationMessage Executed(SqlProcedureName procedure)
+        public static IAppMessage Executed(SqlProcedureName procedure)
             => inform($"Excuted {procedure}");
 
-        public static IApplicationMessage NoBrokerFactoriesExist(Assembly a)
+        public static IAppMessage NoBrokerFactoriesExist(Assembly a)
             =>  error( $"The assembly {a} defines no broker factories");
 
-        public static IApplicationMessage TooManyBrokerFactories(Assembly a)
+        public static IAppMessage TooManyBrokerFactories(Assembly a)
             => error($"The assembly {a} defines more than one broker factory and there is no means to distinguish which one is needed");
 
-        public static IApplicationMessage NullTableTypeProxy(string ParameterName)
+        public static IAppMessage NullTableTypeProxy(string ParameterName)
             => error($"Encountered null table type proxy for {ParameterName} parameter");
 
     }

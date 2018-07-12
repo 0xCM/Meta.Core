@@ -12,7 +12,7 @@ using System.IO;
 
 using static metacore;
 
-public sealed class CommandStatusMessage : IApplicationMessage
+public sealed class CommandStatusMessage : IAppMessage
 {
     public static readonly CommandStatusMessage Empty = new CommandStatusMessage();
 
@@ -40,7 +40,7 @@ public sealed class CommandStatusMessage : IApplicationMessage
         _Content = spec;
         _CommandName = spec.CommandName;
         _CommandSpecName = spec.SpecName;
-        _Antecedent = ApplicationMessage.Empty;
+        _Antecedent = AppMessage.Empty;
         _EventLevel = level;
         _MessageType = MessageType;
         _Arguments = spec.Arguments;
@@ -67,7 +67,7 @@ public sealed class CommandStatusMessage : IApplicationMessage
     EventLevel _EventLevel { get; }
         = EventLevel.Informational;
 
-    IApplicationMessage _Antecedent { get; }
+    IAppMessage _Antecedent { get; }
 
     DateTime _Timestamp { get; }
         = now();
@@ -86,7 +86,7 @@ public sealed class CommandStatusMessage : IApplicationMessage
         => _MessageId;
 
 
-    public IApplicationMessage Antecedent 
+    public IAppMessage Antecedent 
         => _Antecedent;
 
     public IReadOnlyList<CommandArgument> CommandArguments
@@ -129,7 +129,7 @@ public sealed class CommandStatusMessage : IApplicationMessage
         => _SourceComponent;
 
     public string Format(bool ts)
-        => ApplicationMessage.DefaultFormatter(_MessageTemplate, ts, _Content)(this);
+        => AppMessage.DefaultFormatter(_MessageTemplate, ts, _Content)(this);
 
     public string Format(string prepend, string postpend, bool ts)
         => (isNotBlank(prepend) ? $"{prepend} {Format(false)}" : Format(ts))
@@ -138,6 +138,6 @@ public sealed class CommandStatusMessage : IApplicationMessage
     public CorrelationToken? CT
         => _CorrelationToken;
 
-    public IEnumerable<IApplicationMessage> InnerMessages
-        => stream<IApplicationMessage>();
+    public IEnumerable<IAppMessage> InnerMessages
+        => stream<IAppMessage>();
 }

@@ -18,6 +18,6 @@ public interface IAgentNotification : ICorrelated
     SystemUri AgentUri { get; }
 
 
-    IApplicationMessage Message { get; }
+    IAppMessage Message { get; }
 
 }

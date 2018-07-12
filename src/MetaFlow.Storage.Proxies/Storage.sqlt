@@ -1,0 +1,50 @@
+{
+  "Name": "Storage",
+  "ProjectName": "MetaFlow.Core.Storage",
+  "EmitProject":  false,
+  "OutputDirectory": "",
+  "ConnectionString": "Data Source = localhost; Integrated Security = true; Database = MetaFlow",
+  "Schemas": [
+    {
+      "SchemaName": "PF",
+      "SpecializeNamespace": false
+      
+    }
+
+  ],
+
+  "RootNamespace": "MetaFlow.Core.Storage",
+  "ExcludedColumns": [
+    "DbCreateUser",
+    "DbCreateTime",
+    "DbUpdateUser",
+    "DbUpdateTime",
+    "CreateTS",
+    "UpdateTS"
+    
+  ],
+  "ExcludeTables": false,
+  "DefaultUsings": [
+    "System",
+    "System.Collections.Generic",
+    "SqlT.Types",
+    "SqlT.Types.MC",
+    "MetaFlow.Core",
+    "MetaFlow.XE"
+
+  ],
+  "EmitTables": true,
+  "EmitViews": true,
+  "EmitGenerationSpec": false,
+  "EmitPrimaryKeys": false,
+  "EmitDependencies": false,
+  "EmitDateType": false,
+  "EmitSingleFile": true,
+  "EmitStoredProcedures": true,
+  "EmitTableFunctions": true,
+  "EmitSequences": true,
+  "EmitBrokerFactory": true,
+  "EmitTypeContracts": true,
+  "EmitTableTypes": false,
+  "EmitOperationContracts":  false
+}

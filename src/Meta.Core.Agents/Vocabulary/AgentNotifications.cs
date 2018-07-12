@@ -16,7 +16,7 @@ public static class AgentNotifications
     /// </summary>
     /// <param name="AgentName">Identifies the created agent</param>
     /// <returns></returns>
-    public static IApplicationMessage AgentCreated(string AgentName)
+    public static IAppMessage AgentCreated(string AgentName)
         => inform("@AgentName agent created", new
         {
             AgentName,
@@ -28,7 +28,7 @@ public static class AgentNotifications
     /// <param name="AgentName">The name of the agent</param>
     /// <param name="AgentState"></param>
     /// <returns></returns>
-    public static IApplicationMessage AgentHasState(string AgentName, ServiceAgentState AgentState)
+    public static IAppMessage AgentHasState(string AgentName, ServiceAgentState AgentState)
         => inform("The @AgentName agent is in the @AgentState state", new
         {
             AgentName,
@@ -42,7 +42,7 @@ public static class AgentNotifications
     /// <param name="AgentName">The name of the agent</param>
     /// <param name="Transition"></param>
     /// <returns></returns>
-    public static IApplicationMessage StateTransitioned(string AgentName, AgentStateTransition Transition)
+    public static IAppMessage StateTransitioned(string AgentName, AgentStateTransition Transition)
         => inform("@AgentName agent transitioned from @SourceState to @TargetState", new
         {
             AgentName,
@@ -51,7 +51,7 @@ public static class AgentNotifications
 
         });
 
-    public static IApplicationMessage InvalidStartState(string AgentName, ServiceAgentState AgentState)
+    public static IAppMessage InvalidStartState(string AgentName, ServiceAgentState AgentState)
         => warn($"The {AgentName} cannot start while in the {AgentState} state");
 
     /// <summary>
@@ -59,7 +59,7 @@ public static class AgentNotifications
     /// </summary>
     /// <param name="AgentName">The name of the agent</param>
     /// <returns></returns>
-    public static IApplicationMessage ControlTaskNotNull(string AgentName)
+    public static IAppMessage ControlTaskNotNull(string AgentName)
         => error($"Agent {AgentName} control task should be null but yet it is not");
 
 }

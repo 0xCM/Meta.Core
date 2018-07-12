@@ -13,7 +13,7 @@ namespace SqlT.Services
     using SqlT.Core;
     using SqlT.Models;
     
-    public delegate void DacMessageReceiver(IApplicationMessage message);
+    public delegate void DacMessageReceiver(IAppMessage message);
 
     /// <summary>
     /// Defines collection of operations that facilitate DACPAC manipulation

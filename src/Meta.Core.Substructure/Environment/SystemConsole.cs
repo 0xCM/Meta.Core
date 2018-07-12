@@ -206,7 +206,7 @@ public class SystemConsole : ISystemConsole
         return  KeyPressSignal.WaitOne(timeout)  ? LastKeyPressValue : null;                                
     }
    
-    public void Write(IApplicationMessage message, AppMessageFormatter formatter)
+    public void Write(IAppMessage message, AppMessageFormatter formatter)
     {
 
         lock (locker)

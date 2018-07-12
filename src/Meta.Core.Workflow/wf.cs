@@ -20,13 +20,13 @@ public static partial class wf
             WorkflowStepName name,
             Func<WorkFlowed<R>> worker,
              IEnumerable<FacetInfo> facets = null,
-            Func<IApplicationMessage> beforeExec = null,
+            Func<IAppMessage> beforeExec = null,
             WorkflowTransformer<R> afterSuccess = null,
             WorkflowTransformer<R> afterError = null)
                 => new WorkflowStep<R>(Host, name, worker, facets ?? stream<FacetInfo>(),  beforeExec, afterSuccess, afterError);
 
     public static IEnumerable<IWorkflowStep<R>> steps<R>(IWorkflowNode Host,       
-            Func<IApplicationMessage> beforeExec = null,
+            Func<IAppMessage> beforeExec = null,
             WorkflowTransformer<R> afterSuccess = null,
             WorkflowTransformer<R> afterError = null)
                     => WorkflowStep.DefineSteps(Host, beforeExec, afterSuccess, afterError);
@@ -36,7 +36,7 @@ public static partial class wf
             Func<X, WorkFlowed<R>> worker,
              IEnumerable<FacetInfo> facets = null,
 
-            Func<X, IApplicationMessage> beforeExec = null,
+            Func<X, IAppMessage> beforeExec = null,
             WorkflowTransformer<R> afterSuccess = null,
             WorkflowTransformer<R> afterError = null) 
                 => new WorkflowStep<X, R>(C, name, worker, facets ?? stream<FacetInfo>(), beforeExec, afterSuccess, afterError);
@@ -45,7 +45,7 @@ public static partial class wf
             WorkflowStepName name,
             Func<X1, X2, WorkFlowed<R>> worker,
             IEnumerable<FacetInfo> facets = null,
-            Func<X1, X2, IApplicationMessage> beforeExec = null,
+            Func<X1, X2, IAppMessage> beforeExec = null,
             WorkflowTransformer<R> afterSuccess = null,
             WorkflowTransformer<R> afterError = null)
                 => new WorkflowStep<X1, X2, R>(C, name, worker, facets ?? stream<FacetInfo>(), beforeExec, afterSuccess, afterError);

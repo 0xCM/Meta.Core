@@ -43,7 +43,7 @@ partial class metacore
     /// <param name="path"></param>
     /// <param name="line"></param>
     [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static T fail<T>(IApplicationMessage reason, [CallerMemberName] string member = null,
+    public static T fail<T>(IAppMessage reason, [CallerMemberName] string member = null,
         [CallerFilePath] string path = null, [CallerLineNumber] int line = 0)
             => throw new Exception<int>(reason.Format(false), member, path, line);
 

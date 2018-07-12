@@ -12,42 +12,42 @@ namespace SqlT.CSharp
     /// </summary>
     static class GenerationMessages
     {
-        public static IApplicationMessage DefiningProxies(string SchemaName)
-            => ApplicationMessage.Inform("Defining proxies for the @SchemaName schema", new
+        public static IAppMessage DefiningProxies(string SchemaName)
+            => AppMessage.Inform("Defining proxies for the @SchemaName schema", new
             {
                 SchemaName
             });
 
-        public static IApplicationMessage EmittingDependencyFiles(FolderPath OutputFolder)
-            => ApplicationMessage.Inform("Emitting dependencies to @OutputPath",
+        public static IAppMessage EmittingDependencyFiles(FolderPath OutputFolder)
+            => AppMessage.Inform("Emitting dependencies to @OutputPath",
                 new
                 {
                     OutputFolder
                 });
 
-        public static IApplicationMessage InvalidProfile(FilePath SrcPath)
-            => ApplicationMessage.Error($"The file {SrcPath} does not define a valid profile");
+        public static IAppMessage InvalidProfile(FilePath SrcPath)
+            => AppMessage.Error($"The file {SrcPath} does not define a valid profile");
 
-        public static IApplicationMessage InvalidProfileText()
-            => ApplicationMessage.Error($"The supplied text could not be interpreted as valid profile");
+        public static IAppMessage InvalidProfileText()
+            => AppMessage.Error($"The supplied text could not be interpreted as valid profile");
 
-        public static IApplicationMessage InitiatingProxyEmission()
-            => ApplicationMessage.Inform("Emitting proxy source code ");
+        public static IAppMessage InitiatingProxyEmission()
+            => AppMessage.Inform("Emitting proxy source code ");
 
-        public static IApplicationMessage SavingFile(string OutputPath)
-            => ApplicationMessage.Inform("Saving @OutputPath", new
+        public static IAppMessage SavingFile(string OutputPath)
+            => AppMessage.Inform("Saving @OutputPath", new
             {
                 OutputPath
             });
 
-        public static IApplicationMessage GeneratingProject(this CodeGenerationProfile gp)
-            =>  ApplicationMessage.Inform("Generating @ProjectName project", new
+        public static IAppMessage GeneratingProject(this CodeGenerationProfile gp)
+            =>  AppMessage.Inform("Generating @ProjectName project", new
             {
                 gp.ProjectName
             });
 
-        public static IApplicationMessage BuildingProject(this CodeGenerationProfile gp)
-            => ApplicationMessage.Inform("Building @ProjectName project", new
+        public static IAppMessage BuildingProject(this CodeGenerationProfile gp)
+            => AppMessage.Inform("Building @ProjectName project", new
             {
                 gp.ProjectName
             });

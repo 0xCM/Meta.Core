@@ -23,8 +23,8 @@ namespace Meta.Core.Commands
 
         }
 
-        static IApplicationMessage VariableSpecified(NamedValue value)
-            => ApplicationMessage.Inform("The environment variable @Name was given the value @Value",
+        static IAppMessage VariableSpecified(NamedValue value)
+            => AppMessage.Inform("The environment variable @Name was given the value @Value",
                 new
                 {
                     value.Name,

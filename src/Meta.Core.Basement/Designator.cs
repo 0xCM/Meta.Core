@@ -6,7 +6,7 @@
 
 public sealed class MetaBase 
 {
-    public const string Version = Constants.AssemblyVersion;
-    public const string ProductName = Constants.ProductRoot + "basement";
+    public const string Version = "1.1.0";
+    public const string ProductName = "metacor/basement";
     public const string Title = nameof(MetaBase);
 }

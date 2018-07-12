@@ -1,0 +1,186 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="Configuration\Build.props" />
+  <PropertyGroup>
+    <RootNamespace>PDMS.Schemas.Core</RootNamespace>
+    <AppDesignerFolder>Configuration</AppDesignerFolder>
+    <Containment>Partial</Containment>
+    <ProjectGuid>{0aa75660-460e-4952-8e59-4e00375aa168}</ProjectGuid>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <Name>MetaFlow.Schemas.Core.Storage</Name>
+    <TargetDatabase>PDMS.Schemas.Core.Storage</TargetDatabase>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="Configuration\Build.props" />
+    <RefactorLog Include="Configuration\RefactorLog.xml" />
+    <Folder Include="Configuration" />
+    <Build Include="Configuration\Schemas.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuration\Designator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Definitions" />
+    <Folder Include="Definitions\EnterpriseShareDefinition" />
+    <Folder Include="Definitions\NodeDriveMapDefinition" />
+    <Folder Include="Definitions\SqlProxyDefinition" />
+    <Folder Include="Stores" />
+    <Folder Include="Registries" />
+    <Folder Include="Registries\DataFlow" />
+    <Folder Include="Registries\ModelDatabase" />
+    <Folder Include="Registries\Distribution" />
+    <Folder Include="Registries\SystemCommand" />
+    <Folder Include="Stores\PlatformVariable" />
+    <Folder Include="Stores\ArtifactReference" />
+    <Folder Include="Stores\PlatformEntity" />
+    <Folder Include="SemanticLogs" />
+    <Folder Include="SemanticLogs\DacDeploy" />
+    <Folder Include="Stores\PlatformDacProfileStore" />
+    <Folder Include="Stores\PlatformSolution" />
+    <Folder Include="Registries\PlatformDac" />
+    <Folder Include="Registries\PlatformAgent" />
+    <Folder Include="Registries\SystemComponent" />
+    <Folder Include="Definitions\SqlMessageDefinition" />
+    <Folder Include="TypeTables" />
+    <Folder Include="Registries\PlatformDatabase" />
+    <Folder Include="Registries\PlatformSytem" />
+    <Folder Include="Registries\SystemEvent" />
+    <Folder Include="Definitions\PlatformShareDefinition" />
+    <Folder Include="Registries\PlatformServer" />
+    <Folder Include="SemanticLogs\FileReceipt" />
+    <Folder Include="Queries" />
+    <Folder Include="SemanticLogs\TableMonitor" />
+    <Folder Include="Registries\PlatformShare" />
+    <Folder Include="Registries\DatabaseServer" />
+    <Folder Include="Registries\FileSystemNavigator" />
+    <Folder Include="Definitions\MessageFormat" />
+    <Folder Include="Registries\MessageType" />
+    <Folder Include="Registries\PlatformProject" />
+    <Folder Include="Queries\Host" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Definitions\EnterpriseShareDefinition\EnterpriseShareDefinition.sql" />
+    <Build Include="Definitions\NodeDriveMapDefinition\NodeDriveMapDefinition.sql" />
+    <Build Include="Definitions\SqlProxyDefinition\FindSqlProxyDefinition.sql" />
+    <Build Include="Definitions\SqlProxyDefinition\SqlProxyDefinitions.sql" />
+    <Build Include="Definitions\SqlProxyDefinition\SqlProxyDefinitionsByDatabase.sql" />
+    <Build Include="Definitions\SqlProxyDefinition\SystemProxyDefinition.sql" />
+    <Build Include="Definitions\SqlProxyDefinition\SyncSqlProxyDefinitions.sql" />
+    <Build Include="Sequences.sql" />
+    <Build Include="Registries\DataFlow\SyncDataFlowRegistry.sql" />
+    <Build Include="Registries\DataFlow\TypedDataFlowRegistry.sql" />
+    <Build Include="Registries\DataFlow\TypedDataFlows.sql" />
+    <Build Include="Registries\ModelDatabase\ModelDatabaseRegistry.sql" />
+    <Build Include="Registries\Distribution\DistributionRegistry.sql" />
+    <Build Include="Registries\Distribution\RegisteredDistributions.sql" />
+    <Build Include="Registries\Distribution\SyncDistributionRegistry.sql" />
+    <Build Include="Registries\SystemCommand\SyncSystemCommandRegistry.sql" />
+    <Build Include="Registries\SystemCommand\SystemCommandRegistry.sql" />
+    <Build Include="Stores\PlatformVariable\PlatformVariableStore.sql" />
+    <Build Include="Stores\PlatformVariable\StorePlatformVariables.sql" />
+    <Build Include="Stores\ArtifactReference\ArtifactReferenceStore.sql" />
+    <Build Include="Stores\ArtifactReference\StoreArtifactReferences.sql" />
+    <Build Include="Stores\PlatformEntity\FindPlatformEntity.sql" />
+    <Build Include="Stores\PlatformEntity\PlatformEntityChangeLog.sql" />
+    <Build Include="Stores\PlatformEntity\PlatformEntityStore.sql" />
+    <Build Include="Stores\PlatformEntity\StorePlatformEntities.sql" />
+    <Build Include="Stores\PlatformEntity\StorePlatformEntity.sql" />
+    <Build Include="SemanticLogs\DacDeploy\DacDeployLog.sql" />
+    <Build Include="SemanticLogs\DacDeploy\LogDacDeployFinish.sql" />
+    <Build Include="SemanticLogs\DacDeploy\LogDacDeployStart.sql" />
+    <Build Include="Stores\PlatformDacProfileStore\DacProfileStore.sql" />
+    <Build Include="Stores\PlatformSolution\PlatformSolutions.sql" />
+    <Build Include="Stores\PlatformSolution\PlatformSolutionStore.sql" />
+    <Build Include="Stores\PlatformSolution\SyncPlatformSolutions.sql" />
+    <Build Include="Registries\PlatformDac\PlatformDacRegistry.sql" />
+    <Build Include="Registries\PlatformDac\SyncPlatformDacRegistry.sql" />
+    <Build Include="Registries\PlatformAgent\PlatformAgentRegistry.sql" />
+    <Build Include="Registries\PlatformAgent\PlatformAgents.sql" />
+    <Build Include="Registries\PlatformAgent\SyncPlatformAgents.sql" />
+    <Build Include="Registries\SystemComponent\SyncSytemComponents.sql" />
+    <Build Include="Registries\SystemComponent\SystemComponentRegistry.sql" />
+    <Build Include="Registries\SystemComponent\SystemComponents.sql" />
+    <Build Include="Definitions\SqlMessageDefinition\DefineSqlMessages.sql" />
+    <Build Include="Definitions\SqlMessageDefinition\SqlMessageDefinitions.sql" />
+    <Build Include="Definitions\SqlMessageDefinition\SqlMessageDefinition.sql" />
+    <Build Include="TypeTables\ComponentType.sql" />
+    <Build Include="TypeTables\EnterpriseDatabaseType.sql" />
+    <Build Include="TypeTables\EnterpriseServerType.sql" />
+    <Build Include="TypeTables\PlatformChannelType.sql" />
+    <Build Include="TypeTables\PlatformDatabaseType.sql" />
+    <Build Include="TypeTables\PlatformShareType.sql" />
+    <Build Include="TypeTables\PlatformSystemType.sql" />
+    <Build Include="TypeTables\SqlArtifactType.sql" />
+    <Build Include="TypeTables\TypeSystemType.sql" />
+    <Build Include="Registries\PlatformDatabase\PlatformDatabaseDescription.sql" />
+    <Build Include="Registries\PlatformDatabase\PlatformDatabaseRegistry.sql" />
+    <Build Include="Registries\PlatformDatabase\PlatformDatabases.sql" />
+    <Build Include="Registries\PlatformDatabase\SyncPlatformDatabases.sql" />
+    <Build Include="Registries\PlatformSytem\PlatformSystemRegistry.sql" />
+    <Build Include="Registries\PlatformSytem\PlatformSystems.sql" />
+    <Build Include="Registries\PlatformSytem\SyncPlatformSystems.sql" />
+    <Build Include="TypeTables\PlatformArtifactType.sql" />
+    <Build Include="Registries\SystemEvent\SystemEventRegistry.sql" />
+    <Build Include="Registries\SystemEvent\SyncEventRegistry.sql" />
+    <Build Include="Registries\SystemEvent\EventRegistrations.sql" />
+    <Build Include="Definitions\PlatformShareDefinition\PlatformShareDefinition.sql" />
+    <Build Include="Registries\PlatformServer\PlatformServerRegistry.sql" />
+    <Build Include="Registries\PlatformServer\PlatformServers.sql" />
+    <Build Include="Registries\PlatformServer\SyncPlatformServerRegistry.sql" />
+    <Build Include="SemanticLogs\FileReceipt\FileReceiptLog.sql" />
+    <Build Include="SemanticLogs\FileReceipt\LogFileReceipt.sql" />
+    <Build Include="Definitions\SqlProxyDefinition\SqlProxyProjects.sql" />
+    <Build Include="Stores\TypeSystemDataType.sql" />
+    <Build Include="TypeTables\PlatformFileType.sql" />
+    <Build Include="SemanticLogs\TableMonitor\TableMonitorLog.sql" />
+    <Build Include="SemanticLogs\TableMonitor\StoreTableMonitorLogEntries.sql" />
+    <Build Include="SemanticLogs\TableMonitor\MonitoredTableSetting.sql" />
+    <Build Include="SemanticLogs\TableMonitor\MonitoredTables.sql" />
+    <Build Include="SemanticLogs\TableMonitor\ConfigureTableMonitoring.sql" />
+    <Build Include="SemanticLogs\TableMonitor\TableMonitorLogEntries.sql" />
+    <Build Include="Registries\PlatformShare\PlatformShareFolderType.sql" />
+    <Build Include="Registries\PlatformShare\PlatformShareRegistry.sql" />
+    <Build Include="TypeTables\PlatformNavigatorType.sql" />
+    <Build Include="Registries\DatabaseServer\DatabaseServerRegistry.sql" />
+    <Build Include="Registries\DatabaseServer\DatabaseServers.sql" />
+    <Build Include="Registries\DatabaseServer\SyncDatabaseServers.sql" />
+    <Build Include="Registries\FileSystemNavigator\NavigationFolder.sql" />
+    <Build Include="Registries\FileSystemNavigator\NavigationFolders.sql" />
+    <Build Include="Registries\SystemCommand\SystemCommands.sql" />
+    <Build Include="Registries\DatabaseServer\PlatformDatabaseServer.sql" />
+    <Build Include="Definitions\MessageFormat\MessageFormatDefinition.sql" />
+    <Build Include="Definitions\MessageFormat\SyncMessageFormats.sql" />
+    <Build Include="Definitions\MessageFormat\MessageFormats.sql" />
+    <Build Include="Registries\MessageType\MessageTypeRegistry.sql" />
+    <Build Include="Registries\MessageType\SyncMessageTypeRegistry.sql" />
+    <Build Include="Registries\MessageType\MessageTypes.sql" />
+    <Build Include="TypeTables\MessageClass.sql" />
+    <Build Include="Registries\MessageType\MessageTypeAttribute.sql" />
+    <Build Include="Definitions\MessageFormat\StubMessageFormats.sql" />
+    <Build Include="Definitions\MessageFormat\MessageFormatArchive.sql" />
+    <Build Include="Registries\MessageType\MesageAttributes.sql" />
+    <Build Include="Registries\PlatformDac\PlatformDacs.sql" />
+    <Build Include="Stores\PlatformDacProfileStore\DacProfiles.sql" />
+    <Build Include="Stores\PlatformDacProfileStore\SyncDacProfiles.sql" />
+    <Build Include="Registries\PlatformProject\PlatformProjects.sql" />
+    <Build Include="Registries\PlatformProject\PlatformProjectRegistry.sql" />
+    <Build Include="Registries\PlatformProject\SyncPlatformProjects.sql" />
+    <Build Include="Registries\PlatformDatabase\RegisterHostDatabase.sql" />
+    <Build Include="Queries\Host\ExecutingNode.sql" />
+    <Build Include="Queries\Host\ExecutingServer.sql" />
+    <Build Include="Queries\Host\HostDatabase.sql" />
+    <Build Include="Queries\Host\HostId.sql" />
+    <Build Include="Queries\Host\SqlNodeId.sql" />
+    <Build Include="Queries\ProjectComponents.sql" />
+    <Build Include="Queries\PlatformDatabaseProfiles.sql" />
+    <Build Include="Queries\FindDatabaseProfiles.sql" />
+    <Build Include="Queries\TargetedDatabaseComponents.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MetaFlow.Schemas.Core.Types\MetaFlow.Schemas.Core.Types.sqlproj">
+      <Name>MetaFlow.Schemas.Core.Types</Name>
+      <Project>{12910946-263d-4c79-a924-59a0c6f34b5a}</Project>
+      <Private>True</Private>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

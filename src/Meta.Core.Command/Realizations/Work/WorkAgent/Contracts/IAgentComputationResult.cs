@@ -7,7 +7,7 @@ public interface IAgentComputationResult
 {
     AgentIdentifier AgentIdentifier { get; }
 
-    IApplicationMessage Description { get; }
+    IAppMessage Description { get; }
 
     object Payload { get; }
 }

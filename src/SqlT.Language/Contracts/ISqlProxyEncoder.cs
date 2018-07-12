@@ -22,11 +22,11 @@ namespace SqlT.Services
             SqlProxyEncodingOptions options = null)
                 where P : class, ISqlTabularProxy, new();
 
-        IEnumerable<P> DecodeDelimitedText<P>(FilePath sourceFile, Action<IApplicationMessage> onError, 
+        IEnumerable<P> DecodeDelimitedText<P>(FilePath sourceFile, Action<IAppMessage> onError, 
             SqlProxyEncodingOptions options = null)
                 where P : class, ISqlTabularProxy, new();
 
-        IEnumerable<T> DecodeDelimitedText<T>(string sourceText, Action<IApplicationMessage> onError, 
+        IEnumerable<T> DecodeDelimitedText<T>(string sourceText, Action<IAppMessage> onError, 
             SqlProxyEncodingOptions options)
                 where T : class, ISqlTabularProxy, new();
     }
