@@ -12,6 +12,12 @@ namespace Meta.Core.Modules
     
     public sealed class Identity : ClassModule<Identity,IIdentity>
     {
+        public Identity()
+            : base(typeof(Identity<>))
+        {
+
+        }
+
         /// <summary>
         /// Constructs a type's identity
         /// </summary>

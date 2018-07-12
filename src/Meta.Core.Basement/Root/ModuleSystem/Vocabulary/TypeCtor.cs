@@ -8,23 +8,32 @@ namespace Meta.Core
     using System;    
     using System.Linq;
 
-
-    // represents a type constructor of the type k parameterized by a
+    // represents a type constructor of the type K parameterized by A
     // if the language would allow it, it would perhaps be
     // denoted by k<a> or k[a]
     // example: tc: List -> a -> List<a>
-    public readonly struct Τ<k, a>
+
+    public interface ITypeConstructor<M,X,MX>
+        where M : IClassModule<M>, new()
+        where MX : IContext<X, MX>, new()
     {
-        //public static List<a> operator *(Τ<k, a> t, List l)
-        //    => List<a>.Empty;
-
-
+        MX construct();    
     }
 
-    public class TypeCtor
+    public readonly struct TypeConstructor<M, X, MX> : ITypeConstructor<M,X,MX>
+        where M : IClassModule<M>,new()
+        where MX : IContext<X, MX>, new()
+    {
+        public static readonly TypeConstructor<M, X, MX> instance = default;
+
+        public MX construct()
+            => new MX();
+    }
+
+    public class TypeConstructor
     {
 
-        public TypeCtor(Type GenericType)
+        public TypeConstructor(Type GenericType)
         {
             this.GenericType = GenericType;
         }
@@ -34,7 +43,5 @@ namespace Meta.Core
         /// </summary>
         public Type GenericType { get; }
 
-    }
-
- 
+    } 
 }

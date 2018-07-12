@@ -1,7 +1,7 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// MetaCore
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace Meta.Core.Modules
 {
@@ -16,10 +16,13 @@ namespace Meta.Core.Modules
     /// </summary>
     public class Ordered : ClassModule<Ordered, IOrdered>
     {        
+        public Ordered()
+            : base(typeof(Ordered<>))
+        { }
         
         public static Option<IOrdered<X>> make<X>()
             => Try(() => Instances.TryFind(typeof(X)).MapValueOrDefault(o
-                    => cast<IOrdered<X>>(o), OrderedIntrinsic<X>.Default));
+                    => cast<IOrdered<X>>(o), DefaultOrder<X>.Default));
 
         /// <summary>
         /// Constructs a <see cref="IMonoid"/> over <typeparamref name="X"/> if possible
@@ -27,7 +30,7 @@ namespace Meta.Core.Modules
         /// <typeparam name="X">The monoid element type</typeparam>
         public static Option<IOrderOperators<X>> orderops<X>()
             => Try(() => Instances.TryFind(typeof(X)).MapValueOrDefault(o 
-                    => cast<IOrderOperators<X>>(o), OrderedIntrinsic<X>.Default));
+                    => cast<IOrderOperators<X>>(o), DefaultOrder<X>.Default));
 
         /// <summary>
         /// Canonical evolver that lifts a function delegate to a <see cref="Orderer{X}"/>
@@ -61,32 +64,5 @@ namespace Meta.Core.Modules
 
         static ConcurrentDictionary<Type, object> Instances { get; }
             = new ConcurrentDictionary<Type, object>();
-
-
-        //public static bool lt<X>(X x1, X x2)
-        //    where X : IOrdered<X>
-        //        => x1.compare(x2) == Ordering.LT;
-
-        //public bool gt(X x1, X x2)
-        //    => Orderer(x1, x2) == Ordering.GT;
-
-        //public bool gteq(X x1, X x2)
-        //    => gt(x1, x1) || eq(x1, x2);
-
-        //public bool lteq(X x1, X x2)
-        //    => lt(x1, x2) || eq(x1, x2);
-
-        //public bool between(X x, X x1, X x2)
-        //    => gteq(x, x1) && lteq(x, x2);
-
-        //public X max(X x1, X x2)
-        //    => gteq(x1, x2) ? x1 : x2;
-
-        //public X min(X x1, X x2)
-        //    => lteq(x1, x2) ? x1 : x2;
-
-        //public bool neq(X x1, X x2)
-        //    => not(eq(x1, x2));
-
-    }
+     }
 }

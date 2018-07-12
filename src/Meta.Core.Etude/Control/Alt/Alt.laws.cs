@@ -9,7 +9,6 @@ namespace Meta.Core
     using System.Linq;
     using static metacore;
 
-
     /// <summary>
     /// Specifies the signature for the alt map
     /// </summary>
@@ -22,10 +21,7 @@ namespace Meta.Core
     /// <summary>
     /// Identifies and characterizes the Alt typeclass
     /// </summary>
-    public interface IAlt : IFunctor
-    {
-
-    }
+    public interface IAlt : IFunctor { }
 
     /// <summary>
     /// Characterizes productions of the <see cref="IAlt"/> typeclass and thus defines
@@ -38,7 +34,6 @@ namespace Meta.Core
     {
         CX alt(CX f, CX g);
     }
-
 
     partial class classops
     {

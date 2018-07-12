@@ -21,16 +21,13 @@ namespace Meta.Core
     /// <remarks>See http://hackage.haskell.org/package/base-4.11.1.0/docs/Data-Ord.html </remarks>
     public interface IOrdered<X> : IEq<X>
     {
-
         /// <summary>
         /// Determines the <see cref="Ordering"/> classification for a pair of values
         /// </summary>
         /// <param name="x1">The first value</param>
         /// <param name="x2">The second value</param>
         /// <returns></returns>
-        Ordering compare(X x1, X x2);
-       
-
+        Ordering compare(X x1, X x2);       
     }
 
     public interface IOrderOperators<X>  : IOrdered<X>

@@ -11,10 +11,7 @@ namespace Meta.Core
     /// <summary>
     /// Characterizes the Bounded typeclass
     /// </summary>
-    public interface IBounded : ITypeClass
-    {
-
-    }
+    public interface IBounded : ITypeClass { }
 
     /// <summary>
     /// Requires instances to have a specified lower and upper bound

@@ -7,8 +7,11 @@ namespace Meta.Core
 {
     using System;
 
-    public class Category : ClassModule<Category,ICategory>
+    public class Category : ClassModule<Category, ICategory>
     {
+        public Category()
+            : base(typeof(Category<>))
+        { }
         
         public static ICategory<X> make<X>()
             => Category<X>.instance;

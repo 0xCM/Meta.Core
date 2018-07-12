@@ -11,14 +11,14 @@ namespace Meta.Core
     
     public class ConstructedType
     {
-        public ConstructedType(TypeCtor Constructor, Type[] Arguments, Type Constructed)
+        public ConstructedType(TypeConstructor Constructor, Type[] Arguments, Type Constructed)
         {
             this.Contructor = Constructor;
             this.Arguments = Arguments;
             this.Constructed = Constructed;
         }
 
-        public TypeCtor Contructor { get; }
+        public TypeConstructor Contructor { get; }
 
         public Type[] Arguments { get; }
 

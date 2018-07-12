@@ -3,7 +3,7 @@
 // Author: Chris Moore, 0xCM@gmail.com
 // License: MIT
 //-------------------------------------------------------------------------------------------
-namespace Meta.Core.Modules
+namespace Meta.Core
 {
     using System;
     using System.Linq;
@@ -17,6 +17,9 @@ namespace Meta.Core.Modules
     /// </summary>
     public class Bounded : ClassModule<Bounded,IBounded>, IBounded
     {
+        public Bounded()
+            : base(typeof(Bounded<>))
+        { }
 
         /// <summary>
         /// Attemps to construct a <see cref="IBounded{X}"/> predicated on extant data
@@ -24,7 +27,7 @@ namespace Meta.Core.Modules
         /// <typeparam name="X">The bounded type</typeparam>
         /// <returns></returns>
         public static Option<IBounded<X>> make<X>()
-            => BoundedI<X>.Default;
+            => DefaultBounded<X>.Default;
 
         /// <summary>
         /// Creates a <see cref="IBounded{X}"/> predicated on supplied data
@@ -42,7 +45,7 @@ namespace Meta.Core.Modules
         /// <typeparam name="X">The type to test</typeparam>
         /// <returns></returns>
         public static bool isMember<X>()
-            => BoundedI<X>.Default.IsSome();
+            => DefaultBounded<X>.Default.IsSome();
 
     }
 }

@@ -11,6 +11,11 @@ namespace Meta.Core
 
     public class Alternative : ClassModule<Alternative, IAlternative>
     {
+        public Alternative()
+            : base(typeof(Alternative<,,,,>))
+        {
+
+        }
 
         /// <summary>
         /// Constructs a <see cref="IAlternative"/> predicated on supplied data

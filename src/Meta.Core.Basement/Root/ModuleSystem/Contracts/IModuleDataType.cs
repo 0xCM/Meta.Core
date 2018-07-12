@@ -38,13 +38,4 @@ namespace Meta.Core
     }
 
 
-    /// <summary>
-    /// Identifies and characterizes a type defined within
-    /// the context of the module system that has three or more
-    /// generic parameters
-    /// </summary>
-    public interface IModuleDataType<A, B, C> : IModuleDataType<B, C>
-    {
-
-    }
 }

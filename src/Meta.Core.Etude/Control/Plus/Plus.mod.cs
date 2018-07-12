@@ -13,6 +13,12 @@ namespace Meta.Core.Modules
     /// </summary>
     public sealed class Plus : ClassModule<Plus, IPlus>, IPlus
     {
+        public Plus()
+            :base(typeof(Plus<,>))
+        {
+
+        }
+
         /// <summary>
         /// Constructs a <see cref="IPlus"/> value predicated on supplied data
         /// </summary>

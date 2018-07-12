@@ -33,9 +33,9 @@ namespace Meta.Core
     public interface IContainer : IStreamable
     {
         
-    }    
+    }
 
-  
+    
     /// <summary>
     /// Characterizes a data structure that contains zero or more
     /// elements of a specific type

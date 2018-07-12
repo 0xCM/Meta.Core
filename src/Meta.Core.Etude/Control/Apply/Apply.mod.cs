@@ -13,6 +13,12 @@ namespace Meta.Core.Modules
     /// </summary>
     public class Apply : ClassModule<Apply, IApply>, IApply
     {
+        public Apply()
+            : base(typeof(Apply<,,,,>))
+        {
+
+        }
+
         /// <summary>
         /// Constructs a <see cref="IApply"/> value from a <see cref="IFunctor"/> instance and an applier delegate
         /// </summary>

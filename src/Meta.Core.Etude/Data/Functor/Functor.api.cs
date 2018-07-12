@@ -10,10 +10,6 @@ using Meta.Core;
 
 partial class etude
 {
-    public static Lst<Y> fmap<X, Y>(Func<X, Y> f, Lst<X> list)
-        => ListFunctor<X, Y>.instance.fmap(f)(list);
 
-    public static Seq<Y> fmap<X, Y>(Func<X, Y> f, Seq<X> list)
-        => SeqFunctor<X, Y>.instance.fmap(f)(list);
 
 }

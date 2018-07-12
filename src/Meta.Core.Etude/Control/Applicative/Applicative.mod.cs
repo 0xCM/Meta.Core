@@ -14,6 +14,13 @@ namespace Meta.Core.Modules
     public class Applicative : ClassModule<Applicative,IApplicative>, IApplicative
     {
 
+        public Applicative()
+            : base(typeof(Applicative<,,,,>))
+        {
+
+        }
+
+
         /// <summary>
         /// Constructs a <see cref="IApplicative"/> predicated on supplied data
         /// </summary>

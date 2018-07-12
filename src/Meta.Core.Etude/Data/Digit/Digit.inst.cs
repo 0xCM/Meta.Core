@@ -6,16 +6,10 @@
 namespace Meta.Core
 {
     using System;
-    using System.Collections;
     using System.Linq;
-    using System.Collections.Generic;
-
-    using static metacore;
     
+    using static metacore;    
     
-
-
-
     readonly struct DigitOrder : IOrdered<Digit>
     {
         public static readonly DigitOrder instance = default;
@@ -28,5 +22,4 @@ namespace Meta.Core
         public bool eq(Digit x1, Digit x2)
             => compare(x1, x2) == Ordering.EQ;
     }
-
 }

@@ -15,8 +15,9 @@ namespace Meta.Core
     /// <summary>
     /// Implements monadic operators and other utilities 
     /// </summary>
-    public class LinqMonad : TypeModule<LinqMonad>
+    public class LinqMonad 
     {
+        
         /// <summary>
         /// Projects, or lifts, a value from a base space X to its monadic X-Space, M(X)
         /// </summary>

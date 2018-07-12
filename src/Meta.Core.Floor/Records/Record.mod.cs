@@ -16,7 +16,7 @@ namespace Meta.Core
     /// <summary>
     /// Defines operations on the Record type family
     /// </summary>
-    public partial class Record : TypeModule<Record> 
+    public partial class Record 
     {
         /// <summary>
         /// Returns the generic type definition the record type for a specified arity

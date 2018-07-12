@@ -12,10 +12,8 @@ namespace Meta.Core
 
     public class Traversable : ClassModule<Traversable, ITraversable>
     {
-
-
-
-
+        public Traversable()
+            : base(typeof(Traversable<,,,>))
+        { }           
     }
-
 }

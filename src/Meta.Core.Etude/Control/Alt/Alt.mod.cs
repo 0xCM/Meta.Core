@@ -12,8 +12,11 @@ namespace Meta.Core.Modules
     /// <summary>
     /// Constructs and manipulates <see cref="IAlt"/> types and values
     /// </summary>
-    public sealed class Alt : ClassModule<Alt, IAlt> , IAlt
+    public class Alt : ClassModule<Alt, IAlt>
     {
+        public Alt()
+            : base(typeof(Alt<,>))
+        { }
 
         /// <summary>
         /// Constructs a <see cref="IAlt"/> value predicated on supplied data
@@ -27,7 +30,5 @@ namespace Meta.Core.Modules
             where CX : IContainer<X> 
             => new Alt<X, CX>(functor, alt);
 
-
     }
-
 }

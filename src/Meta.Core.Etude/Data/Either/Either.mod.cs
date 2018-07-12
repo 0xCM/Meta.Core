@@ -3,7 +3,7 @@
 // Author: Chris Moore, 0xCM@gmail.com
 // License: MIT
 //-------------------------------------------------------------------------------------------
-namespace Meta.Core.Modules
+namespace Meta.Core
 {
     using System;
 
@@ -13,8 +13,9 @@ namespace Meta.Core.Modules
     /// <remarks>
     /// API surface inspired by https://github.com/ekmett/either
     /// </remarks>
-    public class Either : TypeModule<Either>, IEither
+    public class Either 
     {
+
         /// <summary>
         /// Constructs a left-valued either
         /// </summary>

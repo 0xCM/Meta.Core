@@ -9,8 +9,14 @@ namespace Meta.Core.Modules
     using System.Linq;
 
 
-    public class Bifunctor : ClassModule<Bifunctor, IBifunctor>, IBifunctor
+    public class Bifunctor : ClassModule<Bifunctor, IBifunctor>
     {
+        public Bifunctor()
+            : base(typeof(Bifunctor<,,,,,,,>))
+        {
+
+        }
+
         /// <summary>
         /// Constructs construct the default bifunctor for the supplied types
         /// </summary>

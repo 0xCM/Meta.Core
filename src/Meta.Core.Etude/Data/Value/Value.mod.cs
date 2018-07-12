@@ -10,6 +10,12 @@ namespace Meta.Core.Modules
 
     public class Value : ClassModule<Value,IValue>
     {
+        public Value()
+            : base(typeof(Value<>))
+        {
+
+        }
+
         /// <summary>
         /// Lifts content into the Value context
         /// </summary>

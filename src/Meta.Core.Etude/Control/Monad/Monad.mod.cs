@@ -13,6 +13,13 @@ namespace Meta.Core.Modules
     /// </summary>
     public class Monad : ClassModule<Monad, IMonad>, IMonad
     {
+        
+        public Monad()
+            : base(typeof(Monad<,,,,>))
+        {
+
+        }
+
         /// <summary>
         /// Constructs a <see cref="IMonad"/> predicated on supplied data
         /// </summary>

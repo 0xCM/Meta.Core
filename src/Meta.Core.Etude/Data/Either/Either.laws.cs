@@ -7,12 +7,12 @@ namespace Meta.Core
 {
     using System;
 
-    public interface IEither : IModuleDataType
+    public interface IEither 
     {
 
     }
 
-    public interface IEither<L, R> : IEither, IModuleDataType<L,R>
+    public interface IEither<L, R> : IEither
     {
         /// <summary>
         /// If <see cref="IsLeft"/> is true, specifies the value of the left alternative

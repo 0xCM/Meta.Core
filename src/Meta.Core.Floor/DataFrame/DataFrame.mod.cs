@@ -14,7 +14,7 @@ namespace Meta.Core
     /// <summary>
     /// Base type for specialized generic <see cref="IDataFrame"/> realizations
     /// </summary>
-    public class DataFrame : TypeModule<DataFrame>
+    public class DataFrame 
     {
 
         static Option<Type> FrameTypeDef(int order)

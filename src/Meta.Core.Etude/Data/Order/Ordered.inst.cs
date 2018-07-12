@@ -15,10 +15,10 @@ namespace Meta.Core
     /// Defines a default instance of <see cref="IOrdered"/> predicated on operator implementations
     /// </summary>
     /// <typeparam name="X">The ordered type</typeparam>
-    readonly struct OrderedIntrinsic<X> : IOrderOperators<X>
+    readonly struct DefaultOrder<X> : IOrderOperators<X>
     {
         public static IOrderOperators<X> Default { get; }
-            = new OrderedIntrinsic<X>();
+            = new DefaultOrder<X>();
 
         public bool eq(X x1, X x2)
             => operators.eq(x1, x2);

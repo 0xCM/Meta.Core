@@ -17,19 +17,6 @@ namespace Meta.Core
 
     public static class AssemblyGenerator
     {
-        static string sample =
-@"  using System;
-    namespace MyNamespace
-    {
-        public class Writer
-        {
-            public static void Write(string message)
-            {
-                Console.WriteLine(message);
-            }
-        }
-    }";
-
 
         public static Assembly Generate(Script code, params FilePath[] assemblyrefs)
         {

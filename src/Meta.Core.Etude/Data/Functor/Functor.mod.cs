@@ -8,9 +8,15 @@ namespace Meta.Core.Modules
     using System;
     using System.Linq;
 
-
-    public class Functor : ClassModule<Functor, IFunctor>, IFunctor
+    public class Functor : ClassModule<Functor, IFunctor>, IFunctor     
     {
+        public Functor()
+            : base(typeof(Functor<,,,>))
+        {
+
+        }
+
+
         /// <summary>
         /// Constructs a functor from a map
         /// </summary>
@@ -24,10 +30,5 @@ namespace Meta.Core.Modules
             where CX : IContainer<X, CX>, new()
             where CY : IContainer<Y, CY>, new()
                 => new Functor<X, CX, Y, CY>(fmap);
-
-
-
-
     }
-
 }

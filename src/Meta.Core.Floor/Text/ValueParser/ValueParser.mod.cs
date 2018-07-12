@@ -10,6 +10,12 @@ namespace Meta.Core.Modules
 
     public sealed class ValueParser : ClassModule<ValueParser,IValueParser>, IValueParser
     {
+        public ValueParser()
+            : base(typeof(ValueParser<>))
+        {
+
+        }
+        
         /// <summary>
         /// Attemps to construct an intrinsic value parser
         /// </summary>

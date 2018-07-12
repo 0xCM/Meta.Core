@@ -8,7 +8,7 @@ namespace Meta.Core
     using System;
     using System.Linq;            
 
-    public readonly struct Bifunctor<X1, CX1, X2, CX2, Y1, CY1, Y2, CY2> : IBifunctor<X1, CX1, X2, CX2, Y1, CY1, Y2, CY2>
+    readonly struct Bifunctor<X1, CX1, X2, CX2, Y1, CY1, Y2, CY2> : IBifunctor<X1, CX1, X2, CX2, Y1, CY1, Y2, CY2>
         where CX1 : IContainer<X1, CX1>, new()
         where CX2 : IContainer<X2, CX2>, new()
         where CY1 : IContainer<Y1, CY1>, new()

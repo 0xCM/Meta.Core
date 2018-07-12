@@ -21,7 +21,7 @@ namespace Meta.Core
     /// the contract for membership in same
     /// </summary>
     /// <typeparam name="X">The type of element for which equality is defined</typeparam>
-    public interface IEq<X> : ITypeClass<X>
+    public interface IEq<X> : IEq,  ITypeClass<X>
     {
         /// <summary>
         /// Determines whether two <typeparamref name="X"/> values are the same
@@ -33,17 +33,4 @@ namespace Meta.Core
     }
 
 
-    public delegate bool Equator<in X, in CX>(CX cx1, CX cx2)
-        where CX : IContainer<X>;
-
-    /// <summary>
-    /// Defines equality concept fpr type constructors
-    /// </summary>
-    /// <typeparam name="X"></typeparam>
-    /// <typeparam name="CX"></typeparam>
-    public interface IEq<X,CX> : IEq
-        where CX : IContainer<X>
-    {
-        bool eq(CX cx1, CX cx2);
-    }
 }

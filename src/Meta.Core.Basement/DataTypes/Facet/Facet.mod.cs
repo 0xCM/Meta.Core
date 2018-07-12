@@ -5,11 +5,18 @@
 //-------------------------------------------------------------------------------------------
 namespace Meta.Core
 {
+    using System;
+    using System.Linq;
+
     /// <summary>
     /// Facet manipulation module
     /// </summary>
-    public class Facet : TypeModule<Facet>
+    public class Facet 
     {
+        public Facet()
+        {
+
+        }
         public static Facet<T> MinLength<T>(T value)
             => FacetInfo.Create(CommonFacetNames.MinLength, value);
 

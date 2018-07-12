@@ -14,6 +14,12 @@ namespace Meta.Core.Modules
     public class Bind : ClassModule<Bind,IBind>, IBind
     {
 
+        public Bind()
+            : base(typeof(Bind<,,,,>))
+        {
+
+        }
+
         public static IBind<X, CX, CFX, Y, CY> make<X, CX, CFX, Y, CY>(IApply<X, CX, CFX, Y, CY> applier, Binder<X, CX, CFX, Y, CY> binder)
             where CX : IContainer<X>
             where CFX : IContainer<Func<X, Y>>
