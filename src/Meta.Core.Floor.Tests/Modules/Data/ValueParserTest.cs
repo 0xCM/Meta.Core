@@ -20,13 +20,20 @@ namespace Meta.Core.Test
     {
 
         [UT.TestMethod]
-        public void Test01()
+        public void ParseDecimalValue()
         {
             
             claim.satisfies(ValueParser.make<decimal>(), 
                 parser => parser.Parse("35.0").Satisfies(d => d == 35.0m));
             
         }
+
+        [UT.TestMethod]
+        public void ParseByteValue()
+            => claim.satisfies(ValueParser.make<byte>(),
+                    parser => parser.Parse("35").Satisfies(d => d == (byte)35));
+
+        
 
     }
 

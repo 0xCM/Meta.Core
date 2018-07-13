@@ -10,8 +10,15 @@ using Meta.Core;
 partial class etude
 {
 
+    /// <summary>
+    /// Implements the <![CDATA[<|>]]> operator for sequences
+    /// </summary>
+    /// <typeparam name="X">The item type</typeparam>
+    /// <param name="l1">The first sequence</param>
+    /// <param name="l2">The second sequence</param>
+    /// <returns></returns>
     public static Seq<X> alt<X>(Seq<X> s1, Seq<X> s2)
-        => Seq.Alt<X>().alt(s1, s2);
+        => Seq.concat(s1, s2);
 
     public static Seq<Y> apply<X, Y>(Seq<Func<X, Y>> sf, Seq<X> sx)
         => Seq.apply(sf, sx);

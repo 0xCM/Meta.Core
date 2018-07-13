@@ -7,6 +7,7 @@ namespace Meta.Core
 {
     using System;
     using System.Linq;
+    using System.Collections.Concurrent;
 
     using static metacore;
 
@@ -19,9 +20,9 @@ namespace Meta.Core
             : base(typeof(Semigroup<>))
         { }
 
+        static ConcurrentDictionary<Type, ISemigroup> InstanceIndex { get; }
+            = new ConcurrentDictionary<Type, ISemigroup>();
 
-        static ClassInstanceIndex<ISemigroup> ClassInstances { get; }
-            = new ClassInstanceIndex<ISemigroup>();
 
         /// <summary>
         /// Attempts to construct a <see cref="ISemigroup"/> over <typeparamref name="X"/>
@@ -29,11 +30,12 @@ namespace Meta.Core
         /// <typeparam name="X">The semigroup element type</typeparam>
         /// <returns></returns>
         public static Option<ISemigroup<X>> make<X>()
-            => Try(() => ClassInstances.TryFind<ISemigroup<X>>((typeof(X)))
-                    .ValueOrElse(() => DefaultSemigroup<X>.instance));
+            => Try(() => InstanceIndex.TryFind((typeof(X)))
+                    .MapValueOrElse(v => (ISemigroup<X>)v, 
+                    _ => DefaultSemigroup<X>.instance));
 
         static void RegisterInstance(ISemigroup instance)
-            => ClassInstances.Register(instance.GetType(), instance);
+            => InstanceIndex.TryAdd(instance.GetType(), instance);
 
         static Semigroup()
             => iter(Factories(), f => RegisterInstance(f()));

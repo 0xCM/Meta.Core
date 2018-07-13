@@ -179,6 +179,10 @@ namespace Meta.Core
         public Seq<Y> Cast<Y>()
             => from item in this
                select cast<Y>(item);
+
+        public Option<TypeConstruction> ConstructType(params Type[] args)
+            => new TypeConstructor(typeof(Seq<>)).Construct(args);
+
     }
 
 }

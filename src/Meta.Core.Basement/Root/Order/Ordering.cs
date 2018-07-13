@@ -9,7 +9,7 @@ namespace Meta.Core
     using System.Collections.Generic;
 
     /// <summary>
-    /// Classifies an binary order evaluation
+    /// Classifies an binary order evaluation in the context of a total order
     /// </summary>
     public enum Ordering
     {
@@ -39,38 +39,5 @@ namespace Meta.Core
     /// <returns></returns>
     public delegate Ordering Orderer<in X>(X x1, X x2);
 
-
-    /// <summary>
-    /// Defines a <see cref="IComparer{T}"/> implementation by delegating to a
-    /// provided <see cref="Orderer{X}"/>
-    /// </summary>
-    /// <typeparam name="X"></typeparam>
-    /// <remarks>This exists for compatibily with the .Net framework comparison mechanisms</remarks>
-    public readonly struct Komparer<X> : IComparer<X>
-    {
-        public Komparer(Orderer<X> Orderer)
-            => this.Orderer = Orderer;
-
-        Orderer<X> Orderer { get; }
-
-        /// <summary>
-        /// Implements the <see cref="IComparer{T}.Compare(T, T)"/> operation
-        /// </summary>
-        /// <param name="x">The first value</param>
-        /// <param name="y">The second value</param>
-        /// <returns></returns>
-        public int Compare(X x, X y)
-        {
-            switch (Orderer(x, y))
-            {
-                case Ordering.LT:
-                    return -1;
-                case Ordering.GT:
-                    return 1;
-                default:
-                    return 0;
-            }
-        }
-    }
 
 }

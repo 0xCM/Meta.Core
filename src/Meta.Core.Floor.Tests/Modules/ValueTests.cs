@@ -14,11 +14,11 @@ namespace Meta.Core.Test
     using UT = Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [UT.TestClass]
-    public class ContainerTests
+    public class ValueTests
     {
 
         [UT.TestMethod]
-        public void Test01()
+        public void MapValueApi()
         {
             var x0 = value(3);
             var y0 = map(x0, x => x * 3);

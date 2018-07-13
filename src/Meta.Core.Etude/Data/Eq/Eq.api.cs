@@ -25,5 +25,5 @@ partial class etude
     /// <param name="x2">The second value</param>
     /// <returns></returns>
     public static bool eq<X>(X x1, X x2)
-        => equality<X>().eq(x1, x2);
+        => Eq.make<X>().eq(x1, x2);
 }

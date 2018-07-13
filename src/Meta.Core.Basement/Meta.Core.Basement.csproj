@@ -8,4 +8,8 @@
     <PackageReference Include="System.Collections.Immutable" Version="1.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Substructure\" />
+  </ItemGroup>
+
 </Project>

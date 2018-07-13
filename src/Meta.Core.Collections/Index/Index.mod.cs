@@ -11,8 +11,14 @@ namespace Meta.Core.Modules
     using System.Collections.Immutable;
 
 
-    public class Index
+    public class Index  : DataModule<Index, IIndex>
     {
+        public Index()
+            : base(typeof(Index<>))
+        {
+
+        }
+
         /// <summary>
         /// Constructs an index from a sequence
         /// </summary>

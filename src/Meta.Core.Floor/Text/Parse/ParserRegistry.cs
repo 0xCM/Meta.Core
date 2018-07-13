@@ -20,11 +20,13 @@ namespace Meta.Core
         
         static IConversionSuite Projector { get; }
 
+        static AssemblyTraverser _traverser(params Action<Type>[] TypeHandlers)
+            => new AssemblyTraverser(TypeHandlers);
 
         static ParserRegistry()
         {
             var closedMethods = new ConcurrentBag<MethodInfo>();
-            var traverser = TypeClass.traverser(t =>
+            var traverser = _traverser(t =>
             {
                 var parsers = from m in t.GetDeclaredMethods(MemberInstanceType.Static)
                               where m.HasAttribute<ParserAttribute>()

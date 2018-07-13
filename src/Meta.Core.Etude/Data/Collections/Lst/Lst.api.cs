@@ -15,8 +15,15 @@ partial class etude
     public static Lst<Y> apply<X, Y>(Lst<Func<X, Y>> lf, Lst<X> lx)
         => Lst.apply(lf, lx);
 
+    /// <summary>
+    /// Implements the <![CDATA[<|>]]> operator for lists
+    /// </summary>
+    /// <typeparam name="X">The item type</typeparam>
+    /// <param name="l1">The first list</param>
+    /// <param name="l2">The second list</param>
+    /// <returns></returns>
     public static Lst<X> alt<X>(Lst<X> l1, Lst<X> l2)
-        => Lst.Alt<X>().alt(l1, l2);
+        => Lst.concat(l1, l2);
 
     public static Y foldl<X, Y>(Func<Y, X, Y> f, Y y0, Lst<X> container)
         => Lst.foldl(f, y0, container);
@@ -41,7 +48,7 @@ partial class etude
     /// <typeparam name="X">The element type</typeparam>
     /// <typeparam name="Y">The transformed element type</typeparam>
     /// <returns></returns>
-    public static IListMonad<X, Y> listM<X, Y>()
+    public static ILstMonad<X, Y> listM<X, Y>()
         => Lst.Monad<X, Y>();
 
     public static Lst<Y> fmap<X, Y>(Func<X, Y> f, Lst<X> list)

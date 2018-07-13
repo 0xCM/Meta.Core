@@ -51,3 +51,7 @@ is identical to an unfactored container.
 ##### Lift
 To raise a base value of type X into a context C[X] over X by some
 function **X -> C[X]**
+
+##### Type Constructor
+
+A function that, given types C and X, produces a new type C[X]

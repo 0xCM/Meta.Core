@@ -20,7 +20,7 @@ namespace Meta.Core
     public delegate CY Binder<X, CX, CFX, Y, CY>(CX cx, Func<X, CY> f);
 
     /// <summary>
-    /// Identifies and characterizes the Bind typeclass
+    /// Identifies the Bind typeclass
     /// </summary>
     public interface IBind : IApply
     {
@@ -28,13 +28,18 @@ namespace Meta.Core
     }
 
     /// <summary>
-    /// Characterizes productions of the <see cref="IBind"/> typeclass
+    /// Identifies and characterizes the Bind typeclass
     /// </summary>
     public interface IBind<X, CX, CFX, Y, CY> : IBind, IApply<X, CX, CFX, Y, CY>
         where CX : IContainer<X>
         where CFX : IContainer<Func<X, Y>>
         where CY : IContainer<Y>
     {
+        /// <summary>
+        /// Specifies the <![CDATA[>>=]]> operator
+        /// </summary>
+        /// <param name="f">A container over <typeparamref name="X"/></param>
+        /// <param name="g">A <typeparamref name="X"/> item projector that targets a container over <typeparamref name="Y"/> </param>
         CY bind(CX f, Func<X, CY> g);
     }
 

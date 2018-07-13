@@ -190,5 +190,8 @@ namespace Meta.Core
 
         IEnumerable IStreamable.Stream()
             => Stream();
+
+        public Option<TypeConstruction> ConstructType(params Type[] args)
+            => new TypeConstructor(typeof(Index<>)).Construct(args);
     }
 }

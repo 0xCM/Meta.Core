@@ -11,33 +11,48 @@ namespace Meta.Core
 
     public interface ILstEq<X> : IEq<Lst<X>> { }
 
-    public interface IListPlus<X> : IPlus<X, Lst<X>> { }
+    public interface ILstPlus<X> : IPlus<X, Lst<X>> { }
 
     public interface ILstAlt<X> : IAlt<X, Lst<X>> { }
 
     public interface ILstAlternative<X, Y> : IAlternative<X, Lst<X>, Lst<Func<X, Y>>, Y, Lst<Y>> { }
 
-    public interface IListApply<X, Y> : IApply<X, Lst<X>, Lst<Func<X, Y>>, Y, Lst<Y>> { }
+    public interface ILstApply<X, Y> : IApply<X, Lst<X>, Lst<Func<X, Y>>, Y, Lst<Y>> { }
 
-    public interface IListBind<X, Y> : IBind<X, Lst<X>, Lst<Func<X, Y>>, Y, Lst<Y>> { }
+    public interface ILstBind<X, Y> : IBind<X, Lst<X>, Lst<Func<X, Y>>, Y, Lst<Y>> { }
 
     public interface IListApplicative<X, Y> : IApplicative<X, Lst<X>, Lst<Func<X, Y>>, Y, Lst<Y>> { }
 
-    public interface IListMonad<X, Y> : IMonad<X, Lst<X>, Lst<Func<X, Y>>, Y, Lst<Y>> { }
+    public interface ILstMonad<X, Y> : IMonad<X, Lst<X>, Lst<Func<X, Y>>, Y, Lst<Y>> { }
 
-    public interface IListBifunctor<X1, X2, Y1, Y2> : IBifunctor<X1, Lst<X1>, X2, Lst<X2>, Y1, Lst<Y1>, Y2, Lst<Y2>> { }
+    public interface ILstBifunctor<X1, X2, Y1, Y2> : IBifunctor<X1, Lst<X1>, X2, Lst<X2>, Y1, Lst<Y1>, Y2, Lst<Y2>> { }
 
-    public interface IListFoldable<X> : IFoldable<X, Lst<X>> { }
+    public interface ILstFoldable<X> : IFoldable<X, Lst<X>> { }
 
-    public interface IListFunctor<X, Y> : IFunctor<X, Lst<X>, Y, Lst<Y>> { }
+    public interface ILstFunctor<X, Y> : IFunctor<X, Lst<X>, Y, Lst<Y>> { }
 
-    public interface IListInvariant<X, Y> : IInvariant<X, Lst<X>, Y, Lst<Y>> { }
+    public interface ILstInvariant<X, Y> : IInvariant<X, Lst<X>, Y, Lst<Y>> { }
 
-    public interface IListTraversable<X, Y> : ITraversable<X, Lst<X>, Y, Lst<Y>> { }
+    public interface ILstTraversable<X, Y> : ITraversable<X, Lst<X>, Y, Lst<Y>> { }
 
+    public interface ILstExtend<X,Y> : IExtend<X,Lst<X>,Y,Lst<Y>> { }
 
     partial class Lst
     {
+        readonly struct ListExtend<X, Y> : ILstExtend<X,Y>
+        {
+            public static readonly ListExtend<X, Y> instance = default;
+
+            public Func<Lst<X>, Lst<Y>> extend(Func<Lst<X>, Y> f)
+                => lx => from lxt in Lst.tails(lx)
+                         where not(lxt.IsEmpty)
+                         let y = f(lxt)
+                         select y;
+
+            public Func<Lst<X>, Lst<Y>> fmap(Func<X, Y> f)
+                => Lst.Functor<X, Y>().fmap(f);
+        }
+
 
         readonly struct LstEq<X> : ILstEq<X>
         {
@@ -56,7 +71,7 @@ namespace Meta.Core
         /// </summary>
         /// <typeparam name="X">The source type</typeparam>
         /// <typeparam name="Y">The target type</typeparam>
-        readonly struct ListFunctor<X, Y> : IListFunctor<X, Y>
+        readonly struct ListFunctor<X, Y> : ILstFunctor<X, Y>
         {
             public static readonly ListFunctor<X, Y> instance = default;
 
@@ -93,7 +108,7 @@ namespace Meta.Core
         }
 
 
-        readonly struct ListApply<X, Y> : IListApply<X, Y>
+        readonly struct ListApply<X, Y> : ILstApply<X, Y>
         {
             public static readonly ListApply<X, Y> instance = default;
 
@@ -104,12 +119,12 @@ namespace Meta.Core
                 => Lst.fmap(f);
         }
 
-        struct ListBind<X, Y> : IListBind<X, Y>
+        struct ListBind<X, Y> : ILstBind<X, Y>
         {
             public static readonly ListBind<X, Y> instance = default;
 
             /// <summary>
-            /// Applies a list of function to a list of values
+            /// Applies a list of functions to a list of values
             /// </summary>
             public Lst<Y> apply(Lst<Func<X, Y>> lf, Lst<X> lx)
                 => Lst.apply(lf, lx);
@@ -152,7 +167,7 @@ namespace Meta.Core
                 => x1 == x2;
         }
  
-        readonly struct ListMonad<X, Y> : IListMonad<X, Y>
+        readonly struct ListMonad<X, Y> : ILstMonad<X, Y>
         {
             public static readonly ListMonad<X, Y> instance = default;
 
@@ -173,7 +188,7 @@ namespace Meta.Core
         /// Defines the default list <see cref="IPlus"/> instance
         /// </summary>
         /// <typeparam name="X">The item type</typeparam>
-        readonly struct ListPlus<X> : IListPlus<X>
+        readonly struct ListPlus<X> : ILstPlus<X>
         {
             public static readonly ListPlus<X> instance = default;
 
@@ -188,7 +203,7 @@ namespace Meta.Core
         }
 
 
-        readonly struct ListBifunctor<X1, X2, Y1, Y2> : IListBifunctor<X1, X2, Y1, Y2>
+        readonly struct ListBifunctor<X1, X2, Y1, Y2> : ILstBifunctor<X1, X2, Y1, Y2>
         {
             public static readonly ListBifunctor<X1, X2, Y1, Y2> instance = default;
 
@@ -197,7 +212,7 @@ namespace Meta.Core
         }
 
 
-        readonly struct ListInvariant<X, Y> : IListInvariant<X, Y>
+        readonly struct ListInvariant<X, Y> : ILstInvariant<X, Y>
         {
             public static readonly ListInvariant<X, Y> instance = default;
 
@@ -205,7 +220,7 @@ namespace Meta.Core
                 => lx => Lst.imap(f, g, lx);
         }
 
-        readonly struct ListFoldable<X> : IListFoldable<X>
+        readonly struct ListFoldable<X> : ILstFoldable<X>
         {
             public static readonly ListFoldable<X> instance = default;
 
@@ -219,7 +234,7 @@ namespace Meta.Core
                 => Lst.foldr(f, y0, container);
         }
 
-        readonly struct ListTraversable<X, Y> : IListTraversable<X, Y>
+        readonly struct ListTraversable<X, Y> : ILstTraversable<X, Y>
         {
             public static readonly ListTraversable<X, Y> instance = default;
 

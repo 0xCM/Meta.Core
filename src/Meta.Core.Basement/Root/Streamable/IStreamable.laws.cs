@@ -10,6 +10,14 @@ namespace Meta.Core
     using System.Collections.Generic;
     using System.Linq;
 
+    /// <summary>
+    /// Contract for a function that materializes a stream
+    /// </summary>
+    /// <typeparam name="X">The element type</typeparam>
+    /// <returns></returns>
+    public delegate IEnumerable<X> Streamer<X>();
+
+
     public interface IStreamable
     {
         IEnumerable Stream();    

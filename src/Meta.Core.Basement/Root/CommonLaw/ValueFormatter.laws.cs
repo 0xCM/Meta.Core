@@ -6,16 +6,18 @@
 namespace Meta.Core
 {
     using System;
+    using System.Text.RegularExpressions;
 
-    public abstract class ModuleExport
+    using static minicore;
+
+    /// <summary>
+    /// Defines contract for producing a string from a value
+    /// </summary>
+    public interface IValueFormatter<in V>
     {
-
-        protected ModuleExport(Type ModuleType)
-        {
-            this.ModuleType = ModuleType;
-        }
-
-        public Type ModuleType { get; }
+        string Format(V value);
     }
+
+    public delegate string ValueFormatter<in V>(V value);
 
 }

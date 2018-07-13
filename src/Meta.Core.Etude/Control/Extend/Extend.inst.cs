@@ -10,16 +10,6 @@ namespace Meta.Core
 
     using static metacore;
 
-    readonly struct ListExtend<X, Y> : IExtend<X, Lst<X>, Y, Lst<Y>>
-    {
-        public Func<Lst<X>, Lst<Y>> extend(Func<Lst<X>, Y> f)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Func<Lst<X>, Lst<Y>> fmap(Func<X, Y> f)
-            => Lst.Functor<X,Y>().fmap(f);
-    }
 
 
 }

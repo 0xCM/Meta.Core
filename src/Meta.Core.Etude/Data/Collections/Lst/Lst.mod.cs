@@ -25,7 +25,7 @@ namespace Meta.Core
         /// </summary>
         /// <typeparam name="X">The item type</typeparam>
         /// <returns></returns>
-        public static IListFunctor<X,Y> Functor<X, Y>()
+        public static ILstFunctor<X,Y> Functor<X, Y>()
             => ListFunctor<X, Y>.instance;
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Meta.Core
         /// </summary>
         /// <typeparam name="X">The item type</typeparam>
         /// <returns></returns>
-        public static IListInvariant<X,Y> Invariant<X, Y>()
+        public static ILstInvariant<X,Y> Invariant<X, Y>()
             => ListInvariant<X, Y>.instance;
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace Meta.Core
         /// </summary>
         /// <typeparam name="X">The item type</typeparam>
         /// <returns></returns>
-        public static IListFoldable<X> Foldable<X>()
+        public static ILstFoldable<X> Foldable<X>()
             => ListFoldable<X>.instance;
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Meta.Core
         /// </summary>
         /// <typeparam name="X">The item type</typeparam>
         /// <returns></returns>
-        public static IListApply<X,Y> Apply<X, Y>()
+        public static ILstApply<X,Y> Apply<X, Y>()
             => ListApply<X, Y>.instance;
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Meta.Core
         /// </summary>
         /// <typeparam name="X">The item type</typeparam>
         /// <returns></returns>
-        public static IListBind<X,Y> Bind<X, Y>()
+        public static ILstBind<X,Y> Bind<X, Y>()
             => ListBind<X, Y>.instance;
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace Meta.Core
         /// </summary>
         /// <typeparam name="X">The item type</typeparam>
         /// <returns></returns>
-        public static IListPlus<X> Plus<X>()
+        public static ILstPlus<X> Plus<X>()
             => ListPlus<X>.instance;
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace Meta.Core
         /// </summary>
         /// <typeparam name="X">The item type</typeparam>
         /// <returns></returns>
-        public static IListMonad<X,Y> Monad<X, Y>()
+        public static ILstMonad<X,Y> Monad<X, Y>()
             => ListMonad<X, Y>.instance;
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace Meta.Core
         /// </summary>
         /// <typeparam name="X">The item type</typeparam>
         /// <returns></returns>
-        public static IListTraversable<X,Y> Traversable<X, Y>()
+        public static ILstTraversable<X,Y> Traversable<X, Y>()
             => ListTraversable<X, Y>.instance;
 
         /// <summary>
@@ -116,6 +116,14 @@ namespace Meta.Core
         public static ILstMonoid<X> Monoid<X>()
             => LstMonoid<X>.instance;
 
+        /// <summary>
+        /// Constructs <see cref="IExtend"/> over a list
+        /// </summary>
+        /// <typeparam name="X">The source list item type</typeparam>
+        /// <typeparam name="Y">The target list item type</typeparam>
+        /// <returns></returns>
+        public static ILstExtend<X, Y> Extend<X, Y>()
+            => ListExtend<X, Y>.instance;
 
 
         /// <summary>

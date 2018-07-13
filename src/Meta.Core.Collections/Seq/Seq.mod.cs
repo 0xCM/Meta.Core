@@ -16,8 +16,12 @@ namespace Meta.Core.Modules
     /// Implementation module for <see cref="Seq{X}"/>
     /// </summary>
 
-    public class Seq 
+    public class Seq   : DataModule<Seq,ISeq>
     {
+        public Seq()
+            : base(typeof(Seq<>))
+        { }
+
         /// <summary>
         /// Gets the primary Seq constructor
         /// </summary>

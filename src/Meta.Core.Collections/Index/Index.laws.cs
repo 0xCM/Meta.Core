@@ -8,7 +8,7 @@ namespace Meta.Core
     using System;
     using System.Linq;
 
-    public interface IIndex
+    public interface IIndex : IDataModule
     {
 
     }
@@ -17,7 +17,7 @@ namespace Meta.Core
     /// Characterizes an immutable associative array keyed with ingeger values
     /// </summary>
     /// <typeparam name="X">The contained item type</typeparam>
-    public interface IIndex<X> : IIndex, IContainer<X,Index<X>>
+    public interface IIndex<X> : IIndex, IDataModule<X,Index<X>>,  IContainer<X,Index<X>>
     {
         /// <summary>
         /// Retrieves the value stored at a specified index position

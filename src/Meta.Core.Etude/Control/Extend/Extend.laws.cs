@@ -11,7 +11,12 @@ namespace Meta.Core
     using static metacore;
 
 
-    public interface IExtend<X,CX,Y,CY> : IFunctor<X,CX,Y,CY>
+    public interface IExtend : IFunctor
+    {
+
+    }
+
+    public interface IExtend<X,CX,Y,CY> : IExtend, IFunctor<X,CX,Y,CY>
         where CX : IContainer<X>
         where CY : IContainer<Y>
     {

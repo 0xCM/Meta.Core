@@ -9,21 +9,12 @@ namespace Meta.Core
     using System.Linq;
     using static minicore;
 
-    public abstract class ClassModule : IClassModule
+    public abstract class ClassModule : CodeModule, IClassModule
     {
-        
-        public Type GenericTypeDefinition { get; }
-
-        protected virtual Option<TypeConstructor> TypeConstructor(int arity)
-            => none<TypeConstructor>();
-
-        public Option<ConstructedType> ConsructType(params Type[] args)
-            => from tc in TypeConstructor(args.Length)
-               from type in TypeClass.construct(tc, args)
-               select type;
 
         protected ClassModule(Type GenericTypeDefinition)
-            => this.GenericTypeDefinition = GenericTypeDefinition;
+            : base(GenericTypeDefinition)
+        { }
     }
 
     /// <summary>
@@ -37,7 +28,6 @@ namespace Meta.Core
 
     {
 
-
         protected static readonly M ModuleInstance
             = new M();
 
@@ -46,9 +36,6 @@ namespace Meta.Core
         {
 
         }
-
-        //protected virtual ITypeConstructor<M, X, MX> TypeConstructor<X, MX>(int arity)
-        //      where MX : IContext<X, MX>, new() => TypeConstructor<M, X, MX>.instance;
 
     }
 }

@@ -12,8 +12,12 @@ namespace Meta.Core
 
     public delegate Lst<X> LstFactory<X>(G.IEnumerable<X> source);
 
+    public interface ILst : IDataModule
+    {
 
-    public interface ILst<X> :   IContainer<X, Lst<X>>
+    }
+
+    public interface ILst<X> :  ILst, IDataModule<X,Lst<X>>, IContainer<X, Lst<X>>
     {
 
     }

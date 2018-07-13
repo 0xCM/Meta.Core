@@ -31,8 +31,11 @@ namespace Meta.Core
 
     public interface ISeqTraversable<X, Y> : ITraversable<X, Seq<X>, Y, Seq<Y>> { }
 
+
+
     partial class Seq
     {
+
         public readonly struct SeqEq<X> : ISeqEq<X>
         {
             public static readonly SeqEq<X> instance = default;

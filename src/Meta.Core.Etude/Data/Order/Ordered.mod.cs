@@ -42,21 +42,21 @@ namespace Meta.Core.Modules
             => new Orderer<X>(f);
 
         /// <summary>
-        /// Constucts a <see cref="Komparer{X}"/> from a provided <see cref="Orderer{X}"/>
+        /// Constucts a <see cref="OrderComparer{X}"/> from a provided <see cref="Orderer{X}"/>
         /// </summary>
         /// <typeparam name="X"></typeparam>
         /// <param name="f"></param>
         /// <returns></returns>
-        public static Komparer<X> comparer<X>(Orderer<X> f)
-            => new Komparer<X>(f);
+        public static OrderComparer<X> comparer<X>(Orderer<X> f)
+            => new OrderComparer<X>(f);
 
         /// <summary>
-        /// Constucts a <see cref="Komparer{X}"/> from a provided <see cref="IOrdered{X}"/>
+        /// Constucts a <see cref="OrderComparer{X}"/> from a provided <see cref="IOrdered{X}"/>
         /// </summary>
         /// <typeparam name="X"></typeparam>
         /// <param name="ordered">An ordered typeclass instance</param>
         /// <returns></returns>
-        public static Komparer<X> comparer<X>(IOrdered<X> ordered)
+        public static OrderComparer<X> comparer<X>(IOrdered<X> ordered)
         {
             Orderer<X> orderer = (x, y) => ordered.compare(x, y);
             return comparer(orderer);

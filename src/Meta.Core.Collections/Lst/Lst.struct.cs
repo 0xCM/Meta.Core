@@ -162,14 +162,16 @@ namespace Meta.Core
             => Data[index];
 
         /// <summary>
-        /// Retrieves an inclusive slice
+        /// Retrieves the sublist determined by the supplied range, if possible. Otherwise,
+        /// returns the empty list
         /// </summary>
-        /// <param name="minIdx"></param>
-        /// <param name="maxIdx"></param>
+        /// <param name="minIdx">The minimum 0-based index</param>
+        /// <param name="maxIdx">The maximum 0-based index</param>
         /// <returns></returns>
         public Lst<X> this[int minIdx, int maxIdx]            
-            => minIdx >= maxIdx 
-            ? Empty : new Lst<X>(Data.GetRange(minIdx, maxIdx - minIdx + 1));
+            => minIdx > maxIdx  ? Empty 
+            : maxIdx >= Count ? Empty
+            : new Lst<X>(Data.GetRange(minIdx, maxIdx - minIdx + 1));
 
         public int Count
             => Data.Count;
@@ -233,5 +235,9 @@ namespace Meta.Core
 
         IEnumerable IStreamable.Stream()
             => Stream();
+
+        public Option<TypeConstruction> ConstructType(params Type[] args)
+            => new TypeConstructor(typeof(Lst<>)).Construct(args);
+
     }
 }

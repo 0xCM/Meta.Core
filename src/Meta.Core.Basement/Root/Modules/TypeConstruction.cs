@@ -9,20 +9,33 @@ namespace Meta.Core
     using System.Linq;
 
     
-    public class ConstructedType
+    /// <summary>
+    /// Encapsulates the result of a type constructor invocation
+    /// </summary>
+    public class TypeConstruction
     {
-        public ConstructedType(TypeConstructor Constructor, Type[] Arguments, Type Constructed)
+        public TypeConstruction(TypeConstructor Constructor, Type[] Arguments, Type Constructed)
         {
             this.Contructor = Constructor;
             this.Arguments = Arguments;
             this.Constructed = Constructed;
         }
 
+        /// <summary>
+        /// Specifies the type constructor that effected the consruction
+        /// </summary>
         public TypeConstructor Contructor { get; }
 
+        /// <summary>
+        /// Specifies the arguments suppled to the type constructor
+        /// </summary>
         public Type[] Arguments { get; }
 
+        /// <summary>
+        /// Specifies the constructed type
+        /// </summary>
         public Type Constructed { get; }
+
     }
 
 }

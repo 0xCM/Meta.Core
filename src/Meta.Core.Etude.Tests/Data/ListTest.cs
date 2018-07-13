@@ -7,44 +7,106 @@ namespace Meta.Core.Test
 {
     using System;
     using System.Linq;
-    
-    using static operators;
-    using static etude;
+
     using static metacore;
+    using static etude;
 
     using UT = Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    [UT.TestClass, UT.TestCategory("metacore/collections")]
+
+    [UT.TestClass, UT.TestCategory("metacore/etude/data")]
     public class ListTest
     {
 
         [UT.TestMethod]
-        public void Test01()
+        public void ListSlice1()
+        {
+            var l1 = list(15,16,17,18,19);
+            claim.equal(list(15, 16, 17), l1[0, 2]);
+        }
+
+        [UT.TestMethod]
+        public void ListSlice2()
+        {
+            var l1 = list(15, 16, 17, 18, 19);
+            claim.equal(list(19), l1[4,4]);
+        }
+
+        [UT.TestMethod]
+        public void ListSlice3()
+        {
+            var l1 = list(15, 16, 17, 18, 19);
+            claim.equal(Lst<int>.Empty, l1[50,50]);
+        }
+
+        [UT.TestMethod]
+        public void ListFold1()
+        {
+            var input = list(1, 2, 3, 4, 5);
+            var output = foldr(operators.add, 0, input);
+            var expect = 15;
+            claim.equal(expect, output);
+        }
+
+        [UT.TestMethod]
+        public void ListFold2()
+        {
+            var input = list(1, 2, 3, 4, 5);
+            var output = foldl(operators.add, 0, input);
+            var expect = 15;
+            claim.equal(expect, output);
+        }
+
+        [UT.TestMethod]
+        public void ListFold3()
+        {
+            var items = list(2, 4, 6, 8);
+            var f = func((int x, int y) => (x + y) * 2);
+            var folded = foldl(f, 1, items);
+            claim.equal(120, folded);
+        }
+
+        [UT.TestMethod]
+        public void ListFold4()
+        {
+            var input = list(5, 10, 15, 20);
+            var lResult = foldl(operators.add, 5, input);
+            var rResult = foldr(operators.add, 5, input);
+            claim.equal(lResult, rResult);
+        }
+
+
+
+        [UT.TestMethod]
+        public void ListTails()
+        {
+            var src = list(1, 2, 3, 4, 5);
+            var result = Lst.tails(src);
+            var expect = list(list(1, 2, 3, 4, 5), list(2, 3, 4, 5), list(3, 4, 5), list(4, 5), list(5), list<int>());
+            claim.equal(expect, result);
+
+        }
+
+
+        [UT.TestMethod]
+        public void ListExtend()
+        {
+            var src = list(1, 2, 3, 4, 5);
+            var f = func((Lst<int> x) => Lst.foldl(operators.add,0, x));
+            var result = Lst.Extend<int, int>().extend(f)(src);
+            var expect = list(15, 14, 12, 9, 5);
+            claim.equal(expect, result);
+            
+        }
+
+        [UT.TestMethod]
+        public void ListEq()
         {
             var items = list(2, 4, 6, 8);
             var doubled = map(x => 2 * x, items);
             claim.equal(list(4, 8, 12, 16), doubled);
         }
 
-        [UT.TestMethod]
-        public void Test05()
-        {
-            var items = list(2, 4, 6, 8);
-            var f = func((int x, int y) => (x + y) * 2);
-            var folded = foldl(f, 1, items);
-            claim.equal(120, folded);
-
-        }
-
-        [UT.TestMethod]
-        public void Test15()
-        {
-            var input = list(5, 10, 15, 20);
-            var lResult = foldl(add, 5, input);
-            var rResult = foldr(add, 5, input);
-            claim.equal(lResult, rResult);
-
-        }
 
         [UT.TestMethod]
         public void ListParse()
@@ -60,12 +122,12 @@ namespace Meta.Core.Test
         {
             var input = list(5, 10, 15, 20);
             var output = foldr((x, y) => x + y, 0, input);
-            claim.equal(add(add(add(5, 10), 15), 20), output);
+            claim.equal(operators.add(operators.add(operators.add(5, 10), 15), 20), output);
         }
 
         [UT.TestMethod]
         public void ListFunctor1()
-        {            
+        {
             var output = fmap(x => x * 2, list(2, 4, 6));
             var expect = list(4, 8, 12);
             claim.equal(expect, output);
@@ -76,7 +138,7 @@ namespace Meta.Core.Test
         public void ListApplicative()
         {
             var numbers = list(2, 4, 6);
-            var functions = list<Func<int, int>>(x => x * 2, x => x * 3, x => x * 4);            
+            var functions = list<Func<int, int>>(x => x * 2, x => x * 3, x => x * 4);
             var expect = from f in functions
                          from x in numbers
                          select f(x);
@@ -86,7 +148,7 @@ namespace Meta.Core.Test
         }
 
         [UT.TestMethod]
-        public void SumTest()
+        public void SumSemigroup()
         {
             var sum = from x in SemigroupOp.make(1)
                       from y in x + SemigroupOp.make(7)
@@ -112,19 +174,9 @@ namespace Meta.Core.Test
 
         }
 
-        [UT.TestMethod]
-        public void ListTails()
-        {
-            var input = list(1, 2, 3, 4, 5);
-            var output = tails(input);
-            claim.equal(5, output.Count);
-            claim.equal(input, output[0]);
-            claim.equal(Lst.zero<int>(), output[4]);
-
-        }
 
         [UT.TestMethod]
-        public void ListBindTest()
+        public void ListBind()
         {
             var input = list(1, 5, 10);
             var f = func((int x) => list(x * 2, x * 4, x * 6));
@@ -135,17 +187,15 @@ namespace Meta.Core.Test
         }
 
         [UT.TestMethod]
-        public void ListMulTest()
+        public void ListMul()
         {
-            var l1 = list(1,2,3,4,5);
+            var l1 = list(1, 2, 3, 4, 5);
             var l2 = 3 * l1;
             var l3 = list(3, 6, 9, 12, 15);
             claim.equal(l3, l2);
-            
-        }
 
+        }
 
 
     }
 }
-

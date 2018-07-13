@@ -16,8 +16,13 @@ namespace Meta.Core.Modules
     /// <remarks>
     /// The exposed API is somewhat consistent with http://hackage.haskell.org/package/containers-0.5.11.0/docs/Data-Map-Strict.html
     /// </remarks>
-    public class Map 
+    public class Map : FactoredDataModule<Map, IMap>
     {
+
+        public Map()
+            : base(typeof(Map<,>))
+        { }
+
         /// <summary>
         /// Constructs a map from a sequence of key-value pairs
         /// </summary>

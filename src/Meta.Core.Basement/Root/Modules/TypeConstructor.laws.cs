@@ -8,14 +8,16 @@ namespace Meta.Core
     using System;
     using System.Linq;
 
-    using static minicore;
-
-    public readonly struct DefaultEq<X> : IEq<X>
+    public interface ITypeConstructor<M, X, MX>
+        where M : IClassModule<M>, new()
+        where MX : IContext<X, MX>, new()
     {
-        public static readonly DefaultEq<X> instance = default;
-
-        public bool eq(X x1, X x2)
-            => object.Equals(x1, x2);
+        MX construct();
     }
 
+
+
 }
+
+
+

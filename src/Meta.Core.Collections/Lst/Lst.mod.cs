@@ -15,8 +15,11 @@ namespace Meta.Core.Modules
     /// <summary>
     /// Implelements Haskell-style list operations
     /// </summary>
-    public class Lst 
+    public class Lst : DataModule<Lst, ILst>
     {
+        public Lst()
+            : base(typeof(Lst<>))
+        { }
 
         /// <summary>
         /// Gets the primary Lst constructor
@@ -221,11 +224,16 @@ namespace Meta.Core.Modules
         {
             var lastIdx = list.Count - 1;
             for (var i = 0; i <= lastIdx; i++)
-                yield return list[i, lastIdx];            
+                yield return list[i, lastIdx];
+
+            yield return Lst<X>.Empty;
         }
 
         public static Lst<Lst<X>> tails<X>(Lst<X> list)
             => make(_tails(list));
+
+        public static Lst<X> slice<X>(int minIdx, int maxIdx, Lst<X> list)
+            => list[minIdx, maxIdx];
 
         /// <summary>
         /// Produces a new list from an existing list via a traversal operator

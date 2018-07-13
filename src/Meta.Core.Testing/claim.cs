@@ -28,7 +28,10 @@ namespace Meta.Core
             for (var i = 0; i < values.Length - 1; i++)
                 equal(values[i], values[i + 1]);            
         }
-            
+
+        public static void allTrue(params bool[] values)
+            => UT.Assert.IsTrue(values.All(v => v == true));
+
 
         public static void equal<T>(T expect, Option<T> actual)
             => UT.Assert.AreEqual(expect, actual.ValueOrDefault());
