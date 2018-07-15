@@ -112,8 +112,6 @@ partial class metacore
     public static Seq<Y> map<X, Y>(Seq<X> s, Func<X, Y> f)
         => Seq.map(f, s);
 
-
-
     /// <summary>
     /// Produces a sequence of relatively contiguous values within a specified range
     /// </summary>
@@ -189,5 +187,60 @@ partial class metacore
     public static Seq<Z> zip<X, Y, Z>(Seq<X> sx, Seq<Y> sy, Func<X, Y, Z> f)
         => seq(sx.Stream().Zip(sy.Stream(), f));
 
+    /// <summary>
+    /// Zips the first sequence with the second into a sequence of 2-tuples
+    /// </summary>
+    /// <typeparam name="X">The item tyep of the first sequence</typeparam>
+    /// <typeparam name="Y">The item type of the second sequence</typeparam>
+    /// <param name="sx">The first sequence</param>
+    /// <param name="sy">The second sequence</param>
+    /// <returns></returns>
+    public static Seq<(X1 x1, X2 x2)> zip<X1, X2>(Seq<X1> sx, Seq<X2> sy)
+        => Seq.zip(sx, sy);
+
+    /// <summary>
+    /// Joins three sequences to produce a sequence of 3-tuples
+    /// </summary>
+    /// <typeparam name="X1">The item type of the first sequence</typeparam>
+    /// <typeparam name="X2">The item type of the second sequence</typeparam>
+    /// <typeparam name="X3">The item type of the third sequence</typeparam>
+    /// <param name="s1">The first input sequence</param>
+    /// <param name="s2">The second input sequence</param>
+    /// <param name="s3">The third input sequence</param>
+    /// <returns></returns>
+    public static Seq<(X1 x1, X2 x2, X3 x3)> zip<X1, X2, X3>(Seq<X1> s1, Seq<X2> s2, Seq<X3> s3)
+        => Seq.make(zip(s1, s2).Stream().Zip(s3.Stream(), (a, b) => (a.x1, a.x2, b)));
+
+    /// <summary>
+    /// Joins four sequences to produce a sequence of 4-tuples
+    /// </summary>
+    /// <typeparam name="X1">The item type of the first sequence</typeparam>
+    /// <typeparam name="X2">The item type of the second sequence</typeparam>
+    /// <typeparam name="X3">The item type of the third sequence</typeparam>
+    /// <typeparam name="X4">The item type of the fourth sequence</typeparam>
+    /// <param name="s1">The first input sequence</param>
+    /// <param name="s2">The second input sequence</param>
+    /// <param name="s3">The third input sequence</param>
+    /// <param name="s4">The fourth input sequence</param>
+    /// <returns></returns>
+    public static Seq<(X1 x1, X2 x2, X3 x3, X4 x4)> zip<X1, X2, X3, X4>(Seq<X1> s1, Seq<X2> s2, Seq<X3> s3, Seq<X4> s4)
+        => Seq.make(zip(s1, s2, s3).Stream().Zip(s4.Stream(), (a, b) => (a.x1, a.x2, a.x3, b)));
+
+    /// <summary>
+    /// Joins five sequences to produce a sequence of 5-tuples
+    /// </summary>
+    /// <typeparam name="X1">The item type of the first sequence</typeparam>
+    /// <typeparam name="X2">The item type of the second sequence</typeparam>
+    /// <typeparam name="X3">The item type of the third sequence</typeparam>
+    /// <typeparam name="X4">The item type of the fourth sequence</typeparam>
+    /// <typeparam name="X5">The item type of the fifth sequence</typeparam>
+    /// <param name="s1">The first input sequence</param>
+    /// <param name="s2">The second input sequence</param>
+    /// <param name="s3">The third input sequence</param>
+    /// <param name="s4">The fourth input sequence</param>
+    /// <param name="s5">The fifth input sequence</param>
+    /// <returns></returns>
+    public static Seq<(X1 x1, X2 x2, X3 x3, X4 x4, X5 x5)> zip<X1, X2, X3, X4, X5>(Seq<X1> s1, Seq<X2> s2, Seq<X3> s3, Seq<X4> s4, Seq<X5> s5)
+        => Seq.make(zip(s1, s2, s3, s4).Stream().Zip(s5.Stream(), (a, b) => (a.x1, a.x2, a.x3, a.x4, b)));
 
 }

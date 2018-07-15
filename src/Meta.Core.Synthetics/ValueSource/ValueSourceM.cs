@@ -13,7 +13,11 @@ namespace Meta.Core
 
     public delegate V ValueSource<out V>();
 
+    
+    
+
     public delegate IEnumerable<V> ValuesSource<out V>();
+
 
     /// <summary>
     /// A <see cref="ValueSource{V}"/> monad

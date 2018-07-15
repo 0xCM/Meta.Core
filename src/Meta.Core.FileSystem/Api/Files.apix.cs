@@ -1,7 +1,7 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// MetaCore
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace Meta.Core
 {
@@ -18,6 +18,9 @@ namespace Meta.Core
 
     using Modules;
 
+    /// <summary>
+    /// Defines extensions related to the file system
+    /// </summary>
     public static class FileX
     {
         /// <summary>
@@ -599,13 +602,6 @@ namespace Meta.Core
         public static IReadOnlyList<TextLine> ReadAllLines(this ITextFile Src)
             => mapi(File.ReadAllLines(Src.SourcePath), (i, s) => new TextLine(i + 1, s));
 
-        /// <summary>
-        /// Converts the uri to a local file system path
-        /// </summary>
-        /// <param name="uri"></param>
-        /// <returns></returns>
-        public static FilePath ToLocalPath(this SystemUri uri)
-            => string.Join(bslash(), uri.Path.Components());
 
     }
 

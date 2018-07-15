@@ -19,7 +19,7 @@ partial class metacore
     /// <param name="f">The delegate to lift</param>
     /// <returns></returns>
     public static Function<X, Y> func<X, Y>(Func<X, Y> f)
-        => Function.make(f);
+        => Function.wrap(f);
 
     /// <summary>
     /// Constructs a function from a from a delegate of type X1->X2->Y
@@ -30,7 +30,7 @@ partial class metacore
     /// <param name="f">The delegate to lift</param>
     /// <returns></returns>
     public static Function<X1, X2, Y> func<X1, X2, Y>(Func<X1, X2, Y> f)
-        => Function.make(f);
+        => Function.wrap(f);
 
     /// <summary>
     /// Constructs a function from a from a delegate of type X1->X2->X3->Y
@@ -42,7 +42,7 @@ partial class metacore
     /// <param name="f">The delegate to lift</param>
     /// <returns></returns>
     public static Function<X1, X2, X3, Y> func<X1, X2, X3, Y>(Func<X1, X2, X3, Y> f)
-        => Function.make(f);
+        => Function.wrap(f);
 
     /// <summary>
     /// Lifts a delegate to a Function value
@@ -55,7 +55,7 @@ partial class metacore
     /// <param name="f">The delegate to lift</param>
     /// <returns></returns>
     public static Function<X1, X2, X3, X4, Y> func<X1, X2, X3, X4, Y>(Func<X1, X2, X3, X4, Y> f)
-        => Function.make(f);
+        => Function.wrap(f);
 
     /// <summary>
     /// Flows an input value into a function to effect evaluation

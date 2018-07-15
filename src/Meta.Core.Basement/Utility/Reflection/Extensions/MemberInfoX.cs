@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ComponentModel;
 using System.Linq.Expressions;
 using System.IO;
 using System.Diagnostics;
@@ -13,6 +14,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 
 using static CommonBindingFlags;
+using static minicore;
 
 partial class Reflections
 {
@@ -109,8 +111,38 @@ partial class Reflections
             ? declaringType.GetMethod(name, bindingAttr: AnyVisibilityOrInstanceType,
                         binder: null, types: argTypes, modifiers: null)
             : declaringType.GetMethod(name, AnyVisibilityOrInstanceType);
-        
-    
+
+
+    /// <summary>
+    /// Constructs a reasonably pretty display name for a type
+    /// </summary>
+    /// <param name="t">The type</param>
+    /// <returns></returns>
+    public static string DisplayName(this Type t)
+    {
+        var attrib = t.GetCustomAttribute<DisplayNameAttribute>();
+        if (attrib != null)
+            return attrib.DisplayName;
+
+        if (!t.IsGenericType)
+            return t.Name;
+
+        if (t.IsConstructedGenericType)
+        {
+            var typeArgs = t.GenericTypeArguments;
+            var argFmt = string.Join(",", typeArgs.Select(a => a.DisplayName()).ToArray());
+            var typeName = t.Name.Replace($"`{typeArgs.Length}", string.Empty);
+            return concat(typeName, "<", argFmt, ">");
+        }
+        else
+        {
+            var typeArgs = t.GetGenericTypeDefinition().GetGenericArguments();
+            var argFmt = string.Join(",", typeArgs.Select(a => a.DisplayName()).ToArray());
+            var typeName = t.Name.Replace($"`{typeArgs.Length}", string.Empty);
+            return concat(typeName, "<", argFmt, ">");
+        }
+    }
+
 
 
 }

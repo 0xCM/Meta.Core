@@ -28,7 +28,7 @@ namespace Meta.Core
         /// <param name="x">The value over which evaluation will occur</param>
         /// <returns></returns>
         public static Y operator <((X1 x1, X2 x2, X3 x3, X4 x4) x, Function<X1, X2, X3, X4, Y> f)
-            => f.Eval(x);
+            => f.Apply(x);
 
         /// <summary>
         /// Evaluates the function f at x
@@ -37,7 +37,7 @@ namespace Meta.Core
         /// <param name="x">The value over which evaluation will occur</param>
         /// <returns></returns>
         public static Y operator >((X1 x1, X2 x2, X3 x3, X4 x4) x, Function<X1, X2, X3, X4, Y> f)
-            => f.Eval(x);
+            => f.Apply(x);
 
         /// <summary>
         /// Evaluates the function f at x
@@ -46,7 +46,7 @@ namespace Meta.Core
         /// <param name="x">The value over which evaluation will occur</param>
         /// <returns></returns>
         public static Y operator <(Function<X1, X2, X3, X4, Y> f, (X1 x1, X2 x2, X3 x3, X4 x4) x)
-            => f.Eval(x);
+            => f.Apply(x);
 
         /// <summary>
         /// Evaluates the function f at x
@@ -55,7 +55,7 @@ namespace Meta.Core
         /// <param name="x">The value over which evaluation will occur</param>
         /// <returns></returns>
         public static Y operator >(Function<X1, X2, X3, X4, Y> f, (X1 x1, X2 x2, X3 x3, X4 x4) x)
-            => f.Eval(x);
+            => f.Apply(x);
 
 
         /// <summary>
@@ -63,14 +63,14 @@ namespace Meta.Core
         /// </summary>
         /// <param name="f">The delegate to lift</param>
         public static implicit operator Function<X1, X2, X3,X4, Y>(Func<X1, X2, X3, X4,Y> f)
-            => Function.make(f);
+            => Function.wrap(f);
 
         /// <summary>
         /// Implicitly drops a function to a delegate
         /// </summary>
         /// <param name="f"></param>
         public static implicit operator Func<X1, X2, X3, X4, Y>(Function<X1, X2, X3, X4, Y> f)
-            => Function.value(f);
+            => Function.unwrap(f);
 
         /// <summary>
         /// Constructs the function
@@ -100,7 +100,7 @@ namespace Meta.Core
         /// </summary>
         /// <param name="input">The coordinate value to evaluate</param>
         /// <returns></returns>
-        public Y Eval((X1 x1, X2 x2, X3 x3, X4 x4) input)
+        public Y Apply((X1 x1, X2 x2, X3 x3, X4 x4) input)
             => F(input.x1, input.x2, input.x3, input.x4);
 
         /// <summary>

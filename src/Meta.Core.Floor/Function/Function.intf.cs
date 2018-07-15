@@ -25,7 +25,7 @@ namespace Meta.Core
         /// </summary>
         /// <param name="input">The input value</param>
         /// <returns></returns>
-        Y Eval(X input);
+        Y Apply(X input);
 
         /// <summary>
         /// Renders the canonical display format for the function

@@ -1,16 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <TargetFrameworks>net472</TargetFrameworks>
     <OutputType>EXE</OutputType>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Tests\MetaBuild.cs" />
-  </ItemGroup>
 
-  <ItemGroup>
-    <None Include="Tests\MetaBuild.cs" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Meta.Core\Meta.Core.csproj" />

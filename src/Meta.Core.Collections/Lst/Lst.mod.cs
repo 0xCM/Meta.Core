@@ -21,6 +21,9 @@ namespace Meta.Core.Modules
             : base(typeof(Lst<>))
         { }
 
+
+        
+
         /// <summary>
         /// Gets the primary Lst constructor
         /// </summary>
@@ -45,6 +48,19 @@ namespace Meta.Core.Modules
         /// <returns></returns>
         public static Lst<X> make<X>(IEnumerable<X> items)
             => ctor<X>()(items);
+
+        /// <summary>
+        /// Constructs a properly-typed list but initialzed with untyped items
+        /// </summary>
+        /// <param name="itemType">The item type</param>
+        /// <param name="items">The items with which to populate the list</param>
+        /// <returns></returns>
+        public static ILst make(Type itemType, IEnumerable<object> items)
+        {
+            var listType = (new Lst()).ConstructType(itemType).Require().Constructed;
+            var list = (ILst)Activator.CreateInstance(listType);
+            return list.Fill(items);
+        }
 
         /// <summary>
         /// Constructs a sequence from an item array

@@ -38,6 +38,7 @@ namespace Meta.Core
         /// The data encapsulated by the frame
         /// </summary>
         public Index<Record<X1>> Rows { get; }
+        
 
         /// <summary>
         /// Presents the frame data as a sequence of item arrays

@@ -17,7 +17,11 @@ public delegate IReadOnlyDictionary<string, object> JsonAttributeParser(Json jso
 /// </summary>
 public interface IJsonSerializer
 {
-
+    /// <summary>
+    /// Creates a dictionary lookup from json attributes
+    /// </summary>
+    /// <param name="json">The json to parse</param>
+    /// <returns></returns>
     IReadOnlyDictionary<string, object> DeserializeAttributes(Json json);
 
     Json SerializeAttributes(IReadOnlyDictionary<string, object> attributes);
@@ -36,7 +40,7 @@ public interface IJsonSerializer
     /// <param name="o">The object to emit</param>
     /// <param name="path">The output path</param>
     /// <param name="indented">Whether to use the indented output mode</param>
-    Option<FileWriteResult> ObjectToFile(object o, FilePath path, bool indented = true);
+    Option<IFilePath> ObjectToFile(object o, FilePath path, bool indented = true);
 
     /// <summary>
     /// Reconstitutes a value of type <typeparamref name="T"/> from its JSON representation

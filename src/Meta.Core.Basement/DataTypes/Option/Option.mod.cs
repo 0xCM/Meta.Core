@@ -8,9 +8,22 @@ using System.Linq;
 
 public static class Option
 {
+    /// <summary>
+    /// Defines a T-option with no value together with an optional message
+    /// </summary>
+    /// <typeparam name="T">The underlying type</typeparam>
+    /// <param name="message">A related message, if any</param>
+    /// <returns></returns>
     internal static Option<T> None<T>(IAppMessage message = null)
         => Option<T>.None(message);
 
+    /// <summary>
+    /// Defines a valued option win an optional message
+    /// </summary>
+    /// <typeparam name="T">The underlying type</typeparam>
+    /// <param name="value">The option value</param>
+    /// <param name="message">A related message, if any</param>
+    /// <returns></returns>
     internal static Option<T> Some<T>(T value, IAppMessage message = null)
         => Option<T>.Some(value, message);
 
@@ -81,8 +94,24 @@ public static class Option
         return false;
     }
 
+    /// <summary>
+    /// Formats the the option for display
+    /// </summary>
+    /// <typeparam name="X">The underlying type</typeparam>
+    /// <param name="x">The potential value</param>
+    /// <returns></returns>
     public static string render<X>(Option<X> x)
         => x.MapValueOrElse(value => value?.ToString() ?? string.Empty, 
-            message => message.ToOption().Map(m => m.Format(), 
+            message => message.ToOption().Map(m => m.Format(),                 
                 () => string.Empty));
+
+    /// <summary>
+    /// Returns the first option with a value, if possible; otherwise, raises an exception
+    /// </summary>
+    /// <typeparam name="K">A constraint to which all supplied options conform</typeparam>
+    /// <param name="options">To options to search</param>
+    /// <returns></returns>
+    public static K first<K>(params IOption[] options)
+        => (K)options.First(o => o.IsSome).Value;
+
 }

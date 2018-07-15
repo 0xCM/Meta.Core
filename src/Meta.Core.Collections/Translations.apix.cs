@@ -1,7 +1,7 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// MetaCore
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace Meta.Core
 {
@@ -10,9 +10,7 @@ namespace Meta.Core
     using System.Collections.Generic;
 
     using static minicore;
-
-       
-
+      
     using Modules;
 
     /// <summary>
@@ -109,7 +107,7 @@ namespace Meta.Core
         /// <typeparam name="X">The element type</typeparam>
         /// <param name="source">The data source</param>
         /// <returns></returns>
-        public static Seq<X> AsList<X>(this IContainer<X> source)
+        public static Lst<X> AsList<X>(this IContainer<X> source)
             => Lst.make(source.Stream());
 
         /// <summary>
@@ -149,6 +147,46 @@ namespace Meta.Core
         /// <returns></returns>
         public static IReadOnlyDictionary<K, V> ToReadOnlyDictionary<K, V>(this Seq<(K key, V value)> map)
             => dict(map.Stream().Select(x => (x.key, x.value)));
+
+        /// <summary>
+        /// Determines whether a specified type is a closed Lst type
+        /// </summary>
+        /// <param name="t">The type to examine</param>
+        /// <returns></returns>
+        public static bool IsLst(this Type t)
+            => t.IsConstructedGenericType && t.GetGenericTypeDefinition() == typeof(Lst<>);
+
+        /// <summary>
+        /// Determines whether a specified type is a closed Index type
+        /// </summary>
+        /// <param name="t">The type to examine</param>
+        /// <returns></returns>
+        public static bool IsIndex(this Type t)
+            => t.IsConstructedGenericType && t.GetGenericTypeDefinition() == typeof(Index<>);
+
+        /// <summary>
+        /// Determines whether a specified type is a closed Seq type
+        /// </summary>
+        /// <param name="t">The type to examine</param>
+        /// <returns></returns>
+        public static bool IsSeq(this Type t)
+            => t.IsConstructedGenericType && t.GetGenericTypeDefinition() == typeof(Seq<>);
+
+        /// <summary>
+        /// Determines whether a specified type is a closed Map type
+        /// </summary>
+        /// <param name="t">The type to examine</param>
+        /// <returns></returns>
+        public static bool IsMap(this Type t)
+            => t.IsConstructedGenericType && t.GetGenericTypeDefinition() == typeof(Map<,>);
+
+        /// <summary>
+        /// Determines whether a specified type is a closed Set type
+        /// </summary>
+        /// <param name="t">The type to examine</param>
+        /// <returns></returns>
+        public static bool IsSet(this Type t)
+            => t.IsConstructedGenericType && t.GetGenericTypeDefinition() == typeof(Set<>);
 
     }
 

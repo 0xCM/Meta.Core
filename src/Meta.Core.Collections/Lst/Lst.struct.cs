@@ -9,12 +9,16 @@ namespace Meta.Core
     using System.Linq;
     using System.Collections.Immutable;
     using System.Collections.Generic;
+    using System.Collections;
 
+    using Modules;
+
+    using static Union;
 
     using static minicore;
 
-    using Modules;
-    using System.Collections;
+    
+
 
     public readonly struct Lst<X> : ILst<X>
     {        
@@ -71,7 +75,7 @@ namespace Meta.Core
         /// </summary>
         /// <param name="list">The list to convert</param>
         public static implicit operator X[](Lst<X> list)
-            => list.Data.ToArray();
+            => list.Data.Value.ToArray();
 
         /// <summary>
         /// Concatenates two lists
@@ -153,13 +157,20 @@ namespace Meta.Core
         public static LstFactory<X> Factory
             => items => new Lst<X>(items.ToImmutableList());
 
+
         internal Lst(ImmutableList<X> Value)
             => this.Data = Value;
 
-        ImmutableList<X> Data { get; }
+        internal Lst(X[] Value)
+            => this.Data = Value;
+
+
+        CDU<IReadOnlyList<X>, X[], ImmutableList<X>> Data { get; }
+
+        //ImmutableList<X> Data { get; }
 
         public X this[int index]
-            => Data[index];
+            => Data.Value[index];
 
         /// <summary>
         /// Retrieves the sublist determined by the supplied range, if possible. Otherwise,
@@ -171,13 +182,13 @@ namespace Meta.Core
         public Lst<X> this[int minIdx, int maxIdx]            
             => minIdx > maxIdx  ? Empty 
             : maxIdx >= Count ? Empty
-            : new Lst<X>(Data.GetRange(minIdx, maxIdx - minIdx + 1));
+            : Factory(Data.Value.GetRange(minIdx, maxIdx - minIdx + 1));
 
         public int Count
-            => Data.Count;
+            => Data.Value.Count;
 
         public IEnumerable<X> Stream()
-            => Data;
+            => Data.Value;
 
         public bool IsEmpty
             => this.Count == 0;
@@ -187,13 +198,13 @@ namespace Meta.Core
         /// </summary>
         /// <returns></returns>
         public Seq<X> Contained()
-            => Seq.make(Data);
+            => Seq.make(Data.Value);
 
         public IReadOnlyList<X> AsReadOnlyList()
-            => Data;
+            => Data.Value;
 
         public X[] AsArray()
-            => Data.ToArray();
+            => Data.Value.ToArray();
 
         public override int GetHashCode()
             => Container.hash(this);
@@ -219,7 +230,7 @@ namespace Meta.Core
             => IsEmpty ? Cardinality.Zero : Cardinality.Finite;
 
         IEnumerable<X> IStreamable<X>.Stream()
-            => Data;
+            => Data.Value;
 
         ContainerFactory<X, Lst<X>> IContainer<X, Lst<X>>.Factory
             => stream => new Lst<X>(stream.ToImmutableList());
@@ -236,8 +247,17 @@ namespace Meta.Core
         IEnumerable IStreamable.Stream()
             => Stream();
 
+        public Type ElementType
+            => typeof(X);
+
+
         public Option<TypeConstruction> ConstructType(params Type[] args)
             => new TypeConstructor(typeof(Lst<>)).Construct(args);
 
+        Array ILst.AsArray()
+            => AsArray();
+
+        ILst ILst.Fill(IEnumerable<object> items)
+            => Factory(items.Cast<X>());
     }
 }

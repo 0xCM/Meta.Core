@@ -23,9 +23,9 @@ namespace Meta.Core.Test
             var F = Lst.Functor<int, decimal>();
             var f = func<int, decimal>(x => x * 15.0m);
             var source = Synthetic.Create(150);
-            var data = source.Next<int>(500).AsList();
+            var data = source.Next<int>(500);
             var result = F.fmap(f)(data);
-            var expect = Lst.map(x => x * 15.0m, data);
+            var expect = map(x => x * 15.0m, data);
             claim.equal(expect, result);
            
         }
@@ -34,7 +34,7 @@ namespace Meta.Core.Test
         public void Test01B()
         {
             var source = Synthetic.Create(150);
-            var data = source.Next<int>(500).AsList();
+            var data = source.Next<int>(500);
             var result = fmap(x => x * 15.0m, data);
             var expect = Lst.map(x => x * 15.0m, data);
             claim.equal(expect, result);

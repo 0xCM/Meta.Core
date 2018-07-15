@@ -8,29 +8,6 @@ namespace Meta.Core
     using System;
     using System.Linq;
 
-
-
-    public interface IHAlgebra : ITypeClass
-    {
-
-    }
-
-    public interface IHAlgebra<A> : IHAlgebra, ITypeClass<A>
-    {
-        A ff { get; }
-
-        A tt { get; }
-
-        A implies(A a1, A a2);
-
-        A conj(A a1, A a2);
-
-        A disj(A a1, A a2);
-
-        A not(A a);
-    }
-
-
     public readonly struct HAlgebra<A> : IHAlgebra<A>
     {
 
@@ -63,10 +40,8 @@ namespace Meta.Core
         public static readonly HAlgebraBoolean instance = default;
         static readonly HAlgebra<bool> @default = new HAlgebra<bool>(false, true);
 
-
         public bool ff
             => @default.ff;
-
 
         public bool tt
             => @default.tt;

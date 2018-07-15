@@ -67,7 +67,7 @@ namespace Meta.Core.Test
         [UT.TestMethod]
         public void Test10()
         {
-            var frame = assembly().Types.ToDataFrame(x => x.ContainsGenericParameters, x => x.BaseType, x => x.AccessLevel);
+            var frame = assembly().Types.AsDataFrame(x => x.ContainsGenericParameters, x => x.BaseType, x => x.AccessLevel);
             var accessA = seqi(frame.Col03);
             var accessB = seqi(assembly().Types.Select(a => a.AccessLevel));
             claim.equal(accessA, accessB);

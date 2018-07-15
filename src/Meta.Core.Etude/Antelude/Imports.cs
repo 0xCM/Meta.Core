@@ -22,7 +22,7 @@ namespace Meta.Core
 
     public class Ordered : Modules.Ordered { }
 
-    
+    public class Function : Modules.Function { }    
 
 
 }

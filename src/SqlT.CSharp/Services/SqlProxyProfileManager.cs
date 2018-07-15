@@ -9,6 +9,7 @@ namespace SqlT.CSharp
     using System.Collections.Generic;
     using System.Linq;
 
+    using Meta.Core;
     using SqlT.Core;
     
 

@@ -36,7 +36,6 @@ namespace Meta.Core
 
         }
 
-
         Process StartProcess(string args, bool createWindow)
         {
             var process = new Process()
@@ -64,9 +63,4 @@ namespace Meta.Core
             => DstPath.Write($"{this} {args}").ToFileOption();
 
     }
-
-
-
-
-
 }

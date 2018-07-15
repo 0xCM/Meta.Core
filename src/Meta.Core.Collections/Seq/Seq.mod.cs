@@ -346,16 +346,17 @@ namespace Meta.Core.Modules
             => make(s.Stream().Where(p));
 
         /// <summary>
-        /// Joins two sequences to produce a new sequence of ordered pairs
-        /// derived from the source sequences
+        /// Joins two sequences to produce a sequence of 2-tuples
         /// </summary>
-        /// <typeparam name="X">The item type of the first sequence</typeparam>
-        /// <typeparam name="Y">The item type of the second sequence</typeparam>
-        /// <param name="x">The first input sequence</param>
-        /// <param name="y">The second input sequence</param>
+        /// <typeparam name="X1">The item type of the first sequence</typeparam>
+        /// <typeparam name="X2">The item type of the second sequence</typeparam>
+        /// <param name="s1">The first input sequence</param>
+        /// <param name="s2">The second input sequence</param>
         /// <returns></returns>
-        public static Seq<(X x, Y y)> zip<X, Y>(Seq<X> x, Seq<Y> y)
-            => make(x.Stream().Zip(y.Stream(), (a, b) => (a, b)));
+        public static Seq<(X1 x1, X2 x2)> zip<X1, X2>(Seq<X1> s1, Seq<X2> s2)
+            => make(s1.Stream().Zip(s2.Stream(), (a, b) => (a, b)));
+
+
 
         /// <summary>
         /// Transforms a sequence of ordered pairs into an ordered pair of sequences

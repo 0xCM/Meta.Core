@@ -1,10 +1,12 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// MetaCore
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 using System;
 using System.Linq;
+
+using Meta.Core;
 
 /// <summary>
 /// Base type for custom JSON translation
@@ -12,7 +14,8 @@ using System.Linq;
 /// <typeparam name="T">The translation type</typeparam>
 public abstract class JsonConverter<T> : IJsonConverter<T>
 {
-    private readonly IJsonSerializer serializer;
+    IJsonSerializer serializer { get; }
+
     protected IJsonSerializer Serializer 
             => serializer;
 

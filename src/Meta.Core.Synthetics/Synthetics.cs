@@ -134,6 +134,22 @@ namespace Meta.Core
         }
 
         /// <summary>
+        /// Creates a source for <see cref="int"/> values that aligns with supplied facet and seed specification
+        /// </summary>
+        /// <param name="facets">The facets to apply</param>
+        /// <param name="seed">The seed, if desired</param>
+        /// <returns></returns>
+        [ValueGenerator]
+        static ValueSource<long> GF_Int64(IFacetSet facets, int? seed = null)
+        {
+
+            var randomizer = Randomizer(seed);
+            var min = facets.FindValueOrElse(CommonFacetNames.Min, Int64.MinValue);
+            var max = facets.FindValueOrElse(CommonFacetNames.Min, Int64.MaxValue);
+            return () => randomizer.NextFullRangeInt64();
+        }
+
+        /// <summary>
         /// Creates a source for <see cref="Guid"/> values that aligns with supplied facet and seed specification
         /// </summary>
         /// <param name="facets">The facets to apply</param>
@@ -211,7 +227,7 @@ namespace Meta.Core
         /// Exposes generic accesses to <see cref="ValueSource{V}"/> production
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="seed"></param>
+        /// <param name="seed">The number to supply as the seed for the random generator</param>
         /// <returns></returns>
         public static ValueSource<T> source<T>(int? seed = null)
         {
@@ -232,8 +248,29 @@ namespace Meta.Core
             return (ValueSource<T>)m.Invoke(null, new object[] {facets, seed });
         }
 
+        /// <summary>
+        /// Constructs a 2-tuple source
+        /// </summary>
+        /// <typeparam name="X1">The type of the first coordinate</typeparam>
+        /// <typeparam name="X2">The type of the second coordinate</typeparam>
+        /// <param name="seeds">The optional coordinate-specific seeds</param>
+        /// <returns></returns>
+        static IEnumerable<(X1, X2)> _tuples<X1, X2>((int? s1, int? s2) seeds)
+        {
+            var vs1 = Synthetic.Create(seeds.s1);
+            var vs2 = Synthetic.Create(seeds.s2);
+            for(;;)
+            {
+                yield return (vs1.Next<X1>(), vs2.Next<X2>());
+            }
+        }
+
+        public static Seq<(X1, X2)> tuples<X1, X2>((int? s1, int? s2) seeds)
+            => Modules.Seq.make(_tuples<X1, X2>(seeds));
+
+
         #region Excluded
-        #if FSMATH
+#if FSMATH
                 /// <summary>
                 /// Implements a non-repeating RNG
                 /// </summary>
@@ -271,7 +308,7 @@ namespace Meta.Core
                     var enumerator = seq.GetEnumerator();
                     return () => enumerator.MoveNext() ? enumerator.Current : max;
                 }
-        #endif //FSMATH
+#endif //FSMATH
 
 
         #endregion

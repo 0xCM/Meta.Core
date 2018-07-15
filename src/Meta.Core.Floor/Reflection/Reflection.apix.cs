@@ -46,35 +46,30 @@ public static class ReflectiveFloor
     public static IReadOnlyDictionary<string, object> GetPropertyValues(this Type t, object o)
         => dict(map(props(o), p => (p.Name, p.GetValue(o))));
 
-    /// <summary>
-    /// Constructs a reasonably pretty display name for a type
-    /// </summary>
-    /// <param name="t">The type</param>
-    /// <returns></returns>
-    public static string DisplayName(this Type t)
-    {
-        var attrib = t.GetCustomAttribute<DisplayNameAttribute>();
-        if (attrib != null)
-            return attrib.DisplayName;
+    //public static string DisplayName(this Type t)
+    //{
+    //    var attrib = t.GetCustomAttribute<DisplayNameAttribute>();
+    //    if (attrib != null)
+    //        return attrib.DisplayName;
 
-        if (!t.IsGenericType)
-            return t.Name;
+    //    if (!t.IsGenericType)
+    //        return t.Name;
 
-        if (t.IsConstructedGenericType)
-        {
-            var typeArgs = t.GenericTypeArguments;
-            var argFmt = string.Join(",", map(typeArgs, DisplayName));
-            var typeName = t.Name.Replace($"`{typeArgs.Length}", string.Empty);
-            return concat(typeName, "<", argFmt, ">");
-        }
-        else
-        {
-            var typeArgs = t.GetGenericTypeDefinition().GetGenericArguments();
-            var argFmt = string.Join(",", map(typeArgs, DisplayName));
-            var typeName = t.Name.Replace($"`{typeArgs.Length}", string.Empty);
-            return concat(typeName, "<", argFmt, ">");
-        }
-    }
+    //    if (t.IsConstructedGenericType)
+    //    {
+    //        var typeArgs = t.GenericTypeArguments;
+    //        var argFmt = string.Join(",", map(typeArgs, DisplayName));
+    //        var typeName = t.Name.Replace($"`{typeArgs.Length}", string.Empty);
+    //        return concat(typeName, "<", argFmt, ">");
+    //    }
+    //    else
+    //    {
+    //        var typeArgs = t.GetGenericTypeDefinition().GetGenericArguments();
+    //        var argFmt = string.Join(",", map(typeArgs, DisplayName));
+    //        var typeName = t.Name.Replace($"`{typeArgs.Length}", string.Empty);
+    //        return concat(typeName, "<", argFmt, ">");
+    //    }
+    //}
 
     /// <summary>
     /// If non-nullable, returns the supplied type. If nullable, returns the underlying type

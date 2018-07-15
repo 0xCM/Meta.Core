@@ -32,11 +32,6 @@ namespace Meta.Core.Test
        
 
 
-        [UT.TestMethod]
-        public void Test01()
-        {
-            var lu2 = ldu(Label.Label1, 15).WithType<decimal>();
-        }
 
 
     }

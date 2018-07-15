@@ -361,6 +361,19 @@ public static class minicore
     }
 
     /// <summary>
+    /// Raises a shame-worthy exception, if necessary. Otherwise, returns a non-null value
+    /// </summary>
+    /// <param name="value">The value to test</param>
+    /// <param name="member">The member in which potential shame could occur</param>
+    /// <param name="path">The path to the file in which the shameful member is defined</param>
+    /// <param name="line">The line number of shame, if applicable</param>
+    [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static V shameIfNull<V>(V value, [CallerMemberName] string member = null,
+        [CallerFilePath] string path = null, [CallerLineNumber] int line = 0)
+            => value != null ? value
+                : throw new Exception<int>("You referenced a NULL value!", member, path, line);
+
+    /// <summary>
     /// Raises an exception populated with what happened and where it happened
     /// </summary>
     /// <param name="reason"></param>
@@ -368,11 +381,9 @@ public static class minicore
     /// <param name="path"></param>
     /// <param name="line"></param>
     [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static V shameIfNull<V>(V value, [CallerMemberName] string member = null,
+    public static T fail<T>(IAppMessage reason, [CallerMemberName] string member = null,
         [CallerFilePath] string path = null, [CallerLineNumber] int line = 0)
-            => value != null
-                ? value
-                : throw new Exception<int>("You referenced a NULL value!", member, path, line);
+            => throw new Exception<int>(reason.Format(false), member, path, line);
 
     /// <summary>
     /// Produces a space character as a string
@@ -381,5 +392,14 @@ public static class minicore
     [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string space()
         => " ";
+
+    /// <summary>
+    /// Selects the first realized potential, if any; otherwise returns the default
+    /// </summary>
+    /// <typeparam name="X">The value type</typeparam>
+    /// <param name="potentials">The optional values</param>
+    /// <returns></returns>
+    public static X first<X>(params Option<X>[] potentials)
+        => potentials.First(p => p.IsSome()).ValueOrDefault();
 
 }

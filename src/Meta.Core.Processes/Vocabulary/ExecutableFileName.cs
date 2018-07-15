@@ -6,10 +6,6 @@
 namespace Meta.Core
 {
     using System;
-    using System.Runtime.InteropServices;
-    using System.Collections.Generic;
-    using System.Text;
-    using System.IO;
 
     public sealed class ExecutableFileName : SemanticFileName<ExecutableFileName>
     {
@@ -26,7 +22,7 @@ namespace Meta.Core
         }
 
         public override FileExtension CanonicalExtension
-            => CommonFileExtensions.Dll;
+            => CommonFileExtensions.Exe;
 
         protected override Func<string, ExecutableFileName> Reconstructor
             => text => new ExecutableFileName(text);

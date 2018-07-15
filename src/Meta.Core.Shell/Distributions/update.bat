@@ -1,1 +1,0 @@
-robocopy %cd% %DevDist%\ /xf update.bat /e

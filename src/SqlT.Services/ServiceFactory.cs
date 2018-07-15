@@ -10,6 +10,7 @@ namespace SqlT.Services
     using System.Collections.Generic;
     using System.IO;
 
+    using Meta.Core;
     using SqlT.Models;
     using SqlT.Core;
     using System.Reflection;

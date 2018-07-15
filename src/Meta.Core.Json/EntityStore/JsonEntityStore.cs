@@ -30,7 +30,7 @@ class JsonEntityStore : ApplicationComponent, IEntityStore
            select recon;
 
     Option<SystemUri> Persist(SystemUri id, SystemUri type, Json json)
-        => from saved in id.ToLocalPath().Write(json).ToFileOption()
+        => from saved in id.ToLocalPath().TryWriteAllText(json)
            select id;
 
     public Option<T> FindEntity<T>(SystemUri id)

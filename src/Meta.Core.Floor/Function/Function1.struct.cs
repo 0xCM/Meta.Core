@@ -20,30 +20,30 @@ namespace Meta.Core
     {
 
         public static Y operator <(X x, Function<X, Y> f)
-            => f.Eval(x);
+            => f.Apply(x);
 
         public static Y operator >(X x, Function<X, Y> f)
-            => f.Eval(x);
+            => f.Apply(x);
 
         public static Y operator <(Function<X, Y> f, X x)
-            => f.Eval(x);
+            => f.Apply(x);
 
         public static Y operator >(Function<X, Y> f, X x)
-            => f.Eval(x);
+            => f.Apply(x);
 
         /// <summary>
         /// Implicitly constructs a <see cref="Function{X,Y}"/> representation
         /// </summary>
         /// <param name="f">The function to represent</param>
         public static implicit operator Function<X, Y>(Func<X, Y> f)
-            => Function.make(f);
+            => Function.wrap(f);
 
         /// <summary>
         /// Implicitly deconstructs a <see cref="Function{X,Y}"/> representation
         /// </summary>
         /// <param name="f">The function to represent</param>
         public static implicit operator Func<X, Y>(Function<X, Y> f)
-            => Function.value(f);
+            => Function.unwrap(f);
 
         /// <summary>
         /// Initializes a representation with its subject
@@ -63,7 +63,7 @@ namespace Meta.Core
         /// <param name="x">The value at which to evaluate the function</param>
         /// <returns></returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public Y Eval(X x) 
+        public Y Apply(X x) 
             => F(x);
 
         /// <summary>

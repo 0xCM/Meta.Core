@@ -26,7 +26,7 @@ namespace Meta.Core
         /// <param name="x">The value over which evaluation will occur</param>
         /// <returns></returns>
         public static Y operator <((X1 x1, X2 x2) x, Function<X1, X2, Y> f)
-            => f.Eval(x);
+            => f.Apply(x);
 
         /// <summary>
         /// Evaluates the function f at x
@@ -35,7 +35,7 @@ namespace Meta.Core
         /// <param name="x">The value over which evaluation will occur</param>
         /// <returns></returns>
         public static Y operator >((X1 x1, X2 x2) x, Function<X1, X2, Y> f)
-            => f.Eval(x);
+            => f.Apply(x);
 
         /// <summary>
         /// Evaluates the function f at x
@@ -44,7 +44,7 @@ namespace Meta.Core
         /// <param name="x">The value over which evaluation will occur</param>
         /// <returns></returns>
         public static Y operator <(Function<X1, X2, Y> f, (X1 x1, X2 x2) x)
-            => f.Eval(x);
+            => f.Apply(x);
 
         /// <summary>
         /// Evaluates the function f at x
@@ -53,21 +53,21 @@ namespace Meta.Core
         /// <param name="x">The value over which evaluation will occur</param>
         /// <returns></returns>
         public static Y operator >(Function<X1, X2, Y> f, (X1 x1, X2 x2) x)
-            => f.Eval(x);
+            => f.Apply(x);
 
         /// <summary>
         /// Implicitly lifts a delegate to a Function
         /// </summary>
         /// <param name="f">The delegate to lift</param>
         public static implicit operator Function<X1, X2, Y>(Func<X1, X2, Y> f)
-            => Function.make(f);
+            => Function.wrap(f);
 
         /// <summary>
         /// Implicitly drops a function to a delegate
         /// </summary>
         /// <param name="f"></param>
         public static implicit operator Func<X1, X2, Y>(Function<X1, X2, Y> f)
-            => Function.value(f);
+            => Function.unwrap(f);
 
         public Function(Func<X1, X2, Y> f)
             => this.F = f;
@@ -91,7 +91,7 @@ namespace Meta.Core
         /// </summary>
         /// <param name="input">The point at which to evaluate</param>
         /// <returns></returns>
-        public Y Eval((X1 x1, X2 x2) input)
+        public Y Apply((X1 x1, X2 x2) input)
             => F(input.x1, input.x2);
 
         public string Format()

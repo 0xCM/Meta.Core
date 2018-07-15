@@ -28,7 +28,7 @@ namespace Meta.Core
         /// <param name="x">The value over which evaluation will occur</param>
         /// <returns></returns>
         public static Y operator <((X1 x1, X2 x2, X3 x3) x, Function<X1, X2, X3, Y> f)
-            => f.Eval(x);
+            => f.Apply(x);
 
         /// <summary>
         /// Evaluates the function f at x
@@ -37,7 +37,7 @@ namespace Meta.Core
         /// <param name="x">The value over which evaluation will occur</param>
         /// <returns></returns>
         public static Y operator >((X1 x1, X2 x2, X3 x3) x, Function<X1, X2, X3, Y> f)
-            => f.Eval(x);
+            => f.Apply(x);
 
         /// <summary>
         /// Evaluates the function f at x
@@ -46,7 +46,7 @@ namespace Meta.Core
         /// <param name="x">The value over which evaluation will occur</param>
         /// <returns></returns>
         public static Y operator <(Function<X1, X2, X3, Y> f, (X1 x1, X2 x2, X3 x3) x)
-            => f.Eval(x);
+            => f.Apply(x);
 
         /// <summary>
         /// Evaluates the function f at x
@@ -55,7 +55,7 @@ namespace Meta.Core
         /// <param name="x">The value over which evaluation will occur</param>
         /// <returns></returns>
         public static Y operator >(Function<X1, X2, X3, Y> f, (X1 x1, X2 x2, X3 x3) x)
-            => f.Eval(x);
+            => f.Apply(x);
 
         /// <summary>
         /// Lazily evaluate the function over a sequence
@@ -65,7 +65,7 @@ namespace Meta.Core
         /// <returns></returns>
         public static Seq<Y> operator *(Function<X1, X2, X3, Y> f, Seq<(X1, X2, X3)> values)
             => Seq.make(from v in values.Stream()
-                        select f.Eval(v));
+                        select f.Apply(v));
 
         /// <summary>
         /// Eagerly evaluates the function over a list
@@ -75,7 +75,7 @@ namespace Meta.Core
         /// <returns></returns>
         public static Lst<Y> operator *(Function<X1, X2, X3, Y> f, Lst<(X1, X2, X3)> values)
             => Lst.make(from v in values.Stream()
-                        select f.Eval(v));
+                        select f.Apply(v));
 
         /// <summary>
         /// Lazily evaluate the function over a sequence
@@ -114,14 +114,14 @@ namespace Meta.Core
         /// </summary>
         /// <param name="f">The delegate to lift</param>
         public static implicit operator Function<X1, X2, X3, Y>(Func<X1, X2, X3, Y> f)
-            => Function.make(f);
+            => Function.wrap(f);
 
         /// <summary>
         /// Implicitly drops a function to a delegate
         /// </summary>
         /// <param name="f"></param>
         public static implicit operator Func<X1, X2, X3, Y>(Function<X1, X2, X3, Y> f)
-            => Function.value(f);
+            => Function.unwrap(f);
 
 
         public Function(Func<X1, X2, X3, Y> f)
@@ -147,7 +147,7 @@ namespace Meta.Core
         /// </summary>
         /// <param name="input">The point at which to evaluate</param>
         /// <returns></returns>
-        public Y Eval((X1 x1, X2 x2, X3 x3) input)
+        public Y Apply((X1 x1, X2 x2, X3 x3) input)
             => F(input.x1, input.x2, input.x3);
 
         public string Format()

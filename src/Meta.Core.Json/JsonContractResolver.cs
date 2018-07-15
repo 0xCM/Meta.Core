@@ -3,7 +3,7 @@
 // This license grants rights to merge, copy, distribute, sell or otherwise do with it 
 // as you like. But please, for the love of Zeus, don't clutter it with regions.
 //-------------------------------------------------------------------------------------------
-namespace Meta.Core.Json
+namespace Meta.Core
 {
     using System;
     using System.Collections.Generic;
@@ -35,6 +35,8 @@ namespace Meta.Core.Json
                 return base.CreateProperties(type, memberSerialization)
                         .Where(p => !IsReadOnlyProperty(type, p.PropertyName)).ToList();
         }
+
+
 
     }
 

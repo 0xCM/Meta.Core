@@ -81,4 +81,25 @@ public static class LstX
     /// <returns></returns>
     public static ValueConstructor<IEnumerable<X>, Lst<X>> AsValueConstructor<X>(this LstFactory<X> factory)
             => source => factory(source);
+
+    /// <summary>
+    /// Standard Take LINQ operator for a list
+    /// </summary>
+    /// <typeparam name="T">The item type</typeparam>
+    /// <param name="source">The source list</param>
+    /// <param name="count">The number of items to take</param>
+    /// <returns></returns>
+    public static Lst<T> Take<T>(this Lst<T> source, int count)
+        => Lst.make(source.Stream().Take(count));
+
+    /// <summary>
+    /// Standard Skip LINQ operator for a list
+    /// </summary>
+    /// <typeparam name="T">The item type</typeparam>
+    /// <param name="source">The source list</param>
+    /// <param name="count">The number of items to skip</param>
+    /// <returns></returns>
+    public static Lst<T> Skip<T>(this Lst<T> s, int count)
+        => Lst.make(s.Stream().Skip(count));
+
 }

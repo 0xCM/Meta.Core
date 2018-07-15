@@ -39,9 +39,7 @@ partial class metacore
     /// <param name="s2">The second input sequence</param>
     /// <returns></returns>
     public static DataFrame<X1, X2> frame<X1, X2>(Seq<X1> s1, Seq<X2> s2)
-        => DataFrame.make(from x in zip(s1, s2) select record(x.x1, x.x2));
-
-    
+        => DataFrame.make(from x in zip(s1, s2) select record(x.x1, x.x2));    
 
     /// <summary>
     /// Consructs a 3-column data frame from a stream of 2-tuples

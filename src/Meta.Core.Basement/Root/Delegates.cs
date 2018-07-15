@@ -1,12 +1,27 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// MetaCore
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace Meta.Core
 {
     using System;
+    using System.Collections.Generic;
 
+    /// <summary>
+    /// Elemental value producer
+    /// </summary>
+    /// <typeparam name="X">The type of produced value</typeparam>
+    /// <returns></returns>
+    public delegate IEnumerable<X> StreamSource<X>();
+
+
+    /// <summary>
+    /// Elemental value receiver
+    /// </summary>
+    /// <typeparam name="X">The type of received value</typeparam>
+    /// <returns></returns>
+    public delegate void StreamTarget<in X>(IEnumerable<X> stream);
 
     /// <summary>
     /// Contract for unary function composition

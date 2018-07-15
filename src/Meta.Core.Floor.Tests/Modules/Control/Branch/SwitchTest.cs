@@ -68,7 +68,7 @@ namespace Meta.Core.Test
             //functions evaluate point-wise as usual
             var result2 = list(from x in list1.Stream()
                                from y in list2.Stream()
-                               select $"{f.Eval(x)}{g.Eval(y)}"
+                               select $"{f.Apply(x)}{g.Apply(y)}"
                                );
 
             //custom LINQ over custom list where
@@ -99,7 +99,7 @@ namespace Meta.Core.Test
 
         Func<Choice, string> Switch2
             => from s in Switch.build<Choice, string>()
-               let f0 = Function.make<Choice, string>(x => "")
+               let f0 = Function.wrap<Choice, string>(x => "")
                let f1 = f0.Redefine(x => $"f1-{x}")
                from case1 in s.Case(x => x == Choice.ChoiceA, f1)
                let f2 = f0.Redefine(x => $"f2-{x}")

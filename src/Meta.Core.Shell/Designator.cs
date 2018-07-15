@@ -1,5 +1,9 @@
-﻿using System;
-using System.Runtime.Versioning;
+﻿//-------------------------------------------------------------------------------------------
+// MetaCore
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
+//-------------------------------------------------------------------------------------------
+using System;
 using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;

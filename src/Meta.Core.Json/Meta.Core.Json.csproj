@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <TargetFrameworks>net472</TargetFrameworks>
     <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
 
@@ -9,9 +10,7 @@
   </ItemGroup>
 
 
-
   <ItemGroup>
-    <ProjectReference Include="..\Meta.Core.FileSystem\Meta.Core.FileSystem.csproj" />
     <ProjectReference Include="..\Meta.Core.Floor\Meta.Core.Floor.csproj" />
   </ItemGroup>
 

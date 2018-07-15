@@ -56,6 +56,7 @@ namespace Meta.Core
         /// <returns></returns>
         public override DataFrame<X1, X2> Construct(IContainer<object[]> data)
             => map(data.AsSeq(),item => Record.make(tupleOf<X1, X2>(item)));
+        
 
         /// <summary>
         /// Gets the first column of data
@@ -67,8 +68,7 @@ namespace Meta.Core
         /// Gets the second column of data
         /// </summary>
         public Seq<X2> Col02
-            => Rows.Select(r => r.x2);
-
+            => Rows.Select(r => r.x2);        
 
     }
 }

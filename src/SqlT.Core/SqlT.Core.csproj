@@ -7,8 +7,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Meta.Core.Etude\Meta.Core.Etude.csproj" />
     <ProjectReference Include="..\Meta.Core.FileSystem\Meta.Core.FileSystem.csproj" />
+    <ProjectReference Include="..\Meta.Core.Floor\Meta.Core.Floor.csproj" />
     <ProjectReference Include="..\Meta.Core.Lang\Meta.Core.Lang.csproj" />
   </ItemGroup>
 

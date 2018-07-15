@@ -74,4 +74,24 @@ public static class SeqX
     public static Seq<T> Items<T>(this Option<Seq<T>> oseq)
         => oseq.ValueOrDefault(Seq<T>.Empty);
 
+    /// <summary>
+    /// Standard LINQ Take operator for a list
+    /// </summary>
+    /// <typeparam name="T">The item type</typeparam>
+    /// <param name="source">The source list</param>
+    /// <param name="count">The number of items to take</param>
+    /// <returns></returns>
+    public static Seq<T> Take<T>(this Seq<T> s, int count)
+        => Seq.make(s.Stream().Take(count));
+
+    /// <summary>
+    /// Standard LINQ Skip operator for a sequence
+    /// </summary>
+    /// <typeparam name="T">The item type</typeparam>
+    /// <param name="source">The source sequence</param>
+    /// <param name="count">The number of items to skip</param>
+    /// <returns></returns>
+    public static Seq<T> Skip<T>(this Seq<T> source, int count)
+        => Seq.make(source.Stream().Skip(count));
+
 }

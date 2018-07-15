@@ -943,4 +943,22 @@ public static class CollectionExtensions
 
     }
 
+    /// <summary>
+    /// Retrieves a range of elements of a specified length, starting with a specified index, if possible
+    /// Otherwise; returns either an empty list or a maximal subset
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="source">The source items</param>
+    /// <param name="startidx">The first index</param>
+    /// <param name="length">The maximum number of elements to yield</param>
+    /// <returns></returns>
+    public static IEnumerable<T> GetRange<T>(this IReadOnlyList<T> source, int startidx, int length)
+    {
+        var current = 0;        
+        for (var i = startidx; i < source.Count && current < length; i++)
+        {
+            yield return source[i];
+            current++;
+        }
+    }
 }

@@ -1,7 +1,7 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// MetaCore
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace Meta.Core
 {
@@ -9,7 +9,6 @@ namespace Meta.Core
     using System.Collections.Generic;
     using System.Reflection;
     using System.Linq;
-    using System.IO;
     using System.ComponentModel;
     
     using Meta.Core.Commands;
@@ -29,17 +28,12 @@ namespace Meta.Core
         {
             Cmd = ProcessAdapter.ExecuteCmd(OnStandard, OnError, Inspect);
             CurrentDir = Environment.CurrentDirectory;
-            AppCmdX.Init(C);
-
-            var results = HostContext.WorkflowExecution().ExecuteWorkflows(GetType().Assembly).ToList();
 
         }
 
         void OnError(MessagePacket packet)
         {
-            NotifyError(packet.Payload);
-
-            
+            NotifyError(packet.Payload);            
         }
 
         void OnStandard(MessagePacket packet)
@@ -89,27 +83,7 @@ namespace Meta.Core
             iter(items.Stream(), item => NotifyStatus($"{item}"));
         }
 
-        public void Env()
-        {
-            Print(EnvVariables(EnvironmentVariableTarget.Process), "Process variables");
-            Print(EnvVariables(EnvironmentVariableTarget.User), "User variables");
-            Print(EnvVariables(EnvironmentVariableTarget.Machine), "Machine variables");
 
-            var wf = from x in some(1)
-                     where x != 0
-                     select x;
-
-        }
-
-
-
-
-
-
-
-
-        public void type(string path)
-            => Print((CurrentDir + FileName.Parse(path)).ReadAllLines());
 
 
         public void CopyFile(string srcFile, string dstFolder)

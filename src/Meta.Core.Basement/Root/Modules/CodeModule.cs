@@ -17,8 +17,8 @@ namespace Meta.Core
     {
         public Type GenericTypeDefinition { get; }
 
-        protected virtual Option<TypeConstructor> Constructor(int arity)
-            => none<TypeConstructor>();
+        protected Option<TypeConstructor> Constructor(int arity)
+            => new TypeConstructor(GenericTypeDefinition);
 
         public Option<TypeConstruction> ConstructType(params Type[] args)
             => from tc in Constructor(args.Length)

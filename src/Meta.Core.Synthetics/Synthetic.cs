@@ -42,6 +42,9 @@ namespace Meta.Core
         public static implicit operator int(Synthetic vv)
             => vv.Next<int>();
 
+        public static implicit operator long(Synthetic vv)
+            => vv.Next<long>();
+
         public static implicit operator short(Synthetic vv)
             => vv.Next<short>();
 
@@ -138,7 +141,12 @@ namespace Meta.Core
         /// <typeparam name="V">The synthetic value type</typeparam>
         /// <param name="count">The number of values to yeild</param>
         /// <returns></returns>
-        public Seq<V> Next<V>(int count)
-            => Seq.make(_Next<V>(count));
+        public Lst<V> Next<V>(int count)
+            => Lst.make(_Next<V>(count));
+
+
+
+
+
     }
 }

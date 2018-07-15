@@ -14,6 +14,7 @@ namespace Meta.Core
 
     using Modules;
 
+
     /// <summary>
     /// Represents a possibly infinite sequence of items
     /// </summary>

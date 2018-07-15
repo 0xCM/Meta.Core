@@ -49,7 +49,7 @@ namespace Meta.Core
 
         (Task<CommandProcessExecutionLog> Conrol, Process Controlled) Run()            
         {
-            var controlled = new Process
+            var process = new Process
             {
                 StartInfo = new ProcessStartInfo
                 {
@@ -64,8 +64,7 @@ namespace Meta.Core
             };
 
             var result = new CommandProcessExecutionLog();
-
-            controlled.OutputDataReceived += (sender, e) =>
+            process.OutputDataReceived += (sender, e) =>
             {
                 if (isNotBlank(e.Data))
                 {
@@ -75,7 +74,7 @@ namespace Meta.Core
 
             };
 
-            controlled.ErrorDataReceived += (sender, e) =>
+            process.ErrorDataReceived += (sender, e) =>
             {
                 if (isNotBlank(e.Data))
                 {
@@ -84,19 +83,21 @@ namespace Meta.Core
                 }
             };
 
-            controlled.Start();
-            controlled.BeginOutputReadLine();
-            controlled.BeginErrorReadLine();
+            process.Start();
+            ChildProcess.Add(process).Require();
+
+            process.BeginOutputReadLine();
+            process.BeginErrorReadLine();
 
 
             var control = Task.Run(() =>
             {
-                controlled.WaitForExit();
-                controlled.Dispose();
+                process.WaitForExit();
+                process.Dispose();
                 return result;
             });
 
-            return (control, controlled);
+            return (control, process);
         }
 
     }
