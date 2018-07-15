@@ -14,34 +14,25 @@ namespace Meta.Core
 
         public abstract class XU<U,X1, X2, X3>
             where U : XU<U, X1, X2, X3>, new()
-        {
-            public static readonly U Empty = new U();
-                        
+        {                       
             protected XU()
-            {
-                this.IsEmpty = true;
-            }
+            { }
                               
             protected XU(X1 x1)
             {
                 this.x1 = x1;
-                this.IsEmpty = x1 != null;
             }
 
             protected XU(X2 x2)
             {
                 this.x2 = x2;
-                this.IsEmpty = x2 != null;
             }
 
             protected XU(X3 x3)
             {
                 this.x3 = x3;
-                this.IsEmpty = x3 != null;
             }
 
-
-            public bool IsEmpty { get; private set; }
 
             public Option<X1> x1 { get; private set; }
 
@@ -49,26 +40,22 @@ namespace Meta.Core
 
             public Option<X3> x3 { get; private set; }
 
+            object value
+                => first<IOption>(x1, x2, x3).Value;
+
             public static U make(X1 x1)
             {
-                if (x1 == null)
-                    return Empty;
 
                 return new U
                 {
-                    IsEmpty = false,
                     x1 = x1
                 };
             }
 
             public static U make(X2 x2)
             {
-                if (x2 == null)
-                    return Empty;
-
                 return new U
                 {
-                    IsEmpty = false,
                     x2 = x2
                 };
 
@@ -76,12 +63,8 @@ namespace Meta.Core
 
             public U make(X3 x3)
             {
-                if (x1 == null)
-                    return Empty;
-
                 return new U()
                 {
-                    IsEmpty = false,
                     x3 = x3
                 };
             }

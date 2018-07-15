@@ -5,12 +5,12 @@
 //-------------------------------------------------------------------------------------------
 using System;
 using System.Linq;
-
+using Meta.Core;
 using static minicore;
 
 partial class Union
 {
-    public readonly struct U<X1, X2> : IEquatable<U<X1, X2>>
+    public readonly struct U<X1, X2> : IEquatable<U<X1, X2>>, IUnion<X1,X2>
     {
         
         public static implicit operator U<X1,X2>(X1 x1)
@@ -42,21 +42,24 @@ partial class Union
         {
             this.x1 = x;
             this.x2 = none<X2>();
-            this.idx = 1;
+            this.n = 1;
         }
 
         public U(X2 x)
         {
             this.x1 = none<X1>();
             this.x2 = x;
-            this.idx = 2;
+            this.n = 2;
         }
 
-        int idx { get; }
+        public int n { get; }
 
-        Option<X1> x1 { get; }
+        public Option<X1> x1 { get; }
 
-        Option<X2> x2 { get; }
+        public Option<X2> x2 { get; }
+
+        object IUnion.value
+            => first<IOption>(x1, x2).Value;
 
         public Option<Y1> Match1<Y1>(Func<X1, Y1> f)
             => Match(f);

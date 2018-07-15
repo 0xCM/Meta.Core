@@ -14,7 +14,7 @@ using Meta.Core;
 partial class Union
 {
 
-    public readonly struct U<X1, X2, X3> : IEquatable<U<X1, X2, X3>>
+    public readonly struct U<X1, X2, X3> : IEquatable<U<X1, X2, X3>>, IUnion<X1,X2,X3>
     {
 
         public static implicit operator U<X1, X2, X3>(X1 x1)
@@ -37,6 +37,7 @@ partial class Union
             this.x1 = x1;
             this.x2 = none<X2>();
             this.x3 = none<X3>();
+            this.n = 1;
         }
 
         public U(X2 x2)
@@ -44,6 +45,7 @@ partial class Union
             this.x1 = none<X1>();
             this.x2 = x2;
             this.x3 = none<X3>();
+            this.n = 2;
         }
 
         public U(X3 x3)
@@ -51,13 +53,19 @@ partial class Union
             this.x1 = none<X1>();
             this.x2 = none<X2>();
             this.x3 = x3;
+            this.n = 3;
         }
 
-        Option<X1> x1 { get; }
+        public int n { get; }
 
-        Option<X2> x2 { get; }
+        public Option<X1> x1 { get; }
 
-        Option<X3> x3 { get; }
+        public Option<X2> x2 { get; }
+
+        public Option<X3> x3 { get; }
+
+        object IUnion.value
+            => first<IOption>(x1, x2, x3).Value;
 
         public Option<Y1> Match<Y1>(Func<X1, Y1> f1)
             => x1.Map(x => f1(x));

@@ -50,6 +50,7 @@ partial class Union
             this.label = Label;
             this.x1 = x1;
             this.x2 = none<X2>();
+            this.n = 1;
         }
 
         public LU((L Label, X1 x1) x1)
@@ -57,6 +58,7 @@ partial class Union
             this.label = x1.Label;
             this.x1 = x1.x1;
             this.x2 = none<X2>();
+            this.n = 1;
         }
 
         public LU(L Label, X2 x2)
@@ -64,6 +66,7 @@ partial class Union
             this.label = Label;
             this.x1 = none<X1>();
             this.x2 = x2;
+            this.n = 2;
         }
 
         public LU((L Label, X2 x2) x2)
@@ -71,15 +74,31 @@ partial class Union
             this.label = x2.Label;
             this.x1 = none<X1>();
             this.x2 = x2.x2;
+            this.n = 2;
         }
 
+        /// <summary>
+        /// Species the number of the occupied slot
+        /// </summary>
+        public int n { get; }
 
-
+        /// <summary>
+        /// Specifies the assigned label
+        /// </summary>
         public L label { get; }
 
+        /// <summary>
+        /// The first slot
+        /// </summary>
         public Option<X1> x1 { get; }
 
+        /// <summary>
+        /// The second slot
+        /// </summary>
         public Option<X2> x2 { get; }
+
+        object IUnion.value
+            => first<IOption>(x1, x2).Value;
 
         public Option<Y1> Match<Y1>(Func<X1, Y1> f)
             => x1.Map(x => f(x));
@@ -97,7 +116,6 @@ partial class Union
             => x1 ? x1.MapRequired(x => f(x))
             : x2 ? x2.MapRequired(x => f(x))
             : default;
-
 
         public override bool Equals(object obj)
             => obj is LU<L, X1, X2>

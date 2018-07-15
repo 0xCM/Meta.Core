@@ -72,6 +72,7 @@ partial class Union
             this.x2 = none<X2>();
             this.x3 = none<X3>();
             this.x4 = none<X4>();
+            this.n = 1;
         }
 
         public LU((L Label, X1 x1) x1)
@@ -81,6 +82,7 @@ partial class Union
             this.x2 = none<X2>();
             this.x3 = none<X3>();
             this.x4 = none<X4>();
+            this.n = 1;
         }
 
         public LU(L Label, X2 x2)
@@ -90,6 +92,7 @@ partial class Union
             this.x2 = x2;
             this.x3 = none<X3>();
             this.x4 = none<X4>();
+            this.n = 2;
         }
 
         public LU((L Label, X2 x2) x2)
@@ -99,6 +102,7 @@ partial class Union
             this.x2 = x2.x2;
             this.x3 = none<X3>();
             this.x4 = none<X4>();
+            this.n = 2;
         }
 
         public LU(L Label, X3 x3)
@@ -108,6 +112,7 @@ partial class Union
             this.x2 = none<X2>();
             this.x3 = x3;
             this.x4 = none<X4>();
+            this.n = 3;
         }
 
         public LU((L Label, X3 x3) x3)
@@ -117,6 +122,7 @@ partial class Union
             this.x2 = none<X2>();
             this.x3 = x3.x3;
             this.x4 = none<X4>();
+            this.n = 3;
         }
 
         public LU(L Label, X4 x4)
@@ -126,6 +132,7 @@ partial class Union
             this.x2 = none<X2>();
             this.x3 = none<X3>();
             this.x4 = x4;
+            this.n = 4;
         }
 
         public LU((L Label, X4 x4) x4)
@@ -135,17 +142,41 @@ partial class Union
             this.x2 = none<X2>();
             this.x3 = none<X3>();
             this.x4 = x4.x4;
+            this.n = 4;
         }
 
+        /// <summary>
+        /// Species the number of the occupied slot
+        /// </summary>
+        public int n { get; }
+
+        /// <summary>
+        /// Specifies the assigned label
+        /// </summary>
         public L label { get; }
 
+        /// <summary>
+        /// The first slot
+        /// </summary>
         public Option<X1> x1 { get; }
 
+        /// <summary>
+        /// The second slot
+        /// </summary>
         public Option<X2> x2 { get; }
 
+        /// <summary>
+        /// The third slot
+        /// </summary>
         public Option<X3> x3 { get; }
 
+        /// <summary>
+        /// The fourth slot
+        /// </summary>
         public Option<X4> x4 { get; }
+
+        object IUnion.value
+            => first<IOption>(x1, x2, x3, x4).Value;
 
         public Option<Y1> Match<Y1>(Func<X1, Y1> f)
             => x1.Map(x => f(x));

@@ -75,7 +75,7 @@ namespace Meta.Core
         /// </summary>
         /// <param name="list">The list to convert</param>
         public static implicit operator X[](Lst<X> list)
-            => list.Data.Value.ToArray();
+            => list.Data.value.ToArray();
 
         /// <summary>
         /// Concatenates two lists
@@ -165,12 +165,12 @@ namespace Meta.Core
             => this.Data = Value;
 
 
-        CDU<IReadOnlyList<X>, X[], ImmutableList<X>> Data { get; }
+        CU<IReadOnlyList<X>, X[], ImmutableList<X>> Data { get; }
 
         //ImmutableList<X> Data { get; }
 
         public X this[int index]
-            => Data.Value[index];
+            => Data.value[index];
 
         /// <summary>
         /// Retrieves the sublist determined by the supplied range, if possible. Otherwise,
@@ -182,13 +182,13 @@ namespace Meta.Core
         public Lst<X> this[int minIdx, int maxIdx]            
             => minIdx > maxIdx  ? Empty 
             : maxIdx >= Count ? Empty
-            : Factory(Data.Value.GetRange(minIdx, maxIdx - minIdx + 1));
+            : Factory(Data.value.GetRange(minIdx, maxIdx - minIdx + 1));
 
         public int Count
-            => Data.Value.Count;
+            => Data.value.Count;
 
         public IEnumerable<X> Stream()
-            => Data.Value;
+            => Data.value;
 
         public bool IsEmpty
             => this.Count == 0;
@@ -198,13 +198,13 @@ namespace Meta.Core
         /// </summary>
         /// <returns></returns>
         public Seq<X> Contained()
-            => Seq.make(Data.Value);
+            => Seq.make(Data.value);
 
         public IReadOnlyList<X> AsReadOnlyList()
-            => Data.Value;
+            => Data.value;
 
         public X[] AsArray()
-            => Data.Value.ToArray();
+            => Data.value.ToArray();
 
         public override int GetHashCode()
             => Container.hash(this);
@@ -230,7 +230,7 @@ namespace Meta.Core
             => IsEmpty ? Cardinality.Zero : Cardinality.Finite;
 
         IEnumerable<X> IStreamable<X>.Stream()
-            => Data.Value;
+            => Data.value;
 
         ContainerFactory<X, Lst<X>> IContainer<X, Lst<X>>.Factory
             => stream => new Lst<X>(stream.ToImmutableList());

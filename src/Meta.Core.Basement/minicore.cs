@@ -402,4 +402,6 @@ public static class minicore
     public static X first<X>(params Option<X>[] potentials)
         => potentials.First(p => p.IsSome()).ValueOrDefault();
 
+    public static IAppMessage IndexOutOfRange(int i)
+        => AppMessage.Error($"The index {i} is out of range");
 }

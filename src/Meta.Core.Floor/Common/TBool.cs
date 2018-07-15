@@ -28,21 +28,32 @@ namespace Meta.Core
         public static readonly TriBool False = new TriBool(LabelType.False);
         public static readonly TriBool True = new TriBool(LabelType.True);
 
-        public LabelType label { get; }
 
         TriBool(LabelType label)
-            => this.label = label;
+        {
+            this.label = label;
+            this.n = (int)label;
+        }
+
+        public int n { get; }
+
+        public LabelType label { get; }
+
+        object IUnion.value
+            => n is 0 ? Unknown :
+               n is 1 ? False :
+               True;
 
         public Option<TriBool> x1
             => label == LabelType.True
             ? True : label == LabelType.False
             ? False : Unknown;
 
-        public enum LabelType : sbyte
+        public enum LabelType
         {
-            False = -1,
             Unknown = 0,
-            True = 1
+            False = 1,
+            True = 2
         }
 
         public override bool Equals(object obj)
