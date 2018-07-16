@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net472</TargetFrameworks>
+    <OutputType>EXE</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Meta.Code.Common\Meta.Code.Specs.csproj" />
+    <ProjectReference Include="..\Meta.Code.Emission\Meta.Code.Emission.csproj" />
+  </ItemGroup>
+
+
+
+
+</Project>

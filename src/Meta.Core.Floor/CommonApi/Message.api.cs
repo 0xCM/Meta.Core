@@ -281,5 +281,13 @@ public static partial class metacore
     public static TypedMessageFormat defineFormat<M>(string template, params Expression<Func<M, object>>[] Selectors)
             => TypedMessageFormat.Define(template, Selectors);
 
+    /// <summary>
+    /// Emits the value to the console
+    /// </summary>
+    /// <typeparam name="T">The type of value to print</typeparam>
+    /// <param name="value">The value to print</param>
+    public static void print<T>(T value)
+        => SystemConsole.Get().Write(inform(show(value)));
 
+  
 }

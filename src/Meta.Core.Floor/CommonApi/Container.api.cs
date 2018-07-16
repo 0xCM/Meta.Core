@@ -66,6 +66,7 @@ partial class metacore
     public static bool all<X>(IContainer<X> container, Func<X, bool> p)
         => Container.all(p, container);
 
+    /// <summary>
     /// Returns true if a predicate is satisfied for all elements in a container; false otherwise
     /// </summary>
     /// <typeparam name="X">The item type</typeparam>

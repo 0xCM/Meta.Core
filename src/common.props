@@ -19,12 +19,13 @@
     <LibBuildDir>$(BuildRootDir)lib\</LibBuildDir>
     <OutputDir>$(LibBuildDir)</OutputDir>
     <OutputPath>$(LibBuildDir)</OutputPath>
+    <DocumentationFile>$(LibBuildDir)$(MsBuildProjectName).xml</DocumentationFile>
     <IntermediateBuildDir>$(BuildRootDir)obj\$(MSBuildProjectName)\</IntermediateBuildDir>
     <BaseIntermediateOutputPath>$(IntermediateBuildDir)</BaseIntermediateOutputPath>
     <IntermediateOutputPath>$(IntermediateBuildDir)</IntermediateOutputPath>
-    <NoWarn>1701;1702;1591</NoWarn>
+    <NoWarn>1591;1572;1573;1701;1702;1712;1711</NoWarn>
     <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)common.ruleset</CodeAnalysisRuleSet>
-
   </PropertyGroup>
 
-</Project>
+
+  </Project>

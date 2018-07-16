@@ -14,7 +14,6 @@ partial class Union
     /// <summary>
     /// A labled homogenous union with 4 potential slots from which exactly one will be populated
     /// </summary>
-    /// <typeparam name="L">The label type</typeparam>
     /// <typeparam name="X">The type of the first slot</typeparam>
     public readonly struct HU4<X> : IEquatable<HU4<X>>
     {

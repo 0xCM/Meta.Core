@@ -153,10 +153,11 @@ namespace Meta.Core.Modules
             => x > f;
 
         /// <summary>
-        /// Applies an argument to a function
+        /// Applies an argument to a function in a feedback loop with specified cycle
         /// </summary>
         /// <typeparam name="X">The function input/output type</typeparam>
-        /// <param name="x">The initial argument</param>
+        /// <param name="x0">The initial argument</param>
+        /// <param name="n">The number of applications</param>
         /// <param name="f">The receiving function</param>
         /// <returns></returns>
         public static X applyN<X>(Function<X, X> f, int n, X x0)

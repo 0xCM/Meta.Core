@@ -51,13 +51,17 @@ namespace Meta.Core
         IContainer<Y> GetEmpty<Y>();
     }
 
+    /// <summary>
+    /// Defines contract for a parameterized container
+    /// </summary>
+    /// <typeparam name="X"></typeparam>
+    /// <typeparam name="CX"></typeparam>
     public interface IContainer<X,CX> : IContext<X, CX>, IEquatable<CX>,  IContainer<X>
         where CX : IContainer<X,CX>, new()
     {
         /// <summary>
         /// Obtains the factory used to produce the container
         /// </summary>
-        /// <typeparam name="Y"></typeparam>
         /// <returns></returns>
         ContainerFactory<X, CX> Factory { get; }
 

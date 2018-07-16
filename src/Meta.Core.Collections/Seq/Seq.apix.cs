@@ -39,7 +39,7 @@ public static class SeqX
     /// Evaluates to true if the option has a value and and the encapsulated list is nonempty
     /// </summary>
     /// <typeparam name="P"></typeparam>
-    /// <param name="x"></param>
+    /// <param name="src"></param>
     /// <returns></returns>
     public static bool Any<P>(this Option<Seq<P>> src)
         => src.Map(x => x.Any()).ValueOrDefault();
@@ -48,7 +48,7 @@ public static class SeqX
     /// Evaluates to true if the option has a value and and any element in the list satisfies the predicate
     /// </summary>
     /// <typeparam name="P"></typeparam>
-    /// <param name="x"></param>
+    /// <param name="src"></param>
     /// <returns></returns>
     public static bool Any<P>(this Option<Seq<P>> src, Func<P, bool> predicate)
         => src.Map(x => x.Any(predicate)).ValueOrDefault();

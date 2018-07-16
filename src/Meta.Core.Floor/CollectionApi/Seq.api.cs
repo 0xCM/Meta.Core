@@ -37,7 +37,7 @@ partial class metacore
     /// </summary>
     /// <typeparam name="T">The input sequence item type</typeparam>
     /// <typeparam name="S">The output sequence item type</typeparam>
-    /// <param name="list">The list to transform</param>
+    /// <param name="s">The sequence to transform</param>
     /// <param name="f">The transformation function</param>
     /// <returns></returns>
     public static Seq<S> mapi<T, S>(Seq<T> s, Func<int, T, S> f)
@@ -56,10 +56,10 @@ partial class metacore
     /// Consructs a sequence of indexed pairs of <typeparamref name="X"/> values from an existing sequence
     /// </summary>
     /// <typeparam name="X">The item type</typeparam>
-    /// <param name="values">The values from which to construct the sequence</param>
+    /// <param name="s">The values from which to construct the sequence</param>
     /// <returns></returns>
-    public static Seq<(int i, X value)> seqi<X>(Seq<X> seq)
-        => mapi(seq, (i, item) => (i, item));
+    public static Seq<(int i, X value)> seqi<X>(Seq<X> s)
+        => mapi(s, (i, item) => (i, item));
 
     /// <summary>
     /// Combines a sequence of values with the canonical <typeparamref name="X"/> semigroup combiner
@@ -190,8 +190,8 @@ partial class metacore
     /// <summary>
     /// Zips the first sequence with the second into a sequence of 2-tuples
     /// </summary>
-    /// <typeparam name="X">The item tyep of the first sequence</typeparam>
-    /// <typeparam name="Y">The item type of the second sequence</typeparam>
+    /// <typeparam name="X1">The item tyep of the first sequence</typeparam>
+    /// <typeparam name="X2">The item type of the second sequence</typeparam>
     /// <param name="sx">The first sequence</param>
     /// <param name="sy">The second sequence</param>
     /// <returns></returns>

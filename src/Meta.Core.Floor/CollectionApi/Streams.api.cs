@@ -84,16 +84,6 @@ partial class metacore
         where T : IValueObject => new ImmutableValueObjectList<T>(items ?? stream<T>());
 
     /// <summary>
-    /// Yields a <see cref="ImmutableValueObjectList{T}"/> instance from an input sequence
-    /// </summary>
-    /// <typeparam name="T">The input item type</typeparam>
-    /// <param name="items">The input items</param>
-    /// <returns></returns>
-    //[DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
-    //public static IReadOnlyList<T> rovalues<T>(params T[] items)
-    //    where T : IValueObject => new ImmutableValueObjectList<T>(items);
-
-    /// <summary>
     /// Applies the supplied function to each element in the input sequence for which a specified predicate is satisfied
     /// </summary>
     /// <typeparam name="T">The input sequence item type</typeparam>

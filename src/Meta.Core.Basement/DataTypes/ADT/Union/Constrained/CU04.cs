@@ -51,7 +51,7 @@ partial class Union
         /// <summary>
         /// Implicitly constructs a <typeparamref name="X4"/>-valued union
         /// </summary>
-        /// <param name="x3">The value to encapsulate</param>
+        /// <param name="x4">The value to encapsulate</param>
         public static implicit operator CU<K, X1, X2, X3, X4>(X4 x4)
             => new CU<K, X1, X2, X3, X4>(x4);
 
@@ -222,9 +222,6 @@ partial class Union
         /// Effects structural comparison via the rule:
         /// two union values are equal iff the same slots are occupied by the same values
         /// </summary>
-        /// <param name="x">The first union value</param>
-        /// <param name="y">The second union value</param>
-        /// <returns></returns>
         public bool Equals(CU<K, X1, X2, X3, X4> other)
             =>  this.x1 == other.x1            
                 && this.x2 == other.x2

@@ -1,7 +1,7 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// MetaCore
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace Meta.Core
 {
@@ -10,13 +10,26 @@ namespace Meta.Core
     using System.Runtime.CompilerServices;
 
     
+    public interface INumber : IDataType
+    {
+        /// <summary>
+        /// The encapsulated (and boxed) value
+        /// </summary>
+        object Value { get; }        
+    }
 
     /// <summary>
     /// Defines the number concept
     /// </summary>
     /// <typeparam name="X">The underlying value type</typeparam>
-    public interface INumber<X>
+    public interface INumber<X> : INumber, IDataType<X>
+        where X : struct
     {
+        /// <summary>
+        /// The enapsulated (and unboxed) value
+        /// </summary>
+        new X Value { get; }
+        
         /// <summary>
         /// Adds a value to the number
         /// </summary>

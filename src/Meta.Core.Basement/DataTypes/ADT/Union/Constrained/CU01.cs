@@ -84,7 +84,7 @@ partial class Union
         /// </summary>
         /// <typeparam name="Y1">The codomain of the first function</typeparam>
         /// <typeparam name="Y2">The codomain of the second function</typeparam>
-        /// <param name="f1">The function to apply to the value in the first slot
+        /// <param name="f1">The function to apply to the value in the first slot</param>
         /// <returns></returns>
         public U<Y1> Map<Y1>(Func<X1, Y1> f1)
             =>first(Match(f1).Map(x => new U<Y1>(x)));

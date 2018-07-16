@@ -31,5 +31,19 @@
   </ItemGroup>
 
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="(robocopy $(OutputPath) $(DistRootDir)\metacore) ^&amp; IF %ERRORLEVEL% LEQ 1 exit 0" />
+  </Target>
+
+
+  <!--<ItemGroup>
+    <distribution Include="$(OutputPath)*.dll" />
+  </ItemGroup>
+
+
+  <Target Name="AfterBuild">
+    <Copy SourceFiles="@(distribution)" DestinationFolder="$(DistRootDir)\metacore" SkipUnchangedFiles="true" />
+  </Target>-->
+
 
 </Project>

@@ -38,8 +38,8 @@ public static class LstX
     /// <summary>
     /// Evaluates to true if the option has a value and and the encapsulated list is nonempty
     /// </summary>
-    /// <typeparam name="P"></typeparam>
-    /// <param name="x"></param>
+    /// <typeparam name="P">The list item type</typeparam>
+    /// <param name="src">The source list</param>
     /// <returns></returns>
     public static bool Any<P>(this Option<Lst<P>> src)
         => src.Map(x => x.Any()).ValueOrDefault();
@@ -47,8 +47,9 @@ public static class LstX
     /// <summary>
     /// Evaluates to true if the option has a value and and any element in the list satisfies the predicate
     /// </summary>
-    /// <typeparam name="P"></typeparam>
-    /// <param name="x"></param>
+    /// <typeparam name="P">The list item type</typeparam>
+    /// <param name="src">The source list</param>
+    /// <param name="predicate">The predicate to evaluate</param>
     /// <returns></returns>
     public static bool Any<P>(this Option<Lst<P>> src, Func<P, bool> predicate)
         => src.Map(x => x.Any(predicate)).ValueOrDefault();
@@ -68,7 +69,7 @@ public static class LstX
     /// Extracts the encapsulated list if it exists; otherwise, returns the empty list
     /// </summary>
     /// <typeparam name="T">The potential item type</typeparam>
-    /// <param name="options">The options to evaluate</param>
+    /// <param name="olist">The options to evaluate</param>
     /// <returns></returns>
     public static Lst<T> Items<T>(this Option<Lst<T>> olist)
         => olist.ValueOrDefault(Lst<T>.Empty);
@@ -96,10 +97,10 @@ public static class LstX
     /// Standard Skip LINQ operator for a list
     /// </summary>
     /// <typeparam name="T">The item type</typeparam>
-    /// <param name="source">The source list</param>
+    /// <param name="src">The source list</param>
     /// <param name="count">The number of items to skip</param>
     /// <returns></returns>
-    public static Lst<T> Skip<T>(this Lst<T> s, int count)
-        => Lst.make(s.Stream().Skip(count));
+    public static Lst<T> Skip<T>(this Lst<T> src, int count)
+        => Lst.make(src.Stream().Skip(count));
 
 }

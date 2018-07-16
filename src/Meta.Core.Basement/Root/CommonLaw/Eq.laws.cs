@@ -9,7 +9,7 @@ namespace Meta.Core
     using System.Linq;
 
     /// <summary>
-    /// Identifies and characterizes the <see cref="Modules.Eq"/> typeclass
+    /// Identifies and characterizes the Eq typeclass
     /// </summary>
     public interface IEq : ITypeClass
     {

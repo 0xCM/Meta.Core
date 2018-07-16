@@ -67,7 +67,6 @@ namespace Meta.Core.Text
         /// <typeparam name="A"></typeparam>
         /// <param name="f"></param>
         /// <returns></returns>
-        /// <typeparam name="A">The type of value for which a parser will be constructed</typeparam>
         static Parser<A> makeParser<A>(Func<TextBlock, ParseResult<A>> f)
             => new Parser<A>(f);
 

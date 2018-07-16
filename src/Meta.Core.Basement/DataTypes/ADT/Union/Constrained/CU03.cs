@@ -184,8 +184,6 @@ partial class Union
         /// Effects structural comparison via the rule:
         /// two union values are equal iff the same slots are occupied by the same values
         /// </summary>
-        /// <param name="x">The first union value</param>
-        /// <param name="y">The second union value</param>
         /// <returns></returns>
         public bool Equals(CU<K, X1, X2, X3> other)
             =>  this.x1 == other.x1            

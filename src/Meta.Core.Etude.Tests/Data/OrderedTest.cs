@@ -18,19 +18,35 @@ namespace Meta.Core.Test
     {
 
         [UT.TestMethod]
-        public void Test01()
+        public void CanOrderUInt8()
+            => claim.@true(operators.orderable<byte>());
+
+        [UT.TestMethod]
+        public void CanOrderInt8()
+            => claim.@true(operators.orderable<sbyte>());
+
+        [UT.TestMethod]
+        public void CanOrderInt16()
+            => claim.@true(operators.orderable<short>());
+
+        [UT.TestMethod]
+        public void CanOrderUInt16()
+            => claim.@true(operators.orderable<ushort>());
+
+        [UT.TestMethod]
+        public void OrderedUInt8()
             => claim.satisfies(order<byte>(), o => o.compare(10, 20) == Ordering.LT);
 
         [UT.TestMethod]
-        public void Test05()
+        public void OrderedInt8()
             => claim.satisfies(order<sbyte>(), o => o.compare(-5, 20) == Ordering.LT);
 
         [UT.TestMethod]
-        public void Test10()
+        public void OrderedUInt16()
             => claim.satisfies(order<ushort>(), o => o.compare(35, 15) == Ordering.GT);
 
         [UT.TestMethod]
-        public void Test15()
+        public void OrderedInt()
             => claim.satisfies(order<int>(), o => o.compare(35, 35) == Ordering.EQ);
 
     }

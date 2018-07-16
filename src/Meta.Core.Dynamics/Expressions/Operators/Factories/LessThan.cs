@@ -1,45 +1,50 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// MetaCore
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace Meta.Core.Operators
 {
     using System;
-    using System.Collections.Generic;
-    using System.Reflection;
     using System.Linq;
     using System.Linq.Expressions;
-    using System.Diagnostics;
-    using System.Runtime.CompilerServices;
       
     using static minicore;
     using static express;
 
-    public static class LessThan<T>
+    public readonly struct LessThan<T>
     {
-        static Func<T, T, bool> Construct()
-        {
+        static readonly Option<Func<T, T, bool>> _OPSafe
+            = TryConstruct();
 
-            switch (typecode<T>())
+        static Func<T, T, bool> _OP
+            => _OPSafe.Require();
+
+
+        static Option<Func<T, T, bool>> TryConstruct()
+            => Try(() =>
             {
-                case TypeCode.Byte:
-                    return cast<Func<T, T, bool>>(ByteOps.LT.Compile());
-                case TypeCode.SByte:
-                    return cast<Func<T, T, bool>>(SByteOps.LT.Compile());
-                case TypeCode.UInt16:
-                    return cast<Func<T, T, bool>>(UInt16Ops.LT.Compile());
-                default:
-                    return lambda<T, T, bool>(Expression.LessThan).Compile();
-            }
-        }
+                switch (typecode<T>())
+                {
+                    case TypeCode.Byte:
+                        return cast<Func<T, T, bool>>(ByteOps.LT.Compile());
+                    case TypeCode.SByte:
+                        return cast<Func<T, T, bool>>(SByteOps.LT.Compile());
+                    case TypeCode.UInt16:
+                        return cast<Func<T, T, bool>>(UInt16Ops.LT.Compile());
+                    default:
+                        return lambda<T, T, bool>(Expression.LessThan).Compile();
+                }
+            });
 
-        static readonly Func<T, T, bool> _OP
-            = Construct();
+
+        /// <summary>
+        /// Specifies whether the operator exists for <typeparamref name="T"/>
+        /// </summary>
+        public static bool Exists
+            => _OPSafe.IsSome();
 
         public static bool Apply(T x, T y)
             => _OP(x, y);
     }
-
-
 }

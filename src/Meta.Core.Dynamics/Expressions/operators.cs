@@ -1,13 +1,10 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// MetaCore
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
@@ -17,6 +14,25 @@ using Meta.Core.Modules;
 
 public static class operators
 {
+    /// <summary>
+    /// Adjudicates whether <typeparamref name="T"/> values can be ordered 
+    /// according to the existence of less than and greater than operators
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static bool orderable<T>()
+        => LessThan<T>.Exists && GreaterThan<T>.Exists;
+
+    /// <summary>
+    /// Adjudicates whether precedessors and successors are computable
+    /// for <typeparamref name="T"/> values according to the existence of
+    /// the decrement and increment operators
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static bool sequential<T>()
+        => Increment<T>.Exists && Decrement<T>.Exists;
+
     /// <summary>
     /// Invokes (+)(x,y) for a type <typeparamref name="T"/> that implements the addition operator
     /// </summary>

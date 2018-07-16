@@ -32,4 +32,15 @@ namespace Meta.Core
     }
 
 
+    readonly struct SemigroupOrdering : ISemigroup<Ordering>
+    {
+        public Ordering combine(Ordering a1, Ordering a2)
+            => a1 == Ordering.LT ? Ordering.LT
+            : a1 == Ordering.GT ? Ordering.GT
+            : Ordering.EQ;
+
+        public bool eq(Ordering x1, Ordering x2)
+            => x1 == x2;
+    }
+
 }

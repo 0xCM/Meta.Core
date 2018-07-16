@@ -1,0 +1,10 @@
+<Project>
+
+  <Import Project="../common.props"/>
+ 
+
+  <PropertyGroup>
+    <ProductName>metacode/vocabulary</ProductName>
+  </PropertyGroup>
+
+</Project>

@@ -6,11 +6,27 @@
 using System;
 using System.Linq;
 
+using Meta.Core;
+using static minicore;
 
 public static partial class Product
 {
     public static P<X1> make<X1>(X1 x1)
         => new P<X1>(x1);
+
+    public static IProduct make(params object[] values)
+    {
+        var len = values.Length;
+        var typeDef = 
+            len is 1 ? typeof(P<>) :
+            len is 2 ? typeof(P<,>) :
+            len is 3 ? typeof(P<,,>) :
+            len is 4 ? typeof(P<,,,>) 
+            : fail<Type>(IndexOutOfRange(len));
+        var type = typeDef.MakeGenericType(values.Select(v => v.GetType()).ToArray());
+        return Activator.CreateInstance(type, values) as IProduct;                   
+    }
+   
 
     public static P<X1,X2> make<X1, X2>(X1 x1, X2 x2)
         => new P<X1,X2>(x1,x2);

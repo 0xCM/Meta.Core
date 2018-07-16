@@ -34,7 +34,7 @@ partial class Product
         /// <summary>
         /// Constructs a tuple from a product
         /// </summary>
-        /// <param name="x"></param>
+        /// <param name="p">The source product</param>
         public static implicit operator (X1, X2) (P<X1, X2> p)
             => p.AsTuple();
 

@@ -13,7 +13,7 @@ using Meta.Core;
 partial class etude
 {
     /// <summary>
-    /// Cuonstructs a <see cref="byte"/> value
+    /// Constructs a <see cref="byte"/> value
     /// </summary>
     /// <param name="value">The primitive value</param>
     /// <returns></returns>
@@ -22,7 +22,16 @@ partial class etude
         => value;
 
     /// <summary>
-    /// Cuonstructs a <see cref="sbyte"/> value
+    /// Constructs a generic <see cref="byte"/> value
+    /// </summary>
+    /// <param name="value">The primitive value</param>
+    /// <returns></returns>
+    [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Number<byte> uint8G(byte value)
+        => value;
+
+    /// <summary>
+    /// Constructs a <see cref="sbyte"/> value
     /// </summary>
     /// <param name="value">The primitive value</param>
     /// <returns></returns>
@@ -31,7 +40,17 @@ partial class etude
         => value;
 
     /// <summary>
-    /// Cuonstructs a <see cref="ushort"/> value
+    /// Constructs a generic <see cref="sbyte"/> value
+    /// </summary>
+    /// <param name="value">The primitive value</param>
+    /// <returns></returns>
+    [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Number<sbyte> int8G(sbyte value)
+        => value;
+
+
+    /// <summary>
+    /// Constructs a <see cref="ushort"/> value
     /// </summary>
     /// <param name="value">The primitive value</param>
     /// <returns></returns>
@@ -40,7 +59,16 @@ partial class etude
         => value;
 
     /// <summary>
-    /// Cuonstructs a <see cref="short"/> value
+    /// Constructs a generic <see cref="ushort"/> value
+    /// </summary>
+    /// <param name="value">The primitive value</param>
+    /// <returns></returns>
+    [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Number<ushort> uint16G(ushort value)
+        => value;
+
+    /// <summary>
+    /// Constructs a <see cref="short"/> value
     /// </summary>
     /// <param name="value">The primitive value</param>
     /// <returns></returns>
@@ -49,16 +77,16 @@ partial class etude
         => value;
 
     /// <summary>
-    /// Cuonstructs a <see cref="uint"/> value
+    /// Constructs a generic <see cref="short"/> value
     /// </summary>
     /// <param name="value">The primitive value</param>
     /// <returns></returns>
     [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static uint uint32(uint value)
+    public static Number<short> int16G(short value)
         => value;
 
     /// <summary>
-    /// Cuonstructs a <see cref="int"/> value
+    /// Constructs a <see cref="int"/> value
     /// </summary>
     /// <param name="value">The primitive value</param>
     /// <returns></returns>
@@ -67,16 +95,34 @@ partial class etude
         => value;
 
     /// <summary>
-    /// Cuonstructs a <see cref="Number{UInt64}"/> value
+    /// Constructs a generic <see cref="int"/> value
     /// </summary>
     /// <param name="value">The primitive value</param>
     /// <returns></returns>
     [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static ulong uint64(ulong value)
+    public static Number<int> int32G(int value)
         => value;
 
     /// <summary>
-    /// Cuonstructs a <see cref="Number{Int64}"/> value
+    /// Constructs a <see cref="uint"/> value
+    /// </summary>
+    /// <param name="value">The primitive value</param>
+    /// <returns></returns>
+    [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static uint uint32(uint value)
+        => value;
+
+    /// <summary>
+    /// Constructs a generic <see cref="uint"/> value
+    /// </summary>
+    /// <param name="value">The primitive value</param>
+    /// <returns></returns>
+    [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Number<uint> uint32G(uint value)
+        => value;
+
+    /// <summary>
+    /// Constructs a <see cref="long"/> value
     /// </summary>
     /// <param name="value">The primitive value</param>
     /// <returns></returns>
@@ -85,16 +131,52 @@ partial class etude
         => value;
 
     /// <summary>
-    /// Cuonstructs a <see cref="Number{Decimal}"/> value
+    /// Constructs a generic <see cref="long"/> value
     /// </summary>
     /// <param name="value">The primitive value</param>
     /// <returns></returns>
     [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Number<decimal> @decimal(decimal value)
+    public static Number<long> int64G(long value)
         => value;
 
     /// <summary>
-    /// Cuonstructs a <see cref="Number{Single}"/> value
+    /// Constructs a <see cref="Number{UInt64}"/> value
+    /// </summary>
+    /// <param name="value">The primitive value</param>
+    /// <returns></returns>
+    [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static ulong uint64(ulong value)
+        => value;
+
+    /// <summary>
+    /// Constructs a generic <see cref="ulong"/> value
+    /// </summary>
+    /// <param name="value">The primitive value</param>
+    /// <returns></returns>
+    [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Number<ulong> uint64G(ulong value)
+        => value;
+
+    /// <summary>
+    /// Constructs a <see cref="decimal"/> value
+    /// </summary>
+    /// <param name="value">The primitive value</param>
+    /// <returns></returns>
+    [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static decimal @decimal(decimal value)
+        => value;
+
+    /// <summary>
+    /// Constructs a generic <see cref="decimal"/> value
+    /// </summary>
+    /// <param name="value">The primitive value</param>
+    /// <returns></returns>
+    [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Number<decimal> decimalG(decimal value)
+        => value;
+
+    /// <summary>
+    /// Constructs a <see cref="float"/> value
     /// </summary>
     /// <param name="value">The primitive value</param>
     /// <returns></returns>
@@ -103,7 +185,16 @@ partial class etude
         => value;
 
     /// <summary>
-    /// Cuonstructs a <see cref="Number{Double}"/> value
+    /// Constructs a genric <see cref="float"/> value
+    /// </summary>
+    /// <param name="value">The primitive value</param>
+    /// <returns></returns>
+    [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Number<float> float32G(float value)
+        => value;
+
+    /// <summary>
+    /// Constructs a <see cref="double"/> value
     /// </summary>
     /// <param name="value">The primitive value</param>
     /// <returns></returns>
@@ -111,14 +202,25 @@ partial class etude
     public static double float64(double value)
         => value;
 
-
     /// <summary>
-    /// Implements the canonical lift operation
+    /// Constructs a generic <see cref="double"/> value
     /// </summary>
-    /// <typeparam name="X">The type of value to lift</typeparam>
-    /// <param name="x">The value to lift</param>
+    /// <param name="value">The primitive value</param>
+    /// <returns></returns>
+    [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Number<double> float64G(double value)
+        => value;
+
+   
+    /// <summary>
+    /// Constructs a generic number based a specified type
+    /// </summary>
+    /// <typeparam name="X">The underlying type</typeparam>
+    /// <param name="x">The underlying value</param>
     /// <returns></returns>
     public static Number<X> number<X>(X x)
         where X : struct
             => new Number<X>(x);
+
+    
 }

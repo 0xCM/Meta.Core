@@ -127,10 +127,10 @@ namespace Meta.Core
 
 
         /// <summary>
-        /// Parses a list representation produced by the <see cref="format"/> function
+        /// Parses a list representation
         /// </summary>
         /// <typeparam name="X">The item type</typeparam>
-        /// <param name="formatted"></param>
+        /// <param name="formatted">The formatted list</param>
         /// <returns></returns>
         public static Lst<X> parse<X>(string formatted)
             => Lst.make(from list in formatted.GetBoundedContent('[', ']')

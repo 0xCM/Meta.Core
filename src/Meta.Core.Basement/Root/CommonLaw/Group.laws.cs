@@ -17,7 +17,7 @@ namespace Meta.Core
     public delegate X Inverter<X>(X a);
 
     /// <summary>
-    /// Identifies the <see cref="Modules.Group"/> typeclass
+    /// Identifies the Group typeclass
     /// </summary>
     public interface IGroup : IMonoid
     {

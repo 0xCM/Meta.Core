@@ -1,7 +1,7 @@
 ﻿//-------------------------------------------------------------------------------------------
-// OSS developed by Chris Moore and licensed via MIT: https://opensource.org/licenses/MIT
-// This license grants rights to merge, copy, distribute, sell or otherwise do with it 
-// as you like. But please, for the love of Zeus, don't clutter it with regions.
+// MetaCore
+// Author: Chris Moore, 0xCM@gmail.com
+// License: MIT
 //-------------------------------------------------------------------------------------------
 namespace Meta.Core
 {
@@ -64,7 +64,6 @@ namespace Meta.Core
         [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Number<X> operator -(Number<X> x, Number<X> y)
             => operators.sub(x.Value, y.Value);
-
 
         /// <summary>
         /// Negates a number
@@ -191,9 +190,10 @@ namespace Meta.Core
             => this.Value = Value;
 
         /// <summary>
-        /// The underlying/encapsulated value
+        /// The encapsulated value
         /// </summary>
         public X Value { get; }
+
 
         /// <summary>
         /// Applies a function to the underlying value
@@ -269,6 +269,8 @@ namespace Meta.Core
             => operators.eq(other.Value, this.Value);
 
         #region INumber
+        object INumber.Value
+            => Value;
 
         [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
         X INumber<X>.Add(X x)

@@ -24,7 +24,7 @@ namespace Meta.Core.Modules
         /// <typeparam name="X">The type for which identity will be constructed</typeparam>
         /// <returns></returns>
         public static Identity<X> make<X>()
-            => Identity<X>.Value;
+            => Identity<X>.instance;
     }    
 
 }

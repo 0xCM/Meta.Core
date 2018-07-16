@@ -22,7 +22,7 @@ namespace Meta.Core
     /// </summary>
     /// <typeparam name="X1">The type of value produced for the first coordinate</typeparam>
     /// <typeparam name="X2">The type of value produced for the second coordinate</typeparam>
-    /// <typeparam name="X2">The type of value produced for the third coordinate</typeparam>
+    /// <typeparam name="X3">The type of value produced for the third coordinate</typeparam>
     /// <returns></returns>
     public delegate IEnumerable<(X1 x2, X2 X2, X3 x3)> TupleSource<X1, X2, X3>();
 
@@ -31,7 +31,7 @@ namespace Meta.Core
     /// </summary>
     /// <typeparam name="X1">The type of value produced for the first coordinate</typeparam>
     /// <typeparam name="X2">The type of value produced for the second coordinate</typeparam>
-    /// <typeparam name="X2">The type of value produced for the third coordinate</typeparam>
+    /// <typeparam name="X3">The type of value produced for the third coordinate</typeparam>
     /// <typeparam name="X4">The type of value produced for the fourth coordinate</typeparam>
     /// <returns></returns>
     public delegate IEnumerable<(X1 x2, X2 X2, X3 x3, X4 x4)> TupleSource<X1, X2, X3, X4>();
@@ -41,7 +41,7 @@ namespace Meta.Core
     /// </summary>
     /// <typeparam name="X1">The type of value produced for the first coordinate</typeparam>
     /// <typeparam name="X2">The type of value produced for the second coordinate</typeparam>
-    /// <typeparam name="X2">The type of value produced for the third coordinate</typeparam>
+    /// <typeparam name="X3">The type of value produced for the third coordinate</typeparam>
     /// <typeparam name="X4">The type of value produced for the fourth coordinate</typeparam>
     /// <typeparam name="X5">The type of value produced for the fifth coordinate</typeparam>
     /// <returns></returns>
@@ -52,7 +52,7 @@ namespace Meta.Core
     /// </summary>
     /// <typeparam name="X1">The type of value produced for the first coordinate</typeparam>
     /// <typeparam name="X2">The type of value produced for the second coordinate</typeparam>
-    /// <typeparam name="X2">The type of value produced for the third coordinate</typeparam>
+    /// <typeparam name="X3">The type of value produced for the third coordinate</typeparam>
     /// <typeparam name="X4">The type of value produced for the fourth coordinate</typeparam>
     /// <typeparam name="X5">The type of value produced for the fifth coordinate</typeparam>
     /// <typeparam name="X6">The type of value produced for the sixth coordinate</typeparam>

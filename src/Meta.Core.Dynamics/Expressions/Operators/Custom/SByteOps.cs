@@ -13,6 +13,9 @@ namespace Meta.Core.Operators
 
     public static class SByteOps
     {
+        public static Expression<Func<sbyte, sbyte>> Abs
+            => make((sbyte x) => x < 0 ? (sbyte) -x : x);
+
         public static Expression<Func<sbyte, sbyte, sbyte>> Add
             => make<sbyte>((x, y) => (sbyte)(x + y));
 
@@ -23,10 +26,10 @@ namespace Meta.Core.Operators
             => make<sbyte>((x, y) => (sbyte)(x - y));
 
         public static Expression<Func<sbyte, sbyte>> Inc
-            => make((sbyte x) => x++);
+            => make((sbyte x) => ++x);
 
         public static Expression<Func<sbyte, sbyte>> Dec
-            => make((sbyte x) => x--);
+            => make((sbyte x) => --x);
 
         public static Expression<Func<sbyte, sbyte, bool>> GT
             => make((sbyte x, sbyte y) => x > y);

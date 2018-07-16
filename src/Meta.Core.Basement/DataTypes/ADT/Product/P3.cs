@@ -27,14 +27,14 @@ partial class Product
         /// <summary>
         /// Constructs a product from a tuple
         /// </summary>
-        /// <param name="x"></param>
+        /// <param name="x">The source tuple</param>
         public static implicit operator P<X1, X2, X3>((X1 x1, X2 x2, X3 x3) x)
             => new P<X1, X2, X3>(x);
 
         /// <summary>
         /// Constructs a tuple from a product
         /// </summary>
-        /// <param name="x"></param>
+        /// <param name="p">The source product</param>
         public static implicit operator (X1, X2, X3) (P<X1, X2, X3> p)
             => p.AsTuple();
 

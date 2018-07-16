@@ -13,6 +13,8 @@ namespace Meta.Core.Operators
 
     public static class ByteOps
     {
+        public static Expression<Func<byte, byte>> Abs
+            => make((byte x) => x);
 
         public static Expression<Func<byte, byte, byte>> Add
             => make<byte>((x, y) => (byte)(x + y));
@@ -24,10 +26,10 @@ namespace Meta.Core.Operators
             => make<byte>((x, y) => (byte)(x * y));
 
         public static Expression<Func<byte, byte>> Inc
-            => make((byte x) => x++);
+            => make((byte x) => ++x);
 
         public static Expression<Func<byte, byte>> Dec
-            => make((byte x) => x--);
+            => make((byte x) => --x);
 
         public static Expression<Func<byte, byte, bool>> LT
             => make((byte x, byte y) => x < y);

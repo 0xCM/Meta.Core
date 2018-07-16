@@ -13,6 +13,9 @@ namespace Meta.Core.Operators
 
     public class UInt16Ops
     {
+        public static Expression<Func<ushort, ushort>> Abs
+            => make((ushort x) => x);
+
         public static Expression<Func<ushort, ushort, ushort>> Add
             => make<ushort>((x, y) => (ushort)(x + y));
 
@@ -23,10 +26,10 @@ namespace Meta.Core.Operators
             => make<ushort>((x, y) => (ushort)(x - y));
 
         public static Expression<Func<ushort, ushort>> Inc
-            => make((ushort x) => x++);
+            => make((ushort x) => ++x);
 
         public static Expression<Func<ushort, ushort>> Dec
-            => make((ushort x) => x--);
+            => make((ushort x) => --x);
 
         public static Expression<Func<ushort, ushort, bool>> LT
             => make((ushort x, ushort y) => x < y);

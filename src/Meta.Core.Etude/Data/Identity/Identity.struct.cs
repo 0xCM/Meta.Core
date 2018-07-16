@@ -8,8 +8,7 @@ namespace Meta.Core
 
     public readonly struct Identity<X> : IIdentity<X>
     {
-        public static readonly Identity<X> Value
-            = new Identity<X>();
+        public static readonly Identity<X> instance = default;
 
     }
 

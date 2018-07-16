@@ -11,7 +11,7 @@ namespace Meta.Core
     public interface IIdentity : ITypeClass
     { }
 
-    public interface IIdentity<X> : ITypeClass<X>
+    public interface IIdentity<X> : IIdentity, ITypeClass<X>
     {
 
     }

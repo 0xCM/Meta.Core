@@ -18,15 +18,11 @@ namespace Meta.Core
         /// </summary>
         /// <typeparam name="X">The item type</typeparam>
         /// <typeparam name="X1">The data type of the first column</typeparam>
-        /// <typeparam name="X2">The data type of the second column</typeparam>
-        /// <typeparam name="X3">The data type of the third column</typeparam>
         /// <param name="stream">The source stream</param>
         /// <param name="f1">The selector for the first column</param>
-        /// <param name="f2">The selector for the second column</param>
-        /// <param name="f3">The selector for the third column</param>
         /// <returns></returns>
-        public static DataFrame<X1> AsDataFrame<X, X1>(this IEnumerable<X> stream,
-            Func<X, X1> f1) => new DataFrame<X1>(seq(from item in stream select record(f1(item))));
+        public static DataFrame<X1> AsDataFrame<X, X1>(this IEnumerable<X> stream, Func<X, X1> f1) 
+            => new DataFrame<X1>(seq(from item in stream select record(f1(item))));
 
         /// <summary>
         /// Constructs a 2-column data frame from a 5-tuple stream
@@ -44,11 +40,9 @@ namespace Meta.Core
         /// <typeparam name="X">The item type</typeparam>
         /// <typeparam name="X1">The data type of the first column</typeparam>
         /// <typeparam name="X2">The data type of the second column</typeparam>
-        /// <typeparam name="X3">The data type of the third column</typeparam>
         /// <param name="stream">The source stream</param>
         /// <param name="f1">The selector for the first column</param>
         /// <param name="f2">The selector for the second column</param>
-        /// <param name="f3">The selector for the third column</param>
         /// <returns></returns>
         public static DataFrame<X1, X2> AsDataFrame<X, X1, X2>(this IEnumerable<X> stream,
             Func<X, X1> f1, Func<X, X2> f2) => frame(stream.Select(item => (f1(item), f2(item))));
