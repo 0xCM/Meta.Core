@@ -9,33 +9,34 @@ namespace Meta.Core
     using System.Collections.Generic;
     using System.Linq;
 
-    public abstract class Printer<T> : IPrinter<T>
+    public abstract class PrinterEmit<T> : IPrenterEmit<T>
     {
         protected virtual string Separator { get; }
             = ",";
 
         public abstract string Print(T value);
 
-        string IPrinter.Print(object value)
+        string IPrinterEmit.Print(object value)
             => Print((T)value);
 
         public virtual string PrintSequence(IEnumerable<T> values)
             => string.Join(Separator, values);
 
-        string IPrinter.PrintSequence(IEnumerable<object> values)
+        string IPrinterEmit.PrintSequence(IEnumerable<object> values)
             => PrintSequence(values.Cast<T>());
     }
 
-    public interface IPrinter
+    public interface IPrinterEmit
     {
         string Print(object value);
 
         string PrintSequence(IEnumerable<object> values);
     }
 
-    public interface IPrinter<in T> : IPrinter
+    public interface IPrenterEmit<in T> : IPrinterEmit
     {
         string Print(T value);
+
         string PrintSequence(IEnumerable<T> values);
     }
 

@@ -3,14 +3,22 @@
 // Author: Chris Moore, 0xCM@gmail.com
 // License: MIT
 //-------------------------------------------------------------------------------------------
-using System;
-using System.Linq;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-
-using Meta.Core;
-
-partial class etude
+namespace Meta.Core
 {
+    using System;
+    using System.Collections.Concurrent;
+    using System.Linq;
+
+    public interface ISum : INewtype
+    {
+
+    }
+
+    public interface ISum<A> : ISum, INewType<A>
+    {
+        
+    }
+
+
 
 }

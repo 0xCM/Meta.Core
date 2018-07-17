@@ -505,8 +505,13 @@ public static class express
     public static TypeSelectionBuilder<TResult> TypeSwitch<TResult>(object value)
         => new TypeSelectionBuilder<TResult>(value);
 
-
-
+    /// <summary>
+    /// Lifts a value to a constant expression
+    /// </summary>
+    /// <param name="value">The value to lift</param>
+    /// <returns></returns>
+    public static ConstantExpression constant(object value)
+        => XPR.Constant(value);
 
     public static class linqx
     {
@@ -515,14 +520,6 @@ public static class express
 
         public static BinaryExpression or(XPR left, XPR right)
             => XPR.OrElse(left, right);
-
-        /// <summary>
-        /// Lifts a value to a constant expression
-        /// </summary>
-        /// <param name="value">The value to lift</param>
-        /// <returns></returns>
-        public static ConstantExpression constant(object value)
-            => XPR.Constant(value);
 
         /// <summary>
         /// Creates an expression to adjudicate whether a value if of a specified type

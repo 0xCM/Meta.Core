@@ -100,7 +100,7 @@ public static class Option
     /// <typeparam name="X">The underlying type</typeparam>
     /// <param name="x">The potential value</param>
     /// <returns></returns>
-    public static string render<X>(Option<X> x)
+    public static string render<X>(in Option<X> x)
         => x.MapValueOrElse(value => value?.ToString() ?? string.Empty, 
             message => message.ToOption().Map(m => m.Format(),                 
                 () => string.Empty));

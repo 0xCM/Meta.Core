@@ -17,7 +17,7 @@ partial class etude
     /// <param name="d"></param>
     /// <returns></returns>
     public static Digits digits(params Digit[] d)
-        => d;
+        => new Digits(d);
 
         
 }

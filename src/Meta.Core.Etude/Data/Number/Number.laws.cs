@@ -19,7 +19,7 @@ namespace Meta.Core
     }
 
     /// <summary>
-    /// Defines the number concept
+    /// Defines the generic number concept
     /// </summary>
     /// <typeparam name="X">The underlying value type</typeparam>
     public interface INumber<X> : INumber, IDataType<X>

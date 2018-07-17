@@ -13,7 +13,7 @@ using Meta.Core;
 /// Represents a potential value
 /// </summary>
 /// <typeparam name="T">The potential value type</typeparam>
-public struct Option<T> : IOption<T>, IEquatable<Option<T>>
+public readonly struct Option<T> : IOption<T>, IEquatable<Option<T>>
 {
     /// <summary>
     /// Initializes a None with optional message content
@@ -30,7 +30,7 @@ public struct Option<T> : IOption<T>, IEquatable<Option<T>>
     /// <param name="Message">The associated message</param>
     /// <returns></returns>
     public static Option<T> Some(T Value, IAppMessage Message = null)
-        => new Option<T>(Value, Message);
+        => new Option<T>(Value, Message ?? AppMessage.Empty);
 
     /// <summary>
     /// Populates a None with exception content
@@ -108,6 +108,7 @@ public struct Option<T> : IOption<T>, IEquatable<Option<T>>
             this.value = value;
             this.Message = message ?? AppMessage.Empty;
         }
+        
     }
 
     public Option(IAppMessage message = null)
@@ -226,11 +227,11 @@ public struct Option<T> : IOption<T>, IEquatable<Option<T>>
     /// Yields the encapulated value if present; otherwise, raises an exception
     /// </summary>
     /// <returns></returns>
-    public T Require(string message = null, 
+    public T Require(
         [CallerMemberName] string caller = null, 
         [CallerFilePath] string file = null, 
         [CallerLineNumber] int linenumber = 0)
-            =>  Exists ? value : throw new Exception<T>(message ?? "The value does not exist", caller, file, linenumber);
+            =>  Exists ? value : throw new Exception<T>(this.Message?.Format(), caller, file, linenumber);
     
 
     static readonly T _Default = default;

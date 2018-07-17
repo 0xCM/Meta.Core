@@ -28,7 +28,7 @@ namespace Meta.Core
             var closedMethods = new ConcurrentBag<MethodInfo>();
             var traverser = _traverser(t =>
             {
-                var parsers = from m in t.GetDeclaredMethods(MemberInstanceType.Static)
+                var parsers = from m in t.GetDeclaredStaticMethods()
                               where m.HasAttribute<ParserAttribute>()
                               select m;
                 closedMethods.AddRange(parsers.Where(p => not(p.IsGenericMethod)));

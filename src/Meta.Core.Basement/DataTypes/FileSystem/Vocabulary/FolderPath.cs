@@ -19,8 +19,14 @@ public sealed class FolderPath : DomainPrimitive<FolderPath, string>, IFolderPat
     public static readonly FolderPath Empty 
         = new FolderPath(String.Empty);
 
-    public static readonly FolderPath None 
+    public static readonly FolderPath None
         = Empty;
+
+    /// <summary>
+    /// Gets the current working directory from the environment
+    /// </summary>
+    public static FolderPath CurrentDirectory
+        => Environment.CurrentDirectory;
 
     /// <summary>
     /// Creates a <see cref="FolderPath"/> representation
@@ -94,6 +100,9 @@ public sealed class FolderPath : DomainPrimitive<FolderPath, string>, IFolderPat
     public string FileSystemPath
         => ScriptText.SpecifyEnvironmentParameters(Value);
 
+    /// <summary>
+    /// Gets the literal value of the path, prior to any environment parameter expansions
+    /// </summary>
     public string FullPath
         => base.Value;
 

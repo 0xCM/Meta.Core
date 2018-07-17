@@ -222,5 +222,6 @@ partial class etude
         where X : struct
             => new Number<X>(x);
 
+
     
 }

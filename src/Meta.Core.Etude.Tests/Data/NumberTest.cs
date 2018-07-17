@@ -18,7 +18,30 @@ namespace Meta.Core.Test
     [UT.TestClass, UT.TestCategory("metacore/etude/data")]
     public class NumberTest
     {
-        
+        [UT.TestMethod]
+        public void Conversions()
+        {
+            claim.equal(operators.convert<int, decimal>(4), 4.0m);
+            claim.equal(operators.convert<decimal, int>(4.0m), 4);
+
+            var fifty = Number.fromInt<decimal>(50);
+            claim.equal(int32G(50), fifty.Convert<int>());
+            claim.equal(int16G(50), fifty.Convert<short>());
+            claim.equal(uint64G(50), fifty.Convert<ulong>());
+        }
+
+        [UT.TestMethod]
+        public void Bounds()
+        {
+            var maxVal = Number.max<byte>();
+            var next = Number.next(maxVal);
+            claim.none(next);
+
+            var prior = Number.prior(maxVal);
+            claim.equal(maxVal - Number.one<byte>(), prior);
+        }
+
+
         [UT.TestMethod]
         public void DecimalMin()
         {            
@@ -167,6 +190,11 @@ namespace Meta.Core.Test
             claim.equal(decimalG(6), ++x);
         }
 
+        [UT.TestMethod]
+        public void FromInteger()
+        {
+            claim.equal(decimalG(3), Number.fromInt<decimal>(3));
+        }
     }
 
 }

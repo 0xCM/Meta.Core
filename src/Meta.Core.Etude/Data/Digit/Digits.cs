@@ -60,7 +60,7 @@ namespace Meta.Core
         /// <param name="s2">The second digit container</param>
         /// <returns></returns>
         public static Digits operator +(Digits s1, Digits s2)
-            => s1.Data + s2.Data;
+            => new Digits(s1.Stream().Concat(s2.Stream()).ToArray());
 
         /// <summary>
         /// Converts a <see cref="Digit"/> container to <see cref="Digit"/> list
@@ -102,7 +102,7 @@ namespace Meta.Core
             => this.Data.Equals(other.Data);
 
         public override bool Equals(object obj)
-            => (obj is Digits) ? Equals((Digit)obj) : false;
+            => (obj is Digits d) ? Equals(d) : false;
 
         public override int GetHashCode()
             => Data.GetHashCode();

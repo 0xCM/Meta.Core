@@ -12,5 +12,7 @@ using Meta.Core;
 
 partial class etude
 {
+    public static Sum<A> Sum<A>(A value)
+        => new Sum<A>(value);
 
 }

@@ -41,7 +41,7 @@ namespace Meta.Core.Modules
         /// <typeparam name="X">The monoid element type</typeparam>
         public static Option<IMonoid<X>> make<X>()
             => Try(() => Instances.TryFind(typeof(X))
-                        .MapValueOrDefault(instance => cast<IMonoid<X>>(instance), DefaultMonoid<X>.Default));
+                        .MapValueOrDefault(instance => cast<IMonoid<X>>(instance), DefaultMonoid<X>.instance));
 
         static ConcurrentDictionary<Type, object> Instances { get; }
             = new ConcurrentDictionary<Type, object>();

@@ -335,4 +335,8 @@ public static class operators
     [DebuggerStepperBoundary, MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool or<T>(T x, T y) 
         => OrElse<T>.Apply(x, y);
+
+    [DebuggerStepperBoundary, MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Y convert<X, Y>(X x)
+        => Convert<X, Y>.Apply(x);
 }

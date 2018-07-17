@@ -9,7 +9,7 @@ namespace Meta.Core
     using System.Diagnostics;
     using System.Runtime.CompilerServices;
 
-    public interface INumberTypeInfo
+    public interface INumberInfo
     {
         /// <summary>
         /// Specifies whether the type admits signed values
@@ -36,7 +36,7 @@ namespace Meta.Core
     /// <summary>
     /// Describes a numeric type
     /// </summary>
-    public readonly struct NumberInfo<T> : INumberTypeInfo
+    public readonly struct NumberInfo<T> : INumberInfo
         where T : struct
     {
         public NumberInfo(bool Signed, bool Integral, bool Floating, int? BitCount = null)

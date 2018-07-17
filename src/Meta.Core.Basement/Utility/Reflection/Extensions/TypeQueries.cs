@@ -357,6 +357,33 @@ partial class Reflections
         => t.GetMethods(InstanceType.IsStaticType() 
             ? BF_DeclaredStatic : BF_DeclaredInstance);
 
+    /// <summary>
+    /// Retrieves the public and non-public static methods declared by a type
+    /// </summary>
+    /// <param name="t">The type to examine</param>
+    /// <param name="InstanceType">Whether to selct static or instance </param>
+    /// <returns></returns>
+    public static IEnumerable<MethodInfo> GetDeclaredStaticMethods(this Type t)
+        => t.GetMethods(BF_DeclaredStatic);
+
+    /// <summary>
+    /// Retrieves the public and non-public static methods declared by a type that have a specific name
+    /// </summary>
+    /// <param name="t">The type to examine</param>
+    /// <param name="InstanceType">Whether to selct static or instance </param>
+    /// <returns></returns>
+    public static IEnumerable<MethodInfo> GetDeclaredStaticMethods(this Type t, string name)
+        => t.GetMethods(BF_DeclaredStatic).Where(m => m.Name == name);
+
+    /// <summary>
+    /// Retrieves the public and non-public instance methods declared by a type
+    /// </summary>
+    /// <param name="t">The type to examine</param>
+    /// <param name="InstanceType">Whether to selct static or instance </param>
+    /// <returns></returns>
+    public static IEnumerable<MethodInfo> GetDeclaredInstanceMethods(this Type t)
+        => t.GetMethods(BF_DeclaredInstance);
+
 
     /// <summary>
     /// Retrieves all public properties exposed by a type and appropriately handles interface inheritance

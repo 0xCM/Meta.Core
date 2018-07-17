@@ -17,7 +17,7 @@ namespace Meta.Core
     /// <typeparam name="X">The monoid element type</typeparam>
     readonly struct DefaultMonoid<X> : IMonoid<X>
     {
-        public static readonly DefaultMonoid<X> Default = default;
+        public static readonly DefaultMonoid<X> instance = default;
 
         static IMonoid<X> _Default
             = new Monoid<X>(operators.eq, operators.add, operators.zero<X>());

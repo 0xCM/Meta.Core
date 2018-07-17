@@ -41,7 +41,9 @@ public static class AppMessageX
     /// <param name="message">The message to adjudicate</param>
     /// <returns></returns>
     public static Option<IAppMessage> ToOption(this IAppMessage message)
-        => message.IsEmpty ? Option.None<IAppMessage>() : Option.Some(message);
+        => message == null ? Option.None<IAppMessage>() 
+          : message.IsEmpty ? Option.None<IAppMessage>() 
+          : Option.Some(message);
 
 
 }

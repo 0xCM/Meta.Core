@@ -148,31 +148,22 @@ namespace Meta.Core
                  
         }
 
-        Option<ShellAdapter> _ghci;
-        public void ghci(string input)
+        Option<GhciRepl> _ghci;
+        GhciConfig _ghciConfig = new GhciConfig(@"J:\Tools\stack\programs\x86_64-windows\ghc-8.4.3\bin\ghci.exe");
+
+        public void ghci(string message)
         {
-            void OnData(string data)
-            {
-                Notify(inform(data));
-            }
+            if (_ghci.IsNone())
+                _ghci = GhciRepl.Create(C, _ghciConfig).OnNone(Notify).OnSome(_ => Notify(inform($"Created ghci process")));
 
-            void OnError(string data)
-            {
-                Notify(error(data));
-            }
-
-            void Send(ShellAdapter adapter, string data)
-            {
-                adapter.Send(data);
-            }
-
-            _ghci.OnNone(() =>
-                _ghci = ShellAdapter.Adapt(@"C:\Dev\Tools\Scoop\apps\haskell\8.4.2\bin\ghci.exe", string.Empty, OnData, OnError)
-                                    .OnNone(Notify)
-                );
-
-            if(isNotBlank(input))
-                _ghci.OnSome(x => Send(x,input));
+            _ghci.OnSome(adapter => adapter.Send(message));
+                    
         }
+
+
     }
+
+
+
+    
 }

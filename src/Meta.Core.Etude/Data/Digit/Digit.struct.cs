@@ -6,6 +6,7 @@
 namespace Meta.Core
 {
     using System;
+    using System.Linq;
     using System.Collections;
     using System.Collections.Generic;
 
@@ -30,6 +31,11 @@ namespace Meta.Core
             => byte.TryParse(text, out byte result)
                 ? some(Define(result)) : none<Digit>();
 
+        /// <summary>
+        /// Constructs a digit from a character, if possible; otherwise, reurns none
+        /// </summary>
+        /// <param name="c">The input character</param>
+        /// <returns></returns>
         public static Option<Digit> Parse(char c)
             => byte.TryParse(c.ToString(), out byte result)
                 ? some(Define(result)) : none<Digit>();
@@ -42,13 +48,16 @@ namespace Meta.Core
             => d.Value.ToString()[0];
 
         /// <summary>
-        /// Converts a character to a digit if possible; otherwise,
-        /// returns the emtpy digit
+        /// Converts an integer int the range [0,..,9] to its digit
+        /// representation. 
         /// </summary>
-        /// <param name="c"></param>
-        public static explicit operator Digit(char c)
+        /// <param name="i"></param>
+        public static implicit operator Digit(int i)
+            => FromChar(i.ToString()[0]);
+
+        static Digit FromChar(char c)
         {
-            switch(c)
+            switch (c)
             {
                 case '0': return Define(0);
                 case '1': return Define(1);
@@ -62,8 +71,16 @@ namespace Meta.Core
                 case '9': return Define(9);
             }
             return Empty;
-            
+
         }
+
+        /// <summary>
+        /// Converts a character to a digit if possible; otherwise,
+        /// returns the emtpy digit
+        /// </summary>
+        /// <param name="c"></param>
+        public static explicit operator Digit(char c)
+            => FromChar(c);
 
         public static bool operator ==(Digit x1, Digit x2)
             => Equals(x1, x2);

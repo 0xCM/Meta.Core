@@ -93,6 +93,50 @@ namespace Meta.Core
             where X : struct
                 => x < zero<X>() ? -x : x;
 
+        /// <summary>
+        /// Represents an integer as a <typeparamref name="X"/>-value
+        /// </summary>
+        /// <typeparam name="X"></typeparam>
+        /// <param name="i"></param>
+        /// <returns></returns>
+        public static Number<X> fromInt<X>(int i)
+            where X : struct
+                => (X)Convert.ChangeType(i, typeof(X));
+
+        /// <summary>
+        /// Gets the smallest number representable by <typeparamref name="X"/>
+        /// </summary>
+        public static Number<X> min<X>()
+            where X : struct
+                => Number<X>.Min;
+
+        /// <summary>
+        /// Gets the largest number representable by <typeparamref name="X"/>
+        /// </summary>
+        public static Number<X> max<X>()
+            where X : struct
+                => Number<X>.Max;
+
+        /// <summary>
+        /// Computes the predecessor, if possible
+        /// </summary>
+        /// <typeparam name="X">The underlying type</typeparam>
+        /// <param name="x">The value for which a predecessor will potentially be computed</param>
+        /// <returns></returns>
+        public static Number<X>? prior<X>(Number<X> x)
+            where X : struct
+                => x > min<X>() ? --x : Number<X>.None;
+
+        /// <summary>
+        /// Computes the successor, if possible
+        /// </summary>
+        /// <typeparam name="X">The underlying type</typeparam>
+        /// <param name="x">The value for which a successor will potentially be computed</param>
+        /// <returns></returns>
+        public static Number<X>? next<X>(Number<X> x)
+            where X : struct
+                => x < max<X>() ? ++x : Number<X>.None;
+
 
         static readonly NumberInfo<byte> UInt8Info = new NumberInfo<byte>(false, true, false, 8);
         static readonly NumberInfo<sbyte> Int8Info = new NumberInfo<sbyte>(true, true, false, 8);

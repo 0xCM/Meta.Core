@@ -10,6 +10,7 @@ namespace Meta.Core
     using System.Runtime.CompilerServices;
 
     using static etude;
+    using static metacore;
     
     /// <summary>
     /// Generic Number
@@ -18,6 +19,12 @@ namespace Meta.Core
     public readonly struct Number<X> : IEquatable<Number<X>>, INumber<X>
         where X : struct
     {
+        /// <summary>
+        /// Specifies the absence of a value
+        /// </summary>
+        public static Number<X>? None 
+            => null;
+        
         /// <summary>
         /// Specifies the additive identity
         /// </summary>    
@@ -29,6 +36,22 @@ namespace Meta.Core
         /// </summary>    
         public static readonly Number<X> One 
             = operators.one<X>();
+
+        /// <summary>
+        /// Specifies the smallest representable value
+        /// </summary>
+        public static readonly Number<X> Min
+           = (from f in field<X>("MinValue")
+              from v in value<X>(f)
+              select v).Require();
+
+        /// <summary>
+        /// Specifies the greatest representable value
+        /// </summary>
+        public static readonly Number<X> Max
+           = (from f in field<X>("MaxValue")
+              from v in value<X>(f)
+              select v).Require();
 
         /// <summary>
         /// Implicitly lifts/converts a <typeparamref name="X"/>-value to a <see cref="Number{T}"/>
@@ -194,7 +217,33 @@ namespace Meta.Core
         /// </summary>
         public X Value { get; }
 
+        /// <summary>
+        /// Converts the represented value to a <typeparamref name="Y"/> value
+        /// </summary>
+        /// <typeparam name="Y">The target conversion type</typeparam>
+        /// <returns></returns>
+        public Number<Y> Convert<Y>()
+            where Y : struct
+                => operators.convert<X,Y>(Value);
 
+        /// <summary>
+        /// Attempts to convert the represented value; reuturns the
+        /// converted value upon success or null if failure.
+        /// </summary>
+        /// <typeparam name="Y">The target conversion type</typeparam>
+        /// <returns></returns>
+        public Number<Y>? TryConvert<Y>()
+            where Y : struct
+        {
+            try
+            {
+                return Convert<Y>();
+            }
+            catch(Exception)
+            {
+                return null;
+            }
+        }
         /// <summary>
         /// Applies a function to the underlying value
         /// </summary>

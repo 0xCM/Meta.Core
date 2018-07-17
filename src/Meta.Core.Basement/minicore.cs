@@ -53,6 +53,7 @@ public static class minicore
     public static T cast<T>(object value)
         => (T)value;
 
+
     /// <summary>
     /// Shorthand for the <see cref="string.IsNullOrEmpty(string)"/> method
     /// </summary>
